@@ -384,6 +384,22 @@
     "lodOptionDesBotsSameHero"                      "All Bots Use The Same hero"
     "lodOptionAboutBotsSameHero"                    "Forces all bots to be the same hero."
 
+    "lodOptionPocketTowers"                         "Pocket Tower"
+    "lodOptionDesPocketTowers"                      "Pocket Tower"
+    "lodOptionAboutPocketTowers"                    "All players gain the ability to place a tower(s)."
+    "lodOptionNoPocketTowers"                       "No Pocket Towers"
+    "lodOptionPocketTowersConsumable"               "Pocket Tower (Consumable)"
+    "lodOptionPocketTowersCooldown60"               "Pocket Tower (60s CD)"
+    "lodOptionPocketTowersCooldown120"              "Pocket Tower (120 CD)"
+    "lodOptionPocketTowersCooldown180"              "Pocket Tower (180 CD)"     
+    "lodOptionPocketTowersCooldown240"              "Pocket Tower (240 CD)"
+    "lodOptionPocketTowersCooldown300"              "Pocket Tower (300 CD)"
+
+    "lodMutatorNoPocketTowers"                      "Pocket Tower"
+    "lodMutatorPocketTowersConsumable"              "Pocket Tower (Consumable)"
+    "lodMutatorPocketTowersCooldown1"               "Pocket Tower (3m CD)"
+    "lodMutatorPocketTowersCooldown"                "Pocket Tower (5m CD)"
+
     "lodMutatorBotsSameHero"                        "Bots Same Hero"
     "lodMutatorRandomBotHero"                       "Random Hero"
     "lodMutatorAxe"                                 "Axe"

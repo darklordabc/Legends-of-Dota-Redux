@@ -753,6 +753,7 @@ function Pregame:loadDefaultSettings()
     self:setOption('lodOptionBotsSameHero', 0, false)
     self:setOption('lodOptionRefreshCooldownsOnDeath', 0, false)
     self:setOption('lodOptionGlobalCast', 0, false)
+    self:setOption('lodOptionPocketTowers', 0, false)
 
     -- Balance Mode Ban List disabled by default
     self:setOption('lodOptionBanningBalanceMode', 0, true)

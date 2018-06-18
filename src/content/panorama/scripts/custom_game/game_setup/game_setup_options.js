@@ -126,6 +126,7 @@ var basicOptions = {
                         },
                         states: {
                             'lodMutatorPocketTowersConsumable': 1,
+                            'lodMutatorPocketTowersCooldown1': 180,
                             'lodMutatorPocketTowersCooldown': 300
                         }
                     },
