@@ -1338,7 +1338,33 @@ function Ingame:handleRespawnModifier()
                             -------
                             -- Anti-Kamikaze Mechanic END
                             -------
-                            hero.timeLeft = timeLeft
+
+                            --------
+                            -- Resurrect Mutator start
+                            ---------
+
+                            if OptionManager:GetOption('resurrectAllies') == 1 then
+                                local numb = math.min(60,math.max(1,math.ceil(timeLeft/3)))
+                                local newItem = CreateItem("item_tombstone_"..numb,hero:GetPlayerOwner(),hero:GetPlayerOwner())
+
+                                newItem:SetPurchaseTime(0)
+                                newItem:SetPurchaser(hero)
+
+                                local tombstone = SpawnEntityFromTableSynchronous("dota_item_tombstone_drop",{})
+                                
+                                tombstone:SetContainedItem(newItem)
+                                if hero:GetTeamNumber() == DOTA_TEAM_GOODGUYS then
+                                    --tombstone:SetModel("models/heroes/phantom_assassin/arcana_tombstone2.vmdl")
+                                else
+                                    --tombstone:SetModel("models/heroes/phantom_assassin/arcana_tombstone3.vmdl")
+                                end
+                                tombstone:SetAbsOrigin(hero:GetAbsOrigin())
+                                tombstone:SetAngles(0, 90, 0)
+                            end
+                            --------
+                            -- Resurrect Mutator END
+                            ---------
+                            
                             hero:SetTimeUntilRespawn(timeLeft)
 
                             -- Give 322 gold if enabled

@@ -22,12 +22,11 @@ function modifier_resurrection_mutator.IsHidden(self)
 end
 function modifier_resurrection_mutator.DeclareFunctions(self)
     return {
-        MODIFIER_EVENT_ON_DEATH,
-        MODIFIER_PROPERTY_CASTTIME_PERCENTAGE,
+        --MODIFIER_EVENT_ON_DEATH,
     }
 end
 
-function modifier_resurrection_mutator.OnDeath(self,kv)
+--[[function modifier_resurrection_mutator.OnDeath(self,kv)
     local killedUnit = self:GetParent()
 
     if kv.unit==killedUnit and not killedUnit:IsReincarnating() then
@@ -53,5 +52,5 @@ function modifier_resurrection_mutator.OnDeath(self,kv)
         tombstone:SetAngles(0, 90, 0)
         --tombstone:SetModelScale(2)
     end
-end
+end]]
 
