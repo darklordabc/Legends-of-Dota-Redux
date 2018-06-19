@@ -48,7 +48,7 @@ function item_companion_consumable:OnSpellStart(keys)
 	-- modifier.reincarnate_delay = self:GetSpecialValueFor("reincarnate_delay")
 
 	local particle_death_fx = ParticleManager:CreateParticle("particles/neutral_fx/roshan_valentines_attack_right_hearts.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
-	ParticleManager:SetParticleControl(particle_death_fx, 3, unit:GetAbsOrigin())
+	ParticleManager:SetParticleControl(particle_death_fx, 3, target:GetAbsOrigin())
 	ParticleManager:ReleaseParticleIndex(particle_death_fx)
 
 	caster:RemoveItem(self)
