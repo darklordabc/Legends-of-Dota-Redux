@@ -56,7 +56,12 @@ function item_companion_consumable:OnSpellStart(keys)
 		ParticleManager:ReleaseParticleIndex(particle_death_fx)
 	end
 
-	caster:RemoveItem(self)
+	if self:GetCurrentCharges() == 1 then
+		caster:RemoveItem(self)
+	else
+		self:SetCurrentCharges(self:GetCurrentCharges() - 1)
+	end
+	
 
 	caster:EmitSound("Hero_Wisp.Tether.Stun")
 end
