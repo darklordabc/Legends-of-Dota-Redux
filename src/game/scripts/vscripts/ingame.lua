@@ -1630,7 +1630,7 @@ function Ingame:checkBuybackStatus()
                         GameRules.pregame.selectedSkills[pID] = {}
                         GameRules.pregame.selectedHeroes[pID] = GameRules.pregame:getRandomHero()
                         GameRules.pregame.selectedPlayerAttr[pID] = ({'str', 'agi', 'int'})[math.random(1,3)]
-                        if util:isPlayerBot(pID) then
+                        if util:isPlayerBot(pID) and GameRules.pregame.botPlayers then
                             GameRules.pregame.botPlayers.all[pID] = {}
                             GameRules.pregame:generateBotBuilds(pID)
 
