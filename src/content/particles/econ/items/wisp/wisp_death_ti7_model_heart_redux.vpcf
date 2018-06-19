@@ -40,6 +40,9 @@
 			m_flStartTime = 0.4
 			m_flEndTime = 0.5
 		},
+		{
+			_class = "C_OP_PositionLock"
+		},
 	]
 	m_Initializers = 
 	[
@@ -58,8 +61,8 @@
 		},
 		{
 			_class = "C_INIT_PositionOffset"
-			m_OffsetMin = [ 0.0, 0.0, 100.0 ]
-			m_OffsetMax = [ 0.0, 0.0, 100.0 ]
+			m_OffsetMin = [ 0.0, 0.0, 250.0 ]
+			m_OffsetMax = [ 0.0, 0.0, 250.0 ]
 		},
 		{
 			_class = "C_INIT_RandomRotation"

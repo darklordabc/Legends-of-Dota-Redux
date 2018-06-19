@@ -50,6 +50,9 @@
 			_class = "C_OP_ColorInterpolate"
 			m_ColorFade = [ 80, 26, 162, 255 ]
 		},
+		{
+			_class = "C_OP_PositionLock"
+		},
 	]
 	m_Initializers = 
 	[
@@ -93,6 +96,8 @@
 		},
 		{
 			_class = "C_INIT_PositionOffset"
+			m_OffsetMin = [ 0.0, 0.0, 250.0 ]
+			m_OffsetMax = [ 0.0, 0.0, 250.0 ]
 		},
 	]
 	m_Emitters = 
