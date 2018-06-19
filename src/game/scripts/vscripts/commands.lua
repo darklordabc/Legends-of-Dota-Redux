@@ -195,7 +195,7 @@ function Commands:OnPlayerChat(keys)
 
     local hero = PlayerResource:GetSelectedHeroEntity(playerID) 
     -- If not valid hero, return
-    if not hero then return end
+    if not IsValidEntity(hero) then return end
 
     ----------------------------
     -- Debug Commands

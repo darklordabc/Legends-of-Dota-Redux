@@ -30,6 +30,7 @@ function item_companion_consumable:SecondLife( OnDeathKeys, BuffInfo )
 	-- Wait for the caster to reincarnate, then play its sound
 	local modifier = unit:FindModifierByName("modifier_companion_reincarnation")
 	modifier:DecrementStackCount()
+	unit:AddNewModifier(unit, nil, "modifier_invulnerable", {duration = 1.0})
 	if modifier:GetStackCount() == 0 then modifier:Destroy() end
 end
 
@@ -45,6 +46,10 @@ function item_companion_consumable:OnSpellStart(keys)
 	end
 	modifier:SetStackCount(modifier:GetStackCount() + 1)
 	-- modifier.reincarnate_delay = self:GetSpecialValueFor("reincarnate_delay")
+
+	local particle_death_fx = ParticleManager:CreateParticle("particles/neutral_fx/roshan_valentines_attack_right_hearts.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
+	ParticleManager:SetParticleControl(particle_death_fx, 3, unit:GetAbsOrigin())
+	ParticleManager:ReleaseParticleIndex(particle_death_fx)
 
 	caster:RemoveItem(self)
 
