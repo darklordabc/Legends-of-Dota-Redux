@@ -471,360 +471,420 @@
     {
         "BaseClass"                     "item_tombstone"               
         "AbilityChannelTime"            "1"
+        "Model"                         "models/props_gameplay/tombstoneb01.vmdl"
     }
 
     "item_tombstone_2"
     {
         "BaseClass"                     "item_tombstone"               
         "AbilityChannelTime"            "2"
+        "Model"                         "models/props_gameplay/tombstoneb01.vmdl"
     }
 
     "item_tombstone_3"
     {
         "BaseClass"                     "item_tombstone"               
         "AbilityChannelTime"            "3"
+        "Model"                         "models/props_gameplay/tombstoneb01.vmdl"
     }
 
     "item_tombstone_4"
     {
         "BaseClass"                     "item_tombstone"               
         "AbilityChannelTime"            "4"
+        "Model"                         "models/props_gameplay/tombstoneb01.vmdl"
     }
 
     "item_tombstone_5"
     {
         "BaseClass"                     "item_tombstone"               
         "AbilityChannelTime"            "5"
+        "Model"                         "models/props_gameplay/tombstoneb01.vmdl"
     }
 
     "item_tombstone_6"
     {
         "BaseClass"                     "item_tombstone"               
         "AbilityChannelTime"            "6"
+        "Model"                         "models/props_gameplay/tombstoneb01.vmdl"
     }
 
     "item_tombstone_7"
     {
         "BaseClass"                     "item_tombstone"               
         "AbilityChannelTime"            "7"
+        "Model"                         "models/props_gameplay/tombstoneb01.vmdl"
     }
 
     "item_tombstone_8"
     {
         "BaseClass"                     "item_tombstone"               
         "AbilityChannelTime"            "8"
+        "Model"                         "models/props_gameplay/tombstoneb01.vmdl"
     }
 
     "item_tombstone_9"
     {
         "BaseClass"                     "item_tombstone"               
         "AbilityChannelTime"            "9"
+        "Model"                         "models/props_gameplay/tombstoneb01.vmdl"
     }
 
     "item_tombstone_10"
     {
         "BaseClass"                     "item_tombstone"               
         "AbilityChannelTime"            "10"
+        "Model"                         "models/props_gameplay/tombstoneb01.vmdl"
     }
 
     "item_tombstone_11"
     {
         "BaseClass"                     "item_tombstone"               
         "AbilityChannelTime"            "11"
+        "Model"                         "models/props_gameplay/tombstoneb01.vmdl"
     }
 
     "item_tombstone_12"
     {
         "BaseClass"                     "item_tombstone"               
         "AbilityChannelTime"            "12"
+        "Model"                         "models/props_gameplay/tombstoneb01.vmdl"
     }
 
     "item_tombstone_13"
     {
         "BaseClass"                     "item_tombstone"               
         "AbilityChannelTime"            "13"
+        "Model"                         "models/props_gameplay/tombstoneb01.vmdl"
     }
 
     "item_tombstone_14"
     {
         "BaseClass"                     "item_tombstone"               
         "AbilityChannelTime"            "14"
+        "Model"                         "models/props_gameplay/tombstoneb01.vmdl"
     }
 
     "item_tombstone_15"
     {
         "BaseClass"                     "item_tombstone"               
         "AbilityChannelTime"            "15"
+        "Model"                         "models/props_gameplay/tombstoneb01.vmdl"
     }
 
     "item_tombstone_16"
     {
         "BaseClass"                     "item_tombstone"               
         "AbilityChannelTime"            "16"
+        "Model"                         "models/props_gameplay/tombstoneb01.vmdl"
     }
 
     "item_tombstone_17"
     {
         "BaseClass"                     "item_tombstone"               
         "AbilityChannelTime"            "17"
+        "Model"                         "models/props_gameplay/tombstoneb01.vmdl"
     }
 
     "item_tombstone_18"
     {
         "BaseClass"                     "item_tombstone"               
         "AbilityChannelTime"            "18"
+        "Model"                         "models/props_gameplay/tombstoneb01.vmdl"
     }
 
     "item_tombstone_19"
     {
         "BaseClass"                     "item_tombstone"               
         "AbilityChannelTime"            "19"
+        "Model"                         "models/props_gameplay/tombstoneb01.vmdl"
     }
 
     "item_tombstone_20"
     {
         "BaseClass"                     "item_tombstone"               
         "AbilityChannelTime"            "20"
+        "Model"                         "models/props_gameplay/tombstoneb01.vmdl"
     }
 
     "item_tombstone_21"
     {
         "BaseClass"                     "item_tombstone"               
         "AbilityChannelTime"            "21"
+        "Model"                         "models/props_gameplay/tombstoneb01.vmdl"
     }
 
     "item_tombstone_22"
     {
         "BaseClass"                     "item_tombstone"               
         "AbilityChannelTime"            "22"
+        "Model"                         "models/props_gameplay/tombstoneb01.vmdl"
     }
 
     "item_tombstone_23"
     {
         "BaseClass"                     "item_tombstone"               
         "AbilityChannelTime"            "23"
+        "Model"                         "models/props_gameplay/tombstoneb01.vmdl"
     }
 
     "item_tombstone_24"
     {
         "BaseClass"                     "item_tombstone"               
         "AbilityChannelTime"            "24"
+        "Model"                         "models/props_gameplay/tombstoneb01.vmdl"
     }
 
     "item_tombstone_25"
     {
         "BaseClass"                     "item_tombstone"               
         "AbilityChannelTime"            "25"
+        "Model"                         "models/props_gameplay/tombstoneb01.vmdl"
     }
 
     "item_tombstone_26"
     {
         "BaseClass"                     "item_tombstone"               
         "AbilityChannelTime"            "26"
+        "Model"                         "models/props_gameplay/tombstoneb01.vmdl"
     }
 
     "item_tombstone_27"
     {
         "BaseClass"                     "item_tombstone"               
         "AbilityChannelTime"            "27"
+        "Model"                         "models/props_gameplay/tombstoneb01.vmdl"
     }
 
     "item_tombstone_28"
     {
         "BaseClass"                     "item_tombstone"               
         "AbilityChannelTime"            "28"
+        "Model"                         "models/props_gameplay/tombstoneb01.vmdl"
     }
 
     "item_tombstone_29"
     {
         "BaseClass"                     "item_tombstone"               
         "AbilityChannelTime"            "29"
+        "Model"                         "models/props_gameplay/tombstoneb01.vmdl"
     }
 
     "item_tombstone_30"
     {
         "BaseClass"                     "item_tombstone"               
         "AbilityChannelTime"            "30"
+        "Model"                         "models/props_gameplay/tombstoneb01.vmdl"
     }
 
     "item_tombstone_31"
     {
         "BaseClass"                     "item_tombstone"               
         "AbilityChannelTime"            "31"
+        "Model"                         "models/props_gameplay/tombstoneb01.vmdl"
     }
 
     "item_tombstone_32"
     {
         "BaseClass"                     "item_tombstone"               
         "AbilityChannelTime"            "32"
+        "Model"                         "models/props_gameplay/tombstoneb01.vmdl"
     }
 
     "item_tombstone_33"
     {
         "BaseClass"                     "item_tombstone"               
         "AbilityChannelTime"            "33"
+        "Model"                         "models/props_gameplay/tombstoneb01.vmdl"
     }
 
     "item_tombstone_34"
     {
         "BaseClass"                     "item_tombstone"               
         "AbilityChannelTime"            "34"
+        "Model"                         "models/props_gameplay/tombstoneb01.vmdl"
     }
 
     "item_tombstone_35"
     {
         "BaseClass"                     "item_tombstone"               
         "AbilityChannelTime"            "35"
+        "Model"                         "models/props_gameplay/tombstoneb01.vmdl"
     }
 
     "item_tombstone_36"
     {
         "BaseClass"                     "item_tombstone"               
         "AbilityChannelTime"            "36"
+        "Model"                         "models/props_gameplay/tombstoneb01.vmdl"
     }
 
     "item_tombstone_37"
     {
         "BaseClass"                     "item_tombstone"               
         "AbilityChannelTime"            "37"
+        "Model"                         "models/props_gameplay/tombstoneb01.vmdl"
     }
 
     "item_tombstone_38"
     {
         "BaseClass"                     "item_tombstone"               
         "AbilityChannelTime"            "38"
+        "Model"                         "models/props_gameplay/tombstoneb01.vmdl"
     }
 
     "item_tombstone_39"
     {
         "BaseClass"                     "item_tombstone"               
         "AbilityChannelTime"            "39"
+        "Model"                         "models/props_gameplay/tombstoneb01.vmdl"
     }
 
     "item_tombstone_40"
     {
         "BaseClass"                     "item_tombstone"               
         "AbilityChannelTime"            "40"
+        "Model"                         "models/props_gameplay/tombstoneb01.vmdl"
     }
 
     "item_tombstone_41"
     {
         "BaseClass"                     "item_tombstone"               
         "AbilityChannelTime"            "41"
+        "Model"                         "models/props_gameplay/tombstoneb01.vmdl"
     }
 
     "item_tombstone_42"
     {
         "BaseClass"                     "item_tombstone"               
         "AbilityChannelTime"            "42"
+        "Model"                         "models/props_gameplay/tombstoneb01.vmdl"
     }
 
     "item_tombstone_43"
     {
         "BaseClass"                     "item_tombstone"               
         "AbilityChannelTime"            "43"
+        "Model"                         "models/props_gameplay/tombstoneb01.vmdl"
     }
 
     "item_tombstone_44"
     {
         "BaseClass"                     "item_tombstone"               
         "AbilityChannelTime"            "44"
+        "Model"                         "models/props_gameplay/tombstoneb01.vmdl"
     }
 
     "item_tombstone_45"
     {
         "BaseClass"                     "item_tombstone"               
         "AbilityChannelTime"            "45"
+        "Model"                         "models/props_gameplay/tombstoneb01.vmdl"
     }
 
     "item_tombstone_46"
     {
         "BaseClass"                     "item_tombstone"               
         "AbilityChannelTime"            "46"
+        "Model"                         "models/props_gameplay/tombstoneb01.vmdl"
     }
 
     "item_tombstone_47"
     {
         "BaseClass"                     "item_tombstone"               
         "AbilityChannelTime"            "47"
+        "Model"                         "models/props_gameplay/tombstoneb01.vmdl"
     }
 
     "item_tombstone_48"
     {
         "BaseClass"                     "item_tombstone"               
         "AbilityChannelTime"            "48"
+        "Model"                         "models/props_gameplay/tombstoneb01.vmdl"
     }
 
     "item_tombstone_49"
     {
         "BaseClass"                     "item_tombstone"               
         "AbilityChannelTime"            "49"
+        "Model"                         "models/props_gameplay/tombstoneb01.vmdl"
     }
 
     "item_tombstone_50"
     {
         "BaseClass"                     "item_tombstone"               
         "AbilityChannelTime"            "50"
+        "Model"                         "models/props_gameplay/tombstoneb01.vmdl"
     }
 
     "item_tombstone_51"
     {
         "BaseClass"                     "item_tombstone"               
         "AbilityChannelTime"            "51"
+        "Model"                         "models/props_gameplay/tombstoneb01.vmdl"
     }
 
     "item_tombstone_52"
     {
         "BaseClass"                     "item_tombstone"               
         "AbilityChannelTime"            "52"
+        "Model"                         "models/props_gameplay/tombstoneb01.vmdl"
     }
 
     "item_tombstone_53"
     {
         "BaseClass"                     "item_tombstone"               
         "AbilityChannelTime"            "53"
+        "Model"                         "models/props_gameplay/tombstoneb01.vmdl"
     }
 
     "item_tombstone_54"
     {
         "BaseClass"                     "item_tombstone"               
         "AbilityChannelTime"            "54"
+        "Model"                         "models/props_gameplay/tombstoneb01.vmdl"
     }
 
     "item_tombstone_55"
     {
         "BaseClass"                     "item_tombstone"               
         "AbilityChannelTime"            "55"
+        "Model"                         "models/props_gameplay/tombstoneb01.vmdl"
     }
 
     "item_tombstone_56"
     {
         "BaseClass"                     "item_tombstone"               
         "AbilityChannelTime"            "56"
+        "Model"                         "models/props_gameplay/tombstoneb01.vmdl"
     }
 
     "item_tombstone_57"
     {
         "BaseClass"                     "item_tombstone"               
         "AbilityChannelTime"            "57"
+        "Model"                         "models/props_gameplay/tombstoneb01.vmdl"
     }
 
     "item_tombstone_58"
     {
         "BaseClass"                     "item_tombstone"               
         "AbilityChannelTime"            "58"
+        "Model"                         "models/props_gameplay/tombstoneb01.vmdl"
     }
 
     "item_tombstone_59"
     {
         "BaseClass"                     "item_tombstone"               
         "AbilityChannelTime"            "59"
+        "Model"                         "models/props_gameplay/tombstoneb01.vmdl"
     }
 
     "item_tombstone_60"
     {
         "BaseClass"                     "item_tombstone"               
         "AbilityChannelTime"            "60"
+        "Model"                         "models/props_gameplay/tombstoneb01.vmdl"
     }
 
     "item_assault_consumable"

@@ -15,7 +15,8 @@
 		"item"		"item_dust"
 		"item"		"item_courier"
 		"item"		"item_bottle"	
-		"item"		"item_redux_silver_consume"		
+		"item"		"item_redux_silver_consume"
+		"item"		"item_companion_consumable"		
 	}
 
 	"attributes"
