@@ -17,20 +17,21 @@ function item_companion_consumable:SecondLife( OnDeathKeys, BuffInfo )
 	EmitSoundOnLocationWithCaster(unit:GetAbsOrigin(), "Hero_Wisp.Spirits.Target", unit)
 
 	-- Add particle effects
-	local particle_death_fx = ParticleManager:CreateParticle("particles/econ/items/wisp/wisp_death_ti7_model_heart_redux.vpcf", PATTACH_CUSTOMORIGIN, unit)
+	local particle_death_fx = ParticleManager:CreateParticle("particles/econ/items/wisp/wisp_death_ti7_model_heart_redux.vpcf", PATTACH_ABSORIGIN_FOLLOW, unit)
 	ParticleManager:SetParticleControl(particle_death_fx, 0, unit:GetAbsOrigin() + Vector(0,0,180))
 	ParticleManager:ReleaseParticleIndex(particle_death_fx)
 
-	particle_death_fx = ParticleManager:CreateParticle("particles/econ/items/wisp/wisp_overcharge_ti7_hearts.vpcf", PATTACH_CUSTOMORIGIN, unit)
-	ParticleManager:SetParticleControl(particle_death_fx, 0, unit:GetAbsOrigin() + Vector(0,0,64))
-	Timers:CreateTimer(2.0, function()
-		ParticleManager:DestroyParticle(particle_death_fx, false)
-	end)
+	-- particle_death_fx = ParticleManager:CreateParticle("particles/econ/items/wisp/wisp_overcharge_ti7_hearts.vpcf", PATTACH_ABSORIGIN_FOLLOW, unit)
+	-- ParticleManager:SetParticleControl(particle_death_fx, 0, unit:GetAbsOrigin() + Vector(0,0,64))
+	-- Timers:CreateTimer(2.0, function()
+	-- 	ParticleManager:DestroyParticle(particle_death_fx, false)
+	-- end)
 
 	-- Wait for the caster to reincarnate, then play its sound
 	local modifier = unit:FindModifierByName("modifier_companion_reincarnation")
 	modifier:DecrementStackCount()
 	unit:AddNewModifier(unit, nil, "modifier_invulnerable", {duration = 1.0})
+	unit:Purge(false, true, false, true, false)
 	if modifier:GetStackCount() == 0 then modifier:Destroy() end
 end
 
@@ -48,12 +49,10 @@ function item_companion_consumable:OnSpellStart(keys)
 	-- modifier.reincarnate_delay = self:GetSpecialValueFor("reincarnate_delay")
 
 	local particle_death_fx = ParticleManager:CreateParticle("particles/neutral_fx/roshan_valentines_attack_right_hearts_redux.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
-	ParticleManager:SetParticleControl(particle_death_fx, 3, target:GetAbsOrigin())
 	ParticleManager:ReleaseParticleIndex(particle_death_fx)
 
 	for i=1,2 do
 		particle_death_fx = ParticleManager:CreateParticle("particles/neutral_fx/roshan_valentines_attack_right_hearts_redux.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
-		ParticleManager:SetParticleControl(particle_death_fx, 3, target:GetAbsOrigin())
 		ParticleManager:ReleaseParticleIndex(particle_death_fx)
 	end
 
