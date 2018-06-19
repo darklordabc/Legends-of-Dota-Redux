@@ -2083,7 +2083,7 @@
         "ItemCost"                      "200"
         "ItemShopTags"                  "consumable"
         "ItemQuality"                   "consumable"
-        "ItemStackable"                 "0"
+        "ItemStackable"                 "1"
         "ItemPermanent"                 "0"
         "ItemInitialCharges"            "1"
         "ItemQuality"                   "component"
