@@ -1622,7 +1622,7 @@ function Ingame:checkBuybackStatus()
                     end
                 end, DoUniqueString('buyback'), 0.1)
 
-                if OptionManager:GetOption('randomOnDeath') == 1 then
+                if OptionManager:GetOption('randomOnDeath') == 1 and not unit:IsReincarnating() then
                     if not unit.randomOnDeath then
                         unit.randomOnDeath = true
                     else
