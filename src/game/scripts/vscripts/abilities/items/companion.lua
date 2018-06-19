@@ -17,7 +17,7 @@ function item_companion_consumable:SecondLife( OnDeathKeys, BuffInfo )
 	EmitSoundOnLocationWithCaster(unit:GetAbsOrigin(), "Hero_Wisp.Spirits.Target", unit)
 
 	-- Add particle effects
-	local particle_death_fx = ParticleManager:CreateParticle("particles/econ/items/wisp/wisp_death_ti7_model_heart.vpcf", PATTACH_CUSTOMORIGIN, unit)
+	local particle_death_fx = ParticleManager:CreateParticle("particles/econ/items/wisp/wisp_death_ti7_model_heart_redux.vpcf", PATTACH_CUSTOMORIGIN, unit)
 	ParticleManager:SetParticleControl(particle_death_fx, 0, unit:GetAbsOrigin() + Vector(0,0,180))
 	ParticleManager:ReleaseParticleIndex(particle_death_fx)
 
@@ -47,9 +47,15 @@ function item_companion_consumable:OnSpellStart(keys)
 	modifier:SetStackCount(modifier:GetStackCount() + 1)
 	-- modifier.reincarnate_delay = self:GetSpecialValueFor("reincarnate_delay")
 
-	local particle_death_fx = ParticleManager:CreateParticle("particles/neutral_fx/roshan_valentines_attack_right_hearts.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
+	local particle_death_fx = ParticleManager:CreateParticle("particles/neutral_fx/roshan_valentines_attack_right_hearts_redux.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
 	ParticleManager:SetParticleControl(particle_death_fx, 3, target:GetAbsOrigin())
 	ParticleManager:ReleaseParticleIndex(particle_death_fx)
+
+	for i=1,2 do
+		particle_death_fx = ParticleManager:CreateParticle("particles/neutral_fx/roshan_valentines_attack_right_hearts_redux.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
+		ParticleManager:SetParticleControl(particle_death_fx, 3, target:GetAbsOrigin())
+		ParticleManager:ReleaseParticleIndex(particle_death_fx)
+	end
 
 	caster:RemoveItem(self)
 

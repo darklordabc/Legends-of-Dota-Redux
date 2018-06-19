@@ -2079,6 +2079,7 @@
         "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
         "ItemPurchasable"               "1"
 
+        "AbilityCastRange"              "600"
         "ItemCost"                      "200"
         "ItemShopTags"                  "consumable"
         "ItemQuality"                   "consumable"
@@ -2095,7 +2096,9 @@
 
         "precache"
         {
-            "particle"  "particles/econ/items/wisp/wisp_death_ti7_model_heart.vpcf"
+            "particle"  "particles/econ/items/wisp/wisp_death_ti7_model_heart_redux.vpcf"
+            "particle"  "particles/econ/items/wisp/wisp_overcharge_ti7_hearts.vpcf"
+            "particle"  "particles/neutral_fx/roshan_valentines_attack_right_hearts_redux.vpcf"
             "soundfile" "soundevents/game_sounds_heroes/game_sounds_wisp.vsndevts"
         }
     }
