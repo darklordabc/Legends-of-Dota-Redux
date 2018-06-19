@@ -2030,11 +2030,7 @@
 
         "AbilitySpecial"
         {
-            "01"
-            {
-                "var_type"              "FIELD_INTEGER"
-                "reincarnate_delay"     "5"
-            }           
+         
         }
 
         "precache"

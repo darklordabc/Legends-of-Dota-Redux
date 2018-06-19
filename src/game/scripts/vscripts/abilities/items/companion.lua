@@ -4,45 +4,46 @@ item_companion_consumable = class({})
 
 function item_companion_consumable:SecondLife( OnDeathKeys, BuffInfo )
 	local unit = OnDeathKeys.unit
-	local reincarnate = OnDeathKeys.reincarnate
-	-- Check if it was a reincarnation death
-	if reincarnate then
-		BuffInfo.reincarnation_death = true
 
-		EmitSoundOnLocationWithCaster(unit:GetAbsOrigin(), "Hero_Wisp.Spirits.Target", unit)
-
-		-- Add particle effects
-		local particle_death_fx = ParticleManager:CreateParticle("particles/econ/items/wisp/wisp_death_ti7_model_heart.vpcf", PATTACH_CUSTOMORIGIN, unit)
-		ParticleManager:SetParticleControl(particle_death_fx, 0, unit:GetAbsOrigin() + Vector(0,0,160))
-		ParticleManager:ReleaseParticleIndex(particle_death_fx)
-
-		particle_death_fx = ParticleManager:CreateParticle("particles/econ/items/wisp/wisp_overcharge_ti7_hearts.vpcf", PATTACH_CUSTOMORIGIN, unit)
-		ParticleManager:SetParticleControl(particle_death_fx, 0, unit:GetAbsOrigin() + Vector(0,0,64))
-		Timers:CreateTimer(5.0, function()
-			ParticleManager:DestroyParticle(particle_death_fx, false)
-		end)
-
-		-- Add a FOW Viewer, depending on if it is a day or night
-		if IsDaytime() then
-			AddFOWViewer(BuffInfo.caster:GetTeamNumber(), unit:GetAbsOrigin(), unit:GetDayTimeVisionRange(), 5.0, true)
-		else
-			AddFOWViewer(BuffInfo.caster:GetTeamNumber(), unit:GetAbsOrigin(), unit:GetNightTimeVisionRange(), 5.0, true)
-		end
-
-		-- Wait for the caster to reincarnate, then play its sound
-		Timers:CreateTimer(5.0, function()
-			unit:RemoveModifierByName("modifier_companion_reincarnation")
-		end)
-	else
-		BuffInfo.reincarnation_death = false
+	unit:SetHealth(unit:GetMaxHealth())
+	unit:SetMana(unit:GetMaxMana())
+	for i=0,16 do
+		local ab = unit:GetAbilityByIndex(i)
+		if IsValidEntity(ab) and ab.EndCooldown then ab:EndCooldown() end
+		ab = unit:GetItemInSlot(i)
+		if IsValidEntity(ab) and ab.EndCooldown then ab:EndCooldown() end
 	end
+
+	EmitSoundOnLocationWithCaster(unit:GetAbsOrigin(), "Hero_Wisp.Spirits.Target", unit)
+
+	-- Add particle effects
+	local particle_death_fx = ParticleManager:CreateParticle("particles/econ/items/wisp/wisp_death_ti7_model_heart.vpcf", PATTACH_CUSTOMORIGIN, unit)
+	ParticleManager:SetParticleControl(particle_death_fx, 0, unit:GetAbsOrigin() + Vector(0,0,180))
+	ParticleManager:ReleaseParticleIndex(particle_death_fx)
+
+	particle_death_fx = ParticleManager:CreateParticle("particles/econ/items/wisp/wisp_overcharge_ti7_hearts.vpcf", PATTACH_CUSTOMORIGIN, unit)
+	ParticleManager:SetParticleControl(particle_death_fx, 0, unit:GetAbsOrigin() + Vector(0,0,64))
+	Timers:CreateTimer(2.0, function()
+		ParticleManager:DestroyParticle(particle_death_fx, false)
+	end)
+
+	-- Wait for the caster to reincarnate, then play its sound
+	local modifier = unit:FindModifierByName("modifier_companion_reincarnation")
+	modifier:DecrementStackCount()
+	if modifier:GetStackCount() == 0 then modifier:Destroy() end
 end
 
 function item_companion_consumable:OnSpellStart(keys)
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 
-	local modifier = target:AddNewModifier(caster,caster,"modifier_companion_reincarnation",{})
+	local modifier
+	if target:HasModifier("modifier_companion_reincarnation") then
+		modifier = target:FindModifierByName("modifier_companion_reincarnation")
+	else
+		modifier = target:AddNewModifier(caster,caster,"modifier_companion_reincarnation",{})
+	end
+	modifier:SetStackCount(modifier:GetStackCount() + 1)
 	-- modifier.reincarnate_delay = self:GetSpecialValueFor("reincarnate_delay")
 
 	caster:RemoveItem(self)
@@ -51,13 +52,6 @@ function item_companion_consumable:OnSpellStart(keys)
 end
 
 function item_companion_consumable:CastFilterResultTarget(target)
-  if IsServer() then
-  	if not target:HasModifier("modifier_companion_reincarnation") then
-  		return UF_SUCCESS
-  	else
-  		return UF_FAIL_CUSTOM
-  	end
-  end
   return UF_SUCCESS
 end
 
@@ -87,8 +81,12 @@ function modifier_companion_reincarnation:OnRefresh()
 end
 
 function modifier_companion_reincarnation:DeclareFunctions()
-	local decFuncs = {MODIFIER_PROPERTY_REINCARNATION, MODIFIER_EVENT_ON_DEATH}
+	local decFuncs = {MODIFIER_EVENT_ON_TAKEDAMAGE, MODIFIER_PROPERTY_REINCARNATION, MODIFIER_PROPERTY_MIN_HEALTH}
 	return decFuncs
+end
+
+function modifier_companion_reincarnation:GetMinHealth()
+	return 1.0
 end
 
 function modifier_companion_reincarnation:ReincarnateTime()
@@ -101,13 +99,13 @@ function modifier_companion_reincarnation:ReincarnateTime()
 	end
 end
 
-function modifier_companion_reincarnation:OnDeath(keys)
+function modifier_companion_reincarnation:OnTakeDamage(keys)
 	if IsServer() then
-		local unit = keys.unit
-		local reincarnate = keys.reincarnate
-
-		if self:GetParent() == unit then
-			item_companion_consumable:SecondLife( keys, self )
+		local caster = self:GetParent()
+		if keys.unit:entindex() == caster:entindex() then
+			if caster:GetHealth() == 1.0 then
+				item_companion_consumable:SecondLife( keys, self )
+			end
 		end
 	end
 end
