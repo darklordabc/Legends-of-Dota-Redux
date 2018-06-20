@@ -1345,6 +1345,12 @@ function Ingame:handleRespawnModifier()
 
                             if OptionManager:GetOption('resurrectAllies') == 1 then
                                 local numb = math.min(60,math.max(1,math.ceil(timeLeft/3)))
+                                
+                                -- If the number is higher than 3, reduce the time by 2 seconds
+                                if numb > 3 then 
+                                    numb = numb - 2
+                                end
+
                                 local newItem = CreateItem("item_tombstone_"..numb,hero:GetPlayerOwner(),hero:GetPlayerOwner())
 
                                 newItem:SetPurchaseTime(0)
