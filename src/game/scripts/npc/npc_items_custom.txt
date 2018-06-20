@@ -521,7 +521,7 @@
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
         "AbilityCastRange"              "600"
         "ItemSellable"                  "0"
-        "AbilityCooldown"               "60"
+        "AbilityCooldown"               "120"
         "precache"
         {
             "particle"                  "particles/dev/library/base_dust_hit_detail.vpcf"
@@ -539,7 +539,7 @@
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
         "AbilityCastRange"              "600"
         "ItemSellable"                  "0"
-        "AbilityCooldown"               "60"
+        "AbilityCooldown"               "180"
         "precache"
         {
             "particle"                  "particles/dev/library/base_dust_hit_detail.vpcf"
@@ -557,7 +557,7 @@
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
         "AbilityCastRange"              "600"
         "ItemSellable"                  "0"
-        "AbilityCooldown"               "60"
+        "AbilityCooldown"               "240"
         "precache"
         {
             "particle"                  "particles/dev/library/base_dust_hit_detail.vpcf"
@@ -575,7 +575,7 @@
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
         "AbilityCastRange"              "600"
         "ItemSellable"                  "0"
-        "AbilityCooldown"               "60"
+        "AbilityCooldown"               "300"
         "precache"
         {
             "particle"                  "particles/dev/library/base_dust_hit_detail.vpcf"
