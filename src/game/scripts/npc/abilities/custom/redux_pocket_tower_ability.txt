@@ -1,0 +1,21 @@
+"DOTAAbilities"
+{
+    "redux_pocket_tower_ability"
+    {
+        "BaseClass"                                                            "ability_lua"
+        "ScriptFile"                                                           "abilities/pocket_tower.lua"
+        "AbilityTextureName"                                                   "item_pocket_tower"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_POINT"
+        "AbilityCastRange"                                                      "600"
+        "AbilityCastPoint"                                                      "0.0"
+        "AbilityCooldown"                                                       "180"
+
+        "precache"
+        {
+            "particle"      "particles/dev/library/base_dust_hit_detail.vpcf"
+        }
+
+        "ReduxFlags"                                                           "summon"
+        "ReduxPerks"                                                           "neutral | summon_non_ult"
+    }
+}

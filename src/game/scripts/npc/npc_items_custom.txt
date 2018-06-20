@@ -480,11 +480,11 @@
         "AbilityTextureName"            "item_pocket_tower"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
         "AbilityCastRange"              "600"
-        "ItemPermanent"                 "0"
-        "ItemInitialCharges"            "1"
-        "ItemRequiresCharges"           "1"
-        "ItemStackable"                 "0"
-        "ItemCost"                      "1"
+        "ItemSellable"                  "0"
+        "precache"
+        {
+            "particle"                  "particles/dev/library/base_dust_hit_detail.vpcf"
+        }
     }
 
     "item_redux_pocket_tower_permanent_60"
@@ -497,12 +497,12 @@
         "AbilityTextureName"            "item_pocket_tower"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
         "AbilityCastRange"              "600"
-        "ItemPermanent"                 "1"
-        "ItemInitialCharges"            "0"
-        "ItemRequiresCharges"           "0"
-        "ItemStackable"                 "0"
-        "ItemCost"                      "1"
+        "ItemSellable"                  "0"
         "AbilityCooldown"               "60"
+        "precache"
+        {
+            "particle"                  "particles/dev/library/base_dust_hit_detail.vpcf"
+        }
     }
 
     "item_redux_pocket_tower_permanent_120"
@@ -515,12 +515,12 @@
         "AbilityTextureName"            "item_pocket_tower"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
         "AbilityCastRange"              "600"
-        "ItemPermanent"                 "1"
-        "ItemInitialCharges"            "0"
-        "ItemRequiresCharges"           "0"
-        "ItemStackable"                 "0"
-        "ItemCost"                      "1"
+        "ItemSellable"                  "0"
         "AbilityCooldown"               "120"
+        "precache"
+        {
+            "particle"                  "particles/dev/library/base_dust_hit_detail.vpcf"
+        }
     }
 
     "item_redux_pocket_tower_permanent_180"
@@ -533,12 +533,12 @@
         "AbilityTextureName"            "item_pocket_tower"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
         "AbilityCastRange"              "600"
-        "ItemPermanent"                 "1"
-        "ItemInitialCharges"            "0"
-        "ItemRequiresCharges"           "0"
-        "ItemStackable"                 "0"
-        "ItemCost"                      "1"
+        "ItemSellable"                  "0"
         "AbilityCooldown"               "180"
+        "precache"
+        {
+            "particle"                  "particles/dev/library/base_dust_hit_detail.vpcf"
+        }
     }
 
     "item_redux_pocket_tower_permanent_240"
@@ -551,12 +551,12 @@
         "AbilityTextureName"            "item_pocket_tower"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
         "AbilityCastRange"              "600"
-        "ItemPermanent"                 "1"
-        "ItemInitialCharges"            "0"
-        "ItemRequiresCharges"           "0"
-        "ItemStackable"                 "0"
-        "ItemCost"                      "1"
+        "ItemSellable"                  "0"
         "AbilityCooldown"               "240"
+        "precache"
+        {
+            "particle"                  "particles/dev/library/base_dust_hit_detail.vpcf"
+        }
     }
 
     "item_redux_pocket_tower_permanent_300"
@@ -569,12 +569,12 @@
         "AbilityTextureName"            "item_pocket_tower"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
         "AbilityCastRange"              "600"
-        "ItemPermanent"                 "1"
-        "ItemInitialCharges"            "0"
-        "ItemRequiresCharges"           "0"
-        "ItemStackable"                 "0"
-        "ItemCost"                      "1"
+        "ItemSellable"                  "0"
         "AbilityCooldown"               "300"
+        "precache"
+        {
+            "particle"                  "particles/dev/library/base_dust_hit_detail.vpcf"
+        }
     }
 
     "item_assault_consumable"
