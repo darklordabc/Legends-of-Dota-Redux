@@ -1491,24 +1491,39 @@ function Pregame:onThink()
         -- self:hookBotStuff()
 
         -- Add extra towers
-        Timers:CreateTimer(function()
-            this:addExtraTowers()
-        end, DoUniqueString('createtowers'), 0.2)
-
+        if (OptionManager:GetOption('towerCount') - 2) > 1 then
+            Timers:CreateTimer(function()
+                this:addExtraTowers()
+            end, DoUniqueString('createtowers'), 0.2)
+        end
+ 
         -- Neutral Multiplier Mutator
-        Timers:CreateTimer(function()
-            this:multiplyNeutrals()
-        end, DoUniqueString('neutralMultiplier'), 0.2)
+        if OptionManager:GetOption('neutralMultiply') > 1 then
+            Timers:CreateTimer(function()
+                this:multiplyNeutrals()
+            end, DoUniqueString('neutralMultiplier'), 0.2)
+        end
 
         -- Double Lane Creeps Multiplier Mutator
-        Timers:CreateTimer(function()
-            this:multiplyLaneCreeps()
-        end, DoUniqueString('laneCreepMultiplierTimer'), 0.2)
+        if OptionManager:GetOption('laneMultiply') > 0 then
+            Timers:CreateTimer(function()
+                this:multiplyLaneCreeps()
+            end, DoUniqueString('laneCreepMultiplierTimer'), 0.2)
+        end
 
         -- Dark Moon Drops
-        Timers:CreateTimer(function()
-            this:darkMoonDrops()
-        end, DoUniqueString('darkMoonDrop'), 0.2)
+        if OptionManager:GetOption('darkMoon') > 0 then
+            Timers:CreateTimer(function()
+                this:darkMoonDrops()
+            end, DoUniqueString('darkMoonDrop'), 0.2)
+        end
+
+        -- Drop Gold On Death
+        if OptionManager:GetOption('goldDropOnDeath') > 0 then
+            Timers:CreateTimer(function()
+                this:DropGoldOnDeath()
+            end, DoUniqueString('DropGoldOnDeath'), 0.2)
+        end
 
         -- Prevent fountain camping
         Timers:CreateTimer(function()
@@ -6577,12 +6592,10 @@ function Pregame:getActivePlayers()
     return total
 end
 
-
--- Adds extra towers
 -- Adds extra towers
 function Pregame:addExtraTowers()
     local totalMiddleTowers = self.optionStore['lodOptionGameSpeedTowersPerLane'] - 2
-
+    --GameRules:SendCustomMessage("addtowers", 0, 0)
     -- Is there any work to do?
     if totalMiddleTowers > 1 then
         -- Create a store for tower connectors
@@ -6708,14 +6721,14 @@ function Pregame:multiplyNeutrals()
             --print(OptionManager:GetOption('neutralMultiply'))
             --print(this.optionStore['lodOptionNeutralMultiply'])
             if OptionManager:GetOption('neutralMultiply') == 1 then return end
-
+            --GameRules:SendCustomMessage("multiplyneutrals", 0, 0)
             -- Grab the entity that was hurt
             local ent = EntIndexToHScript(keys.entindex_killed)
             if keys.entindex_attacker ~= nil then
                 attacker = EntIndexToHScript( keys.entindex_attacker )
             end
 
-            if not attacker or not attacker:IsRealHero() then return end
+            if attacker:IsNull() or not attacker or not attacker:IsRealHero() then return end
 
             -- Neutral Multiplier: Checks if hurt npc is neutral, dead, and if it doesnt have the clone token ability, and their is a valid attacker
             if IsValidEntity(attacker) then
@@ -6736,7 +6749,7 @@ function Pregame:multiplyLaneCreeps()
         ListenToGameEvent('entity_hurt', function(keys)
             local this = self
             if this.optionStore['lodOptionLaneMultiply'] == 0 then return end
-
+            --GameRules:SendCustomMessage("multiplylanecreeps", 0, 0)
             -- Grab the entity that was hurt
             local ent = EntIndexToHScript(keys.entindex_killed)
             if keys.entindex_attacker ~= nil then
@@ -6765,6 +6778,7 @@ end
 function Pregame:darkMoonDrops()
         ListenToGameEvent('entity_hurt', function(keys)
             local this = self
+            --GameRules:SendCustomMessage("darkmoondrops", 0, 0)
             if this.optionStore['lodOptionDarkMoon'] == 0 then return end
 
             -- Grab the entity that was hurt
@@ -6879,6 +6893,40 @@ function Pregame:darkMoonDrops()
                         newItem:LaunchLoot( true, 300, 0.75, dropTarget )
                     end
 
+                end
+            end
+
+        end, nil)
+end
+
+function Pregame:DropGoldOnDeath()
+        ListenToGameEvent('entity_hurt', function(keys)
+            local this = self
+            if this.optionStore['lodOptionGoldDropOnDeath'] == 0 then return end
+
+            -- Grab the entity that was hurt
+            local ent = EntIndexToHScript(keys.entindex_killed)
+            if keys.entindex_attacker ~= nil then
+                attacker = EntIndexToHScript( keys.entindex_attacker )
+            end
+
+            if not attacker or not attacker:IsRealHero() or not ent:IsRealHero() or ent:IsIllusion() then return end
+
+            -- Neutral Multiplier: Checks if hurt npc is neutral, dead, and if it doesnt have the clone token ability, and their is a valid attacker
+            if IsValidEntity(attacker) then
+                if ent:GetHealth() <= 0 then
+
+                    local newItem = CreateItem("item_bag_of_gold",nil,nil)
+                    newItem:SetCurrentCharges(2000)
+                    newItem:SetPurchaseTime( 0 )
+                    local drop = CreateItemOnPositionSync( ent:GetAbsOrigin(), newItem )
+                    local dropTarget = ent:GetAbsOrigin() + RandomVector( RandomFloat( 50, 250 ) )
+
+                    if util:isPlayerBot(attacker:GetOwner():GetPlayerID()) then
+                        dropTarget = attacker:GetAbsOrigin()
+                    end
+
+                    newItem:LaunchLoot(true, 600, 0.5, dropTarget)
                 end
             end
 
@@ -8230,9 +8278,9 @@ function Pregame:fixSpawnedHero( spawnedUnit )
             if OptionManager:GetOption('explodeOnDeath') == 1 then
                 spawnedUnit:AddNewModifier(spawnedUnit,nil,"modifier_death_explosion_mutator",{})
             end
-            if OptionManager:GetOption('goldDropOnDeath') == 1 then
-                spawnedUnit:AddNewModifier(spawnedUnit,nil,"modifier_drop_gold_bag_mutator",{})
-            end
+            --if OptionManager:GetOption('goldDropOnDeath') == 1 then
+                --spawnedUnit:AddNewModifier(spawnedUnit,nil,"modifier_drop_gold_bag_mutator",{})
+            --end
             if OptionManager:GetOption('resurrectAllies') == 1 then
                 spawnedUnit:AddNewModifier(spawnedUnit,nil,"modifier_resurrection_mutator",{})
             end
