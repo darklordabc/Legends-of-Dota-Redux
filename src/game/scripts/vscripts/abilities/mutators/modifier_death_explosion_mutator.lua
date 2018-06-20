@@ -46,6 +46,8 @@ function modifier_death_explosion_mutator:OnIntervalThink()
     ParticleManager:SetParticleControl(particle, 2, Vector(self.aoe, 1, 1))
     ParticleManager:ReleaseParticleIndex(particle)
 
+    GridNav:DestroyTreesAroundPoint( origin, self.aoe, true )
+
     local damageTable = {damage=self.damage_base+(self.damage_per_level*self:GetParent():GetLevel()),attacker=self:GetParent(),victim=self:GetParent(),damage_type=DAMAGE_TYPE_MAGICAL}
 
     local units = FindUnitsInRadius(DOTA_TEAM_NEUTRALS,self:GetParent():GetAbsOrigin(),nil,self.aoe,DOTA_UNIT_TARGET_TEAM_BOTH,DOTA_UNIT_TARGET_HERO+DOTA_UNIT_TARGET_BASIC,DOTA_UNIT_TARGET_FLAG_NONE,FIND_ANY_ORDER,false)
