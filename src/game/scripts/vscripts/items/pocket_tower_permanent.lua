@@ -12,7 +12,7 @@ function item_redux_pocket_tower_permanent:CastFilterResultLocation(location)
   if IsClient() then
     return UF_SUCCESS -- the client can't use the GridNav, but the server will correct it anyway, you can't cheat that.
   end
-  if (not GridNav:IsTraversable(location)) or #FindUnitsInRadius(DOTA_TEAM_NEUTRALS, location, nil, 144, DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_BUILDING, DOTA_UNIT_TARGET_FLAG_INVULNERABLE, FIND_ANY_ORDER, false) > 0 or
+  if (not GridNav:IsTraversable(location)) or #FindUnitsInRadius(self:GetCaster():GetTeam(), location, nil, 144, DOTA_UNIT_TARGET_TEAM_BOTH + DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_BUILDING, DOTA_UNIT_TARGET_FLAG_INVULNERABLE, FIND_ANY_ORDER, false) > 0 or
     self:GetCaster():IsPositionInRange(location, 144 + self:GetCaster():GetHullRadius())
   then
     return UF_FAIL_CUSTOM
@@ -39,6 +39,18 @@ function item_redux_pocket_tower_permanent:OnSpellStart()
   building:RemoveModifierByName("modifier_invulnerable")
   building:AddNewModifier(caster, self, "modifier_redux_tower_permanent", {})
   building:RemoveAbility("backdoor_protection_in_base")
+
+  -- Particle
+  local dust_pfx = ParticleManager:CreateParticle("particles/dev/library/base_dust_hit_detail.vpcf", PATTACH_CUSTOMORIGIN, nil)
+  ParticleManager:SetParticleControl(dust_pfx, 0, location)
+  ParticleManager:ReleaseParticleIndex(dust_pfx)
+
+  -- Sound
+  building:EmitSound("Redux.PocketTower")
+
+  Timers:CreateTimer(0.01, function()
+    ResolveNPCPositions(location, 144)
+  end)
 
   if OptionManager:GetOption('strongTowers') then
     ingame:updateStrongTowers(building)

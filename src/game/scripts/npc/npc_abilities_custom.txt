@@ -106,6 +106,7 @@
 #base "abilities\custom\obsidian_destroyer_essence_aura_lod_health.txt"
 #base "abilities\custom\octarine_vampirism_lod.txt"
 #base "abilities\custom\octarine_vampirism_lod_OP.txt"
+#base "abilities\custom\redux_pocket_tower_ability.txt"
 #base "abilities\custom\shards_of_truesight_lod.txt"
 #base "abilities\custom\shards_of_truesight_lod_OP.txt"
 #base "abilities\custom\true_random_lod_1.txt"

@@ -1,8 +1,8 @@
-LinkLuaModifier("modifier_redux_tower", "items/pocket_tower.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_redux_tower_ability", "abilities/pocket_tower.lua", LUA_MODIFIER_MOTION_NONE)
 
-item_redux_pocket_tower = item_redux_pocket_tower or class({})
+redux_pocket_tower_ability = redux_pocket_tower_ability or class({})
 
-function item_redux_pocket_tower:CastFilterResultLocation(location)
+function redux_pocket_tower_ability:CastFilterResultLocation(location)
   if IsClient() then
     return UF_SUCCESS -- the client can't use the GridNav, but the server will correct it anyway, you can't cheat that.
   end
@@ -14,11 +14,11 @@ function item_redux_pocket_tower:CastFilterResultLocation(location)
     return UF_SUCCESS
   end
 end
-function item_redux_pocket_tower:GetCustomCastErrorLocation(location)
+function redux_pocket_tower_ability:GetCustomCastErrorLocation(location)
   return "#dota_hud_error_no_buildings_here"
 end
 
-function item_redux_pocket_tower:OnSpellStart()
+function redux_pocket_tower_ability:OnSpellStart()
   local caster = self:GetCaster()
   local location = self:GetCursorPosition()
   local building
@@ -31,7 +31,7 @@ function item_redux_pocket_tower:OnSpellStart()
   GridNav:DestroyTreesAroundPoint(location, building:GetHullRadius(), true)
   building:SetOrigin(location)
   building:RemoveModifierByName("modifier_invulnerable")
-  building:AddNewModifier(caster, self, "modifier_redux_tower", {})
+  building:AddNewModifier(caster, self, "modifier_redux_tower_ability", {})
   building:RemoveAbility("backdoor_protection_in_base")
 
   -- Particle
@@ -49,30 +49,23 @@ function item_redux_pocket_tower:OnSpellStart()
   if OptionManager:GetOption('strongTowers') then
     ingame:updateStrongTowers(building)
   end
-  local charges = self:GetCurrentCharges() - 1
-  if charges < 1 then
-    caster:RemoveItem(self)
-  else
-    self:SetCurrentCharges(charges)
-  end
 end
-
 
 --------------------------------------------------------------------------
 
-modifier_redux_tower = modifier_redux_tower or class({})
+modifier_redux_tower_ability = modifier_redux_tower_ability or class({})
 
-function modifier_redux_tower:IsHidden() return true end
-function modifier_redux_tower:IsDebuff() return false end
-function modifier_redux_tower:IsPurgable() return false end
+function modifier_redux_tower_ability:IsHidden() return true end
+function modifier_redux_tower_ability:IsDebuff() return false end
+function modifier_redux_tower_ability:IsPurgable() return false end
 
-function modifier_redux_tower:DeclareFunctions()
+function modifier_redux_tower_ability:DeclareFunctions()
   return {
     MODIFIER_EVENT_ON_DEATH
   }
 end
 
-function modifier_redux_tower:OnDeath(keys)
+function modifier_redux_tower_ability:OnDeath(keys)
   if IsServer() then
     if keys.unit == self:GetParent() then
       if keys.unit:GetTeam() == DOTA_TEAM_GOODGUYS then
