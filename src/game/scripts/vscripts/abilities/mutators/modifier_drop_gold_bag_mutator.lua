@@ -26,8 +26,9 @@ end
 function modifier_drop_gold_bag_mutator.OnDeath(self,kv)
     if self:GetParent()==kv.unit then
         local newItem = CreateItem("item_bag_of_gold",nil,nil)
-        newItem:SetCurrentCharges(1000)
+        newItem:SetCurrentCharges(400)
         local item = CreateItemOnPositionSync(self:GetParent():GetAbsOrigin(),newItem)
-        item:SetModel("models/props_gameplay/gold_bag.vmdl")
+        local dropTarget = self:GetParent():GetAbsOrigin()
+        newItem:LaunchLoot(true, 600, 0.5, dropTarget)
     end
 end
