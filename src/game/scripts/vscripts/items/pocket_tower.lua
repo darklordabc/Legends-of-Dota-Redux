@@ -66,6 +66,22 @@ function modifier_redux_tower:IsHidden() return true end
 function modifier_redux_tower:IsDebuff() return false end
 function modifier_redux_tower:IsPurgable() return false end
 
+function modifier_redux_tower:OnCreated()
+  if IsServer() then
+    self:StartIntervalThink(0.03)
+  end
+end
+
+function modifier_redux_tower:OnIntervalThink()
+  if IsServer() then
+    local tower = self:GetParent()
+    local enemies = FindUnitsInRadius(tower:GetTeam(), tower:GetAbsOrigin(), nil, tower:GetAttackRange() + 144, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BUILDING + DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_NOT_ATTACK_IMMUNE, FIND_CLOSEST, false)
+    if enemies[1] then
+      tower:MoveToTargetToAttack(enemies[1])
+    end
+  end
+end
+
 function modifier_redux_tower:DeclareFunctions()
   return {
     MODIFIER_EVENT_ON_DEATH
