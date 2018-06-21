@@ -330,7 +330,7 @@ function Ingame:FilterExecuteOrder(filterTable)
     local unit = EntIndexToHScript(units["0"])
     local ability = EntIndexToHScript(filterTable.entindex_ability)
     local target = EntIndexToHScript(filterTable.entindex_target)
-	
+
     -- if order_type == DOTA_UNIT_ORDER_PURCHASE_ITEM then		
     --     return false		
     -- end		
@@ -453,6 +453,8 @@ function Ingame:FilterExecuteOrder(filterTable)
     if OptionManager:GetOption('memesRedux') == 1 then
         filterTable = memesOrderFilter(filterTable)
     end
+
+
     return true
 end
 
@@ -610,6 +612,8 @@ function Ingame:onStart()
     ListenToGameEvent("player_chat", Dynamic_Wrap(Commands, 'OnPlayerChat'), self)
 
     ListenToGameEvent("dota_player_learned_ability", Dynamic_Wrap(Ingame, "OnPlayerLearnedAbility"), self)
+
+    ListenToGameEvent( "dota_holdout_revive_complete", Dynamic_Wrap( Ingame, "OnPlayerRevived" ), self )
     
     -- Set it to no team balance
     self:setNoTeamBalanceNeeded()
@@ -1334,7 +1338,7 @@ function Ingame:handleRespawnModifier()
                             -------
                             -- Anti-Kamikaze Mechanic END
                             -------
-
+                            hero.timeLeft = timeLeft
                             hero:SetTimeUntilRespawn(timeLeft)
 
                             -- Give 322 gold if enabled
@@ -1552,10 +1556,10 @@ function Ingame:FilterModifyExperience(filterTable)
 end
 
 function Ingame:BountyRunePickupFilter(filterTable)
-    if OptionManager:GetOption('superRunes') == 1 then
-        filterTable.xp_bounty = filterTable.xp_bounty * 2
-        filterTable.gold_bounty = filterTable.gold_bounty * 2
-    end
+    --if OptionManager:GetOption('superRunes') == 1 then
+    --    filterTable.xp_bounty = filterTable.xp_bounty * 2
+    --    filterTable.gold_bounty = filterTable.gold_bounty * 2
+    --end
 
     if OptionManager:GetOption('sharedXP') == 1 then
         local team = PlayerResource:GetPlayer(filterTable.player_id_const):GetTeamNumber()
@@ -1604,10 +1608,10 @@ function Ingame:checkBuybackStatus()
         local unit = EntIndexToHScript(keys.entindex)
 
         if IsValidEntity(unit) then
-            if unit:IsRealHero() and OptionManager:GetOption('buybackCooldownConstant') ~= 420 then
+            if unit:IsRealHero() then
                 Timers:CreateTimer(
                 function()
-                    if IsValidEntity(unit) then
+                    if IsValidEntity(unit) and OptionManager:GetOption('buybackCooldownConstant') ~= 420 then
                         local buyBackLeft = unit:GetBuybackCooldownTime()
                         if buyBackLeft >= 420 then
                             local maxCooldown = OptionManager:GetOption('buybackCooldownConstant')
@@ -1617,6 +1621,28 @@ function Ingame:checkBuybackStatus()
                         end
                     end
                 end, DoUniqueString('buyback'), 0.1)
+
+                if OptionManager:GetOption('randomOnDeath') == 1 then
+                    if not unit.randomOnDeath then
+                        unit.randomOnDeath = true
+                    else
+                        local pID = unit:GetPlayerOwnerID()
+                        GameRules.pregame.selectedSkills[pID] = {}
+                        GameRules.pregame.selectedHeroes[pID] = GameRules.pregame:getRandomHero()
+                        GameRules.pregame.selectedPlayerAttr[pID] = ({'str', 'agi', 'int'})[math.random(1,3)]
+                        if util:isPlayerBot(pID) then
+                            GameRules.pregame.botPlayers.all[pID] = {}
+                            GameRules.pregame:generateBotBuilds(pID)
+
+                            GameRules.pregame.selectedSkills[pID] = GameRules.pregame.botPlayers.all[pID].build
+                            GameRules.pregame.selectedHeroes[pID] = GameRules.pregame.botPlayers.all[pID].heroName
+                        end
+                        GameRules.pregame:onPlayerReady(nil, {PlayerID = pID, randomOnDeath = true})
+                        if not util:isPlayerBot(pID) then
+                            GameRules.pregame:applyExtraAbility(PlayerResource:GetSelectedHeroEntity(pID))
+                        end
+                    end
+                end
             elseif CustomNetTables:GetTableValue("phase_ingame","duel") and CustomNetTables:GetTableValue("phase_ingame","duel").active == 1 and (string.match(unit:GetUnitName(), "badguys") or string.match(unit:GetUnitName(), "goodguys")) then
                 unit:ForceKill(false)
             end
@@ -2076,21 +2102,21 @@ function Ingame:FilterModifiers( filterTable )
     
     local modifier_name = filterTable.name_const
     local parent = EntIndexToHScript( parent_index )
-    if OptionManager:GetOption('superRunes') == 1 then
-        if modifier_name == "modifier_rune_doubledamage_mutated_redux" then return true end
-        if modifier_name == "modifier_rune_arcane_mutated_redux" then return true end
-        if modifier_name == "modifier_rune_doubledamage" then
-            AddRuneModifier(parent,"modifier_rune_doubledamage_mutated_redux",filterTable.duration)
-            --local m = parent:AddNewModifier(nil,nil,"modifier_rune_doubledamage_mutated_redux",{duration = filterTable.duration})
-            --local m = parent:AddNewModifier(nil,nil,"modifier_vampirism_mutator",{duration = filterTable.duration})
-            return false
-        elseif modifier_name == "modifier_rune_arcane" then
-            AddRuneModifier(parent,"modifier_rune_arcane_mutated_redux",filterTable.duration)
-            --local m = parent:AddNewModifier(nil,nil,"modifier_rune_arcane_mutated_redux",{duration = filterTable.duration})
-            --local m = parent:AddNewModifier(nil,nil,"modifier_vampirism_mutator",{duration = filterTable.duration})
-            return false
-        end
-    end
+    --if OptionManager:GetOption('superRunes') == 1 then
+    --    if modifier_name == "modifier_rune_doubledamage_mutated_redux" then return true end
+    --    if modifier_name == "modifier_rune_arcane_mutated_redux" then return true end
+    --    if modifier_name == "modifier_rune_doubledamage" then
+    --        AddRuneModifier(parent,"modifier_rune_doubledamage_mutated_redux",filterTable.duration)
+    --        --local m = parent:AddNewModifier(nil,nil,"modifier_rune_doubledamage_mutated_redux",{duration = filterTable.duration})
+    --        --local m = parent:AddNewModifier(nil,nil,"modifier_vampirism_mutator",{duration = filterTable.duration})
+    --        return false
+    --    elseif modifier_name == "modifier_rune_arcane" then
+    --        AddRuneModifier(parent,"modifier_rune_arcane_mutated_redux",filterTable.duration)
+    --        --local m = parent:AddNewModifier(nil,nil,"modifier_rune_arcane_mutated_redux",{duration = filterTable.duration})
+    --        --local m = parent:AddNewModifier(nil,nil,"modifier_vampirism_mutator",{duration = filterTable.duration})
+    --        return false
+    --    end
+    --end
 
     if not caster_index or not ability_index then
         return true
@@ -2141,6 +2167,21 @@ function Ingame:FilterModifiers( filterTable )
     end
 
     return true
+end
+
+function Ingame:OnPlayerRevived(event)
+    local hRevivedHero = EntIndexToHScript( event.target )
+    local hReviverHero = EntIndexToHScript( event.caster )
+    if hRevivedHero ~= nil and hRevivedHero:IsRealHero() then
+        hRevivedHero:SetHealth( hRevivedHero:GetMaxHealth() * 0.4 )
+        hRevivedHero:SetMana( hRevivedHero:GetMaxMana() * 0.4 )
+        EmitSoundOn( "Dungeon.HeroRevived", hRevivedHero )
+
+
+        local fInvulnDuration = 3
+        hRevivedHero:AddNewModifier( hRevivedHero, nil, "modifier_invulnerable", { duration = fInvulnDuration } )
+        hRevivedHero:AddNewModifier( hRevivedHero, nil, "modifier_omninight_guardian_angel", { duration = fInvulnDuration } )
+    end
 end
 
 function Ingame:SetPlayerColors( )
