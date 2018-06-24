@@ -129,7 +129,19 @@ var basicOptions = {
                                 'lodOptionGameSpeedRespawnTimePercentage': 5
                             }
                         }
-                    },                  
+                    },
+                    {
+                        name: 'lodOptionPocketTowers',
+                        extraInfo: 'lodOptionAboutPocketTowers',
+                        default: {
+                            'lodMutatorNoPocketTowers': 0,
+                        },
+                        states: {
+                            'lodMutatorPocketTowersConsumable': 1,
+                            'lodMutatorPocketTowersCooldown': 300,
+                            'lodMutatorPocketTowersCooldown1': 600
+                        }
+                    },
                     {
                         name: 'lodOptionGameSpeedStrongTowers',
                         about: 'lodMutatorStrongTowers'
@@ -1533,6 +1545,39 @@ var advancedOptions = {
                     {
                         text: 'lodOptionYes',
                         value: 1
+                    }
+                ]
+            },
+            {
+                name: 'lodOptionPocketTowers',
+                des: 'lodOptionDesPocketTowers',
+                about: 'lodOptionAboutPocketTowers',
+                sort: 'dropdown',
+                values: [
+                    {
+                        text: 'lodOptionNoPocketTowers',
+                        value: 0
+                    },{
+                        text: 'lodOptionPocketTowersConsumable',
+                        value: 1
+                    },{
+                        text: 'lodOptionPocketTowersCooldown60',
+                        value: 60
+                    },{
+                        text: 'lodOptionPocketTowersCooldown120',
+                        value: 120
+                    },{
+                        text: 'lodOptionPocketTowersCooldown180',
+                        value: 180
+                    },{
+                        text: 'lodOptionPocketTowersCooldown240',
+                        value: 240
+                    },{
+                        text: 'lodOptionPocketTowersCooldown300',
+                        value: 300
+                    },{
+                        text: 'lodOptionPocketTowersCooldown600',
+                        value: 600
                     }
                 ]
             },

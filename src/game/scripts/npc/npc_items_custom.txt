@@ -468,6 +468,139 @@
 
     }
 
+    //=================================================================================================================
+    //  Pocket Towers
+    //=================================================================================================================
+    "item_redux_pocket_tower"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "ID"                            "2260"
+        "BaseClass"                     "item_lua"
+        "ScriptFile"                    "items/pocket_tower.lua"
+        "AbilityTextureName"            "custom/item_pocket_tower"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
+        "AbilityCastRange"              "600"
+        "precache"
+        {
+            "particle"                  "particles/dev/library/base_dust_hit_detail.vpcf"
+        }
+        "ItemPermanent"                 "0"
+        "ItemInitialCharges"            "1"
+        "ItemRequiresCharges"           "1"
+        "ItemStackable"                 "0"
+        "ItemCost"                      "1"
+        "ItemSellable"                  "0"
+    }
+
+    "item_redux_pocket_tower_permanent_60"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "ID"                            "2261"
+        "BaseClass"                     "item_lua"
+        "ScriptFile"                    "items/pocket_tower_permanent.lua"
+        "AbilityTextureName"            "custom/item_pocket_tower"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
+        "AbilityCastRange"              "600"
+        "ItemSellable"                  "0"
+        "AbilityCooldown"               "60"
+        "precache"
+        {
+            "particle"                  "particles/dev/library/base_dust_hit_detail.vpcf"
+        }
+    }
+
+    "item_redux_pocket_tower_permanent_120"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "ID"                            "2262"
+        "BaseClass"                     "item_lua"
+        "ScriptFile"                    "items/pocket_tower_permanent.lua"
+        "AbilityTextureName"            "custom/item_pocket_tower"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
+        "AbilityCastRange"              "600"
+        "ItemSellable"                  "0"
+        "AbilityCooldown"               "120"
+        "precache"
+        {
+            "particle"                  "particles/dev/library/base_dust_hit_detail.vpcf"
+        }
+    }
+
+    "item_redux_pocket_tower_permanent_180"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "ID"                            "2263"
+        "BaseClass"                     "item_lua"
+        "ScriptFile"                    "items/pocket_tower_permanent.lua"
+        "AbilityTextureName"            "custom/item_pocket_tower"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
+        "AbilityCastRange"              "600"
+        "ItemSellable"                  "0"
+        "AbilityCooldown"               "180"
+        "precache"
+        {
+            "particle"                  "particles/dev/library/base_dust_hit_detail.vpcf"
+        }
+    }
+
+    "item_redux_pocket_tower_permanent_240"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "ID"                            "2264"
+        "BaseClass"                     "item_lua"
+        "ScriptFile"                    "items/pocket_tower_permanent.lua"
+        "AbilityTextureName"            "custom/item_pocket_tower"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
+        "AbilityCastRange"              "600"
+        "ItemSellable"                  "0"
+        "AbilityCooldown"               "240"
+        "precache"
+        {
+            "particle"                  "particles/dev/library/base_dust_hit_detail.vpcf"
+        }
+    }
+
+    "item_redux_pocket_tower_permanent_300"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "ID"                            "2265"
+        "BaseClass"                     "item_lua"
+        "ScriptFile"                    "items/pocket_tower_permanent.lua"
+        "AbilityTextureName"            "custom/item_pocket_tower"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
+        "AbilityCastRange"              "600"
+        "ItemSellable"                  "0"
+        "AbilityCooldown"               "300"
+        "precache"
+        {
+            "particle"                  "particles/dev/library/base_dust_hit_detail.vpcf"
+        }
+    }
+
+    "item_redux_pocket_tower_permanent_600"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "ID"                            "2265"
+        "BaseClass"                     "item_lua"
+        "ScriptFile"                    "items/pocket_tower_permanent.lua"
+        "AbilityTextureName"            "custom/item_pocket_tower"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
+        "AbilityCastRange"              "600"
+        "ItemSellable"                  "0"
+        "AbilityCooldown"               "600"
+        "precache"
+        {
+            "particle"                  "particles/dev/library/base_dust_hit_detail.vpcf"
+        }
+    }
+
     "item_tombstone_1"
     {
         "BaseClass"                     "item_tombstone"               

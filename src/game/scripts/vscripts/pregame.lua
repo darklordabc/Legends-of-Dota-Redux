@@ -754,6 +754,7 @@ function Pregame:loadDefaultSettings()
     self:setOption('lodOptionBotsSameHero', 0, false)
     self:setOption('lodOptionRefreshCooldownsOnDeath', 0, false)
     self:setOption('lodOptionGlobalCast', 0, false)
+    self:setOption('lodOptionPocketTowers', 0, false)
 
     -- Balance Mode Ban List disabled by default
     self:setOption('lodOptionBanningBalanceMode', 0, true)
@@ -2883,6 +2884,11 @@ function Pregame:initOptionSelector()
             return value == 0 or value == 1 or value == 2
         end,
 
+        -- Game Speed - Pocket Towers
+        lodOptionPocketTowers = function(value)
+            return value == 0 or value == 1 or value == 60 or value == 120 or value == 180 or value == 240 or value == 300 or value == 600
+        end,
+
         -- Game Speed - Stronger Towers
         lodOptionGameSpeedStrongTowers = function(value)
             if self.optionStore['lodOptionCreepPower'] == 0 then
@@ -4103,6 +4109,7 @@ function Pregame:processOptions()
         OptionManager:SetOption('buybackCooldownConstant', this.optionStore['lodOptionBuybackCooldownTimeConstant'])
         OptionManager:SetOption('freeScepter', this.optionStore['lodOptionGameSpeedUpgradedUlts'])
         OptionManager:SetOption('freeCourier', this.optionStore['lodOptionGameSpeedFreeCourier'] == 1)
+        OptionManager:SetOption('pocketTowers', this.optionStore['lodOptionPocketTowers'])
         OptionManager:SetOption('strongTowers', this.optionStore['lodOptionGameSpeedStrongTowers'] == 1)
         OptionManager:SetOption('towerCount', this.optionStore['lodOptionGameSpeedTowersPerLane'])
         OptionManager:SetOption('creepPower', this.optionStore['lodOptionCreepPower'])
@@ -8358,6 +8365,31 @@ function Pregame:fixSpawnedHero( spawnedUnit )
                 bonus_mana = 0
             })
          end
+    end
+
+    -- Handle pocket tower stuff
+    if OptionManager:GetOption('pocketTowers') ~= 0 then
+        Timers:CreateTimer(function()
+            if IsValidEntity(spawnedUnit) then
+                -- If setting is 1, everyone gets a single consumable tower to use
+                if OptionManager:GetOption('pocketTowers') == 1 then
+                    spawnedUnit:AddItemByName('item_redux_pocket_tower')
+                -- Else, everyone gets a tower which has a cooldown
+                elseif OptionManager:GetOption('pocketTowers') == 60 then
+                    spawnedUnit:AddItemByName('item_redux_pocket_tower_permanent_60')
+                elseif OptionManager:GetOption('pocketTowers') == 120 then
+                    spawnedUnit:AddItemByName('item_redux_pocket_tower_permanent_120')
+                elseif OptionManager:GetOption('pocketTowers') == 180 then
+                    spawnedUnit:AddItemByName('item_redux_pocket_tower_permanent_180')
+                elseif OptionManager:GetOption('pocketTowers') == 240 then
+                    spawnedUnit:AddItemByName('item_redux_pocket_tower_permanent_240')
+                elseif OptionManager:GetOption('pocketTowers') == 300 then
+                    spawnedUnit:AddItemByName('item_redux_pocket_tower_permanent_300')
+                elseif OptionManager:GetOption('pocketTowers') == 600 then
+                    spawnedUnit:AddItemByName('item_redux_pocket_tower_permanent_600')
+                end
+            end
+        end, DoUniqueString('givePocketTowers'), 1)
     end
 
     -- Give out the global cast range ability
