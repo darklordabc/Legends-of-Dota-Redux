@@ -7,6 +7,7 @@ item_redux_pocket_tower_permanent_120 = item_redux_pocket_tower_permanent
 item_redux_pocket_tower_permanent_180 = item_redux_pocket_tower_permanent
 item_redux_pocket_tower_permanent_240 = item_redux_pocket_tower_permanent
 item_redux_pocket_tower_permanent_300 = item_redux_pocket_tower_permanent
+item_redux_pocket_tower_permanent_600 = item_redux_pocket_tower_permanent
 
 function item_redux_pocket_tower_permanent:CastFilterResultLocation(location)
   if IsClient() then

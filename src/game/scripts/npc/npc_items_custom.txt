@@ -582,6 +582,24 @@
         }
     }
 
+    "item_redux_pocket_tower_permanent_600"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "ID"                            "2265"
+        "BaseClass"                     "item_lua"
+        "ScriptFile"                    "items/pocket_tower_permanent.lua"
+        "AbilityTextureName"            "custom/item_pocket_tower"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
+        "AbilityCastRange"              "600"
+        "ItemSellable"                  "0"
+        "AbilityCooldown"               "600"
+        "precache"
+        {
+            "particle"                  "particles/dev/library/base_dust_hit_detail.vpcf"
+        }
+    }
+
     "item_tombstone_1"
     {
         "BaseClass"                     "item_tombstone"               

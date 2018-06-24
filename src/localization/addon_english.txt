@@ -410,11 +410,17 @@
     "lodOptionPocketTowersCooldown180"              "Pocket Tower (180 CD)"     
     "lodOptionPocketTowersCooldown240"              "Pocket Tower (240 CD)"
     "lodOptionPocketTowersCooldown300"              "Pocket Tower (300 CD)"
+    "lodOptionPocketTowersCooldown600"              "Pocket Tower (600 CD)"
 
     "lodMutatorNoPocketTowers"                      "Pocket Tower"
     "lodMutatorPocketTowersConsumable"              "Pocket Tower (Consumable)"
-    "lodMutatorPocketTowersCooldown1"               "Pocket Tower (3m CD)"
+    "lodMutatorPocketTowersCooldown1"               "Pocket Tower (10m CD)"
     "lodMutatorPocketTowersCooldown"                "Pocket Tower (5m CD)"
+    
+    
+
+    "DOTA_Tooltip_ability_redux_pocket_tower_ability"                       "Pocket Tower"
+    "DOTA_Tooltip_ability_redux_pocket_tower_ability_Description"               "Targets the ground to place a tower that lasts forever."
 
     "DOTA_Tooltip_ability_item_redux_pocket_tower"                       "Pocket Tower (Consumable)"
     "DOTA_Tooltip_ability_item_redux_pocket_tower_Description"               "<h1>Use: Place Tower</h1> Targets the ground to place a tower that lasts forever. Can only be used once!"
@@ -428,6 +434,8 @@
     "DOTA_Tooltip_ability_item_redux_pocket_tower_permanent_240_Description" "<h1>Use: Place Tower</h1> Targets the ground to place a tower that lasts forever."
     "DOTA_Tooltip_ability_item_redux_pocket_tower_permanent_300"         "Pocket Tower (5m CD)"
     "DOTA_Tooltip_ability_item_redux_pocket_tower_permanent_300_Description" "<h1>Use: Place Tower</h1> Targets the ground to place a tower that lasts forever."
+    "DOTA_Tooltip_ability_item_redux_pocket_tower_permanent_600"         "Pocket Tower (10m CD)"
+    "DOTA_Tooltip_ability_item_redux_pocket_tower_permanent_600_Description" "<h1>Use: Place Tower</h1> Targets the ground to place a tower that lasts forever."
 
     "lodMutatorBotsSameHero"                        "Bots Same Hero"
     "lodMutatorRandomBotHero"                       "Random Hero"
@@ -1669,6 +1677,7 @@
     "panorama_shop_search_placeholder"                  "Search..."
     "panorama_shop_stackable_purchase"                  "Purchased item was dropped on the base, because your hero has same stackable item in inventory"
     "dota_hud_error_panorama_shop_dropped_items_limit"  "Dropped items limit was reached"
+    "dota_hud_error_no_buildings_here"  "Cannot place buildings here"
     "dota_hud_error_panorama_shop_item_disabled"        "This item or one of it's components is disabled in this match"
     // Imported from Dota IMBA (Not all may be in use)
     "dota_hud_error_cant_use_already_hexed"                                      "Target already hexed."

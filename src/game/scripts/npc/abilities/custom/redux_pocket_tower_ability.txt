@@ -4,11 +4,12 @@
     {
         "BaseClass"                                                            "ability_lua"
         "ScriptFile"                                                           "abilities/pocket_tower.lua"
-        "AbilityTextureName"                                                   "item_pocket_tower"
+        "AbilityTextureName"                                                   "custom/item_pocket_tower"
         "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_POINT"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
         "AbilityCastRange"                                                      "600"
         "AbilityCastPoint"                                                      "0.0"
-        "AbilityCooldown"                                                       "180"
+        "AbilityCooldown"                                                       "300 150 60"
 
         "precache"
         {
@@ -17,5 +18,6 @@
 
         "ReduxFlags"                                                           "summon"
         "ReduxPerks"                                                           "neutral | summon_non_ult"
+        "ReduxCost"                                                            "120"
     }
 }

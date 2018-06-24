@@ -2871,7 +2871,7 @@ function Pregame:initOptionSelector()
 
         -- Game Speed - Pocket Towers
         lodOptionPocketTowers = function(value)
-            return value == 0 or value == 1 or value == 60 or value == 120 or value == 180 or value == 240 or value == 300
+            return value == 0 or value == 1 or value == 60 or value == 120 or value == 180 or value == 240 or value == 300 or value == 600
         end,
 
         -- Game Speed - Stronger Towers
@@ -8337,6 +8337,8 @@ function Pregame:fixSpawnedHero( spawnedUnit )
                     spawnedUnit:AddItemByName('item_redux_pocket_tower_permanent_240')
                 elseif OptionManager:GetOption('pocketTowers') == 300 then
                     spawnedUnit:AddItemByName('item_redux_pocket_tower_permanent_300')
+                elseif OptionManager:GetOption('pocketTowers') == 600 then
+                    spawnedUnit:AddItemByName('item_redux_pocket_tower_permanent_600')
                 end
             end
         end, DoUniqueString('givePocketTowers'), 1)
