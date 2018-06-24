@@ -103,17 +103,6 @@ var basicOptions = {
                         }
                     },
                     {
-                        about: 'lodMutatorTurboCourier',
-                        values: {
-                            enabled: {
-                                'lodOptionTurboCourier': 1
-                            },
-                            disabled: {
-                                'lodOptionTurboCourier': 0
-                            }
-                        }
-                    },
-                    {
                         about: 'lodMutatorFastBuybackCooldown1',
                         default: {
                             'lodOptionBuybackCooldownTimeConstant': 420,
@@ -128,18 +117,6 @@ var basicOptions = {
                                 'lodOptionBuybackCooldownTimeConstant': 0,
                                 'lodOptionGameSpeedRespawnTimePercentage': 5
                             }
-                        }
-                    },
-                    {
-                        name: 'lodOptionPocketTowers',
-                        extraInfo: 'lodOptionAboutPocketTowers',
-                        default: {
-                            'lodMutatorNoPocketTowers': 0,
-                        },
-                        states: {
-                            'lodMutatorPocketTowersConsumable': 1,
-                            'lodMutatorPocketTowersCooldown': 300,
-                            'lodMutatorPocketTowersCooldown1': 600
                         }
                     },
                     {
@@ -611,8 +588,31 @@ var basicOptions = {
                         about: 'lodMutatorAntiBash'
                     },
                     {
+                        name: 'lodOptionPocketTowers',
+                        extraInfo: 'lodOptionAboutPocketTowers',
+                        default: {
+                            'lodMutatorNoPocketTowers': 0,
+                        },
+                        states: {
+                            'lodMutatorPocketTowersConsumable': 1,
+                            'lodMutatorPocketTowersCooldown': 300,
+                            'lodMutatorPocketTowersCooldown1': 600
+                        }
+                    },
+                    {
+                        about: 'lodMutatorTurboCourier',
+                        values: {
+                            enabled: {
+                                'lodOptionTurboCourier': 1
+                            },
+                            disabled: {
+                                'lodOptionTurboCourier': 0
+                            }
+                        }
+                    },
+                    {
                         name: 'lodOptionFastRunes', 
-                        extraInfo: 'lodOptionAboutFastRunes',
+                        //extraInfo: 'lodOptionAboutFastRunes',
                         about: 'lodMutatorFastRunes'
                     },
                     //{
@@ -625,11 +625,11 @@ var basicOptions = {
                         extraInfo: 'lodOptionAboutPeriodicSpellCast',
                         about: 'lodMutatorPeriodicSpellCast'
                     },
-                    {
+                    /*{
                         name: 'lodOptionVampirism',
                         extraInfo: 'lodOptionAboutVampirism',
                         about: 'lodMutatorVampirism'
-                    },
+                    },*/
                     {
                         name: 'lodOptionKillStreakPower',
                         extraInfo: 'lodOptionAboutKillStreakPower',
@@ -642,18 +642,18 @@ var basicOptions = {
                     },
                     {
                         name: 'lodOptionExplodeOnDeath',
-                        extraInfo: 'lodOptionAboutExplodeOnDeath',
+                        //extraInfo: 'lodOptionAboutExplodeOnDeath',
                         about: 'lodMutatorExplodeOnDeath'
                     },
                     
                     {
                         name: 'lodOptionGoldDropOnDeath',
-                        extraInfo: 'lodOptionAboutGoldDropOnDeath',
+                        //extraInfo: 'lodOptionAboutGoldDropOnDeath',
                         about: 'lodMutatorGoldDropOnDeath'
                     },
                     {
                         name: 'lodOptionNoHealthbars',
-                        extraInfo: 'lodOptionAboutNoHealthbars',
+                        //extraInfo: 'lodOptionAboutNoHealthbars',
                         about: 'lodMutatorNoHealthbars'
                     },
                     
@@ -669,7 +669,7 @@ var basicOptions = {
                     // },
                     {
                        name: 'lodOptionResurrectAllies',
-                       extraInfo: 'lodOptionAboutResurrectAllies',
+                       //extraInfo: 'lodOptionAboutResurrectAllies',
                        about: 'lodMutatorResurrectAllies'
                     },            
                     {
@@ -2448,7 +2448,7 @@ var advancedOptions = {
                     }
                 ]
             },
-            {
+            /*{
                 name: 'lodOptionVampirism',
                 des: 'lodOptionDesVampirism',
                 about: 'lodOptionAboutVampirism',
@@ -2463,7 +2463,7 @@ var advancedOptions = {
                         value: 1
                     }
                 ]
-            },
+            },*/
             {
                 name: 'lodOptionKillStreakPower',
                 des: 'lodOptionDesKillStreakPower',
