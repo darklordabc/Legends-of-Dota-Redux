@@ -26,6 +26,7 @@ function redux_pocket_tower_ability:OnSpellStart()
     building = CreateUnitByName("npc_dota_goodguys_tower4", location, true, caster, caster:GetOwner(), caster:GetTeam())
   else
     building = CreateUnitByName("npc_dota_badguys_tower4", location, true, caster, caster:GetOwner(), caster:GetTeam())
+    building:SetRenderColor(65, 78, 63)
   end
   building:SetOwner(caster)
   GridNav:DestroyTreesAroundPoint(location, building:GetHullRadius(), true)
@@ -41,6 +42,8 @@ function redux_pocket_tower_ability:OnSpellStart()
 
   -- Sound
   building:EmitSound("Redux.PocketTower")
+
+
 
   Timers:CreateTimer(0.01, function()
     ResolveNPCPositions(location, 144)
