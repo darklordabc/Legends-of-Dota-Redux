@@ -271,6 +271,10 @@ function openPatreon() {
     $.DispatchEvent('ExternalBrowserGoToURL', 'https://www.patreon.com/darklordabc');
 }
 
+function openDiscord() {
+    $.DispatchEvent('ExternalBrowserGoToURL', 'https://discord.gg/ZFSjzWV');
+}
+
 // Focuses on nothing
 function focusNothing() {
     $('#mainSelectionRoot').SetFocus();
@@ -3976,38 +3980,39 @@ function buildAdvancedOptionsCategories( mutatorList ) {
 
                             mutators = fieldData[i].mutators;
                         } else {
+                            // Create the info
+                            var mainSlot = $.CreatePanel('Panel', optionPanel, 'option_panel_main_' + fieldName);
+                            mainSlot.AddClass('optionSlotPanel');
+                            var infoLabel = $.CreatePanel(sort === 'shopTree' ? 'ToggleButton' : 'Label', mainSlot, 'option_panel_main_' + fieldName);
+                            infoLabel.text = $.Localize(info.des);
+                            infoLabel.AddClass('optionSlotPanelLabel');
+
+                            if (patreon_options[fieldName]) {
+                                mainSlot.AddClass('patreon');
+                            }
+
+                            mainSlot.SetPanelEvent('onmouseover', function() {
+                                $.DispatchEvent( 'UIShowCustomLayoutParametersTooltip', mainSlot, "OptionTooltip", "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + $.Localize(info.about));
+                            });
+
+                            mainSlot.SetPanelEvent('onmouseout', function() {
+                                $.DispatchEvent( 'UIHideCustomLayoutTooltip', mainSlot, "OptionTooltip");
+                            });
+
+                            var floatRightContiner = $.CreatePanel('Panel', mainSlot, 'option_panel_field_' + fieldName + '_container');
+                            floatRightContiner.AddClass('optionsSlotPanelContainer');
+
+                            // Create stores for the newly created items
+                            var hostPanel;
+                            var slavePanel = $.CreatePanel('Label', floatRightContiner, 'option_panel_field_' + fieldName + '_slave');
+                            slavePanel.AddClass('optionsSlotPanelSlave');
+                            slavePanel.AddClass('optionSlotPanelLabel');
+                            slavePanel.text = 'Unknown';
+
                             if (patreon_options[fieldName] && !isPatron()) {
-
+                                slavePanel.text = 'Patreon-only feature';
+                                slavePanel.RemoveClass('optionsSlotPanelSlave');
                             } else {
-                                // Create the info
-                                var mainSlot = $.CreatePanel('Panel', optionPanel, 'option_panel_main_' + fieldName);
-                                mainSlot.AddClass('optionSlotPanel');
-                                var infoLabel = $.CreatePanel(sort === 'shopTree' ? 'ToggleButton' : 'Label', mainSlot, 'option_panel_main_' + fieldName);
-                                infoLabel.text = $.Localize(info.des);
-                                infoLabel.AddClass('optionSlotPanelLabel');
-
-                                if (patreon_options[fieldName]) {
-                                    mainSlot.AddClass('patreon');
-                                }
-
-                                mainSlot.SetPanelEvent('onmouseover', function() {
-                                    $.DispatchEvent( 'UIShowCustomLayoutParametersTooltip', mainSlot, "OptionTooltip", "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + $.Localize(info.about));
-                                });
-
-                                mainSlot.SetPanelEvent('onmouseout', function() {
-                                    $.DispatchEvent( 'UIHideCustomLayoutTooltip', mainSlot, "OptionTooltip");
-                                });
-
-                                var floatRightContiner = $.CreatePanel('Panel', mainSlot, 'option_panel_field_' + fieldName + '_container');
-                                floatRightContiner.AddClass('optionsSlotPanelContainer');
-
-                                // Create stores for the newly created items
-                                var hostPanel;
-                                var slavePanel = $.CreatePanel('Label', floatRightContiner, 'option_panel_field_' + fieldName + '_slave');
-                                slavePanel.AddClass('optionsSlotPanelSlave');
-                                slavePanel.AddClass('optionSlotPanelLabel');
-                                slavePanel.text = 'Unknown';
-
                                 switch(sort) {
                                     case 'dropdown':
                                         // Create the drop down

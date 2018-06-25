@@ -162,7 +162,7 @@
                                 <Panel id="optionBasic">
                                     <!--
                                     <Image class="optionImageCached" src="file://{images}/custom_game/patreon_small.png"></Image>
-
+                                    <Image class="optionImageCached" src="file://{images}/custom_game/discord.png"></Image>
 
 									<Image class="optionImageCached" src="file://{images}/custom_game/votings/lodVotingAntirat.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/votings/lodVotingBanningBlockTrollCombos.png"></Image>
@@ -1079,6 +1079,10 @@
             <Button id="patreonButton" onactivate="openPatreon()" hittest="true">
                 <Image src="file://{images}/custom_game/patreon.png" />
                 <Panel id="patreonButtonClose" onactivate="hidePatreonButton()" />
+            </Button>
+            <Button id="discordButton" onactivate="openDiscord()" hittest="true">
+                <Image src="file://{images}/custom_game/discord.png" />
+                <Panel id="discordButtonClose" onactivate="hideDiscordButton()" />
             </Button>
         </Panel>
         <Panel id="lodPopupMessage">

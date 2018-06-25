@@ -3184,6 +3184,7 @@ Button:enabled:hover {
 .importAndExportButton Label {
 	text-align: center;
     align: center center;
+    font-size: 17px;
 }
 
 #importAndExportEntryRoot {
@@ -3452,8 +3453,8 @@ Button:enabled:hover {
 }
 
 .optionSlotPanel.patreon {
-    border: 2px solid #FF661A;
-    border-radius: 4px;
+    //border: 1px solid #FF661A;
+    //border-radius: 4px;
 }
 
 .optionSlotPanelLabel {
@@ -3879,7 +3880,8 @@ Button:enabled:hover {
     font-size: 26px;
 }
 
-#patreonButton {
+#patreonButton,
+#discordButton {
     align: left bottom;
     height: 39px;
     width: 155px;
@@ -3889,21 +3891,30 @@ Button:enabled:hover {
 }
 
 
-#patreonButton Image {
+#discordButton {
+    margin-left: 675px;
+}
+
+
+#patreonButton Image,
+#discordButton Image {
     transition-property: transform;
     transition-duration: 0.05s;
     transition-timing-function: ease-in;
 }
 
-#patreonButton:hover Image {
+#patreonButton:hover Image,
+#discordButton:hover Image {
     transform: scaleX(1.02) scaleY(1.02);
 }
 
-#patreonButton:active Image {
+#patreonButton:active Image,
+#discordButton:active Image {
     transform: scaleX(0.96) scaleY(0.96);
 }
 
-#patreonButtonClose {
+#patreonButtonClose,
+#discordButtonClose {
     align: right center;
     margin-top: 2px;
     margin-right: 8px;
@@ -3922,15 +3933,18 @@ Button:enabled:hover {
     transition-timing-function: ease-in;
 }
 
-#patreonButton:hover #patreonButtonClose {
+#patreonButton:hover #patreonButtonClose,
+#discordButton:hover #discordButtonClose, {
     opacity: 0.7;
 }
 
-#patreonButtonClose:hover {
+#patreonButtonClose:hover,
+#discordButtonClose:hover, {
     opacity: 0.9;
     transform: scaleX(1.1) scaleY(1.1);
 }
 
-#patreonButtonClose:active {
+#patreonButtonClose:active,
+#discordButtonClose:active {
     transform: scaleX(0.9) scaleY(0.9);
 }
