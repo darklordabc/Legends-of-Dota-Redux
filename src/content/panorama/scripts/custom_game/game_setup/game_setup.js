@@ -3618,7 +3618,7 @@ function buildBasicOptionsCategories() {
                 extraPanel.AddClass('patreonExtra');
 
                 extraPanel.SetPanelEvent('onmouseover', function() {
-                    $.DispatchEvent( 'UIShowCustomLayoutParametersTooltip', extraPanel, 'MutatorTooltip', "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + "Patreon-exclusive feature!" );
+                    $.DispatchEvent( 'UIShowCustomLayoutParametersTooltip', extraPanel, 'MutatorTooltip', "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + "lodPatreonFeature" );
                 });
                 extraPanel.SetPanelEvent('onmouseout', function() {
                     $.DispatchEvent( 'UIHideCustomLayoutTooltip', extraPanel, 'MutatorTooltip' );
@@ -4010,8 +4010,10 @@ function buildAdvancedOptionsCategories( mutatorList ) {
                             slavePanel.text = 'Unknown';
 
                             if (patreon_options[fieldName] && !isPatron()) {
-                                slavePanel.text = 'Patreon-only feature';
+                                slavePanel.text = $.Localize("lodPatreonFeature");
                                 slavePanel.RemoveClass('optionsSlotPanelSlave');
+                                slavePanel.style.color = "#FF661A;";
+                                infoLabel.style.color = "#FF661A;";
                             } else {
                                 switch(sort) {
                                     case 'dropdown':

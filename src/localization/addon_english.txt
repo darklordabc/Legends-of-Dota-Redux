@@ -1287,6 +1287,7 @@
 
     // Error messages
     "lodNoPatreonSubscription"                      "This feature is only available to Patreon subscribers"
+    "lodPatreonFeature"                             "Patreon-exclusive feature!"
     "lodFailedToFindHero"                           "Please select a valid hero."
     "lodFailedToChangeAttr"                         "The option to change your primary attribute is disabled."
     "lodFailedToChangeAttrInvalid"                  "You tried to select an invalid primary attribute."
