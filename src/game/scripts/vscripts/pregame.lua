@@ -135,6 +135,8 @@ function Pregame:init()
     GameRules:SetCustomGameSetupTimeout(-1)
     GameRules:EnableCustomGameSetupAutoLaunch(false)
     self:sendContributors()
+    self:sendPatrons()
+    self:sendPatreonFeatures()
 
     self.chanceToHearMeme = 1
     self.freeAbility = nil
@@ -1028,6 +1030,23 @@ function Pregame:sendContributors()
 
     -- Push the contributors
     network:setContributors(sortedContributors)
+end
+
+-- Send the patrons
+function Pregame:sendPatrons()
+    local sortedPatrons = {}
+    for i=0,util:getTableLength(util.patrons) do
+        table.insert(sortedPatrons, util.patrons[tostring(i)])
+    end
+
+    -- Push the patrons
+    network:setPatrons(sortedPatrons)
+end
+
+-- Send the patreon features
+function Pregame:sendPatreonFeatures()
+    -- Push the patrons
+    network:setPatreonFeatures(util.patreon_features)
 end
 
 function Pregame:startBoosterDraftRound( pID )
@@ -2151,13 +2170,39 @@ function Pregame:onOptionChanged(eventSourceIndex, args)
     -- Grab data
     local playerID = args.PlayerID
     local player = PlayerResource:GetPlayer(playerID)
+    -- Grab options
+    local optionName = args.k
+    local optionValue = args.v
+
+    if util.patreon_features and 
+        util.patreon_features["Options"] and 
+        util.patreon_features["Options"][optionName] then
+        local isPatron = false
+        for k,v in pairs(util.patrons) do
+            print(PlayerResource:GetSteamID(playerID), PlayerResource:GetSteamAccountID(playerID))
+            if v.steamID3 == PlayerResource:GetSteamAccountID(playerID) then
+                isPatron = true
+                break
+            end
+        end
+        if not isPatron then
+            -- Tell the user they tried to modify an invalid option
+            network:sendNotification(player, {
+                sort = 'lodDanger',
+                text = 'lodNoPatreonSubscription',
+                params = {
+                    ['optionName'] = optionName
+                }
+            })
+            -- Timers:CreateTimer(function()
+            --     self:setOption(optionName, self.optionStore[optionName])
+            -- end, "lodOptionFailed", 0.1) 
+            return
+        end
+    end
 
     -- Ensure they have hosting privileges
     if isPlayerHost(player) then
-        -- Grab options
-        local optionName = args.k
-        local optionValue = args.v
-
         --Enabling these properties requires an agree by all players
         local voteRequiredOptions = {
             ["lodOptionBanningBlockTrollCombos"] = {

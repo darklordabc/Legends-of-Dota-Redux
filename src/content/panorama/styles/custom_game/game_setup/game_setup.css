@@ -3061,6 +3061,23 @@ Button:enabled:hover {
     opacity: .5;
 }
 
+#mutatorPanel .patreonMutator {
+    width: 110px;
+    height: width-percentage(73%);
+    margin: 1px;
+    border-radius: 5px;
+    border: 4px solid #FF661A;
+    opacity: .5;
+}
+
+.patreonExtra {
+    width: 24px;
+    height: 24px;
+
+    margin: 0px 0px 0px 0px;
+    align: left bottom;
+}
+
 .mutatorExtra {
     width: 18px;
     height: 18px;
@@ -3432,6 +3449,11 @@ Button:enabled:hover {
     width: 100%;
     height: 48px;
     flow-children: right;
+}
+
+.optionSlotPanel.patreon {
+    border: 2px solid #FF661A;
+    border-radius: 4px;
 }
 
 .optionSlotPanelLabel {

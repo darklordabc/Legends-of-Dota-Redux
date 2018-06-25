@@ -162,6 +162,9 @@
                             <Panel id="optionsPanel">
                                 <Panel id="optionBasic">
                                     <!--
+                                    <Image class="optionImageCached" src="file://{images}/custom_game/patreon_small.png"></Image>
+
+
 									<Image class="optionImageCached" src="file://{images}/custom_game/votings/lodVotingAntirat.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/votings/lodVotingBanningBlockTrollCombos.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/votings/lodVotingAdvancedOPAbilities.png"></Image>

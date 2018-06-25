@@ -10,8 +10,10 @@ local chanelledSpells = {}
 local targetSpells = {}
 local regularSpells = LoadKeyValues('scripts/npc/npc_abilities.txt')
 
--- Grab contributors file
+-- Grab steamid data
 util.contributors = util.contributors or LoadKeyValues('scripts/kv/contributors.kv')
+util.patrons = util.patrons or LoadKeyValues('scripts/kv/patrons.kv')
+util.patreon_features = util.patreon_features or LoadKeyValues('scripts/kv/patreon_features.kv')
 util.bannedKV = util.bannedKV or LoadKeyValues('scripts/kv/banned.kv')
 
 function CDOTABaseAbility:GetTalentSpecialValueFor(value)

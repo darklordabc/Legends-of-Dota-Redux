@@ -252,9 +252,19 @@ function network:setPremiumInfo(info)
     CustomNetTables:SetTableValue('phase_pregame', 'premium_info', info)
 end
 
--- Shares contributor list
+-- Shares contributors list
 function network:setContributors(info)
     CustomNetTables:SetTableValue('phase_pregame', 'contributors', info)
+end
+
+-- Shares patrons list
+function network:setPatrons(info)
+    CustomNetTables:SetTableValue('phase_pregame', 'patrons', info)
+end
+
+-- Shares patreon features list
+function network:setPatreonFeatures(info)
+    CustomNetTables:SetTableValue('phase_pregame', 'patreon_features', info)
 end
 
 -- Balance request

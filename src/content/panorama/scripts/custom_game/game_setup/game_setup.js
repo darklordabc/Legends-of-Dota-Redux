@@ -252,6 +252,20 @@ function hookAndFire(tableName, callback) {
     }
 }
 
+function isPatron(argument) {
+    var patrons = CustomNetTables.GetTableValue("phase_pregame", "patrons");
+
+    var isPatron = false;
+    if (patrons) {
+        for (var patron in patrons) {
+            if (patrons[patron].steamID3 == util.getSteamID32()) {
+                return true;
+                break;
+            }
+        }
+    }
+    return false;
+}
 
 // Focuses on nothing
 function focusNothing() {
@@ -3145,6 +3159,8 @@ function buildBasicOptionsCategories() {
     var gamemodeList = {};
     var mutators;
 
+    var patreon_mutators = CustomNetTables.GetTableValue("phase_pregame", "patreon_features").Mutators;
+
     var addMutators = function(destionationPanel) {
         mutatorList = {};
         mutators.forEach(function(item, i) {
@@ -3152,6 +3168,7 @@ function buildBasicOptionsCategories() {
             if(item.about) {
                 name = item.about;
             } else {
+                //$.Msg(item.states);
                 name = Object.keys(item.states)[0];
             }
 
@@ -3459,6 +3476,9 @@ function buildBasicOptionsCategories() {
             })
 
             var onActivate = (function(e) {
+                if (patreon_mutators[name] && !isPatron()) {
+                    return;
+                }
                 var fieldValue = optionMutator.GetAttributeInt('fieldValue', -1);
                 if (item.name == "lodOptionCommonGamemode" && !allowCustomSettings) {
                     return;
@@ -3495,6 +3515,9 @@ function buildBasicOptionsCategories() {
             })
 
             var onContextMenu = (function(e) {
+                if (patreon_mutators[name] && !isPatron()) {
+                    return;
+                }
                 var fieldValue = optionMutator.GetAttributeInt('fieldValue', -1);
                 if (item.name == "lodOptionCommonGamemode" && !allowCustomSettings) {
                     return;
@@ -3576,6 +3599,21 @@ function buildBasicOptionsCategories() {
                 mutatorList[item.name] = optionMutator;
             } else {
                 mutatorList[item.name] = optionMutator;
+            }
+
+            if (patreon_mutators[name]) {
+                optionMutator.AddClass('patreonMutator');
+
+                var extraPanel = $.CreatePanel('Image', optionMutator, '');
+                extraPanel.SetImage('s2r://panorama/images/custom_game/patreon_small_png.vtex');
+                extraPanel.AddClass('patreonExtra');
+
+                extraPanel.SetPanelEvent('onmouseover', function() {
+                    $.DispatchEvent( 'UIShowCustomLayoutParametersTooltip', extraPanel, 'MutatorTooltip', "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + "Patreon-exclusive feature!" );
+                });
+                extraPanel.SetPanelEvent('onmouseout', function() {
+                    $.DispatchEvent( 'UIHideCustomLayoutTooltip', extraPanel, 'MutatorTooltip' );
+                });
             }
 
             if (item.hasOwnProperty('extraInfo')) {
@@ -3876,6 +3914,9 @@ function buildAdvancedOptionsCategories( mutatorList ) {
                 optionPanel.AddClass('optionButtonBotRequired');
             }
 
+            // Patreon
+            var patreon_options = CustomNetTables.GetTableValue("phase_pregame", "patreon_features").Options;
+
             // Build the fields
             var fieldData = optionData.fields;
             if (optionLabelText === 'items') {
@@ -3930,220 +3971,228 @@ function buildAdvancedOptionsCategories( mutatorList ) {
 
                             mutators = fieldData[i].mutators;
                         } else {
-                            // Create the info
-                            var mainSlot = $.CreatePanel('Panel', optionPanel, 'option_panel_main_' + fieldName);
-                            mainSlot.AddClass('optionSlotPanel');
-                            var infoLabel = $.CreatePanel(sort === 'shopTree' ? 'ToggleButton' : 'Label', mainSlot, 'option_panel_main_' + fieldName);
-                            infoLabel.text = $.Localize(info.des);
-                            infoLabel.AddClass('optionSlotPanelLabel');
+                            if (patreon_options[fieldName] && !isPatron()) {
 
-                            mainSlot.SetPanelEvent('onmouseover', function() {
-                                $.DispatchEvent( 'UIShowCustomLayoutParametersTooltip', mainSlot, "OptionTooltip", "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + $.Localize(info.about));
-                            });
+                            } else {
+                                // Create the info
+                                var mainSlot = $.CreatePanel('Panel', optionPanel, 'option_panel_main_' + fieldName);
+                                mainSlot.AddClass('optionSlotPanel');
+                                var infoLabel = $.CreatePanel(sort === 'shopTree' ? 'ToggleButton' : 'Label', mainSlot, 'option_panel_main_' + fieldName);
+                                infoLabel.text = $.Localize(info.des);
+                                infoLabel.AddClass('optionSlotPanelLabel');
 
-                            mainSlot.SetPanelEvent('onmouseout', function() {
-                                $.DispatchEvent( 'UIHideCustomLayoutTooltip', mainSlot, "OptionTooltip");
-                            });
+                                if (patreon_options[fieldName]) {
+                                    mainSlot.AddClass('patreon');
+                                }
 
-                            var floatRightContiner = $.CreatePanel('Panel', mainSlot, 'option_panel_field_' + fieldName + '_container');
-                            floatRightContiner.AddClass('optionsSlotPanelContainer');
+                                mainSlot.SetPanelEvent('onmouseover', function() {
+                                    $.DispatchEvent( 'UIShowCustomLayoutParametersTooltip', mainSlot, "OptionTooltip", "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + $.Localize(info.about));
+                                });
 
-                            // Create stores for the newly created items
-                            var hostPanel;
-                            var slavePanel = $.CreatePanel('Label', floatRightContiner, 'option_panel_field_' + fieldName + '_slave');
-                            slavePanel.AddClass('optionsSlotPanelSlave');
-                            slavePanel.AddClass('optionSlotPanelLabel');
-                            slavePanel.text = 'Unknown';
+                                mainSlot.SetPanelEvent('onmouseout', function() {
+                                    $.DispatchEvent( 'UIHideCustomLayoutTooltip', mainSlot, "OptionTooltip");
+                                });
 
-                            switch(sort) {
-                                case 'dropdown':
-                                    // Create the drop down
-                                    hostPanel = $.CreatePanel('DropDown', floatRightContiner, 'option_panel_field_' + fieldName);
-                                    hostPanel.AddClass('optionsSlotPanelHost');
+                                var floatRightContiner = $.CreatePanel('Panel', mainSlot, 'option_panel_field_' + fieldName + '_container');
+                                floatRightContiner.AddClass('optionsSlotPanelContainer');
 
-                                    // Maps values to panels
-                                    var valueToPanel = {};
+                                // Create stores for the newly created items
+                                var hostPanel;
+                                var slavePanel = $.CreatePanel('Label', floatRightContiner, 'option_panel_field_' + fieldName + '_slave');
+                                slavePanel.AddClass('optionsSlotPanelSlave');
+                                slavePanel.AddClass('optionSlotPanelLabel');
+                                slavePanel.text = 'Unknown';
 
-                                    for(var j=0; j<values.length; ++j) {
-                                        var valueInfo = values[j];
-                                        var fieldText = valueInfo.text;
-                                        var fieldValue = valueInfo.value;
+                                switch(sort) {
+                                    case 'dropdown':
+                                        // Create the drop down
+                                        hostPanel = $.CreatePanel('DropDown', floatRightContiner, 'option_panel_field_' + fieldName);
+                                        hostPanel.AddClass('optionsSlotPanelHost');
 
-                                        var subPanel = $.CreatePanel('Label', hostPanel.AccessDropDownMenu(), 'option_panel_field_' + fieldName + '_' + fieldText);
-                                        subPanel.text = $.Localize(fieldText);
-                                        //subPanel.SetAttributeString('fieldText', fieldText);
-                                        subPanel.SetAttributeInt('fieldValue', fieldValue);
-                                        hostPanel.AddOption(subPanel);
+                                        // Maps values to panels
+                                        var valueToPanel = {};
 
-                                        // Store the map
-                                        valueToPanel[fieldValue] = 'option_panel_field_' + fieldName + '_' + fieldText;
-
-                                        if(j == values.length-1) {
-                                            hostPanel.SetSelected(valueToPanel[fieldValue]);
-                                        }
-                                    }
-
-                                    // Mapping function
-                                    optionFieldMap[fieldName] = function(newValue) {
-                                        for(var i=0; i<values.length; ++i) {
-                                            var valueInfo = values[i];
+                                        for(var j=0; j<values.length; ++j) {
+                                            var valueInfo = values[j];
                                             var fieldText = valueInfo.text;
                                             var fieldValue = valueInfo.value;
 
-                                            if(fieldValue == newValue) {
-                                                var thePanel = valueToPanel[fieldValue];
-                                                if(thePanel) {
-                                                    // Select that panel
-                                                    hostPanel.SetSelected(thePanel);
+                                            var subPanel = $.CreatePanel('Label', hostPanel.AccessDropDownMenu(), 'option_panel_field_' + fieldName + '_' + fieldText);
+                                            subPanel.text = $.Localize(fieldText);
+                                            //subPanel.SetAttributeString('fieldText', fieldText);
+                                            subPanel.SetAttributeInt('fieldValue', fieldValue);
+                                            hostPanel.AddOption(subPanel);
 
-                                                    // Update text
-                                                    slavePanel.text = $.Localize(fieldText);
-                                                    break;
-                                                }
+                                            // Store the map
+                                            valueToPanel[fieldValue] = 'option_panel_field_' + fieldName + '_' + fieldText;
+
+                                            if(j == values.length-1) {
+                                                hostPanel.SetSelected(valueToPanel[fieldValue]);
                                             }
                                         }
 
-                                        checkMutators(fieldName, hostPanel);
-                                    }
+                                        // Mapping function
+                                        optionFieldMap[fieldName] = function(newValue) {
+                                            for(var i=0; i<values.length; ++i) {
+                                                var valueInfo = values[i];
+                                                var fieldText = valueInfo.text;
+                                                var fieldValue = valueInfo.value;
 
-                                    // When the data changes
-                                    hostPanel.SetPanelEvent('oninputsubmit', function() {
-                                        // Grab the selected one
-                                        var selected = hostPanel.GetSelected();
-                                        //var fieldText = selected.GetAttributeString('fieldText', -1);
-                                        var fieldValue = selected.GetAttributeInt('fieldValue', -1);
+                                                if(fieldValue == newValue) {
+                                                    var thePanel = valueToPanel[fieldValue];
+                                                    if(thePanel) {
+                                                        // Select that panel
+                                                        hostPanel.SetSelected(thePanel);
 
-                                        // Sets an option
-                                        setOption(fieldName, fieldValue);
-                                    });
-                                break;
+                                                        // Update text
+                                                        slavePanel.text = $.Localize(fieldText);
+                                                        break;
+                                                    }
+                                                }
+                                            }
 
-                                case 'range':
-                                    // Create the Container
-                                    hostPanel = $.CreatePanel('Panel', floatRightContiner, 'option_panel_field_' + fieldName);
-                                    hostPanel.BLoadLayout('file://{resources}/layout/custom_game/slider.xml', false, false);
-                                    hostPanel.AddClass('optionsSlotPanelHost');
-
-                                    var sliderStep = info.step;
-                                    var sliderMin = info.min;
-                                    var sliderMax = info.max;
-                                    var sliderDefault = info.default;
-
-                                    var sliderPanel = hostPanel.FindChildInLayoutFile('slider');
-                                    sliderPanel.min = sliderMin;
-                                    sliderPanel.max = sliderMax;
-                                    sliderPanel.increment = sliderStep;
-                                    sliderPanel.value = sliderDefault;
-                                    sliderPanel.SetShowDefaultValue(true);
-
-                                    var onGetNewSliderValue = function(newValue, shouldNetwork, ignoreSlider, ignoreText) {
-                                        // Validate the new value
-                                        newValue = Math.floor(newValue / sliderStep) * sliderStep;
-
-                                        if(newValue < sliderMin) {
-                                            newValue = sliderMin;
+                                            checkMutators(fieldName, hostPanel);
                                         }
 
-                                        if(newValue > sliderMax) {
-                                            newValue = sliderMax;
+                                        // When the data changes
+                                        hostPanel.SetPanelEvent('oninputsubmit', function() {
+                                            // Grab the selected one
+                                            var selected = hostPanel.GetSelected();
+                                            //var fieldText = selected.GetAttributeString('fieldText', -1);
+                                            var fieldValue = selected.GetAttributeInt('fieldValue', -1);
+
+                                            // Sets an option
+                                            setOption(fieldName, fieldValue);
+                                        });
+                                    break;
+
+                                    case 'range':
+                                        // Create the Container
+                                        hostPanel = $.CreatePanel('Panel', floatRightContiner, 'option_panel_field_' + fieldName);
+                                        hostPanel.BLoadLayout('file://{resources}/layout/custom_game/slider.xml', false, false);
+                                        hostPanel.AddClass('optionsSlotPanelHost');
+
+                                        var sliderStep = info.step;
+                                        var sliderMin = info.min;
+                                        var sliderMax = info.max;
+                                        var sliderDefault = info.default;
+
+                                        var sliderPanel = hostPanel.FindChildInLayoutFile('slider');
+                                        sliderPanel.min = sliderMin;
+                                        sliderPanel.max = sliderMax;
+                                        sliderPanel.increment = sliderStep;
+                                        sliderPanel.value = sliderDefault;
+                                        sliderPanel.SetShowDefaultValue(true);
+
+                                        var onGetNewSliderValue = function(newValue, shouldNetwork, ignoreSlider, ignoreText) {
+                                            // Validate the new value
+                                            newValue = Math.floor(newValue / sliderStep) * sliderStep;
+
+                                            if(newValue < sliderMin) {
+                                                newValue = sliderMin;
+                                            }
+
+                                            if(newValue > sliderMax) {
+                                                newValue = sliderMax;
+                                            }
+
+                                            // Update Slider Position
+                                            if(!ignoreSlider) {
+                                                sliderPanel.value = newValue;
+                                            }
+
+                                            // Update text value
+                                            if(!ignoreText) {
+                                                inputValuePanel.text = newValue;
+                                            }
+
+                                            // Update slave text
+                                            slavePanel.text = newValue;
+
+                                            // Should we network it?
+                                            if(shouldNetwork) {
+                                                // Set it
+                                                setOption(fieldName, newValue);
+                                            }
                                         }
 
-                                        // Update Slider Position
-                                        if(!ignoreSlider) {
-                                            sliderPanel.value = newValue;
+                                        hookSliderChange(sliderPanel, function(panel, newValue) {
+                                            onGetNewSliderValue(newValue, false, true, false);
+                                        }, function(panel, newValue) {
+                                            onGetNewSliderValue(newValue, true, true, false);
+                                        });
+
+                                        var inputValuePanel = hostPanel.FindChildInLayoutFile('entry');
+                                        inputValuePanel.text = sliderDefault;
+
+                                        addInputChangedEvent(inputValuePanel, function(panel, newValue) {
+                                            newValue = parseInt(newValue);
+                                            if(isNaN(newValue)) {
+                                                newValue = sliderMin;
+                                            }
+
+                                            onGetNewSliderValue(newValue, false, false, true);
+                                        });
+
+                                        inputValuePanel.SetPanelEvent('onblur', function() {
+                                            var newValue = inputValuePanel.text;
+
+                                            newValue = parseInt(newValue);
+                                            if(isNaN(newValue)) {
+                                                newValue = sliderMin;
+                                            }
+
+                                            onGetNewSliderValue(newValue, true);
+                                        });
+
+                                        optionFieldMap[fieldName] = function(newValue) {
+                                            onGetNewSliderValue(newValue, false);
+                                            checkMutators(fieldName, hostPanel);
+                                        }
+                                    break;
+
+                                    case 'toggle':
+                                        // Create the toggle box
+                                        hostPanel = $.CreatePanel('ToggleButton', floatRightContiner, 'option_panel_field_' + fieldName);
+                                        hostPanel.AddClass('optionsSlotPanelHost');
+                                        hostPanel.AddClass('optionsHostToggleSelector');
+
+                                        // When the checkbox has been toggled
+                                        var checkboxToggled = function() {
+                                            // Check if it is checked or not
+                                            setOption(fieldName, hostPanel.checked);
+                                            if (info.requiresServerCheck) hostPanel.checked = false;
+                                            hostPanel.text = values[hostPanel.checked ? 1 : 0].text;
+                                            slavePanel.text = $.Localize(values[hostPanel.checked ? 1 : 0].text);
                                         }
 
-                                        // Update text value
-                                        if(!ignoreText) {
-                                            inputValuePanel.text = newValue;
+                                        // When the data changes
+                                        hostPanel.SetPanelEvent('onactivate', checkboxToggled);
+
+                                        // Mapping function
+                                        optionFieldMap[fieldName] = function(newValue) {
+                                            hostPanel.checked = newValue == 1;
+
+                                            if(hostPanel.checked) {
+                                                hostPanel.text = $.Localize(values[1].text);
+                                                slavePanel.text = $.Localize(values[1].text);
+                                            } else {
+                                                hostPanel.text = $.Localize(values[0].text);
+                                                slavePanel.text = $.Localize(values[0].text);
+                                            }
+
+                                            checkMutators(fieldName, hostPanel);
                                         }
 
-                                        // Update slave text
-                                        slavePanel.text = newValue;
+                                        // When the main slot is pressed
+                                        mainSlot.SetPanelEvent('onactivate', function() {
+                                            if(!hostPanel.visible) return;
 
-                                        // Should we network it?
-                                        if(shouldNetwork) {
-                                            // Set it
-                                            setOption(fieldName, newValue);
-                                        }
-                                    }
-
-                                    hookSliderChange(sliderPanel, function(panel, newValue) {
-                                        onGetNewSliderValue(newValue, false, true, false);
-                                    }, function(panel, newValue) {
-                                        onGetNewSliderValue(newValue, true, true, false);
-                                    });
-
-                                    var inputValuePanel = hostPanel.FindChildInLayoutFile('entry');
-                                    inputValuePanel.text = sliderDefault;
-
-                                    addInputChangedEvent(inputValuePanel, function(panel, newValue) {
-                                        newValue = parseInt(newValue);
-                                        if(isNaN(newValue)) {
-                                            newValue = sliderMin;
-                                        }
-
-                                        onGetNewSliderValue(newValue, false, false, true);
-                                    });
-
-                                    inputValuePanel.SetPanelEvent('onblur', function() {
-                                        var newValue = inputValuePanel.text;
-
-                                        newValue = parseInt(newValue);
-                                        if(isNaN(newValue)) {
-                                            newValue = sliderMin;
-                                        }
-
-                                        onGetNewSliderValue(newValue, true);
-                                    });
-
-                                    optionFieldMap[fieldName] = function(newValue) {
-                                        onGetNewSliderValue(newValue, false);
-                                        checkMutators(fieldName, hostPanel);
-                                    }
-                                break;
-
-                                case 'toggle':
-                                    // Create the toggle box
-                                    hostPanel = $.CreatePanel('ToggleButton', floatRightContiner, 'option_panel_field_' + fieldName);
-                                    hostPanel.AddClass('optionsSlotPanelHost');
-                                    hostPanel.AddClass('optionsHostToggleSelector');
-
-                                    // When the checkbox has been toggled
-                                    var checkboxToggled = function() {
-                                        // Check if it is checked or not
-                                        setOption(fieldName, hostPanel.checked);
-                                        if (info.requiresServerCheck) hostPanel.checked = false;
-                                        hostPanel.text = values[hostPanel.checked ? 1 : 0].text;
-                                        slavePanel.text = $.Localize(values[hostPanel.checked ? 1 : 0].text);
-                                    }
-
-                                    // When the data changes
-                                    hostPanel.SetPanelEvent('onactivate', checkboxToggled);
-
-                                    // Mapping function
-                                    optionFieldMap[fieldName] = function(newValue) {
-                                        hostPanel.checked = newValue == 1;
-
-                                        if(hostPanel.checked) {
-                                            hostPanel.text = $.Localize(values[1].text);
-                                            slavePanel.text = $.Localize(values[1].text);
-                                        } else {
-                                            hostPanel.text = $.Localize(values[0].text);
-                                            slavePanel.text = $.Localize(values[0].text);
-                                        }
-
-                                        checkMutators(fieldName, hostPanel);
-                                    }
-
-                                    // When the main slot is pressed
-                                    mainSlot.SetPanelEvent('onactivate', function() {
-                                        if(!hostPanel.visible) return;
-
-                                        hostPanel.checked = !hostPanel.checked;
-                                        checkboxToggled();
-                                    });
-                                break;
+                                            hostPanel.checked = !hostPanel.checked;
+                                            checkboxToggled();
+                                        });
+                                    break;
+                                }
                             }
                         }
                     })();
@@ -4794,6 +4843,14 @@ function OnPhaseChanged(table_name, key, data) {
         case 'contributors':
             GameUI.CustomUIConfig().premiumData = data;
             break;
+
+        // case 'patrons':
+        //     GameUI.CustomUIConfig().patrons = data;
+        //     break;
+
+        // case 'patreon_features':
+        //     GameUI.CustomUIConfig().patreon_features = data;
+        //     break;
     }
 
     // Ensure we are hiding the correct enemy picks
