@@ -1,8 +1,7 @@
 <root>
     <styles>
+        <include src="file://{resources}/styles/custom_game/menu_buttons.css" />
         <include src="s2r://panorama/styles/dotastyles.vcss_c" />
-        <include src="s2r://panorama/styles/popups/popup_settings.vcss_c" />
-        <include src="s2r://panorama/styles/play.vcss_c" />
         <include src="file://{resources}/styles/custom_game/game_setup/game_setup.css" />
         <include src="file://{resources}/styles/custom_game/game_setup/game_setup_shop.css" />
     </styles>
@@ -1077,6 +1076,10 @@
                     </Panel>
                 </Panel>
             </Panel>
+            <Button id="patreonButton" onactivate="openPatreon()" hittest="true">
+                <Image src="file://{images}/custom_game/patreon.png" />
+                <Panel id="patreonButtonClose" onactivate="hidePatreonButton()" />
+            </Button>
         </Panel>
         <Panel id="lodPopupMessage">
             <Panel>

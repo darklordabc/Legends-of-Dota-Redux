@@ -267,6 +267,10 @@ function isPatron(argument) {
     return false;
 }
 
+function openPatreon() {
+    $.DispatchEvent('ExternalBrowserGoToURL', 'https://www.patreon.com/darklordabc');
+}
+
 // Focuses on nothing
 function focusNothing() {
     $('#mainSelectionRoot').SetFocus();
@@ -3477,6 +3481,7 @@ function buildBasicOptionsCategories() {
 
             var onActivate = (function(e) {
                 if (patreon_mutators[name] && !isPatron()) {
+                    openPatreon();
                     return;
                 }
                 var fieldValue = optionMutator.GetAttributeInt('fieldValue', -1);

@@ -3878,3 +3878,59 @@ Button:enabled:hover {
 {
     font-size: 26px;
 }
+
+#patreonButton {
+    align: left bottom;
+    height: 39px;
+    width: 155px;
+    margin-left: 525px;
+    margin-bottom: 16px;
+    background-color: none;
+}
+
+
+#patreonButton Image {
+    transition-property: transform;
+    transition-duration: 0.05s;
+    transition-timing-function: ease-in;
+}
+
+#patreonButton:hover Image {
+    transform: scaleX(1.02) scaleY(1.02);
+}
+
+#patreonButton:active Image {
+    transform: scaleX(0.96) scaleY(0.96);
+}
+
+#patreonButtonClose {
+    align: right center;
+    margin-top: 2px;
+    margin-right: 8px;
+    width: 15px;
+    height: 15px;
+    opacity: 0;
+
+    wash-color: #EEEEEE;
+    background-image: url("s2r://panorama/images/control_icons/x_close_png.vtex");
+    background-size: 15px 15px;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+
+    transition-property: transform, opacity;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-in;
+}
+
+#patreonButton:hover #patreonButtonClose {
+    opacity: 0.7;
+}
+
+#patreonButtonClose:hover {
+    opacity: 0.9;
+    transform: scaleX(1.1) scaleY(1.1);
+}
+
+#patreonButtonClose:active {
+    transform: scaleX(0.9) scaleY(0.9);
+}
