@@ -3061,13 +3061,8 @@ Button:enabled:hover {
     opacity: .5;
 }
 
-#mutatorPanel .patreonMutator {
-    width: 110px;
-    height: width-percentage(73%);
-    margin: 1px;
-    border-radius: 5px;
+#mutatorPanel .mutator.patreonMutator:hover {
     border: 2px solid #FF661A;
-    opacity: .5;
 }
 
 .patreonExtra {
@@ -3076,6 +3071,12 @@ Button:enabled:hover {
 
     margin: 0px 0px 0px 0px;
     align: left bottom;
+
+    opacity: 0.0;
+}
+
+#mutatorPanel .mutator.patreonMutator:hover .patreonExtra {
+    opacity: 1.0;
 }
 
 .mutatorExtra {
@@ -3185,7 +3186,7 @@ Button:enabled:hover {
 .importAndExportButton Label {
 	text-align: center;
     align: center center;
-    font-size: 17px;
+    font-size: 16px;
 }
 
 #importAndExportEntryRoot {

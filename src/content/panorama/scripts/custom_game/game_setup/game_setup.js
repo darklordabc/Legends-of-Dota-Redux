@@ -3613,6 +3613,14 @@ function buildBasicOptionsCategories() {
             if (item.patreon) {
                 optionMutator.AddClass('patreonMutator');
 
+                if (!isPatron())
+                {
+                    var images = optionMutator.FindChildrenWithClassTraverse("mutatorImage");
+                    for (var c in images) {
+                        images[c].style.saturation = "0.1;";
+                    }
+                }
+
                 var extraPanel = $.CreatePanel('Image', optionMutator, '');
                 extraPanel.SetImage('s2r://panorama/images/custom_game/patreon_small_png.vtex');
                 extraPanel.AddClass('patreonExtra');
@@ -3629,6 +3637,10 @@ function buildBasicOptionsCategories() {
                 var extraPanel = $.CreatePanel('Image', optionMutator, '');
                 extraPanel.SetImage('s2r://panorama/images/custom_game/infotooltip_png.vtex');
                 extraPanel.AddClass('mutatorExtra');
+
+                if (item.patreon) {
+
+                }
 
                 extraPanel.SetPanelEvent('onmouseover', function() {
                     $.DispatchEvent( 'UIShowCustomLayoutParametersTooltip', extraPanel, 'MutatorTooltip', "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + item.extraInfo );
