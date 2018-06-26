@@ -3066,7 +3066,7 @@ Button:enabled:hover {
     height: width-percentage(73%);
     margin: 1px;
     border-radius: 5px;
-    border: 4px solid #FF661A;
+    border: 2px solid #FF661A;
     opacity: .5;
 }
 
