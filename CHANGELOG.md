@@ -8,7 +8,10 @@ All notable changes to this project will be documented in this file.
 - Disabled Adventrous Gale cause it crashes the game, and Echo stomp because it crashes while ancestral spirit is out
 - Fixed a bug that would disable the creep power mutator if creep extra ability was enabled
 *
-- Added Turbo Courier Mutator
+- Added 11 new Mutators (Currently restricted to Patreon Supporters)
+- Added Discord and Patreon button to menu phase of the game
+- Added New Late Game Item: Extra Life
+- Voting for Universal Shop now enables Turbo Courier
 - The following mutators have been removed from the main screen, they are still available in advanced options: Bots: Allow Duplicates, Bots Stupify, All bots same hero
 - Spectral Form now has 45 second cooldown and fixed 100% magic weakness
 - Voting for Universal Shops now also enables turbo courier

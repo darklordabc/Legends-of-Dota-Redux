@@ -2281,7 +2281,7 @@
         "ItemPurchasable"               "1"
 
         "AbilityCastRange"              "600"
-        "ItemCost"                      "200"
+        "ItemCost"                      "5000"
         "ItemShopTags"                  "consumable"
         "ItemQuality"                   "consumable"
         "ItemStackable"                 "1"
