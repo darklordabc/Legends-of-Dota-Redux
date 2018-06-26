@@ -1,6 +1,8 @@
 <root>
     <styles>
- 		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+ 		        <include src="s2r://panorama/styles/dotastyles.vcss_c" />
+        <include src="s2r://panorama/styles/popups/popup_settings.vcss_c" />
+        <include src="s2r://panorama/styles/play.vcss_c" />
 		<include src="s2r://panorama/styles/custom_game/shared_scoreboard_styles.vcss_c" />
         <include src="s2r://panorama/styles/custom_game/multiteam_flyout_scoreboard.vcss_c" />
         <include src="file://{resources}/styles/custom_game/flyout_scoreboard_abilities.css" />
