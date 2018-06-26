@@ -3484,7 +3484,7 @@ function buildBasicOptionsCategories() {
             })
 
             var onActivate = (function(e) {
-                if (patreon_mutators[name] && !isPatron()) {
+                if (item.patreon && !isPatron()) {
                     openPatreon();
                     return;
                 }
@@ -3524,7 +3524,7 @@ function buildBasicOptionsCategories() {
             })
 
             var onContextMenu = (function(e) {
-                if (patreon_mutators[name] && !isPatron()) {
+                if (item.patreon && !isPatron()) {
                     return;
                 }
                 var fieldValue = optionMutator.GetAttributeInt('fieldValue', -1);
@@ -3610,7 +3610,7 @@ function buildBasicOptionsCategories() {
                 mutatorList[item.name] = optionMutator;
             }
 
-            if (patreon_mutators[name]) {
+            if (item.patreon) {
                 optionMutator.AddClass('patreonMutator');
 
                 var extraPanel = $.CreatePanel('Image', optionMutator, '');

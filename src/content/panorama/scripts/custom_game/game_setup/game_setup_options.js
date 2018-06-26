@@ -589,6 +589,7 @@ var basicOptions = {
                     },
                     {
                         name: 'lodOptionPocketTowers',
+                        patreon: true,
                         extraInfo: 'lodOptionAboutPocketTowers',
                         default: {
                             'lodMutatorNoPocketTowers': 0,
@@ -601,6 +602,7 @@ var basicOptions = {
                     },
                     {
                         about: 'lodMutatorTurboCourier',
+                        patreon: true,
                         values: {
                             enabled: {
                                 'lodOptionTurboCourier': 1
@@ -674,6 +676,7 @@ var basicOptions = {
                     },            
                     {
                         about: 'lodMutatorRandomOnDeath',
+                        patreon: true,
                         extraInfo: 'lodOptionAboutRandomOnDeath',
                         values: {
                             enabled: {
