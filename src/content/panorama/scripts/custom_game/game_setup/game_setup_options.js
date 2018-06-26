@@ -103,6 +103,18 @@ var basicOptions = {
                         }
                     },
                     {
+                        about: 'lodMutatorTurboCourier',
+                        patreon: true,
+                        values: {
+                            enabled: {
+                                'lodOptionTurboCourier': 1
+                            },
+                            disabled: {
+                                'lodOptionTurboCourier': 0
+                            }
+                        }
+                    },
+                    {
                         about: 'lodMutatorFastBuybackCooldown1',
                         default: {
                             'lodOptionBuybackCooldownTimeConstant': 420,
@@ -122,6 +134,19 @@ var basicOptions = {
                     {
                         name: 'lodOptionGameSpeedStrongTowers',
                         about: 'lodMutatorStrongTowers'
+                    },
+                    {
+                        name: 'lodOptionPocketTowers',
+                        patreon: true,
+                        extraInfo: 'lodOptionAboutPocketTowers',
+                        default: {
+                            'lodMutatorNoPocketTowers': 0,
+                        },
+                        states: {
+                            'lodMutatorPocketTowersConsumable': 1,
+                            'lodMutatorPocketTowersCooldown': 300,
+                            'lodMutatorPocketTowersCooldown1': 600
+                        }
                     },
                     {
                         about: 'lodMutatorDoubleTowers',
@@ -258,6 +283,12 @@ var basicOptions = {
                     {
                         name: 'lodOptionGameSpeedSharedEXP',
                         about: 'lodMutatorShareEXP'
+                    },
+                    {
+                       name: 'lodOptionResurrectAllies',
+                       patreon: true,
+                       //extraInfo: 'lodOptionAboutResurrectAllies',
+                       about: 'lodMutatorResurrectAllies'
                     },
                     {
                         name: 'lodOptionBotsRadiant',
@@ -527,19 +558,31 @@ var basicOptions = {
                         about: 'lodMutatorGlobalCast'
                     },
                     {
-                         name: 'lodOptionMemesRedux',
-                         extraInfo: 'lodOptionAboutMemesRedux',
+                        name: 'lodOptionCooldownReduction',
+                        patreon: true,
+                        extraInfo: 'lodOptionAboutCooldownReduction',
+                        about: 'lodMutatorCooldownReduction'
+                    },
+                    {
+                        name: 'lodOptionMemesRedux',
+                        extraInfo: 'lodOptionAboutMemesRedux',
                         about: 'lodMutatorMemesRedux'
                     },
                     {
-                         name: 'lodOptionBattleThirst',
-                         extraInfo: 'lodOptionAboutBattleThirst',
+                        name: 'lodOptionBattleThirst',
+                        extraInfo: 'lodOptionAboutBattleThirst',
                         about: 'lodMutatorBattleThirst'
                     },
                     {
-                         name: 'lodOptionDarkMoon',
-                         extraInfo: 'lodOptionAboutDarkMoon',
+                        name: 'lodOptionDarkMoon',
+                        extraInfo: 'lodOptionAboutDarkMoon',
                         about: 'lodMutatorDarkMoon'
+                    },
+                    {
+                        name: 'lodOptionGoldDropOnDeath',
+                        patreon: true,
+                        //extraInfo: 'lodOptionAboutGoldDropOnDeath',
+                        about: 'lodMutatorGoldDropOnDeath'
                     },
                     {
                         name: 'lodOptionBlackForest',
@@ -586,34 +629,10 @@ var basicOptions = {
                         name: 'lodOptionAntiBash',
                         extraInfo: 'lodOptionAboutAntiBash',
                         about: 'lodMutatorAntiBash'
-                    },
+                    },                   
                     {
-                        name: 'lodOptionPocketTowers',
-                        patreon: true,
-                        extraInfo: 'lodOptionAboutPocketTowers',
-                        default: {
-                            'lodMutatorNoPocketTowers': 0,
-                        },
-                        states: {
-                            'lodMutatorPocketTowersConsumable': 1,
-                            'lodMutatorPocketTowersCooldown': 300,
-                            'lodMutatorPocketTowersCooldown1': 600
-                        }
-                    },
-                    {
-                        about: 'lodMutatorTurboCourier',
-                        patreon: true,
-                        values: {
-                            enabled: {
-                                'lodOptionTurboCourier': 1
-                            },
-                            disabled: {
-                                'lodOptionTurboCourier': 0
-                            }
-                        }
-                    },
-                    {
-                        name: 'lodOptionFastRunes', 
+                        name: 'lodOptionFastRunes',
+                        patreon: true, 
                         //extraInfo: 'lodOptionAboutFastRunes',
                         about: 'lodMutatorFastRunes'
                     },
@@ -624,6 +643,7 @@ var basicOptions = {
                     //},
                     {
                         name: 'lodOptionPeriodicSpellCast',
+                        patreon: true,
                         extraInfo: 'lodOptionAboutPeriodicSpellCast',
                         about: 'lodMutatorPeriodicSpellCast'
                     },
@@ -634,27 +654,19 @@ var basicOptions = {
                     },*/
                     {
                         name: 'lodOptionKillStreakPower',
+                        patreon: true,
                         extraInfo: 'lodOptionAboutKillStreakPower',
                         about: 'lodMutatorKillStreakPower'
                     }, 
                     {
-                        name: 'lodOptionCooldownReduction',
-                        extraInfo: 'lodOptionAboutCooldownReduction',
-                        about: 'lodMutatorCooldownReduction'
-                    },
-                    {
                         name: 'lodOptionExplodeOnDeath',
+                        patreon: true,
                         //extraInfo: 'lodOptionAboutExplodeOnDeath',
                         about: 'lodMutatorExplodeOnDeath'
                     },
-                    
-                    {
-                        name: 'lodOptionGoldDropOnDeath',
-                        //extraInfo: 'lodOptionAboutGoldDropOnDeath',
-                        about: 'lodMutatorGoldDropOnDeath'
-                    },
                     {
                         name: 'lodOptionNoHealthbars',
+                        patreon: true,
                         //extraInfo: 'lodOptionAboutNoHealthbars',
                         about: 'lodMutatorNoHealthbars'
                     },
@@ -668,12 +680,7 @@ var basicOptions = {
                     //     name: 'lodOptionRandomLaneCreeps',
                     //     extraInfo: 'lodOptionAboutRandomLaneCreeps',
                     //     about: 'lodMutatorRandomLaneCreeps'
-                    // },
-                    {
-                       name: 'lodOptionResurrectAllies',
-                       //extraInfo: 'lodOptionAboutResurrectAllies',
-                       about: 'lodMutatorResurrectAllies'
-                    },            
+                    // },            
                     {
                         about: 'lodMutatorRandomOnDeath',
                         patreon: true,
