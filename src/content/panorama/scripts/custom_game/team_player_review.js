@@ -52,6 +52,12 @@ function isContributor(steamID) {
             return true;
         }
     }
+    var patrons = GameUI.CustomUIConfig().patrons;
+    for (var i in patrons){
+        if (steamID === patrons[i].steamID64){
+            return true;
+        }
+    }
     return false;
 }
 
