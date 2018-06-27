@@ -492,6 +492,7 @@
         "ItemCost"                      "1"
         "ItemSellable"                  "0"
         "IsTempestDoubleClonable"       "0"
+        "ItemPurchasable"               "0"
     }
 
     "item_redux_pocket_tower_permanent_60"
@@ -507,6 +508,7 @@
         "ItemSellable"                  "0"
         "AbilityCooldown"               "60"
         "IsTempestDoubleClonable"       "0"
+        "ItemPurchasable"               "0"
         "precache"
         {
             "particle"                  "particles/dev/library/base_dust_hit_detail.vpcf"
@@ -526,6 +528,7 @@
         "ItemSellable"                  "0"
         "AbilityCooldown"               "120"
         "IsTempestDoubleClonable"       "0"
+        "ItemPurchasable"               "0"
         "precache"
         {
             "particle"                  "particles/dev/library/base_dust_hit_detail.vpcf"
@@ -545,6 +548,7 @@
         "ItemSellable"                  "0"
         "AbilityCooldown"               "180"
         "IsTempestDoubleClonable"       "0"
+        "ItemPurchasable"               "0"
         "precache"
         {
             "particle"                  "particles/dev/library/base_dust_hit_detail.vpcf"
@@ -564,6 +568,7 @@
         "ItemSellable"                  "0"
         "AbilityCooldown"               "240"
         "IsTempestDoubleClonable"       "0"
+        "ItemPurchasable"               "0"
         "precache"
         {
             "particle"                  "particles/dev/library/base_dust_hit_detail.vpcf"
@@ -583,6 +588,7 @@
         "ItemSellable"                  "0"
         "AbilityCooldown"               "300"
         "IsTempestDoubleClonable"       "0"
+        "ItemPurchasable"               "0"
         "precache"
         {
             "particle"                  "particles/dev/library/base_dust_hit_detail.vpcf"
@@ -602,6 +608,7 @@
         "ItemSellable"                  "0"
         "AbilityCooldown"               "600"
         "IsTempestDoubleClonable"       "0"
+        "ItemPurchasable"               "0"
         "precache"
         {
             "particle"                  "particles/dev/library/base_dust_hit_detail.vpcf"
