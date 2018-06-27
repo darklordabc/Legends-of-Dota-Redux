@@ -258,7 +258,7 @@ function isPatron(argument) {
     var isPatron = false;
     if (patrons) {
         for (var patron in patrons) {
-            if (patrons[patron].steamID3 == util.getSteamID32()) {
+            if (patrons[patron].steamID3 == util.getSteamID32() || patrons[patron].steamID64 == Game.GetPlayerInfo(Game.GetLocalPlayerID()).player_steamid) {
                 return true;
                 break;
             }
@@ -4868,9 +4868,9 @@ function OnPhaseChanged(table_name, key, data) {
             GameUI.CustomUIConfig().premiumData = data;
             break;
 
-        // case 'patrons':
-        //     GameUI.CustomUIConfig().patrons = data;
-        //     break;
+        case 'patrons':
+            GameUI.CustomUIConfig().patrons = data;
+            break;
 
         // case 'patreon_features':
         //     GameUI.CustomUIConfig().patreon_features = data;

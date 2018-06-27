@@ -53,15 +53,20 @@ function OnHostChanged(data) {
     OnPlayerDetailsChanged();
 }
 
-
 function isContributor(steamID) {
-	var premiumData = GameUI.CustomUIConfig().premiumData;
-	for (var i in premiumData){
-		if (steamID === premiumData[i].steamID64){
-			return true;
-		}
-	}
-	return false;
+    var premiumData = GameUI.CustomUIConfig().premiumData;
+    for (var i in premiumData){
+        if (steamID === premiumData[i].steamID64){
+            return true;
+        }
+    }
+    var patrons = GameUI.CustomUIConfig().patrons;
+    for (var i in patrons){
+        if (steamID === patrons[i].steamID64){
+            return true;
+        }
+    }
+    return false;
 }
 
 // When we get hero data
