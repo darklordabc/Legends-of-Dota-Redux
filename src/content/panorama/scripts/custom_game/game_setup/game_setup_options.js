@@ -2056,7 +2056,7 @@ var advancedOptions = {
                         value: 38
                     }
                 ]
-            },/*
+            },
             {
                 name: 'lodOptionBotsUnique',
                 des: 'lodOptionDesBotsUnique',
@@ -2072,7 +2072,7 @@ var advancedOptions = {
                         value: 1
                     }
                 ]
-            },*/
+            },
             {
                 name: 'lodOptionBotsStupid',
                 des: 'lodOptionDesBotsStupid',
