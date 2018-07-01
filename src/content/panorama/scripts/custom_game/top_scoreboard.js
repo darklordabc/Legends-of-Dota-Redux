@@ -19,6 +19,60 @@ function Snippet_TopBarPlayerSlot(pid) {
 			panel.FindChildTraverse("HeroImage").SetPanelEvent("onactivate", function() {
 				Players.PlayerPortraitClicked(pid, GameUI.IsControlDown(), GameUI.IsAltDown());
 			});
+			panel.FindChildTraverse("HeroImage").SetPanelEvent("onmouseover", function() {
+				var abilitiesPanel;
+				if (panel.FindChildTraverse("AbilityList"))
+				{
+					abilitiesPanel = panel.FindChildTraverse("AbilityList");
+				}
+				else
+				{
+					abilitiesPanel = $.CreatePanel("Panel", panel.FindChildTraverse("AbilityListSlot"), "AbilityList");// $("#AbilityList");
+				}
+				if (abilitiesPanel)
+				{
+					//if (abilitiesPanel.playerId != panel.playerId)
+					//{
+					//}
+					abilitiesPanel.playerId = panel.playerId;
+					var heroEntity = Players.GetPlayerHeroEntityIndex( panel.playerId );
+					for (var i = 0; i < Entities.GetAbilityCount(heroEntity); i++) {
+						(function () {
+							var ability = Entities.GetAbility(heroEntity, i);
+							var abilityName = Abilities.GetAbilityName(ability);
+							var abilityPanelID = "_" + abilityName;
+							var abilityPanel = abilitiesPanel.FindChildTraverse(abilityPanelID);
+		
+							if (abilityName && abilityName != "attribute_bonus" && !abilityName.match("special_bonus_")) {
+								if (Abilities.IsHidden(ability) == false && !abilityPanel) {
+									abilityPanel = $.CreatePanel("Panel", abilitiesPanel, abilityPanelID);
+									abilityPanel.BLoadLayoutSnippet("HeroAbility");
+									abilityPanel.FindChildTraverse("FlyoutAbilityImage").abilityname = abilityName;
+		
+									abilityPanel.SetPanelEvent('onmouseover', function(){
+										$.DispatchEvent( "DOTAShowAbilityTooltipForEntityIndex", abilityPanel, abilityName, 0 );
+									});
+									abilityPanel.SetPanelEvent('onmouseout', (function(){
+										$.DispatchEvent( "DOTAHideAbilityTooltip", abilityPanel );
+									}));
+								} else if (Abilities.IsHidden(ability) == true && abilityPanel) {
+									abilityPanel.DeleteAsync(0.0);
+								}
+							}
+						})();
+					}
+				}
+
+				if (!abilitiesPanel.BHasClass("show"))
+					abilitiesPanel.SetHasClass("show", true);
+
+				panel.SetPanelEvent("onmouseout", function() {
+					abilitiesPanel.SetHasClass("show", false);
+					panel.SetPanelEvent("onmouseover", function() {});
+					Util.removeChildren(abilitiesPanel);
+				});
+			});
+
 			var TopBarUltIndicator = panel.FindChildTraverse("TopBarUltIndicator")
 			TopBarUltIndicator.SetPanelEvent("onmouseover", function() {
 				if (panel.ultimateCooldown != null && panel.ultimateCooldown > 0) {

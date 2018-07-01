@@ -2,8 +2,8 @@
 {
 	vertical-align: top;
 	horizontal-align: center;
-	height: 132px;
-	width: 1700px;
+	height: 100%;
+	width: 100%;
 
 	transform: translateY(0px);
 	transition-property: transform;
@@ -173,7 +173,7 @@ DOTAHud.IsBeforeGameplay .base
 
 .TopBarPlayerSlot
 {
-	height: 66px;
+	//height: 500px;
 }
 
 .LeftAlignedTeam #TopBarPlayersContainer .TopBarPlayerSlot
@@ -216,7 +216,7 @@ DOTAHud.IsBeforeGameplay .base
 }
 .TeamScorePlayers
 {
-	height: 66px;
+	height: 600px;
 }
 #TeamScorePlayersMainFlow
 {
@@ -449,6 +449,7 @@ DOTAHud.IsBeforeGameplay .base
 
 #RespawnTimer
 {
+	margin-top: 40px;
 	width: 100%;
 	height: 26px;
 	z-index: -1;
@@ -884,4 +885,59 @@ DOTAHud.IsBeforeGameplay .base
 #TimeUntil
 {
 	margin-top: 46px;
+}
+
+#AbilityListSlot
+{
+	//margin-top: 45px;
+	padding-top: 40px;
+	//height: 100%;
+}
+
+#AbilityList
+{
+	//margin-top: 146px;
+	width: 64px;
+	//height: 900px;
+	//clip: none;
+	//align: center bottom;
+	flow-children: down;
+
+	background-color: #000000bb;
+
+	opacity: 0.0;
+	transform: translateY(-300px);
+
+	transition: opacity 0.25s linear 0.0s, transform 0.25s linear 0.0s;
+	//transition-property: all;
+	//transition-duration: 0.3s;
+	z-index: -99;
+}
+
+#AbilityList.show
+{
+	opacity: 1.0;
+	transform: translateY(0px);
+}
+
+.HeroAbility
+{
+	width: 25px;
+	height: width-percentage(100%);
+	//padding: 1px;
+}
+
+.FlyoutAbilityRoot
+{
+	horizontal-align: center;
+	width: 60px;
+	height: 60px;
+	margin-top: 2px;
+	border: 1px solid #000000b4;
+}
+
+#HeroAbilityImage
+{
+	width: 100%;
+	height: 100%;
 }

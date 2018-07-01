@@ -11,6 +11,11 @@
 		<include src="file://{resources}/scripts/custom_game/top_scoreboard.js" />
 	</scripts>
 	<snippets>
+	    <snippet name="HeroAbility">
+			<Panel hittest="false" class="FlyoutAbilityRoot" onmouseover="FlyoutAbilityShowTooltip()" onmouseout="FlyoutAbilityHideTooltip()">
+				<DOTAAbilityImage id="FlyoutAbilityImage"/>
+			</Panel>
+	    </snippet>
 		<snippet name="DotaTeamBar">
 			<Panel hittest="false" class="TeamScorePlayers">
 				<Panel class="TopBarBackground" />
@@ -22,6 +27,7 @@
 		</snippet>
 		<snippet name="TopBarPlayerSlot">
 			<Panel class="TopBarPlayerSlot" hittest="true">
+				<Panel id="AbilityListSlot" hittest="false" />
 				<Panel id="SlantedContainerPanel" class="SlantedContainer" >
 					<Panel id="PlayerColor"/>
 					<Image id="DeadLayer" src="s2r://panorama/images/hud/reborn/top_bar_dead_overlay_png.vtex"/>
@@ -37,7 +43,7 @@
 				<!-- <Panel id="AbilityDraftHitBox" onmouseover="DOTAShowAbilityDraftTooltip()" onmouseout="DOTAHideAbilityDraftTooltip()" /> TODO: Replace with abilities tooltip -->
 				<Panel id="RespawnTimer" hittest="false" >
 					<Label id="RespawnTimerLabel" text="{d:respawn_seconds}" hittest="false" />
-					<Panel id="TopBarBuybackStatus"/>
+					<Panel id="TopBarBuybackStatus" hittest="false"/>
 				</Panel>
 				<Panel id="GoldIcon" hittest="false" />
 			</Panel>
@@ -46,6 +52,7 @@
 
 	<Panel class="base" hittest="false">
 		<Panel id="TimeOfDayBG"/>
+		//<Panel id="AbilityList" class="disabled" hittest="true" />
 
 		<Panel id="TimeOfDay" onmouseactivate="PrintTime()" onmouseover="$.GetContextPanel().AddClass('ShowTimeUntil')" onmouseout="$.GetContextPanel().RemoveClass('ShowTimeUntil')">
 			<Panel id="DayTime" class="TimeOfDayIcon DayIcon"/>
