@@ -2303,6 +2303,14 @@
     "DOTA_Tooltip_modifier_thirst_debuff_datadriven"                                    "Thirst"
     "DOTA_Tooltip_modifier_thirst_debuff_datadriven_Description"                        "You are visible to the enemy! Gain health to remove debuff"
 
+    "DOTA_Tooltip_ability_tinker_heat_seeking_missile_redux"                              "Heat-Seeking Missile OP"
+    "DOTA_Tooltip_ability_tinker_heat_seeking_missile_redux_Description"                  "Launches a pair of rockets at the nearest visible enemy heroes within <font color='#70EA72'>5000</font> range. <font color='#70EA72'>Improved levels, targets, range and damage.</font>  \n\nUpgradable by Aghanim's Scepter."
+    "DOTA_Tooltip_ability_tinker_heat_seeking_missile_redux_Lore"                         "The last contraption Boush was able to save was a retrofitted rocket launcher with a homing mechanism."
+    "DOTA_Tooltip_ability_tinker_heat_seeking_missile_redux_damage"                       "DAMAGE:"
+    "DOTA_Tooltip_ability_tinker_heat_seeking_missile_redux_targets"                      "TARGETS:"
+    "DOTA_Tooltip_ability_tinker_heat_seeking_missile_redux_targets_scepter"              "SCEPTER TARGETS:"
+    "DOTA_Tooltip_ability_tinker_heat_seeking_missile_redux_aghanim_description"          "Increases Heat-Seeking Missile target count."
+
     // Alchemist
     "DOTA_Tooltip_ability_alchemist_chemical_rage_lod"                              "Chemical Rage"
     "DOTA_Tooltip_ability_alchemist_chemical_rage_lod_Description"                  "Alchemist causes his Ogre to enter a chemically induced rage, reducing base attack cooldown and increasing movement speed and regeneration."
