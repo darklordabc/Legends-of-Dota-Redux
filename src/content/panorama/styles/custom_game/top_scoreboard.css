@@ -466,6 +466,11 @@ DOTAHud.IsBeforeGameplay .base
 	transition-timing-function: ease-out;
 }
 
+#RespawnTimer.AbilityListHack
+{
+	visibility: collapse;
+}
+
 .AspectRatio4x3 #RespawnTimer,
 .AspectRatio5x4 #RespawnTimer
 {
@@ -560,7 +565,7 @@ DOTAHud.IsBeforeGameplay .base
 
 .Dead #DeadLayer
 {
-	opacity: 1;
+	//opacity: 1;
 }
 
 .EnemyHeroMissing #HeroImage

@@ -64,10 +64,14 @@ function Snippet_TopBarPlayerSlot(pid) {
 				}
 
 				if (!abilitiesPanel.BHasClass("show"))
+				{
 					abilitiesPanel.SetHasClass("show", true);
+					panel.FindChildTraverse("RespawnTimer").SetHasClass("AbilityListHack", true);
+				}	
 
 				panel.SetPanelEvent("onmouseout", function() {
 					abilitiesPanel.SetHasClass("show", false);
+					panel.FindChildTraverse("RespawnTimer").SetHasClass("AbilityListHack", false);
 					panel.SetPanelEvent("onmouseover", function() {});
 					Util.removeChildren(abilitiesPanel);
 				});
