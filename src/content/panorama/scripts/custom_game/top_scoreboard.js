@@ -13,7 +13,9 @@ function Snippet_TopBarPlayerSlot(pid) {
 		var team = Players.GetTeam(pid)
 		if (team != DOTA_TEAM_SPECTATOR) {
 			var teamPanel = Snippet_DotaTeamBar(team).FindChildTraverse("TopBarPlayersContainer")
+			teamPanel.hittest = false
 			var panel = $.CreatePanel("Panel", teamPanel, "")
+			//panel.hittest = false
 			panel.BLoadLayoutSnippet("TopBarPlayerSlot")
 			panel.playerId = pid
 			panel.FindChildTraverse("HeroImage").SetPanelEvent("onactivate", function() {
@@ -137,6 +139,7 @@ function Snippet_DotaTeamBar(team) {
 		var rootPanel = $(isRight ? "#TopBarRightPlayers" : "#TopBarLeftPlayers")
 		var panel = $.CreatePanel("Panel", rootPanel, "")
 		panel.BLoadLayoutSnippet("DotaTeamBar")
+		panel.hittest = false;
 		panel.team = team
 		panel.SetHasClass("LeftAlignedTeam", !isRight)
 		panel.SetHasClass("RightAlignedTeam", isRight)

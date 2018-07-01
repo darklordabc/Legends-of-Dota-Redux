@@ -19,15 +19,15 @@
 		<snippet name="DotaTeamBar">
 			<Panel hittest="false" class="TeamScorePlayers">
 				<Panel class="TopBarBackground" />
-				<Panel id="TeamScorePlayersMainFlow">
-					<Panel id="TopBarPlayersContainer" class="LeftRightFlow" />
+				<Panel id="TeamScorePlayersMainFlow" hittest="false">
+					<Panel id="TopBarPlayersContainer" class="LeftRightFlow" hittest="false" />
 					<Label id="TopBarScore" text="{d:team_score}" hittest="true" />
 				</Panel>
 			</Panel>
 		</snippet>
 		<snippet name="TopBarPlayerSlot">
-			<Panel class="TopBarPlayerSlot" hittest="true">
-				<Panel id="AbilityListSlot" hittest="false" />
+			<Panel class="TopBarPlayerSlot" hittest="false">
+				<Panel id="AbilityListSlot" hittest="true" />
 				<Panel id="SlantedContainerPanel" class="SlantedContainer" >
 					<Panel id="PlayerColor"/>
 					<Image id="DeadLayer" src="s2r://panorama/images/hud/reborn/top_bar_dead_overlay_png.vtex"/>
@@ -52,7 +52,6 @@
 
 	<Panel class="base" hittest="false">
 		<Panel id="TimeOfDayBG"/>
-		//<Panel id="AbilityList" class="disabled" hittest="true" />
 
 		<Panel id="TimeOfDay" onmouseactivate="PrintTime()" onmouseover="$.GetContextPanel().AddClass('ShowTimeUntil')" onmouseout="$.GetContextPanel().RemoveClass('ShowTimeUntil')">
 			<Panel id="DayTime" class="TimeOfDayIcon DayIcon"/>
