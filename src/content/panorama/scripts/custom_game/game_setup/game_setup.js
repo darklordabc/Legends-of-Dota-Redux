@@ -4870,6 +4870,8 @@ function OnPhaseChanged(table_name, key, data) {
 
         case 'patrons':
             GameUI.CustomUIConfig().patrons = data;
+            $("#thankyouButton").visible = isPatron();
+            $("#patreonButton").visible = isPatron() == false;
             break;
 
         // case 'patreon_features':

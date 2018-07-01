@@ -3883,7 +3883,8 @@ Button:enabled:hover {
 }
 
 #patreonButton,
-#discordButton {
+#discordButton,
+#thankyouButton {
     align: left bottom;
     height: 39px;
     width: 155px;
