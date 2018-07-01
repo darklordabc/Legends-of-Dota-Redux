@@ -3666,7 +3666,7 @@ function buildBasicOptionsCategories() {
                 optionPanel.AddClass('optionButtonCustomRequired');
             }
 
-            if(optionData.bot) {
+            if(optionData.bot && !CustomNetTables.GetTableValue("phase_pregame", "forceBots")) {
                 optionPanel.AddClass('optionButtonBotRequired');
             }
 
@@ -3914,7 +3914,7 @@ function buildAdvancedOptionsCategories( mutatorList ) {
             }
 
             // Check for bot settings
-            if(optionData.bot) {
+            if(optionData.bot && !CustomNetTables.GetTableValue("phase_pregame", "forceBots")) {
                 optionCategory.AddClass('optionButtonBotRequired');
             }
 
@@ -3931,7 +3931,7 @@ function buildAdvancedOptionsCategories( mutatorList ) {
                 optionPanel.AddClass('optionButtonCustomRequired');
             }
 
-            if(optionData.bot) {
+            if(optionData.bot && !CustomNetTables.GetTableValue("phase_pregame", "forceBots")) {
                 optionPanel.AddClass('optionButtonBotRequired');
             }
 

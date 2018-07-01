@@ -47,6 +47,8 @@ function modifier_random_spell_mutator.OnIntervalThink(self)
         self.abilityName = self.random_spells[rnd+1]
         Notifications:TopToAll({ability=self.abilityName, duration=5.0})
 
+        PrecacheItemByNameAsync(self.abilityName, function() print(self.abilityName.."precached") end)
+
         local sounds = {
             "ui_find_match_cancel",
             "ui_find_match_change_options", 

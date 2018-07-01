@@ -89,6 +89,7 @@ function Pregame:init()
     -- If single player redirect players to the more fully-featured map
     if util:isSinglePlayerMode() and not IsInToolsMode() then
         OptionManager:SetOption('mapname', 'custom_bot')
+        CustomNetTables:SetTableValue('phase_pregame', 'forceBots', {value=true})
     end
 
     -- Store for selected heroes and skills
