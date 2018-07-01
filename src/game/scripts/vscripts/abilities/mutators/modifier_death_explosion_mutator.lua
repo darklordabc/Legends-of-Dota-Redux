@@ -46,6 +46,12 @@ function modifier_death_explosion_mutator:OnIntervalThink()
     ParticleManager:SetParticleControl(particle, 2, Vector(self.aoe, 1, 1))
     ParticleManager:ReleaseParticleIndex(particle)
 
+    if not self.precache then
+        self:GetParent():PrecacheScriptSound("Hero_Techies.Suicide")
+        self.precache = true
+    end
+    self:GetParent():EmitSound("Hero_Techies.Suicide")
+
     GridNav:DestroyTreesAroundPoint( origin, self.aoe, true )
 
     local damageTable = {damage=self.damage_base+(self.damage_per_level*self:GetParent():GetLevel()),attacker=self:GetParent(),victim=self:GetParent(),damage_type=DAMAGE_TYPE_MAGICAL}

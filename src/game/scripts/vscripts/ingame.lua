@@ -1903,7 +1903,7 @@ function Ingame:addStrongTowers()
             local radiantIsDead = 0
 
             for k,v in pairs(towers) do
-                if not v:IsNull() and v:IsAlive() then
+                if not v:IsNull() and v:IsAlive() and not v:HasModifier("modifier_redux_tower_permanent") then
                     if v:GetTeamNumber() == 2 then
                         radiantIsDead = radiantIsDead + 1
                     else

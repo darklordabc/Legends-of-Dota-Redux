@@ -34,7 +34,7 @@ function modifier_random_spell_mutator.OnCreated(self)
     local unit = self:GetParent()
     TS_forEach(self.random_spells, function(spell)
         local ability = unit:AddAbility(spell)
-
+        PrecacheItemByNameAsync(spell, function() end)
         ability:SetLevel(1)
     end
 )
@@ -46,6 +46,8 @@ function modifier_random_spell_mutator.OnIntervalThink(self)
         local rnd = RandomInt(0,#self.random_spells-1)
         self.abilityName = self.random_spells[rnd+1]
         Notifications:TopToAll({ability=self.abilityName, duration=5.0})
+
+        PrecacheItemByNameAsync(self.abilityName, function() print(self.abilityName.."precached") end)
 
         local sounds = {
             "ui_find_match_cancel",

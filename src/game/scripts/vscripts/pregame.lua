@@ -4120,9 +4120,6 @@ function Pregame:processOptions()
         self:setOption("lodOptionIngameBuilderPenalty", 0)
     end
 
-    -- HotFix: Disable Allow Duplicate Bots because its broken, TODO FIX
-    -- self:setOption('lodOptionBotsUnique', 0, true)
-
     -- Only allow single player abilities if all players on one side (i.e. coop or singleplayer)
     --if not util:isCoop() and GetMapName() ~= "all_allowed" then
     --    self:setOption('lodOptionBanningUseBanList', 1, true)
@@ -7146,7 +7143,6 @@ function Pregame:generateBotBuilds(singleID)
     }
 
     self.botHeroesCache = {}
-
     -- Generate a list of possible heroes
     local possibleHeroes = {}
     for k,v in pairs(self.botHeroes) do
@@ -7810,11 +7806,9 @@ function Pregame:giveAbilityUsageBonuses(playerID)
         if hero then
             if newAbilities > 0 then
                 hero:AddItemByName('item_new_ability_bonus'):SetCurrentCharges(newAbilities)
-                hero:HeroLevelUp(true)
             end
             if newGlobalAbilities > 0 then
                 hero:AddItemByName('item_new_global_ability_bonus'):SetCurrentCharges(newGlobalAbilities)
-                hero:HeroLevelUp(true)
             end
             if pregame.optionStore["lodOptionBalancedBuildBonusGold"] > 0 and passiveAbilities <= 3 then
                 hero:AddItemByName('item_balanced_build_bonus')
@@ -8417,7 +8411,7 @@ function Pregame:fixSpawnedHero( spawnedUnit )
     end
 
     -- Handle pocket tower stuff
-    if OptionManager:GetOption('pocketTowers') ~= 0 then
+    if OptionManager:GetOption('pocketTowers') ~= 0 and util:isPlayerBot(playerID) == false then --TODO: MAKE BOTS USE POCKET TOWERS
         Timers:CreateTimer(function()
             if IsValidEntity(spawnedUnit) then
                 -- If setting is 1, everyone gets a single consumable tower to use
