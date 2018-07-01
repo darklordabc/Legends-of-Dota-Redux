@@ -4120,9 +4120,6 @@ function Pregame:processOptions()
         self:setOption("lodOptionIngameBuilderPenalty", 0)
     end
 
-    -- HotFix: Disable Allow Duplicate Bots because its broken, TODO FIX
-    self:setOption('lodOptionBotsUnique', 0, true)
-
     -- Only allow single player abilities if all players on one side (i.e. coop or singleplayer)
     --if not util:isCoop() and GetMapName() ~= "all_allowed" then
     --    self:setOption('lodOptionBanningUseBanList', 1, true)
