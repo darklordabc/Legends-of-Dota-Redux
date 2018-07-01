@@ -8416,7 +8416,7 @@ function Pregame:fixSpawnedHero( spawnedUnit )
     end
 
     -- Handle pocket tower stuff
-    if OptionManager:GetOption('pocketTowers') ~= 0 then
+    if OptionManager:GetOption('pocketTowers') ~= 0 and util:isPlayerBot(playerID) == false then --TODO: MAKE BOTS USE POCKET TOWERS
         Timers:CreateTimer(function()
             if IsValidEntity(spawnedUnit) then
                 -- If setting is 1, everyone gets a single consumable tower to use
