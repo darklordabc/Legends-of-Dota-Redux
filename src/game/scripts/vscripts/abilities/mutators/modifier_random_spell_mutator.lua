@@ -34,7 +34,7 @@ function modifier_random_spell_mutator.OnCreated(self)
     local unit = self:GetParent()
     TS_forEach(self.random_spells, function(spell)
         local ability = unit:AddAbility(spell)
-
+        PrecacheItemByNameAsync(spell, function() end)
         ability:SetLevel(1)
     end
 )

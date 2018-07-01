@@ -47,7 +47,7 @@ function modifier_death_explosion_mutator:OnIntervalThink()
     ParticleManager:ReleaseParticleIndex(particle)
 
     if not self.precache then
-        PrecacheScriptSound("Hero_Techies.Suicide")
+        self:GetParent():PrecacheScriptSound("Hero_Techies.Suicide")
         self.precache = true
     end
     self:GetParent():EmitSound("Hero_Techies.Suicide")
