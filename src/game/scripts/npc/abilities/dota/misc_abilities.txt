@@ -62,4 +62,63 @@
         }
         "AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_2"
     }
+
+    "shadow_shaman_mass_serpent_ward_redux"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                    "shadow_shaman_mass_serpent_ward"                                                      
+        "AbilityType"                   "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_PHYSICAL"  
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+        "FightRecapLevel"               "2"
+        "HasScepterUpgrade"         "1"
+        "MaxLevel" "3"
+        "AbilitySound"                  "Hero_ShadowShaman.SerpentWard"
+        "AbilityTextureName"            "custom/shadow_shaman_mass_serpent_ward_redux"
+        "ReduxFlags"                                                           "upgradeable | wtfAutoBan"
+        "ReduxCost"                                                            "120"
+
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastRange"              "550"
+        "AbilityCastPoint"              "0.3"
+        "AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_4"
+        
+        // Time     
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "30"
+
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "200 350 600"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "ward_count"        "5 10 15"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "damage_tooltip"            "50 75 100"
+                "LinkedSpecialBonus"        "special_bonus_unique_shadow_shaman_4"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "duration"              "60"
+            }
+            "04"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "scepter_range"         "225"
+            }
+        }
+    }
 }

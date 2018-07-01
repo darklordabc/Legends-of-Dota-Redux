@@ -2311,6 +2311,15 @@
     "DOTA_Tooltip_ability_tinker_heat_seeking_missile_redux_targets_scepter"              "SCEPTER TARGETS:"
     "DOTA_Tooltip_ability_tinker_heat_seeking_missile_redux_aghanim_description"          "Increases Heat-Seeking Missile target count."
 
+    "DOTA_Tooltip_ability_shadow_shaman_mass_serpent_ward_redux"                          "Mass Serpent Ward OP"
+    "DOTA_Tooltip_ability_shadow_shaman_mass_serpent_ward_redux_Description"              "Summons <font color='#70EA72'>5 to 20</font> Serpent Wards to attack enemy units and structures. The Wards are immune to magic. It takes two hits to destroy a single Ward. <font color='#70EA72'>Basic ability, half cooldown, longer duration and more wards at max level.</font>\n\nUpgradable by Aghanim's Scepter."
+    "DOTA_Tooltip_ability_shadow_shaman_mass_serpent_ward_redux_Lore"                     "Snake charming was a big part of the Shadow Shaman's act; now Rhasta can empower the snakes to do his bidding."
+    "DOTA_Tooltip_ability_shadow_shaman_mass_serpent_ward_redux_duration"                 "DURATION:"
+    "DOTA_Tooltip_ability_shadow_shaman_mass_serpent_ward_redux_ward_count"               "WARDS:"
+    "DOTA_Tooltip_ability_shadow_shaman_mass_serpent_ward_redux_damage_tooltip"           "ATTACK DAMAGE:"
+    "DOTA_Tooltip_ability_shadow_shaman_mass_serpent_ward_redux_scepter_range"            "SCEPTER BONUS ATTACK RANGE:"
+    "DOTA_Tooltip_ability_shadow_shaman_mass_serpent_ward_redux_aghanim_description"      "Causes Serpent Wards to have split shot, attacking two units for full damage. Increases attack range of Serpent Wards."
+
     // Alchemist
     "DOTA_Tooltip_ability_alchemist_chemical_rage_lod"                              "Chemical Rage"
     "DOTA_Tooltip_ability_alchemist_chemical_rage_lod_Description"                  "Alchemist causes his Ogre to enter a chemically induced rage, reducing base attack cooldown and increasing movement speed and regeneration."
