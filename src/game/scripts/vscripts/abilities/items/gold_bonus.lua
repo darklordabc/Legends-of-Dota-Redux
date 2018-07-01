@@ -12,6 +12,7 @@ if IsServer() then
       caster:AddNewModifier(caster, self, "gold_bonus_modifier", { duration = gold })
     end
     caster:EmitSound("DOTA_Item.Hand_Of_Midas")
+    caster:HeroLevelUp(true)
     self:SpendCharge()
   end
 end
