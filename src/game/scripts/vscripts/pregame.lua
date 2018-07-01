@@ -7142,6 +7142,8 @@ function Pregame:generateBotBuilds(singleID)
         zuus_cloud = true
     }
 
+    self.botHeroesCache = {}
+    
     -- Generate a list of possible heroes
     local possibleHeroes = {}
     for k,v in pairs(self.botHeroes) do
@@ -7270,8 +7272,6 @@ function Pregame:generateBotBuilds(singleID)
     if self.optionStore['lodOptionBotsUniqueSkills'] == 0 then
         self.optionStore['lodOptionBotsUniqueSkills'] = self.optionStore['lodOptionAdvancedUniqueSkills']
     end
-
-    self.botHeroesCache = {}
 
     for playerID,botInfo in pairs(self.botPlayers.all) do
         local build = {}

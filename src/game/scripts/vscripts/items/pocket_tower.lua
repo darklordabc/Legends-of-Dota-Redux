@@ -35,6 +35,36 @@ function item_redux_pocket_tower:OnSpellStart()
   building:AddNewModifier(caster, self, "modifier_redux_tower", {})
   building:RemoveAbility("backdoor_protection_in_base")
 
+  local maxPlayers = 24
+  local direBots = false
+  local radiantBots = false
+  -- CHECK ALL PLAYERS TO SEE WHICH TEAM HAS BOT(S)
+  for playerID=0,(maxPlayers-1) do
+      if util:isPlayerBot(playerID) and PlayerResource:GetTeam(playerID) == DOTA_TEAM_GOODGUYS then
+          radiantBots = true
+      elseif util:isPlayerBot(playerID) and PlayerResource:GetTeam(playerID) == DOTA_TEAM_BADGUYS then
+          direBots = true
+      end
+  end
+ 
+  -- IF DIRE BOTS EXIST GIVE RADIANT TOWERS THE BOT CONTROLLER ABILITY
+  if direBots and caster:GetTeam() == DOTA_TEAM_GOODGUYS then
+      building:AddAbility("imba_tower_ai_controller")
+      building:AddAbility("lone_druid_savage_roar_tower")
+      local abilityController = building:FindAbilityByName("imba_tower_ai_controller")
+      local abilityRoar = building:FindAbilityByName("lone_druid_savage_roar_tower")
+      abilityController:SetLevel(1)
+      abilityRoar:SetLevel(1)
+  -- IF RADIANT BOTS EXIST GIVE DIRE TOWERS THE BOT CONTROLLER ABILITY
+  elseif radiantBots and caster:GetTeam() == DOTA_TEAM_BADGUYS then
+      building:AddAbility("imba_tower_ai_controller")
+      building:AddAbility("lone_druid_savage_roar_tower")
+      local abilityController = building:FindAbilityByName("imba_tower_ai_controller")
+      local abilityRoar = building:FindAbilityByName("lone_druid_savage_roar_tower")
+      abilityController:SetLevel(1)
+      abilityRoar:SetLevel(1)
+  end
+
   -- Particle
   local dust_pfx = ParticleManager:CreateParticle("particles/dev/library/base_dust_hit_detail.vpcf", PATTACH_CUSTOMORIGIN, nil)
   ParticleManager:SetParticleControl(dust_pfx, 0, location)
