@@ -38,9 +38,18 @@ function modifier_random_spell_mutator.OnCreated(self)
         ability:SetLevel(1)
     end
 )
-    self:StartIntervalThink(1)
+    self:StartIntervalThink(FrameTime())
 end
 function modifier_random_spell_mutator.OnIntervalThink(self)
+    -- Make sure the think interval is near whole numbers
+    if not self.whole and  GameRules:GetDOTATime(false,false)  < 1-FrameTime()  then
+        return
+    end
+    if not self.whole and GameRules:GetDOTATime(false,false) >= 1-FrameTime() then
+        self.whole = true
+        self:StartIntervalThink(1)
+    end
+
     if math.floor(GameRules:GetDOTATime(false,false)%60)==self.warning_time then
         local unit = self:GetParent()
         local rnd = RandomInt(0,#self.random_spells-1)
