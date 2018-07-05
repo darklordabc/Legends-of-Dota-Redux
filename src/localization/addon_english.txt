@@ -2320,6 +2320,15 @@
     "DOTA_Tooltip_ability_shadow_shaman_mass_serpent_ward_redux_scepter_range"            "SCEPTER BONUS ATTACK RANGE:"
     "DOTA_Tooltip_ability_shadow_shaman_mass_serpent_ward_redux_aghanim_description"      "Causes Serpent Wards to have split shot, attacking two units for full damage. Increases attack range of Serpent Wards."
 
+    "DOTA_Tooltip_ability_legion_commander_duel_redux"                            "Duel OP"
+    "DOTA_Tooltip_ability_legion_commander_duel_redux_Description"                "Legion Commander and the target enemy hero are forced to attack each other for a short duration.  Neither hero can use items or abilities.  If either hero dies during the duration, the hero winning the Duel gains permanent bonus damage. <font color='#70EA72'>Much longer duration and bonus damage.</font>\n\nUpgradable by Aghanim's Scepter."
+    "DOTA_Tooltip_ability_legion_commander_duel_redux_duration"                   "DURATION:"
+    "DOTA_Tooltip_ability_legion_commander_duel_redux_reward_damage"              "BONUS DAMAGE:"
+    "DOTA_Tooltip_ability_legion_commander_duel_redux_duration_scepter"           "SCEPTER DURATION:"
+    "DOTA_Tooltip_ability_legion_commander_duel_redux_aghanim_description"        "Increases Duel duration, makes Legion Commander Spell Immune in Duel, and makes Legion Commander and her opponent only take damage from each other."
+    "DOTA_Tooltip_ability_legion_commander_duel_redux_Note0"                      "Duels will end if the units are pushed 2000 units apart."
+    "DOTA_Tooltip_ability_legion_commander_duel_redux_Lore"                       "To face a soldier of Stonehall in single combat is a challenge few can resist."
+
     // Alchemist
     "DOTA_Tooltip_ability_alchemist_chemical_rage_lod"                              "Chemical Rage"
     "DOTA_Tooltip_ability_alchemist_chemical_rage_lod_Description"                  "Alchemist causes his Ogre to enter a chemically induced rage, reducing base attack cooldown and increasing movement speed and regeneration."
