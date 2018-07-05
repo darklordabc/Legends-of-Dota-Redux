@@ -2329,6 +2329,14 @@
     "DOTA_Tooltip_ability_legion_commander_duel_redux_Note0"                      "Duels will end if the units are pushed 2000 units apart."
     "DOTA_Tooltip_ability_legion_commander_duel_redux_Lore"                       "To face a soldier of Stonehall in single combat is a challenge few can resist."
 
+    "DOTA_Tooltip_ability_mirana_invis_redux"                                             "Moonlight Shadow OP"
+    "DOTA_Tooltip_ability_mirana_invis_redux_Description"                                 "Turns Mirana and all allied heroes invisible. If a hero is revealed, invisibility will restore after the fade delay as long as Moonlight Shadow's duration has not expired. <font color='#70EA72'>Shorter fade delay, longer duration, shorter cooldown and double movement speed bonus.</font>"
+    "DOTA_Tooltip_ability_mirana_invis_redux_Lore"                                        "Her tenure with Selemene allows Mirana to eclipse the ground, wrapping her allies in a cloak of shadows."
+    "DOTA_Tooltip_ability_mirana_invis_redux_Note0"                                       "Units affected will not auto attack enemies."
+    "DOTA_Tooltip_ability_mirana_invis_redux_Note1"                                       "Spell Immune allies will be affected."
+    "DOTA_Tooltip_ability_mirana_invis_redux_fade_delay"                                  "FADE DELAY:"
+    "DOTA_Tooltip_ability_mirana_invis_redux_duration"                                    "DURATION:"
+
     // Alchemist
     "DOTA_Tooltip_ability_alchemist_chemical_rage_lod"                              "Chemical Rage"
     "DOTA_Tooltip_ability_alchemist_chemical_rage_lod_Description"                  "Alchemist causes his Ogre to enter a chemically induced rage, reducing base attack cooldown and increasing movement speed and regeneration."
