@@ -2337,6 +2337,24 @@
     "DOTA_Tooltip_ability_mirana_invis_redux_fade_delay"                                  "FADE DELAY:"
     "DOTA_Tooltip_ability_mirana_invis_redux_duration"                                    "DURATION:"
 
+    "DOTA_Tooltip_ability_crystal_maiden_brilliance_aura_redux"                           "Arcane Aura OP"
+    "DOTA_Tooltip_ability_crystal_maiden_brilliance_aura_redux_Description"               "Gives additional mana regeneration to all friendly units on the map. This bonus is increased for Crystal Maiden. <font color='#70EA72'>Double Mana Regen.</font>"
+    "DOTA_Tooltip_ability_crystal_maiden_brilliance_aura_redux_Lore"                      "Cold temperatures promote the essence of magic, causing Rylai's presence to allow spell usage in abundance."
+    "DOTA_Tooltip_ability_crystal_maiden_brilliance_aura_redux_Note0"                     "Stacks with other flat mana regeneration bonuses."
+    "DOTA_Tooltip_ability_crystal_maiden_brilliance_aura_redux_Note1"                     "The flat mana regeneration bonus is not considered for percentage mana regeneration increases."
+    "DOTA_Tooltip_ability_crystal_maiden_brilliance_aura_redux_mana_regen"                "ALLY MANA REGEN:"
+    "DOTA_Tooltip_ability_crystal_maiden_brilliance_aura_redux_mana_regen_self"       "SELF MANA REGEN:"
+
+    "DOTA_Tooltip_ability_faceless_void_chronosphere_redux"                               "Chronosphere OP"
+    "DOTA_Tooltip_ability_faceless_void_chronosphere_redux_Description"                   "Creates a blister in spacetime, trapping all units caught in its sphere of influence and causes you to move very quickly inside it.  Only Faceless Void and any units he controls are unaffected.  Invisible units in the sphere will be revealed. <font color='#70EA72'>Basic ability, lower cooldown and larger radius.</font>\n\nUpgradable by Aghanim's Scepter."
+    "DOTA_Tooltip_ability_faceless_void_chronosphere_redux_Lore"                          "When a rift opens to Claszureme, all poor souls caught within will likely never return."
+    "DOTA_Tooltip_ability_faceless_void_chronosphere_redux_Note0"                         "Pauses all units and buildings, friendly or enemy, except those owned by Faceless Void."
+    "DOTA_Tooltip_ability_faceless_void_chronosphere_redux_Note1"                         "Faceless Void is never affected by Chronospheres with any owner."
+    "DOTA_Tooltip_ability_faceless_void_chronosphere_redux_radius"                        "RADIUS:"
+    "DOTA_Tooltip_ability_faceless_void_chronosphere_redux_duration"                      "DURATION:"
+    "DOTA_Tooltip_ability_faceless_void_chronosphere_redux_cooldown_scepter"              "SCEPTER COOLDOWN:"
+    "DOTA_Tooltip_ability_faceless_void_chronosphere_redux_aghanim_description"           "Decreases cooldown."
+
     // Alchemist
     "DOTA_Tooltip_ability_alchemist_chemical_rage_lod"                              "Chemical Rage"
     "DOTA_Tooltip_ability_alchemist_chemical_rage_lod_Description"                  "Alchemist causes his Ogre to enter a chemically induced rage, reducing base attack cooldown and increasing movement speed and regeneration."

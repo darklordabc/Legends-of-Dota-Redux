@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 
 ## 11.3
-- Added Heat Seeking Missle OP, Mass Serpent Wards OP, Duel OP, Moonlight Shadow OP
+- Added Heat Seeking Missle OP, Mass Serpent Wards OP, Duel OP, Moonlight Shadow OP, Chornosphere OP
 
 ## 11.2
 - Added Free Creep Ability mutator
