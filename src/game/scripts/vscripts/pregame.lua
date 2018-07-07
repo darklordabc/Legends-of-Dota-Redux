@@ -2186,7 +2186,14 @@ function Pregame:onOptionChanged(eventSourceIndex, args)
                 break
             end
         end
-        if not isPatron then
+        for k,v in pairs(util.contributors) do
+            if v.steamID3 == PlayerResource:GetSteamAccountID(playerID) then
+                isDeveloper = true
+                break
+            end
+        end
+
+        if not isPatron and (not IsInToolsMode() and isDeveloper) then
             -- Tell the user they tried to modify an invalid option
             network:sendNotification(player, {
                 sort = 'lodDanger',
