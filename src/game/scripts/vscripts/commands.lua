@@ -745,34 +745,49 @@ function Commands:OnPlayerChat(keys)
                 end
                 ingame:CommandNotification("-refresh", 'Cheat Used (-refresh): Refreshed '.. PlayerResource:GetPlayerName(playerID)) 
             end, DoUniqueString('cheatrefresh'), .2)
+        elseif IsCommand("-fortify") then
+            fortify_dire(playerID)
+            fortify_rad(playerID)
         elseif IsCommand("-fortify_dire") then
-            DIREFORTIFIED = DIREFORTIFIED or false
-            if not DIREFORTIFIED then
-                local buildings = FindUnitsInRadius(DOTA_TEAM_GOODGUYS, Vector(0,0,0), nil, FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_BUILDING, DOTA_UNIT_TARGET_FLAG_INVULNERABLE, FIND_ANY_ORDER , false)
-                for _,building in pairs(buildings) do
-                    building:AddNewModifier(nil,nil,"modifier_disabled_invulnerable",{})
-                end
-            else
-                local buildings = FindUnitsInRadius(DOTA_TEAM_GOODGUYS, Vector(0,0,0), nil, FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_BUILDING, DOTA_UNIT_TARGET_FLAG_INVULNERABLE, FIND_ANY_ORDER , false)
-                for _,building in pairs(buildings) do
-                    building:RemoveModifierByName("modifier_disabled_invulnerable")
-                end
-            end
-            DIREFORTIFIED = not DIREFORTIFIED
+            fortify_dire(playerID)
         elseif IsCommand("-fortify_rad") then
-            RADIANTFORTIFIED = RADIANTFORTIFIED or false
-            if not RADIANTFORTIFIED then
-                local buildings = FindUnitsInRadius(DOTA_TEAM_BADGUYS, Vector(0,0,0), nil, FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_BUILDING, DOTA_UNIT_TARGET_FLAG_INVULNERABLE, FIND_ANY_ORDER , false)
-                for _,building in pairs(buildings) do
-                    building:AddNewModifier(nil,nil,"modifier_disabled_invulnerable",{})
-                end
-            else
-                local buildings = FindUnitsInRadius(DOTA_TEAM_BADGUYS, Vector(0,0,0), nil, FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_BUILDING, DOTA_UNIT_TARGET_FLAG_INVULNERABLE, FIND_ANY_ORDER , false)
-                for _,building in pairs(buildings) do
-                    building:RemoveModifierByName("modifier_disabled_invulnerable")
-                end
-            end
-            RADIANTFORTIFIED = not RADIANTFORTIFIED
+            fortify_rad(playerID)
         end
     end
+end
+
+function fortify_dire(playerID)
+    DIREFORTIFIED = DIREFORTIFIED or false
+    if not DIREFORTIFIED then
+        local buildings = FindUnitsInRadius(DOTA_TEAM_GOODGUYS, Vector(0,0,0), nil, FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_BUILDING, DOTA_UNIT_TARGET_FLAG_INVULNERABLE, FIND_ANY_ORDER , false)
+        for _,building in pairs(buildings) do
+            building:AddNewModifier(nil,nil,"modifier_disabled_invulnerable",{})
+        end
+        ingame:CommandNotification("-fortify_dire", 'Cheat Used (-fortify_dire): by '.. PlayerResource:GetPlayerName(playerID).." Dire buildings are fortified") 
+    else
+        local buildings = FindUnitsInRadius(DOTA_TEAM_GOODGUYS, Vector(0,0,0), nil, FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_BUILDING, DOTA_UNIT_TARGET_FLAG_INVULNERABLE, FIND_ANY_ORDER , false)
+        for _,building in pairs(buildings) do
+            building:RemoveModifierByName("modifier_disabled_invulnerable")
+        end
+        ingame:CommandNotification("-fortify_dire", 'Cheat Used (-fortify_dire): by '.. PlayerResource:GetPlayerName(playerID).." Dire buildings are unfortified") 
+    end
+    DIREFORTIFIED = not DIREFORTIFIED
+end
+
+function fortify_rad(playerID)
+    RADIANTFORTIFIED = RADIANTFORTIFIED or false
+    if not RADIANTFORTIFIED then
+        local buildings = FindUnitsInRadius(DOTA_TEAM_BADGUYS, Vector(0,0,0), nil, FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_BUILDING, DOTA_UNIT_TARGET_FLAG_INVULNERABLE, FIND_ANY_ORDER , false)
+        for _,building in pairs(buildings) do
+            building:AddNewModifier(nil,nil,"modifier_disabled_invulnerable",{})
+        end
+        ingame:CommandNotification("-fortify_rad", 'Cheat Used (-fortify_rad): by '.. PlayerResource:GetPlayerName(playerID).." Radiant buildings are fortified") 
+    else
+        local buildings = FindUnitsInRadius(DOTA_TEAM_BADGUYS, Vector(0,0,0), nil, FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_BUILDING, DOTA_UNIT_TARGET_FLAG_INVULNERABLE, FIND_ANY_ORDER , false)
+        for _,building in pairs(buildings) do
+            building:RemoveModifierByName("modifier_disabled_invulnerable")
+        end
+        ingame:CommandNotification("-fortify_rad", 'Cheat Used (-fortify_rad): by '.. PlayerResource:GetPlayerName(playerID).." Radiant buildings are unfortified") 
+    end
+    RADIANTFORTIFIED = not RADIANTFORTIFIED
 end
