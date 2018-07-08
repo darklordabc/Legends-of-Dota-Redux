@@ -3273,7 +3273,7 @@ declare abstract class CDOTA_Item_DataDriven extends CDOTA_Item {
      */
     ApplyDataDrivenThinker(hCaster: CDOTA_BaseNPC, vLocation: Vec, pszModifierName: string, hModifierTable: table): CBaseEntity;
 }
-
+/** !NoClassOr */
 /** !PureAbstract */
 declare abstract class CDOTA_Item_Lua extends CDOTA_Item {
     /**

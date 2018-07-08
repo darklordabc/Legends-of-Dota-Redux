@@ -467,17 +467,13 @@
         "ItemKillable"                  "0"
 
     }
-
-    //=================================================================================================================
-    //  Pocket Towers
-    //=================================================================================================================
     "item_redux_pocket_tower"
     {
         // General
         //-------------------------------------------------------------------------------------------------------------
         "ID"                            "2260"
         "BaseClass"                     "item_lua"
-        "ScriptFile"                    "items/pocket_tower.lua"
+        "ScriptFile"                    "abilities/pocket_tower_test.lua"
         "AbilityTextureName"            "custom/item_pocket_tower"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
         "AbilityCastRange"              "600"
