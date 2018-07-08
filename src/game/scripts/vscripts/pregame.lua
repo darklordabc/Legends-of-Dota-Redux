@@ -2179,6 +2179,7 @@ function Pregame:onOptionChanged(eventSourceIndex, args)
         util.patreon_features["Options"] and 
         util.patreon_features["Options"][optionName] then
         local isPatron = false
+        local isDeveloper = false
         for k,v in pairs(util.patrons) do
             print(PlayerResource:GetSteamID(playerID), PlayerResource:GetSteamAccountID(playerID))
             if v.steamID3 == PlayerResource:GetSteamAccountID(playerID) then

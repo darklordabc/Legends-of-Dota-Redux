@@ -745,6 +745,17 @@ function Commands:OnPlayerChat(keys)
                 end
                 ingame:CommandNotification("-refresh", 'Cheat Used (-refresh): Refreshed '.. PlayerResource:GetPlayerName(playerID)) 
             end, DoUniqueString('cheatrefresh'), .2)
+        elseif IsCommand("-fortify") then
+            local buildings = FindUnitsInRadius(DOTA_TEAM_GOODGUYS, Vector(0,0,0), nil, FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_BUILDING, DOTA_UNIT_TARGET_FLAG_INVULNERABLE, FIND_ANY_ORDER , false)
+            for _,building in pairs(buildings) do
+                building:AddNewModifier(nil,nil,"modifier_disabled_invulnerable",{})
+                table.insert(fortifiedBuildings,building)
+            end
+        elseif IsCommand("-unfortify") then
+            local buildings = FindUnitsInRadius(DOTA_TEAM_GOODGUYS, Vector(0,0,0), nil, FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_BUILDING, DOTA_UNIT_TARGET_FLAG_INVULNERABLE, FIND_ANY_ORDER , false)
+            for _,building in pairs(buildings) do
+                building:RemoveModifierByName("modifier_disabled_invulnerable")
+            end
         end
     end
 end

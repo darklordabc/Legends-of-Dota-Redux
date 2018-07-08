@@ -253,6 +253,9 @@ function hookAndFire(tableName, callback) {
 }
 
 function isPatron(argument) {
+    if (Game.IsInToolsMode()) 
+        return true
+    
     var patrons = CustomNetTables.GetTableValue("phase_pregame", "patrons");
 
     var isPatron = false;
@@ -264,6 +267,7 @@ function isPatron(argument) {
             }
         }
     }
+    Tools
     return false;
 }
 
