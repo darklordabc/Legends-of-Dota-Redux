@@ -61,6 +61,18 @@ Util.commandList = [{
         consoleCommand: "dota_start_game",
         isCheat: true,
     }, {
+        title: "fortify",
+        chatCommand: "fortify",
+        isCheat: true,
+    }, {
+        title: "fortify_dire",
+        chatCommand: "fortify_dire",
+        isCheat: true,
+    }, { 
+        title: "fortify_rad",
+        chatCommand: "fortify_rad",
+        isCheat: true,
+    }, {
         title: "spawnNeutrals",
         consoleCommand: "dota_spawn_neutrals",
         isCheat: true,

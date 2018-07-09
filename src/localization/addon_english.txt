@@ -1693,9 +1693,14 @@
     "command_menu_command_fog"                          "Add Fog of War"
     "command_menu_command_setTimescale"                 "Set Timescale"
     "command_menu_command_startGame"                    "Force Start Game"
+    "command_menu_command_fortify"                      "Fortify Buildings"
+    "command_menu_command_fortify_dire"                 "Fortify Dire"
+    "command_menu_command_fortify_rad"                  "Fortify Radiant"
     "command_menu_command_spawnGolem"                   "Spawn Golem"
     "command_menu_command_spawnNeutrals"                "Spawn Neutrals"
     "command_menu_command_spawnUnit"                    "Spawn Unit"
+
+
 
 
 
