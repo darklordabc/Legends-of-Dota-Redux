@@ -173,6 +173,7 @@ if not OptionManager.initialSettings then
 	OptionManager:SetOption('resurrectAllies', false)
 	OptionManager:SetOption('randomLaneCreeps', false)
 	OptionManager:SetOption('noHealthbars', false)
+	OptionManager:SetOption('convertableTowers', false)
 
 	-- Other Mutators
 	OptionManager:SetOption('322', 0)

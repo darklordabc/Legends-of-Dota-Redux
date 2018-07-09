@@ -6,6 +6,7 @@ require('abilities/epic_boss_fight/ebf_mana_fiend_essence_amp')
 require('abilities/global_mutators/global_mutator')
 require('abilities/global_mutators/memes_redux')
 require('abilities/nextgeneration/orderfilter')
+require('abilities/mutators/convertable_tower_mutator')
 
 -- Create the class for it
 local Ingame = class({})

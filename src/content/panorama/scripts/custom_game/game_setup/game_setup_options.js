@@ -670,7 +670,12 @@ var basicOptions = {
                         //extraInfo: 'lodOptionAboutNoHealthbars',
                         about: 'lodMutatorNoHealthbars'
                     },
-                    
+                    {
+                        name: 'lodOptionConvertableTowers',
+                        patreon: true,
+                        //extraInfo: 'lodOptionAboutNoHealthbars',
+                        about: 'lodMutatorConvertableTowers'
+                    },
                     // {
                     //     name: 'lodOptionInstantCast',
                     //     extraInfo: 'lodOptionAboutInstantCast',
@@ -2591,6 +2596,23 @@ var advancedOptions = {
                    }
                ]
             },
+            {
+
+                name: 'lodOptionConvertableTowers',
+                des: 'lodOptionDesConvertableTowers',
+                about: 'lodOptionAboutConvertableTowers',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },        
             //{
             //    name: 'lodOptionMonkeyBusiness',
             //    des: 'lodOptionDesMonkeyBusiness',
