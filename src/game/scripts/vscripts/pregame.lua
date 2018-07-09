@@ -840,7 +840,6 @@ function Pregame:loadDefaultSettings()
     self:setOption('lodOptionResurrectAllies', 0, true)
     self:setOption('lodOptionRandomLaneCreeps', 0, true)
     self:setOption('lodOptionNoHealthbars', 0, true)
-    self:setOption('lodOptionConvertableTowers', 0, true)
 
     -- Turn easy mode off
     --self:setOption('lodOptionCrazyEasymode', 0, true)
@@ -3300,10 +3299,6 @@ function Pregame:initOptionSelector()
         lodOptionNoHealthbars = function(value)
             return value == 0 or value == 1
         end,
-        -- Mutators
-        lodOptionConvertableTowers = function(value)
-            return value == 0 or value == 1
-        end,
 
     }
 
@@ -4216,7 +4211,6 @@ function Pregame:processOptions()
         OptionManager:SetOption('noHealthbars',this.optionStore['lodOptionNoHealthbars'])
         OptionManager:SetOption('randomLaneCreeps',this.optionStore['lodOptionRandomLaneCreeps'])
         OptionManager:SetOption('resurrectAllies',this.optionStore['lodOptionResurrectAllies'])
-        OptionManager:SetOption('convertableTowers',this.optionStore['lodOptionConvertableTowers'])
 
         -- Enforce max level
         if OptionManager:GetOption('startingLevel') > OptionManager:GetOption('maxHeroLevel') then
@@ -4552,7 +4546,6 @@ function Pregame:processOptions()
                     ['Mutators: Resurrect Allies'] = this.optionStore['resurrectAllies'],
                     ['Mutators: Random Lane Creeps'] = this.optionStore['randomLaneCreeps'],
                     ['Mutators: No Healthbars'] = this.optionStore['noHealthbars'],
-                    ['Mutators: Convertable Towers'] = this.optionStore['convertableTowers'],
                 })
                 -- ['Mutators: Super Runes'] = this.optionStore['superRunes'],
                 -- Draft arrays
