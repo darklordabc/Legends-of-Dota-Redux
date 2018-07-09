@@ -745,13 +745,19 @@ function Commands:OnPlayerChat(keys)
                 end
                 ingame:CommandNotification("-refresh", 'Cheat Used (-refresh): Refreshed '.. PlayerResource:GetPlayerName(playerID)) 
             end, DoUniqueString('cheatrefresh'), .2)
-        elseif IsCommand("-fortify") then
-            fortify_dire(playerID)
-            fortify_rad(playerID)
         elseif IsCommand("-fortify_dire") then
-            fortify_dire(playerID)
+            Timers:CreateTimer(function()
+                fortify_dire(playerID)
+            end, DoUniqueString('cheatrefresh'), .2)
         elseif IsCommand("-fortify_rad") then
-            fortify_rad(playerID)
+            Timers:CreateTimer(function()
+                fortify_rad(playerID)
+            end, DoUniqueString('cheatrefresh'), .2)
+        elseif IsCommand("-fortify") then
+            Timers:CreateTimer(function()
+                fortify_dire(playerID)
+                fortify_rad(playerID)
+            end, DoUniqueString('cheatrefresh'), .2)
         end
     end
 end
