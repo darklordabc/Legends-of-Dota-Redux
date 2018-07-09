@@ -331,6 +331,16 @@ function Ingame:FilterExecuteOrder(filterTable)
     local ability = EntIndexToHScript(filterTable.entindex_ability)
     local target = EntIndexToHScript(filterTable.entindex_target)
 
+    if order_type == DOTA_UNIT_ORDER_GLYPH  then     
+        if RADIANTFORTIFIED and PlayerResource:GetSelectedHeroEntity(issuer):GetTeamNumber() == DOTA_TEAM_GOODGUYS then
+            Notifications:Top(PlayerResource:GetPlayer(issuer),{text="Glyph already active",duration = 2})
+            return false
+        elseif DIREFORTIFIED and PlayerResource:GetSelectedHeroEntity(issuer):GetTeamNumber() == DOTA_TEAM_BADGUYS  then
+            Notifications:Top(PlayerResource:GetPlayer(issuer),{text="Glyph already active",duration = 2})
+            return false
+        end
+    end      
+
     -- if order_type == DOTA_UNIT_ORDER_PURCHASE_ITEM then		
     --     return false		
     -- end		
