@@ -267,7 +267,7 @@ function isPatron(argument) {
             }
         }
     }
-    Tools
+    
     return false;
 }
 
