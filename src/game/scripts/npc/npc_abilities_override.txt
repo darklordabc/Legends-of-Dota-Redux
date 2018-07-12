@@ -1044,31 +1044,6 @@
         "ReduxFlags"                                                           "upgradeable | wtfAutoBan"
         "ReduxCost"                                                            "20"
         "ReduxBans"                                                            "tinker_rearm | arc_warden_tempest_double | arc_warden_tempest_double_redux"
-
-        "AbilitySpecial"
-        {
-            "01"
-            {
-                "var_type"          "FIELD_INTEGER"
-                "ward_count"        "100"
-            }
-            "02"
-            {
-                "var_type"              "FIELD_INTEGER"
-                "damage_tooltip"            "50 75 100"
-                "LinkedSpecialBonus"        "special_bonus_unique_shadow_shaman_4"
-            }
-            "03"
-            {
-                "var_type"              "FIELD_FLOAT"
-                "duration"              "45.0 45.0 45.0"
-            }
-            "04"
-            {
-                "var_type"              "FIELD_INTEGER"
-                "scepter_range"         "225"
-            }
-        }
     }
     "silencer_global_silence"
     {
