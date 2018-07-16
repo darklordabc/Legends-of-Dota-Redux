@@ -676,11 +676,12 @@ var basicOptions = {
                     //     extraInfo: 'lodOptionAboutInstantCast',
                     //     about: 'lodMutatorInstantCast'
                     // },
-                    // {
-                    //     name: 'lodOptionRandomLaneCreeps',
-                    //     extraInfo: 'lodOptionAboutRandomLaneCreeps',
-                    //     about: 'lodMutatorRandomLaneCreeps'
-                    // },            
+                    {
+                         name: 'lodOptionRandomLaneCreeps',
+                         patreon: true,
+                         extraInfo: 'lodOptionAboutRandomLaneCreeps',
+                         about: 'lodMutatorRandomLaneCreeps'
+                    },            
                     {
                         about: 'lodMutatorRandomOnDeath',
                         patreon: true,
@@ -1755,7 +1756,7 @@ var advancedOptions = {
                     }
                 ]
             },
-            /*
+            
             {
 
                 name: 'lodOptionRandomLaneCreeps',
@@ -1772,7 +1773,7 @@ var advancedOptions = {
                         value: 1
                     }
                 ]
-            }, */
+            },
         ]
     },
 
@@ -2558,22 +2559,22 @@ var advancedOptions = {
                     }
                 ]
             },        
-            // {
-            //    name: 'lodOptionRandomLaneCreeps',
-            //    des: 'lodOptionDesRandomLaneCreeps',
-            //    about: 'lodOptionAboutRandomLaneCreeps',
-            //    sort: 'toggle',
-            //    values: [
-            //        {
-            //            text: 'lodOptionNo',
-            //            value: 0
-            //        },
-            //        {
-            //            text: 'lodOptionYes',
-            //            value: 1
-            //        }
-            //    ]
-            // },
+            {
+               name: 'lodOptionRandomLaneCreeps',
+               des: 'lodOptionDesRandomLaneCreeps',
+               about: 'lodOptionAboutRandomLaneCreeps',
+               sort: 'toggle',
+               values: [
+                   {
+                       text: 'lodOptionNo',
+                       value: 0
+                   },
+                   {
+                       text: 'lodOptionYes',
+                       value: 1
+                   }
+               ]
+            },
                 
             {
                name: 'lodOptionResurrectAllies',

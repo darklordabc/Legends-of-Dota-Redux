@@ -67,6 +67,7 @@ LinkLuaModifier("modifier_killstreak_mutator_redux","abilities/mutators/modifier
 LinkLuaModifier("modifier_no_healthbar_mutator","abilities/mutators/modifier_no_healthbar_mutator.lua",LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_random_spell_mutator","abilities/mutators/modifier_random_spell_mutator.lua",LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_random_lane_creep_mutator_ai","abilities/mutators/modifier_random_lane_creep_mutator_ai.lua",LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_random_lane_creep_freeze","abilities/mutators/modifier_random_lane_creep_mutator_ai.lua",LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_random_lane_creep_spawner_mutator","abilities/mutators/modifier_random_lane_creep_mutator_ai.lua",LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_resurrection_mutator","abilities/mutators/modifier_resurrection_mutator.lua",LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_rune_doubledamage_mutated_redux","abilities/mutators/super_runes.lua",LUA_MODIFIER_MOTION_NONE)
@@ -8562,14 +8563,7 @@ function Pregame:fixSpawningIssues()
 
 
 
-        if not randomLaneCreepSpawnerMade and OptionManager:GetOption("randomLaneCreeps") == 1 then
-            randomLaneCreepSpawnerMade = true
-            local randomLaneCreepSpawner = CreateUnitByName("npc_dummy_unit_imba",Vector(0,0,0),true,nil,nil,DOTA_TEAM_NEUTRALS)
-            randomLaneCreepSpawner:AddNewModifier(periodicDummyCastingUnit,nil,"modifier_random_lane_creep_spawner_mutator",{})
-            local a = randomLaneCreepSpawner:AddAbility("dummy_unit_state")
-            a:SetLevel(1)
-
-        end
+        
 
 
 
