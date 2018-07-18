@@ -6,7 +6,7 @@
 
 local Network = require('network')
 local constants = require('constants')
-local Timers = require('easytimers')
+--local timers = require('easytimers')
 
 -- Keeps track of what skills a given hero has
 local currentSkillList = {}

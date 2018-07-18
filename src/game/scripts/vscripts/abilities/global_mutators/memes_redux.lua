@@ -1,4 +1,4 @@
-local Timers = require('easytimers')
+--local timers = require('easytimers')
 
 --------------------------------------------------------------------------------------------------------
 --    Modifier: modifier_memes_redux        

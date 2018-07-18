@@ -1,4 +1,4 @@
-local Timers = require('easytimers')
+--local timers = require('easytimers')
 
 --[[function spawnHealingWard (keys)
     local caster = keys.caster

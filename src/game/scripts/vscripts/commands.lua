@@ -1,5 +1,5 @@
 Commands = Commands or class({})
-local Timers = require('easytimers')
+--local timers = require('easytimers')
 
 function Commands:CheckArgs( args, toCheck )
     for k,v in pairs(args) do

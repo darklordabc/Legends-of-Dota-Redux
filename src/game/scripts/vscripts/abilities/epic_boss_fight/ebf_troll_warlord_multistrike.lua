@@ -139,7 +139,7 @@ function Timers:RemoveTimer(name)
 end
 
 function Timers:RemoveTimers(killAll)
-  local timers = {}
+  --local timers = {}
 
   if not killAll then
     for k,v in pairs(Timers.timers) do

@@ -26,13 +26,14 @@ end
 local constants = require('constants')
 local SkillManager = require('skillmanager')
 local SU = require('lib/StatUploaderFunctions')
-local Timers = require('easytimers')
+--[[--local timers = ]]require('easytimers')
 local SpellFixes = require('spellfixes')
 require('statcollection.init')
 local Debug = require('lod_debug')              -- Debug library with helper functions, by Ash47
 local challenge = require('challenge')
 local ingame = require('ingame')
 require('lib/wearables')
+require('lib/timers')
 
 -- This should alone be used if duels are on.
 --require('lib/util_aar')

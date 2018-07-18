@@ -43,7 +43,7 @@ function modifier_npc_dota_hero_legion_commander_perk:OnAbilityStart(keys)
     local target = keys.target
     if hero ~= keys.caster then return end
     local ability = keys.ability
-    local Timers = require('easytimers')
+    --local timers = require('easytimers')
 
     if ability:GetName() == "legion_commander_duel" then
       hero:AddNewModifier(hero,ability,"modifier_black_king_bar_immune",{duration = ability:GetLevelSpecialValueFor("duration",ability:GetLevel()-1)})

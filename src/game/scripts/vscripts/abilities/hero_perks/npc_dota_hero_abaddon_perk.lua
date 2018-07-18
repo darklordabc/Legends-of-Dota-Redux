@@ -64,7 +64,7 @@ function modifier_npc_dota_hero_abaddon_perk:OnIntervalThink()
 	end
 end
 
-local Timers = require('easytimers')
+--local timers = require('easytimers')
 
 function PerkAbaddon(filterTable)
 	local victim_index = filterTable["entindex_victim_const"]

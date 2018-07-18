@@ -1,4 +1,4 @@
-local Timers = require('easytimers')
+--local timers = require('easytimers')
 
 BATTLE_THIRST_TIME = 45.0
 

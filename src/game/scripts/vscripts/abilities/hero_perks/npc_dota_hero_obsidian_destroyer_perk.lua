@@ -4,7 +4,7 @@
 --    Perk: Astral Imprisonment steals 7 intelligence for 60 seconds when cast by Outworld Devourer.
 --
 --------------------------------------------------------------------------------------------------------
-local Timers = require('easytimers')
+--local timers = require('easytimers')
 
 LinkLuaModifier( "modifier_npc_dota_hero_obsidian_destroyer_perk", "abilities/hero_perks/npc_dota_hero_obsidian_destroyer_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_npc_dota_hero_obsidian_destroyer_perk_buff", "abilities/hero_perks/npc_dota_hero_obsidian_destroyer_perk.lua" ,LUA_MODIFIER_MOTION_NONE )

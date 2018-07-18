@@ -3,7 +3,7 @@
 ]]
 
 -- This will be exported as Timers
-local Timers = {}
+EasyTimers = {}
 
 --[[
     Timers:CreateTimer(function()
@@ -19,7 +19,7 @@ local Timers = {}
     The first argument can also be a function NAME, such as 'think',
     in this case, you will also need to pass the object to call 'think' on
 ]]
-function Timers:CreateTimer(...)
+function EasyTimers:CreateTimer(...)
     -- Grab the gamemode entity
     local gm = GameRules:GetGameModeEntity()
 
@@ -34,4 +34,4 @@ function Timers:CreateTimer(...)
 end
 
 -- Export functions
-return Timers
+return EasyTimers

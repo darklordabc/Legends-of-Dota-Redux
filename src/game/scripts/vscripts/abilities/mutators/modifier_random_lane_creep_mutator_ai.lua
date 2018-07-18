@@ -23,7 +23,7 @@ end
 function modifier_random_lane_creep_spawner_mutator:OnCreated()
     if IsServer() then
         self:StartIntervalThink(1)
-        self.maxSpawn = 3
+        self.maxSpawn = 2
         self.minSpawn = 1
         print("modifier_random_lane_creep_spawner_mutator")
 
@@ -40,7 +40,7 @@ function modifier_random_lane_creep_spawner_mutator:OnCreated()
             "npc_dota_neutral_redux_black_drake",
             "npc_dota_neutral_redux_harpy_storm",
             "npc_dota_neutral_redux_harpy_scout",
-            --"npc_dota_neutral_redux_forest_troll_high_priest",
+            "npc_dota_neutral_redux_forest_troll_high_priest",
             "npc_dota_neutral_redux_forest_troll_berserker",
             "npc_dota_neutral_redux_dark_troll",
             "npc_dota_wraith_ghost",
@@ -55,7 +55,7 @@ function modifier_random_lane_creep_spawner_mutator:OnCreated()
             --"npc_dota_neutral_redux_elder_jungle_stalker",
             --"npc_dota_neutral_redux_jungle_stalker",
             "npc_dota_neutral_redux_giant_wolf",
-            --"npc_dota_neutral_redux_ogre_magi",
+            "npc_dota_neutral_redux_ogre_magi",
             "npc_dota_neutral_redux_ogre_mauler",
             "npc_dota_neutral_redux_mud_golem",
             "npc_dota_neutral_redux_polar_furbolg_champion",
@@ -72,6 +72,7 @@ function modifier_random_lane_creep_spawner_mutator:OnCreated()
             local u = EntIndexToHScript(keys.entindex)
             if u and IsValidEntity(u) then
                 if string.find(u:GetUnitName(),"goodguys_ranged") or string.find(u:GetUnitName(),"badguys_ranged") then
+
                     local spawnCount = 0
                     while spawnCount < self.minSpawn or self.maxSpawn >= spawnCount and RollPercentage(50)  do
                         spawnCount = spawnCount + 1
@@ -79,7 +80,7 @@ function modifier_random_lane_creep_spawner_mutator:OnCreated()
                         local name = self.units[rnd]
                         local origin = u:GetAbsOrigin()
                         local teamNumber = u:GetTeamNumber()
-                        local unit = CreateUnitByName(name,origin,true,nil,nil,teamNumber)
+                        
                         
                         -- Freeze and hide them until time reaches .30 or .60
 
@@ -87,18 +88,22 @@ function modifier_random_lane_creep_spawner_mutator:OnCreated()
                         if waitTime > 28 then
                             waitTime = FrameTime()
                         end
-                        unit:AddNewModifier(unit,nil,"modifier_random_lane_creep_freeze",{duration = waitTime+1})
-                        Timers:CreateTimer(function()
-                            
-                            unit:AddNewModifier(unit,nil,"modifier_random_lane_creep_mutator_ai",{})
-                            unit:AddNewModifier(unit,nil,"modifier_phased",{duration = 0.5})
+                        
+                        --unit:AddNewModifier(unit,nil,"modifier_random_lane_creep_freeze",{duration = waitTime+1})
+                        Timers:CreateTimer(waitTime+2,function()
+                            local unit = CreateUnitByName(name,origin,true,nil,nil,teamNumber)
+                            --unit:MoveToPositionAggressive(Vector(0,0,0))
                             local waypoint = u:GetInitialGoalEntity()
                             unit:SetInitialGoalEntity(waypoint)
-                            --unit:MoveToPositionAggressive(Vector(0,0,0))
+                            
+                            unit:AddNewModifier(unit,nil,"modifier_random_lane_creep_mutator_ai",{})
+                            unit:AddNewModifier(unit,nil,"modifier_phased",{duration = 2.5})
+                            
+                            
 
                             ResolveNPCPositions(unit:GetAbsOrigin(),100)
                             
-                        end, DoUniqueString('getWayPoint'), waitTime+1.5)
+                        end)
 
                         
                     end
@@ -116,13 +121,7 @@ function modifier_random_lane_creep_spawner_mutator:OnIntervalThink()
 end
 
 
-modifier_random_lane_creep_mutator_ai = {}
-modifier_random_lane_creep_mutator_ai.__index = modifier_random_lane_creep_mutator_ai
-function modifier_random_lane_creep_mutator_ai.new(construct, ...)
-    local instance = setmetatable({}, modifier_random_lane_creep_mutator_ai)
-    if construct and modifier_random_lane_creep_mutator_ai.constructor then modifier_random_lane_creep_mutator_ai.constructor(instance, ...) end
-    return instance
-end
+modifier_random_lane_creep_mutator_ai = class({})
 function modifier_random_lane_creep_mutator_ai.IsPermanent(self)
     return true
 end
@@ -137,8 +136,12 @@ function modifier_random_lane_creep_mutator_ai.OnCreated(self,kv)
     if IsClient() then
         return
     end
+
+
     --self.unit = EntIndexToHScript(kv.unit)
     local unit = self:GetParent()
+    self.initPos = unit:GetAbsOrigin()
+
     for i=0,3 do
         local ability = unit:GetAbilityByIndex(i)
         if ability then
@@ -151,7 +154,11 @@ end
 
 function modifier_random_lane_creep_mutator_ai.OnIntervalThink(self)
     local unit = self:GetParent()
-
+    if self:GetElapsedTime() > 2.5 and self:GetElapsedTime() < 2.75 and ((unit:GetAbsOrigin()-self.initPos):Length2D()< 50) then
+        print("UNIT WS STUCK",unit:GetLastAttackTime())
+        UTIL_Remove(unit)
+        return
+    end
     -- if self.unit and not self.unit:IsNull() then
     --     unit:MoveToPositionAggressive(self.unit:GetAbsOrigin())
     --     print(self.unit:GetInitialGoalEntity())
@@ -174,7 +181,7 @@ function modifier_random_lane_creep_mutator_ai.OnIntervalThink(self)
         if unit:GetCurrentActiveAbility() then return end
         if ability and not ability:IsPassive() and ability:IsCooldownReady() and unit:GetMana() >= ability:GetManaCost(-1) then
             if ability:GetAbilityName() == "dark_troll_warlord_raise_dead" and unit:IsAttacking() then
-                unit:CastAbilityNoTarget(ability,-1)
+                ability:CastAbility()
                 return
             end
 
@@ -183,9 +190,9 @@ function modifier_random_lane_creep_mutator_ai.OnIntervalThink(self)
             end
             -- Cast stomps
             if ability:GetCastRange(unit:GetAbsOrigin(),nil) < 50 then
-                local units = FindUnitsInRadius(unit:GetTeamNumber(),unit:GetAbsOrigin(),nil,ability:GetSpecialValueFor("radius"),DOTA_UNIT_TARGET_TEAM_ENEMY,DOTA_UNIT_TARGET_HERO,DOTA_UNIT_TARGET_FLAG_NONE,FIND_ANY_ORDER,false)
+                local units = FindUnitsInRadius(unit:GetTeamNumber(),unit:GetAbsOrigin(),nil,ability:GetSpecialValueFor("radius"),ability:GetAbilityTargetTeam(),DOTA_UNIT_TARGET_HERO,DOTA_UNIT_TARGET_FLAG_NO_INVIS + DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE ,FIND_ANY_ORDER,false)
                 if #units > 0 then
-                    ability:OnSpellStart()
+                    ability:CastAbility()
                     ability:StartCooldown(ability:GetCooldown(-1))
                     unit:SpendMana(ability:GetManaCost(-1),ability)
                     --unit:CastAbilityNoTarget(ability,-1)
@@ -197,7 +204,7 @@ function modifier_random_lane_creep_mutator_ai.OnIntervalThink(self)
             
             if #units > 0 then
                 unit:SetCursorCastTarget(units[1])
-                ability:OnSpellStart()
+                ability:CastAbility()
                 ability:StartCooldown(ability:GetCooldown(-1))
                 unit:SpendMana(ability:GetManaCost(-1),ability)
                 --unit:CastAbilityOnTarget(units[1],ability,-1)
@@ -221,7 +228,7 @@ function modifier_random_lane_creep_freeze.IsPurgable(self)
     return false
 end
 function modifier_random_lane_creep_freeze.IsHidden(self)
-    return false
+    return true
 end
 
 function modifier_random_lane_creep_freeze:CheckState()
@@ -237,10 +244,12 @@ end
 
 function modifier_random_lane_creep_freeze:OnCreated()
     if IsClient() then return end
-    self:GetParent():AddNoDraw()
+    elf:GetParent():AddNoDraw()
 end
 
 function modifier_random_lane_creep_freeze:OnDestroy()
     if IsClient() then return end
     self:GetParent():RemoveNoDraw()
+    local unit = self:GetParent()
+    
 end

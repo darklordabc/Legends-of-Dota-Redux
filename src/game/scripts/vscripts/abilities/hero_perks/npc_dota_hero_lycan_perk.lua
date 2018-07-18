@@ -1,4 +1,4 @@
-local Timers = require('easytimers')
+--local timers = require('easytimers')
 --------------------------------------------------------------------------------------------------------
 --
 --		Hero: Lycan

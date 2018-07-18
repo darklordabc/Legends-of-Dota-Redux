@@ -30,7 +30,7 @@ end
 --------------------------------------------------------------------------------------------------------
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------
-local Timers = require('easytimers')
+--local timers = require('easytimers')
 
 function PerkBane(filterTable)
     local victim_index = filterTable["entindex_victim_const"]

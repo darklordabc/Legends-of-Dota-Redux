@@ -399,7 +399,7 @@ function Physics:RemoveTimer(name)
 end
 
 function Physics:RemoveTimers(killAll)
-  local timers = {}
+  --local timers = {}
 
   if not killAll then
     for k,v in pairs(Physics.timers) do
