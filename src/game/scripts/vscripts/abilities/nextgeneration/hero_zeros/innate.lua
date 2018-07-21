@@ -19,7 +19,7 @@ function ScepterBuyback( keys )
 			Timers:CreateTimer( 0.1, function()
 				if target:HasModifier('modifier_buyback_gold_penalty') then
 					print("Zeros gained gold because a hero bought back while carrying Aghanim's Scepter.")
-					caster:ModifyGold(target:GetBuybackCost() * 0.6, false, 0)
+					caster:ModifyGold(target:GetBuybackCost(true) * 0.6, false, 0)
 
 					local particleName = "particles/units/heroes/hero_alchemist/alchemist_lasthit_coins.vpcf"
 					local particle = ParticleManager:CreateParticle( particleName, PATTACH_ABSORIGIN, caster )

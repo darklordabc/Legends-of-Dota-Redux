@@ -45,7 +45,7 @@ function modifier_npc_dota_hero_skeleton_king_perk:OnRespawn(keys)
 
         if caster == keys.unit then
             local buybackCD = OptionManager:GetOption('buybackCooldownConstant') * cooldownReduction
-            local buybackCost = caster:GetBuybackCost()
+            local buybackCost = caster:GetBuybackCost(true)
             Timers:CreateTimer(function( )
                 if caster:HasModifier('modifier_buyback_gold_penalty') then
                     print("buyback") 
