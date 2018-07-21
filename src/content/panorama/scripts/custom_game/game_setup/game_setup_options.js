@@ -1769,9 +1769,13 @@ var advancedOptions = {
                         value: 0
                     },
                     {
-                        text: 'lodOptionYes',
+                        text: 'lodOptionNormal',
                         value: 1
-                    }
+                    }/*,  
+                    {
+                        text: 'lodOptionMadness',
+                        value: 2
+                    }*/
                 ]
             },
         ]

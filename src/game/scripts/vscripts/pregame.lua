@@ -3295,7 +3295,7 @@ function Pregame:initOptionSelector()
         end,
         -- Mutators
         lodOptionRandomLaneCreeps = function(value)
-            return value == 0 or value == 1
+            return value == 0 or value == 1 --[[or value == 2]]
         end,
         -- Mutators
         lodOptionNoHealthbars = function(value)

@@ -23,8 +23,14 @@ end
 function modifier_random_lane_creep_spawner_mutator:OnCreated()
     if IsServer() then
         self:StartIntervalThink(1)
-        self.maxSpawn = 2
-        self.minSpawn = 1
+        if OptionManager:GetOption("randomLaneCreeps") == 1 then
+            self.maxSpawn = 2
+            self.minSpawn = 0
+        elseif OptionManager:GetOption("randomLaneCreeps") == 2 then
+            self.maxSpawn = 4
+            self.minSpawn = 2
+        end
+
         print("modifier_random_lane_creep_spawner_mutator")
 
         self.units = {

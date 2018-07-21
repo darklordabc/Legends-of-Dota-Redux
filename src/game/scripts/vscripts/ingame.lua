@@ -483,7 +483,7 @@ function Ingame:onStart()
         end, 'check_consumable_items', 1)
     end
     
-    if not randomLaneCreepSpawnerMade and OptionManager:GetOption("randomLaneCreeps") == 1 then
+    if not randomLaneCreepSpawnerMade and OptionManager:GetOption("randomLaneCreeps") ~= 0 then
             randomLaneCreepSpawnerMade = true
             local randomLaneCreepSpawner = CreateUnitByName("npc_dummy_unit_imba",Vector(0,0,0),true,nil,nil,DOTA_TEAM_NEUTRALS)
             randomLaneCreepSpawner:AddNewModifier(periodicDummyCastingUnit,nil,"modifier_random_lane_creep_spawner_mutator",{})
