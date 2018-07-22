@@ -388,7 +388,7 @@
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorMirrorDraft.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorAllRandom.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorBattleThirst.png"></Image>
-    
+
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorOGBonus.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorOGBonus1.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorOGBonus2.png"></Image>
@@ -453,11 +453,10 @@
                                         </Panel>
                                     </Panel>
                                     <Panel id="importAndExportEntryRoot">
-                                        <TextEntry id="importAndExportEntry"/>
-                                        <Button id="importAndExportSaveButton" class="importAndExportButton" onactivate="RecordPlayerSC()">
+                                        <Button id="importAndExportSaveButton" class="importAndExportButton" onactivate="SaveOptions()">
                                             <Label text="#importAndExport_save" />
                                         </Button>
-                                        <Button id="importAndExportLoadButton" class="importAndExportButton" onactivate="LoadPlayerSC()">
+                                        <Button id="importAndExportLoadButton" class="importAndExportButton" onactivate="LoadOptions()">
                                             <Label text="#importAndExport_load" />
                                         </Button>
                                     </Panel>

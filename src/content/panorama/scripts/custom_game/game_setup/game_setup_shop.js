@@ -183,7 +183,6 @@ function SaveDisabledItems() {
         }
     });
     optionValueList.lodDisabledItems = itemNames;
-    $('#importAndExportEntry').text = JSON.stringify(optionValueList).replace(/,/g, ',\n');
     return itemNames;
 }
 

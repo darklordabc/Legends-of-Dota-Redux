@@ -53,9 +53,8 @@ function LoadFavBuilds(rootPanel) {
 	if (!Game.GetLocalPlayerInfo()) {
 		$.Schedule(0.1, LoadFavBuilds);
 	} else {
-		GetDataFromServer('getPlayerData', {steamID: Game.GetLocalPlayerInfo().player_steamid}, function(data) {
+		GetDataFromServer('getFavoriteSkillBuilds', {steamID: Game.GetLocalPlayerInfo().player_steamid}, function(favoriteBuilds) {
 			var con = rootPanel;
-			var favoriteBuilds = Object.keys(data.favoriteBuilds || {}).map(function(key) { return data.favoriteBuilds[key]; });
 			$.Each(con.Children(), function(child) {
 				child.setFavorite(favoriteBuilds.indexOf(child.buildID) !== -1);
 			});
