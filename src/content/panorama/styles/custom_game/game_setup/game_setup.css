@@ -3194,13 +3194,6 @@ Button:enabled:hover {
     margin-left: -10px;
 }
 
-#importAndExportEntry {
-    width: 180px;
-    font-size: 17px;
-    text-overflow: clip;
-    visibility: collapse;
-}
-
 #optionButtons {
     width: 100%;
     height: 80px;

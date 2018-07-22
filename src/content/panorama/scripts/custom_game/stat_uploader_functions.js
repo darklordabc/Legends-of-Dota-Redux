@@ -11,7 +11,7 @@ function MarkMessageAsRead( msgID ) {
         MessageID: msgID
     };
 
-    GameUI.CustomUIConfig().SendRequest( requestParams, (function () {}) );    
+    GameUI.CustomUIConfig().SendRequest( requestParams, (function () {}) );
 }
 
 function SendMessage( text ) {
@@ -29,42 +29,4 @@ function SendMessage( text ) {
     };
 
     GameUI.CustomUIConfig().SendRequest( requestParams,  (function () {}) );
-}
-
-function RecordPlayerSC( ) {
-    var check = (function checkSettingCode() {
-        // SaveDisabledItems();
-        var data = $('#importAndExportEntry').text;
-
-        var decodeData;
-        try {
-            decodeData = JSON.parse(data);
-        } catch(e) {
-            return false;
-        }
-        return data.length > 0;
-    })
-
-    if (check() && saveSCTimer == false) {
-        saveSCTimer = true;
-        $('#importAndExportSaveButton').SetHasClass("disableButtonHalf", true);
-        $.Schedule(30.0, function () {
-            saveSCTimer = false;
-            $('#importAndExportSaveButton').SetHasClass("disableButtonHalf", false);
-        })
-    } else {
-        return false
-    }
-
-    var requestParams = {
-        Command : "RecordPlayerSC",
-        Data: {
-            SteamID: util.getSteamID32(),
-            SettingsCode : $('#importAndExportEntry').text,
-        }
-    }
-
-    GameUI.CustomUIConfig().SendRequest( requestParams, function(obj){
-        addNotification({"text" : 'importAndExport_success_save'});
-    })
 }

@@ -18,6 +18,8 @@ function StatsClient:SubscribeToClientEvents()
     CustomGameEventManager:RegisterListener("stats_client_vote_skill_build", Dynamic_Wrap(StatsClient, "VoteSkillBuild"))
     CustomGameEventManager:RegisterListener("stats_client_fav_skill_build", Dynamic_Wrap(StatsClient, "SetFavoriteSkillBuild"))
     CustomGameEventManager:RegisterListener("stats_client_save_fav_builds", Dynamic_Wrap(StatsClient, "SaveFavoriteBuilds"))
+    CustomGameEventManager:RegisterListener("stats_client_options_save", Dynamic_Wrap(StatsClient, "SaveOptions"))
+    CustomGameEventManager:RegisterListener("stats_client_options_load", Dynamic_Wrap(StatsClient, "LoadOptions"))
 
     CustomGameEventManager:RegisterListener("lodConnectAbilityUsageData", function(_, args)
         Timers:CreateTimer(function()
@@ -138,6 +140,24 @@ function StatsClient:SetFavoriteSkillBuild(args)
         id = args.id or "",
         fav = type(args.fav) == "number" and args.fav or 0
     })
+end
+
+function StatsClient:SaveOptions(args)
+    StatsClient:Send("saveOptions", {
+        steamID = PlayerResource:GetRealSteamID(args.PlayerID),
+        content = args.content
+    })
+end
+
+function StatsClient:LoadOptions(args)
+    StatsClient:Send(
+        "loadOptions",
+        { steamID = PlayerResource:GetRealSteamID(args.PlayerID) },
+        function(response)
+            local player = PlayerResource:GetPlayer(args.PlayerID);
+            CustomGameEventManager:Send_ServerToPlayer(player, "lodLoadOptions", { content = response })
+        end
+    )
 end
 
 function StatsClient:SendAbilityUsageData()

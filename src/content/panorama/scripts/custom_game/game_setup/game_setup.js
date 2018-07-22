@@ -1367,7 +1367,7 @@ function buildHeroList() {
     if (Game.IsInToolsMode() && autoloaded == false) {
         autoloaded = true
         Game.SetTeamSelectionLocked(true);
-        LoadPlayerSC( )
+        LoadOptions()
     }
 
     }
@@ -2871,81 +2871,6 @@ function setOption(optionName, optionValue) {
         k: optionName,
         v: optionValue
     });
-
-    $('#importAndExportEntry').text = JSON.stringify(optionValueList).replace(/,/g, ',\n');
-}
-
-// Imports option list
-function onImportAndExportPressed() {
-    var data = $('#importAndExportEntry').text;
-
-    if(data.length == 0) {
-        addNotification({"text" : 'importAndExport_empty'});
-        setOption()
-        return;
-    }
-
-    var decodeData;
-    try {
-        decodeData = JSON.parse(data);
-    } catch(e) {
-        addNotification({"text" : 'importAndExport_error'});
-        setOption()
-        return;
-    }
-
-    if(decodeData.lodOptionGamemode) {
-        setOption('lodOptionGamemode', decodeData.lodOptionGamemode);
-    }
-
-    if(decodeData.lodDisabledItems) {
-        LoadDisabledItems(decodeData.lodDisabledItems);
-    }
-
-    var changed = false;
-
-    for(var key in decodeData) {
-        if(key === 'lodOptionGamemode' || key === 'lodDisabledItems') continue;
-        setOption(key, decodeData[key]);
-
-        if (optionValueList[key] != decodeData[key]) {
-            changed = true;
-        }
-    }
-
-    if(decodeData.lodOptionCommonDraftAbilities) {
-        setOption('lodOptionCommonDraftAbilities', decodeData.lodOptionCommonDraftAbilities);
-    }
-
-    if (!changed) {
-        addNotification({"text" : 'importAndExport_no_changes'});
-    } else {
-        addNotification({"text" : 'importAndExport_success'});
-    }
-    $.Schedule(0.1, function () {
-        $('#importAndExportEntry').text = JSON.stringify(optionValueList).replace(/,/g, ',\n');
-    });
-}
-
-function LoadPlayerSC( ) {
-    var requestParams = {
-        Command : "LoadPlayerSC",
-        SteamID: util.getSteamID32()
-    }
-
-    GameUI.CustomUIConfig().SendRequest( requestParams, function(obj) {
-        var replaceAll = (function(string, search, replacement) {
-            var target = string;
-            return target.split(search).join(replacement);
-        });
-
-        $('#importAndExportEntry').text = replaceAll(replaceAll(obj.replace("   [{\"Settings\":\"", "").replace("\"}]",""), "\\\"", "\""), "\\n", "\n");
-        onImportAndExportPressed()
-
-        $.Schedule(5.0, function () {
-            $.DispatchEvent( 'UIHideCustomLayoutTooltip', $('#importAndExportLoadButton'), "ImportAndExportTooltip");
-        });
-    })
 }
 
 // Updates our selected hero
@@ -4972,8 +4897,6 @@ function OnOptionChanged(table_name, key, data) {
             SetBalanceModePoints(data.v);
             break;
     }
-
-    $('#importAndExportEntry').text = JSON.stringify(optionValueList).replace(/,/g, ',\n');
 }
 
 // Recalculates how many abilities / heroes we can ban
@@ -5506,6 +5429,43 @@ function recordPlayerBans() {
 
 function loadPlayerBans() {
     GameEvents.SendCustomGameEventToServer('lodLoadBans', {});
+}
+
+function SaveOptions() {
+    if (saveSCTimer) return true;
+    saveSCTimer = true;
+    $('#importAndExportSaveButton').SetHasClass("disableButtonHalf", true);
+    $.Schedule(30.0, function () {
+        saveSCTimer = false;
+        $('#importAndExportSaveButton').SetHasClass("disableButtonHalf", false);
+    })
+
+    GameEvents.SendCustomGameEventToServer('stats_client_options_save', { content: JSON.stringify(optionValueList) });
+    addNotification({ text: 'importAndExport_success_save' });
+}
+
+function LoadOptions() {
+    GameEvents.SendCustomGameEventToServer('stats_client_options_load', {});
+}
+
+GameEvents.Subscribe('lodLoadOptions', LoadOptionsHandler);
+function LoadOptionsHandler(data) {
+    var content = JSON.parse(data.content);
+    if (content.lodOptionGamemode) setOption('lodOptionGamemode', content.lodOptionGamemode);
+    if (content.lodDisabledItems) LoadDisabledItems(content.lodDisabledItems);
+
+    var changed = false;
+    for(var key in content) {
+        $.Msg(key, content[key]);
+        if(key === 'lodOptionGamemode' || key === 'lodDisabledItems') continue;
+        setOption(key, content[key]);
+
+        if (optionValueList[key] != content[key]) {
+            changed = true;
+        }
+    }
+    addNotification({"text" : changed ? 'importAndExport_success' : 'importAndExport_no_changes'});
+    if (content.lodOptionCommonDraftAbilities) setOption('lodOptionCommonDraftAbilities', content.lodOptionCommonDraftAbilities);
 }
 
 function addVotingOption(name) {
