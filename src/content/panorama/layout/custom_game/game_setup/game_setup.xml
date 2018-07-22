@@ -14,7 +14,9 @@
         <include src="file://{resources}/scripts/custom_game/game_setup/game_setup_options.js" />
         <include src="file://{resources}/scripts/custom_game/game_setup/game_setup_shop.js" />
         <include src="file://{resources}/scripts/custom_game/game_setup/game_setup.js" />
+        <include src="file://{resources}/scripts/custom_game/playertables_base.js" />
         <include src="file://{resources}/scripts/custom_game/universal_votings.js" />
+
     </scripts>
     <snippets>
         <snippet name="BoosterPack">
@@ -162,7 +164,9 @@
                         <Panel id="optionSelection" class="workingPanel">
                             <Panel id="optionsPanel">
                                 <Panel id="optionBasic">
+
                                     <!--
+                                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/free_today.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/patreon_small.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/thank_you.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/discord.png"></Image>

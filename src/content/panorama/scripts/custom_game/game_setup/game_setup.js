@@ -1,5 +1,5 @@
 "use strict";
-
+var PlayerTables = GameUI.CustomUIConfig().PlayerTables;
 var util = GameUI.CustomUIConfig().Util;
 
 var LOCAL_WARNING = false;
@@ -215,7 +215,8 @@ var balanceMode = CustomNetTables.GetTableValue("options", "lodOptionBalanceMode
 
 var currentBalance = 0;
 var showTier = {};
-
+var patreonMutators = PlayerTables.GetAllTableValues("patreonMutators")
+var mutator_of_the_day
 // Contains current tab name
 var currentTab = '';
 util.reviewOptions = false;
@@ -252,12 +253,11 @@ function hookAndFire(tableName, callback) {
     }
 }
 
-function isPatron(argument) {
+function isPatron(mutator_name) {
     if (Game.IsInToolsMode()) 
         return true
     
     var patrons = CustomNetTables.GetTableValue("phase_pregame", "patrons");
-
     var isPatron = false;
     if (patrons) {
         for (var patron in patrons) {
@@ -266,6 +266,10 @@ function isPatron(argument) {
                 break;
             }
         }
+    }
+
+    if (mutator_name == mutator_of_the_day) {
+        return true;
     }
     
     return false;
@@ -3172,6 +3176,7 @@ function buildBasicOptionsCategories() {
     var mutators;
 
     var patreon_mutators = CustomNetTables.GetTableValue("phase_pregame", "patreon_features").Mutators;
+    
 
     var addMutators = function(destionationPanel) {
         mutatorList = {};
@@ -3488,7 +3493,7 @@ function buildBasicOptionsCategories() {
             })
 
             var onActivate = (function(e) {
-                if (item.patreon && !isPatron()) {
+                if (item.patreon && !isPatron(item.name)) {
                     openPatreon();
                     return;
                 }
@@ -3528,7 +3533,8 @@ function buildBasicOptionsCategories() {
             })
 
             var onContextMenu = (function(e) {
-                if (item.patreon && !isPatron()) {
+                if (item.patreon && !isPatron(item.name)) {
+                    openPatreon();
                     return;
                 }
                 var fieldValue = optionMutator.GetAttributeInt('fieldValue', -1);
@@ -3616,25 +3622,59 @@ function buildBasicOptionsCategories() {
 
             if (item.patreon) {
                 optionMutator.AddClass('patreonMutator');
+                patreonMutators = CustomNetTables.GetTableValue("phase_pregame", "patreon_features").Options;
+                var mutatorOfTheDay = CustomNetTables.GetTableValue("phase_pregame", "mutatorOfTheDay").value;
+                var count_ = 0;
+                var found_ = false;
+                
+                for (var mutatorname in patreonMutators) {
+                    if (mutatorOfTheDay === count_) {
+                        
+                        if (mutatorname == item.name) {
+                            mutatorOfTheDay = mutatorname;
+                            mutator_of_the_day = mutatorname
+                            // TODO
+                            //mainSlot.AddClass('patreonMutatorOfTheDay');
+                            found_ = true;
+                            //break;
+                        }
+                    }
+                    count_++;
+                }
 
-                if (!isPatron())
-                {
-                    var images = optionMutator.FindChildrenWithClassTraverse("mutatorImage");
-                    for (var c in images) {
-                        images[c].style.saturation = "0.1;";
+                if (!isPatron(item.name))
+                {   
+                    if (found_ == false) {
+                        var images = optionMutator.FindChildrenWithClassTraverse("mutatorImage");
+                        for (var c in images) {
+                            images[c].style.saturation = "0.1;";
+                        }
+                    } else {
+                        var images = optionMutator.FindChildrenWithClassTraverse("mutatorImage");
+                        for (var c in images) {
+                            // Do something
+                        }
                     }
                 }
 
-                var extraPanel = $.CreatePanel('Image', optionMutator, '');
-                extraPanel.SetImage('s2r://panorama/images/custom_game/patreon_small_png.vtex');
-                extraPanel.AddClass('patreonExtra');
 
-                extraPanel.SetPanelEvent('onmouseover', function() {
-                    $.DispatchEvent( 'UIShowCustomLayoutParametersTooltip', extraPanel, 'MutatorTooltip', "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + "lodPatreonFeature" );
-                });
-                extraPanel.SetPanelEvent('onmouseout', function() {
-                    $.DispatchEvent( 'UIHideCustomLayoutTooltip', extraPanel, 'MutatorTooltip' );
-                });
+                
+                if (found_ == false) {
+                    var extraPanel = $.CreatePanel('Image', optionMutator, '');
+                    extraPanel.SetImage('s2r://panorama/images/custom_game/patreon_small_png.vtex');
+                    extraPanel.AddClass('patreonExtra');
+
+                    extraPanel.SetPanelEvent('onmouseover', function() {
+                        $.DispatchEvent( 'UIShowCustomLayoutParametersTooltip', extraPanel, 'MutatorTooltip', "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + "lodPatreonFeature" );
+                    });
+                    extraPanel.SetPanelEvent('onmouseout', function() {
+                        $.DispatchEvent( 'UIHideCustomLayoutTooltip', extraPanel, 'MutatorTooltip' );
+                    });
+                } else {
+                    var extraPanel = $.CreatePanel('Image', optionMutator, '');
+                    extraPanel.SetImage('s2r://panorama/images/custom_game/mutators/free_today_png.vtex');
+                    extraPanel.AddClass('patreonExtra');
+                }
             }
 
             if (item.hasOwnProperty('extraInfo')) {
@@ -4003,8 +4043,34 @@ function buildAdvancedOptionsCategories( mutatorList ) {
                             infoLabel.text = $.Localize(info.des);
                             infoLabel.AddClass('optionSlotPanelLabel');
 
+                            
+
                             if (patreon_options[fieldName]) {
-                                mainSlot.AddClass('patreon');
+                                patreonMutators = CustomNetTables.GetTableValue("phase_pregame", "patreon_features").Options;
+                                var mutatorOfTheDay = CustomNetTables.GetTableValue("phase_pregame", "mutatorOfTheDay").value;
+                                var count_ = 0;
+                                var found_ = false;
+                                
+                                for (var mutatorname in patreonMutators) {
+                                    if (mutatorOfTheDay === count_) {
+                                        
+                                        if (mutatorname == fieldName) {
+                                            mutatorOfTheDay = mutatorname;
+                                            mutator_of_the_day = mutatorname
+                                            // TODO
+                                            //mainSlot.AddClass('patreonMutatorOfTheDay');
+                                            found_ = true;
+                                            //break;
+                                        }
+                                    }
+                                    count_++;
+                                }
+                                if (found_ == false) {
+                                    mainSlot.AddClass('patreon');
+                                } else {
+                                    mainSlot.RemoveClass('patreonMutator');
+                                }
+                                
                             }
 
                             mainSlot.SetPanelEvent('onmouseover', function() {
@@ -4025,7 +4091,7 @@ function buildAdvancedOptionsCategories( mutatorList ) {
                             slavePanel.AddClass('optionSlotPanelLabel');
                             slavePanel.text = 'Unknown';
 
-                            if (patreon_options[fieldName] && !isPatron()) {
+                            if (patreon_options[fieldName] && !isPatron(fieldName)) {
                                 slavePanel.text = $.Localize("lodPatreonFeature");
                                 slavePanel.RemoveClass('optionsSlotPanelSlave');
                                 slavePanel.style.color = "#FF661A;";
@@ -5908,3 +5974,4 @@ function getAbilityGlobalPickPopularity(ability) {
         showPopupMessage('lodLocalWarning');
     }
 })();
+

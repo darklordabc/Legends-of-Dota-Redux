@@ -80,7 +80,7 @@ function modifier_random_lane_creep_spawner_mutator:OnCreated()
                 if string.find(u:GetUnitName(),"goodguys_ranged") or string.find(u:GetUnitName(),"badguys_ranged") then
 
                     local spawnCount = 0
-                    while spawnCount < self.minSpawn or self.maxSpawn >= spawnCount and RollPercentage(50)  do
+                    while spawnCount < self.minSpawn or self.maxSpawn > spawnCount and RollPercentage(50)  do
                         spawnCount = spawnCount + 1
                         local rnd = RandomInt(1,#self.units)
                         local name = self.units[rnd]

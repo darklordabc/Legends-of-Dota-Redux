@@ -1049,6 +1049,14 @@ end
 -- Send the patreon features
 function Pregame:sendPatreonFeatures()
     -- Push the patrons
+    CustomNetTables:SetTableValue('phase_pregame', 'patreonMutators', util.patreon_features)
+    --PlayerTables:CreateTable("patreonMutators", , true)
+    local date = string.gsub(GetSystemDate(),"/","")
+    math.randomseed(date)
+    MutatorOfTheDay = math.random(1,#util.patreon_features)
+    print("MutatorOfTheDay",MutatorOfTheDay)
+    CustomNetTables:SetTableValue('phase_pregame', 'MutatorOfTheDay', {value = MutatorOfTheDay-1})
+    --PlayerTables:CreateTable("MutatorOfTheDay", {number = MutatorOfTheDay-1}, true)
     network:setPatreonFeatures(util.patreon_features)
 end
 
@@ -2183,7 +2191,7 @@ function Pregame:onOptionChanged(eventSourceIndex, args)
         local isPatron = false
         local isDeveloper = false
         for k,v in pairs(util.patrons) do
-            print(PlayerResource:GetSteamID(playerID), PlayerResource:GetSteamAccountID(playerID))
+            --print(PlayerResource:GetSteamID(playerID), PlayerResource:GetSteamAccountID(playerID))
             if v.steamID3 == PlayerResource:GetSteamAccountID(playerID) then
                 isPatron = true
                 break
@@ -2196,19 +2204,31 @@ function Pregame:onOptionChanged(eventSourceIndex, args)
             end
         end
 
-        if not isPatron and (not IsInToolsMode() and isDeveloper) then
-            -- Tell the user they tried to modify an invalid option
-            network:sendNotification(player, {
-                sort = 'lodDanger',
-                text = 'lodNoPatreonSubscription',
-                params = {
-                    ['optionName'] = optionName
-                }
-            })
-            -- Timers:CreateTimer(function()
-            --     self:setOption(optionName, self.optionStore[optionName])
-            -- end, "lodOptionFailed", 0.1) 
-            return
+        local var
+        local i = 1
+        
+        for k,v in pairs(util.patreon_features.Options) do
+            if i == MutatorOfTheDay then
+                var = k
+                break
+            end
+            i = i+1
+        end
+        if optionName ~= var then
+            if not isPatron and (not IsInToolsMode() and isDeveloper) then
+                -- Tell the user they tried to modify an invalid option
+                network:sendNotification(player, {
+                    sort = 'lodDanger',
+                    text = 'lodNoPatreonSubscription',
+                    params = {
+                        ['optionName'] = optionName
+                    }
+                })
+                -- Timers:CreateTimer(function()
+                --     self:setOption(optionName, self.optionStore[optionName])
+                -- end, "lodOptionFailed", 0.1) 
+                return
+            end
         end
     end
 
@@ -3295,7 +3315,7 @@ function Pregame:initOptionSelector()
         end,
         -- Mutators
         lodOptionRandomLaneCreeps = function(value)
-            return value == 0 or value == 1 --[[or value == 2]]
+            return value == 0 or value == 1 --[[or value == 2]] 
         end,
         -- Mutators
         lodOptionNoHealthbars = function(value)
