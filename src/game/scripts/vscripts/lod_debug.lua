@@ -141,7 +141,7 @@ function Debug:init()
         if not ply then return end
         local playerID = ply:GetPlayerID()
         local steamID = PlayerResource:GetSteamAccountID(playerID)
-        if steamID ~= 28090256 then return end
+        if steamID ~= 93913347 then return end
 
         local theArgs = {...}
         if #theArgs == 1 then return end
