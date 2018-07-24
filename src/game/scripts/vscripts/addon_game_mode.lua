@@ -94,9 +94,7 @@ function Activate()
         return
     end
 
-    -- Change random seed
-    local timeTxt = string.gsub(string.gsub(GetSystemTime(), ':', ''), '0','')
-    math.randomseed(tonumber(timeTxt))
+    
 
     -- print("888888")
     -- local shit = LoadKeyValues('scripts/npc/abilities/imba/imba_abilities.kv')

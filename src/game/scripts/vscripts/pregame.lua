@@ -1058,6 +1058,10 @@ function Pregame:sendPatreonFeatures()
     CustomNetTables:SetTableValue('phase_pregame', 'MutatorOfTheDay', {value = MutatorOfTheDay-1})
     --PlayerTables:CreateTable("MutatorOfTheDay", {number = MutatorOfTheDay-1}, true)
     network:setPatreonFeatures(util.patreon_features)
+
+    -- Change random seed
+    local timeTxt = string.gsub(string.gsub(GetSystemTime(), ':', ''), '0','')
+    math.randomseed(tonumber(timeTxt))
 end
 
 function Pregame:startBoosterDraftRound( pID )
