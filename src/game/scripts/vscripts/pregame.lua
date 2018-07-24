@@ -1049,12 +1049,20 @@ end
 -- Send the patreon features
 function Pregame:sendPatreonFeatures()
     -- Push the patrons
-    CustomNetTables:SetTableValue('phase_pregame', 'patreonMutators', util.patreon_features)
+    local patreon_features = LoadKeyValues('scripts/kv/patreon_features.kv')
+    CustomNetTables:SetTableValue('phase_pregame', 'patreonMutators', patreon_features)
     --PlayerTables:CreateTable("patreonMutators", , true)
     local date = string.gsub(GetSystemDate(),"/","")
-    math.randomseed(date)
-    MutatorOfTheDay = math.random(1,#util.patreon_features)
-    print("MutatorOfTheDay",MutatorOfTheDay)
+    math.randomseed(tonumber(date))
+    local count = 0
+    for k,v in pairs(patreon_features["Options"]) do
+        count = count + 1
+    end
+
+
+    MutatorOfTheDay = math.random(1,count)
+
+    print("MutatorOfTheDay",MutatorOfTheDay,count)
     CustomNetTables:SetTableValue('phase_pregame', 'MutatorOfTheDay', {value = MutatorOfTheDay-1})
     --PlayerTables:CreateTable("MutatorOfTheDay", {number = MutatorOfTheDay-1}, true)
     network:setPatreonFeatures(util.patreon_features)
