@@ -191,7 +191,7 @@
 			}
 		}
 
-		"ReduxPerks"	"enemyMoving | trap"
+		"ReduxPerks"	"enemymoving | trap"
 		"ReduxFlags"	""
 	}
 }

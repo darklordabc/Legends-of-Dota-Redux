@@ -48,7 +48,7 @@ end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_magnataur_perk:OnAbilityFullyCast(keys)
   if IsServer() then
-    if keys.ability:HasAbilityFlag("enemyMoving") and keys.unit == self:GetParent() then
+    if keys.ability:HasAbilityFlag("enemymoving") and keys.unit == self:GetParent() then
       local cooldown = keys.ability:GetCooldownTimeRemaining()
       keys.ability:EndCooldown()
       keys.ability:StartCooldown(cooldown*self.cooldownReduction)

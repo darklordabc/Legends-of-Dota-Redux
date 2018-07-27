@@ -51,7 +51,7 @@
                 }
             }
         }
-        "ReduxPerks"                                                           "enemyMoving"
+        "ReduxPerks"                                                           "enemymoving"
         "ReduxCost"                                                            "120"
         "ReduxFlags"                                                           ""
     }

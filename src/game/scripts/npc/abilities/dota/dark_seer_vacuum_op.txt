@@ -43,7 +43,7 @@
                 "cast_range"                                           "600"
             }
         }
-        "ReduxPerks"                                                           "enemyMoving"
+        "ReduxPerks"                                                           "enemymoving"
         "ReduxCost"                                                            "120"
         "ReduxFlags"                                                           ""
     }

@@ -167,7 +167,7 @@
             }
         }
         "ReduxFlags"                                                           "stun"
-        "ReduxPerks"                                                           "channeled | enemyMoving"
+        "ReduxPerks"                                                           "channeled | enemymoving"
         "ReduxCost"                                                            "120"
     }
 }

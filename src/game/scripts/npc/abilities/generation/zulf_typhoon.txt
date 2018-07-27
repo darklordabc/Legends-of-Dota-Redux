@@ -167,6 +167,6 @@
             }
         }
         "ReduxFlags"                                                           "upgradeable | stun"
-        "ReduxPerks"                                                           "channeled | enemyMoving"
+        "ReduxPerks"                                                           "channeled | enemymoving"
     }
 }
