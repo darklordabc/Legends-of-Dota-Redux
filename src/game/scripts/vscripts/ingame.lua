@@ -2023,7 +2023,7 @@ function Ingame:FilterProjectiles(filterTable)
     local abilityIndex = filterTable["entindex_ability_const"]
     local ability = EntIndexToHScript(abilityIndex)
     -- Hero perks
-    if ability and OptionManager:GetOption('disablePerks') == 0 then
+    if not OptionManager:GetOption('disablePerks') then
         filterTable = heroPerksProjectileFilter(filterTable) --Sending all the data to the heroPerksDamageFilter
     end
     return true
