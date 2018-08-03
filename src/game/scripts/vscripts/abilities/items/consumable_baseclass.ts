@@ -1,3 +1,23 @@
+// Example
+/* You only need to make the modifier and declare it with GetIntrinsicModifier()
+Require this file
+require("abilities/items/consumable_baseclass")
+LinkLuaModifier("modifier_my_modifier",abilities/items/MYFILE.lua",LUA_MODIFIER_MOTION_NONE)
+// LUA
+function item_my_item_consumable:GetIntrinsicModifierName()
+	return "modifier_my_modifier"
+end
+
+//TS
+
+class item_my_item_consumable extends item_consumable {
+	GetIntrinsicModifierName() { 
+		return "modifier_my_modifier";
+	}
+}
+
+*/
+
 class item_consumable extends CDOTA_Item_Lua {
 	
 	GetIntrinsicModifierName() { 
