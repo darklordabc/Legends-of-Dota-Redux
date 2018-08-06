@@ -85,7 +85,7 @@ modifier_item_aeon_disk_consumable = class({
 		return {
 			MODIFIER_PROPERTY_HEALTH_BONUS,
 			MODIFIER_PROPERTY_MANA_BONUS,
-			--MODIFIER_PROPERTY_STATUS_RESISTANCE,
+			MODIFIER_PROPERTY_STATUS_RESISTANCE,
 			MODIFIER_EVENT_ON_TAKEDAMAGE,
 		}
 	end,
@@ -104,15 +104,7 @@ modifier_item_aeon_disk_consumable = class({
 	    end
 	    return self:GetAbility():GetSpecialValueFor("bonus_mana")
 	end,
-	--[[GetModifierStatusResistance = function(self)
-		if not self:GetAbility() then
-	      self:Destroy()
-	      return
-	    end
-	    return self:GetAbility():GetSpecialValueFor("status_resistance")
-	end,]]
-
-	GetTenacity=function(self)
+	GetModifierStatusResistance = function(self)
 		if not self:GetAbility() then
 	      self:Destroy()
 	      return
