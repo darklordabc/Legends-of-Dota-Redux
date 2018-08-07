@@ -1,3 +1,4 @@
+
 --[[for k,v in pairs(_G) do
   print('key ', k, 'value ', v)
 end
@@ -37,7 +38,7 @@ require('lib/timers')
 
 -- This should alone be used if duels are on.
 --require('lib/util_aar')
-
+require('talentmanager')
 require('chat')
 require('dedicated')
 require('util')
@@ -716,6 +717,10 @@ function Pregame:init()
     self.currentlySpawning = false
     self.cachedPlayerHeroes = {}
 
+    Convars:RegisterCommand('LoadTalents', StoreTalents, 'LoadTalents', 0)
+
+    StoreTalents()
+
     -- PanoramaShop:InitializeItemTable()
 end
 
@@ -1138,6 +1143,11 @@ function Pregame:applyBuilds()
 
                         self:fixSpawnedHero( hero )
                     end)
+
+                    if not status2 then
+                        print("applyBuilds",err2)
+                    end
+
                 end
             else
                 return 1.0
@@ -8046,166 +8056,11 @@ function Pregame:fixSpawnedHero( spawnedUnit )
 
     -- Add talents
     if IsValidEntity(spawnedUnit) and not spawnedUnit.hasTalent then
-        local nameTest = spawnedUnit:GetName()
-        local heroValues = allHeroes[nameTest]
-        if heroValues then
-            local heroTalentList = {}
 
-            local function GetRandomHero()
-                local keys = {}
-                for k in pairs(allHeroes) do
-                    table.insert(keys, k)
-                end
-                return allHeroes[keys[RandomInt(1, #keys)]]
-            end
+        AddTalents(spawnedUnit,self.selectedSkills[playerID])
 
-            local build = self.selectedSkills[playerID]
-            local function VerifyTalent(abName)
-                for _,v in pairs(heroTalentList) do
-                    if string.find(abName, "special_bonus_unique_") and string.find(v, "special_bonus_unique_") then
-                        if v == abName then return false end
-                    elseif v:gsub('special_bonus_', ''):gsub('_%d+', '') == abName:gsub('special_bonus_', ''):gsub('_%d+', '') then
-                        return false
-                    end
-                end
-                local requiredAbility = util:getAbilityKV(abName, "TalentRequiredAbility")
-                if not requiredAbility then
-                    return true
-                end
-                for _, v in ipairs(build) do
-                    if v == requiredAbility then
-                        return true
-                    end
-                end
-                return false
-            end
 
-            local replacedHeroNames = {
-                npc_dota_hero_underlord = "npc_dota_hero_abyssal_underlord",
-                npc_dota_hero_zeus = "npc_dota_hero_zuus",
-                npc_dota_hero_nyx = "npc_dota_hero_nyx_assassin",
-                npc_dota_hero_wraith_king = "npc_dota_hero_skeleton_king",
-                npc_dota_hero_magnus = "npc_dota_hero_magnataur",
-                npc_dota_hero_clockwerk = "npc_dota_hero_rattletrap",
-                npc_dota_hero_doom = "npc_dota_hero_doom_bringer",
-                npc_dota_hero_windranger = "npc_dota_hero_windrunner",
-                npc_dota_hero_necrophos = "npc_dota_hero_necrolyte",
-                npc_dota_hero_skywrath = "npc_dota_hero_skywrath_mage",
-                npc_dota_hero_timbersaw = "npc_dota_hero_shredder",
-                npc_dota_hero_outworld_devourer = "npc_dota_hero_obsidian_destroyer",
-                npc_dota_hero_lifestelaer = "npc_dota_hero_life_stealer",
-                npc_dota_hero_queen_of_pain = "npc_dota_hero_queenofpain",
-                npc_dota_hero_vengeful_spirit = "npc_dota_hero_vengefulspirit",
-            }
-            local function GetTalentGroup(targetTalent, heroData)
-                local heroName = targetTalent:gsub('special_bonus_unique', 'npc_dota_hero'):gsub('_%d', '')
-                if replacedHeroNames[heroName] then heroName = replacedHeroNames[heroName] end
-
-                if not heroData then
-                    heroData = allHeroes[heroName]
-                end
-                if not heroData then
-                    print("Error: hero with name " .. heroName .. " wasn't found. That hero name should be replaced above.")
-                    return 4
-                end
-                local skippedTalentsCount = 0
-                for i = 1, 24 do
-                    local abName = heroData['Ability' .. i]
-                    if abName and string.find(abName, 'special_bonus') then
-                        if abName == targetTalent then
-                            return math.ceil((skippedTalentsCount + 1) / 2)
-                        else
-                            skippedTalentsCount = skippedTalentsCount + 1
-                        end
-                    end
-                end
-
-                print("Error: hero " .. heroName .. " hasn't talent " .. targetTalent)
-                return 4
-            end
-
-            --Load talents from kv and calculate total count
-            local currentTalentCount = 0
-            local skippedTalentCount = 0
-            for i = 1, 24 do
-                local abName = heroValues['Ability' .. i]
-                if abName and string.find(abName, "special_bonus") then
-                    local talentIndex = currentTalentCount + skippedTalentCount + 1
-                    if VerifyTalent(abName) then
-                        heroTalentList[talentIndex] = abName
-                        currentTalentCount = currentTalentCount + 1
-                    else
-                        skippedTalentCount = skippedTalentCount + 1
-                    end
-                end
-            end
-
-            --If hero hasn't enought talents => random
-            if currentTalentCount < 8 then
-                print("[Talents]: Hero has " .. 8-currentTalentCount .. " empty talent slots. These talents should be randomed")
-                --First try to find talents that requires hero's abilities
-
-                -- try
-                local status, nextCall = xpcall(function()
-                    for k, v in pairs(npc_abilities_override) do
-                        --Ability is talent
-                        if string.find(k, 'special_bonus_unique_') and v.TalentRequiredAbility then
-                            --If current build has required ability
-                            local targetIndex = GetTalentGroup(k) * 2
-                            if heroTalentList[targetIndex] then targetIndex = targetIndex - 1 end
-
-                            if VerifyTalent(k) and not heroTalentList[targetIndex] then
-                                heroTalentList[targetIndex] = k
-                                currentTalentCount = currentTalentCount + 1
-                                if currentTalentCount >= 8 then
-                                    break
-                                end
-                            end
-                        end
-                    end
-                -- catch
-                end, function (msg)
-                    return msg..'\n'..debug.traceback()..'\n'
-                end)
-                if not status then
-                    print(nextCall)
-                end
-                print("[Talents]: After giving ability unique talens hero has " .. 8-currentTalentCount .. " empty talent slots")
-                --If hero still hasn't 8 talents => take random talents
-                while currentTalentCount < 8 do
-                    --take random hero
-                    local tempHT = GetRandomHero()
-                    if type(tempHT) == "table" then
-                        local skippedTalentsCount = 0
-                        for i = 1, 24 do
-                            local abName = tempHT['Ability' .. i]
-                            if abName and string.find(abName, "special_bonus") then
-                                local targetIndex = math.ceil((skippedTalentsCount + 1) / 2) * 2
-                                if heroTalentList[targetIndex] then targetIndex = targetIndex - 1 end
-
-                                if VerifyTalent(abName) and not heroTalentList[targetIndex] then
-                                    heroTalentList[targetIndex] = abName
-                                    currentTalentCount = currentTalentCount + 1
-                                    break -- to increase randomness take a new hero after each added talent
-                                else
-                                    skippedTalentsCount = skippedTalentsCount + 1
-                                end
-                            end
-                        end
-                    end
-                end
-            end
-            for _,v in pairs(heroTalentList) do
-                spawnedUnit:AddAbility(v)
-            end
-
-            --0 index talent, move it to end
-            local first_talent = spawnedUnit:GetAbilityByIndex(0):GetAbilityName()
-            if string.find(first_talent, "special_bonus") then
-                spawnedUnit:RemoveAbility(first_talent)
-                spawnedUnit:AddAbility(first_talent)
-            end
-        end
+        
         spawnedUnit.hasTalent = true
     end
 
@@ -9036,3 +8891,5 @@ ListenToGameEvent('game_rules_state_change', function(keys)
 end, nil)
 
 return _instance
+
+
