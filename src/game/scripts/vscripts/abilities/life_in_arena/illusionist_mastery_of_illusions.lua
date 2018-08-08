@@ -10,6 +10,10 @@ function AddModifier(keys)
 	if target:TriggerSpellAbsorb(ability) then
 		return 
 	end
+	
+	if target:GetUnitName() == "npc_dota_roshan" then 
+		return 
+	end
 		
 	if not caster.count_ill then
 		caster.count_ill=0
