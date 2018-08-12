@@ -6837,7 +6837,7 @@ function Pregame:multiplyNeutrals()
 
             -- Neutral Multiplier: Checks if hurt npc is neutral, dead, and if it doesnt have the clone token ability, and their is a valid attacker
             if IsValidEntity(attacker) then
-                if ent:GetTeamNumber() == DOTA_TEAM_NEUTRALS and ent:GetHealth() <= 0 and ent:GetName() == "npc_dota_creep_neutral" and ent:FindAbilityByName("clone_token_ability") == nil then
+                if ent:GetTeamNumber() == DOTA_TEAM_NEUTRALS and (ent:GetHealth() <= 0  or not ent:IsAlive())and ent:GetName() == "npc_dota_creep_neutral" and ent:FindAbilityByName("clone_token_ability") == nil then
 
                     local lastHits = PlayerResource:GetLastHits(attacker:GetOwner():GetPlayerID())
                     local lastHits = PlayerResource:GetLastHits(attacker:GetOwner():GetPlayerID()) + 1

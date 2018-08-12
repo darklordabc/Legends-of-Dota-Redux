@@ -34,14 +34,15 @@ end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_pudge_perk:OnCreated()
 	if IsServer() then
-		self.hook = self:GetCaster():FindAbilityByName("pudge_meat_hook")
-		if self.hook then
-			self:StartIntervalThink(0.1)
-			self.damagecooldown = self.hook:GetCooldown(-1) -- Time before hook does damage again.
+		local hook = self:GetCaster():FindAbilityByName("pudge_meat_hook")
+		if hook and not util:isPlayerBot(self:GetCaster():GetPlayerOwnerID()) then
+			self:GetCaster():AddAbility("pudge_meat_hook_perk")
+			self:GetCaster():SwapAbilities("pudge_meat_hook","pudge_meat_hook_perk",false,true)
+			self:GetCaster():RemoveAbility("pudge_meat_hook")
 		end
 	end
 end
-
+--[[
 function modifier_npc_dota_hero_pudge_perk:OnIntervalThink()
 	if not self.activated then
 		if self.hook:GetLevel() > 0 then
@@ -118,3 +119,4 @@ function PerkPudge(filterTable)
  end
  
  if modifier_npc_dota_hero_pudge_hook_no_damage ~= "" then modifier_npc_dota_hero_pudge_hook_no_damage = class({}) end
+]]

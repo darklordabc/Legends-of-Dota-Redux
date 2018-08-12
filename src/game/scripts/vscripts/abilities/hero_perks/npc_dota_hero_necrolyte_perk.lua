@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
 --		Hero: Necrolyte
---		Perk: At the start of the game, Necrophos gains a free level of Sadist, whether he has it or not.
+--		Perk: At the start of the game, Necrophos gains a free level of Death Pulse, whether he has it or not.
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_necrolyte_perk", "abilities/hero_perks/npc_dota_hero_necrolyte_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
@@ -38,12 +38,12 @@ end
 function modifier_npc_dota_hero_necrolyte_perk:OnCreated(keys)
     if IsServer() then
         local caster = self:GetCaster()
-        local sadist = caster:FindAbilityByName("necrolyte_heartstopper_aura")
+        local sadist = caster:FindAbilityByName("necrolyte_death_pulse")
 
         if sadist then
             sadist:UpgradeAbility(false)
         else 
-            sadist = caster:AddAbility("necrolyte_heartstopper_aura")
+            sadist = caster:AddAbility("necrolyte_death_pulse")
             sadist:SetStolen(true)
             sadist:SetActivated(true)
             sadist:SetLevel(1)

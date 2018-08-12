@@ -34,6 +34,7 @@ end
 function modifier_npc_dota_hero_spectre_perk:DeclareFunctions()
 	local funcs = {
 		MODIFIER_EVENT_ON_ABILITY_EXECUTED,
+		MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
 	}
 	return funcs
 end
@@ -41,26 +42,23 @@ end
 function modifier_npc_dota_hero_spectre_perk:OnAbilityExecuted(params)
 	if params.unit == self:GetParent() then
 		local phase = params.ability -- For modifier icon
-		if params.ability:GetManaCost(params.ability :GetLevel() - 1) > 0 then
-			self:GetParent():AddNewModifier(self:GetParent(), nil, "modifier_npc_dota_hero_spectre_phased", {duration = 4})
-		end
+		self.target = phase:GetCursorPosition() or phase:GetCursorTarget()
 	end
 end
 
---------------------------------------------------------------------------------------------------------
---		Phase Modifier: 	modifier_npc_dota_hero_spectre_phased		
---------------------------------------------------------------------------------------------------------
-if modifier_npc_dota_hero_spectre_phased ~= "" then modifier_npc_dota_hero_spectre_phased = class({}) end
---------------------------------------------------------------------------------------------------------
-function modifier_npc_dota_hero_spectre_phased:CheckState()
-	local state = {
-		[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
-		[MODIFIER_STATE_FLYING_FOR_PATHING_PURPOSES_ONLY] = true,
-	}
-	return state
+function modifier_npc_dota_hero_spectre_perk:GetModifierMoveSpeedBonus_Constant(params)
+	if IsClient() then return end
+	if not self.target then return end
+	local target = self.target
+	if target.GetAbsOrigin then
+		target = target:GetAbsOrigin()
+	end
+	local direction = self:GetParent():GetForwardVector()
+	local normal = (target-self:GetParent():GetAbsOrigin()):Normalized()
+	print(normal:Dot(direction))
+	if normal:Dot(direction) > 0.7 then
+		return 100
+	end
+
+
 end
---------------------------------------------------------------------------------------------------------
-function modifier_npc_dota_hero_spectre_phased:GetTexture()
-	return "spectre_reality"
-end
---------------------------------------------------------------------------------------------------------

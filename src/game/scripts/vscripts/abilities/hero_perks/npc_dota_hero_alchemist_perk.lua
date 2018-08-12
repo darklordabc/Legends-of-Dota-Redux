@@ -35,18 +35,17 @@ end
 --------------------------------------------------------------------------------------------------------
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------
-function modifier_npc_dota_hero_alchemist_perk:OnCreated()
-    if IsServer() then
-        local caster = self:GetCaster()
-        local greed = caster:FindAbilityByName("alchemist_goblins_greed")
+function modifier_npc_dota_hero_alchemist_perk:DeclareFunctions()
+    return {
+        MODIFIER_EVENT_ON_ABILITY_FULLY_CAST
+    }
+end
 
-        if greed then
-            greed:UpgradeAbility(false)
-        else 
-            greed = caster:AddAbility("alchemist_goblins_greed")
-            greed:SetStolen(true)
-            greed:SetActivated(true)
-            greed:SetLevel(1)
+function modifier_npc_dota_hero_alchemist_perk:OnAbilityFullyCast(params)
+    if params.unit == self:GetParent() then
+        local item = params.ability
+        if item:GetName() == "item_ultimate_scepter" or item:GetName() == "item_moon_shard" or string.find(item:GetName(),"consumable") then
+            self:GetParent():ModifyGold( ability:GetGoldCost() * 0.25, true, 0 ) 
         end
     end
 end

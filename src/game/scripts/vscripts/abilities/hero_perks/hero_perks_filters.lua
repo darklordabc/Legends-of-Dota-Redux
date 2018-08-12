@@ -73,10 +73,12 @@ function heroPerksModifierFilter(filterTable)
     npc_dota_hero_viper_perk = true,
     npc_dota_hero_spirit_breaker_perk = true,
     npc_dota_hero_troll_warlord_perk = true,
+    npc_dota_hero_abaddon_perk = true,
   }
   local targetPerk = caster:FindAbilityByName(caster:GetName() .. "_perk")
   if not targetPerk then return filterTable end
   if not targetPerks_modifier[targetPerk:GetName()] then return filterTable end
+  PerkAbaddon(filterTable)
   -- Perk for Dragon Knight
   PerkDragonKnight(filterTable)
   -- Perk for Ancient Apparition
@@ -115,7 +117,7 @@ function heroPerksDamageFilter(filterTable)
 
   
   targetPerks_damage = {
-    npc_dota_hero_abaddon_perk = true,
+    --npc_dota_hero_abaddon_perk = true,
     npc_dota_hero_pudge_perk = true,
     npc_dota_hero_bane_perk = true,
     npc_dota_hero_slardar_perk = true,
@@ -124,9 +126,9 @@ function heroPerksDamageFilter(filterTable)
   if not targetPerk then return filterTable end
   if not targetPerks_damage[targetPerk:GetName()] then return filterTable end
   -- Perk for Abaddon
-  PerkAbaddon(filterTable)
+  --PerkAbaddon(filterTable)
    -- Perk for Pudge
-  PerkPudge(filterTable)
+  --PerkPudge(filterTable)
    -- Perk for Bane
   PerkBane(filterTable)
   -- Perk for Slardar

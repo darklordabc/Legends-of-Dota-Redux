@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
 --		Hero: Tiny
---		Perk: Increases damage done to buildings by 10%. 
+--		Perk: Casting an ability that targetted a tree gives 5% tenacity, stacks diminishingly
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_tiny_perk", "abilities/hero_perks/npc_dota_hero_tiny_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
@@ -31,15 +31,27 @@ end
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_tiny_perk:DeclareFunctions()
-	return { MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE }
+	local funcs = {
+		MODIFIER_EVENT_ON_ABILITY_FULLY_CAST,
+	}
+	return funcs
 end
---------------------------------------------------------------------------------------------------------
-function modifier_npc_dota_hero_tiny_perk:GetModifierTotalDamageOutgoing_Percentage(keys)
-	local target = keys.target
-	if target:IsBuilding() then
-		return 10
-	else 
-		return 0
+
+
+function modifier_npc_dota_hero_tiny_perk:OnAbilityFullyCast(params)
+	self.tenacity = 5
+	local tenacityDuration = 45
+	if params.unit == self:GetParent() then
+		if params.target and params.target.IsStanding then
+			self:IncrementStackCount()
+			Timers:CreateTimers(tenacityDuration,function() 
+				self:DecrementStackCount() 
+			end)
+		end
 	end
 end
---------------------------------------------------------------------------------------------------------
+
+function modifier_npc_dota_hero_tiny_perk:GetTenacity()
+	local n = 1 - (self.tenacity / 100)
+	return n^self:GetStackCount()
+end

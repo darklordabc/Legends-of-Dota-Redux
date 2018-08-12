@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
 --		Hero: Slark
---		Perk: Slark gains +3 agility for each level put in an mobility/escape skill. 
+--		Perk: Slark gets a free level of dark pact, and casts it every 10 seconds. Also is immune to its self damage. 
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_slark_perk", "abilities/hero_perks/npc_dota_hero_slark_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
@@ -31,24 +31,32 @@ end
 
 function modifier_npc_dota_hero_slark_perk:DeclareFunctions()
 	return {
-		MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
+		MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
 	}
 end
 --------------------------------------------------------------------------------------------------------
-function modifier_npc_dota_hero_slark_perk:GetModifierBonusStats_Agility(params)
-	local caster = self:GetCaster()
-
-	local agility_value = 3
-	local bonusAgility = 0
-
-	for i = 0, 15 do
-		local ability = caster:GetAbilityByIndex(i)
-		if ability and ability:HasAbilityFlag("mobility") then
-			local level = ability:GetLevel()
-			bonusAgility = bonusAgility + (level * agility_value)	
-		end
+function modifier_npc_dota_hero_slark_perk:GetModifierIncomingDamage_Percentage(params)
+	if IsClient() then return end
+	if params.inflictor:GetAbilityName() == "slark_dark_pact" and params.attacker == self:GetParent() then
+		return -1000
 	end
-	return bonusAgility
 end
 --------------------------------------------------------------------------------------------------------
 
+function modifier_npc_dota_hero_slark_perk:OnCreated()
+	if IsClient() then return end
+	local hero = self:GetParent()
+	local ability = hero:FindAbilityByName("slark_dark_pact")
+
+	if not ability then
+		ability = hero:AddAbility("slark_dark_pact")
+	end
+	ability:SetLevel(1)
+	self:StartIntervalThink(10)
+end
+
+function modifier_npc_dota_hero_slark_perk:OnIntervalThink()
+	local hero = self:GetParent()
+	local ability = hero:FindAbilityByName("slark_dark_pact")
+	ability:OnSpellStart()
+end

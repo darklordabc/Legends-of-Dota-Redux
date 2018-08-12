@@ -1,6 +1,8 @@
 --------------------------------------------------------------------------------------------------------
 --
 --		Hero: Abaddon
+--		27-7-18: Abaddon has a reduced cooldown on borrowed time
+--		No longer used.
 --		Perk: For Abaddon, Mist Coil self-heals instead of damages and Aphotic Shield receives 2 charges.
 --
 --------------------------------------------------------------------------------------------------------
@@ -37,18 +39,18 @@ end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_abaddon_perk:DeclareFunctions()
 	local funcs = {
-		MODIFIER_EVENT_ON_ABILITY_FULLY_CAST,
+		--MODIFIER_EVENT_ON_ABILITY_FULLY_CAST,
 	}
 	return funcs
 end
 
 function modifier_npc_dota_hero_abaddon_perk:OnCreated()
 	if IsServer() then
-		self:StartIntervalThink(0.1)
+		--self:StartIntervalThink(0.1)
 	end
 end
 
-function modifier_npc_dota_hero_abaddon_perk:OnIntervalThink()
+--[[function modifier_npc_dota_hero_abaddon_perk:OnIntervalThink()
 	if not self.activated then
 		local shield = self:GetParent():FindAbilityByName("abaddon_aphotic_shield")
 		if shield and shield:GetLevel() > 0 then
@@ -64,35 +66,24 @@ function modifier_npc_dota_hero_abaddon_perk:OnIntervalThink()
 	end
 end
 
---local timers = require('easytimers')
+--local timers = require('easytimers')]]
 
 function PerkAbaddon(filterTable)
-	local victim_index = filterTable["entindex_victim_const"]
-    local attacker_index = filterTable["entindex_attacker_const"]
-    local ability_index = filterTable["entindex_inflictor_const"]
-    if not victim_index or not attacker_index or not ability_index then
-        return true
-    end
-    local attacker = EntIndexToHScript( victim_index )
-    local victim = EntIndexToHScript( attacker_index )
-    local ability = EntIndexToHScript( ability_index )
-	local targetPerk = attacker:FindAbilityByName(attacker:GetName() .. "_perk")
-	if targetPerk and targetPerks_damage[targetPerk:GetName()] then
-		if ability and ability:GetName() == "abaddon_death_coil" and attacker == victim then
-			filterTable["damage"] = 0
-			attacker:Heal(ability:GetSpecialValueFor("self_damage"), attacker)
-		end
-	end
- end
-
-function modifier_npc_dota_hero_abaddon_perk:OnAbilityFullyCast(params)
-	if params.unit == self:GetParent() then
-		if params.ability:GetName() == "abaddon_aphotic_shield" then
-			local shield = params.ability
-			local modifier = self:GetParent():FindModifierByName("modifier_charges")
-			if modifier and modifier.kv.replenish_time ~= shield:GetCooldown(-1) then
-				modifier.kv.replenish_time = shield:GetCooldown(-1)
-			end
-		end
-	end
+  	local parent_index = filterTable["entindex_parent_const"]
+  	local caster_index = filterTable["entindex_caster_const"]
+  	local ability_index = filterTable["entindex_ability_const"]
+  	local modifier_name = filterTable["name_const"]
+  	if not parent_index or not caster_index or not ability_index then
+    	return true
+  	end
+  	local parent = EntIndexToHScript( parent_index )
+  	local caster = EntIndexToHScript( caster_index )
+  	local ability = EntIndexToHScript( ability_index )
+  	if ability then
+  		if caster:GetUnitName() == "npc_dota_hero_abaddon" then
+      		if string.find(ability:GetAbilityName(),"borrowed_time") then
+        		filterTable["duration"] = filterTable["duration"] * 1.33
+      		end
+    	end  
+ 	end
 end

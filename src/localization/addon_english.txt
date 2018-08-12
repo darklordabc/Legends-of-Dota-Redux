@@ -1103,31 +1103,31 @@
     "hintStormSpirit"                         "At the start of the game, Storm Spirit gains a free level of Mana Aura, whether he has it or not."
     "hintMorphling"                         "Morphling gains 50% bonus movement speed in water."
     "hintMonkeyKing"                         "At the start of the game, Monkey King gains a free level of Jingu Mastery, whether he has it or not."
-    "hintTimbersaw"                         "Timbersaw gains 1% of his max health and mana whenever a nearby tree is cut down."
+    "hintTimbersaw"                         "Timbersaw gains 3% of his max health and mana whenever a nearby tree is cut down."
     "hintTideHunter"                         "When Tidehunter dies, Ravage's cooldown will be refreshed."
     "hintBloodSeeker"                         "When Blood Seeker casts Rupture, 100% of the mana cost will be refunded and cooldown reduced by 20%."
     "hintRiki"                         "Riki's health regeneration is increased by 4 while invisible."
     "hintBatrider"                         "Batrider has 20% bonus movement speed while flying."
     "hintBrewmaster"                         "Brewmaster gains +100% regen benefits from Salve, Bottle and Clarity."
     "hintShadowfiend"                         "At the start of the game, Shadow Fiend gains a free level of Necromastery, whether he has it or not."
-    "hintPuck"                         "Puck has a 50% chance to reflect disjointed spells."
-    "hintAbaddon"                         "For Abaddon, Mist Coil self-heals instead of damages and Aphotic Shield receives 2 charges."
+    "hintPuck"                         "Puck has a 99% chance to reflect disjointed spells."
+    "hintAbaddon"                         "Abaddons borrowed time is 25% longer."
     "hintWinterWyvern"                         "When Winter Wyvern's health and mana are above 75% she gains flying status after a 5 second delay."
     "hintDragonKnight"                         "While Dragon Knight is in Elder Dragon Form, all of Dragon Knight's abilities apply Dragon Form debuffs. This includes towers."
     "hintCentaur"                         "Centaur Warrunner takes 75% damage from Self-Damaging spells."
     "hintPhoenix"                         "Phoenix passively triggers Supernova when taking lethal damage. Requires level 6 or higher."
     "hintAncientApparition"                         "Ancient Apparition disables the health regeneration of targets when an Ice ability debuff is applied."
     "hintShadowShaman"                         "When Shadow Shaman is targeted by an enemy spell, they will get Hexed for 3 seconds. Has 60 second cooldown."
-    "hintDoom"                         "Demonic spells cast by Doom will have cooldowns reduced by 25%"
+    "hintDoom"                         "Doom casts doom as if he has scepter, if Doom has scepter cooldown is halved."
     "hintLich"                         "Lich heals himself for the mana gained when casting Sacrifice."
-    "hintSpectre"                         "Spectre gains phased movement when casting abilities."
+    "hintSpectre"                         "Spectre gains 100ms when facing the target of his last ability."
     "hintDarkSeer"                         "Dark Seer self-casts Surge and Ion Shell when casting them on allies."
-    "hintEnchantress"                         "Enchantress can grow plants without the health penalty."
+    "hintEnchantress"                         "Enchantress gets a 50 attack range bonus for 10 seconds after attacking a hero"
     "hintInvoker"                         "Invoker gains +5 intelligence each time he uses a different ability, resetting when an ability has been used twice."
     "hintQOP"                         "Queen of Pain deals 10% more damage to male heroes, but receives 10% more damage from female heroes."
     "hintWisp"                         "Wisp gains 1 free level of Essence Aura Redux, whether it has it or not."
     "hintMeepo"                         "Meepo's damage is increased by 5% for every other Meepo on his team. Takes 25% max health as damage whenever a Meepo dies."
-    "hintPL"                         "Illusion creating abilities will have cooldowns reduced by 50% when cast by Phantom Lancer."
+    "hintPL"                         "Illusions move 25% faster"
     "hintCM"                         "Crystal Maiden gains +2 movement speed for each level she puts in Support skills."
     "hintAntiMage"                         "After Anti-Mage blinks he will silence enemies within 200 radius for 2 seconds."
     "hintElderTitan"                         "Elder Titan gains 3% bonus movement speed for every aura he is carrying."
@@ -1138,13 +1138,13 @@
     "hintOgreMagi"                         "When Ogre Magi casts a spell, there is a 2% chance to refund the manacost of that spell and refresh its cooldown."
     "hintVS"                         "Vengeful Spirit spawns a spirit of vengence on death that lasts until she has respawned."
     "hintVisage"                         "For Visage, Summon Familiars will refund 100% of manacost and have its cooldown reduced by 50%."
-    "hintNaga"                         "Illusion creating abilities will have 50% of their mana refunded and cooldowns reduced by 20%, when used by Naga."
+    "hintNaga"                         "Illusions take 25% less damage."
     "hintBH"                         "Bounty Hunter deals 10% more damage to Tracked enemies."
     "hintDrow"                         "Gust also disarms enemies when cast by Drow Ranger."
     "hintNyx"                         "Nyx Assassin gains 10% bonus movement speed when invisible."
     "hintSlark"                         "Slark gains +3 agility for each level put in an mobility/escape skill."
     "hintLuna"                         "Luna gains 1 free level of Lunar Blessing, whether she has it or not."
-    "hintAlchemist"                         "At the start of the game, Alchemist gains a free level of Greevils Greed, whether he has it or not."
+    "hintAlchemist"                         "Alchemist consumes items for 25% less gold."
     "hintArcWarden"                         "Arc Warden may use a consumable item on himself every 90 seconds without consuming the item. Has double cooldown length if used on Tome of Knowledge."
     "hintAxe"                         "Culling Blade kills will chop the remaining cooldown times of Axe's abilities in half, or by 30 seconds if the remaining cooldown exceeds 1 minute."
     "hintBane"                         "Bane lifesteals 100% of all spell damage he deals to sleeping units. "
@@ -1152,7 +1152,7 @@
     "hintEarthSpirit"                         "Earth Spirit gains 3+ damage for each point in Earth Abilities."
     "hintEmberSpirit"                         "If Ember Spirit has Fire Remnant he will gain a free level at the start of the game. Also, Activate Fire Remnant will have 50% Mana Refunded."
     "hintFacelessVoid"                         "This hero can move freely in friendly and enemy chronospheres."
-    "hintHuskar"                         "Huskar regenerates 1hp/s for every 10% of health he is missing."
+    "hintHuskar"                         "Huskar gets 2.5 status resistance for every 10% of health he is missing."
     "hintJakiro"                         "Fire and Ice spells cast sequentially will refund 40% mana and have 20% reduced cooldowns. "
     "hintJuggernaut"                         "Healing/Mana Ward will have 100% of their mana cost refunded when cast by Juggernaut."
     "hintKOTL"                         "Aghanim's Scepter will give KOTL unobstructed day vision."
@@ -1161,7 +1161,7 @@
     "hintLoneDruid"                         "Lone Druid transfers 50% of damage taken to his Spirit Bear if he has one and its within 1100 range."
     "hintLycan"                         "Shapeshift lasts 20 seconds longer during the night when cast by Lycan."
     "hintMagnus"                         "When Magnus casts Enemy Moving abilities, they will have 25% mana refunded and cooldowns reduced by 25%. Abilities that only move units upwards are not counted."
-    "hintMedusa"                         "Medusa gains +0.5 mana regeneration per active Toggle effect."
+    "hintMedusa"                         "Medusa steals 3% of the damage her attacks deal"
     "hintMirana"                         "When Mirana casts Skillshots, they will have 50% mana refunded and cooldowns reduced by 20%."
     "hintNecrophos"                         "At the start of the game, Necrophos gains a free level of Heartstopper Aura, whether he has it or not."
     "hintOmniknight"                         "Light spells refund 40% of their mana cost when cast by Omniknight."
@@ -1183,8 +1183,8 @@
     "hintTechies"                         "Traps and Explosives will have 50% of their mana refunded and cooldowns reduced by 50% when used by Techies."
     "hintTA"                         "Templar Assassin turns invisible for 10 seconds after not moving for 2 seconds. Invisibility breaks upon moving or attacking."
     "hintTerrorblade"                         "Terrorblade Illusions deal 15% more damage, but also take 15% more damage. "
-    "hintTinker"                         "When Tinker uses Scientific spells, there is a 7% chance for them to be instantly refreshed."
-    "hintTiny"                         "Tiny does 10% increased damage to buildings."
+    "hintTinker"                         "Rearming is 50% for Tinker."
+    "hintTiny"                         "Targetting a tree gives Tiny status resistance"
     "hintTreant"                         "Treant gets healed for the mana cost of any Nature ability he uses."
     "hintTrollWarlord"                         "Rage effects on Troll Warlord have 20% longer duration."
     "hintUnderlord"                         "Underlord gains +2 to all stats for each level put in a custom ability."
@@ -1531,8 +1531,8 @@
     // UNIQUE HERO MECHANICS
     ////////////////
 
-    "unique_mechanic_abaddon"           "For Abaddon, <font color=\'#ffd966\'>Mist Coil</font> self-heals instead of damages and <font color=\'#ffd966\'>Aphotic Shield</font> receives 2 charges."
-    "unique_mechanic_alchemist"                     "At the start of the game, Alchemist gains a free level of <font color=\'#ffd966\'>Greevils Greed</font>, whether he has it or not."
+    "unique_mechanic_abaddon"           "For Abaddon, <font color=\'#ffd966\'>Borrowed Time</font> lasts 25% longer."
+    "unique_mechanic_alchemist"                     "When consuming a durable item, Alchemist gets a 25% refund on the price of <font color=\'#ffd966\'>Consumable items</font>."
     "unique_mechanic_ancient_apparition"            "Ancient Apparition disables the health regeneration of targets when an <font color=\'#ffd966\'>Ice</font> ability debuff is applied."
     "unique_mechanic_antimage"           "After Anti-Mage uses a <font color=\'#ffd966\'>Blink</font>, he will silence enemies within 200 radius for 2 seconds."
     "unique_mechanic_arc_warden"                        "Arc Warden may use a consumable item on himself every 90 seconds without consuming the item. Has double cooldown length if used on Tome of Knowledge."
@@ -1555,18 +1555,18 @@
     "unique_mechanic_dazzle"                        "<font color=\'#ffd966\'>Support</font> spells will have 25% cooldown reduction when cast by Dazzle."
     "unique_mechanic_death_prophet"                        "Any <font color=\'#ffd966\'>Silence</font> applied by Death Prophet also applies Mute."
     "unique_mechanic_disruptor"                        "Disruptor regenerates .5 mp/s for every 10% of mana he is missing."
-    "unique_mechanic_doom_bringer"          "<font color=\'#ffd966\'>Demonic</font> spells cast by Doom will have cooldowns reduced by 25%."
+    "unique_mechanic_doom_bringer"          "<font color=\'#ffd966\'>DOOM</font> is casts as if Doom has scepter, if Doom has scepter cooldown is halved."
     "unique_mechanic_dragon_knight"             "While Dragon Knight is in <font color=\'#ffd966\'>Elder Dragon Form</font>, all of Dragon Knight's abilities apply Dragon Form debuffs. This includes towers."
     "unique_mechanic_drow_ranger"                        "<font color=\'#ffd966\'>Gust</font> also disarms enemies when cast by Drow Ranger."
     "unique_mechanic_earth_spirit"                        "Earth Spirit gains 3+ damage for each point in <font color=\'#ffd966\'>Earth</font> Abilities."
     "unique_mechanic_earthshaker"                        "<font color=\'#ffd966\'>Earth</font> abilities Earthshaker uses heal him for 2% of his health."
     "unique_mechanic_elder_titan"           "Elder Titan gains 3% bonus movement speed for every <font color=\'#ffd966\'>Aura</font> he is carrying."
     "unique_mechanic_ember_spirit"                        "If Ember Spirit has <font color=\'#ffd966\'>Fire Remnant</font>, he will gain a free level at the start of the game. Also, Activate Fire Remnant will have 50% Mana Refunded."
-    "unique_mechanic_enchantress"           "Enchantress can grow plants without the health cost."
+    "unique_mechanic_enchantress"           "Enchantress gets a attack range bonus after attacking a hero."
     "unique_mechanic_enigma"                        "When Enigma dies, <font color=\'#ffd966\'>Black Hole</font>'s cooldown will be refreshed."
     "unique_mechanic_faceless_void"                 "Faceless Void can move freely in friendly and enemy chronospheres."
     "unique_mechanic_gyrocopter"                    "At the start of the game, Gyro gains a free level of <font color=\'#ffd966\'>Side Gunner</font>, whether he has it or not."
-    "unique_mechanic_huskar"                        "Huskar regenerates 1hp/s for every 10% of health he is missing."
+    "unique_mechanic_huskar"                        "Huskar gets 2.5% status resistance for every 10% of health he is missing."
     "unique_mechanic_invoker"           "Invoker gains +5 intelligence each time he uses a different ability, resetting when an ability has been used twice."
     "unique_mechanic_wisp"                   "Wisp gains 1 free level of <font color=\'#ffd966\'>Essence Aura Redux</font>, whether it has it or not."
     "unique_mechanic_jakiro"                        "<font color=\'#ffd966\'>Fire</font> and <font color=\'#ffd966\'>Ice</font> spells cast sequentially will refund 40% mana and have 20% reduced cooldowns. "
@@ -1583,12 +1583,12 @@
     "unique_mechanic_luna"                        "Luna gains 1 free level of <font color=\'#ffd966\'>Lunar Blessing</font>, whether she has it or not."
     "unique_mechanic_lycan"                        "<font color=\'#ffd966\'>Shapeshift</font> lasts 20 seconds longer during the night when cast by Lycan."
     "unique_mechanic_magnataur"                        "When Magnus casts <font color=\'#ffd966\'>Enemy Moving</font> abilities, they will have 25% mana refunded and cooldowns reduced by 25%. Abilities that only move units upwards are not counted."
-    "unique_mechanic_medusa"                        "Medusa gains +0.5 mana regeneration per active <font color=\'#ffd966\'>Toggle</font> effect."
+    "unique_mechanic_medusa"                        "Medusa steals 3% of her damage after landing an attack."
     "unique_mechanic_meepo"                 "Meepo's damage is increased by 5% for every other Meepo on his team. Takes 25% max health as damage whenever a Meepo dies."
     "unique_mechanic_mirana"                        "When Mirana casts <font color=\'#ffd966\'>Skillshots</font>, they will have 50% mana refunded and cooldowns reduced by 20%."
     "unique_mechanic_morphling"                              "Morphling gains 50% bonus movement speed in water."
     "unique_mechanic_monkey_king"                              "At the start of the game, Monkey King gains a free level of <font color=\'#ffd966\'>Jingu Mastery</font>, whether he has it or not."
-    "unique_mechanic_naga_siren"                        "<font color=\'#ffd966\'>Illusion</font> creating abilities will have 50% of their mana refunded and cooldowns reduced by 20%."
+    "unique_mechanic_naga_siren"                        "<font color=\'#ffd966\'>Illusions</font> Take 25% less damage."
     "unique_mechanic_furion"                        "The cooldowns of all <font color=\'#ffd966\'>Teleportation</font> abilities are reduced by 50% for Nature's Prophet."
     "unique_mechanic_necrolyte"                        "At the start of the game, Necrophos gains a free level of <font color=\'#ffd966\'>Heartstopper Aura</font>, whether he has it or not."
     "unique_mechanic_night_stalker"                 "<font color=\'#ffd966\'>Aghanim's Scepter</font> will give Night Stalker unobstructed night vision."
@@ -1600,8 +1600,8 @@
     "unique_mechanic_phantom_assassin"               "When Phantom Assassin uses <font color=\'#ffd966\'>Dagger</font> abilities they will have 50% of their manacost refunded, and their cooldown reduced by 2 second."
     "unique_mechanic_phantom_lancer"            "<font color=\'#ffd966\'>Illusion</font> creating abilities will have cooldowns reduced by 50% when cast by Phantom Lancer."
     "unique_mechanic_phoenix"           "Phoenix passively triggers <font color=\'#ffd966\'>Supernova</font> when taking lethal damage."
-    "unique_mechanic_puck"          "Puck has a 50% chance to reflect disjointed spells."
-    "unique_mechanic_pudge"                        "Pudge receives 2 charges of <font color=\'#ffd966\'>Meat Hook</font>. When Meat Hook deals damage, Pudge receives a debuff which prevents Meat Hook from dealing damage."
+    "unique_mechanic_puck"          "Puck has a 99% chance to reflect disjointed spells."
+    "unique_mechanic_pudge"                        "Pudge has a quicker and longer version of <font color=\'#ffd966\'>Meat Hook</font>."
     "unique_mechanic_pugna"                        "<font color=\'#ffd966\'>Drain</font> spells will have 50% mana refunded and have 25% reduced cooldowns when cast by Pugna."
     "unique_mechanic_queenofpain"           "Queen of Pain deals 10% more damage to <font color=\'#ffd966\'>Male</font> heroes, but recieves 10% more damage from <font color=\'#ffd966\'>Female</font> heroes."
     "unique_mechanic_razor"                        "Reduces the manacost and cooldown of all abilities by 25% when Razor is <font color=\'#ffd966\'>Static Linked</font> to an enemy. Gains free level in <font color=\'#ffd966\'>Unstable Current</font>."
@@ -1625,8 +1625,8 @@
     "unique_mechanic_terrorblade"                        "Terrorblade Illusions deal 15% more damage, but also take 15% more damage."
     "unique_mechanic_tidehunter"                    "When Tidehunter dies, <font color=\'#ffd966\'>Ravage</font>'s cooldown will be refreshed."
     "unique_mechanic_shredder"                      "Timbersaw gains 1% of his max health and mana whenever a nearby tree is cut down."
-    "unique_mechanic_tinker"                        "When Tinker uses <font color=\'#ffd966\'>Scientific</font> spells, there is a 7% chance for them to be instantly refreshed."
-    "unique_mechanic_tiny"                        "Tiny deals 10% more damage to buildings."
+    "unique_mechanic_tinker"                        "Rearming spells with Tinker refunds 50% of that mana"
+    "unique_mechanic_tiny"                        "Tiny gets status resistance for targetting trees with abilities"
     "unique_mechanic_treant"                        "Treant gets healed for the mana cost of any <font color=\'#ffd966\'>Nature</font> ability he uses."
     "unique_mechanic_troll_warlord"                 "<font color=\'#ffd966\'>Skull Basher</font> and  <font color=\'#ffd966\'>Abyssal Blade</font> will not proc for this hero. <font color=\'#ffd966\'>Rage</font> effects on Troll Warlord have 20% longer duration."
     "unique_mechanic_tusk"           "<font color=\'#ffd966\'>Walrus Kick</font> and <font color=\'#ffd966\'>Walrus Punch</font> will refund their manacost when used by Tusk."
@@ -3840,11 +3840,11 @@
 
     /// ABADDON​
     "DOTA_Tooltip_modifier_npc_dota_hero_abaddon_perk"  "Abaddon Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_abaddon_perk_Description"  "For Abaddon, Mist Coil self-heals instead of damages and Aphotic Shield receives 2 charges. <br><br><font color=\'#7D7D7D\'>By Yahnich | github.com/Yahnich</font>"
+    "DOTA_Tooltip_modifier_npc_dota_hero_abaddon_perk_Description"  "When Abaddon casts Borrowed Time, it lasts 25% longer."
 
     /// ALCHEMIST​
     "DOTA_Tooltip_modifier_npc_dota_hero_alchemist_perk"    "Alchemist Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_alchemist_perk_Description"    "At the start of the game, Alchemist gains a free level of Greevils Greed, whether he has it or not. <br><br><font color=\'#7D7D7D\'>By Wouterz90 | github.com/Wouterz90</font>"
+    "DOTA_Tooltip_modifier_npc_dota_hero_alchemist_perk_Description"    "Alchemist gets a 25% refund after consuming an item over 1000 gold."
 
     /// ANCIENT APPARITION​
     "DOTA_Tooltip_modifier_npc_dota_hero_ancient_apparition_perk"   "AA Perk"
@@ -3944,7 +3944,7 @@
 
     /// DOOM​
     "DOTA_Tooltip_modifier_npc_dota_hero_doom_bringer_perk" "Doom Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_doom_bringer_perk_Description" "Demonic spells cast by Doom will have cooldowns reduced by 25%d%.<br><br><font color=\'#7D7D7D\'>By TideSofDarK | github.com/TideSofDarK</font>"
+    "DOTA_Tooltip_modifier_npc_dota_hero_doom_bringer_perk_Description" "Doom casts doom as if he has scepter, if Doom has scepter the cooldown will be reduced by 50%."
 
     /// DRAGON KNIGHT​
     "DOTA_Tooltip_modifier_npc_dota_hero_dragon_knight_perk"    "Dragon Knight Perk"
@@ -3972,7 +3972,7 @@
 
     /// ENCHANTRESS​
     "DOTA_Tooltip_modifier_npc_dota_hero_enchantress_perk"  "Enchantress Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_enchantress_perk_Description"  "Enchantress can creates plants without the health penalty.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
+    "DOTA_Tooltip_modifier_npc_dota_hero_enchantress_perk_Description"  "Enchantress will get a brief attack range bonus after hitting a hero."
 
     /// ENIGMA​
     "DOTA_Tooltip_modifier_npc_dota_hero_enigma_perk"   "Enigma Perk"
@@ -3985,7 +3985,7 @@
 
     /// HUSKAR​
     "DOTA_Tooltip_modifier_npc_dota_hero_huskar_perk"   "Huskar Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_huskar_perk_Description"   "Huskar regenerates 1hp/s for every 10%d% of health he is missing.<br><br><font color=\'#7D7D7D\'>By TideSofDarK | github.com/TideSofDarK</font>"
+    "DOTA_Tooltip_modifier_npc_dota_hero_huskar_perk_Description"   "Huskar gets 2.5%d% status resistance 10%d% of health he is missing.</font>"
 
     /// INVOKER​
     "DOTA_Tooltip_modifier_npc_dota_hero_invoker_perk"  "Invoker Perk"
@@ -4055,7 +4055,7 @@
 
     /// MEDUSA​
     "DOTA_Tooltip_modifier_npc_dota_hero_medusa_perk"  "Medusa Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_medusa_perk_Description"  "Gain +0.5 mana regeneration per active Toggle effect.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
+    "DOTA_Tooltip_modifier_npc_dota_hero_medusa_perk_Description"  "Medusa steals 2.5%d% of the attack damage she deals."
 
     /// MEEPO
     "DOTA_Tooltip_modifier_npc_dota_hero_meepo_perk"  "Meepo Perk"
@@ -4075,7 +4075,7 @@
 
     /// NAGA SIREN​
     "DOTA_Tooltip_modifier_npc_dota_hero_naga_siren_perk"   "Naga Siren Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_naga_siren_perk_Description"   "Illusion creating abilities will have 50%d% of their mana refunded and cooldowns reduced by 20%d%.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
+    "DOTA_Tooltip_modifier_npc_dota_hero_naga_siren_perk_Description"   "Illusion creating abilities will receive 25%d% less damage"
 
     /// NATURE'S PROPHET​
     "DOTA_Tooltip_modifier_npc_dota_hero_furion_perk"   "Nature's Prophet Perk"
@@ -4083,7 +4083,7 @@
 
     /// NECROPHOS​
     "DOTA_Tooltip_modifier_npc_dota_hero_necrolyte_perk"               "Necrophos Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_necrolyte_perk_Description"   "Gained a free level of Heartstopper Aura.<br><br><font color=\'#7D7D7D\'>By Yahnich | github.com/Yahnich</font>"
+    "DOTA_Tooltip_modifier_npc_dota_hero_necrolyte_perk_Description"   "Gained a free level of Death Pulse."
 
     /// NIGHT STALKER PERK HARD-CODED INGAME
 
@@ -4117,7 +4117,7 @@
 
     /// PHANTOM LANCER​
     "DOTA_Tooltip_modifier_npc_dota_hero_phantom_lancer_perk"   "Phantom Lancer Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_phantom_lancer_perk_Description"   "Illusion creating abilities will have cooldowns reduced by 50%d%.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
+    "DOTA_Tooltip_modifier_npc_dota_hero_phantom_lancer_perk_Description"   "Phantom Lancer illusions have 25% movespeed bonus"
     //"DOTA_Tooltip_modifier_npc_dota_hero_phantom_lancer_cooldown"   "Recharging"
     //"DOTA_Tooltip_modifier_npc_dota_hero_phantom_lancer_cooldown_Description"   "Phantom Rush is on cooldown."
 
@@ -4129,11 +4129,11 @@
 
     /// PUCK
     "DOTA_Tooltip_modifier_npc_dota_hero_puck_perk" "Puck Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_puck_perk_Description" "Puck has a 50%d% to reflect any projectile he disjoints. <br><br><font color=\'#7D7D7D\'>By Wouterz90 | github.com/Wouterz90</font>"
+    "DOTA_Tooltip_modifier_npc_dota_hero_puck_perk_Description" "Puck has a 99%d% to reflect any projectile he disjoints. <br><br><font color=\'#7D7D7D\'>By Wouterz90 | github.com/Wouterz90</font>"
 
     /// PUDGE​
     "DOTA_Tooltip_modifier_npc_dota_hero_pudge_perk"    "Pudge Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_pudge_perk_Description"    "Pudge receives 2 charges of Meat Hook. When Meat Hook deals damage, Pudge receives a debuff which prevents Meat Hook from dealing damage.<br><br><font color=\'#7D7D7D\'>By Yahnich | github.com/Yahnich</font>"
+    "DOTA_Tooltip_modifier_npc_dota_hero_pudge_perk_Description"    "Pudge has a longer and quicker hook than any other hero."
     "DOTA_Tooltip_modifier_npc_dota_hero_pudge_hook_no_damage" "Blunt Hook"
     "DOTA_Tooltip_modifier_npc_dota_hero_pudge_hook_no_damage_Description" "Hook will do no damage, but will still drag."
 
@@ -4187,7 +4187,7 @@
 
     /// SLARK​
     "DOTA_Tooltip_modifier_npc_dota_hero_slark_perk"    "Slark Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_slark_perk_Description"    "Slark gains +3 agility for each level put in an mobility/escape skill.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
+    "DOTA_Tooltip_modifier_npc_dota_hero_slark_perk_Description"    "Slark starts with 1 level of dark pact, whether he has it or not. Also, Slark casts it every 10 seconds, and won't take any damage from dark pact."
 
     /// SNIPER
     "DOTA_Tooltip_modifier_npc_dota_hero_sniper_perk"   "Sniper Perk"
@@ -4195,9 +4195,9 @@
 
     /// SPECTRE​
     "DOTA_Tooltip_modifier_npc_dota_hero_spectre_perk"  "Spectre Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_spectre_perk_Description"  "Spectre gains flying movement for 4 seconds every time she uses an ability.<br><br><font color=\'#7D7D7D\'>By Yahnich | github.com/Yahnich</font>"
-    "DOTA_Tooltip_modifier_npc_dota_hero_spectre_phased"    "Phased"
-    "DOTA_Tooltip_modifier_npc_dota_hero_spectre_phased_Description"    "Spectre's Perk. Spectre has flying movement after casting a spell."
+    "DOTA_Tooltip_modifier_npc_dota_hero_spectre_perk_Description"  "Spectre get's a 100ms boost when walking towards the target of the last ability."
+    //"DOTA_Tooltip_modifier_npc_dota_hero_spectre_phased"    "Rushed"
+    //"DOTA_Tooltip_modifier_npc_dota_hero_spectre_phased_Description"    "Spectre's Perk. Spectre will move faster towards the last cast unit/position."
 
     /// SPIRIT BREAKER​
     "DOTA_Tooltip_modifier_npc_dota_hero_spirit_breaker_perk"  "Space Cow Perk"
@@ -4233,15 +4233,15 @@
 
     /// TIMBERSAW​
     "DOTA_Tooltip_modifier_npc_dota_hero_shredder_perk" "Timbersaw Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_shredder_perk_Description" "Timbersaw gains 1% of his max health and mana whenever a nearby tree is cut down.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
+    "DOTA_Tooltip_modifier_npc_dota_hero_shredder_perk_Description" "Timbersaw gains 3% of his max health and mana whenever a nearby tree is cut down.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
 
     /// TINKER​
     "DOTA_Tooltip_modifier_npc_dota_hero_tinker_perk"   "Tinker Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_tinker_perk_Description"   "When Tinker uses Scientific spells, there is a 7%d% chance for them to be instantly refreshed.<br><br><font color=\'#7D7D7D\'>By Yahnich | github.com/Yahnich</font>"
+    "DOTA_Tooltip_modifier_npc_dota_hero_tinker_perk_Description"   "Rearm and rearm redux cost 50% less mana on Tinker."
 
     /// TINY​
     "DOTA_Tooltip_modifier_npc_dota_hero_tiny_perk" "Tiny Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_tiny_perk_Description" "Increases damage done to buildings by 10%d%.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
+    "DOTA_Tooltip_modifier_npc_dota_hero_tiny_perk_Description" "Whenever Tiny casts a spell that targetted a tree, he gains 2.5%d% status resistance for 45 seconds."
 
     /// TREANT PROTECTOR​
     "DOTA_Tooltip_modifier_npc_dota_hero_treant_perk"   "Treant Perk"
@@ -5208,6 +5208,18 @@
     "DOTA_Tooltip_ability_sniper_assassinate_redux_tooltip_range" "RANGE:"
     "DOTA_Tooltip_ability_sniper_assassinate_redux_scepter_radius" "SCEPTER RADIUS:"
     "DOTA_Tooltip_ability_sniper_assassinate_redux_scepter_crit_bonus" "SCEPTER CRIT:"
+
+    "DOTA_Tooltip_ability_pudge_meat_hook_perk"                                          "Meat Hook"
+    "DOTA_Tooltip_ability_pudge_meat_hook_perk_Description"                              "Launches a bloody hook toward a unit or location. The hook will snag the first uit encounters, dragging the unit back to Pudge and dealing damage if it is an enemy.\n\nUpgradable by Aghanim's Scepter."
+    "DOTA_Tooltip_ability_pudge_meat_hook_perk_Lore"                                     "The Butcher's hook is a symbolic nightmare, its curved blade a frightening reminof his slaughterous intent."
+    "DOTA_Tooltip_ability_pudge_meat_hook_perk_Note0"                                    "Interrupts channeling spells of the primary target if it's an enemy."
+    "DOTA_Tooltip_ability_pudge_meat_hook_perk_Note1"                                    "Meat Hook hits invisible units."
+    "DOTA_Tooltip_ability_pudge_meat_hook_perk_Note2"                                    "Meat Hook can go through trees, cliffs and buildings."
+    "DOTA_Tooltip_ability_pudge_meat_hook_perk_Note3"                                    "Meat Hook can drag friendly units, but they won't be damaged."
+    "DOTA_Tooltip_ability_pudge_meat_hook_perk_hook_distance"                            "RANGE:"
+    "DOTA_Tooltip_ability_pudge_meat_hook_perk_cooldown_scepter"                         "SCEPTER COOLDOWN:"
+    "DOTA_Tooltip_ability_pudge_meat_hook_perk_damage_scepter"                           "SCEPTER DAMAGE:"
+    "DOTA_Tooltip_ability_pudge_meat_hook_perk_aghanim_description"                      "Reduces cooldown and increases damage."
 
     "DOTA_Tooltip_ability_necrolyte_sadist_lod"                                        "Sadist (pre 7.00)"
     "DOTA_Tooltip_ability_necrolyte_sadist_lod_Description"                            "Necrolytephos gains health and mana regeneration every time he kills a unit. Hero kills grant 10 times the bonus."

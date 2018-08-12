@@ -39,31 +39,22 @@ function modifier_npc_dota_hero_crystal_maiden_perk:DeclareFunctions()
 end
 
 function modifier_npc_dota_hero_crystal_maiden_perk:OnCreated()
-	if not self.movementSpeed then self.movementSpeed = 0 end
-	self.baseMovement = 2
-	if IsServer() then
-		self:StartIntervalThink(0.1)
-	end
-end
+	if IsClient() then return end
+	local caster = self:GetParent()
 
-function modifier_npc_dota_hero_crystal_maiden_perk:OnIntervalThink()
-	if IsServer() then
-		local maiden = self:GetParent()
-		for i=0, maiden:GetAbilityCount() do
-			local skill = maiden:GetAbilityByIndex(i)
-			if skill and skill:HasAbilityFlag("support") then
-				if not skill.maidenPerkLvl then skill.maidenPerkLvl = skill:GetLevel() end
-				if skill:GetLevel() > skill.maidenPerkLvl then
-					local increase = (skill:GetLevel() - skill.maidenPerkLvl)
-					local stacks = self:GetStackCount()
-					self:SetStackCount(stacks + increase)
-					skill.maidenPerkLvl = skill:GetLevel()
-				end
+	local aura = caster:FindAbilityByName("crystal_maiden_brilliance_aura")
+	
+	for i = 0,5 do
+		local ability = caster:GetAbilityByIndex(i)
+		if ability and ability:HasAbilityFlag("ice") then
+			if not aura then
+				aura = caster:AddAbility("crystal_maiden_brilliance_aura")
 			end
+			aura:UpgradeAbility(false)
 		end
 	end
+
 end
 
-function modifier_npc_dota_hero_crystal_maiden_perk:GetModifierMoveSpeedBonus_Constant()
-	return self.baseMovement * self:GetStackCount()
-end
+
+

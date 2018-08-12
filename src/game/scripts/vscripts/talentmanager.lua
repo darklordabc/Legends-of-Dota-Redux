@@ -45,7 +45,11 @@ function StoreTalents()
     for ability,params in pairs(allHeroes) do
         if type(params) == "table" then
             if params.TalentRank then
-                TalentList[params.TalentRank][ability] = params.TalentRequiredAbility
+                if params.TalentRequiredAbility then
+                    TalentList[params.TalentRank][ability] = params.TalentRequiredAbility
+                else
+                    TalentList["basic"..t][ability] = hero
+                end
             end
         end
     end
@@ -63,9 +67,9 @@ function AddTalents(hero,build)
         for k,v in pairs(ViableTalents[nTalentRank]) do
             if c == rnd then
                 talent = k
-                table.insert(hero.heroTalentList,k)
+                --table.insert(hero.heroTalentList,k)
                 TalentList["count"..nTalentRank] = TalentList["count"..nTalentRank] - 1
-                break
+                return k
             end
             c = c + 1
         end
@@ -87,21 +91,21 @@ function AddTalents(hero,build)
                 local hasTalent = false
                 for K,V in pairs(hero.heroTalentList) do
                     if V==k then
-                        hasTalent = true
+                        return k
                     end
                 end
-                if not hasTalent then
-                    table.insert(hero.heroTalentList,k)
-                end
-                return
+                --if not hasTalent then
+                    --table.insert(hero.heroTalentList,k)
+                    
+                --end
             end
         end
 
         for k,v in pairs(TalentList["basic"..nTalentRank]) do
             if c == rnd then
-                table.insert(hero.heroTalentList,k)
+                --table.insert(hero.heroTalentList,k)
                 --TalentList["basicCount"..i] = TalentList["basicCount"..i] - 1
-                break
+                return k
             end
             c = c +1
         end
@@ -126,18 +130,36 @@ function AddTalents(hero,build)
     hero.ViableTalents = ViableTalents
     for i=1,4 do
         if hero.ViableTalents["count"..i] >= 2 then
-            FindAbilityTalentFromList(i)
-            FindAbilityTalentFromList(i)
+            local a = FindAbilityTalentFromList(i)
+            local b = FindAbilityTalentFromList(i)
+            --[[while a == b or not b do
+                b = FindAbilityTalentFromList(i)
+            end]]
+            table.insert(hero.heroTalentList,a)
+            table.insert(hero.heroTalentList,b)
         elseif hero.ViableTalents["count"..i] == 1 then
-            FindAbilityTalentFromList(i)
-            FindNormalTalentFromList(i)
+            local a = FindAbilityTalentFromList(i)
+            local b = FindNormalTalentFromList(i)
+            --[[while a == b or not b do
+                b = FindAbilityTalentFromList(i)
+            end]]
+            table.insert(hero.heroTalentList,a)
+            table.insert(hero.heroTalentList,b)
+
         else
-            FindNormalTalentFromList(i)
-            FindNormalTalentFromList(i)
+            local a = FindNormalTalentFromList(i)
+            local b = FindNormalTalentFromList(i)
+            --[[while a == b or not b do
+                b = FindAbilityTalentFromList(i)
+            end]]
+            table.insert(hero.heroTalentList,a)
+            table.insert(hero.heroTalentList,b)
         end
     end
     for k,v in pairs(hero.heroTalentList) do
-        hero:AddAbility(v)
-    end
 
+        local a = hero:AddAbility(v)
+        if not a then
+        end
+    end
 end

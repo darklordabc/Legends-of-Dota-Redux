@@ -29,7 +29,7 @@ if IsServer() then
     end
 end
 --------------------------------------------------------------------------------------------------------
-function modifier_npc_dota_hero_huskar_perk:DeclareFunctions()
+--[[function modifier_npc_dota_hero_huskar_perk:DeclareFunctions()
     local funcs = {
         MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT
     }
@@ -39,6 +39,10 @@ end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_huskar_perk:GetModifierConstantHealthRegen()
     return 1 * self:GetStackCount()
+end]]
+
+function modifier_npc_dota_hero_huskar_perk:GetTenacity()
+    return 3 * self:GetStackCount()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_huskar_perk:IsPurgable()
