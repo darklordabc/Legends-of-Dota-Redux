@@ -115,6 +115,7 @@ modifier_item_aeon_disk_consumable = class({
 	OnTakeDamage = function(self, keys)
 		if not IsServer() or self:GetParent() ~= keys.unit then return end
 		if keys.damage <= 0 then return end
+		if keys.unit:IsIllusion() then return end
 		if self:GetAbility():IsItem() and not self:GetAbility():IsCooldownReady() or not self:GetAbility():IsItem() and self:GetRemainingTime() >= 0 then return end
 		if keys.attacker:IsControllableByAnyPlayer() then
 			if self:GetParent():GetHealth() <= self:GetParent():GetMaxHealth() * self:GetAbility():GetSpecialValueFor("health_threshold_pct") * 0.01 then

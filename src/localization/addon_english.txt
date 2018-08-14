@@ -17865,4 +17865,6 @@
     "DOTA_Tooltip_ability_special_unique_status_resistance_15_redux" "+15 Status resistance"
     "DOTA_Tooltip_ability_special_unique_status_resistance_20_redux" "+20 Status resistance"
     "DOTA_Tooltip_ability_special_unique_status_resistance_25_redux" "+25 Status resistance"
+
+    "DOTA_Tooltip_ability_special_bonus_unique_silencer_5" "25% chance to silence 1s with glaives"
 }

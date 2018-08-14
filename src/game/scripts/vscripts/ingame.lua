@@ -2185,6 +2185,14 @@ function Ingame:FilterModifiers( filterTable )
     local caster = EntIndexToHScript( caster_index )
     local ability = EntIndexToHScript( ability_index ) or nil
 
+    -- Lazy fix for glaives of wisdom, Think of a better idea later.
+
+    if ability:GetAbilityName() == "silencer_glaives_of_wisdom" then
+        if RollPercentage(75) then
+            return false
+        end
+    end
+
      -- Hero perks
     if not OptionManager:GetOption('disablePerks') then
         filterTable = heroPerksModifierFilter(filterTable)
