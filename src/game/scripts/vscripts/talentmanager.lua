@@ -27,10 +27,10 @@ function StoreTalents()
                     local t = math.ceil(i/2)
                     if params["Ability"..n] then
                         local talentName = abilitiesOverride[params["Ability"..n]]
-                        if talentName and talentName.TalentRequiredAbility then
+                        if talentName and talentName.TalentRequiredAbility and not TalentList[t][params["Ability"..n]] then
                             TalentList[t][params["Ability"..n]] = talentName.TalentRequiredAbility
                             TalentList["count"..t] = TalentList["count"..t] + 1
-                        elseif string.find(params["Ability"..n],"special_bonus_") and not string.find(params["Ability"..n],"special_bonus_unique") then
+                        elseif string.find(params["Ability"..n],"special_bonus_") and not string.find(params["Ability"..n],"special_bonus_unique") and not TalentList["basic"..t][params["Ability"..n]] then
                             TalentList["basic"..t][params["Ability"..n]] = hero
                             TalentList["basicCount"..t] = TalentList["basicCount"..t] + 1
                         end
@@ -42,13 +42,17 @@ function StoreTalents()
 
     -- Get all custom talents
     local customAbilities = LoadKeyValues('scripts/npc/npc_abilities_custom.txt')
-    for ability,params in pairs(allHeroes) do
+    for ability,params in pairs(customAbilities) do
         if type(params) == "table" then
             if params.TalentRank then
-                if params.TalentRequiredAbility then
+                if params.TalentRequiredAbility and not TalentList[params.TalentRank][ability] then
                     TalentList[params.TalentRank][ability] = params.TalentRequiredAbility
+                    TalentList["count"..t] = TalentList["count"..t] + 1
                 else
-                    TalentList["basic"..t][ability] = hero
+                    if TalentList["basic"..params.TalentRank][ability] then
+                        TalentList["basic"..params.TalentRank][ability] = hero
+                        TalentList["basicCount"..t] = TalentList["basicCount"..t] + 1
+                    end
                 end
             end
         end
@@ -62,13 +66,14 @@ function AddTalents(hero,build)
     local function FindAbilityTalentFromList(nTalentRank)
         local ViableTalents = hero.ViableTalents
         local talent
-        local rnd = math.random(1,ViableTalents["count"..nTalentRank])
+        local rnd = RandomInt(1,ViableTalents["count"..nTalentRank])
         local c = 1
         for k,v in pairs(ViableTalents[nTalentRank]) do
             if c == rnd then
                 talent = k
                 --table.insert(hero.heroTalentList,k)
-                TalentList["count"..nTalentRank] = TalentList["count"..nTalentRank] - 1
+                --TalentList["count"..nTalentRank] = TalentList["count"..nTalentRank] - 1
+                --ViableTalents[nTalentRank][k] = nil
                 return k
             end
             c = c + 1
@@ -79,18 +84,14 @@ function AddTalents(hero,build)
     end
 
     local function FindNormalTalentFromList(nTalentRank)
-        local m = 0
-        for k,v in pairs(TalentList["basic"..nTalentRank]) do
-            m = m +1
-        end
-        local rnd = math.random(1,m)
-        local c = 1
+        local m = TalentList["basicCount"..nTalentRank]
+
+        local rnd = RandomInt(1,m)
 
         for k,v in pairs(TalentList["basic"..nTalentRank]) do
             if v == hero:GetUnitName() then
-                local hasTalent = false
                 for K,V in pairs(hero.heroTalentList) do
-                    if V==k then
+                    if V~=k then
                         return k
                     end
                 end
@@ -100,8 +101,9 @@ function AddTalents(hero,build)
                 --end
             end
         end
-
+        local c = 1
         for k,v in pairs(TalentList["basic"..nTalentRank]) do
+            print(k,c== rnd)
             if c == rnd then
                 --table.insert(hero.heroTalentList,k)
                 --TalentList["basicCount"..i] = TalentList["basicCount"..i] - 1
@@ -132,26 +134,39 @@ function AddTalents(hero,build)
         if hero.ViableTalents["count"..i] >= 2 then
             local a = FindAbilityTalentFromList(i)
             local b = FindAbilityTalentFromList(i)
-            --[[while a == b or not b do
+            local j = 0
+            while j<100 and (a == b or not b) do
                 b = FindAbilityTalentFromList(i)
-            end]]
+                j = j +1
+            end
+            if j == 100 and not b then
+                b = FindNormalTalentFromList(i)
+            end
             table.insert(hero.heroTalentList,a)
             table.insert(hero.heroTalentList,b)
         elseif hero.ViableTalents["count"..i] == 1 then
             local a = FindAbilityTalentFromList(i)
             local b = FindNormalTalentFromList(i)
-            --[[while a == b or not b do
+            while not hero:IsRangedAttacker() and string.find(b,"special_bonus_attack_range") do
                 b = FindAbilityTalentFromList(i)
-            end]]
+            end
             table.insert(hero.heroTalentList,a)
             table.insert(hero.heroTalentList,b)
 
         else
             local a = FindNormalTalentFromList(i)
             local b = FindNormalTalentFromList(i)
-            --[[while a == b or not b do
+            local j = 0
+            while not hero:IsRangedAttacker() and string.find(a,"special_bonus_attack_range") do
+                a = FindAbilityTalentFromList(i)
+            end
+            while not hero:IsRangedAttacker() and string.find(b,"special_bonus_attack_range") do
                 b = FindAbilityTalentFromList(i)
-            end]]
+            end
+            while j<100 and (a == b or not b) do
+                b = FindAbilityTalentFromList(i)
+                j = j +1
+            end
             table.insert(hero.heroTalentList,a)
             table.insert(hero.heroTalentList,b)
         end

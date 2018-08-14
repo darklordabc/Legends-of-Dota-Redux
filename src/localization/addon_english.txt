@@ -17861,4 +17861,8 @@
     "DOTA_Tooltip_ability_fountain_break_aura"  "Fountain Break"
     "DOTA_Tooltip_ability_fountain_break_aura_Description"  "Nearby enemies will have their passives disabled"
     "DOTA_Tooltip_ability_fountain_break_aura_radius"  "RADIUS:"
+
+    "DOTA_Tooltip_ability_special_unique_status_resistance_15_redux" "+15 Status resistance"
+    "DOTA_Tooltip_ability_special_unique_status_resistance_20_redux" "+20 Status resistance"
+    "DOTA_Tooltip_ability_special_unique_status_resistance_25_redux" "+25 Status resistance"
 }

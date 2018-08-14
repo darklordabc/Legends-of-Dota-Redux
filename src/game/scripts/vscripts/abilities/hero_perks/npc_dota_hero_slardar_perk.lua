@@ -49,7 +49,7 @@ function perkSlardar(filterTable)
 
   if ability and attacker:HasModifier("modifier_npc_dota_hero_slardar_perk") then
     if damageType == DAMAGE_TYPE_PHYSICAL then
-      filterTable.damage = filterTable.damage * 1.25
+      filterTable.damage = filterTable.damage * 1.2
     end
   end
   return filterTable

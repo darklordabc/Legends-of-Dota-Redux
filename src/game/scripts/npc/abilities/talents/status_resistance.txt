@@ -1,0 +1,18 @@
+"DOTAAbilities" {
+  "special_unique_status_resistance_20_redux" 
+  {
+    "BaseClass"               "special_bonus_unique_antimage_3"
+    "TalentRank"              "3"
+  }
+  "special_unique_status_resistance_25_redux" 
+  {
+    "BaseClass"               "special_bonus_unique_antimage_3"
+    "TalentRank"              "4"
+  }
+  "special_unique_status_resistance_15_redux" 
+  {
+    "BaseClass"               "special_bonus_unique_antimage_3"
+    "TalentRank"              "2"
+  }
+}
+

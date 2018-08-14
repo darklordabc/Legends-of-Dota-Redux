@@ -643,7 +643,9 @@
 #base "abilities\unpickable\neutral_regen_aura.txt"
 #base "abilities\unpickable\phase_datadriven.txt"
 #base "abilities\unpickable\treant_eyes_in_the_forest_notification.txt"
-#base "abilities/overthrow.txt"
+#base "abilities\overthrow.txt"
+#base "abilities\talents\status_resistance.txt"
+
 
 "DOTAAbilities" {
 

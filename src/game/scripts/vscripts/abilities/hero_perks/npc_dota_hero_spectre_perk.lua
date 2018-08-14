@@ -55,7 +55,6 @@ function modifier_npc_dota_hero_spectre_perk:GetModifierMoveSpeedBonus_Constant(
 	end
 	local direction = self:GetParent():GetForwardVector()
 	local normal = (target-self:GetParent():GetAbsOrigin()):Normalized()
-	print(normal:Dot(direction))
 	if normal:Dot(direction) > 0.7 then
 		return 100
 	end

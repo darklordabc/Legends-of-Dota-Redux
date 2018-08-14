@@ -321,6 +321,14 @@ function Ingame:OnPlayerLearnedAbility( keys )
                 end
             end
         end, DoUniqueString("fixManyCharges"), 0.3)
+        -- Custom stat bonus talents
+        if string.find(abilityName,"special_bonus") and string.find(abilityName,"redux") then
+            local hero = PlayerResource:GetSelectedHeroEntity(keys.PlayerID)
+            if hero then
+                LinkLuaModifier("modifier_"..abilityName,"abilities/talents"..abilityName..".lua",LUA_MODIFIER_MOTION_NONE)
+                hero:AddNewModifier(hero,nil,"modifier_"..abilityName,{})
+            end
+        end
     end
 end
 
