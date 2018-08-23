@@ -1546,7 +1546,7 @@
     "unique_mechanic_bristleback"                        "Bristleback reduces the cooldown of all spells which cost less than 50 mana by 15%."
     "unique_mechanic_broodmother"                        "Non-ultimate <font color=\'#ffd966\'>Summon</font> abilities will have 20% mana cost refunded and 20% reduced cooldown. "
     "unique_mechanic_centaur"               "Centaur Warrunnertakes 75% damage from  <font color=\'#ffd966\'>Self-Damaging</font> spells."
-    "unique_mechanic_chaos_knight"                        "Chaos Knight gains 200 extra gold for each ability he randoms. "
+    "unique_mechanic_chaos_knight"                        "Chaos Knight starts with 1 level of backtrack"
     "unique_mechanic_chen"                   "When Chen casts <font color=\'#ffd966\'>Holy Persuasion</font> on a creep they will receive an extra ability."
     "unique_mechanic_clinkz"                        "Clinkz will receive a free level in his first non-ultimate <font color=\'#ffd966\'>Autocast</font> ability at the start of the game."
     "unique_mechanic_rattletrap"                        "Clockwerk fires a random flare to any part of the map every 15 seconds. Scales with <font color=\'#ffd966\'>Rocket Flare</font>."
@@ -1593,7 +1593,7 @@
     "unique_mechanic_necrolyte"                        "At the start of the game, Necrophos gains a free level of <font color=\'#ffd966\'>Heartstopper Aura</font>, whether he has it or not."
     "unique_mechanic_night_stalker"                 "<font color=\'#ffd966\'>Aghanim's Scepter</font> will give Night Stalker unobstructed night vision."
     "unique_mechanic_nyx_assassin"                        "Nyx Assassin gains 10% bonus movement speed when invisible."
-    "unique_mechanic_ogre_magi"                        "When Ogre Magi casts a spell, there is a 2% chance to refund the manacost of that spell and refresh its cooldown."
+    "unique_mechanic_ogre_magi"                        "When Ogre Magi casts a spell, he also bloodlusts himself"
     "unique_mechanic_omniknight"                        "<font color=\'#ffd966\'>Light</font> spells refund 40% of their mana cost when cast by Omniknight."
     "unique_mechanic_oracle"                        "Support items used by Oracle will have their cooldowns reduced by 20%."
     "unique_mechanic_obsidian_destroyer"                        "<font color=\'#ffd966\'>Astral Imprisonment</font> steals 7 intelligence for 60 seconds when cast by Outworld Devourer."
@@ -1792,6 +1792,7 @@
     //"warning_gyrocopter_call_down"          "<font color=\'#FF4949\'>Hero Requirement:</font> Aghanim's Scepter Side Side Gunner Bonus will only work if you play as <font color=\'#70EA72\'>Gyrocopter.</font>  Side Gunner will apply even without having Call Down ability.</font>"
     "warning_tusk_walrus_punch"         "<font color=\'#FF4949\'>Warning:</font> Aghanim's Scepter will not give <font color=\'#70EA72\'>Walrus Kick.</font>"
     "warning_meepo_divided_we_stand"            "<font color=\'#FF4949\'>Warning:</font> If a clone is killed, death timer percentage reductions will not apply."
+
     "warning_invoker_alacrity_lod" "<font color=\'#FF4949\'>Warning:</font> Aghanim's Scepter will lock this ability to its level 1 version."
     "warning_invoker_chaos_meteor_lod" "<font color=\'#FF4949\'>Warning:</font> Aghanim's Scepter will lock this ability to its level 1 version."
     "warning_invoker_chaos_meteor_op" "<font color=\'#FF4949\'>Warning:</font> Aghanim's Scepter will lock this ability to its level 1 version."
@@ -2359,6 +2360,11 @@
     "DOTA_Tooltip_ability_faceless_void_chronosphere_redux_duration"                      "DURATION:"
     "DOTA_Tooltip_ability_faceless_void_chronosphere_redux_cooldown_scepter"              "SCEPTER COOLDOWN:"
     "DOTA_Tooltip_ability_faceless_void_chronosphere_redux_aghanim_description"           "Decreases cooldown."
+
+    "DOTA_Tooltip_ability_faceless_void_backtrack"                               "Backtrack"
+    "DOTA_Tooltip_ability_faceless_void_backtrack_Description"                   "Has a random chance to completely dodge incoming damage"
+    "DOTA_Tooltip_ability_faceless_void_backtrack_dodge_chance_pct"              "DODGE CHANCE"
+    
 
     // Alchemist
     "DOTA_Tooltip_ability_alchemist_chemical_rage_lod"                              "Chemical Rage"
@@ -3906,7 +3912,7 @@
 
     /// CHAOS KNIGHT​
     "DOTA_Tooltip_modifier_npc_dota_hero_chaos_knight_perk"  "Chaos Knight Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_chaos_knight_perk_Description"  "Chaos Knight gains 200 extra gold for each ability he randoms.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
+    "DOTA_Tooltip_modifier_npc_dota_hero_chaos_knight_perk_Description"  "Starts with 1 level of backtrack</font>"
 
     ///CHEN
     "DOTA_Tooltip_modifier_npc_dota_hero_chen_perk" "Chen Perk"
@@ -4093,7 +4099,7 @@
 
     /// OGRE MAGI​
     "DOTA_Tooltip_modifier_npc_dota_hero_ogre_magi_perk"    "Ogre Magi Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_ogre_magi_perk_Description"    "When Ogre Magi casts a spell, there is a 2%d% chance to refund the manacost of that spell and refresh its cooldown.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
+    "DOTA_Tooltip_modifier_npc_dota_hero_ogre_magi_perk_Description"    "When Ogre Magi casts a spell, he will bloodlust himself"
 
     /// OMNIKNIGHT​
     "DOTA_Tooltip_modifier_npc_dota_hero_omniknight_perk"   "Omniknight Perk"

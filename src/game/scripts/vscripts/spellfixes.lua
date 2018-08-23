@@ -114,7 +114,7 @@ ListenToGameEvent('dota_player_used_ability', function(keys)
 
             -- Check if they have multicast
             local multicastMadness = OptionManager:GetOption('multicastMadness')
-            if canMulticast(keys.abilityname) and not hero:PassivesDisabled() then
+            if canMulticast(keys.abilityname) and not hero:PassivesDisabled() and not string.find(keys.abilityname,"consumable") then
                 local mab = hero:FindAbilityByName('ogre_magi_multicast_lod')
                 if not mab and multicastMadness then
                     mab = hero:AddAbility("ogre_magi_multicast_lod")

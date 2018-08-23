@@ -872,6 +872,11 @@
         "ReduxCost"                                                            "20"
         "ReduxBans"                                                            "tinker_rearm | arc_warden_tempest_double | arc_warden_tempest_double_redux | meepo_divided_we_stand"
     }
+    "faceless_void_backtrack"
+    {
+        "ReduxFlags"                                                           "upgradeable | tank"
+        "ReduxCost"                                                            "40"
+    }
     "huskar_life_break"
     {
         "ReduxFlags"                                                           "upgradeable"

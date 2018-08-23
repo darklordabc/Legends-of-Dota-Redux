@@ -63,6 +63,16 @@ function AddTalents(hero,build)
     -- Get the viable talents
 
     hero.heroTalentList = hero.heroTalentList or {}
+
+    local function HasTalent(talent)
+        for _,tal in pairs(hero.heroTalentList) do
+            if tal == talent then
+                return true
+            end
+        end
+        return false
+    end
+
     local function FindAbilityTalentFromList(nTalentRank)
         local ViableTalents = hero.ViableTalents
         local talent
@@ -74,7 +84,9 @@ function AddTalents(hero,build)
                 --table.insert(hero.heroTalentList,k)
                 --TalentList["count"..nTalentRank] = TalentList["count"..nTalentRank] - 1
                 --ViableTalents[nTalentRank][k] = nil
-                return k
+                if not HasTalent(k) then
+                    return k
+                end
             end
             c = c + 1
         end
@@ -96,28 +108,41 @@ function AddTalents(hero,build)
                     end
                 end
                 if k and not hasTalent then
-                    print("KKKKKKK",k)
                     --table.insert(hero.heroTalentList,k)
-                    return k
+                    if not HasTalent(k) then
+                        return k
+                    end
                 end
             end
         end
-        print("NOT RETURNING HERO")
+        --print("NOT RETURNING HERO")
     end
+
+    
+
     local function FindNormalTalentFromList(nTalentRank)
         local m = TalentList["basicCount"..nTalentRank]
         local rnd = RandomInt(1,m)
-        local c = 1
-        for k,v in pairs(TalentList["basic"..nTalentRank]) do
-            --print(k,c== rnd)
-            if c == rnd then
-                --table.insert(hero.heroTalentList,k)
-                --TalentList["basicCount"..i] = TalentList["basicCount"..i] - 1
-                return k
+        
+        while true do
+            local c = 1
+            local rnd = RandomInt(1,m)
+            for k,v in pairs(TalentList["basic"..nTalentRank]) do
+                --print(k,c== rnd)
+                if c == rnd then
+
+                    if not string.find(k,"special_bonus_attack_range") or hero:IsRangedAttacker() then
+                        if not string.find(k, "special_bonus_cleave") or not hero:IsRangedAttacker() then
+                            if not HasTalent(k) then
+                                return k
+                            end
+                        end
+                    end
+                end
+                c = c +1
             end
-            c = c +1
         end
-        print("NOT RETURNING NORMAL")
+        --print("NOT RETURNING NORMAL, THIS IS A PROBLEM")
     end
 
     local ViableTalents = {}
@@ -138,23 +163,18 @@ function AddTalents(hero,build)
 
     hero.ViableTalents = ViableTalents
     for i=1,4 do
-        print(hero:GetUnitName())
+        --print(hero:GetUnitName())
         if hero.ViableTalents["count"..i] >= 2 then
             local a = FindAbilityTalentFromList(i)
             local b = FindAbilityTalentFromList(i)
             local j = 0
-            while j<100 and (a == b or not b) do
+            while j<100 and (a==b or not b) do
                 b = FindAbilityTalentFromList(i)
                 j = j +1
             end
             if not a then a =FindNormalTalentFromList(i) end
             if not b then b =FindNormalTalentFromList(i) end
-            while not hero:IsRangedAttacker() and string.find(a,"special_bonus_attack_range") do
-                a = FindAbilityTalentFromList(i)
-            end
-            while not hero:IsRangedAttacker() and string.find(b,"special_bonus_attack_range") do
-                b = FindAbilityTalentFromList(i)
-            end
+            --print("Normal0",a,b)
             table.insert(hero.heroTalentList,a)
             table.insert(hero.heroTalentList,b)
         elseif hero.ViableTalents["count"..i] == 1 then
@@ -163,12 +183,7 @@ function AddTalents(hero,build)
             
             if not a then a =FindNormalTalentFromList(i) end
             if not b then b =FindNormalTalentFromList(i) end
-            while not hero:IsRangedAttacker() and string.find(a,"special_bonus_attack_range") do
-                a = FindAbilityTalentFromList(i)
-            end
-            while not hero:IsRangedAttacker() and string.find(b,"special_bonus_attack_range") do
-                b = FindAbilityTalentFromList(i)
-            end
+            --print("Normal1",a,b)
             table.insert(hero.heroTalentList,a)
             table.insert(hero.heroTalentList,b)
 
@@ -176,19 +191,13 @@ function AddTalents(hero,build)
             local a = FindHeroTalentFromList(i)
             local b = FindHeroTalentFromList(i)
             local j = 0
-            
             while j<100 and (a == b or not b) do
                 b = FindAbilityTalentFromList(i)
                 j = j +1
             end
             if not a then a =FindNormalTalentFromList(i) end
             if not b then b =FindNormalTalentFromList(i) end
-            while not hero:IsRangedAttacker() and string.find(a,"special_bonus_attack_range") do
-                a = FindAbilityTalentFromList(i)
-            end
-            while not hero:IsRangedAttacker() and string.find(b,"special_bonus_attack_range") do
-                b = FindAbilityTalentFromList(i)
-            end
+            --print("Normal2",a,b)
             table.insert(hero.heroTalentList,a)
             table.insert(hero.heroTalentList,b)
         end
@@ -196,7 +205,8 @@ function AddTalents(hero,build)
     for k,v in pairs(hero.heroTalentList) do
 
         local a = hero:AddAbility(v)
-        if not a then
+        if a then
+            --print(v)
         end
     end
 end

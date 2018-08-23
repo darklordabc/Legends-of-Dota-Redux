@@ -29,8 +29,16 @@ function modifier_npc_dota_hero_ogre_magi_perk:RemoveOnDeath()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_ogre_magi_perk:OnCreated(keys)
-	self.refundChance = 2
-	return true
+	local caster = self:GetCaster()
+	local bloodlust = caster:FindAbilityByName("ogre_magi_bloodlust")
+	if not bloodlust then
+		bloodlust = caster:AddAbility("ogre_magi_bloodlust")
+		bloodlust:SetLevel(1)
+		bloodlust:SetHidden(true)
+	else
+		bloodlust:SetLevel(1)
+	end
+	self.bloodlust = bloodlust
 end
 --------------------------------------------------------------------------------------------------------
 -- Add additional functions
@@ -48,14 +56,8 @@ function modifier_npc_dota_hero_ogre_magi_perk:OnAbilityFullyCast(keys)
 	local target = keys.target
 	local ability = keys.ability
 	if hero == keys.unit and ability and ability:GetCooldown(-1) > 0 then
-	  local random = math.random(100)
-	  if random <= self.refundChance then
-		hero:EmitSound("DOTA_Item.Refresher.Activate")
-		local particle = ParticleManager:CreateParticle("particles/items2_fx/refresher.vpcf", PATTACH_ABSORIGIN_FOLLOW, hero)
-		ParticleManager:SetParticleControl(particle, 0, hero:GetAbsOrigin())
-		ability:RefundManaCost()
-		ability:EndCooldown()
-	  end
+	  hero:SetCursorCastTarget(hero)
+	  self.bloodlust:OnSpellStart()
 	end
   end
 end

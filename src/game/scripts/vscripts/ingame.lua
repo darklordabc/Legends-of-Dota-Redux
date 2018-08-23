@@ -310,7 +310,7 @@ function Ingame:OnPlayerLearnedAbility( keys )
     }
     local abilityName = chargeTalents[keys.abilityname]
     if abilityName then
-        Timers:CreateTimer(function()
+        Timers:CreateTimer(0.3,function()
             local hero = PlayerResource:GetSelectedHeroEntity(keys.PlayerID)
             if hero then
                 local talent = hero:FindAbilityByName(keys.abilityname)
@@ -320,7 +320,7 @@ function Ingame:OnPlayerLearnedAbility( keys )
                     charges:SetStackCount(count)
                 end
             end
-        end, DoUniqueString("fixManyCharges"), 0.3)
+        end)
         -- Custom stat bonus talents
         if string.find(abilityName,"special_bonus") and string.find(abilityName,"redux") then
             local hero = PlayerResource:GetSelectedHeroEntity(keys.PlayerID)

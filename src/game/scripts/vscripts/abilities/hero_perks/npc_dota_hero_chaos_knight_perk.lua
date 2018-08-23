@@ -30,7 +30,24 @@ end
 --------------------------------------------------------------------------------------------------------
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------
+
 function modifier_npc_dota_hero_chaos_knight_perk:OnCreated()
+	if IsServer() then
+		local caster = self:GetCaster()
+		local ab = caster:FindAbilityByName("faceless_void_backtrack")
+		if ab then
+			ab:SetLevel(1)
+		else
+			ab = caster:AddAbility("faceless_void_backtrack")
+			ab:SetLevel(1)
+			ab:SetHidden(true)
+		end
+	end
+end
+
+
+
+--[[function modifier_npc_dota_hero_chaos_knight_perk:OnCreated()
 	if IsServer() then
 		local caster = self:GetCaster()
 		local ply = caster:GetPlayerOwner()
@@ -45,5 +62,5 @@ function modifier_npc_dota_hero_chaos_knight_perk:OnCreated()
 		end
 	end
 	return true
-end
+end]]
 --------------------------------------------------------------------------------------------------------

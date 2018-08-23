@@ -2490,15 +2490,26 @@ function Pregame:isTrollCombo(build)
 
     for i=1,maxSlots do
         local ab1 = build[i]
-        if ab1 ~= nil and self.banList[ab1] then
+        if ab1 ~= nil then
             for j=(i+1),maxSlots do
                 local ab2 = build[j]
+                if self.banList[ab1] then
+            
+                
 
-                if ab2 ~= nil and self.banList[ab1][ab2] then
-                    -- Ability should be banned
+                    if ab2 ~= nil and self.banList[ab1][ab2] then
+                        -- Ability should be banned
 
-                    return true, ab1, ab2
+                        return true, ab1, ab2
+                    end
+
                 end
+                if ab1 and ab2 then
+                    if string.find(ab1,ab2) or string.find(ab2,ab1) then
+                        return true, ab1, ab2
+                    end
+                end
+            
             end
         end
     end
@@ -4325,9 +4336,9 @@ function Pregame:processOptions()
 
         -- Banning Underpowered versions of abilities
         if not disableBanLists and this.optionStore['lodOptionAdvancedOPAbilities'] == 0 then
-            for abilityName,v in pairs(this.underpowered) do
+            --[[for abilityName,v in pairs(this.underpowered) do
                 this:banAbility(abilityName)
-            end
+            end]]
         end
 
         -- Banning invis skills
@@ -6057,6 +6068,8 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
     if self.optionStore['lodOptionBanningBlockTrollCombos'] == 1 then
         -- Validate that it isn't a troll build
         local isTrollCombo, ab1, ab2 = self:isTrollCombo(newBuild)
+
+        
         if isTrollCombo then
             -- Invalid ability name
             network:sendNotification(player, {

@@ -25,7 +25,7 @@ function heroPerksProjectileFilter(filterTable)
   
   -- Perk for Puck
   PerkPuckReflectSpell(caster,target,ability)
-  
+  if not target.FindAbilityByName then return filterTable end
   local targetPerk = target:FindAbilityByName(target:GetName() .. "_perk")
   if targetPerk and targetPerks_projectile[targetPerk:GetName()] then
     target.perkTarget = caster

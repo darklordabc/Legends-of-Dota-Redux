@@ -119,6 +119,7 @@
 #base "abilities\custom\keeper_of_the_light_innate.txt"
 #base "abilities\custom\zuus_lightning_bolt_global.txt"
 #base "abilities\custom\zuus_thundergods_vengeance.txt"
+#base "abilities\custom\crater.txt"
 #base "abilities\custom\ability_consumable_item_container.txt"
 #base "abilities\deathtal\molten_lord.txt"
 #base "abilities\deathtal\pudge_flesh_heap_minion_damage.txt"
