@@ -104,7 +104,7 @@ var basicOptions = {
                     },
                     {
                         about: 'lodMutatorTurboCourier',
-                        patreon: true,
+                        patreon: false,
                         values: {
                             enabled: {
                                 'lodOptionTurboCourier': 1
@@ -580,7 +580,7 @@ var basicOptions = {
                     },
                     {
                         name: 'lodOptionGoldDropOnDeath',
-                        patreon: true,
+                        //patreon: false,
                         //extraInfo: 'lodOptionAboutGoldDropOnDeath',
                         about: 'lodMutatorGoldDropOnDeath'
                     },
@@ -647,6 +647,12 @@ var basicOptions = {
                         extraInfo: 'lodOptionAboutPeriodicSpellCast',
                         about: 'lodMutatorPeriodicSpellCast'
                     },
+                    {
+                        name: 'lodOptionConvertableTowers',
+                        patreon: true,
+                        //extraInfo: 'lodOptionAboutConvertableTowers',
+                        about: 'lodMutatorConvertableTowers'
+                    },
                     /*{
                         name: 'lodOptionVampirism',
                         extraInfo: 'lodOptionAboutVampirism',
@@ -654,19 +660,19 @@ var basicOptions = {
                     },*/
                     {
                         name: 'lodOptionKillStreakPower',
-                        patreon: true,
+                        //patreon: true,
                         extraInfo: 'lodOptionAboutKillStreakPower',
                         about: 'lodMutatorKillStreakPower'
                     }, 
                     {
                         name: 'lodOptionExplodeOnDeath',
-                        patreon: true,
+                        //patreon: true,
                         //extraInfo: 'lodOptionAboutExplodeOnDeath',
                         about: 'lodMutatorExplodeOnDeath'
                     },
                     {
                         name: 'lodOptionNoHealthbars',
-                        patreon: true,
+                        //patreon: true,
                         //extraInfo: 'lodOptionAboutNoHealthbars',
                         about: 'lodMutatorNoHealthbars'
                     },
@@ -2435,6 +2441,22 @@ var advancedOptions = {
                 name: 'lodOptionPeriodicSpellCast',
                 des: 'lodOptionDesPeriodicSpellCast',
                 about: 'lodOptionAboutPeriodicSpellCast',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },
+            {
+                name: 'lodOptionConvertableTowers',
+                des: 'lodOptionDesConvertableTowers',
+                about: 'lodOptionAboutConvertableTowers',
                 sort: 'toggle',
                 values: [
                     {

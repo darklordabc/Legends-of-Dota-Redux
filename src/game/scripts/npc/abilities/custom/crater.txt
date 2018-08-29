@@ -1,0 +1,88 @@
+"DOTAAbilities"
+{
+    "crater"
+    {
+        "BaseClass"                                                            "ability_lua"
+        "ScriptFile"                                                           "abilities/crater.lua"
+        "AbilityTextureName"                                                   "invoker_sun_strike"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_POINT_TARGET"
+        "AbilityUnitTargetTeam"                                                 "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"                                                 "DOTA_UNIT_TARGET_HERO"
+        "AbilityCastRange"                                                      "10000"
+        "AbilityCastPoint"                                                      "0.3"
+        "AbilityCooldown"                                                       "5"
+        "AbilityManaCost"                                                       "120 130 140 150"
+
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "projectile_speed"                                              "1000"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "crater_radius"                                              "450"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "crater_damage"                                              "100 200 300 400"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "crater_duration"                                              "3.5 4 4.5 5"
+            }
+            "05"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "start_radius"                                              "50 75 100 125"
+            }
+            "06"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "start_radius"                                              "50 75 100 125"
+            }
+        }    
+        "ReduxFlags"                                                           "dota_custom | semi_passive"
+        "ReduxCost"                                                            "0"
+    }
+    "bash_reflect_op"
+    {
+        "BaseClass"                                                            "ability_lua"
+        "ScriptFile"                                                           "abilities/bash_reflect.lua"
+        "AbilityTextureName"                                                   "custom/bash_reflect_op"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityUnitTargetTeam"                                                 "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"                                                 "DOTA_UNIT_TARGET_HERO"
+        "AbilityCastRange"                                                      "700"
+        "AbilityCastPoint"                                                      "0.3"
+        "AbilityCooldown"                                                       "13"
+
+        "precache"
+        {
+            "particle"  "particles/units/heroes/hero_tiny/tiny_craggy_hit.vpcf"
+            "particle"  "particles/bash_reflect_shield.vpcf"
+            "soundfile" "soundevents/game_sounds_heroes/game_sounds_tiny.vsndevts" 
+            "soundfile" "soundevents/game_sounds_heroes/game_sounds_items.vsndevts"
+        }
+        
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "duration"                                              "13"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "duration_multiplier"                                              "150 200 250 300"
+            }
+        }
+        "ReduxFlags"                                                           "dota_custom"
+        "ReduxCost"                                                            "120"
+    }
+}

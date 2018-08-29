@@ -1683,23 +1683,25 @@ function Ingame:checkBuybackStatus()
                 end, DoUniqueString('buyback'), 0.1)
 
                 if OptionManager:GetOption('randomOnDeath') == 1 and not unit:IsReincarnating() then
-                    if not unit.randomOnDeath then
-                        unit.randomOnDeath = true
-                    else
-                        local pID = unit:GetPlayerOwnerID()
-                        GameRules.pregame.selectedSkills[pID] = {}
-                        GameRules.pregame.selectedHeroes[pID] = GameRules.pregame:getRandomHero()
-                        GameRules.pregame.selectedPlayerAttr[pID] = ({'str', 'agi', 'int'})[math.random(1,3)]
-                        if util:isPlayerBot(pID) and GameRules.pregame.botPlayers then
-                            GameRules.pregame.botPlayers.all[pID] = {}
-                            GameRules.pregame:generateBotBuilds(pID)
+                    if not util:isPlayerBot(pID) then
+                        if not unit.randomOnDeath then
+                            unit.randomOnDeath = true
+                        else
+                            local pID = unit:GetPlayerOwnerID()
+                            GameRules.pregame.selectedSkills[pID] = {}
+                            GameRules.pregame.selectedHeroes[pID] = GameRules.pregame:getRandomHero()
+                            GameRules.pregame.selectedPlayerAttr[pID] = ({'str', 'agi', 'int'})[math.random(1,3)]
+                            if util:isPlayerBot(pID) and GameRules.pregame.botPlayers then
+                                GameRules.pregame.botPlayers.all[pID] = {}
+                                GameRules.pregame:generateBotBuilds(pID)
 
-                            GameRules.pregame.selectedSkills[pID] = GameRules.pregame.botPlayers.all[pID].build
-                            GameRules.pregame.selectedHeroes[pID] = GameRules.pregame.botPlayers.all[pID].heroName
-                        end
-                        GameRules.pregame:onPlayerReady(nil, {PlayerID = pID, randomOnDeath = true})
-                        if not util:isPlayerBot(pID) then
-                            GameRules.pregame:applyExtraAbility(PlayerResource:GetSelectedHeroEntity(pID))
+                                GameRules.pregame.selectedSkills[pID] = GameRules.pregame.botPlayers.all[pID].build
+                                GameRules.pregame.selectedHeroes[pID] = GameRules.pregame.botPlayers.all[pID].heroName
+                            end
+                            GameRules.pregame:onPlayerReady(nil, {PlayerID = pID, randomOnDeath = true})
+                            if not util:isPlayerBot(pID) then
+                                GameRules.pregame:applyExtraAbility(PlayerResource:GetSelectedHeroEntity(pID))
+                            end
                         end
                     end
                 end

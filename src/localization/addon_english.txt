@@ -235,6 +235,8 @@
     "lodOptionResurrectAllies"                       "Resurrect Allies"
     "lodOptionDesResurrectAllies"                    "Resurrect Allies"
     "lodOptionAboutResurrectAllies"                  "When heroes die they leave behind a tombstone that allies can use to resurrect them."
+    "lodOptionConvertableTowers"                "Convertable Towers"
+    "lodOptionAboutConvertableTowers"                "Towers join the other team when destroyed."
 
     "lodMutatorResurrectAllies"                            "Resurrect Allies"
 
@@ -2136,6 +2138,8 @@
 
     "DOTA_Tooltip_modifier_vampirism_mutator"                       "Vampire Mode"
     "DOTA_Tooltip_modifier_vampirism_mutator_Description"           "In the day you lose 1%d% of your health per second. At night you gain 20%d% lifesteal."
+
+
 
     "DOTA_Tooltip_modifier_easybot"                           "Easy Bot"
     "DOTA_Tooltip_modifier_easybot_Description"               "Easy bots willingly attack other heroes and use abilities/items (with the exception of Phase Boots, Force Staff, and Orchid Malevolence), but usually at a slow pace, and their last hit timing is not as accurate. Easy bots will not deny creeps. Easy bots will generally not attempt to gank other lanes, and will only group up in small groups to push or defend. Easy bots will not attempt to 'stun-lock' enemies, nor will they try to interrupt channeling spells. Easy bots are fooled by illusions."

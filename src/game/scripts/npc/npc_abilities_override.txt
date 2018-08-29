@@ -3621,6 +3621,10 @@
         "ReduxFlags"                                                           "doNotRandom"
         "ReduxBans"                                                            "tinker_rearm"
     }
+    "grimstroke_soul_chain"
+    {
+        "ReduxCost"                                                            "40"
+    }
     "neutral_spell_immunity"
     {
         "ReduxCost"                                                            "200"
@@ -6112,5 +6116,22 @@
     {
         "TalentRequiredAbility"                                                   "abaddon_frostmourne"
     }
+    "special_bonus_unique_grimstroke_1" 
+    {
+        "TalentRequiredAbility" "grimstroke_spirit_walk"
+    }
+    "special_bonus_unique_grimstroke_2" 
+    {
+        "TalentRequiredAbility" "grimstroke_dark_artistry"
+    }
+    "special_bonus_unique_grimstroke_3" 
+    {
+        "TalentRequiredAbility" "grimstroke_dark_artistry"
+    }
+    "special_bonus_unique_grimstroke_4"
+    {
+        "TalentRequiredAbility" "grimstroke_ink_creature"
+    }
+
 
 }

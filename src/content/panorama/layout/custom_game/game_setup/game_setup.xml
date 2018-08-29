@@ -164,7 +164,7 @@
                         <Panel id="optionSelection" class="workingPanel">
                             <Panel id="optionsPanel">
                                 <Panel id="optionBasic">
-
+                                    
                                     <!--
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/free_today.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/patreon_small.png"></Image>
@@ -199,6 +199,7 @@
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorBanningBanInvis2.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorUpgradedUlts.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorUpgradedUltsNoBots.png"></Image>
+                                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorConvertableTowers.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorFastStart.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorStrongTowers.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorDoubleTowers.png"></Image>
