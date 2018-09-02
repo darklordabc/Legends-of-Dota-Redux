@@ -3,7 +3,7 @@ JSON = JSON or require("lib/json")
 StatsClient.AbilityData = StatsClient.AbilityData or {}
 StatsClient.PlayerBans = StatsClient.PlayerBans or {}
 
-StatsClient.DedicatedServerKey = not IsInToolsMode() and GetDedicatedServerKey("1") or nil
+StatsClient.AuthKey = LoadKeyValues('scripts/kv/stats_client.kv').AuthKey
 -- Change to true if you have local server running, so contributors without local server can see some things
 StatsClient.Debug = IsInToolsMode() and false
 StatsClient.ServerAddress = StatsClient.Debug and
@@ -248,7 +248,7 @@ end
 
 function StatsClient:Send(path, data, callback, retryCount, protocol, _currentRetry)
     local request = CreateHTTPRequestScriptVM(protocol or "POST", self.ServerAddress .. path)
-    request:SetHTTPRequestHeaderValue("Dedicated-Server-Key", StatsClient.DedicatedServerKey)
+    request:SetHTTPRequestHeaderValue("Auth-Key", StatsClient.AuthKey)
     request:SetHTTPRequestGetOrPostParameter("data", JSON:encode(data))
 
     request:Send(function(response)
