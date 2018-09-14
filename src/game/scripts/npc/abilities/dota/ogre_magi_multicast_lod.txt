@@ -13,17 +13,17 @@
             "01"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "multicast_2_times"                                    "25 40 50"
+                "multicast_2_times"                                    "60 60 60"
             }
             "02"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "multicast_3_times"                                    "0 20 25"
+                "multicast_3_times"                                    "0 30 30"
             }
             "03"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "multicast_4_times"                                    "0 0 12.5"
+                "multicast_4_times"                                    "0 0 15"
             }
             "04"
             {

@@ -49,7 +49,7 @@ function ViperPoisonTracker(self, ent)
   self.perkTargets = self.perkTargets or {}
   table.insert(self.perkTargets, ent)
 
-  self.poisonTracker = self.poisonTracker or Timers:CreateTimer(function()
+  self.poisonTracker = self.poisonTracker or Timers:CreateTimer(1,function()
     for k,v in pairs(self.perkTargets) do
       if v and not v:IsNull() then
         local count = 0
@@ -78,7 +78,6 @@ function ViperPoisonTracker(self, ent)
       self.poisonTracker = nil
       return
     end
-    return 1.0
   end)
 end
 

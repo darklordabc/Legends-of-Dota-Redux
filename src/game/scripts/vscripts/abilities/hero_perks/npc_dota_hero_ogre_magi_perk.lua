@@ -30,15 +30,14 @@ end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_ogre_magi_perk:OnCreated(keys)
 	local caster = self:GetCaster()
-	local bloodlust = caster:FindAbilityByName("ogre_magi_bloodlust")
-	if not bloodlust then
-		bloodlust = caster:AddAbility("ogre_magi_bloodlust")
-		bloodlust:SetLevel(1)
-		bloodlust:SetHidden(true)
+	self.bloodlust = caster:FindAbilityByName("ogre_magi_bloodlust")
+	if not self.bloodlust then
+		self.bloodlust = caster:AddAbility("ogre_magi_bloodlust")
+		self.bloodlust:SetLevel(1)
+		self.bloodlust:SetHidden(true)
 	else
-		bloodlust:SetLevel(1)
+		self.bloodlust:SetLevel(1)
 	end
-	self.bloodlust = bloodlust
 end
 --------------------------------------------------------------------------------------------------------
 -- Add additional functions
@@ -54,10 +53,9 @@ function modifier_npc_dota_hero_ogre_magi_perk:OnAbilityFullyCast(keys)
   if IsServer() then
 	local hero = self:GetCaster()
 	local target = keys.target
-	local ability = keys.ability
-	if hero == keys.unit and ability and ability:GetCooldown(-1) > 0 then
-	  hero:SetCursorCastTarget(hero)
-	  self.bloodlust:OnSpellStart()
+	--local ability = keys.ability
+	if hero == keys.unit then
+		hero:AddNewModifier(hero,self.bloodlust,"modifier_ogre_magi_bloodlust",{duration=10})
 	end
   end
 end

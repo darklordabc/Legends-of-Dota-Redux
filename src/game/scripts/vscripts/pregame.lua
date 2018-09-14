@@ -8179,6 +8179,24 @@ function Pregame:fixSpawnedHero( spawnedUnit )
                 end, DoUniqueString('gyroFix'), 1)
             end
 
+            -- 'No Charges' fix for Shadow demon disrupition
+            if spawnedUnit:HasAbility('shadow_demon_disruption') then
+                Timers:CreateTimer(function()
+                    -- If the hero has the charges perk, and they have a level in it, check if they have modifier, if not, add it
+                    local chargesModifier = spawnedUnit:FindAbilityByName("special_bonus_unique_shadow_demon_7")
+                    if chargesModifier and chargesModifier:GetLevel() > 0 then
+                        if not spawnedUnit:FindModifierByName("modifier_shadow_demon_disruption_charge_counter") then
+                            spawnedUnit:AddNewModifier(spawnedUnit,nil,"modifier_shadow_demon_disruption_charge_counter",{duration = duration})
+                        end
+                    else
+                        -- If Hero has homing missle ability, it doesnt have the talent or doesnt have a level in it, and it has the modifier, remove modifier
+                        if spawnedUnit:FindModifierByName("modifier_shadow_demon_disruption_charge_counter") then
+                            spawnedUnit:RemoveModifierByName("modifier_shadow_demon_disruption_charge_counter")
+                        end
+                    end
+                end, DoUniqueString('disruptfix'), 1)
+            end
+
             -- Change sniper assassinate to our custom version to work with aghs
             if spawnedUnit:HasAbility("sniper_assassinate") and not util:isPlayerBot(playerID) and not spawnedUnit:FindAbilityByName("sniper_assassinate"):IsHidden() then
                     spawnedUnit:AddAbility("sniper_assassinate_redux")
