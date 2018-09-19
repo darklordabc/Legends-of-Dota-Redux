@@ -210,6 +210,7 @@
     "lodMutatorDuel"                                "Duels"
     "lodMutatorBoosterDraft"                        "Booster Draft"
     "lodMutatorDoubleCreeps"                        "Multiple Lane Creeps"
+    "lodMutatorConvertableTowers"                   "Convertable Towers"
 
     "lodMutatorFastBuybackCooldown1"                "Fast Respawn"
     "lodMutatorFastBuybackCooldown2"                "Faster Respawn"
@@ -235,7 +236,8 @@
     "lodOptionResurrectAllies"                       "Resurrect Allies"
     "lodOptionDesResurrectAllies"                    "Resurrect Allies"
     "lodOptionAboutResurrectAllies"                  "When heroes die they leave behind a tombstone that allies can use to resurrect them."
-    "lodOptionConvertableTowers"                "Convertable Towers"
+    "lodOptionConvertableTowers"                     "Convertable Towers"
+    "lodOptionDesConvertableTowers"                     "Convertable Towers"
     "lodOptionAboutConvertableTowers"                "Towers join the other team when destroyed."
 
     "lodMutatorResurrectAllies"                            "Resurrect Allies"
