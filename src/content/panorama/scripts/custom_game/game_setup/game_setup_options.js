@@ -1599,6 +1599,22 @@ var advancedOptions = {
                 ]
             },
             {
+                name: 'lodOptionConvertableTowers',
+                des: 'lodOptionDesConvertableTowers',
+                about: 'lodOptionAboutConvertableTowers',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },
+            {
                 name: 'lodOptionCreepPower',
                 des: 'lodOptionDesCreepPower',
                 about: 'lodOptionAboutCreepPower',
@@ -2441,22 +2457,6 @@ var advancedOptions = {
                 name: 'lodOptionPeriodicSpellCast',
                 des: 'lodOptionDesPeriodicSpellCast',
                 about: 'lodOptionAboutPeriodicSpellCast',
-                sort: 'toggle',
-                values: [
-                    {
-                        text: 'lodOptionNo',
-                        value: 0
-                    },
-                    {
-                        text: 'lodOptionYes',
-                        value: 1
-                    }
-                ]
-            },
-            {
-                name: 'lodOptionConvertableTowers',
-                des: 'lodOptionDesConvertableTowers',
-                about: 'lodOptionAboutConvertableTowers',
                 sort: 'toggle',
                 values: [
                     {
