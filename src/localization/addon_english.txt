@@ -2958,6 +2958,13 @@
     "DOTA_Tooltip_ability_pudge_flesh_heap_mana_regeneration_flesh_heap_value_buff_amount"  "MANA REGEN PER STACK:"
     "DOTA_Tooltip_ability_pudge_flesh_heap_mana_regeneration_flesh_heap_range"            "RANGE:"
 
+    "DOTA_Tooltip_ability_pudge_flesh_heap_tenacity"         "Flesh Heap - Tenacity"
+    "DOTA_Tooltip_ability_pudge_flesh_heap_tenacity_Description" "<font color='#70EA72'>Reduces the duration of debuffs from enemies on this hero.</font> Flesh Heap Tenacity is retroactive, meaning it can gain charges before it is skilled, which then become active."
+    "DOTA_Tooltip_ability_pudge_flesh_heap_tenacity_Note0"                                  "Each stack stacks diminishingly with itself. Tenacity stacks multiplicative with status resistance."
+
+    "DOTA_Tooltip_ability_pudge_flesh_heap_tenacity_flesh_heap_value_buff_amount"  "EVASION PER STACK:"
+    "DOTA_Tooltip_ability_pudge_flesh_heap_tenacity_flesh_heap_range"            "RANGE:"
+
     "DOTA_Tooltip_modifier_flesh_heap_mana_regeneration"                  "Flesh Heap - Mana Regeneration"
     "DOTA_Tooltip_modifier_flesh_heap_mana_regeneration_Description"              "Gaining bonus Mana Regeneration"
 
@@ -2985,6 +2992,9 @@
 
     "DOTA_Tooltip_modifier_flesh_heap_bonus_vision"                                              "Flesh Heap - Bonus Vision"
     "DOTA_Tooltip_modifier_flesh_heap_bonus_vision_Description"                                  "Gaining extra vision per stack"
+
+    "DOTA_Tooltip_modifier_flesh_heap_tenacity"                                              "Flesh Heap - Tenacity"
+    "DOTA_Tooltip_modifier_flesh_heap_tenacity_Description"                                  "Tenacity"
 
     // global break
     "DOTA_Tooltip_modifier_silencer_global_break"                                              "Global Break"
@@ -5388,6 +5398,14 @@
         "DOTA_Tooltip_ability_spell_lab_survivor_evasion_Note0"         "Fully retroactive. Reincarnate effects won't reset the stack."
         "DOTA_Tooltip_spell_lab_survivor_evasion_modifier"                  "Survival of the Fittest: Evasion"
         "DOTA_Tooltip_spell_lab_survivor_evasion_modifier_Description" "Evasion gained through staying alive."
+
+        "DOTA_Tooltip_ability_spell_lab_survivor_tenacity"                   "Survival of the Fittest: Tenacity"
+        "DOTA_Tooltip_ability_spell_lab_survivor_tenacity_Description"       "Your survival instinct is enhanced. You gain <font color='#70EA72'>Tenacity</font> for every minute you survive without dying.\nYou keep 33% of your stacks after death."
+        "DOTA_Tooltip_ability_spell_lab_survivor_tenacity_bonus"         "%TENACITY PER MINUTE:"
+        "DOTA_Tooltip_ability_spell_lab_survivor_tenacity_Note0"         "Fully retroactive. Reincarnate effects won't reset the stack."
+        "DOTA_Tooltip_ability_spell_lab_survivor_tenacity_Note1"                                  "Each stack stacks diminishingly with itself. Tenacity stacks multiplicative with status resistance."
+        "DOTA_Tooltip_spell_lab_survivor_tenacity_modifier"                  "Survival of the Fittest: Tenacity"
+        "DOTA_Tooltip_spell_lab_survivor_tenacity_modifier_Description" "Tenacity gained through staying alive."
 
         "DOTA_Tooltip_ability_spell_lab_survivor_health_regen"                  "Survival of the Fittest: Health Regen"
         "DOTA_Tooltip_ability_spell_lab_survivor_health_regen_Description"      "Your survival instinct is enhanced. You gain <font color='#70EA72'>Health Regen</font> for every minute you survive without dying.\nYou keep 33% of your stacks after death."
@@ -17690,6 +17708,8 @@
     "DOTA_Tooltip_spell_lab_souls_int_modifier_Description"                      "Soul Count"
     "DOTA_Tooltip_spell_lab_souls_damage_modifier"                                  "Lingering Souls: Damage"
     "DOTA_Tooltip_spell_lab_souls_damage_modifier_Description"                      "Soul Count"
+    "DOTA_Tooltip_spell_lab_souls_tenacity_modifier"                                  "Lingering Souls: Tenacity"
+    "DOTA_Tooltip_spell_lab_souls_tenacity_modifier_Description"                      "Soul Count"
 
 
     "DOTA_Tooltip_ability_spell_lab_souls_vision"                                  "Lingering Souls: Vision"
@@ -17751,6 +17771,13 @@
     "DOTA_Tooltip_ability_spell_lab_souls_evasion_Note0"                                  "SOUL LIMIT is maximum number souls that are counted towards Evasion. If you die, you keep souls over that limit."
     "DOTA_Tooltip_ability_spell_lab_souls_evasion_per_soul"                      "%EVASION PER SOUL:"
     "DOTA_Tooltip_ability_spell_lab_souls_evasion_max"                      "SOUL LIMIT:"
+
+    "DOTA_Tooltip_ability_spell_lab_souls_tenacity"                                  "Lingering Souls: Tenacity"
+    "DOTA_Tooltip_ability_spell_lab_souls_tenacity_Description"                      "When killing an enemy, you drain their souls to empower your <font color='#70EA72'>Tenacity</font>.\nIf you die before you can recover the dropped souls they are lost forever. You have 80 seconds to recover the dropped souls.\nHero kills earn you 10 souls."
+    "DOTA_Tooltip_ability_spell_lab_souls_tenacity_Note0"                                  "SOUL LIMIT is maximum number souls that are counted towards Tenacity. If you die, you keep souls over that limit."
+    "DOTA_Tooltip_ability_spell_lab_souls_tenacity_Note1"                                  "Each soul stacks diminishingly with itself. Tenacity stacks multiplicative with status resistance."
+    "DOTA_Tooltip_ability_spell_lab_souls_tenacity_per_soul"                      "%TENACITY PER SOUL:"
+    "DOTA_Tooltip_ability_spell_lab_souls_tenacity_max"                      "SOUL LIMIT:"
 
     "DOTA_Tooltip_spell_lab_souls_evasion_modifier"                                  "Lingering Souls: Evasion"
     "DOTA_Tooltip_spell_lab_souls_evasion_modifier_Description"                      "Soul Count"
@@ -17879,4 +17906,15 @@
     "DOTA_Tooltip_ability_special_unique_status_resistance_25_redux" "+25 Status resistance"
 
     "DOTA_Tooltip_ability_special_bonus_unique_silencer_5" "25% chance to silence 1s with glaives"
+
+    "DOTA_Tooltip_ability_special_bonus_unique_crater_0" "Units withing 600 units get sucked into the crater"
+
+    "DOTA_Tooltip_ability_crater"                            "CRATER"
+    "DOTA_Tooltip_ability_crater_Description"                      "Mark a location to bomb, creating a deep crater. Foes caught inside can't see or move outside of the crater and they take minor damage."
+    "DOTA_Tooltip_ability_crater_crater_radius"                 "RADIUS:"
+    "DOTA_Tooltip_ability_crater_crater_damage"                 "DAMAGE:"
+    "DOTA_Tooltip_ability_crater_marker_speed"           "MARKER SPEED:"
+    "DOTA_Tooltip_ability_crater_projectile_speed"      "PROJECTILE SPEED:"    
+    "DOTA_Tooltip_ability_crater_crater_duration"         "DURATION"               
+
 }

@@ -26,8 +26,10 @@ end
 function crater.GetManaCost(self,i)
     local caster = self:GetCaster()
 
+    local cost = {70,80,90,100}
+
     if caster:GetModifierStackCount(self:GetIntrinsicModifierName(),caster)==0 then
-        return 100
+        return cost[i+1]
     else
         return 0
     end
@@ -35,10 +37,22 @@ end
 function crater.GetCooldown(self,i)
     local caster = self:GetCaster()
 
+    if IsClient() then
+        return 30
+    end
     if caster:GetModifierStackCount(self:GetIntrinsicModifierName(),caster)==0 then
         return 0.5
     else
-        return 5
+        return 30
+    end
+end
+function crater.GetCastPoint(self)
+    local caster = self:GetCaster()
+
+    if caster:GetModifierStackCount(self:GetIntrinsicModifierName(),caster)==0 then
+        return 0.3
+    else
+        return 0
     end
 end
 function crater.GetIntrinsicModifierName(self)
@@ -52,15 +66,94 @@ function crater.OnSpellStart(self)
     if caster:GetModifierStackCount(self:GetIntrinsicModifierName(),caster)==0 then
         local direction = (caster:GetCursorPosition()-origin):Normalized()
 
-        self.dummy=CreateUnitByName(caster:GetUnitName(),origin,true,caster,caster:GetPlayerOwner(),caster:GetTeamNumber())
-        self.mod=self.dummy:AddNewModifier(self.dummy,self,"modifier_crater_projectile",{})
-        self.mod.direction=direction
+        direction.z=0
+        local projectileTable = {Ability = self,EffectName = "",vSpawnOrigin = origin,fDistance = 10000,fStartRadius = self:GetSpecialValueFor("crater_radius"),fEndRadius = self:GetSpecialValueFor("crater_radius"),Source = caster,vVelocity = direction*(self:GetSpecialValueFor("marker_speed")-100)}
+
+        self.projectileParticle=ParticleManager:CreateParticleForTeam("particles/crater_marker.vpcf",PATTACH_CUSTOMORIGIN,caster,caster:GetTeamNumber())
+        ParticleManager:SetParticleControl(self.projectileParticle,0,caster:GetAbsOrigin()+direction)
+        ParticleManager:SetParticleControl(self.projectileParticle,1,direction*self:GetSpecialValueFor("marker_speed"))
+        self.projectile=ProjectileManager:CreateLinearProjectile(projectileTable)
+        caster:EmitSound("Hero_Ancient_Apparition.IceBlastRelease.Cast")
         caster:SetModifierStackCount(self:GetIntrinsicModifierName(),caster,1)
         self:EndCooldown()
         self:StartCooldown(0.25)
     else
+        local origin = ProjectileManager:GetLinearProjectileLocation(self.projectile)
+
+        self.dummy=CreateUnitByName("npc_dota_thinker",origin,true,caster,caster:GetPlayerOwner(),caster:GetTeamNumber())
+        self:OnDestroyProjectile(origin,self.dummy)
+        ProjectileManager:DestroyLinearProjectile(self.projectile)
         caster:SetModifierStackCount(self:GetIntrinsicModifierName(),caster,0)
-        self.mod:Destroy()
+    end
+end
+function crater.OnDestroyProjectile(self,origin,target)
+    local caster = self:GetCaster()
+
+    self:CreateVisibilityNode(origin,self:GetSpecialValueFor("crater_radius"),self:GetSpecialValueFor("crater_duration"))
+    local pTable = {Target = self.dummy,Source = caster,Ability = self,EffectName = "particles/units/heroes/hero_ogre_magi/ogre_magi_ignite.vpcf",iMoveSpeed = self:GetSpecialValueFor("projectile_speed")}
+
+    caster:EmitSound("Ability.Ghostship.bell")
+    ParticleManager:DestroyParticle(self.projectileParticle,true)
+    ParticleManager:ReleaseParticleIndex(self.projectileParticle)
+    self.projectileParticle=ParticleManager:CreateParticleForTeam("particles/crater_marker.vpcf",PATTACH_CUSTOMORIGIN,caster,caster:GetTeamNumber())
+    ParticleManager:SetParticleControl(self.projectileParticle,0,origin)
+    ParticleManager:SetParticleControl(self.projectileParticle,1,Vector(0,0,0))
+    self.partic=ParticleManager:CreateParticle("particles/units/heroes/hero_ogre_magi/ogre_magi_ignite.vpcf",PATTACH_CUSTOMORIGIN,caster)
+    ParticleManager:SetParticleControl(self.partic,0,caster:GetAbsOrigin())
+    ParticleManager:SetParticleControlEnt(self.partic,1,self.dummy,PATTACH_POINT_FOLLOW,"attach_hitloc",self.dummy:GetAbsOrigin(),true)
+    ParticleManager:SetParticleControl(self.partic,2,Vector(self:GetSpecialValueFor("projectile_speed"),0))
+    ProjectileManager:CreateTrackingProjectile(pTable)
+    return false
+end
+function crater.OnProjectileHit(self,target,location)
+    if not target then
+        local caster = self:GetCaster()
+
+        caster:SetModifierStackCount(self:GetIntrinsicModifierName(),caster,1)
+        return false
+    else
+        self:CreateCrater(location)
+        self.dummy:EmitSound("Hero_Invoker.SunStrike.Ignite")
+        UTIL_Remove(self.dummy)
+        self.dummy=nil
+        ParticleManager:DestroyParticle(self.partic,true)
+        ParticleManager:ReleaseParticleIndex(self.partic)
+        ParticleManager:DestroyParticle(self.projectileParticle,true)
+        ParticleManager:ReleaseParticleIndex(self.projectileParticle)
+    end
+end
+function crater.CreateCrater(self,origin)
+    local caster = self:GetCaster()
+
+    self:CreateVisibilityNode(origin,self:GetSpecialValueFor("crater_radius"),self:GetSpecialValueFor("crater_duration"))
+    local dummy = CreateModifierThinker(self:GetCaster(),self,"modifier_crater_area_controller",{duration = self:GetSpecialValueFor("crater_duration")},origin+Vector(0,0,50),caster:GetTeamNumber(),false)
+
+    GridNav:DestroyTreesAroundPoint(origin,self:GetSpecialValueFor("crater_radius"),false)
+    local damageTable = {ability = self,victim = caster,attacker = caster,damage = self:GetSpecialValueFor("crater_damage"),damage_type = DAMAGE_TYPE_MAGICAL}
+
+    local units = FindUnitsInRadius(caster:GetTeamNumber(),origin,nil,self:GetSpecialValueFor("crater_radius"),DOTA_UNIT_TARGET_TEAM_ENEMY,DOTA_UNIT_TARGET_HERO+DOTA_UNIT_TARGET_BASIC,DOTA_UNIT_TARGET_FLAG_NONE,FIND_ANY_ORDER,false)
+
+    TS_forEach(units, function(unit)
+        damageTable.victim=unit
+        ApplyDamage(damageTable)
+        unit:AddNewModifier(caster,self,"modifier_stun",{duration = FrameTime()})
+    end
+)
+    local talent = caster:FindAbilityByName("special_bonus_unique_crater_0")
+
+    if talent and (talent:GetLevel()==1) then
+        local units = FindUnitsInRadius(caster:GetTeamNumber(),origin,nil,talent:GetSpecialValueFor("value"),DOTA_UNIT_TARGET_TEAM_ENEMY,DOTA_UNIT_TARGET_HERO+DOTA_UNIT_TARGET_BASIC,DOTA_UNIT_TARGET_FLAG_NONE,FIND_ANY_ORDER,false)
+
+        TS_forEach(units, function(unit)
+            local dist = (unit:GetAbsOrigin()-origin):Length2D()
+
+            if dist>(self:GetSpecialValueFor("crater_radius")-50) then
+                local knockbackTable = {should_stun = false,knockback_duration = 0.33,duration = 0.33,knockback_distance = -dist,knockback_height = 0,center_x = origin.x,center_y = origin.y,center_z = GetGroundHeight(origin,nil)}
+
+                unit:AddNewModifier(caster,self,"modifier_knockback",knockbackTable)
+            end
+        end
+)
     end
 end
 modifier_crater_projectile = {}
@@ -102,7 +195,7 @@ function modifier_crater_projectile.OnDestroy(self)
     local origin = projectile:GetAbsOrigin()
 
     ability:CreateVisibilityNode(origin,self.radius,ability:GetSpecialValueFor("vision_duration"))
-    local dummy = CreateModifierThinker(self:GetCaster(),ability,"modifier_crater_area_controller",{duration = 5},origin+Vector(0,0,50),self:GetCaster():GetTeamNumber(),false)
+    local dummy = CreateModifierThinker(self:GetCaster(),ability,"modifier_crater_area_controller",{duration = ability:GetSpecialValueFor("crater_duration")},origin+Vector(0,0,50),self:GetCaster():GetTeamNumber(),false)
 
     self:GetParent():Destroy()
 end
@@ -123,6 +216,8 @@ function modifier_crater_area_controller.constructor(self)
 end
 function modifier_crater_area_controller.OnCreated(self)
     if IsServer() then
+        local particle2 = ParticleManager:CreateParticle("particles/units/heroes/hero_invoker/invoker_sun_strike.vpcf",PATTACH_ABSORIGIN_FOLLOW,self:GetParent())
+
         self.particle=ParticleManager:CreateParticle("particles/crater_area.vpcf",PATTACH_ABSORIGIN,self:GetCaster())
         ParticleManager:SetParticleControl(self.particle,0,self:GetParent():GetAbsOrigin())
         ParticleManager:SetParticleControl(self.particle,3,self:GetParent():GetAbsOrigin())
@@ -130,7 +225,7 @@ function modifier_crater_area_controller.OnCreated(self)
     end
 end
 function modifier_crater_area_controller.OnIntervalThink(self)
-    local units = FindUnitsInRadius(DOTA_TEAM_GOODGUYS,self:GetParent():GetAbsOrigin(),nil,900,DOTA_UNIT_TARGET_TEAM_ENEMY,DOTA_UNIT_TARGET_BASIC+DOTA_UNIT_TARGET_HERO,DOTA_UNIT_TARGET_FLAG_NONE,FIND_ANY_ORDER,false)
+    local units = FindUnitsInRadius(self:GetCaster():GetTeamNumber(),self:GetParent():GetAbsOrigin(),nil,self:GetAbility():GetSpecialValueFor("crater_radius"),DOTA_UNIT_TARGET_TEAM_ENEMY,DOTA_UNIT_TARGET_BASIC+DOTA_UNIT_TARGET_HERO,DOTA_UNIT_TARGET_FLAG_NONE,FIND_ANY_ORDER,false)
 
     TS_forEach(units, function(unit)
         local origin = self:GetParent():GetAbsOrigin()
@@ -158,22 +253,31 @@ function modifier_crater_area_control.OnCreated(self,kv)
     if IsClient() then
         return
     end
-    print(self:GetParent():GetUnitName())
     self.position=Vector(kv.x,kv.y,kv.z)
     self:StartIntervalThink(FrameTime())
 end
 function modifier_crater_area_control.OnIntervalThink(self)
     local unit = self:GetParent()
 
-    local break_range = 500
+    local break_range = self:GetAbility():GetSpecialValueFor("crater_radius")-150
 
-    local direction = unit:GetAbsOrigin()-self.position
+    if (unit:GetAbsOrigin()-self.position):Length2D()>break_range then
+        local direction = unit:GetAbsOrigin()-self.position
 
-    direction=direction:Normalized()
+        direction=direction:Normalized()
+        local dot = direction:Dot(unit:GetForwardVector())
+
+        print(unit:GetUnitName(),dot)
+        if dot>0 then
+            self:SetStackCount(1)
+            return
+        end
+    end
+    self:SetStackCount(0)
     AddFOWViewer(unit:GetTeamNumber(),self.position,break_range,FrameTime()*2,false)
 end
 function modifier_crater_area_control.DeclareFunctions(self)
-    return {MODIFIER_PROPERTY_MOVESPEED_LIMIT,MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,MODIFIER_PROPERTY_FIXED_NIGHT_VISION,MODIFIER_PROPERTY_FIXED_DAY_VISION}
+    return {MODIFIER_PROPERTY_MOVESPEED_LIMIT,MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE,MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,MODIFIER_PROPERTY_FIXED_NIGHT_VISION,MODIFIER_PROPERTY_FIXED_DAY_VISION}
 end
 function modifier_crater_area_control.GetFixedDayVision(self)
     return 50
@@ -189,6 +293,11 @@ end
 function modifier_crater_area_control.GetModifierMoveSpeedBonus_Constant(self)
     if self:GetStackCount()==1 then
         return -1000
+    end
+end
+function modifier_crater_area_control.GetModifierMoveSpeed_Absolute(self)
+    if self:GetStackCount()==1 then
+        return 0
     end
 end
 modifier_crater_spell_manager = {}

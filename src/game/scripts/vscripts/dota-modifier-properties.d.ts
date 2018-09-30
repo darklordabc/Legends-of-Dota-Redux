@@ -418,5 +418,7 @@ declare abstract class CDOTA_Modifier_Lua extends CDOTA_Buff {
     GetModifierIgnoreCooldown(): 0|1;
     // Not working
     GetModifierCanAttackTrees(): 0|1;
+    // Custom stuff
+    GetTenacity(): number
 }
 

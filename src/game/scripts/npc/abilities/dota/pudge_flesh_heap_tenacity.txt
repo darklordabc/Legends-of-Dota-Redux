@@ -1,10 +1,10 @@
 "DOTAAbilities"
 {
-    "pudge_flesh_heap_evasion"
+    "pudge_flesh_heap_tenacity"
     {
         "BaseClass"                                                            "ability_lua"
         "AbilityTextureName"                                                   "custom/flesh_heap_evasion"
-        "ScriptFile"                                                           "abilities/pudge_flesh_heap_evasion.lua"
+        "ScriptFile"                                                           "abilities/pudge_flesh_heap_tenacity.lua"
         "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
         "AbilityCastRange"                                                     "450"
         "precache"
@@ -16,7 +16,7 @@
             "01"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "flesh_heap_value_buff_amount"                    "1 1.8 2.6 3.4"
+                "flesh_heap_value_buff_amount"                    "0.5 1.0 2.0 3.0"
             }
             "02"
             {

@@ -1,0 +1,24 @@
+"DOTAAbilities"
+{
+    "spell_lab_survivor_tenacity"
+    {
+        "BaseClass"                                                            "ability_lua"
+        "ScriptFile"                                                           "abilities/spell_lab/survivor/tenacity.lua"
+        "AbilityTextureName"                                                   "custom/survival_evasion"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "HasScepterUpgrade"                                                    "0"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+        				"bonus"						"0.75 1.5 2.25 3"
+            }
+        }
+        "ReduxFlags"                                                           "tank"
+        "ReduxBans"                                                            ""
+        //"ReduxPerks"                                                           ""
+        "ReduxCost"                                                            "120"
+    }
+}

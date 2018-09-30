@@ -5293,7 +5293,7 @@
 
     "special_bonus_unique_tusk_4"
     {
-        "TalentRequiredAbility"                                                   "tusk_walrus_punch"
+        "TalentRequiredAbility"                                                   "do_not_give_talent"
     }
 
     "special_bonus_unique_tusk_5"

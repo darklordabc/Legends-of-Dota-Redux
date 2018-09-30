@@ -3111,27 +3111,27 @@ function Pregame:initOptionSelector()
         -- Advanced -- Enable Hero Abilities
         lodOptionAdvancedHeroAbilities = function(value)
             -- Disables IMBA Abilities
-            if value == 1 then
+            --[[if value == 1 then
                 self:setOption('lodOptionAdvancedImbaAbilities', 0, true)
-            end
+            end]]
 
             return value == 0 or value == 1
         end,
 
         -- Advanced -- Enable Neutral Abilities
         lodOptionAdvancedNeutralAbilities = function(value)
-            if value == 1 then
+            --[[if value == 1 then
                 self:setOption('lodOptionAdvancedImbaAbilities', 0, true)
-            end
+            end]]
 
             return value == 0 or value == 1
         end,
 
         -- Advanced -- Enable Custom Abilities
         lodOptionAdvancedCustomSkills = function(value)
-            if value == 1 then --and not util:isCoop()
+            --[[if value == 1 then --and not util:isCoop()
                 self:setOption('lodOptionAdvancedImbaAbilities', 0, true)
-            end
+            end]]
 
             return value == 0 or value == 1
         end,
@@ -3139,14 +3139,14 @@ function Pregame:initOptionSelector()
         -- Advanced -- Enable IMBA Abilities
         lodOptionAdvancedImbaAbilities = function(value)
         -- If you use IMBA abilities, you cannot use any other major category of abilities.
-            if value == 1 then -- and not util:isCoop() then
+            --[[if value == 1 then -- and not util:isCoop() then
                 self:setOption('lodOptionAdvancedHeroAbilities', 0, true)
                 self:setOption('lodOptionAdvancedNeutralAbilities', 0, true)
                 self:setOption('lodOptionAdvancedCustomSkills', 0, true)
             else
                 self:setOption('lodOptionAdvancedHeroAbilities', 1, true)
                 self:setOption('lodOptionAdvancedNeutralAbilities', 1, true)
-            end
+            end]]
 
             return value == 0 or value == 1
         end,

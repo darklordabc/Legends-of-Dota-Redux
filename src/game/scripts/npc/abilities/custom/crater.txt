@@ -38,51 +38,26 @@
             "05"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "start_radius"                                              "50 75 100 125"
-            }
-            "06"
-            {
-                "var_type"                                             "FIELD_FLOAT"
-                "start_radius"                                              "50 75 100 125"
+                "marker_speed"                                              "1250"
             }
         }    
-        "ReduxFlags"                                                           "dota_custom | semi_passive"
+        "ReduxFlags"                                                           "dota_custom"
         "ReduxCost"                                                            "0"
     }
-    "bash_reflect_op"
-    {
-        "BaseClass"                                                            "ability_lua"
-        "ScriptFile"                                                           "abilities/bash_reflect.lua"
-        "AbilityTextureName"                                                   "custom/bash_reflect_op"
-        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-        "AbilityUnitTargetTeam"                                                 "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-        "AbilityUnitTargetType"                                                 "DOTA_UNIT_TARGET_HERO"
-        "AbilityCastRange"                                                      "700"
-        "AbilityCastPoint"                                                      "0.3"
-        "AbilityCooldown"                                                       "13"
 
-        "precache"
-        {
-            "particle"  "particles/units/heroes/hero_tiny/tiny_craggy_hit.vpcf"
-            "particle"  "particles/bash_reflect_shield.vpcf"
-            "soundfile" "soundevents/game_sounds_heroes/game_sounds_tiny.vsndevts" 
-            "soundfile" "soundevents/game_sounds_heroes/game_sounds_items.vsndevts"
-        }
-        
+    "special_bonus_unique_crater_0" 
+    {
+        "BaseClass"               "special_bonus_unique_antimage_3"
+        "TalentRank"              "2"
+        "TalentRequiredAbility" "crater"
         "AbilitySpecial"
         {
             "01"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "duration"                                              "13"
-            }
-            "02"
-            {
-                "var_type"                                             "FIELD_FLOAT"
-                "duration_multiplier"                                              "150 200 250 300"
+                "value"                                                "600"
             }
         }
-        "ReduxFlags"                                                           "dota_custom"
-        "ReduxCost"                                                            "120"
     }
+
 }

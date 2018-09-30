@@ -713,6 +713,17 @@ function CDOTA_BaseNPC:GetTenacity()
 end
 
 
+
+function CDOTA_BaseNPC:GetWillpower()
+    local willpower = 1
+    for _, parent_modifier in pairs(self:FindAllModifiers()) do
+        if parent_modifier.GetWillpower then
+            willpower = willpower * (1+ (parent_modifier:GetWillpower()/100))
+        end
+    end
+    return willpower
+end
+
 function ShuffleArray(input)
   local rand = math.random
     local iterations = #input

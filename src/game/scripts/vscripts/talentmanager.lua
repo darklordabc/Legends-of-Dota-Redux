@@ -8,6 +8,12 @@ function StoreTalents()
         TalentList["basicCount"..i] = 1
     end
 
+    PlayerTalents ={}
+    for i=0,20 do
+        PlayerTalents[i] = {}
+        PlayerTalents[i]["TalentList"] = {}
+    end
+
     -- Get and order default talents
     local allHeroes = LoadKeyValues('scripts/npc/npc_heroes.txt')
     local abilitiesOverride = LoadKeyValues('scripts/npc/npc_abilities_override.txt')
@@ -47,11 +53,11 @@ function StoreTalents()
             if params.TalentRank then
                 if params.TalentRequiredAbility and not TalentList[params.TalentRank][ability] then
                     TalentList[params.TalentRank][ability] = params.TalentRequiredAbility
-                    TalentList["count"..t] = TalentList["count"..t] + 1
+                    TalentList["count"..params.TalentRank] = TalentList["count"..params.TalentRank] + 1
                 else
                     if TalentList["basic"..params.TalentRank][ability] then
                         TalentList["basic"..params.TalentRank][ability] = hero
-                        TalentList["basicCount"..t] = TalentList["basicCount"..t] + 1
+                        TalentList["basicCount"..params.TalentRank] = TalentList["basicCount"..params.TalentRank] + 1
                     end
                 end
             end
@@ -120,7 +126,7 @@ function AddTalents(hero,build)
 
     
 
-    local function FindNormalTalentFromList(nTalentRank)
+    local function FindNormalTalentFromList(nTalentRank,otherTalent)
         local m = TalentList["basicCount"..nTalentRank]
         local rnd = RandomInt(1,m)
         
@@ -130,11 +136,14 @@ function AddTalents(hero,build)
             for k,v in pairs(TalentList["basic"..nTalentRank]) do
                 --print(k,c== rnd)
                 if c == rnd then
-
-                    if not string.find(k,"special_bonus_attack_range") or hero:IsRangedAttacker() then
-                        if not string.find(k, "special_bonus_cleave") or not hero:IsRangedAttacker() then
-                            if not HasTalent(k) then
-                                return k
+                    if not otherTalent or k ~= otherTalent:gsub('%d','') then
+                        if not string.find(k,"DOTA_Tooltip_ability_special_bonus_cooldown_reduction") then
+                            if not string.find(k,"special_bonus_attack_range") or hero:IsRangedAttacker() then
+                                if not string.find(k, "special_bonus_cleave") or not hero:IsRangedAttacker() then
+                                    if not HasTalent(k) then
+                                        return k
+                                    end
+                                end
                             end
                         end
                     end
@@ -145,28 +154,16 @@ function AddTalents(hero,build)
         --print("NOT RETURNING NORMAL, THIS IS A PROBLEM")
     end
 
-    local ViableTalents = {}
-    for i =1,4 do
-        ViableTalents[i] = {}
-        ViableTalents["count"..i] = 0
-        for k,v in pairs(TalentList[i]) do
-            local bool = false
-            for K,V in pairs(build) do
-                if K ~= "hero" and v == V then
-                    ViableTalents[i][k] = k
-                    ViableTalents["count"..i] = ViableTalents["count"..i] + 1
-                    break
-                end
-            end
-        end
-    end
-
-    hero.ViableTalents = ViableTalents
+    hero.ViableTalents = GetViableTalents(build)
+    local PID = hero:GetPlayerOwnerID()
+    
     for i=1,4 do
+        local a = PlayerTalents[PID]["TalentList"][(i*2)-1]
+        local b = PlayerTalents[PID]["TalentList"][(i*2)]
         --print(hero:GetUnitName())
         if hero.ViableTalents["count"..i] >= 2 then
-            local a = FindAbilityTalentFromList(i)
-            local b = FindAbilityTalentFromList(i)
+            local a = a or FindAbilityTalentFromList(i)
+            local b = b or FindAbilityTalentFromList(i)
             local j = 0
             while j<100 and (a==b or not b) do
                 b = FindAbilityTalentFromList(i)
@@ -178,8 +175,8 @@ function AddTalents(hero,build)
             table.insert(hero.heroTalentList,a)
             table.insert(hero.heroTalentList,b)
         elseif hero.ViableTalents["count"..i] == 1 then
-            local a = FindAbilityTalentFromList(i)
-            local b = FindHeroTalentFromList(i)
+            local a = a or FindAbilityTalentFromList(i)
+            local b = b or FindHeroTalentFromList(i)
             
             if not a then a =FindNormalTalentFromList(i) end
             if not b then b =FindNormalTalentFromList(i) end
@@ -188,11 +185,11 @@ function AddTalents(hero,build)
             table.insert(hero.heroTalentList,b)
 
         else
-            local a = FindHeroTalentFromList(i)
-            local b = FindHeroTalentFromList(i)
+            local a = a or FindHeroTalentFromList(i)
+            local b = b or FindHeroTalentFromList(i,a)
             local j = 0
             while j<100 and (a == b or not b) do
-                b = FindAbilityTalentFromList(i)
+                b = FindAbilityTalentFromList(i,a)
                 j = j +1
             end
             if not a then a =FindNormalTalentFromList(i) end
@@ -210,3 +207,42 @@ function AddTalents(hero,build)
         end
     end
 end
+
+function GetViableTalents(build)
+    local ViableTalents = {}
+    for i =1,4 do
+        ViableTalents[i] = {}
+        ViableTalents["count"..i] = 0
+        for k,v in pairs(TalentList[i]) do
+            local bool = false
+            for K,V in pairs(build) do
+                if K ~= "hero" and v == V then
+                    ViableTalents[i][k] = k
+                    ViableTalents["count"..i] = ViableTalents["count"..i] + 1
+                    break
+                end
+            end
+        end
+    end
+    return ViableTalents
+end
+
+function SendTalentsToClient(PID,build)
+    local talents = GetViableTalents(build)
+    CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(PID), "send_viable_talents", talents )
+end
+
+function RegisterTalents(PID,data)
+    for i=0,7 do
+        if data[i] then
+            PlayerTalents[PID][i+1] = data[i]
+        else
+            PlayerTalents[PID][i+1] = nil
+        end
+    end
+end
+
+
+CustomGameEventManager:RegisterListener( "request_available_talents", SendTalentsToClient ) 
+CustomGameEventManager:RegisterListener( "send_picked_talents", RegisterTalents ) 
+

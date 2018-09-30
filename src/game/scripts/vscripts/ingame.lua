@@ -2207,7 +2207,7 @@ function Ingame:FilterModifiers( filterTable )
     end
     -- Tenacity
     if caster:GetTeamNumber() ~= parent:GetTeamNumber() and filterTable["duration"] > 0 then
-        filterTable["duration"] = filterTable["duration"] * parent:GetTenacity()
+        filterTable["duration"] = filterTable["duration"] * parent:GetTenacity() * parent:GetWillpower()
         if parent.GetIMBATenacity then
             local original_duration = filterTable.duration
             local actually_duration = original_duration
