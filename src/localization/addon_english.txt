@@ -2962,8 +2962,15 @@
     "DOTA_Tooltip_ability_pudge_flesh_heap_tenacity_Description" "<font color='#70EA72'>Reduces the duration of debuffs from enemies on this hero.</font> Flesh Heap Tenacity is retroactive, meaning it can gain charges before it is skilled, which then become active."
     "DOTA_Tooltip_ability_pudge_flesh_heap_tenacity_Note0"                                  "Each stack stacks diminishingly with itself. Tenacity stacks multiplicative with status resistance."
 
-    "DOTA_Tooltip_ability_pudge_flesh_heap_tenacity_flesh_heap_value_buff_amount"  "EVASION PER STACK:"
+    "DOTA_Tooltip_ability_pudge_flesh_heap_tenacity_flesh_heap_value_buff_amount"  "TENACITY PER STACK:"
     "DOTA_Tooltip_ability_pudge_flesh_heap_tenacity_flesh_heap_range"            "RANGE:"
+
+    "DOTA_Tooltip_ability_pudge_flesh_heap_willpower"         "Flesh Heap - Willpower"
+    "DOTA_Tooltip_ability_pudge_flesh_heap_willpower_Description" "<font color='#70EA72'>Increases the duration of modifiers placed by this hero.</font> Flesh Heap Willpower is retroactive, meaning it can gain charges before it is skilled, which then become active."
+    "DOTA_Tooltip_ability_pudge_flesh_heap_willpower_Note0"                                  "Does not work on buffs applied by passives."
+
+    "DOTA_Tooltip_ability_pudge_flesh_heap_willpower_flesh_heap_value_buff_amount"  "WILLPOWER PER STACK:"
+    "DOTA_Tooltip_ability_pudge_flesh_heap_willpower_flesh_heap_range"            "RANGE:"
 
     "DOTA_Tooltip_modifier_flesh_heap_mana_regeneration"                  "Flesh Heap - Mana Regeneration"
     "DOTA_Tooltip_modifier_flesh_heap_mana_regeneration_Description"              "Gaining bonus Mana Regeneration"
@@ -17782,6 +17789,9 @@
     "DOTA_Tooltip_spell_lab_souls_evasion_modifier"                                  "Lingering Souls: Evasion"
     "DOTA_Tooltip_spell_lab_souls_evasion_modifier_Description"                      "Soul Count"
 
+    "DOTA_Tooltip_spell_lab_souls_tenacity_modifier"                                  "Lingering Souls: Tenacity"
+    "DOTA_Tooltip_spell_lab_souls_tenacity_modifier_Description"                      "Soul Count"
+
     "DOTA_Tooltip_ability_spell_lab_souls_health_regen"                                  "Lingering Souls: Health Regen"
     "DOTA_Tooltip_ability_spell_lab_souls_health_regen_Description"                      "When killing an enemy, you drain their souls to empower your <font color='#70EA72'>Health Regen</font>.\nIf you die before you can recover the dropped souls they are lost forever. You have 80 seconds to recover the dropped souls.\nHero kills earn you 10 souls."
     "DOTA_Tooltip_ability_spell_lab_souls_health_regen_Note0"                                  "SOUL LIMIT is maximum number souls that are counted towards Health Regen. If you die, you keep souls over that limit."
@@ -17904,6 +17914,10 @@
     "DOTA_Tooltip_ability_special_unique_status_resistance_15_redux" "+15 Status resistance"
     "DOTA_Tooltip_ability_special_unique_status_resistance_20_redux" "+20 Status resistance"
     "DOTA_Tooltip_ability_special_unique_status_resistance_25_redux" "+25 Status resistance"
+    "DOTA_Tooltip_ability_special_unique_willpower_16_redux" "+16 Status resistance"
+    "DOTA_Tooltip_ability_special_unique_willpower_24_redux" "+24 Status resistance"
+    "DOTA_Tooltip_ability_special_unique_willpower_32_redux" "+32 Status resistance"
+    "DOTA_Tooltip_ability_special_unique_willpower_40_redux" "+40 Status resistance"
 
     "DOTA_Tooltip_ability_special_bonus_unique_silencer_5" "25% chance to silence 1s with glaives"
 

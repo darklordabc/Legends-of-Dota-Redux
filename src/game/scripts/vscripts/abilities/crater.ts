@@ -9,6 +9,9 @@ class crater extends CDOTA_Ability_Lua {
 	projectile:ProjectileID
 	partic:ParticleID
 	projectileParticle:ParticleID
+	time:number
+	launchLocation:Vec
+	launchDirection:Vec
 
 	GetAbilityTexture() {
 		let caster = this.GetCaster();
@@ -66,14 +69,14 @@ class crater extends CDOTA_Ability_Lua {
 				fEndRadius:this.GetSpecialValueFor("crater_radius"),
 				Source:caster,
 				// Projectile moves faster than particle...
-				vVelocity:direction * (this.GetSpecialValueFor("marker_speed") - 100) ,
+				vVelocity:direction * (this.GetSpecialValueFor("marker_speed")) ,
 			}
 
 			this.projectileParticle = ParticleManager.CreateParticleForTeam("particles/crater_marker.vpcf",ParticleAttachment_t.PATTACH_CUSTOMORIGIN,caster,caster.GetTeamNumber())
 			ParticleManager.SetParticleControl(this.projectileParticle,0,caster.GetAbsOrigin()+direction)
 			ParticleManager.SetParticleControl(this.projectileParticle,1,direction*this.GetSpecialValueFor("marker_speed"));
 
-			this.projectile = ProjectileManager.CreateLinearProjectile(projectileTable);
+			//this.projectile = ProjectileManager.CreateLinearProjectile(projectileTable);
 
 			caster.EmitSound("Hero_Ancient_Apparition.IceBlastRelease.Cast")
 
@@ -84,13 +87,18 @@ class crater extends CDOTA_Ability_Lua {
 			this.mod.direction = direction
 			*/
 			caster.SetModifierStackCount(this.GetIntrinsicModifierName(),caster,1);
+			this.time = GameRules.GetGameTime()
+			this.launchDirection = direction
+			this.launchLocation = origin
 			this.EndCooldown();
 			this.StartCooldown(0.25);
 		} else {
-			let origin = ProjectileManager.GetLinearProjectileLocation(this.projectile);
+			//let origin = ProjectileManager.GetLinearProjectileLocation(this.projectile);
+			let time = GameRules.GetGameTime() - this.time
+			let origin = this.launchLocation + (this.launchDirection * (this.GetSpecialValueFor("marker_speed") * time))
 			this.dummy = CreateUnitByName("npc_dota_thinker",origin,true,caster,caster.GetPlayerOwner(),caster.GetTeamNumber())
 			this.OnDestroyProjectile(origin,this.dummy);
-			ProjectileManager.DestroyLinearProjectile(this.projectile);
+			//ProjectileManager.DestroyLinearProjectile(this.projectile);
 			caster.SetModifierStackCount(this.GetIntrinsicModifierName(),caster,0);
 			//this.mod.Destroy()
 		}
@@ -243,6 +251,7 @@ class modifier_crater_projectile extends CDOTA_Modifier_Lua {
 
 class modifier_crater_area_controller extends CDOTA_Modifier_Lua {
 	particle:ParticleID
+	particle2:ParticleID
 
 	// IsAura() {return true}
 	// GetAuraRadius() {return this.GetAbility().GetSpecialValueFor("crater_radius")}
@@ -252,7 +261,7 @@ class modifier_crater_area_controller extends CDOTA_Modifier_Lua {
 
 	OnCreated() {
 		if (IsServer()) {
-			let particle2 = ParticleManager.CreateParticle("particles/units/heroes/hero_invoker/invoker_sun_strike.vpcf", ParticleAttachment_t.PATTACH_ABSORIGIN_FOLLOW, this.GetParent())
+			this.particle2 = ParticleManager.CreateParticle("particles/crater_strike.vpcf", ParticleAttachment_t.PATTACH_ABSORIGIN_FOLLOW, this.GetParent())
 
 			this.particle = ParticleManager.CreateParticle("particles/crater_area.vpcf",ParticleAttachment_t.PATTACH_ABSORIGIN,this.GetCaster());
 			ParticleManager.SetParticleControl(this.particle,0,this.GetParent().GetAbsOrigin());
@@ -276,8 +285,10 @@ class modifier_crater_area_controller extends CDOTA_Modifier_Lua {
 
 	OnDestroy() {
 		if (IsServer()) {
-			ParticleManager.DestroyParticle(this.particle,false);
+			ParticleManager.DestroyParticle(this.particle,true);
 			ParticleManager.ReleaseParticleIndex(this.particle);
+			ParticleManager.DestroyParticle(this.particle2,true);
+			ParticleManager.ReleaseParticleIndex(this.particle2);
 		}
 	}
 }

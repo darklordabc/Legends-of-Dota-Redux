@@ -1,10 +1,10 @@
 "DOTAAbilities"
 {
-    "pudge_flesh_heap_mana_regeneration"
+    "pudge_flesh_heap_willpower"
     {
         "BaseClass"                                                            "ability_lua"
-        "AbilityTextureName"                                                   "custom/flesh_heap_mana_regeneration"
-        "ScriptFile"                                                           "abilities/pudge_flesh_heap_mana_regeneration.lua"
+        "AbilityTextureName"                                                   "custom/flesh_heap_spell_amp"
+        "ScriptFile"                                                           "abilities/pudge_flesh_heap_willpower.lua"
         "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
         "AbilityCastRange"                                                     "450"
         "precache"
@@ -16,7 +16,7 @@
             "01"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "flesh_heap_value_buff_amount"                    "0.1 0.2 0.3 0.4"
+                "flesh_heap_value_buff_amount"                     "1.5 2 2.5 3"
             }
             "02"
             {
@@ -24,7 +24,7 @@
                 "flesh_heap_range"                                     "450"
             }
         }
-        "ReduxFlags"                                                           "dota_custom | mana"
+        "ReduxFlags"                                                           "dota_custom"
         "ReduxCost"                                                            "40"
     }
 }

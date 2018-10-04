@@ -67,22 +67,25 @@ function crater.OnSpellStart(self)
         local direction = (caster:GetCursorPosition()-origin):Normalized()
 
         direction.z=0
-        local projectileTable = {Ability = self,EffectName = "",vSpawnOrigin = origin,fDistance = 10000,fStartRadius = self:GetSpecialValueFor("crater_radius"),fEndRadius = self:GetSpecialValueFor("crater_radius"),Source = caster,vVelocity = direction*(self:GetSpecialValueFor("marker_speed")-100)}
+        local projectileTable = {Ability = self,EffectName = "",vSpawnOrigin = origin,fDistance = 10000,fStartRadius = self:GetSpecialValueFor("crater_radius"),fEndRadius = self:GetSpecialValueFor("crater_radius"),Source = caster,vVelocity = direction*(self:GetSpecialValueFor("marker_speed"))}
 
         self.projectileParticle=ParticleManager:CreateParticleForTeam("particles/crater_marker.vpcf",PATTACH_CUSTOMORIGIN,caster,caster:GetTeamNumber())
         ParticleManager:SetParticleControl(self.projectileParticle,0,caster:GetAbsOrigin()+direction)
         ParticleManager:SetParticleControl(self.projectileParticle,1,direction*self:GetSpecialValueFor("marker_speed"))
-        self.projectile=ProjectileManager:CreateLinearProjectile(projectileTable)
         caster:EmitSound("Hero_Ancient_Apparition.IceBlastRelease.Cast")
         caster:SetModifierStackCount(self:GetIntrinsicModifierName(),caster,1)
+        self.time=GameRules:GetGameTime()
+        self.launchDirection=direction
+        self.launchLocation=origin
         self:EndCooldown()
         self:StartCooldown(0.25)
     else
-        local origin = ProjectileManager:GetLinearProjectileLocation(self.projectile)
+        local time = GameRules:GetGameTime()-self.time
+
+        local origin = self.launchLocation+(self.launchDirection*(self:GetSpecialValueFor("marker_speed")*time))
 
         self.dummy=CreateUnitByName("npc_dota_thinker",origin,true,caster,caster:GetPlayerOwner(),caster:GetTeamNumber())
         self:OnDestroyProjectile(origin,self.dummy)
-        ProjectileManager:DestroyLinearProjectile(self.projectile)
         caster:SetModifierStackCount(self:GetIntrinsicModifierName(),caster,0)
     end
 end
@@ -216,8 +219,7 @@ function modifier_crater_area_controller.constructor(self)
 end
 function modifier_crater_area_controller.OnCreated(self)
     if IsServer() then
-        local particle2 = ParticleManager:CreateParticle("particles/units/heroes/hero_invoker/invoker_sun_strike.vpcf",PATTACH_ABSORIGIN_FOLLOW,self:GetParent())
-
+        self.particle2=ParticleManager:CreateParticle("particles/crater_strike.vpcf",PATTACH_ABSORIGIN_FOLLOW,self:GetParent())
         self.particle=ParticleManager:CreateParticle("particles/crater_area.vpcf",PATTACH_ABSORIGIN,self:GetCaster())
         ParticleManager:SetParticleControl(self.particle,0,self:GetParent():GetAbsOrigin())
         ParticleManager:SetParticleControl(self.particle,3,self:GetParent():GetAbsOrigin())
@@ -236,8 +238,10 @@ function modifier_crater_area_controller.OnIntervalThink(self)
 end
 function modifier_crater_area_controller.OnDestroy(self)
     if IsServer() then
-        ParticleManager:DestroyParticle(self.particle,false)
+        ParticleManager:DestroyParticle(self.particle,true)
         ParticleManager:ReleaseParticleIndex(self.particle)
+        ParticleManager:DestroyParticle(self.particle2,true)
+        ParticleManager:ReleaseParticleIndex(self.particle2)
     end
 end
 modifier_crater_area_control = {}

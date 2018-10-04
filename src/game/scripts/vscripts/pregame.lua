@@ -1046,9 +1046,13 @@ end
 -- Send the patrons
 function Pregame:sendPatrons()
     local sortedPatrons = {}
-    for i=0,util:getTableLength(util.patrons) do
-        table.insert(sortedPatrons, util.patrons[tostring(i)])
+    
+    for k,v in pairs(util.patrons) do
+        table.insert(sortedPatrons,v)
     end
+    -- for i=0,util:getTableLength(util.patrons) do
+    --     table.insert(sortedPatrons, util.patrons[tostring(i)])
+    -- end
 
     -- Push the patrons
     network:setPatrons(sortedPatrons)

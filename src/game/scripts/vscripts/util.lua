@@ -702,11 +702,19 @@ function CDOTA_BaseNPC:GetCooldownReduction()
   return math.max(0.01,(1 - (cooldown_reduct + cooldown_reduct_stack)*0.01))
 end
 
-function CDOTA_BaseNPC:GetTenacity()
+
+-- modifierEventTable = {
+--     caster = caster,
+--     parent = parent,
+--     ability = ability,
+--     original_duration = duration,
+--     modifier_name = modifier_name,
+-- }
+function CDOTA_BaseNPC:GetTenacity(modifierEventTable)
     local tenacity = 1
     for _, parent_modifier in pairs(self:FindAllModifiers()) do
         if parent_modifier.GetTenacity then
-            tenacity = tenacity * (1- (parent_modifier:GetTenacity()/100))
+            tenacity = tenacity * (1- (parent_modifier:GetTenacity(modifierEventTable)/100))
         end
     end
     return tenacity
@@ -714,14 +722,24 @@ end
 
 
 
-function CDOTA_BaseNPC:GetWillpower()
+function CDOTA_BaseNPC:GetWillPower(modifierEventTable)
     local willpower = 1
     for _, parent_modifier in pairs(self:FindAllModifiers()) do
-        if parent_modifier.GetWillpower then
-            willpower = willpower * (1+ (parent_modifier:GetWillpower()/100))
+        if parent_modifier.GetWillPower then
+            willpower = willpower * (1+ (parent_modifier:GetWillPower(modifierEventTable)/100))
         end
     end
     return willpower
+end
+
+function CDOTA_BaseNPC:GetSummonersBoost(modifierEventTable)
+    local boost = 1
+    for _, parent_modifier in pairs(self:FindAllModifiers()) do
+        if parent_modifier.GetSummonersBoost then
+            boost = boost * (1+ (parent_modifier:GetSummonersBoost(modifierEventTable)/100))
+        end
+    end
+    return boost
 end
 
 function ShuffleArray(input)

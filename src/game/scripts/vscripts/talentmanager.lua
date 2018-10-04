@@ -136,8 +136,8 @@ function AddTalents(hero,build)
             for k,v in pairs(TalentList["basic"..nTalentRank]) do
                 --print(k,c== rnd)
                 if c == rnd then
-                    if not otherTalent or k ~= otherTalent:gsub('%d','') then
-                        if not string.find(k,"DOTA_Tooltip_ability_special_bonus_cooldown_reduction") then
+                    if not otherTalent or k:gsub('%d','') ~= otherTalent:gsub('%d','') then
+                        if not string.find(k,"special_bonus_cooldown_reduction") then
                             if not string.find(k,"special_bonus_attack_range") or hero:IsRangedAttacker() then
                                 if not string.find(k, "special_bonus_cleave") or not hero:IsRangedAttacker() then
                                     if not HasTalent(k) then
@@ -170,7 +170,7 @@ function AddTalents(hero,build)
                 j = j +1
             end
             if not a then a =FindNormalTalentFromList(i) end
-            if not b then b =FindNormalTalentFromList(i) end
+            if not b then b =FindNormalTalentFromList(i,a) end
             --print("Normal0",a,b)
             table.insert(hero.heroTalentList,a)
             table.insert(hero.heroTalentList,b)
@@ -179,7 +179,7 @@ function AddTalents(hero,build)
             local b = b or FindHeroTalentFromList(i)
             
             if not a then a =FindNormalTalentFromList(i) end
-            if not b then b =FindNormalTalentFromList(i) end
+            if not b then b =FindNormalTalentFromList(i,a) end
             --print("Normal1",a,b)
             table.insert(hero.heroTalentList,a)
             table.insert(hero.heroTalentList,b)
@@ -193,7 +193,7 @@ function AddTalents(hero,build)
                 j = j +1
             end
             if not a then a =FindNormalTalentFromList(i) end
-            if not b then b =FindNormalTalentFromList(i) end
+            if not b then b =FindNormalTalentFromList(i,a) end
             --print("Normal2",a,b)
             table.insert(hero.heroTalentList,a)
             table.insert(hero.heroTalentList,b)

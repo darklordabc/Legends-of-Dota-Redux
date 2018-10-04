@@ -205,6 +205,7 @@
 #base "abilities\dota\pudge_flesh_heap_mana_regeneration.txt"
 #base "abilities\dota\pudge_flesh_heap_cast_range.txt"
 #base "abilities\dota\pudge_flesh_heap_tenacity.txt"
+#base "abilities\dota\pudge_flesh_heap_willpower.txt"
 #base "abilities\dota\pudge_meat_hook_perk.txt"
 #base "abilities\dota\riki_backstab_lod.txt"
 #base "abilities\dota\riki_permanent_invisibility_lod.txt"
@@ -650,7 +651,7 @@
 #base "abilities\unpickable\treant_eyes_in_the_forest_notification.txt"
 #base "abilities\overthrow.txt"
 #base "abilities\talents\status_resistance.txt"
-
+#base "abilities\talents\willpower.txt"
 
 "DOTAAbilities" {
 

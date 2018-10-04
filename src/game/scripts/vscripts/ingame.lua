@@ -2079,7 +2079,7 @@ function Ingame:FilterDamage( filterTable )
         end
     end
 
-    if OptionManager:GetOption('antiRat') == 1 and victim.IsBuilding and victim:IsBuilding()  then
+    if OptionManager:GetOption('antiRat') == 1 and victim.IsBuilding and victim:IsBuilding() then
         local protection = victim:FindModifierByName("modifier_backdoor_protection_active")
 
         if protection then
@@ -2156,7 +2156,7 @@ function Ingame:FilterModifiers( filterTable )
     local parent_index = filterTable["entindex_parent_const"]
     local caster_index = filterTable["entindex_caster_const"]
     local ability_index = filterTable["entindex_ability_const"]
-
+    local duration = filterTable["duration"]
 
     if not parent_index --[[or not caster_index -or not ability_index]] then
         return true
@@ -2205,9 +2205,18 @@ function Ingame:FilterModifiers( filterTable )
     if OptionManager:GetOption('memesRedux') == 1 then
         filterTable = memesModifierFilter(filterTable)
     end
+    local modifierEventTable = {
+        caster = caster,
+        parent = parent,
+        ability = ability,
+        original_duration = duration,
+        modifier_name = modifier_name,
+    }
+
+    if modifier_name == "modifier_kill" then print("modifier_name = modifier_kill") end
     -- Tenacity
     if caster:GetTeamNumber() ~= parent:GetTeamNumber() and filterTable["duration"] > 0 then
-        filterTable["duration"] = filterTable["duration"] * parent:GetTenacity() * parent:GetWillpower()
+        filterTable["duration"] = filterTable["duration"] * parent:GetTenacity(modifierEventTable)
         if parent.GetIMBATenacity then
             local original_duration = filterTable.duration
             local actually_duration = original_duration
@@ -2227,6 +2236,20 @@ function Ingame:FilterModifiers( filterTable )
             filterTable.duration = actually_duration
         end
     end
+
+
+
+    -- Willpower (Shouldn't increase duration of passives like bash)
+    if filterTable["duration"] > 0 and ability.IsPassive and not ability:IsPassive() and modifier_name ~= "modifier_kill" then
+        filterTable["duration"] = filterTable["duration"] * caster:GetWillPower(modifierEventTable)
+    end
+
+    -- Summoners boost
+    if modifier_name == "modifier_kill" and parent.IsIllusion and not parent:IsIllusion() then
+        filterTable["duration"] = filterTable["duration"] * caster:GetSummonersBoost(modifierEventTable)
+    end
+
+
     -- Bash Reflect
     ReflectBashes(filterTable)
     -- Bash Cooldown

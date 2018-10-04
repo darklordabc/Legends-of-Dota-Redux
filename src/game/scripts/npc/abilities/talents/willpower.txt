@@ -1,0 +1,23 @@
+"DOTAAbilities" {
+  "special_unique_willpower_16_redux" 
+  {
+    "BaseClass"               "special_bonus_unique_antimage_3"
+    "TalentRank"              "1"
+  }
+  "special_unique_willpower_24_redux" 
+  {
+    "BaseClass"               "special_bonus_unique_antimage_3"
+    "TalentRank"              "2"
+  }
+  "special_unique_willpower_32_redux" 
+  {
+    "BaseClass"               "special_bonus_unique_antimage_3"
+    "TalentRank"              "3"
+  }
+  "special_unique_willpower_40_redux" 
+  {
+    "BaseClass"               "special_bonus_unique_antimage_3"
+    "TalentRank"              "4"
+  }
+}
+

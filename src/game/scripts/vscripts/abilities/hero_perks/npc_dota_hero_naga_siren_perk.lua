@@ -49,7 +49,7 @@ function modifier_npc_dota_hero_naga_siren_perk:OnCreated()
   if IsServer and not self:GetParent():IsIllusion() then
     ListenToGameEvent('npc_spawned', function(keys)
       local unit = EntIndexToHScript(keys.entindex)
-      if unit:GetUnitName() == self:GetParent():GetUnitName() and unit:GetPlayerOwner() == self:GetParent():GetPlayerOwner() then
+      if unit and unit:GetUnitName() == self:GetParent():GetUnitName() and unit:GetPlayerOwner() == self:GetParent():GetPlayerOwner() then
         unit:AddNewModifier(unit,self:GetAbility(),"modifier_npc_dota_hero_naga_siren_perk",{})
       end
     end,nil)
