@@ -8089,6 +8089,15 @@ function Pregame:fixSpawnedHero( spawnedUnit )
         spawnedUnit.hasTalent = true
     end
 
+    if spawnedUnit:HasAbility("special_bonus_unique_crater_0") then
+        for i = 0,23 do
+            local qwe = spawnedUnit:GetAbilityByIndex(i)
+            if qwe then
+                print(i,qwe:GetAbilityName())
+            end
+        end
+    end
+
     -- Various Fixes
     Timers:CreateTimer(function()
         if IsValidEntity(spawnedUnit) then

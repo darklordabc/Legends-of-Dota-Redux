@@ -1228,7 +1228,7 @@
         }
     }
 
- "item_desolator_consumable"
+    "item_desolator_consumable"
     {
         // General
         //-------------------------------------------------------------------------------------------------------------
@@ -1268,6 +1268,49 @@
             {
                 "var_type"              "FIELD_FLOAT"
                 "desolator_corruption_duration"   "15.0"
+            }
+        }
+    }
+    "item_ultimate_scepter_consumable"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "ID"                            "2108"                                                       // unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
+        "AbilityTextureName"            "item_ultimate_scepter"
+        "BaseClass"                     "item_lua"
+        "ScriptFile"                    "abilities/items/ultimate_scepter.lua"
+
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemCost"                      "4200"
+        "AbilityGoldCost"               "4200"
+        "ItemPurchasable"              "0"
+        
+        
+        // Special  
+        //-------------------------------------------------------------------------------------------------------------
+        //
+
+        // THESE VALUES ARE PURELY FOR THE TOOLTIPS, REAL VALUES ARE IN ABILITY "ability_consumable_item_container"
+        "AbilitySpecial"
+        {
+            "70"
+            {
+              "var_type"                "FIELD_INTEGER"
+              "ultimate_scepter_bonus_all_stats"          "10"
+            }
+            "71"
+            {
+              "var_type"                "FIELD_INTEGER"
+              "ultimate_scepter_bonus_health"              "175"
+            }
+            "72"
+            {
+              "var_type"                "FIELD_INTEGER"
+              "ultimate_scepter_bonus_mana"             "175"
             }
         }
     }

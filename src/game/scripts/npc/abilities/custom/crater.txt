@@ -28,7 +28,7 @@
             "03"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "crater_damage"                                              "100 200 300 400"
+                "crater_damage"                                              "75 125 175 225"
             }
             "04"
             {
@@ -50,6 +50,8 @@
         "BaseClass"               "special_bonus_unique_antimage_3"
         "TalentRank"              "2"
         "TalentRequiredAbility" "crater"
+        "AbilityType"                   "DOTA_ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
         "AbilitySpecial"
         {
             "01"

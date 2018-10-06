@@ -17921,7 +17921,10 @@
 
     "DOTA_Tooltip_ability_special_bonus_unique_silencer_5" "25% Chance to Silence 1s with Glaives"
 
-    "DOTA_Tooltip_ability_special_bonus_unique_crater_0" "Units Withing 600 Units Get Sucked into the Crater"
+
+    "DOTA_Tooltip_ability_special_bonus_unique_crater_0" "Units Within 600 Units Get Sucked Into The Crater"
+    "DOTA_Tooltip_ability_special_bonus_unique_ranged_punch_0" "2x knockback distance on enemies"
+
 
     "DOTA_Tooltip_ability_crater"                            "CRATER"
     "DOTA_Tooltip_ability_crater_Description"                      "Mark a location to bomb, creating a deep crater. Foes caught inside can't see or move outside of the crater and they take minor damage."
@@ -17929,6 +17932,13 @@
     "DOTA_Tooltip_ability_crater_crater_damage"                 "DAMAGE:"
     "DOTA_Tooltip_ability_crater_marker_speed"           "MARKER SPEED:"
     "DOTA_Tooltip_ability_crater_projectile_speed"      "PROJECTILE SPEED:"    
-    "DOTA_Tooltip_ability_crater_crater_duration"         "DURATION"               
+    "DOTA_Tooltip_ability_crater_crater_duration"         "DURATION"
+
+    "DOTA_Tooltip_ability_ranged_punch"                            "WRECKING BALL"
+    "DOTA_Tooltip_ability_ranged_punch_Description"                      "Throw a wrecking ball on a chain towards target point, knocking back friends and foes but only damaging foes."
+    "DOTA_Tooltip_ability_ranged_punch_radius"                 "RADIUS:"
+    "DOTA_Tooltip_ability_ranged_punch_punch_damage"                 "DAMAGE:"
+    "DOTA_Tooltip_ability_ranged_punch_projectile_speed"      "PROJECTILE SPEED:"    
+    "DOTA_Tooltip_ability_ranged_punch_knockback_distance"         "KNOCKBACK DISTANCE"                              
 
 }

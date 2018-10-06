@@ -1,0 +1,40 @@
+"DOTAAbilities"
+{
+    "fly_redux"
+    {
+        "BaseClass"                                                            "ability_lua"
+        "ScriptFile"                                                           "abilities/flying_abilities.lua"
+        "AbilityTextureName"                                                   "tiny_grow"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                                      "FIELD_INTEGER"
+                "flying_movespeed_slow_pct"                                     "75 60 45 30"
+            }
+        }
+        "ReduxFlags"                                                           "dota_custom"
+        "ReduxCost"                                                            "0"
+    }
+
+    "fly_redux_op"
+    {
+        "BaseClass"                                                            "ability_lua"
+        "ScriptFile"                                                           "abilities/flying_abilities.lua"
+        "AbilityTextureName"                                                   "tiny_grow"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "flying_movespeed_slow_pct"                                          "0"
+            }
+        }
+        "ReduxFlags"                                                           "dota_custom"
+        "ReduxCost"                                                            "120"
+    }
+}

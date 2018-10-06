@@ -331,6 +331,21 @@
         "var_type"                "FIELD_INTEGER"
         "damage_aura"             "15"
       }
+      "70"
+      {
+        "var_type"                "FIELD_INTEGER"
+        "ultimate_scepter_bonus_all_stats"          "10"
+      }
+      "71"
+      {
+        "var_type"                "FIELD_INTEGER"
+        "ultimate_scepter_bonus_health"              "175"
+      }
+      "72"
+      {
+        "var_type"                "FIELD_INTEGER"
+        "ultimate_scepter_bonus_mana"             "175"
+      }
     }
   }
 }

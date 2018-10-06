@@ -1,16 +1,22 @@
 "DOTAAbilities" {
   "special_unique_status_resistance_20_redux" 
   {
+    "AbilityType"         "DOTA_ABILITY_TYPE_ATTRIBUTES"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
     "BaseClass"               "special_bonus_unique_antimage_3"
     "TalentRank"              "3"
   }
   "special_unique_status_resistance_25_redux" 
   {
+    "AbilityType"         "DOTA_ABILITY_TYPE_ATTRIBUTES"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
     "BaseClass"               "special_bonus_unique_antimage_3"
     "TalentRank"              "4"
   }
   "special_unique_status_resistance_15_redux" 
   {
+    "AbilityType"         "DOTA_ABILITY_TYPE_ATTRIBUTES"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
     "BaseClass"               "special_bonus_unique_antimage_3"
     "TalentRank"              "2"
   }
