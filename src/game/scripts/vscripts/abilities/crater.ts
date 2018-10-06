@@ -101,6 +101,13 @@ class crater extends CDOTA_Ability_Lua {
 			//ProjectileManager.DestroyLinearProjectile(this.projectile);
 			caster.SetModifierStackCount(this.GetIntrinsicModifierName(),caster,0);
 			//this.mod.Destroy()
+			//@ts-ignore
+			Timers.CreateTimer(.5,()=>{
+				if (this.dummy && IsValidEntity(this.dummy)) {
+					AddFOWViewer(caster.GetTeamNumber(),origin,this.GetSpecialValueFor("crater_radius"),.5,true)
+					return .5;
+				}
+			})
 		}
 	}
 
@@ -311,7 +318,6 @@ class modifier_crater_area_control extends CDOTA_Modifier_Lua {
 			let direction = unit.GetAbsOrigin() - this.position;
 			direction = direction.Normalized();
 			let dot = direction.Dot(unit.GetForwardVector());
-			print(unit.GetUnitName(),dot);
 			if (dot > 0) {
 				this.SetStackCount(1);
 				return;
@@ -357,5 +363,6 @@ class modifier_crater_area_control extends CDOTA_Modifier_Lua {
 }
 
 class modifier_crater_spell_manager extends CDOTA_Modifier_Lua {
+	IsHidden() {return true;}
 
 }

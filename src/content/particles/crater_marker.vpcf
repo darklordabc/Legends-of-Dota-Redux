@@ -160,4 +160,5 @@
 			]
 		},
 	]
+	m_flCullRadius = -1.0
 }

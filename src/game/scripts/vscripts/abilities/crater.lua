@@ -87,6 +87,13 @@ function crater.OnSpellStart(self)
         self.dummy=CreateUnitByName("npc_dota_thinker",origin,true,caster,caster:GetPlayerOwner(),caster:GetTeamNumber())
         self:OnDestroyProjectile(origin,self.dummy)
         caster:SetModifierStackCount(self:GetIntrinsicModifierName(),caster,0)
+        Timers:CreateTimer(0.5,function()
+            if self.dummy and IsValidEntity(self.dummy) then
+                AddFOWViewer(caster:GetTeamNumber(),origin,self:GetSpecialValueFor("crater_radius"),0.5,true)
+                return 0.5
+            end
+        end
+)
     end
 end
 function crater.OnDestroyProjectile(self,origin,target)
@@ -271,7 +278,6 @@ function modifier_crater_area_control.OnIntervalThink(self)
         direction=direction:Normalized()
         local dot = direction:Dot(unit:GetForwardVector())
 
-        print(unit:GetUnitName(),dot)
         if dot>0 then
             self:SetStackCount(1)
             return
@@ -312,4 +318,7 @@ function modifier_crater_spell_manager.new(construct, ...)
     return instance
 end
 function modifier_crater_spell_manager.constructor(self)
+end
+function modifier_crater_spell_manager.IsHidden(self)
+    return true
 end

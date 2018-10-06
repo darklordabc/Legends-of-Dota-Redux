@@ -4,7 +4,9 @@ require("typescript_lualib")
 item_consumable = {}
 item_consumable.__index = item_consumable
 function item_consumable.new(construct, ...)
-    return class(self)
+    local instance = setmetatable({}, item_consumable)
+    if construct and item_consumable.constructor then item_consumable.constructor(instance, ...) end
+    return instance
 end
 function item_consumable.constructor(self)
 end

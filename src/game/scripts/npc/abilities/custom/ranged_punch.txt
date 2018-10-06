@@ -1,0 +1,59 @@
+"DOTAAbilities"
+{
+    "ranged_punch"
+    {
+        "BaseClass"                                                            "ability_lua"
+        "ScriptFile"                                                           "abilities/ranged_punch.lua"
+        "AbilityTextureName"                                                   "tusk_walrus_punch"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_POINT_TARGET | "
+        "AbilityCastRange"                                                      "1000 1200 1400 1600"
+        "AbilityManaCost"                                                       "90"
+        "AbilityCooldown"                                                       "6"
+        "AbilityCastPoint"                                                      "0.05"
+        
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "projectile_speed"                                          "1000 1200 1400 1600"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "punch_damage"                                          "50 100 150 200"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "radius"                                                   "200"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "knockback_distance"                                   "350"
+                "LinkedSpecialBonus"    "special_bonus_unique_ranged_punch_0"
+                "LinkedSpecialBonusOperation"   "SPECIAL_BONUS_MULTIPLY"
+            }
+        }
+        "ReduxFlags"                                                           "dota_custom"
+        "ReduxCost"                                                            "0"
+    }
+
+    "special_bonus_unique_ranged_punch_0" 
+    {
+        "BaseClass"               "special_bonus_unique_antimage_3"
+        "TalentRank"              "3"
+        "TalentRequiredAbility" "ranged_punch"
+        "AbilityType"                   "DOTA_ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "value"                                                "2"
+            }
+        }
+    }
+}

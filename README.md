@@ -50,6 +50,7 @@ Legends of Dota Redux
     "noPermute":    true
 }
 ```
+- Dota 2 recently removed the localization text files from inside steam, we have to add them back for the compiler to work. Copy the localization files in "resource.zip" located in the "script_generator" into your equivalent folder of "C:\Program Files (x86)\Steam\steamapps\common\dota 2 beta\game\dota\resource".
 - Run `compile.bat`
 - Create shortcut to run the workshop tools with your cloned repo. Set the shortcut target to something like this:
 ```
