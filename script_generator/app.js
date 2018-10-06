@@ -85,13 +85,13 @@ function prepareLanguageFiles(next) {
     var ourData = ''+fs.readFileSync(langDir + 'addon_english.txt');
     var english = parseKV(ourData).addon;
 
-    specialChar = fs.readFileSync(resourcePath + 'dota_english.txt', 'utf16le').substring(0, 1);
+    specialChar = '\ufeff'; // fs.readFileSync(resourcePath + 'dota_english.txt', 'utf16le').substring(0, 1);
 
     for(var i=0; i<langs.length; ++i) {
         // Grab a language
         var lang = langs[i];
 
-        var data = fs.readFileSync(resourcePath + 'dota_' + lang + '.txt', 'utf16le').substring(1);
+        var data = fs.readFileSync(resourcePath + 'dota_' + lang + '.txt', 'utf8');
 
         // Load her up
         langIn[lang] = parseKV(data).lang.Tokens;
@@ -640,7 +640,7 @@ function makeLink( dir, link ) {
 	try {
 	    fs.accessSync(link, fs.F_OK);
 	    fs.rmdirSync(link);
-	} 
+	}
 	catch (e) {
 	    // It isn't accessible
 	}
@@ -653,7 +653,7 @@ function makeLink( dir, link ) {
 		//fs.symlinkSync(path.resolve(dir), link, 'junction');
 	}
 	else
-		fs.link(dir, link);	
+		fs.link(dir, link, () => {});
 }
 
 function makeLinks( dotaPath ) {
@@ -662,7 +662,7 @@ function makeLinks( dotaPath ) {
 	deleteFolderRecursive("../dota");
 
 	var dirs = require('./dirs.json');
-	
+
 	// Make dirs
 	dirs.makeDirs.forEach(function(element, index, array){
  		fs.mkdirSync('../' + element);
@@ -744,7 +744,7 @@ function runEverything( dotaPath ) {
 	            //});
 	        });
 	    });
-	});	
+	});
 }
 
 function execScript() {
@@ -753,7 +753,7 @@ function execScript() {
 	exec(cmd, function(error, stdout, stderr) {
 		// Set Dota 2 dir from registry or settings
 	  	var dotaPath = (settings && settings.dotaDir) || stdout.match(/(?=REG_SZ).*/g)[0].replace('REG_SZ', '').trim() + '/SteamApps/common/dota 2 beta/';
-		
+
 	  	// Run compiling
 		runEverything( dotaPath );
 	});
