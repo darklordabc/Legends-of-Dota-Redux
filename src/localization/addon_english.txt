@@ -14992,15 +14992,15 @@
     //"DOTA_Tooltip_Ability_special_bonus_unique_meepo"                     "-5s Poof Cooldown"
     "DOTA_Tooltip_ability_special_bonus_unique_meepo_2"                     "+80 Poof Damage"
     //"DOTA_Tooltip_Ability_special_bonus_unique_monkey_king"               "+100% Boundless Strike Crit"
-    //"DOTA_Tooltip_Ability_special_bonus_unique_monkey_king_2"             "+75 Jingu Mastery damage"
+    //"DOTA_Tooltip_Ability_special_bonus_unique_monkey_king_2"             "+75 Jingu Mastery Damage"
 
-    "DOTA_Tooltip_Ability_special_bonus_unique_clockwerk_3"                 "+40 Battery Assault damage"
+    "DOTA_Tooltip_Ability_special_bonus_unique_clockwerk_3"                 "+40 Battery Assault Damage"
     "DOTA_Tooltip_ability_special_bonus_unique_elder_titan_3"               "-50 Earth Splitter Cooldown"
     "DOTA_Tooltip_Ability_special_bonus_unique_ember_spirit_1"              "+800 Flame Guard Absorption"
     "DOTA_Tooltip_Ability_special_bonus_unique_ember_spirit_2"              "+2s Searing Chains"
     "DOTA_Tooltip_ability_special_bonus_unique_ember_spirit_4"              "3 Sleight of Fist Charges"
-    "DOTA_Tooltip_Ability_special_bonus_unique_gyrocopter_2"                "+10 Flak Cannon attacks"
-    "DOTA_Tooltip_Ability_special_bonus_unique_gyrocopter_4"                "-10 cooldown reduction for Call Down"
+    "DOTA_Tooltip_Ability_special_bonus_unique_gyrocopter_2"                "+10 Flak Cannon Attacks"
+    "DOTA_Tooltip_Ability_special_bonus_unique_gyrocopter_4"                "-10 Cooldown Reduction for Call Down"
 
     //=================================================================================================================
     //=================================================================================================================
@@ -17919,9 +17919,9 @@
     "DOTA_Tooltip_ability_special_unique_willpower_32_redux" "+32 Status resistance"
     "DOTA_Tooltip_ability_special_unique_willpower_40_redux" "+40 Status resistance"
 
-    "DOTA_Tooltip_ability_special_bonus_unique_silencer_5" "25% chance to silence 1s with glaives"
+    "DOTA_Tooltip_ability_special_bonus_unique_silencer_5" "25% Chance to Silence 1s with Glaives"
 
-    "DOTA_Tooltip_ability_special_bonus_unique_crater_0" "Units withing 600 units get sucked into the crater"
+    "DOTA_Tooltip_ability_special_bonus_unique_crater_0" "Units Withing 600 Units Get Sucked into the Crater"
 
     "DOTA_Tooltip_ability_crater"                            "CRATER"
     "DOTA_Tooltip_ability_crater_Description"                      "Mark a location to bomb, creating a deep crater. Foes caught inside can't see or move outside of the crater and they take minor damage."
