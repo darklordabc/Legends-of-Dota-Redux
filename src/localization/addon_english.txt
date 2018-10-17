@@ -1146,7 +1146,7 @@
     "hintBH"                         "Bounty Hunter deals 10% more damage to Tracked enemies."
     "hintDrow"                         "Gust also disarms enemies when cast by Drow Ranger."
     "hintNyx"                         "Nyx Assassin gains 10% bonus movement speed when invisible."
-    "hintSlark"                         "Slark gains +3 agility for each level put in an mobility/escape skill."
+    "hintSlark"                         "Slark starts with 1 level of Dark Pact, whether he has it or not. Also, Slark casts it every 10 seconds, and won't take any damage from Dark Pact."
     "hintLuna"                         "Luna gains 1 free level of Lunar Blessing, whether she has it or not."
     "hintAlchemist"                         "Alchemist consumes items for 25% less gold."
     "hintArcWarden"                         "Arc Warden may use a consumable item on himself every 90 seconds without consuming the item. Has double cooldown length if used on Tome of Knowledge."
@@ -1618,7 +1618,7 @@
     "unique_mechanic_silencer"                        "<font color=\'#ffd966\'>Silence</font> effects applied by Silencer last 25% longer."
     "unique_mechanic_skywrath_mage"                        "Skywrath Mage refunds 15% of the manacost of spells with a cooldown of 7 seconds or less."
     "unique_mechanic_slardar"                       "<font color=\'#ffd966\'>Skull Basher</font> and  <font color=\'#ffd966\'>Abyssal Blade</font> will not proc for this hero. Physical damage dealt by Slardar's abilities is increased by 25%"
-    "unique_mechanic_slark"                        "Slark gains +3 agility for each level put in an <font color=\'#ffd966\'>Mobility</font>/<font color=\'#ffd966\'>Escape</font> skill."
+    "unique_mechanic_slark"                        "Slark starts with 1 level of <font color=\'#ffd966\'>Dark Pact</font>, whether he has it or not. Also, Slark casts it every 10 seconds, and won't take any damage from <font color=\'#ffd966\'>Dark Pact</font>."
     "unique_mechanic_sniper"                        "<font color=\'#ffd966\'>Shrapnel</font> will have global cast range if used by Sniper."
     "unique_mechanic_spectre"           "Spectre gains phased movement when casting abilities."
     "unique_mechanic_spirit_breaker"                "<font color=\'#ffd966\'>Skull Basher</font> and  <font color=\'#ffd966\'>Abyssal Blade</font> will not proc for this hero.When Spirit Breaker bashes, he also applies <font color=\'#ffd966\'>Break</font>."
@@ -4216,7 +4216,7 @@
 
     /// SLARK​
     "DOTA_Tooltip_modifier_npc_dota_hero_slark_perk"    "Slark Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_slark_perk_Description"    "Slark starts with 1 level of dark pact, whether he has it or not. Also, Slark casts it every 10 seconds, and won't take any damage from dark pact."
+    "DOTA_Tooltip_modifier_npc_dota_hero_slark_perk_Description"    "Slark starts with 1 level of Dark Pact, whether he has it or not. Also, Slark casts it every 10 seconds, and won't take any damage from Dark Pact."
 
     /// SNIPER
     "DOTA_Tooltip_modifier_npc_dota_hero_sniper_perk"   "Sniper Perk"
