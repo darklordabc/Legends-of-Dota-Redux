@@ -1132,7 +1132,7 @@
     "hintWisp"                         "Wisp gains 1 free level of Essence Aura Redux, whether it has it or not."
     "hintMeepo"                         "Meepo's damage is increased by 5% for every other Meepo on his team. Takes 25% max health as damage whenever a Meepo dies."
     "hintPL"                         "Illusions created by Phantom Lancer will move 25% faster."
-    "hintCM"                         "Crystal Maiden gains +2 movement speed for each level she puts in Support skills."
+    "hintCM"                         "Crystal Maiden gains a free level of Brilliance Aura for every Ice spell she has"
     "hintAntiMage"                         "After Anti-Mage blinks he will silence enemies within 200 radius for 2 seconds."
     "hintElderTitan"                         "Elder Titan gains 3% bonus movement speed for every aura he is carrying."
     "hintLion"                         "For Lion, killing a hero with a spell refunds the mana cost of that spell and lowers its cooldown by 75%."
@@ -1554,7 +1554,7 @@
     "unique_mechanic_chen"                   "When Chen casts <font color=\'#ffd966\'>Holy Persuasion</font> on a creep they will receive an extra ability."
     "unique_mechanic_clinkz"                        "Clinkz will receive a free level in his first non-ultimate <font color=\'#ffd966\'>Autocast</font> ability at the start of the game."
     "unique_mechanic_rattletrap"                        "Clockwerk fires a random flare to any part of the map every 15 seconds. Scales with <font color=\'#ffd966\'>Rocket Flare</font>."
-    "unique_mechanic_crystal_maiden"    "Crystal Maiden gains +2 movement speed for each level put in <font color=\'#ffd966\'>Support</font> abilities."
+    "unique_mechanic_crystal_maiden"    "Crystal Maiden gains a free level of Brilliance Aura for every <font color=\'#ffd966\'>Ice</font> spell she has."
     "unique_mechanic_dark_seer"             "Dark Seer self-casts <font color=\'#ffd966\'>Surge</font> and <font color=\'#ffd966\'>Ion Shell</font> when casting them on allies."
     "unique_mechanic_dazzle"                        "<font color=\'#ffd966\'>Support</font> spells will have 25% cooldown reduction when cast by Dazzle."
     "unique_mechanic_death_prophet"                        "Any <font color=\'#ffd966\'>Silence</font> applied by Death Prophet also applies Mute."
@@ -3951,7 +3951,7 @@
 
     /// CRYSTAL MAIDEN​
     "DOTA_Tooltip_modifier_npc_dota_hero_crystal_maiden_perk"   "Crystal Maiden Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_crystal_maiden_perk_Description"   "Gaining bonus movement speed per level in support skills.<br><br><font color=\'#7D7D7D\'>By Yahnich | github.com/Yahnich</font>"
+    "DOTA_Tooltip_modifier_npc_dota_hero_crystal_maiden_perk_Description"   "Crystal Maiden gains a free level of Brilliance Aura for every Ice spell she has"
 
     /// DARK SEER​
     "DOTA_Tooltip_modifier_npc_dota_hero_dark_seer_perk"    "Dark Seer Perk"
