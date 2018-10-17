@@ -1131,7 +1131,7 @@
     "hintQOP"                         "Queen of Pain deals 10% more damage to male heroes, but receives 10% more damage from female heroes."
     "hintWisp"                         "Wisp gains 1 free level of Essence Aura Redux, whether it has it or not."
     "hintMeepo"                         "Meepo's damage is increased by 5% for every other Meepo on his team. Takes 25% max health as damage whenever a Meepo dies."
-    "hintPL"                         "Illusions move 25% faster"
+    "hintPL"                         "Illusions created by Phantom Lancer will move 25% faster."
     "hintCM"                         "Crystal Maiden gains +2 movement speed for each level she puts in Support skills."
     "hintAntiMage"                         "After Anti-Mage blinks he will silence enemies within 200 radius for 2 seconds."
     "hintElderTitan"                         "Elder Titan gains 3% bonus movement speed for every aura he is carrying."
@@ -1158,7 +1158,7 @@
     "hintFacelessVoid"                         "This hero can move freely in friendly and enemy chronospheres."
     "hintHuskar"                         "Huskar gets 2.5 status resistance for every 10% of health he is missing."
     "hintJakiro"                         "Fire and Ice spells cast sequentially will refund 40% mana and have 20% reduced cooldowns. "
-    "hintJuggernaut"                         "Healing/Mana Ward will have 100% of their mana cost refunded when cast by Juggernaut."
+    "hintJuggernaut"                         "If Juggernaut uses Omnislash on an enemy they will have their passives broke for 3 seconds."
     "hintKOTL"                         "Aghanim's Scepter will give KOTL unobstructed day vision."
     "hintKunkka"                         "When Kunkka casts a Water spell he has a 50% chance to refill his bottle."
     "hintLeshrac"                         "At the start of the game, Leshrac gains a free level of Octarine Vampirism, whether he has it or not."
@@ -1167,7 +1167,7 @@
     "hintMagnus"                         "When Magnus casts Enemy Moving abilities, they will have 25% mana refunded and cooldowns reduced by 25%. Abilities that only move units upwards are not counted."
     "hintMedusa"                         "Medusa steals 3% of the damage her attacks deal"
     "hintMirana"                         "When Mirana casts Skillshots, they will have 50% mana refunded and cooldowns reduced by 20%."
-    "hintNecrophos"                         "At the start of the game, Necrophos gains a free level of Heartstopper Aura, whether he has it or not."
+    "hintNecrophos"                         "At the start of the game, Necrophos gains a free level of Death Pulse, whether he has it or not."
     "hintOmniknight"                         "Light spells refund 40% of their mana cost when cast by Omniknight."
     "hintOracle"                         "Support items used by Oracle will have their cooldowns reduced by 20%."
     "hintOD"                         "Astral Imprisonment steals 7 intelligence for 60 seconds when cast by Outworld Devourer."
@@ -1574,7 +1574,7 @@
     "unique_mechanic_invoker"           "Invoker gains +5 intelligence each time he uses a different ability, resetting when an ability has been used twice."
     "unique_mechanic_wisp"                   "Wisp gains 1 free level of <font color=\'#ffd966\'>Essence Aura Redux</font>, whether it has it or not."
     "unique_mechanic_jakiro"                        "<font color=\'#ffd966\'>Fire</font> and <font color=\'#ffd966\'>Ice</font> spells cast sequentially will refund 40% mana and have 20% reduced cooldowns. "
-    "unique_mechanic_juggernaut"                        "<font color=\'#ffd966\'>Healing/Mana Ward</font> will have 100% of their mana cost refunded."
+    "unique_mechanic_juggernaut"                        "If Juggernaut uses <font color=\'#ffd966\'>Omnislash</font> on an enemy they will have their passives broke for 3 seconds."
     "unique_mechanic_keeper_of_the_light"           "<font color=\'#ffd966\'>Aghanim's Scepter</font> will give KOTL unobstructed day vision."
     "unique_mechanic_kunkka"                        "When Kunkka casts a <font color=\'#ffd966\'>Water</font> spell he has a 50% chance to refill his bottle."
     "unique_mechanic_legion_commander"              "When Legion Commander casts <font color=\'#ffd966\'>Duel</font>, she will gain spell immunity for the duration of the duel."
@@ -1594,7 +1594,7 @@
     "unique_mechanic_monkey_king"                              "At the start of the game, Monkey King gains a free level of <font color=\'#ffd966\'>Jingu Mastery</font>, whether he has it or not."
     "unique_mechanic_naga_siren"                        "<font color=\'#ffd966\'>Illusions</font> Take 25% less damage."
     "unique_mechanic_furion"                        "The cooldowns of all <font color=\'#ffd966\'>Teleportation</font> abilities are reduced by 50% for Nature's Prophet."
-    "unique_mechanic_necrolyte"                        "At the start of the game, Necrophos gains a free level of <font color=\'#ffd966\'>Heartstopper Aura</font>, whether he has it or not."
+    "unique_mechanic_necrolyte"                        "At the start of the game, Necrophos gains a free level of <font color=\'#ffd966\'>Death Pulse</font>, whether he has it or not."
     "unique_mechanic_night_stalker"                 "<font color=\'#ffd966\'>Aghanim's Scepter</font> will give Night Stalker unobstructed night vision."
     "unique_mechanic_nyx_assassin"                        "Nyx Assassin gains 10% bonus movement speed when invisible."
     "unique_mechanic_ogre_magi"                        "When Ogre Magi casts a spell, he also bloodlusts himself"
@@ -1602,7 +1602,7 @@
     "unique_mechanic_oracle"                        "Support items used by Oracle will have their cooldowns reduced by 20%."
     "unique_mechanic_obsidian_destroyer"                        "<font color=\'#ffd966\'>Astral Imprisonment</font> steals 7 intelligence for 60 seconds when cast by Outworld Devourer."
     "unique_mechanic_phantom_assassin"               "When Phantom Assassin uses <font color=\'#ffd966\'>Dagger</font> abilities they will have 50% of their manacost refunded, and their cooldown reduced by 2 second."
-    "unique_mechanic_phantom_lancer"            "<font color=\'#ffd966\'>Illusion</font> creating abilities will have cooldowns reduced by 50% when cast by Phantom Lancer."
+    "unique_mechanic_phantom_lancer"            "Illusions created by Phantom Lancer will move 25% faster."
     "unique_mechanic_phoenix"           "Phoenix passively triggers <font color=\'#ffd966\'>Supernova</font> when taking lethal damage."
     "unique_mechanic_puck"          "Puck has a 99% chance to reflect disjointed spells."
     "unique_mechanic_pudge"                        "Pudge has a quicker and longer version of <font color=\'#ffd966\'>Meat Hook</font>."
@@ -4034,7 +4034,7 @@
 
     /// JUGGERNAUT​
     "DOTA_Tooltip_modifier_npc_dota_hero_juggernaut_perk"   "Juggernaut Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_juggernaut_perk_Description"   "Healing/Mana Ward will have 100%d% of their mana cost refunded.<br><br><font color=\'#7D7D7D\'>By Yahnich | github.com/Yahnich</font>"
+    "DOTA_Tooltip_modifier_npc_dota_hero_juggernaut_perk_Description"   "Juggernaut will break the target he uses Omnislash on.<br><br><font color=\'#7D7D7D\'>By Yahnich | github.com/Yahnich</font>"
 
     /// KOTL PERK HARD-CODED INGAME
 
@@ -4112,7 +4112,7 @@
 
     /// NECROPHOS​
     "DOTA_Tooltip_modifier_npc_dota_hero_necrolyte_perk"               "Necrophos Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_necrolyte_perk_Description"   "Gained a free level of Death Pulse."
+    "DOTA_Tooltip_modifier_npc_dota_hero_necrolyte_perk_Description"   "At the start of the game, Shadow Fiend gains a free level of Death Pulse, whether he has it or not."
 
     /// NIGHT STALKER PERK HARD-CODED INGAME
 
@@ -4130,7 +4130,7 @@
 
     /// ORACLE​
     "DOTA_Tooltip_modifier_npc_dota_hero_oracle_perk"   "Oracle Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_oracle_perk_Description"   "Support items used by Oracle will have their cooldowns reduced by 20%.<br><br><font color=\'#7D7D7D\'>By TideSofDarK | github.com/TideSofDarK</font>"
+    "DOTA_Tooltip_modifier_npc_dota_hero_oracle_perk_Description"   "Support items used by Oracle will have their cooldowns reduced by 20%d%.<br><br><font color=\'#7D7D7D\'>By TideSofDarK | github.com/TideSofDarK</font>"
 
     /// OUTWORLD DEVOURER​
     "DOTA_Tooltip_modifier_npc_dota_hero_obsidian_destroyer_perk"   "Outworld Devourer"
@@ -4146,7 +4146,7 @@
 
     /// PHANTOM LANCER​
     "DOTA_Tooltip_modifier_npc_dota_hero_phantom_lancer_perk"   "Phantom Lancer Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_phantom_lancer_perk_Description"   "Phantom Lancer illusions have 25% movespeed bonus"
+    "DOTA_Tooltip_modifier_npc_dota_hero_phantom_lancer_perk_Description"   "Illusions created by Phantom Lancer will move 25%d% faster."
     //"DOTA_Tooltip_modifier_npc_dota_hero_phantom_lancer_cooldown"   "Recharging"
     //"DOTA_Tooltip_modifier_npc_dota_hero_phantom_lancer_cooldown_Description"   "Phantom Rush is on cooldown."
 
