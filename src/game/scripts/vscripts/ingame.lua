@@ -1683,11 +1683,12 @@ function Ingame:checkBuybackStatus()
                 end, DoUniqueString('buyback'), 0.1)
 
                 if OptionManager:GetOption('randomOnDeath') == 1 and not unit:IsReincarnating() then
+                    local pID = unit:GetPlayerOwnerID()
                     if not util:isPlayerBot(pID) then
                         if not unit.randomOnDeath then
                             unit.randomOnDeath = true
                         else
-                            local pID = unit:GetPlayerOwnerID()
+                            
                             GameRules.pregame.selectedSkills[pID] = {}
                             GameRules.pregame.selectedHeroes[pID] = GameRules.pregame:getRandomHero()
                             GameRules.pregame.selectedPlayerAttr[pID] = ({'str', 'agi', 'int'})[math.random(1,3)]
