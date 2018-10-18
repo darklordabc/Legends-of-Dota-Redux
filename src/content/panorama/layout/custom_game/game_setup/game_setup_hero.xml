@@ -1,16 +1,20 @@
 <root>
 	<styles>
-		        <include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
         <include src="s2r://panorama/styles/popups/popup_settings.vcss_c" />
         <include src="s2r://panorama/styles/play.vcss_c" />
 		<include src="file://{resources}/styles/custom_game/game_setup/game_setup_hero.css" />
+		
 	</styles>
 	<scripts>
 		<include src="file://{resources}/scripts/custom_game/game_setup/game_setup_hero.js" /> 
+		
 	</scripts>
 	
 	<Panel class="heroRoot">
 		<DOTAHeroImage id="heroImage" heroimagestyle="portrait" />
 		<Label id="heroName" />
+		
 	</Panel>
+	
 </root>

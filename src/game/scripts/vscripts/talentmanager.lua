@@ -9,7 +9,9 @@ function StoreTalents()
     end
 
     PlayerTalents ={}
+    selectedSkills = selectedSkills or {}
     for i=0,20 do
+        selectedSkills[i] = selectedSkills[i] or {}
         PlayerTalents[i] = {}
         PlayerTalents[i]["TalentList"] = {}
     end
@@ -109,7 +111,6 @@ function AddTalents(hero,build)
                 local hasTalent = false
                 for K,V in pairs(hero.heroTalentList) do
                     if V==k then
-                        print("hasTalent",k)
                         hasTalent = true
                     end
                 end
@@ -158,12 +159,14 @@ function AddTalents(hero,build)
     local PID = hero:GetPlayerOwnerID()
     
     for i=1,4 do
-        local a = PlayerTalents[PID]["TalentList"][(i*2)-1]
-        local b = PlayerTalents[PID]["TalentList"][(i*2)]
-        --print(hero:GetUnitName())
-        if hero.ViableTalents["count"..i] >= 2 then
-            local a = a or FindAbilityTalentFromList(i)
-            local b = b or FindAbilityTalentFromList(i)
+       
+            local a = PlayerTalents[PID]["TalentList"][(i*2)-1]
+            local b = PlayerTalents[PID]["TalentList"][(i*2)]
+            --print(hero:GetUnitName())
+
+        if hero.ViableTalents["count"..i] >= 2 or util:isPlayerBot(PID) then 
+            a = a or FindAbilityTalentFromList(i)
+            b = b or FindAbilityTalentFromList(i)
             local j = 0
             while j<100 and (a==b or not b) do
                 b = FindAbilityTalentFromList(i)
@@ -174,9 +177,9 @@ function AddTalents(hero,build)
             --print("Normal0",a,b)
             table.insert(hero.heroTalentList,a)
             table.insert(hero.heroTalentList,b)
-        elseif hero.ViableTalents["count"..i] == 1 then
-            local a = a or FindAbilityTalentFromList(i)
-            local b = b or FindHeroTalentFromList(i)
+        elseif hero.ViableTalents["count"..i] == 1 or util:isPlayerBot(PID) then
+            a = a or FindAbilityTalentFromList(i)
+            b = b or FindHeroTalentFromList(i)
             
             if not a then a =FindNormalTalentFromList(i) end
             if not b then b =FindNormalTalentFromList(i,a) end
@@ -185,8 +188,8 @@ function AddTalents(hero,build)
             table.insert(hero.heroTalentList,b)
 
         else
-            local a = a or FindHeroTalentFromList(i)
-            local b = b or FindHeroTalentFromList(i,a)
+            a = a or FindHeroTalentFromList(i)
+            b = b or FindHeroTalentFromList(i,a)
             local j = 0
             while j<100 and (a == b or not b) do
                 b = FindAbilityTalentFromList(i,a)
@@ -203,21 +206,23 @@ function AddTalents(hero,build)
 
         local a = hero:AddAbility(v)
         if a then
-            --print(v)
-        end
+            
+        end 
     end
 end
 
 function GetViableTalents(build)
+    --for K,V in pairs(build) do print(K,V) end
     local ViableTalents = {}
     for i =1,4 do
         ViableTalents[i] = {}
         ViableTalents["count"..i] = 0
         for k,v in pairs(TalentList[i]) do
+            
             local bool = false
             for K,V in pairs(build) do
                 if K ~= "hero" and v == V then
-                    ViableTalents[i][k] = k
+                    ViableTalents[i][k] = v
                     ViableTalents["count"..i] = ViableTalents["count"..i] + 1
                     break
                 end
@@ -227,18 +232,35 @@ function GetViableTalents(build)
     return ViableTalents
 end
 
-function SendTalentsToClient(PID,build)
+function SendTalentsToClient(PID,data)
+    PID = data.PlayerID
+    local build = selectedSkills[PID]
     local talents = GetViableTalents(build)
+
+
+
+
+    --CustomGameEventManager:Send_ServerToAllClients("send_viable_talents",talents)
     CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(PID), "send_viable_talents", talents )
+
 end
 
 function RegisterTalents(PID,data)
-    for i=0,7 do
-        if data[i] then
-            PlayerTalents[PID][i+1] = data[i]
+    PID = data.PlayerID
+    for k,v in pairs(data) do print(k,v) end
+    local count = 1
+    for i=0,3 do
+        if data[tostring(i)][1] then
+            PlayerTalents[PID][count] = data[tostring(i)][1]
         else
-            PlayerTalents[PID][i+1] = nil
+            PlayerTalents[PID][count] = nil
         end
+        if data[tostring(i)][2] then
+            PlayerTalents[PID][count] = data[tostring(i)][2]
+        else
+            PlayerTalents[PID][count] = nil
+        end
+        count = count + 1
     end
 end
 

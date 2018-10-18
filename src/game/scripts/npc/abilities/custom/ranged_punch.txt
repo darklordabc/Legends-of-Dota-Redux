@@ -8,7 +8,7 @@
         "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_POINT_TARGET | "
         "AbilityCastRange"                                                      "1000 1200 1400 1600"
         "AbilityManaCost"                                                       "90"
-        "AbilityCooldown"                                                       "6"
+        "AbilityCooldown"                                                       "13 12 11 10"
         "AbilityCastPoint"                                                      "0.05"
         
         "AbilitySpecial"

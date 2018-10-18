@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
 --		Hero: crystal_maiden
---		Perk: Crystal Maiden gains +2 MS for every Support skill she has. 
+--		Perk: Crystal Maiden gains 1 level of arcane aura for every ice spells she has
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_crystal_maiden_perk", "abilities/hero_perks/npc_dota_hero_crystal_maiden_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
@@ -30,13 +30,6 @@ end
 --------------------------------------------------------------------------------------------------------
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------
-
-function modifier_npc_dota_hero_crystal_maiden_perk:DeclareFunctions()
-	local funcs = {
-		MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
-	}
-	return funcs
-end
 
 function modifier_npc_dota_hero_crystal_maiden_perk:OnCreated()
 	if IsClient() then return end

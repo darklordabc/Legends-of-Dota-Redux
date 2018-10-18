@@ -1628,13 +1628,14 @@ Button:enabled:hover {
     horizontal-align: center;
     margin: 4px;
     //width: 100%;
+
 }
 
 #pickingPhaseSelectedHeroImageCon {
     //align: left center;
     //margin-left: 35px;
-
-    align: center center;
+    margin-top: 20px;
+    horizontal-align:center;
 }
 
 .notDraftable {
@@ -2418,7 +2419,7 @@ Button:enabled:hover {
 
 #recommendedBuildContainerScrollWrapper{
     width: 100%;
-    height: 100%;
+    height: 90%;
 
     margin-top: 50px;
     visibility: collapse;
@@ -2427,7 +2428,7 @@ Button:enabled:hover {
 .pickingPhaseRecommendedBuildContainer {
     width: 100%;
     padding-left: 140px;
-    height: 100%;
+    height: 90%;
 
     overflow: squish scroll;
 

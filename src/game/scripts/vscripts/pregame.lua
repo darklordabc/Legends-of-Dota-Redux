@@ -81,7 +81,7 @@ LinkLuaModifier("modifier_rune_arcane_mutated_redux","abilities/mutators/super_r
     Main pregame, selection related handler
 ]]
 
-local Pregame = class({})
+Pregame = class({})
 local buildBackups = {}
 
 -- Init pregame stuff
@@ -5881,7 +5881,6 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
 
     -- Ensure a container for this player exists
     self.selectedSkills[playerID] = self.selectedSkills[playerID] or {}
-
     local build = self.selectedSkills[playerID]
 
     -- Grab what the new build would be, to run tests against it
@@ -6264,6 +6263,7 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
         if build[slot] ~= abilityName then
             -- New ability in this slot
             build[slot] = abilityName
+            selectedSkills[playerID] = build
 
             -- Should we network it
             if not dontNetwork then
@@ -8089,14 +8089,6 @@ function Pregame:fixSpawnedHero( spawnedUnit )
         spawnedUnit.hasTalent = true
     end
 
-    if spawnedUnit:HasAbility("special_bonus_unique_crater_0") then
-        for i = 0,23 do
-            local qwe = spawnedUnit:GetAbilityByIndex(i)
-            if qwe then
-                print(i,qwe:GetAbilityName())
-            end
-        end
-    end
 
     -- Various Fixes
     Timers:CreateTimer(function()
