@@ -37,7 +37,7 @@ end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_slark_perk:GetModifierIncomingDamage_Percentage(params)
 	if IsClient() then return end
-	if params.inflictor:GetAbilityName() == "slark_dark_pact" and params.attacker == self:GetParent() then
+	if params.inflictor and params.inflictor:GetAbilityName() == "slark_dark_pact" and params.attacker == self:GetParent() then
 		return -1000
 	end
 end
