@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
 --    Hero: Alchemist
---    Perk: At the start of the game, Alchemist gains a free level of Greevils Greed, whether he has it or not. 
+--    Perk: When Alchemist consumes an item he gets a 25% refund on its cost.
 --    
 --
 --------------------------------------------------------------------------------------------------------
@@ -18,7 +18,7 @@ function modifier_npc_dota_hero_alchemist_perk:IsPassive()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_alchemist_perk:IsHidden()
-  return true
+  return false
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_alchemist_perk:IsPurgable()

@@ -3869,11 +3869,11 @@
 
     /// ABADDON​
     "DOTA_Tooltip_modifier_npc_dota_hero_abaddon_perk"  "Abaddon Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_abaddon_perk_Description"  "When Abaddon casts Borrowed Time, it lasts 25% longer."
+    "DOTA_Tooltip_modifier_npc_dota_hero_abaddon_perk_Description"  "When Abaddon casts Borrowed Time, it lasts 25%d% longer."
 
     /// ALCHEMIST​
     "DOTA_Tooltip_modifier_npc_dota_hero_alchemist_perk"    "Alchemist Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_alchemist_perk_Description"    "Alchemist gets a 25% refund after consuming an item over 1000 gold."
+    "DOTA_Tooltip_modifier_npc_dota_hero_alchemist_perk_Description"    "Alchemist gets a 25%d% refund after consuming an item over 1000 gold."
 
     /// ANCIENT APPARITION​
     "DOTA_Tooltip_modifier_npc_dota_hero_ancient_apparition_perk"   "AA Perk"
@@ -4266,7 +4266,7 @@
 
     /// TINKER​
     "DOTA_Tooltip_modifier_npc_dota_hero_tinker_perk"   "Tinker Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_tinker_perk_Description"   "Rearm and rearm redux cost 50% less mana on Tinker."
+    "DOTA_Tooltip_modifier_npc_dota_hero_tinker_perk_Description"   "Rearm and Rearm Redux cost 50%d% less mana when cast by Tinker."
 
     /// TINY​
     "DOTA_Tooltip_modifier_npc_dota_hero_tiny_perk" "Tiny Perk"
