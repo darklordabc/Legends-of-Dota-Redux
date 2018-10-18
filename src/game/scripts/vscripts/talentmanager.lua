@@ -164,7 +164,7 @@ function AddTalents(hero,build)
             local b = PlayerTalents[PID]["TalentList"][(i*2)]
             --print(hero:GetUnitName())
 
-        if hero.ViableTalents["count"..i] >= 2 or util:isPlayerBot(PID) then 
+        if hero.ViableTalents["count"..i] >= 2 and util:isPlayerBot(PID) then 
             a = a or FindAbilityTalentFromList(i)
             b = b or FindAbilityTalentFromList(i)
             local j = 0
@@ -177,7 +177,7 @@ function AddTalents(hero,build)
             --print("Normal0",a,b)
             table.insert(hero.heroTalentList,a)
             table.insert(hero.heroTalentList,b)
-        elseif hero.ViableTalents["count"..i] == 1 or util:isPlayerBot(PID) then
+        elseif hero.ViableTalents["count"..i] == 1 and util:isPlayerBot(PID) then
             a = a or FindAbilityTalentFromList(i)
             b = b or FindHeroTalentFromList(i)
             
