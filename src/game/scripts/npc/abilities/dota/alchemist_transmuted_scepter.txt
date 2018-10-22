@@ -10,7 +10,7 @@
 
     "AbilityTextureName"           "custom/alchemist_transmuted_scepter"    
     "AbilityCastRange"            "200"
-    "AbilityGoldCost"            "4200"
+    "AbilityGoldCost"            "2100"
     "AbilityCooldown"            "5"
     "AbilityCastPoint"            "0.3"    
     "ScriptFile"              "abilities/alchemist_transmuted_scepter"      

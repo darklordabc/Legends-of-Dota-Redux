@@ -50,6 +50,7 @@ function modifier_npc_dota_hero_slark_perk:OnCreated()
 
 	if not ability then
 		ability = hero:AddAbility("slark_dark_pact")
+		ability:SetStolen(true)
 	end
 	ability:SetLevel(1)
 	self:StartIntervalThink(10)

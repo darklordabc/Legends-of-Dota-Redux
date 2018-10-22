@@ -53,9 +53,16 @@
 }
 
 .TalentCloseButton{
-	width: 32px;
-	height: 32px;
-	background-image: url("s2r://panorama/images/control_icons/quit_png.vtex");
+	width: 64px;
+	height: 64px;
+	wash-color:lime;
+	background-image: url("s2r://panorama/images/cavern/icon_set_claimed_png.vtex");
+}
+.TalentCloseButton:Hover{
+	width: 64px;
+	height: 64px;
+	wash-color:limegreen;
+	background-image: url("s2r://panorama/images/cavern/icon_set_claimed_png.vtex");
 }
 .TalentButtonSelected1{
 	/*border: 2px solid #111111FF;*/

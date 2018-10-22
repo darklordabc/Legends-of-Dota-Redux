@@ -42,6 +42,7 @@ function modifier_npc_dota_hero_crystal_maiden_perk:OnCreated()
 		if ability and ability:HasAbilityFlag("ice") then
 			if not aura then
 				aura = caster:AddAbility("crystal_maiden_brilliance_aura")
+				aura:SetStolen(true)
 			end
 			aura:UpgradeAbility(false)
 		end

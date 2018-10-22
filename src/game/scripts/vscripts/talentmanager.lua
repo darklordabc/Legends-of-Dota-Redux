@@ -159,12 +159,24 @@ function AddTalents(hero,build)
     local PID = hero:GetPlayerOwnerID()
     
     for i=1,4 do
-       
-            local a = PlayerTalents[PID]["TalentList"][(i*2)-1]
-            local b = PlayerTalents[PID]["TalentList"][(i*2)]
+        
+            local a = PlayerTalents[PID][(i*2)-1]
+            local b = PlayerTalents[PID][(i*2)]
             --print(hero:GetUnitName())
-
-        if hero.ViableTalents["count"..i] >= 2 and util:isPlayerBot(PID) then 
+        if hero.ViableTalents["count"..i] == 0 or not util:isPlayerBot(PID) then
+            a = a or FindHeroTalentFromList(i)
+            b = b or FindHeroTalentFromList(i,a)
+            local j = 0
+            while j<100 and (a == b or not b) do
+                b = FindHeroTalentFromList(i,a)
+                j = j +1
+            end
+            if not a then a =FindNormalTalentFromList(i) end
+            if not b then b =FindNormalTalentFromList(i,a) end
+            --print("Normal2",a,b)
+            table.insert(hero.heroTalentList,a)
+            table.insert(hero.heroTalentList,b)
+        elseif hero.ViableTalents["count"..i] >= 2 and util:isPlayerBot(PID) then 
             a = a or FindAbilityTalentFromList(i)
             b = b or FindAbilityTalentFromList(i)
             local j = 0
@@ -184,20 +196,6 @@ function AddTalents(hero,build)
             if not a then a =FindNormalTalentFromList(i) end
             if not b then b =FindNormalTalentFromList(i,a) end
             --print("Normal1",a,b)
-            table.insert(hero.heroTalentList,a)
-            table.insert(hero.heroTalentList,b)
-
-        else
-            a = a or FindHeroTalentFromList(i)
-            b = b or FindHeroTalentFromList(i,a)
-            local j = 0
-            while j<100 and (a == b or not b) do
-                b = FindAbilityTalentFromList(i,a)
-                j = j +1
-            end
-            if not a then a =FindNormalTalentFromList(i) end
-            if not b then b =FindNormalTalentFromList(i,a) end
-            --print("Normal2",a,b)
             table.insert(hero.heroTalentList,a)
             table.insert(hero.heroTalentList,b)
         end
@@ -245,23 +243,33 @@ function SendTalentsToClient(PID,data)
 
 end
 
-function RegisterTalents(PID,data)
-    PID = data.PlayerID
-    for k,v in pairs(data) do print(k,v) end
+function RegisterTalents(x,data)
+    local PID = data.PlayerID
+    --print("RegisterTalents")
+    --for k,v in pairs(data["0"]) do print(k,v) end
+    --for k,v in pairs(data["1"]) do print(k,v) end
+    --for k,v in pairs(data["2"]) do print(k,v) end
+    --for k,v in pairs(data["3"]) do print(k,v) end
     local count = 1
     for i=0,3 do
-        if data[tostring(i)][1] then
-            PlayerTalents[PID][count] = data[tostring(i)][1]
+        if data[tostring(i)]["0"] then
+            --print(count,data[tostring(i)]["0"])
+            PlayerTalents[PID][count] = data[tostring(i)]["0"]
         else
             PlayerTalents[PID][count] = nil
         end
-        if data[tostring(i)][2] then
-            PlayerTalents[PID][count] = data[tostring(i)][2]
+        count = count + 1
+        if data[tostring(i)]["1"] then
+            PlayerTalents[PID][count] = data[tostring(i)]["1"]
+            --print(count,data[tostring(i)]["1"])
         else
             PlayerTalents[PID][count] = nil
         end
         count = count + 1
     end
+
+    --print("PlayerTalents[PID]",PlayerTalents[PID])
+    --for i=1,8 do print(PlayerTalents[PID][i]) end
 end
 
 

@@ -2,6 +2,7 @@ var talentsTable = {}
 var talents = {}
 var tal_cols = 4
 var tal_rows = 2
+var talent_popup
 
 function storeTalents(data) {
 	$.Msg("storeTalents")
@@ -58,8 +59,10 @@ function showTalentChanger(){
 
 
 		var parentPanel=$.GetContextPanel()
-
-		var talent_popup=$.CreatePanel('Panel',parentPanel,'talent_popup')
+		if (talent_popup) {
+			talent_popup.DeleteAsync(0)
+		}
+		talent_popup=$.CreatePanel('Panel',parentPanel,'talent_popup')
 		talent_popup.AddClass('PopupTaletsPanel')
 
 		function addTalentCol(parent,id){
@@ -109,40 +112,14 @@ function showTalentChanger(){
 				talentButton.SetPanelEvent (
 					"onactivate", 
 					function() {
-						var parent_col=talentButton.GetParent()
-
-						if (talentButton.BHasClass('TalentButtonSelected1')) {
-							talentButton.RemoveClass('TalentButtonSelected1')
-
-							$.Each(parent_col.Children(), function( bPanel ){
-								if (bPanel.BHasClass('TalentButtonSelected2')) {
-									bPanel.RemoveClass('TalentButtonSelected2')
-									bPanel.AddClass("TalentButtonSelected1")
-								}
-							})
-							return;
-						}
-						if (talentButton.BHasClass('TalentButtonSelected2')) {
-							talentButton.RemoveClass('TalentButtonSelected2')
-							return;
-						}
-
-						//deselect others
-						
-						$.Each(parent_col.Children(), function( oPanel ){
-							if (oPanel!=talentButton) {
-								if (oPanel.BHasClass('TalentButtonSelected1')) {
-									oPanel.AddClass("TalentButtonSelected2")
-								} else {
-									oPanel.RemoveClass('TalentButtonSelected2')
-								}
-								oPanel.RemoveClass('TalentButtonSelected1')
-							}
-						});
-						talentButton.AddClass("TalentButtonSelected1")
+						SetTalentButtonSelectedStyle(talentButton)
 					}
+
 				)
+
+				
 			}
+			return talentButton
 		}
 		function drawCloseButton(parent){
 			var closeButton=$.CreatePanel('Panel',parent,'talent_close')
@@ -165,6 +142,7 @@ function showTalentChanger(){
 					}
 					GameEvents.SendCustomGameEventToServer("send_picked_talents", talents);
 					parent.DeleteAsync(0)
+					talent_popup = null
 				}
 			)
 		}
@@ -175,12 +153,20 @@ function showTalentChanger(){
 			var test_col=addTalentCol(talent_popup,i)
 			var t = talentsTable[(i+1)]
 			var count = 1
+			var picked = 1
 			for (var talentName in t){
 			    if (t.hasOwnProperty(talentName)) {
 			        var test_button=addTalentButton(count,t[talentName],talentName,test_col)
+			        if (talents !== undefined && talents[i] !== undefined) {
+				       	if (talents[i].indexOf(talentName) != -1) {
+				       		test_button.AddClass("TalentButtonSelected"+picked)
+				       		picked++
+				       	}
+				    }
 			        count++
 			    }
 			}
+
 			/*for (var j = 0; j < tal_rows; j++) {
 				var test_button=addTalentButton(counter,talentsTable[toString(i)][j],ar[j],test_col)
 				counter+=1;
@@ -190,6 +176,42 @@ function showTalentChanger(){
 		drawCloseButton(talent_popup)
 	});
 	
+}
+
+
+function SetTalentButtonSelectedStyle(talentButton) {
+
+	var parent_col=talentButton.GetParent()
+
+	if (talentButton.BHasClass('TalentButtonSelected1')) {
+		talentButton.RemoveClass('TalentButtonSelected1')
+
+		$.Each(parent_col.Children(), function( bPanel ){
+			if (bPanel.BHasClass('TalentButtonSelected2')) {
+				bPanel.RemoveClass('TalentButtonSelected2')
+				bPanel.AddClass("TalentButtonSelected1")
+			}
+		})
+		return;
+	}
+	if (talentButton.BHasClass('TalentButtonSelected2')) {
+		talentButton.RemoveClass('TalentButtonSelected2')
+		return;
+	}
+
+	//deselect others
+	
+	$.Each(parent_col.Children(), function( oPanel ){
+		if (oPanel!=talentButton) {
+			if (oPanel.BHasClass('TalentButtonSelected1')) {
+				oPanel.AddClass("TalentButtonSelected2")
+			} else {
+				oPanel.RemoveClass('TalentButtonSelected2')
+			}
+			oPanel.RemoveClass('TalentButtonSelected1')
+		}
+	});
+	talentButton.AddClass("TalentButtonSelected1")
 }
 
 GameEvents.Subscribe("send_viable_talents", storeTalents);

@@ -1553,7 +1553,7 @@
     "unique_mechanic_chaos_knight"                        "Chaos Knight starts with 1 level of backtrack"
     "unique_mechanic_chen"                   "When Chen casts <font color=\'#ffd966\'>Holy Persuasion</font> on a creep they will receive an extra ability."
     "unique_mechanic_clinkz"                        "Clinkz will receive a free level in his first non-ultimate <font color=\'#ffd966\'>Autocast</font> ability at the start of the game."
-    "unique_mechanic_rattletrap"                        "Clockwerk fires a random flare to any part of the map every 15 seconds. Scales with <font color=\'#ffd966\'>Rocket Flare</font>."
+    "unique_mechanic_rattletrap"                        "Clockwerk has phased movement while <font color=\'#ffd966\'>Battery Assault</font> is active."
     "unique_mechanic_crystal_maiden"    "Crystal Maiden gains a free level of Brilliance Aura for every <font color=\'#ffd966\'>Ice</font> spell she has."
     "unique_mechanic_dark_seer"             "Dark Seer self-casts <font color=\'#ffd966\'>Surge</font> and <font color=\'#ffd966\'>Ion Shell</font> when casting them on allies."
     "unique_mechanic_dazzle"                        "<font color=\'#ffd966\'>Support</font> spells will have 25% cooldown reduction when cast by Dazzle."
@@ -3947,7 +3947,7 @@
 
     /// CLOCKWERK​
     "DOTA_Tooltip_modifier_npc_dota_hero_rattletrap_flare_delay"               "Clockwerk Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_rattletrap_flare_delay_Description"   "Fires a rocket flare in a random location every 15 seconds.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
+    "DOTA_Tooltip_modifier_npc_dota_hero_rattletrap_flare_delay_Description"   "Clockwerk gains phased movement when battery assault is active."
 
     /// CRYSTAL MAIDEN​
     "DOTA_Tooltip_modifier_npc_dota_hero_crystal_maiden_perk"   "Crystal Maiden Perk"
