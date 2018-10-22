@@ -4012,9 +4012,13 @@
     "DOTA_Tooltip_modifier_npc_dota_hero_gyrocopter_perk"   "Gyro Perk"
     "DOTA_Tooltip_modifier_npc_dota_hero_gyrocopter_perk_Description"   "At the start of the game, Gyro gains a free level of Side Gunner, whether he has it or not.<br><br><font color=\'#7D7D7D\'>By Yahnich | github.com/Yahnich</font>"
 
+    /// GRIMSTROKE
+    "DOTA_Tooltip_modifier_npc_dota_hero_grimstroke_perk"               "Grimstroke Perk"
+    "DOTA_Tooltip_modifier_npc_dota_hero_grimstroke_perk_Description"   "Grimstrokes spells deal 15%d% more damage if they have range of 800 or higher."
+
     /// HUSKAR​
     "DOTA_Tooltip_modifier_npc_dota_hero_huskar_perk"   "Huskar Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_huskar_perk_Description"   "Huskar gets 2.5%d% status resistance 10%d% of health he is missing.</font>"
+    "DOTA_Tooltip_modifier_npc_dota_hero_huskar_perk_Description"   "Huskar gets 3.5%d% status resistance 10%d% of health he is missing.</font>"
 
     /// INVOKER​
     "DOTA_Tooltip_modifier_npc_dota_hero_invoker_perk"  "Invoker Perk"

@@ -42,7 +42,7 @@ function modifier_npc_dota_hero_huskar_perk:GetModifierConstantHealthRegen()
 end]]
 
 function modifier_npc_dota_hero_huskar_perk:GetTenacity()
-    return 3 * self:GetStackCount()
+    return 3.5 * self:GetStackCount()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_huskar_perk:IsPurgable()
