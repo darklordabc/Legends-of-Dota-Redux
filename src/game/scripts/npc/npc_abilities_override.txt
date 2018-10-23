@@ -6094,12 +6094,20 @@
 
     "special_bonus_unique_alchemist_3"
     {
-        "TalentRequiredAbility"                                                   "alchemist_chemical_rage"
+        "TalentRequiredAbility"                                                   
+        {
+            "1" "alchemist_chemical_rage"
+            "2" "alchemist_chemical_rage_redux"             
+        }
     }
 
     "special_bonus_unique_alchemist_4"
     {
-        "TalentRequiredAbility"                                                   "alchemist_chemical_rage"
+        "TalentRequiredAbility"                                                 
+        {
+            "1" "alchemist_chemical_rage"
+            "2" "alchemist_chemical_rage_redux"             
+        }
     }
 
     "special_bonus_unique_abaddon"

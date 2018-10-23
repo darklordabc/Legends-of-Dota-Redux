@@ -216,15 +216,30 @@ function GetViableTalents(build)
         ViableTalents[i] = {}
         ViableTalents["count"..i] = 0
         for k,v in pairs(TalentList[i]) do
-            
-            local bool = false
-            for K,V in pairs(build) do
-                if K ~= "hero" and v == V then
-                    ViableTalents[i][k] = v
-                    ViableTalents["count"..i] = ViableTalents["count"..i] + 1
-                    break
+            local t = v
+            if type(t) == "table" then
+                for a,b in pairs(t) do print(a,b) end
+                for _,ab in pairs(t) do
+
+                    local bool = false
+                    for K,V in pairs(build) do
+                        if K ~= "hero" and ab == V then
+                            ViableTalents[i][k] = ab
+                            ViableTalents["count"..i] = ViableTalents["count"..i] + 1
+                            break
+                        end
+                    end
+                end
+            else
+                for K,V in pairs(build) do
+                    if K ~= "hero" and v == V then
+                        ViableTalents[i][k] = v
+                        ViableTalents["count"..i] = ViableTalents["count"..i] + 1
+                        break
+                    end
                 end
             end
+            
         end
     end
     return ViableTalents
