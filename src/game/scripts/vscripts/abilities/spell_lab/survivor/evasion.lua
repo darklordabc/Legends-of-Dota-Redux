@@ -21,5 +21,7 @@ end
 
 function spell_lab_survivor_evasion_modifier:GetModifierEvasion_Constant()
 if self:GetParent():PassivesDisabled() then return 0 end
-return self:GetStackCount()
+	local value = (100-math.pow(1-(0.01), self:GetStackCount()) * 100) 
+  	return value
+
 end

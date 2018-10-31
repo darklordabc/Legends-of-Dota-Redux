@@ -7,13 +7,14 @@ function StoreTalents()
         TalentList["basic"..i] = {}
         TalentList["basicCount"..i] = 1
     end
-
+    Picked = {}
     PlayerTalents ={}
     selectedSkills = selectedSkills or {}
     for i=0,20 do
         selectedSkills[i] = selectedSkills[i] or {}
         PlayerTalents[i] = {}
         PlayerTalents[i]["TalentList"] = {}
+        Picked[i] = false
     end
 
     -- Get and order default talents
@@ -160,10 +161,10 @@ function AddTalents(hero,build)
     
     for i=1,4 do
         
-            local a = PlayerTalents[PID][(i*2)-1]
-            local b = PlayerTalents[PID][(i*2)]
+        local a = PlayerTalents[PID][(i*2)-1]
+        local b = PlayerTalents[PID][(i*2)]
             --print(hero:GetUnitName())
-        if hero.ViableTalents["count"..i] == 0 or not util:isPlayerBot(PID) then
+        if Picked[PID] or hero.ViableTalents["count"..i] == 0 then
             a = a or FindHeroTalentFromList(i)
             b = b or FindHeroTalentFromList(i,a)
             local j = 0
@@ -171,40 +172,55 @@ function AddTalents(hero,build)
                 b = FindHeroTalentFromList(i,a)
                 j = j +1
             end
-            if not a then a =FindNormalTalentFromList(i) end
-            if not b then b =FindNormalTalentFromList(i,a) end
+            a = a or FindNormalTalentFromList(i)
+            b = b or FindNormalTalentFromList(i,a)
+            j = 0
+            while j<100 and (a == b or not b) do
+                b = FindNormalTalentFromList(i,a)
+                j = j +1
+            end
             --print("Normal2",a,b)
             table.insert(hero.heroTalentList,a)
             table.insert(hero.heroTalentList,b)
-        elseif hero.ViableTalents["count"..i] >= 2 and util:isPlayerBot(PID) then 
-            a = a or FindAbilityTalentFromList(i)
-            b = b or FindAbilityTalentFromList(i)
-            local j = 0
-            while j<100 and (a==b or not b) do
-                b = FindAbilityTalentFromList(i)
-                j = j +1
+        else
+            if hero.ViableTalents["count"..i] >= 2 then 
+                a = a or FindAbilityTalentFromList(i)
+                b = b or FindAbilityTalentFromList(i)
+                local j = 0
+                while j<100 and (a==b or not b) do
+                    b = FindAbilityTalentFromList(i)
+                    j = j +1
+                end
+                a = a or FindNormalTalentFromList(i)
+                b = b or FindNormalTalentFromList(i,a)
+                j = 0
+                while j<100 and (a == b or not b) do
+                    b = FindNormalTalentFromList(i,a)
+                    j = j +1
+                end
+                --print("Normal0",a,b)
+                table.insert(hero.heroTalentList,a)
+                table.insert(hero.heroTalentList,b)
+            elseif hero.ViableTalents["count"..i] == 1 then
+                a = a or FindAbilityTalentFromList(i)
+                b = b or FindHeroTalentFromList(i)
+                local j = 0
+                while j<100 and (a == b or not b) do
+                    b = FindNormalTalentFromList(i,a)
+                    j = j +1
+                end
+                --print("Normal1",a,b)
+                table.insert(hero.heroTalentList,a)
+                table.insert(hero.heroTalentList,b)
             end
-            if not a then a =FindNormalTalentFromList(i) end
-            if not b then b =FindNormalTalentFromList(i,a) end
-            --print("Normal0",a,b)
-            table.insert(hero.heroTalentList,a)
-            table.insert(hero.heroTalentList,b)
-        elseif hero.ViableTalents["count"..i] == 1 and util:isPlayerBot(PID) then
-            a = a or FindAbilityTalentFromList(i)
-            b = b or FindHeroTalentFromList(i)
-            
-            if not a then a =FindNormalTalentFromList(i) end
-            if not b then b =FindNormalTalentFromList(i,a) end
-            --print("Normal1",a,b)
-            table.insert(hero.heroTalentList,a)
-            table.insert(hero.heroTalentList,b)
         end
     end
     for k,v in pairs(hero.heroTalentList) do
 
         local a = hero:AddAbility(v)
         if a then
-            
+            print("RARAXDSDSD")
+            a.OnUpgrade = function() print("XDSDSD") end
         end 
     end
 end
@@ -218,9 +234,7 @@ function GetViableTalents(build)
         for k,v in pairs(TalentList[i]) do
             local t = v
             if type(t) == "table" then
-                for a,b in pairs(t) do print(a,b) end
                 for _,ab in pairs(t) do
-
                     local bool = false
                     for K,V in pairs(build) do
                         if K ~= "hero" and ab == V then
@@ -285,6 +299,8 @@ function RegisterTalents(x,data)
 
     --print("PlayerTalents[PID]",PlayerTalents[PID])
     --for i=1,8 do print(PlayerTalents[PID][i]) end
+
+    Picked[PID] = true
 end
 
 

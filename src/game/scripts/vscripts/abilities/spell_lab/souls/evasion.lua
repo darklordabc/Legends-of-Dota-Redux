@@ -20,7 +20,8 @@ function spell_lab_souls_evasion_modifier:DeclareFunctions()
 end
 
 function spell_lab_souls_evasion_modifier:GetModifierEvasion_Constant()
-	return self:GetSoulsBonus() * self:GetAbility():GetSpecialValueFor("per_soul")
+	local value = (100-math.pow(1-(0.01*self:GetAbility():GetSpecialValueFor("per_soul")), self:GetSoulsBonus()) * 100) 
+	return value
 end
 
 function spell_lab_souls_evasion_modifier:GetColour ()
