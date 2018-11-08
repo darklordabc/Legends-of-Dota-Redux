@@ -850,6 +850,7 @@ function Pregame:loadDefaultSettings()
     self:setOption('lodOptionRandomLaneCreeps', 0, true)
     self:setOption('lodOptionNoHealthbars', 0, true)
     self:setOption('lodOptionConvertableTowers', 0, true)
+    self:setOption('lodOptionDoubleTalents', 0, true)
 
     -- Turn easy mode off
     --self:setOption('lodOptionCrazyEasymode', 0, true)
@@ -3329,6 +3330,9 @@ function Pregame:initOptionSelector()
         lodOptionPeriodicSpellCast = function(value)
             return value == 0 or value == 1
         end,
+        lodOptionDoubleTalents = function(value)
+            return value == 0 or value == 1
+        end,
         -- Mutators
         lodOptionVampirism = function(value)
             return value == 0 or value == 1
@@ -4268,6 +4272,7 @@ function Pregame:processOptions()
         --OptionManager:SetOption('superRunes',this.optionStore['lodOptionSuperRunes'])
         OptionManager:SetOption('fastRunes',this.optionStore['lodOptionFastRunes'])
         OptionManager:SetOption('periodicSpellCast',this.optionStore['lodOptionPeriodicSpellCast'])
+        OptionManager:SetOption('doubleTalents',this.optionStore['lodOptionDoubleTalents'])
         OptionManager:SetOption('vampirism',this.optionStore['lodOptionVampirism'])
         OptionManager:SetOption('killstreakPower',this.optionStore['lodOptionKillStreakPower'])
         OptionManager:SetOption('cooldownReduction',this.optionStore['lodOptionCooldownReduction'])
@@ -4604,6 +4609,7 @@ function Pregame:processOptions()
                     ['Bots: Stupefy'] = this.optionStore['lodOptionBotsStupid'],
                     ['Mutators: Fast Runes'] = this.optionStore['fastRunes'],
                     ['Mutators: Periodic Spell Cast'] = this.optionStore['periodicSpellCast'],
+                    ['Mutators: Double Talents'] = this.optionStore['doubleTalents'],
                     ['Mutators: Vampirism'] = this.optionStore['vampirism'],
                     ['Mutators: Kill Streak Power'] = this.optionStore['killstreakPower'],
                     ['Mutators: Cooldown Reduction'] = this.optionStore['cooldownReduction'],

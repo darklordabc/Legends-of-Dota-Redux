@@ -218,11 +218,15 @@ function AddTalents(hero,build)
     for k,v in pairs(hero.heroTalentList) do
 
         local a = hero:AddAbility(v)
-        if a then
-            print("RARAXDSDSD")
-            a.OnUpgrade = function() print("XDSDSD") end
-        end 
+        --if a then
+            
+        --end 
     end
+    
+    if OptionManager:GetOption('doubleTalents') == 1 then
+        StartTrackingTalentLevels()
+    end    
+    
 end
 
 function GetViableTalents(build)
@@ -302,6 +306,52 @@ function RegisterTalents(x,data)
 
     Picked[PID] = true
 end
+
+function StartTrackingTalentLevels()
+    Timers:CreateTimer(0.5,function()
+        for i = 0,20 do
+        --local i = 0
+            local hero = PlayerResource:GetSelectedHeroEntity(i)
+            if hero and not hero:IsNull() then
+                local first
+                local function isEven(n) return math.fmod(n,2) ==0 end
+                for j = 0,22 do
+                    local ability = hero:GetAbilityByIndex(j)
+                    if ability and not ability:IsNull() and string.find(ability:GetAbilityName(),"special_bonus_") then
+                        first = first or j
+                        --print(j,first,isEven(first) == isEven(j))
+                        if isEven(first) == isEven(j) then
+                            local talent = hero:GetAbilityByIndex(j+1)
+                            if talent and not talent:IsNull() and string.find(ability:GetAbilityName(),"special_bonus_") then
+                                
+                                --talent:SetLevel(math.max(ability:GetLevel() , talent:GetLevel()))
+                                --ability:SetLevel(math.max(ability:GetLevel() , talent:GetLevel()))
+                                --talent:SetLevel(math.max(ability:GetLevel() , talent:GetLevel()))
+
+                                if talent:GetLevel() > ability:GetLevel() then ability:UpgradeAbility(true) end
+                                if talent:GetLevel() < ability:GetLevel() then talent:UpgradeAbility(true) end
+                                --print("Levels",j,ability:GetLevel(),talent:GetLevel())
+                            end
+                        -- else
+                        --     local talent = hero:GetAbilityByIndex(j-1)
+                        --     if talent and not talent:IsNull() and string.find(ability:GetAbilityName(),"special_bonus_") then
+                        --         print("Levels",ability:GetLevel(),talent:GetLevel())
+                        --         talent:SetLevel(math.max(ability:GetLevel() , talent:GetLevel()))
+                        --         if talent:GetLevel() < ability:GetLevel()
+                        --     end
+                        end
+                    end
+                end
+            end
+        end
+        return 0.5
+    end)
+end
+
+
+                    
+
+
 
 
 CustomGameEventManager:RegisterListener( "request_available_talents", SendTalentsToClient ) 

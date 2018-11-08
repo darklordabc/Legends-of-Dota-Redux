@@ -1,0 +1,57 @@
+"DOTAAbilities"
+{
+    "pushing_blast"
+    {
+        "BaseClass"                                                            "ability_lua"
+        "ScriptFile"                                                           "abilities/pushing_blast.lua"
+        "AbilityTextureName"                                                   "pugna_nether_blast"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityManaCost"                                                       "80"
+        "AbilityCooldown"                                                       "13 12 11 10"
+        "AbilityCastPoint"                                                      "0.05"
+        
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "duration"                                          "2 3 4 5"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "damage"                                          "100 150 200 250"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "radius"                                                   "500"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "ms_slow"                                                   "30"
+            }
+           
+        }
+        "ReduxFlags"                                                           "dota_custom"
+        "ReduxCost"                                                            "0"
+    }
+
+    "special_bonus_unique_pushing_blast_0" 
+    {
+        "BaseClass"               "special_bonus_unique_antimage_3"
+        "TalentRank"              "3"
+        "TalentRequiredAbility" "pushing_blast"
+        "AbilityType"                   "DOTA_ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "value"                                                "50"
+            }
+        }
+    }
+}

@@ -17927,7 +17927,9 @@
 
 
     "DOTA_Tooltip_ability_special_bonus_unique_crater_0" "Units Within 600 Units Get Sucked Into The Crater"
-    "DOTA_Tooltip_ability_special_bonus_unique_ranged_punch_0" "2x knockback distance on enemies"
+    "DOTA_Tooltip_ability_special_bonus_unique_ranged_punch_0" "Wrecking Ball 2x Knockback Distance On Enemies"
+    "DOTA_Tooltip_ability_special_bonus_unique_pushing_blast_0" "Pushing Blast Also Decreases Damage Output By 50%"
+
 
 
     "DOTA_Tooltip_ability_crater"                            "CRATER"
@@ -17943,6 +17945,12 @@
     "DOTA_Tooltip_ability_ranged_punch_radius"                 "RADIUS:"
     "DOTA_Tooltip_ability_ranged_punch_punch_damage"                 "DAMAGE:"
     "DOTA_Tooltip_ability_ranged_punch_projectile_speed"      "PROJECTILE SPEED:"    
-    "DOTA_Tooltip_ability_ranged_punch_knockback_distance"         "KNOCKBACK DISTANCE"                              
+    "DOTA_Tooltip_ability_ranged_punch_knockback_distance"         "KNOCKBACK DISTANCE" 
+
+    "DOTA_Tooltip_ability_pushing_blast"                            "Pushing Blast"
+    "DOTA_Tooltip_ability_pushing_blast_Description"                      "Create a wave of light around you, pushing foes back and damaging and slowing them"
+    "DOTA_Tooltip_ability_pushing_blast_radius"                 "RADIUS:"
+    "DOTA_Tooltip_ability_pushing_blast_damage"                 "DAMAGE:"
+    "DOTA_Tooltip_ability_pushing_blast_duration"               "DURATION"                                  
 
 }

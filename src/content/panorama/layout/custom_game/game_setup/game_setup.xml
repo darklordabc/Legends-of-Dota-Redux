@@ -193,7 +193,8 @@
                                     <Image class="optionImageCached" src="file://{images}/custom_game/options/option4.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/options/option5.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/options/option6.png"></Image>
-
+                                    
+                                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatordoubleTalents.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorAntiRat.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorConsumeItems.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorLimitPassives.png"></Image>

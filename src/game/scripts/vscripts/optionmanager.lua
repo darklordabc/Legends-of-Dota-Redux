@@ -165,6 +165,7 @@ if not OptionManager.initialSettings then
 	OptionManager:SetOption('fastRunes', false)
 	OptionManager:SetOption('superRunes', false)
 	OptionManager:SetOption('periodicSpellCast', false)
+	OptionManager:SetOption('doubleTalents', false)
 	OptionManager:SetOption('vampirism', false)
 	OptionManager:SetOption('killstreakPower', false)
 	OptionManager:SetOption('cooldownReduction', false)

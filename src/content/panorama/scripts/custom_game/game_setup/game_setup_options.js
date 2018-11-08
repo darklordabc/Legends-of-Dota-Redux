@@ -648,6 +648,11 @@ var basicOptions = {
                         about: 'lodMutatorPeriodicSpellCast'
                     },
                     {
+                        name: 'lodOptionDoubleTalents',
+                        extraInfo: 'lodOptionAboutDoubleTalents',
+                        about: 'lodMutatorDoubleTalents'
+                    },
+                    {
                         name: 'lodOptionConvertableTowers',
                         patreon: true,
                         //extraInfo: 'lodOptionAboutConvertableTowers',
@@ -2457,6 +2462,22 @@ var advancedOptions = {
                 name: 'lodOptionPeriodicSpellCast',
                 des: 'lodOptionDesPeriodicSpellCast',
                 about: 'lodOptionAboutPeriodicSpellCast',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },
+            {
+                name: 'lodOptionDoubleTalents',
+                des: 'lodOptionDesDoubleTalents',
+                about: 'lodOptionAboutDoubleTalents',
                 sort: 'toggle',
                 values: [
                     {
