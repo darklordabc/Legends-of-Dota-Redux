@@ -11,6 +11,7 @@ Legends of Dota Redux
 
 ### Patreon ###
 - Nearly all the major features of Redux have been achieved by paying talented developers to implment them. If you enjoy Redux and can spare a few dollars, please consider supporting the mod financially so that it can continue to grow.
+- Supporting the mod will unlock exclusive features in game, as well as granting a special Discord role and Reddit flair
 - https://www.patreon.com/darklordabc
 
 ### Github Issues ###
