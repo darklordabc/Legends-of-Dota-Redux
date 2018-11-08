@@ -7,7 +7,7 @@ Legends of Dota Redux
  - Choose from a huge selection of gamemodes and mutators to make every experience unique!
  - Pick your skills or select a random build!
  - Take advantage of hero perks and custom abilities to further enhance your hero! 
- - View the [Changelog](https://github.com/darklordabc/Dota-2-Redux/blob/develop/CHANGELOG.md)
+ - View the [Changelog](https://github.com/darklordabc/Dota-2-Redux/blob/develop/CHANGELOG.md) or the [Reddit Community](https://www.reddit.com/r/LegendsOfDotaRedux) 
 
 ### Patreon ###
 - Nearly all the major features of Redux have been achieved by paying talented developers to implment them. If you enjoy Redux and can spare a few dollars, please consider supporting the mod financially so that it can continue to grow.
