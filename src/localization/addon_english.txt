@@ -699,6 +699,11 @@
     "lodOptionAboutPeriodicSpellCast"                            "Spells will be cast on all players every few seconds."
     "lodMutatorPeriodicSpellCast"                                "Periodic Spellcast"
 
+    "lodOptionDoubleTalents"                                 "Double Talents"
+    "lodOptionDesDoubleTalents"                              "Double Talents"
+    "lodOptionAboutDoubleTalents"                            "Skilling one talent will also level the other (not visible)."
+    "lodMutatorDoubleTalents"                                "Double Talents"
+
     "lodOptionRandomLaneCreeps"                                 "Random Lane Creeps"
     "lodOptionDesRandomLaneCreeps"                              "Random Lane Creeps"
     "lodOptionAboutRandomLaneCreeps"                            "Random neutral creeps will spawn in lanes with regular lane creeps."

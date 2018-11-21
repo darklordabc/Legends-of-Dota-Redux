@@ -2533,6 +2533,18 @@
         "ReduxBans"                                                            "death_prophet_witchcraft | zuus_arc_lightning | storm_spirit_ball_lightning | storm_spirit_static_remnant | obsidian_destroyer_arcane_orb"
         "ReduxBanCategory"                                                     "SpammableSpells"
     }
+    "dazzle_bad_juju" 
+    {
+        "ReduxCost"                                                            "80"
+        "ReduxBans"                                                            "death_prophet_witchcraft | storm_spirit_ball_lightning"
+        "ReduxBanCategory"                                                     "SpammableSpells"
+    }
+    "rubick_arcane_supremacy" 
+    {
+        "ReduxCost"                                                            "50"
+        "ReduxBans"                                                            "death_prophet_witchcraft"
+        "ReduxBanCategory"                                                     "SpammableSpells"
+    }
     "pudge_dismember"
     {
         "ReduxFlags"                                                           "stun"
