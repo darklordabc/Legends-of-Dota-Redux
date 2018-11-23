@@ -2538,6 +2538,7 @@
         "ReduxCost"                                                            "80"
         "ReduxBans"                                                            "death_prophet_witchcraft | storm_spirit_ball_lightning"
         "ReduxBanCategory"                                                     "SpammableSpells"
+        "ReduxFlags"                                                           "cooldown"
     }
     "rubick_arcane_supremacy" 
     {
