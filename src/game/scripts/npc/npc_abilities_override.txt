@@ -3946,6 +3946,14 @@
     {
         "TalentRequiredAbility"                                                   "huskar_inner_vitality"
     }
+    "special_bonus_unique_huskar_4"
+    {
+        "TalentRequiredAbility"                                                   "huskar_berserkers_blood"
+    }
+    "special_bonus_unique_huskar_5"
+    {
+        "TalentRequiredAbility"                                                   "huskar_burning_spear"
+    }
 
     "special_bonus_unique_invoker_1"
     {
@@ -3985,6 +3993,11 @@
     "special_bonus_unique_invoker_8"
     {
         "TalentRequiredAbility"                                                   "invoker_tornado_lod"
+    }
+
+    "special_bonus_unique_invoker_9"
+    {
+        "TalentRequiredAbility"                                                   "invoker_cold_snap_lod"
     }
 
     "special_bonus_unique_jakiro"
@@ -4053,6 +4066,11 @@
     }
 
     "special_bonus_unique_kunkka_4"
+    {
+        "TalentRequiredAbility"                                                   "kunkka_tidebringer"
+    }
+
+    "special_bonus_unique_kunkka_5"
     {
         "TalentRequiredAbility"                                                   "kunkka_tidebringer"
     }
@@ -4396,6 +4414,11 @@
         "TalentRequiredAbility"                                                   "morphling_waveform"
     }
 
+    "special_bonus_unique_morphling_2"
+    {
+        "TalentRequiredAbility"                                                   "morphling_replicate"
+    }
+
     "special_bonus_unique_morphling_3"
     {
         "TalentRequiredAbility"                                                   "morphling_adaptive_strike_agi"
@@ -4675,6 +4698,11 @@
         "TalentRequiredAbility"                                                   "pudge_dismember"
     }
 
+    "special_bonus_unique_pudge_4"
+    {
+        "TalentRequiredAbility"                                                   "pudge_rot"
+    }
+
     "special_bonus_unique_pugna_1"
     {
         "TalentRequiredAbility"                                                   "pugna_life_drain"
@@ -4834,6 +4862,11 @@
     }
 
     "special_bonus_unique_pangolier_5"
+    {
+        "TalentRequiredAbility"                                                   "pangolier_gyroshell"
+    }
+
+    "special_bonus_unique_pangolier_6"
     {
         "TalentRequiredAbility"                                                   "pangolier_gyroshell"
     }
@@ -5309,7 +5342,7 @@
 
     "special_bonus_unique_tusk_4"
     {
-        "TalentRequiredAbility"                                                   "do_not_give_talent"
+        "TalentRequiredAbility"                                                   "tusk_walrus_punch"
     }
 
     "special_bonus_unique_tusk_5"
@@ -5385,6 +5418,11 @@
     "special_bonus_unique_ursa_5"
     {
         "TalentRequiredAbility"                                                   "ursa_earthshock"
+    }
+
+    "special_bonus_unique_ursa_6"
+    {
+        "TalentRequiredAbility"                                                   "ursa_enrage"
     }
 
 
@@ -5633,6 +5671,10 @@
         "TalentRequiredAbility"                                                   "wisp_tether"
     }
 
+    "special_bonus_unique_wisp_6"
+    {
+        "TalentRequiredAbility"                                                   "wisp_relocate"
+    }
 
 
     "special_bonus_unique_witch_doctor_1"
