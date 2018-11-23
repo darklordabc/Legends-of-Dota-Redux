@@ -2188,8 +2188,8 @@
     }
     "abaddon_frostmourne"
     {
-        "ReduxFlags"                                                           "attack_modifier"
-        "ReduxPerks"                                                           "attack_modifier | ice"
+        "ReduxFlags"                                                           "attack_modifier | silence"
+        "ReduxPerks"                                                           "attack_modifier | ice | silence"
         "ReduxCost"                                                            "10"
     }
     "ancient_apparition_chilling_touch"
@@ -2603,6 +2603,11 @@
     {
         "ReduxFlags"                                                           "summon"
         "ReduxPerks"                                                           "summon_non_ult"
+    }
+
+    "lich_sinister_gaze"
+    {
+        "ReduxFlags"                                                           "stun"
     }
     "enigma_demonic_conversion"
     {
@@ -3030,6 +3035,7 @@
     }
     "naga_siren_rip_tide"
     {
+        "ReduxFlags"                                                           "attack_modifier"
         "ReduxPerks"                                                           "water"
     }
     "slark_dark_pact"
