@@ -3931,7 +3931,11 @@
 
     "special_bonus_unique_huskar"
     {
-        "TalentRequiredAbility"                                                   "huskar_life_break_redux"
+        "TalentRequiredAbility"                                                 
+        {
+            "1" "huskar_life_break"
+            "2" "huskar_life_break_redux"             
+        }
     }
 
     "special_bonus_unique_huskar_2"
@@ -5658,7 +5662,11 @@
 
     "special_bonus_unique_wraith_king_1"
     {
-        "TalentRequiredAbility"                                                   "skeleton_king_reincarnation_redux"
+        "TalentRequiredAbility"                                                 
+        {
+            "1" "skeleton_king_reincarnation"
+            "2" "skeleton_king_reincarnation_redux"             
+        }
     }
 
     "special_bonus_unique_wraith_king_2"
@@ -5673,7 +5681,11 @@
 
     "special_bonus_unique_wraith_king_4"
     {
-        "TalentRequiredAbility"                                                   "skeleton_king_reincarnation_redux"
+        "TalentRequiredAbility"                                                 
+        {
+            "1" "skeleton_king_reincarnation"
+            "2" "skeleton_king_reincarnation_redux"             
+        }
     }
 
     "special_bonus_unique_wraith_king_5"
@@ -5723,7 +5735,11 @@
 
     "special_bonus_unique_drow_ranger_3"
     {
-        "TalentRequiredAbility"                                                   "drow_ranger_marksmanship_redux"
+        "TalentRequiredAbility"                                                 
+        {
+            "1" "drow_ranger_marksmanship"
+            "2" "drow_ranger_marksmanship_redux"             
+        }
     }
 
     "special_bonus_unique_drow_ranger_4"
@@ -6023,11 +6039,6 @@
         "TalentRequiredAbility"                                                   "arc_warden_spark_wraith"
     }
 
-    "special_bonus_unique_arc_warden_2"
-    {
-        "TalentRequiredAbility"                                                   "arc_warden_flux"
-    }
-
     "special_bonus_unique_arc_warden_3"
     {
         "TalentRequiredAbility"                                                   "arc_warden_spark_wraith"
@@ -6037,11 +6048,23 @@
     {
         "TalentRequiredAbility"                                                   "arc_warden_flux"
     }
+    "special_bonus_unique_arc_warden_5"
+    {
+        "TalentRequiredAbility"                                                   "arc_warden_flux"
+    }
+    "special_bonus_unique_arc_warden_2"
+    {
+        "TalentRequiredAbility"                                                   "arc_warden_flux"
+    }
 
 
     "special_bonus_unique_antimage"
     {
-        "TalentRequiredAbility"                                                   "antimage_blink"
+        "TalentRequiredAbility"                                                 
+        {
+            "1" "antimage_blink"
+            "2" "antimage_blink_redux"             
+        }
     }
 
     "special_bonus_unique_antimage_2"
@@ -6051,7 +6074,11 @@
 
     "special_bonus_unique_antimage_3"
     {
-        "TalentRequiredAbility"                                                   "antimage_blink_redux"
+        "TalentRequiredAbility"                                                 
+        {
+            "1" "antimage_blink"
+            "2" "antimage_blink_redux"             
+        }
     }
 
     "special_bonus_unique_antimage_4"
@@ -6061,7 +6088,11 @@
 
     "special_bonus_unique_antimage_5"
     {
-        "TalentRequiredAbility"                                                   "antimage_blink_redux"
+        "TalentRequiredAbility"                                                 
+        {
+            "1" "antimage_blink"
+            "2" "antimage_blink_redux"             
+        }
     }
 
     "special_bonus_unique_ancient_apparition_1"
