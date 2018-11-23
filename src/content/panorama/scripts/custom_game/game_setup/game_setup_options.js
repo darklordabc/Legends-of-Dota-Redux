@@ -632,7 +632,6 @@ var basicOptions = {
                     },                   
                     {
                         name: 'lodOptionFastRunes',
-                        patreon: true, 
                         //extraInfo: 'lodOptionAboutFastRunes',
                         about: 'lodMutatorFastRunes'
                     },
