@@ -346,7 +346,7 @@ function modifier_turbo_courier:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
 		MODIFIER_PROPERTY_MOVESPEED_LIMIT,
-		MODIFIER_PROPERTY_MOVESPEED_MAX,
+		MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE_MAX,
 		MODIFIER_PROPERTY_FIXED_DAY_VISION,
 		MODIFIER_PROPERTY_FIXED_NIGHT_VISION
 	}
@@ -367,6 +367,6 @@ function modifier_turbo_courier:GetModifierMoveSpeed_Limit()
 	return 8000
 end
 ----------------------------------------------------------------------------------------------------------
-function modifier_turbo_courier:GetModifierMoveSpeed_Max()
+function modifier_turbo_courier:GetModifierMoveSpeed_AbsoluteMax()
 	return 8000
 end

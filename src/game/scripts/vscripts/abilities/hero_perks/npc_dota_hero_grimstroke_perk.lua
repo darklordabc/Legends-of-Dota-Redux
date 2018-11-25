@@ -53,7 +53,7 @@ function modifier_npc_dota_hero_grimstroke_perk:GetModifierSpellAmplify_Percenta
 
     if not hero == unit then return 0 end
 
-    if ability:GetCastRange(nil,nil) >= self.range then
+    if ability and ability:GetCastRange(nil,nil) >= self.range then
       return self.amp
     end
 
