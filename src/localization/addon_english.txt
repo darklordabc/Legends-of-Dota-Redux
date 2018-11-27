@@ -1,4 +1,5 @@
 "addon"
+
 {
     // The name of the game
     "ADDON_GAME_NAME"                               "Legends of Dota: Redux"
@@ -692,7 +693,7 @@
     "lodOptionSuperRunes"                                 "Super Runes"
     "lodOptionDesSuperRunes"                              "Super Runes"
     "lodOptionAboutSuperRunes"                            "TODO"
-    "lodMutatorSuperRunes"                                "Super Runes
+    "lodMutatorSuperRunes"                                "Super Runes"
 
     "lodOptionPeriodicSpellCast"                                 "Periodic Spellcast"
     "lodOptionDesPeriodicSpellCast"                              "Periodic Spellcast"
@@ -712,7 +713,7 @@
     "lodOptionFastRunes"                                 "Fast Runes"
     "lodOptionDesFastRunes"                              "Fast Runes"
     "lodOptionAboutFastRunes"                            "Runes spawn every 30 seconds."
-    "lodMutatorFastRunes"                                "Fast Runes
+    "lodMutatorFastRunes"                                "Fast Runes"
 
     "lodOptionCooldownReduction"                         "Cooldown Reduction"
     "lodOptionDesCooldownReduction"                      "Cooldown Reduction"
@@ -1128,7 +1129,7 @@
     "hintAncientApparition"                         "Ancient Apparition disables the health regeneration of targets when an Ice ability debuff is applied."
     "hintShadowShaman"                         "When Shadow Shaman is targeted by an enemy spell, they will get Hexed for 3 seconds. Has 60 second cooldown."
     "hintDoom"                         "Doom casts doom as if he has scepter, if Doom has scepter cooldown is halved."
-    "hintLich"                         "Lich heals himself for the mana gained when casting Sacrifice."
+    "hintLich"                         "Lich gains mana when denying a creep."
     "hintSpectre"                         "Spectre gains 100ms when facing the target of his last ability."
     "hintDarkSeer"                         "Dark Seer self-casts Surge and Ion Shell when casting them on allies."
     "hintEnchantress"                         "Enchantress gets a 50 attack range bonus for 10 seconds after attacking a hero"
@@ -1584,7 +1585,7 @@
     "unique_mechanic_kunkka"                        "When Kunkka casts a <font color=\'#ffd966\'>Water</font> spell he has a 50% chance to refill his bottle."
     "unique_mechanic_legion_commander"              "When Legion Commander casts <font color=\'#ffd966\'>Duel</font>, she will gain spell immunity for the duration of the duel."
     "unique_mechanic_leshrac"                        "At the start of the game, Leshrac gains a free level of <font color=\'#ffd966\'>Octarine Vampirism</font>, whether he has it or not."
-    "unique_mechanic_lich"          "Lich heals himself for the mana gained when casting <font color=\'#ffd966\'>Sacrifice</font>."
+    "unique_mechanic_lich"          "Lich gains mana when denying a creep."
     "unique_mechanic_life_stealer"                  "When Life Stealer casts <font color=\'#ffd966\'>Infest</font>, its cooldown will be reduced to 30 seconds."
     "unique_mechanic_lina"                          "Lina's intelligence increases by 3 for each level put in <font color=\'#ffd966\'>Fire</font> abilities."
     "unique_mechanic_lion"           "For Lion, killing a hero with a spell refunds the mana cost of that spell and lowers its cooldown by 75%."
@@ -2504,10 +2505,7 @@
 
     //Bot Controller
     "DOTA_Tooltip_ability_imba_tower_ai_controller"                                 "Bot AI Helper"
-    "DOTA_Tooltip_ability_imba_tower_ai_controller_Description"                     "<font color='#70EA72'>This ability is designed to help bots deal with multiple towers. The logic is roughly as follows:</font>\n1. If an enemy bot is nearby AND tower is not invunerable AND there is no nearby allies = <font color='#70EA72'>Force enemy bot to attack tower</font>
-\n2. If an enemy bot is nearby AND enemy bot health is below 300 AND there is no nearby allies = <font color='#70EA72'>Teleport bot back to their base </font>
-\n3. If an enemy bot is nearby AND tower is invunerable = <font color='#70EA72'>Scare enemy bot away</font>
-\n\nEnemy bots that are teleported back to their base, receive the following compenstation for being displaced from battle: <font color='#70EA72'>100 gold and experience, full HP and MP on return and maximum movespeed for a period of time. \nIf the tower has anti-rat protection, it will scare aware bots and teleport them back.</font>"
+    "DOTA_Tooltip_ability_imba_tower_ai_controller_Description"                     "<font color='#70EA72'>This ability is designed to help bots deal with multiple towers. The logic is roughly as follows:</font>\n1. If an enemy bot is nearby AND tower is not invunerable AND there is no nearby allies = <font color='#70EA72'>Force enemy bot to attack tower</font>\n2. If an enemy bot is nearby AND enemy bot health is below 300 AND there is no nearby allies = <font color='#70EA72'>Teleport bot back to their base </font>\n3. If an enemy bot is nearby AND tower is invunerable = <font color='#70EA72'>Scare enemy bot away</font>\n\nEnemy bots that are teleported back to their base, receive the following compenstation for being displaced from battle: <font color='#70EA72'>100 gold and experience, full HP and MP on return and maximum movespeed for a period of time. \nIf the tower has anti-rat protection, it will scare aware bots and teleport them back.</font>"
     "DOTA_Tooltip_ability_imba_tower_ai_controller_Lore"                                "ASSUMING DIRECT CONTROL"
 
 
@@ -4061,7 +4059,7 @@
 
     /// LICH​
     "DOTA_Tooltip_modifier_npc_dota_hero_lich_perk" "Lich Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_lich_perk_Description" "Sacrifice also restores Lich's health.<br><br><font color=\'#7D7D7D\'>By Yahnich | github.com/Yahnich</font>"
+    "DOTA_Tooltip_modifier_npc_dota_hero_lich_perk_Description" "When Lich denies a creep he gains 25% of that creeps max health as mana."
 
     /// LIFESTEALER​
     "DOTA_Tooltip_modifier_npc_dota_hero_life_stealer_perk" "Lifestealer Perk"

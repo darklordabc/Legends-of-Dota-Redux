@@ -100,8 +100,17 @@ function modifier_item_heart_consumable:DeclareFunctions()
     MODIFIER_PROPERTY_HEALTH_BONUS,
     MODIFIER_EVENT_ON_TAKEDAMAGE,
     MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE,
+    MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE_SOURCE, 
   }
   return funcs
+end
+
+function modifier_item_heart_consumable:GetModifierHPRegenAmplify_PercentageSource()
+  if not self:GetAbility() then
+    self:Destroy()
+    return
+  end
+  return self:GetAbility():GetSpecialValueFor("heart_hp_regen_amp")
 end
 
 function modifier_item_heart_consumable:GetModifierBonusStats_Strength()

@@ -95,21 +95,21 @@ modifier_item_aeon_disk_consumable = class({
 	      self:Destroy()
 	      return
 	    end
-		return self:GetAbility():GetSpecialValueFor("bonus_health")
+		return self:GetAbility():GetSpecialValueFor("aeon_disk_bonus_health")
 	end,
 	GetModifierManaBonus = function(self)
 		if not self:GetAbility() then
 	      self:Destroy()
 	      return
 	    end
-	    return self:GetAbility():GetSpecialValueFor("bonus_mana")
+	    return self:GetAbility():GetSpecialValueFor("aeon_disk_bonus_mana")
 	end,
 	GetModifierStatusResistance = function(self)
 		if not self:GetAbility() then
 	      self:Destroy()
 	      return
 	    end
-	    return self:GetAbility():GetSpecialValueFor("status_resistance")
+	    return self:GetAbility():GetSpecialValueFor("aeon_disk_status_resistance")
 	end,
 
 	OnTakeDamage = function(self, keys)
@@ -118,7 +118,7 @@ modifier_item_aeon_disk_consumable = class({
 		if keys.unit:IsIllusion() then return end
 		if self:GetAbility():IsItem() and not self:GetAbility():IsCooldownReady() or not self:GetAbility():IsItem() and self:GetRemainingTime() >= 0 then return end
 		if keys.attacker:IsControllableByAnyPlayer() then
-			if self:GetParent():GetHealth() <= self:GetParent():GetMaxHealth() * self:GetAbility():GetSpecialValueFor("health_threshold_pct") * 0.01 then
+			if self:GetParent():GetHealth() <= self:GetParent():GetMaxHealth() * self:GetAbility():GetSpecialValueFor("aeon_disk_health_threshold_pct") * 0.01 then
 				self:GetParent():SetHealth(self:GetParent():GetHealth()+keys.damage)
 				if self:GetAbility():IsItem() then
 					self:GetAbility():UseResources(false, false, true)
@@ -136,7 +136,7 @@ modifier_item_aeon_disk_consumable = class({
 
 				self:GetParent():Purge(false, true, false, true, false)
 
-				local mod = self:GetParent():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_item_aeon_disk_consumable_buff", {duration = self:GetAbility():GetSpecialValueFor("buff_duration")})
+				local mod = self:GetParent():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_item_aeon_disk_consumable_buff", {duration = self:GetAbility():GetSpecialValueFor("aeon_disk_buff_duration")})
 				if mod then
 					mod:AddParticle(p, false, false, 100, true, false)
 					mod:AddParticle(f, false, true, 100, false, false)

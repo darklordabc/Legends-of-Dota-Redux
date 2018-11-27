@@ -100,35 +100,35 @@ modifier_item_echo_sabre_consumable = class({
       self:Destroy()
       return
     end
-    return self:GetAbility():GetSpecialValueFor("bonus_attack_speed")
+    return self:GetAbility():GetSpecialValueFor("echo_sabre_bonus_attack_speed")
   end,
   GetModifierPreAttack_BonusDamage = function(self)
     if not self:GetAbility() then
       self:Destroy()
       return
     end
-    return self:GetAbility():GetSpecialValueFor("bonus_damage")
+    return self:GetAbility():GetSpecialValueFor("echo_sabre_bonus_damage")
   end,
   GetModifierBonusStats_Intellect = function(self)
     if not self:GetAbility() then
       self:Destroy()
       return
     end
-    return self:GetAbility():GetSpecialValueFor("bonus_intellect")
+    return self:GetAbility():GetSpecialValueFor("echo_sabre_bonus_intellect")
   end,
   GetModifierBonusStats_Strength = function(self)
     if not self:GetAbility() then
       self:Destroy()
       return
     end
-    return self:GetAbility():GetSpecialValueFor("bonus_strength")
+    return self:GetAbility():GetSpecialValueFor("echo_sabre_bonus_strength")
   end,
   GetModifierConstantManaRegen = function(self)
     if not self:GetAbility() then
       self:Destroy()
       return
     end
-    return self:GetAbility():GetSpecialValueFor("bonus_mana_regen")
+    return self:GetAbility():GetSpecialValueFor("echo_sabre_bonus_mana_regen")
   end,
 
   OnAttackLanded = function(self, keys)

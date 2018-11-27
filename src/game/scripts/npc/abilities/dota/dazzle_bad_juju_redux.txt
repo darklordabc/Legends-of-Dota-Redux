@@ -1,0 +1,51 @@
+"DOTAAbilities"
+{
+    "dazzle_bad_juju_redux"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+        "SpellDispellableType"          "SPELL_DISPELLABLE_YES"
+        "FightRecapLevel"               "2"
+        "AbilitySound"                  "Hero_Dazzle.Weave"
+        "BaseClass"                     "dazzle_bad_juju"
+        
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastRange"              "1200"
+        
+        "ReduxCost"                                                            "40"
+        "ReduxBans"                                                            "death_prophet_witchcraft | storm_spirit_ball_lightning"
+        "ReduxBanCategory"                                                     "SpammableSpells"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {   
+                "var_type"                  "FIELD_INTEGER"
+                "cooldown_reduction"        "15 20 25"
+            }
+            "02"
+            {   
+                "var_type"                  "FIELD_FLOAT"
+                "armor_reduction"           "1.5 2 2.5"
+                "LinkedSpecialBonus"    "special_bonus_unique_dazzle_4"
+            }
+            "03"
+            {   
+                "var_type"                  "FIELD_FLOAT"
+                "duration"                  "8.0"
+            }
+            "04"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "radius"                    "1200"
+            }
+        }
+    }
+}

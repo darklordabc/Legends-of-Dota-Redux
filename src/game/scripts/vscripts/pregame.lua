@@ -8539,7 +8539,7 @@ function Pregame:fixSpawningIssues()
         end
 
         if spawnedUnit:GetUnitName() == "npc_dota_flying_courier" or spawnedUnit:GetUnitName() == "npc_dota_courier" and OptionManager:GetOption('turboCourier') == 1 then
-            print(spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_turbo_courier", {}))
+            spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_turbo_courier", {})
         end
 
         -- Grab their playerID

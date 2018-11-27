@@ -92,7 +92,7 @@ modifier_item_vladimir_consumable = class({
       self:Destroy()
       return
     end
-    return self:GetAbility():GetSpecialValueFor("aura_radius")
+    return self:GetAbility():GetSpecialValueFor("vlads_aura_radius")
   end,
 
   DeclareFunctions = function() 
@@ -109,28 +109,28 @@ modifier_item_vladimir_consumable = class({
       self:Destroy()
       return
     end
-    return self:GetAbility():GetSpecialValueFor("bonus_all_stats")
+    return self:GetAbility():GetSpecialValueFor("vlads_bonus_all_stats")
   end,
   GetModifierBonusStats_Agility = function(self)    
     if not self:GetAbility() then
       self:Destroy()
       return
     end
-    return self:GetAbility():GetSpecialValueFor("bonus_all_stats")
+    return self:GetAbility():GetSpecialValueFor("vlads_bonus_all_stats")
   end,
   GetModifierBonusStats_Intellect = function(self)    
     if not self:GetAbility() then
       self:Destroy()
       return
     end
-    return self:GetAbility():GetSpecialValueFor("bonus_all_stats")
+    return self:GetAbility():GetSpecialValueFor("vlads_bonus_all_stats")
   end,
   GetModifierConstantHealthRegen = function(self)    
     if not self:GetAbility() then
       self:Destroy()
       return
     end
-    return self:GetAbility():GetSpecialValueFor("hp_regen")
+    return self:GetAbility():GetSpecialValueFor("vlads_hp_regen")
   end,
 })
 
@@ -154,7 +154,7 @@ modifier_item_vladimir_consumable_aura = class({
       self:Destroy()
       return
     end
-    return self:GetParent():IsRangedAttacker() and self:GetAbility():GetSpecialValueFor("vampiric_aura_ranged") or self:GetAbility():GetSpecialValueFor("vampiric_aura")
+    return self:GetParent():IsRangedAttacker() and self:GetAbility():GetSpecialValueFor("vlads_vampiric_aura_ranged") or self:GetAbility():GetSpecialValueFor("vlads_vampiric_aura")
   end,
 
   GetModifierConstantManaRegen = function(self)     
@@ -162,7 +162,7 @@ modifier_item_vladimir_consumable_aura = class({
       self:Destroy()
       return
     end
-    return self:GetAbility():GetSpecialValueFor("mana_regen_aura")
+    return self:GetAbility():GetSpecialValueFor("vlads_mana_regen_aura")
   end,
 
   GetModifierPhysicalArmorBonus = function(self)
@@ -170,7 +170,7 @@ modifier_item_vladimir_consumable_aura = class({
       self:Destroy()
       return
     end
-    return self:GetAbility():GetSpecialValueFor("armor_aura")
+    return self:GetAbility():GetSpecialValueFor("vlads_armor_aura")
   end,
 
   GetModifierPreAttack_BonusDamage = function(self)
@@ -184,7 +184,7 @@ modifier_item_vladimir_consumable_aura = class({
       self:GetParent():SetModifierStackCount("modifier_vlads_info", self:GetCaster(), average)
     end
     local damage = self:GetParent():GetModifierStackCount("modifier_vlads_info", self:GetCaster()) or 0
-    return damage * self:GetAbility():GetSpecialValueFor("damage_aura") * 0.01
+    return damage * self:GetAbility():GetSpecialValueFor("vlads_damage_aura") * 0.01
   end,
 
   OnAttackLanded = function(self, keys)

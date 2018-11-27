@@ -29,7 +29,7 @@
       "03"
       {
         "var_type"              "FIELD_INTEGER"
-        "assault_aura_radius"           "900"
+        "assault_aura_radius"           "1200"
       }
       "04"
       {
@@ -86,38 +86,12 @@
       "14"
       {
         "var_type"              "FIELD_INTEGER"
-        "desolator_corruption_armor"      "-6"
+        "desolator_corruption_armor"      "-7"
       }
       "15"
       {
         "var_type"              "FIELD_FLOAT"
         "desolator_corruption_duration"   "15.0"
-      }
-      // Heart
-      "16"
-      {
-        "var_type"              "FIELD_INTEGER"
-        "heart_bonus_strength"        "45"
-      }
-      "17"
-      {
-        "var_type"              "FIELD_INTEGER"
-        "heart_bonus_health"          "500"
-      }
-      "18"
-      {
-        "var_type"              "FIELD_FLOAT"
-        "heart_health_regen_rate"     "7"
-      }
-      "19"
-      {
-        "var_type"              "FIELD_INTEGER"
-        "heart_cooldown_melee"        "5"
-      }
-      "20"
-      {
-        "var_type"              "FIELD_INTEGER"
-        "heart_cooldown_ranged_tooltip"       "7"
       }
       // Daedalous
       "21"
@@ -200,7 +174,7 @@
       "36"
       {
           "var_type"              "FIELD_FLOAT"
-          "aether_lens_bonus_mana_regen"      "1.25"
+          "aether_lens_bonus_mana_regen"      "3.0"
       }
       "37"
       {
@@ -216,65 +190,65 @@
       "39"
       {
         "var_type"                "FIELD_INTEGER"
-        "bonus_health"            "250"
+        "aeon_disk_bonus_health"            "300"
       }
       "40"
       {
         "var_type"                "FIELD_INTEGER"
-        "bonus_mana"              "250"
+        "aeon_disk_bonus_mana"              "300"
       }
       "41"
       {
         "var_type"                "FIELD_INTEGER"
-        "status_resistance"       "25"
+        "aeon_disk_status_resistance"       "50"
       }
       "42"
       {
         "var_type"                "FIELD_INTEGER"
-        "health_threshold_pct"    "70"
+        "aeon_disk_health_threshold_pct"    "70"
       }
       "43"
       {
         "var_type"                "FIELD_FLOAT"
-        "buff_duration"           "2.5"
+        "aeon_disk_buff_duration"           "2.5"
       }
       //Echo Sabre
       "44"
       {
         "var_type"                "FIELD_INTEGER"
-        "bonus_attack_speed"      "10"
+        "echo_sabre_bonus_attack_speed"      "10"
       }
       "45"
       {
         "var_type"                "FIELD_INTEGER"
-        "bonus_damage"            "15"
+        "echo_sabre_bonus_damage"            "12"
       }
       "46"
       {
         "var_type"                "FIELD_INTEGER"
-        "bonus_intellect"         "10"
+        "echo_sabre_bonus_intellect"         "10"
       }
       "47"
       {
         "var_type"                "FIELD_INTEGER"
-        "bonus_strength"          "10"
+        "echo_sabre_bonus_strength"          "12"
       }
       "48"
       {
         "var_type"                "FIELD_FLOAT"
-        "bonus_mana_regen"        "0.75"
+        "echo_sabre_bonus_mana_regen"        "1.25"
       }
       "49"
       {
         "var_type"                "FIELD_FLOAT"
-        "slow_duration"           "0.7"
+        "echo_sabre_slow_duration"           "0.8"
       }
       "50"
       {
         "var_type"                "FIELD_INTEGER"
-        "movement_slow"           "100"
+        "echo_sabre_movement_slow"           "100"
       }
-      //Kaya
+      //Kaya // Disabled
       "51"
       {
         "var_type"                "FIELD_INTEGER"
@@ -294,42 +268,42 @@
       "54"
       {
         "var_type"                "FIELD_INTEGER"
-        "aura_radius"             "900"
+        "vlads_aura_radius"             "1200"
       }
       "55"
       {
         "var_type"                "FIELD_INTEGER"
-        "bonus_all_stats"         "2"
+        "vlads_bonus_all_stats"         "2"
       }
       "56"
       {
         "var_type"                "FIELD_FLOAT"
-        "hp_regen"                "2.5"
+        "vlads_hp_regen"                "2.5"
       }
       "57"
       {
         "var_type"                "FIELD_INTEGER"
-        "vampiric_aura_ranged"    "10"
+        "vlads_vampiric_aura_ranged"    "10"
       }
       "58"
       {
         "var_type"                "FIELD_INTEGER"
-        "vampiric_aura"           "15"
+        "vlads_vampiric_aura"           "15"
       }
       "59"
       {
         "var_type"                "FIELD_FLOAT"
-        "mana_regen_aura"          "0.65"
+        "vlads_mana_regen_aura"          "1.75"
       }
       "60"
       {
         "var_type"                "FIELD_INTEGER"
-        "armor_aura"              "4"
+        "vlads_armor_aura"              "4"
       }
       "61"
       {
         "var_type"                "FIELD_INTEGER"
-        "damage_aura"             "15"
+        "vlads_damage_aura"             "15"
       }
       "70"
       {
@@ -345,6 +319,37 @@
       {
         "var_type"                "FIELD_INTEGER"
         "ultimate_scepter_bonus_mana"             "175"
+      }
+      // Heart
+      "80"
+      {
+        "var_type"              "FIELD_INTEGER"
+        "heart_bonus_strength"        "45"
+      }
+      "81"
+      {
+        "var_type"              "FIELD_INTEGER"
+        "heart_bonus_health"          "500"
+      }
+      "82"
+      {
+        "var_type"              "FIELD_FLOAT"
+        "heart_health_regen_rate"     "7"
+      }
+      "83"
+      {
+        "var_type"              "FIELD_INTEGER"
+        "heart_cooldown_melee"        "5"
+      }
+      "84"
+      {
+        "var_type"              "FIELD_INTEGER"
+        "heart_cooldown_ranged_tooltip"       "7"
+      }
+      "85"
+      {
+        "var_type"              "FIELD_INTEGER"
+        "heart_hp_regen_amp"       "50"
       }
     }
   }

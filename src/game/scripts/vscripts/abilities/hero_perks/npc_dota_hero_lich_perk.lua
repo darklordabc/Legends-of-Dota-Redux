@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
 --		Hero: Lich
---		Perk: Sacrifice also restores Lich's health. 
+--		Perk: Denying a creep gives 25% of that creeps max health to lich
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_lich_perk", "abilities/hero_perks/npc_dota_hero_lich_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
@@ -32,18 +32,16 @@ end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_lich_perk:DeclareFunctions()
 	local funcs = {
-		MODIFIER_EVENT_ON_ABILITY_EXECUTED,
+		MODIFIER_EVENT_ON_DEATH,
 	}
 	return funcs
 end
 
-function modifier_npc_dota_hero_lich_perk:OnAbilityExecuted(params)
-	if params.unit == self:GetParent() and params.ability:GetName() == "lich_dark_ritual" then
-		local sacrifice = params.ability
-		local hTarget = params.target
-		local hp = hTarget:GetHealth() * sacrifice:GetSpecialValueFor("health_conversion") / 100
-		self:GetParent():Heal(hp, self:GetAbility())
-		SendOverheadEventMessage(self:GetParent(), OVERHEAD_ALERT_HEAL, self:GetParent(), hp, self:GetParent())
+function modifier_npc_dota_hero_lich_perk:OnDeath(params)
+	if IsServer() then
+		if params.attacker == self:GetParent() and params.attacker:GetTeamNumber() == params.unit:GetTeamNumber() then
+			params.attacker:GiveMana(params.unit:GetMaxHealth()*0.25)
+		end
 	end
 end
 
