@@ -164,14 +164,14 @@ function Update() {
 	var rawTime = Game.GetDOTATime(false, true);
 	var time = Math.abs(rawTime);
 	var isNSNight = rawTime < darknessEndTime;
-	var timeThisDayLasts = time - (Math.floor(time / 480) * 480)
+	var timeThisDayLasts = time - (Math.floor(time / 600) * 600)
 	var isDayTime = !isNSNight && timeThisDayLasts <= 240;
 	var context = $.GetContextPanel();
 
 	context.SetHasClass("DayTime", isDayTime)
 	context.SetHasClass("NightTime", !isDayTime)
 	context.SetDialogVariable("time_of_day", Util.secondsToMMSS(time, true));
-	context.SetDialogVariable("time_until", Util.secondsToMMSS((isDayTime ? 240 : 480) - timeThisDayLasts, true));
+	context.SetDialogVariable("time_until", Util.secondsToMMSS((isDayTime ? 300 : 600) - timeThisDayLasts, true));
 	context.SetDialogVariable("day_phase", $.Localize(isDayTime ? "DOTA_HUD_Night" : "DOTA_HUD_Day"));
 
 	$("#DayTime").visible = isDayTime;
