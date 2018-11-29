@@ -258,7 +258,7 @@ function imba_silencer_glaives_of_wisdom:IsNetherWardStealable() return false en
 function imba_silencer_glaives_of_wisdom:IsStealable() return false end
 
 function imba_silencer_glaives_of_wisdom:GetCastRange()
-	return self:GetCaster():GetAttackRange()
+	return self:GetCaster():Script_GetAttackRange()
 end
 
 function imba_silencer_glaives_of_wisdom:GetIntrinsicModifierName()

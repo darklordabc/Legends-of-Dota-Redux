@@ -1802,9 +1802,9 @@ function Ingame:giveAntiRatProtection()
     local direTowers = 0
     for k,v in pairs(towers) do
         if not v:IsNull() and v:IsAlive() then
-            if v:GetTeamNumber() == 2 then
+            if v:GetTeamNumber() == 2 and not v:HasModifier("modifier_redux_tower_ability") then
                 radiantTowers = radiantTowers + 1
-            else
+            elseif v:GetTeamNumber() == 3 and not v:HasModifier("modifier_redux_tower_ability")
                 direTowers = direTowers + 1
             end
         end

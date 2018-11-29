@@ -7,7 +7,7 @@ function metamorphosis_mod:OnCreated( kv )
 		self.nFXIndex = ParticleManager:CreateParticle( "particles/neutral_fx/roshan_spawn.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetParent() )
 		ParticleManager:SetParticleControl(self.nFXIndex, 0, self:GetCaster():GetOrigin())
 		ParticleManager:ReleaseParticleIndex(self.nFXIndex)
-		self.AttackBonus = (self:GetParent():GetAttackRange() - self:GetAbility():GetSpecialValueFor("attack_range")) * -1
+		self.AttackBonus = (self:GetParent():Script_GetAttackRange() - self:GetAbility():GetSpecialValueFor("attack_range")) * -1
 		self.OriginalAtkCap = self:GetParent():GetAttackCapability()
 		self:GetParent():SetAttackCapability(DOTA_UNIT_CAP_MELEE_ATTACK)
 		

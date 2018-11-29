@@ -85,7 +85,7 @@ modifier_item_aeon_disk_consumable = class({
 		return {
 			MODIFIER_PROPERTY_HEALTH_BONUS,
 			MODIFIER_PROPERTY_MANA_BONUS,
-			MODIFIER_PROPERTY_STATUS_RESISTANCE,
+			
 			MODIFIER_EVENT_ON_TAKEDAMAGE,
 		}
 	end,
@@ -104,13 +104,7 @@ modifier_item_aeon_disk_consumable = class({
 	    end
 	    return self:GetAbility():GetSpecialValueFor("aeon_disk_bonus_mana")
 	end,
-	GetModifierStatusResistance = function(self)
-		if not self:GetAbility() then
-	      self:Destroy()
-	      return
-	    end
-	    return self:GetAbility():GetSpecialValueFor("aeon_disk_status_resistance")
-	end,
+	
 
 	OnTakeDamage = function(self, keys)
 		if not IsServer() or self:GetParent() ~= keys.unit then return end
@@ -150,7 +144,9 @@ modifier_item_aeon_disk_consumable_buff = class({
 	IsHidden = function() return false end,
 	IsPurgable = function() return false end,
 	GetTexture = function() return "item_aeon_disk" end,
-	DeclareFunctions = function() return {MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE, MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE} end,
+	DeclareFunctions = function() return {MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE, MODIFIER_PROPERTY_STATUS_RESISTANCE, MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE} end,
 	GetModifierIncomingDamage_Percentage = function() return -100 end,
 	GetModifierTotalDamageOutgoing_Percentage = function() return -100 end,
+	GetModifierStatusResistance = function(self) return self:GetAbility():GetSpecialValueFor("aeon_disk_status_resistance")
+	end,
 })

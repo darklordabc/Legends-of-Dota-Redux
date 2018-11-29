@@ -17954,6 +17954,13 @@
     "DOTA_Tooltip_ability_pushing_blast_Description"                      "Create a wave of light around you, pushing foes back and damaging and slowing them"
     "DOTA_Tooltip_ability_pushing_blast_radius"                 "RADIUS:"
     "DOTA_Tooltip_ability_pushing_blast_damage"                 "DAMAGE:"
-    "DOTA_Tooltip_ability_pushing_blast_duration"               "DURATION"                                  
+    "DOTA_Tooltip_ability_pushing_blast_duration"               "DURATION"
+
+    "DOTA_Tooltip_ability_dazzle_bad_juju_redux"                                          "Bad Juju"
+    "DOTA_Tooltip_ability_dazzle_bad_juju_redux_Description"                              "Passively reduces cooldowns on your abilities and items. Anytime you cast a speall nearby enemies will have their armor reduced. Debuff stacks and refreshes duration."
+    "DOTA_Tooltip_ability_dazzle_bad_juju_redux_cooldown_reduction"                       "%COOLDOWN REDUCTION:"
+    "DOTA_Tooltip_ability_dazzle_bad_juju_redux_armor_reduction"                          "ARMOR REDUCTION:"
+    "DOTA_Tooltip_ability_dazzle_bad_juju_redux_duration"                                 "DURATION:"
+    "DOTA_Tooltip_ability_dazzle_bad_juju_redux_radius"                                   "RADIUS:"                                  
 
 }

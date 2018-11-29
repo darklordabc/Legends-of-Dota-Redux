@@ -68,7 +68,7 @@ end
 function imba_obsidian_destroyer_arcane_orb:GetCastRange(location, target)
 	-- Get caster's cast range
 	local caster = self:GetCaster()
-	return caster:GetAttackRange()
+	return caster:Script_GetAttackRange()
 end
 
 

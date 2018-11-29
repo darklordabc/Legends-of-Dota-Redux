@@ -182,7 +182,7 @@ function Multishot( keys )
 	if caster:PassivesDisabled() then return end
 	if not caster:IsRealHero() and not caster:IsBuilding() then return nil end
 	-- Parameters
-	local tower_range = caster:GetAttackRange() + 128
+	local tower_range = caster:Script_GetAttackRange() + 128
 	
 	-- Find nearby enemies
 	local enemies = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(), nil, tower_range, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_NO_INVIS, FIND_ANY_ORDER, false)

@@ -7,7 +7,7 @@ function night_wolf_mod:OnCreated( kv )
 		local nFXIndex = ParticleManager:CreateParticle( "particles/units/heroes/hero_night_stalker/nightstalker_ulti.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetParent() )
 		ParticleManager:SetParticleControl(nFXIndex, 0, self:GetCaster():GetOrigin()) 
 		ParticleManager:ReleaseParticleIndex(nFXIndex)
-		self.AttackBonus = (self:GetParent():GetAttackRange() - self:GetAbility():GetSpecialValueFor("attack_range")) * -1
+		self.AttackBonus = (self:GetParent():Script_GetAttackRange() - self:GetAbility():GetSpecialValueFor("attack_range")) * -1
 		self.OriginalAtkCap = self:GetParent():GetAttackCapability() 
 		self:GetParent():SetAttackCapability(DOTA_UNIT_CAP_MELEE_ATTACK) 
 		self:StartIntervalThink( 1 )

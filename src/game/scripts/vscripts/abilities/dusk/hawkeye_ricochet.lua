@@ -3,7 +3,7 @@ hawkeye_ricochet = class({})
 LinkLuaModifier("modifier_rapidfire_damage_reduction","abilities/dusk/hawkeye_ricochet",LUA_MODIFIER_MOTION_NONE)
 
 function hawkeye_ricochet:GetCastRange()
-	return self:GetCaster():GetAttackRange()+50
+	return self:GetCaster():Script_GetAttackRange()+50
 end
 
 function hawkeye_ricochet:OnSpellStart()

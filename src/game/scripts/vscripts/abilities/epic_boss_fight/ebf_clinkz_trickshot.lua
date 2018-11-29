@@ -1,6 +1,6 @@
 function StrafeAttack(keys)
 	local caster = keys.caster
-	local radius = caster:GetAttackRange()
+	local radius = caster:Script_GetAttackRange()
 	local abilityName = keys.ability:GetName()
 
 	if caster:IsRangedAttacker() == false then 

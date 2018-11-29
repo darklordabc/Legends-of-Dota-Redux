@@ -2063,7 +2063,7 @@ declare abstract class CDOTA_BaseNPC extends CBaseFlex {
     /**
      * Gets this unit's attack range after all modifiers.
      */
-    GetAttackRange(): number;
+    Script_GetAttackRange(): number;
     /**
      * Gets the attack range buffer.
      */
