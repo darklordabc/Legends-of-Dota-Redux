@@ -24,3 +24,9 @@ end
 function modifier_movespeed_cap:IsHidden()
     return true
 end
+
+function modifier_movespeed_cap:OnCreated()
+	if IsServer() then
+		self:GetParent():AddNewModifier(self:GetParent(), nil, "modifier_bloodseeker_thirst", {})
+	end
+end

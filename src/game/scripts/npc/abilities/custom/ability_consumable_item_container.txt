@@ -351,6 +351,26 @@
         "var_type"              "FIELD_INTEGER"
         "heart_hp_regen_amp"       "50"
       }
+      "90"
+      {
+          "var_type"              "FIELD_INTEGER"
+          "butterfly_bonus_damage"          "25"
+      }
+      "91"
+      {
+          "var_type"              "FIELD_INTEGER"
+          "butterfly_bonus_attack_speed"      "30"
+      }
+      "92"
+      {
+          "var_type"              "FIELD_INTEGER"
+          "butterfly_bonus_agility"   "35"
+      }
+      "93"
+      {
+          "var_type"              "FIELD_INTEGER"
+          "butterfly_bonus_evasion"   "35"
+      }
     }
   }
 }

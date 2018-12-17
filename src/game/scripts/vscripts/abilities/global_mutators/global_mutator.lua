@@ -370,3 +370,7 @@ end
 function modifier_turbo_courier:GetModifierMoveSpeed_AbsoluteMax()
 	return 8000
 end
+
+function modifier_turbo_courier:OnCreated()
+	self:GetParent():AddNewModifier(self:GetParent(), nil, "modifier_bloodseeker_thirst", {})
+end

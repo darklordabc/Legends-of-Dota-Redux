@@ -18,11 +18,11 @@ class item_my_item_consumable extends item_consumable {
 
 */
 
-class item_consumable extends CDOTA_Item_Lua {
+class item_consumable_redux extends CDOTA_Item_Lua {
 	
-	GetIntrinsicModifierName() { 
-		return "modifier_no_modifier";
-	}
+	//GetIntrinsicModifierName() { 
+	//	return "";
+	//}
 
 
 
@@ -31,7 +31,7 @@ class item_consumable extends CDOTA_Item_Lua {
 		this.ConsumeItem(this.GetCaster());
 	}
 	CastFilterResultTarget(target) {
-		if (this.GetCaster != target) {
+		if (this.GetCaster() != target) {
 			return UnitFilterResult.UF_FAIL_CUSTOM;
 		}
 		if (IsServer()) {

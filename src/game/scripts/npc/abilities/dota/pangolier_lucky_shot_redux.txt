@@ -1,0 +1,44 @@
+"DOTAAbilities"
+{
+	"pangolier_lucky_shot_redux"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"BaseClass" 					"ability_lua"
+		"ScriptFile"					"abilities/pangolier_lucky_shot_redux.lua"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"chance_pct"			"20"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"2 3 4 5"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"slow"			"40"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"chance_pct_ranged"			"10"
+			}
+		}
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
+		"ReduxFlags"                                                           "attack_modifier"
+        "ReduxPerks"                                                           "attack_modifier | silence | disarm"
+        "ReduxCost"                                                             "40"
+	}
+
+}

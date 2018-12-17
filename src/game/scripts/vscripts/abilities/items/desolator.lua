@@ -130,7 +130,7 @@ function modifier_item_desolator_consumable_corruption:DeclareFunctions()
   return funcs
 end
 
-function modifier_item_desolator_consumable_corruption:GetModifierProjectileName()
+function modifier_item_desolator_consumable:GetModifierProjectileName()
   return "particles/items_fx/desolator_projectile.vpcf"
 end
 
