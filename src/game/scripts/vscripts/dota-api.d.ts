@@ -1721,6 +1721,8 @@ declare abstract class CDOTA_Ability_DataDriven extends CDOTABaseAbility {
 /** !NoClassOr */
 /** !PureAbstract */
 declare abstract class CDOTA_Ability_Lua extends CDOTABaseAbility {
+    GetTrueCooldown(level:number): number
+
     /**
      * Determine whether an issued command with no target is valid.
      */
@@ -1923,6 +1925,8 @@ declare abstract class CDOTA_Ability_Lua extends CDOTABaseAbility {
  * A Dota NPC Unit
  */
 declare abstract class CDOTA_BaseNPC extends CBaseFlex {
+    parentPenguin:CDOTA_BaseNPC
+    GetCooldownReduction():number
     /**
      * Add an ability to this unit by name.
      */

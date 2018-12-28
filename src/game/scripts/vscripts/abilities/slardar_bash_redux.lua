@@ -36,7 +36,7 @@ function modifier_slardar_bash_redux.DeclareFunctions(self)
     return {MODIFIER_EVENT_ON_ATTACK_LANDED,MODIFIER_PROPERTY_PROCATTACK_BONUS_DAMAGE_PHYSICAL}
 end
 function modifier_slardar_bash_redux.OnAttackLanded(self,params)
-    if params.attacker==self:GetParent() then
+    if (params.attacker==self:GetParent()) and params.target:IsNPC() then
         local modifier = params.target:FindModifierByNameAndCaster("modifier_slardar_bash_counter_redux",self:GetParent());
         if modifier then
             modifier:IncrementStackCount();

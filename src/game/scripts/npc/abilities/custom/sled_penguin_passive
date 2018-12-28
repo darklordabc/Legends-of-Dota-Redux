@@ -1,0 +1,60 @@
+"sled_penguin_passive"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/sled_penguin_passive"
+
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+
+		"MaxLevel"						"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		//"IsOnCastBar"					"0"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"max_sled_speed"				"775"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"speed_step"					"7"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"crash_impaired_duration"		"0.9" // was used by the crash that made you fall off penguin
+			}
+			"04"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"tree_destroy_radius"			"200"
+			}
+			"05"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"reset_pos_offset"				"100"
+			}
+			"06"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"penguin_lifetime"				"100.0"
+			}
+			"07"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"pinata_burst_radius"			"125"
+			}
+			"08"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"impaired_duration"				"3.0"
+			}
+		}
+	}

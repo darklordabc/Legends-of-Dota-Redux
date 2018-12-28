@@ -21,7 +21,7 @@ class modifier_slardar_bash_redux extends CDOTA_Modifier_Lua {
 	}
 
 	OnAttackLanded(params:ModifierAttackEvent) {
-		if (params.attacker == this.GetParent()) {
+		if (params.attacker == this.GetParent() && !params.target.IsBuilding()) {
 			let modifier = params.target.FindModifierByNameAndCaster("modifier_slardar_bash_counter_redux",this.GetParent());
 			if (modifier) {
 				modifier.IncrementStackCount();

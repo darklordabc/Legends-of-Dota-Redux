@@ -9,6 +9,7 @@
 		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
 		"BaseClass" 					"ability_lua"
 		"ScriptFile"					"abilities/pangolier_lucky_shot_redux.lua"
+		"AbilityTextureName" 			"pangolier_lucky_shot"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
