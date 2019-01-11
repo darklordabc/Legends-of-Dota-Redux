@@ -755,7 +755,7 @@
     "lodOptionDesAdvancedHeroAbilities"             "Allow Hero Abilities"
     "lodOptionDesAdvancedNeutralAbilities"          "Allow Neutral Abilities"
     "lodOptionDesAdvancedCustomSkills"              "Allow Custom Abilities"
-    "lodOptionDesAdvancedIMBASkills"              "Allow Dota IMBA Abilities"
+    "lodOptionDesAdvancedIMBASkills"              "Allow Dota IMBA Abilities (Buggy, Unsupported)"
     "lodOptionDesAdvancedOPAbilities"               "Ban OP Abilities"
     "lodOptionDesCrazyWTF"                          "WTF Mode"
     "lodOptionDesIngameBuilder"                     "Ingame Hero Builder"
