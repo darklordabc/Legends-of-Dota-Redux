@@ -65,6 +65,7 @@
 #base "abilities\overflow\night_wolf.txt"
 #base "abilities\memes\memes.txt"
 #base "abilities\custom\ranged_punch.txt" 
+#base "abilities\custom\pushing_blast.txt" 
 #base "abilities\custom\basic_mana_bonus.txt" 
 #base "abilities\custom\mana_laser.txt" 
 #base "abilities\custom\bash_reflect.txt"
