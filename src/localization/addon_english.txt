@@ -13172,6 +13172,14 @@
     "DOTA_Tooltip_modifier_imba_corrosive_haze_slip_debuff"                        "Slipstream"
     "DOTA_Tooltip_modifier_imba_corrosive_haze_slip_debuff_Description"                 "Movement speed greatly slowed."
 
+    "DOTA_Tooltip_modifier_sled_penguin_passive_redux"  "On a penguin sled"
+    "DOTA_Tooltip_modifier_sled_penguin_passive_redux_Description" "Ho ho ho"
+
+    "DOTA_Tooltip_modifier_sled_penguin_movement" "On a penguin sled"
+    "DOTA_Tooltip_modifier_sled_penguin_movement_Description" "Ho ho ho"
+
+
+
     ////===============================================================================================================
     // Slardar's Rain Cloud
     ////===============================================================================================================
