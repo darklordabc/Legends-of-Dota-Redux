@@ -76,7 +76,7 @@ LinkLuaModifier("modifier_random_lane_creep_spawner_mutator","abilities/mutators
 LinkLuaModifier("modifier_resurrection_mutator","abilities/mutators/modifier_resurrection_mutator.lua",LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_rune_doubledamage_mutated_redux","abilities/mutators/super_runes.lua",LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_rune_arcane_mutated_redux","abilities/mutators/super_runes.lua",LUA_MODIFIER_MOTION_NONE)
-
+LinkLuaModifier("modifier_bat_manager","abilities/modifiers/modifier_bat_manager.lua",LUA_MODIFIER_MOTION_NONE)
 --[[
     Main pregame, selection related handler
 ]]
@@ -1789,8 +1789,9 @@ end
 
 -- Setup the selectable heroes
 function Pregame:networkHeroes()
+    ALLHEROES = LoadKeyValues('scripts/npc/npc_heroes.txt')
     local heroList = LoadKeyValues('scripts/npc/herolist.txt')
-    local allHeroes = LoadKeyValues('scripts/npc/npc_heroes.txt')
+    local allHeroes = ALLHEROES
     local allHeroesCustom = LoadKeyValues('scripts/npc/npc_heroes_custom.txt')
     local npc_abilities_override = LoadKeyValues('scripts/npc/npc_abilities_override.txt')
 
@@ -8250,6 +8251,8 @@ function Pregame:fixSpawnedHero( spawnedUnit )
                     spawnedUnit:RemoveAbility("phantom_assassin_coup_de_grace_melee")
             end
 
+            spawnedUnit:AddNewModifier(spawnedUnit,nil,"modifier_bat_manager",{})
+
             -- Custom Flesh Heap fixes
             for abilitySlot=0,6 do
                 local abilityTemp = spawnedUnit:GetAbilityByIndex(abilitySlot)
@@ -8715,6 +8718,7 @@ function Pregame:fixSpawningIssues()
             --end
             -- Make sure it is a hero
             if spawnedUnit:IsHero() then
+                
             elseif string.match(spawnedUnit:GetUnitName(), "creep") or string.match(spawnedUnit:GetUnitName(), "siege") or spawnedUnit:GetTeam() == DOTA_TEAM_NEUTRALS then
                 if this.optionStore['lodOptionLaneCreepBonusAbility'] > 0 then
 

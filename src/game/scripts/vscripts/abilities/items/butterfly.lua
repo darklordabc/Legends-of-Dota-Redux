@@ -26,7 +26,6 @@ function modifier_item_butterfly_consumable.constructor(self)
 end
 function modifier_item_butterfly_consumable.IsHidden(self)
     if (not self:GetAbility()) then
-        self:Destroy();
         return false
     end
     return self:GetAbility():GetName()~="ability_consumable_item_container"

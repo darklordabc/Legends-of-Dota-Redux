@@ -18,7 +18,7 @@
             "01"
             {
                 "var_type"                                             "FIELD_FLOAT"
-        				"per_soul"						"0.05 0.1 0.15 0.2"
+        				"per_soul"						"0.1"
             }
             "02"
             {
@@ -29,6 +29,6 @@
         "ReduxFlags"                                                           "mana"
         "ReduxBans"                                                            "storm_spirit_ball_lightning"
         //"ReduxPerks"                                                           ""
-        "ReduxCost"                                                            "120"
+        "ReduxCost"                                                            "40"
     }
 }

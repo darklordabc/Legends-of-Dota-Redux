@@ -24,6 +24,7 @@ declare interface ModifierAbilityEvent extends ModifierEvent {
 /** !NoClassOr */
 /** !PureAbstract */
 declare abstract class CDOTA_Modifier_Lua extends CDOTA_Buff {
+    GetBATReductionConstant():number
     /**
      * Return a list of modifier functions this modifier implements.
      */

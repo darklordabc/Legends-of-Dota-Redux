@@ -99,6 +99,15 @@
                         "Function"                             "modifier_slark_essence_shift_strength_datadriven_debuff_on_destroy"
                     }
                 }
+
+                "OnDeath"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/slark_essence_shift_strength_lod.lua"
+                        "Function"                             "modifier_slark_essence_shift_strength_datadriven_debuff_on_death"
+                    }
+                }
             }
         }
         "ReduxFlags"                                                           "tank | attack_modifier | dota_custom"

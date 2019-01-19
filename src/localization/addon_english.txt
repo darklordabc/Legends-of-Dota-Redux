@@ -6145,6 +6145,15 @@
     "DOTA_Tooltip_ability_item_kaya_consumable_bonus_intellect_kaya"       "+$int"
     "DOTA_Tooltip_ability_item_kaya_consumable_spell_amp"                  "%+Spell Amplification"
     "DOTA_Tooltip_ability_item_kaya_consumable_manacost_reduction"         "%+Manacost and Manaloss Reduction"
+	
+	//Consumable Kaya
+    "DOTA_Tooltip_ability_item_holy_locket_consumable"                        "Holy Locket"
+    "DOTA_Tooltip_ability_item_holy_locket_consumable_Description"                   "Amplifies heals and regeneration you provide."
+    "DOTA_Tooltip_ability_item_holy_locket_consumable_Note0"                  "Multiple instances of this item do not stack the amplification."
+    "DOTA_Tooltip_ability_item_holy_lockete_consumable_bonus_health"       "+$health"
+    "DOTA_Tooltip_ability_item_holy_locket_consumable_health_regen"                  "+$health_regen"
+    "DOTA_Tooltip_ability_item_holy_lockete_consumable_mana_regen"         "+$mana_regen"
+	"DOTA_Tooltip_ability_item_holy_locket_consumable_magic_resistance"         "+$spell_resist"
 
     //Consumable Aeon Disk
     "DOTA_Tooltip_ability_item_aeon_disk_consumable"                   "Aeon Disk"
@@ -6872,7 +6881,7 @@
     "DOTA_Tooltip_modifier_morph_int_agi_Description"      "Converting Intelligence into Agility."
 
     "DOTA_Tooltip_ability_life_stealer_feast_melee"                                       "Feast Redux"
-    "DOTA_Tooltip_ability_life_stealer_feast_melee_Description"                           "Lifestealer's attacks damage enemies and heal himself for a percentage of his target's current health. <font color='#70EA72'>Half as effective on ranged heroes.</font>"
+    "DOTA_Tooltip_ability_life_stealer_feast_melee_Description"                           "Lifestealer's attacks damage enemies and heal himself for a percentage of his target's max health. <font color='#70EA72'>Half as effective on ranged heroes.</font>"
     "DOTA_Tooltip_ability_life_stealer_feast_melee_Lore"                                  "After escaping from his cell in Devarque, N'aix subsisted on flesh and bones of those unfortunate to cross his path."
     "DOTA_Tooltip_ability_life_stealer_feast_melee_Note0"                                 "Does not affect Roshan."
     "DOTA_Tooltip_ability_life_stealer_feast_melee_Note1"                                 "Affects Spell Immune units."
@@ -6881,7 +6890,7 @@
     "DOTA_Tooltip_ability_life_stealer_feast_melee_hp_leech_percent"                      "%LIFE LEECH:"
 
     "DOTA_Tooltip_ability_life_stealer_feast_ranged"                                       "Feast Ranged"
-    "DOTA_Tooltip_ability_life_stealer_feast_ranged_Description"                           "Lifestealer's attacks damage enemies and heal himself for a percentage of his target's current health."
+    "DOTA_Tooltip_ability_life_stealer_feast_ranged_Description"                           "Lifestealer's attacks damage enemies and heal himself for a percentage of his target's max health."
     "DOTA_Tooltip_ability_life_stealer_feast_ranged_Lore"                                  "After escaping from his cell in Devarque, N'aix subsisted on flesh and bones of those unfortunate to cross his path."
     "DOTA_Tooltip_ability_life_stealer_feast_ranged_Note0"                                 "Does not affect Roshan."
     "DOTA_Tooltip_ability_life_stealer_feast_ranged_Note1"                                 "Affects Spell Immune units."
@@ -7762,6 +7771,26 @@
     "DOTA_Tooltip_ability_basic_movespeed_bonus_op_Description"        "Grants extra movement speed. <font color='#70EA72'>Gives more movement speed</font>."
     "DOTA_Tooltip_ability_basic_movespeed_bonus_op_Lore"           "Silky smooth materials makes running long distances a breeze."
     "DOTA_Tooltip_ability_basic_movespeed_bonus_op_speed_bonus"                       "BONUS MOVE SPEED:"
+	
+	"DOTA_Tooltip_ability_basic_bat"            "Basic BAT"
+    "DOTA_Tooltip_ability_basic_bat_Description"        "Changes your Base Attack Time."
+    "DOTA_Tooltip_ability_basic_bat_Note0"           "Sets the BAT to this number, the original one might be higher."
+    "DOTA_Tooltip_ability_basic_bat_new_bat"                       "BASE ATTACK TIME:"
+
+    "DOTA_Tooltip_ability_basic_bat_reduction"            "Basic BAT reduction"
+    "DOTA_Tooltip_ability_basic_bat_reduction_Description"        "Reduces your Base Attack Time."
+    "DOTA_Tooltip_ability_basic_bat_reduction_Note0"           "This does NOT take BAT Changes like Chemical Rage into account."
+    "DOTA_Tooltip_ability_basic_bat_reduction_new_bat"                       "BAT REDUCTION:"
+	
+	"DOTA_Tooltip_ability_basic_bat_op"            "Basic BAT"
+    "DOTA_Tooltip_ability_basic_bat_op_Description"        "Changes your Base Attack Time."
+    "DOTA_Tooltip_ability_basic_bat_op_Note0"           "Sets the BAT to this number, the original one might be higher."
+    "DOTA_Tooltip_ability_basic_bat_op_new_bat"                       "BASE ATTACK TIME:"
+
+    "DOTA_Tooltip_ability_basic_bat_reduction_op"            "Basic BAT reduction"
+    "DOTA_Tooltip_ability_basic_bat_reduction_op_Description"        "Reduces your Base Attack Time."
+    "DOTA_Tooltip_ability_basic_bat_reduction_op_Note0"           "This does NOT take BAT Changes like Chemical Rage into account."
+    "DOTA_Tooltip_ability_basic_bat_reduction_op_new_bat"                       "BAT REDUCTION:"                       "BAT REDUCTION:"
 
     "DOTA_Tooltip_ability_leshrac_pulse_nova_redux"                                       "Pulse Nova"
     "DOTA_Tooltip_ability_leshrac_pulse_nova_redux_Description"                           "Creates waves of damaging energy around Leshrac, one per second, to damage nearby enemy units."
@@ -17971,13 +18000,16 @@
     "DOTA_Tooltip_ability_slardar_bash_redux_duration"                                  "DURATION:"
 
     "DOTA_Tooltip_ability_sled_penguin_redux"                                               "Sled Penguin"
-    "DOTA_Tooltip_ability_sled_penguin_redux_Description"                                   "The hero jumps on a penguin, sliding forward and damaging and knocking back every foe it hit's. Hero has reduced turnrate and stuns itself when stunned."
+    "DOTA_Tooltip_ability_sled_penguin_redux_Description"                                   "The hero jumps on a penguin, sliding forward and damaging and knocking back every foe it hit's. Hero has reduced turnrate. Stuns himself when crashed. Colliding with units slows you down."
     "DOTA_Tooltip_ability_sled_penguin_redux_Note0"                                     "Sled will deactivated when stunned"
     "DOTA_Tooltip_ability_sled_penguin_redux_turnrate"                                        "TURNRATE:"
     "DOTA_Tooltip_ability_sled_penguin_redux_damage"                              "DAMAGE:"
     "DOTA_Tooltip_ability_sled_penguin_redux_max_sled_speed"                                  "MAX SLED SPEED:"
     "DOTA_Tooltip_ability_sled_penguin_redux_crash_impaired_duration"                                       "SELF STUN DURATION:"
     "DOTA_Tooltip_ability_sled_penguin_redux_pinata_burst_radius"                                       "RADIUS:"
+	
+	"DOTA_Tooltip_ability_special_bonus_unique_sled_penguin_1" "Sled Penguin 0 CD"
+	"DOTA_Tooltip_ability_special_bonus_unique_crater_0" "Hitting Units Doesn't Slow Sled"
 
     "DOTA_Tooltip_ability_spirit_breaker_greater_bash_redux"                                               "Greater Bash"
     "DOTA_Tooltip_ability_spirit_breaker_greater_bash_Description"                                   "Gives a chance to stun and knockback an enemy unit on an attack, as well as gaining bonus movement speed after a bash occurs. Deals a percentage of movement speed as damage."

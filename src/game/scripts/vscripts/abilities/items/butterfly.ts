@@ -11,7 +11,7 @@ class item_butterfly_consumable extends item_consumable_redux {
 class modifier_item_butterfly_consumable extends CDOTA_Modifier_Lua {
 	IsHidden() {
 		if (!this.GetAbility()) {
-			this.Destroy();
+			//this.Destroy();
 			return false;
 		}
 		return this.GetAbility().GetName() != "ability_consumable_item_container"

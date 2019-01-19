@@ -742,6 +742,37 @@ function CDOTA_BaseNPC:GetSummonersBoost(modifierEventTable)
     return boost
 end
 
+function CDOTA_BaseNPC:GetBATReduction()
+    local reduction = 0
+    for _, parent_modifier in pairs(self:FindAllModifiers()) do
+        if parent_modifier.GetBATReductionConstant then
+            reduction = reduction - parent_modifier:GetBATReductionConstant()
+        end
+    end
+    return reduction
+end
+
+function CDOTA_BaseNPC:GetBaseBAT()
+    local reduction = 0
+    local pct = 1
+    local time = ALLHEROES[self:GetUnitName()]["AttackRate"]
+    for _, parent_modifier in pairs(self:FindAllModifiers()) do
+        if parent_modifier.GetModifierBaseAttackTimeConstant then
+            if parent_modifier:GetName() ~= "modifier_bat_manager" then
+                time = parent_modifier:GetModifierBaseAttackTimeConstant()
+            end
+        end
+        if parent_modifier.GetBATReductionConstant then
+            reduction = reduction - parent_modifier:GetBATReductionConstant()
+        end
+        if parent_modifier.GetBATReductionPercentage then
+            pct = pct - (parent_modifier:GetBATReductionPercentage() /100)
+        end
+    end
+    time = time * pct
+    return time-reduction
+end
+
 function ShuffleArray(input)
   local rand = math.random
     local iterations = #input

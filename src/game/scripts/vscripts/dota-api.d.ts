@@ -1926,6 +1926,7 @@ declare abstract class CDOTA_Ability_Lua extends CDOTABaseAbility {
  */
 declare abstract class CDOTA_BaseNPC extends CBaseFlex {
     parentPenguin:CDOTA_BaseNPC
+    GetBaseBAT():number
     GetCooldownReduction():number
     /**
      * Add an ability to this unit by name.

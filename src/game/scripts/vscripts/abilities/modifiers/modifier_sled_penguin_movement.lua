@@ -117,7 +117,7 @@ function modifier_sled_penguin_movement:OnIntervalThink()
 							center_y = vLocation.y,
 							center_z = vLocation.z,
 							should_stun = false, 
-							duration = 0.4,
+							duration = 1,
 							knockback_duration = 0.3,
 							knockback_distance = 250,
 							knockback_height = 75,

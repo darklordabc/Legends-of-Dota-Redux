@@ -84,3 +84,8 @@ function modifier_slark_essence_shift_strength_datadriven_buff_on_destroy(keys)
 		end
 	end
 end
+
+function modifier_slark_essence_shift_strength_datadriven_debuff_on_death(keys)
+	keys.caster:ModifyStrength(1)
+	keys.unit:ModifyStrength(-1)
+end

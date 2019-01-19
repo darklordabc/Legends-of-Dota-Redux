@@ -99,6 +99,14 @@
                         "Function"                             "modifier_slark_essence_shift_intellect_datadriven_debuff_on_destroy"
                     }
                 }
+                "OnDeath"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/slark_essence_shift_intellect_lod.lua"
+                        "Function"                             "modifier_slark_essence_shift_intellect_datadriven_debuff_on_death"
+                    }
+                }
             }
         }
         "ReduxFlags"                                                           "attack_modifier | dota_custom"

@@ -371,6 +371,31 @@
           "var_type"              "FIELD_INTEGER"
           "butterfly_bonus_evasion"   "35"
       }
+      "101"
+      {
+          "var_type"              "FIELD_INTEGER"
+          "holy_locket_bonus_health"       "200"
+      }           
+      "102"
+      {
+          "var_type"              "FIELD_INTEGER"
+          "holy_locket_health_regen"             "4"
+      }
+      "103"
+      {
+          "var_type"              "FIELD_INTEGER"
+          "holy_locket_mana_regen"    "3"
+      }
+      "104"
+      {
+          "var_type"              "FIELD_INTEGER"
+          "holy_locket_magic_resist"    "15"
+      }
+      "105"
+      {
+          "var_type"              "FIELD_INTEGER"
+          "holy_locket_heal_increase"    "25"
+      }
     }
   }
 }

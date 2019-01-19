@@ -84,3 +84,8 @@ function modifier_slark_essence_shift_intellect_datadriven_buff_on_destroy(keys)
 		end
 	end
 end
+
+function modifier_slark_essence_shift_intellect_datadriven_debuff_on_death(keys)
+	keys.caster:ModifyIntellect(1)
+	keys.unit:ModifyIntellect(-1)
+end
