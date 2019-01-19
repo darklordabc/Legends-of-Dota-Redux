@@ -755,7 +755,7 @@
     "lodOptionDesAdvancedHeroAbilities"             "Allow Hero Abilities"
     "lodOptionDesAdvancedNeutralAbilities"          "Allow Neutral Abilities"
     "lodOptionDesAdvancedCustomSkills"              "Allow Custom Abilities"
-    "lodOptionDesAdvancedIMBASkills"              "Allow Dota IMBA Abilities"
+    "lodOptionDesAdvancedIMBASkills"              "Allow Dota IMBA Abilities (Buggy, Unsupported)"
     "lodOptionDesAdvancedOPAbilities"               "Ban OP Abilities"
     "lodOptionDesCrazyWTF"                          "WTF Mode"
     "lodOptionDesIngameBuilder"                     "Ingame Hero Builder"
@@ -13201,6 +13201,14 @@
     "DOTA_Tooltip_modifier_imba_corrosive_haze_slip_debuff"                        "Slipstream"
     "DOTA_Tooltip_modifier_imba_corrosive_haze_slip_debuff_Description"                 "Movement speed greatly slowed."
 
+    "DOTA_Tooltip_modifier_sled_penguin_passive_redux"  "On a penguin sled"
+    "DOTA_Tooltip_modifier_sled_penguin_passive_redux_Description" "Ho ho ho"
+
+    "DOTA_Tooltip_modifier_sled_penguin_movement" "On a penguin sled"
+    "DOTA_Tooltip_modifier_sled_penguin_movement_Description" "Ho ho ho"
+
+
+
     ////===============================================================================================================
     // Slardar's Rain Cloud
     ////===============================================================================================================
@@ -17979,10 +17987,11 @@
     "DOTA_Tooltip_ability_ranged_punch_knockback_distance"         "KNOCKBACK DISTANCE" 
 
     "DOTA_Tooltip_ability_pushing_blast"                            "Pushing Blast"
-    "DOTA_Tooltip_ability_pushing_blast_Description"                      "Create a wave of light around you, pushing foes back and damaging and slowing them"
+    "DOTA_Tooltip_ability_pushing_blast_Description"                      "Create a wave of light around you, pushing foes back, damaging them and slowing their movement speed."
     "DOTA_Tooltip_ability_pushing_blast_radius"                 "RADIUS:"
     "DOTA_Tooltip_ability_pushing_blast_damage"                 "DAMAGE:"
     "DOTA_Tooltip_ability_pushing_blast_duration"               "DURATION"
+    "DOTA_Tooltip_ability_pushing_blast_ms_slow"               "%MOVEMENT SLOW:"
 
     "DOTA_Tooltip_ability_dazzle_bad_juju_redux"                                          "Bad Juju"
     "DOTA_Tooltip_ability_dazzle_bad_juju_redux_Description"                              "Passively reduces cooldowns on your abilities and items. Anytime you cast a speall nearby enemies will have their armor reduced. Debuff stacks and refreshes duration."

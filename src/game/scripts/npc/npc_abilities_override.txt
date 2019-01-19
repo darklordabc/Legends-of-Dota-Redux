@@ -1291,6 +1291,7 @@
     }
     "rubick_null_field"
     {
+        "AbilityTextureName"                                                   "custom/rubick_null_field"
         "ReduxFlags"                                                           "support"
         "ReduxPerks"                                                           "support | aura"
     }

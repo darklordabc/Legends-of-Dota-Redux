@@ -165,7 +165,7 @@ function Update() {
 	var time = Math.abs(rawTime);
 	var isNSNight = rawTime < darknessEndTime;
 	var timeThisDayLasts = time - (Math.floor(time / 600) * 600)
-	var isDayTime = !isNSNight && timeThisDayLasts <= 240;
+	var isDayTime = !isNSNight && timeThisDayLasts <= 300;
 	var context = $.GetContextPanel();
 
 	context.SetHasClass("DayTime", isDayTime)

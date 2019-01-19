@@ -7,7 +7,7 @@
 		"BaseClass"						"ability_lua"
 		"ScriptFile"					"abilities/sled_penguin_redux.lua"
 
-		"AbilityTextureName" 			"slardar_sprint"
+		"AbilityTextureName"                                                   "custom/sled_penguin_redux"
 
 		"MaxLevel"						"4"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE"

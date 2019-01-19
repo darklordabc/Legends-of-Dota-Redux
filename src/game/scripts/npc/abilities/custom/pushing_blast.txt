@@ -4,7 +4,7 @@
     {
         "BaseClass"                                                            "ability_lua"
         "ScriptFile"                                                           "abilities/pushing_blast.lua"
-        "AbilityTextureName"                                                   "pugna_nether_blast"
+        "AbilityTextureName"                                                   "custom/pushing_blast"
         "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
         "AbilityManaCost"                                                       "80"
         "AbilityCooldown"                                                       "13 12 11 10"
