@@ -10,7 +10,7 @@ end
 function modifier_bat_manager.constructor(self)
 end
 function modifier_bat_manager.IsHidden(self)
-    return false
+    return true
 end
 function modifier_bat_manager.IsPermanent(self)
     return true
