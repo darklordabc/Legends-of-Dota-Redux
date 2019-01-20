@@ -7790,7 +7790,7 @@
     "DOTA_Tooltip_ability_basic_bat_reduction_op"            "Basic BAT reduction"
     "DOTA_Tooltip_ability_basic_bat_reduction_op_Description"        "Reduces your Base Attack Time."
     "DOTA_Tooltip_ability_basic_bat_reduction_op_Note0"           "This does NOT take BAT Changes like Chemical Rage into account."
-    "DOTA_Tooltip_ability_basic_bat_reduction_op_new_bat"                       "BAT REDUCTION:"                       "BAT REDUCTION:"
+    "DOTA_Tooltip_ability_basic_bat_reduction_op_new_bat"                       "BAT REDUCTION:"
 
     "DOTA_Tooltip_ability_leshrac_pulse_nova_redux"                                       "Pulse Nova"
     "DOTA_Tooltip_ability_leshrac_pulse_nova_redux_Description"                           "Creates waves of damaging energy around Leshrac, one per second, to damage nearby enemy units."
