@@ -755,7 +755,8 @@ end
 function CDOTA_BaseNPC:GetBaseBAT()
     local reduction = 0
     local pct = 1
-    local time = ALLHEROES[self:GetUnitName()]["AttackRate"]
+    self.BAT = self.BAT or ALLHEROES[self:GetUnitName()]["AttackRate"]
+    local time = self.BAT
     for _, parent_modifier in pairs(self:FindAllModifiers()) do
         if parent_modifier.GetModifierBaseAttackTimeConstant then
             if parent_modifier:GetName() ~= "modifier_bat_manager" then
