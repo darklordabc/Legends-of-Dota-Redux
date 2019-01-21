@@ -21,9 +21,16 @@ end
 function modifier_bat_manager.DeclareFunctions(self)
     return {MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT}
 end
+function modifier_bat_manager.OnCreated(self)
+    if IsServer() then
+        self:StartIntervalThink(1);
+    end
+end
+function modifier_bat_manager.OnIntervalThink(self)
+    self:SetStackCount(self:GetParent():GetBaseBAT()*100);
+end
 function modifier_bat_manager.GetModifierBaseAttackTimeConstant(self)
     if IsServer() then
-        self:SetStackCount(self:GetParent():GetBaseBAT()*100);
     end
     return self:GetStackCount()/100
 end

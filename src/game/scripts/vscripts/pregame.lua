@@ -8250,7 +8250,7 @@ function Pregame:fixSpawnedHero( spawnedUnit )
                     spawnedUnit:SwapAbilities("phantom_assassin_coup_de_grace_melee","phantom_assassin_coup_de_grace_ranged",false,true)
                     spawnedUnit:RemoveAbility("phantom_assassin_coup_de_grace_melee")
             end
-
+            -- Add the BAT manager
             spawnedUnit:AddNewModifier(spawnedUnit,nil,"modifier_bat_manager",{})
 
             -- Custom Flesh Heap fixes

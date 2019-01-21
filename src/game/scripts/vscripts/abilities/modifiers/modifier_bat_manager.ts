@@ -9,12 +9,23 @@ class modifier_bat_manager extends CDOTA_Modifier_Lua {
 			modifierfunction.MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT
 		]
 	}
+	OnCreated() {
+		if (IsServer()) {
+			this.StartIntervalThink(1)
+		}
+	}
+
+	OnIntervalThink() {
+		this.SetStackCount(this.GetParent().GetBaseBAT() * 100);
+	}
 
 	GetModifierBaseAttackTimeConstant() {
 		if (IsServer()) {
-			this.SetStackCount(this.GetParent().GetBaseBAT() * 100)
+			//this.SetStackCount(this.GetParent().GetBaseBAT() * 100);
 		}
-
-		return this.GetStackCount() / 100
+		//if (this.GetParent().IsAlive()) {
+			return this.GetStackCount() / 100;
+		//}
+		
 	}
 }
