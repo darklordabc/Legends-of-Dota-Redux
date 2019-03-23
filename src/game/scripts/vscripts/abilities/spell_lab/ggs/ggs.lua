@@ -55,6 +55,7 @@ function spell_lab_ggs:Explosion(vPos)
        end
      end
    end
+   EmitSoundOnLocationWithCaster(vPos, "Spell_Lab.GGS_Hum_phased", hCaster )
 end
 
 function spell_lab_ggs:OnChannelFinish (bInterrupt)

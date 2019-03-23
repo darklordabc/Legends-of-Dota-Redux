@@ -40,12 +40,10 @@
 	[
 		{
 			_class = "C_OP_RenderSprites"
-			m_bAdditive = true
 			m_hTexture = resource:"materials/particle/particle_glow_04.vtex"
 		},
 		{
 			_class = "C_OP_RenderTrails"
-			m_bAdditive = true
 			m_hTexture = resource:"materials/particle/beam_plasma_02.vtex"
 		},
 	]
@@ -57,13 +55,15 @@
 		},
 		{
 			_class = "C_INIT_RandomColor"
-			m_ColorMax = [ 173, 255, 47, 255 ]
-			m_bDisableOperator = true
+			m_ColorMax = [ 0, 0, 0, 255 ]
+			m_ColorMin = [ 0, 0, 0, 255 ]
 		},
 		{
 			_class = "C_INIT_RingWave"
-			m_flInitialRadius = 0.9
-			m_nOverrideCP = 1
+			m_flInitialRadius = 50.0
+			m_flThickness = 1.0
+			m_flInitialSpeedMin = 1.0
+			m_flInitialSpeedMax = 1.0
 		},
 		{
 			_class = "C_INIT_VelocityRandom"
@@ -73,9 +73,10 @@
 		{
 			_class = "C_INIT_RemapCPtoVector"
 			m_nCPInput = 15
-			m_nFieldOutput = 6
+			m_nFieldOutput = "6"
 			m_vInputMax = [ 255.0, 255.0, 255.0 ]
 			m_vOutputMax = [ 1.0, 1.0, 1.0 ]
+			m_bDisableOperator = true
 		},
 	]
 	m_Emitters = 
@@ -85,12 +86,29 @@
 			m_flEmissionDuration = 
 			{
 				m_nType = "PF_TYPE_LITERAL"
-				m_flLiteralValue = 0.0
-			}
-			m_flStartTime = 
-			{
-				m_nType = "PF_TYPE_LITERAL"
+				m_nMapType = "PF_MAP_TYPE_DIRECT"
 				m_flLiteralValue = 0.5
+				m_nControlPoint = 0
+				m_nScalarAttribute = 3
+				m_nVectorAttribute = 6
+				m_nVectorComponent = 0
+				m_flRandomMin = 0.0
+				m_flRandomMax = 1.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+				m_flMultFactor = 1.0
+				m_flInput0 = 0.0
+				m_flInput1 = 1.0
+				m_flOutput0 = 0.0
+				m_flOutput1 = 1.0
+				m_nBiasType = "PF_BIAS_TYPE_STANDARD"
+				m_flBiasParameter = 0.0
+				m_Curve = 
+				{
+					m_spline = [  ]
+					m_tangents = [  ]
+					m_vDomainMins = [ 0.0, 0.0 ]
+					m_vDomainMaxs = [ 0.0, 0.0 ]
+				}
 			}
 			m_flEmitRate = 
 			{
@@ -111,14 +129,34 @@
 			m_fForceAmount = 
 			{
 				m_nType = "PF_TYPE_LITERAL"
-				m_flLiteralValue = 4000.0
+				m_nMapType = "PF_MAP_TYPE_DIRECT"
+				m_flLiteralValue = 8000.0
+				m_nControlPoint = 0
+				m_nScalarAttribute = 3
+				m_nVectorAttribute = 6
+				m_nVectorComponent = 0
+				m_flRandomMin = 0.0
+				m_flRandomMax = 1.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+				m_flMultFactor = 1.0
+				m_flInput0 = 0.0
+				m_flInput1 = 1.0
+				m_flOutput0 = 0.0
+				m_flOutput1 = 1.0
+				m_nBiasType = "PF_BIAS_TYPE_STANDARD"
+				m_flBiasParameter = 0.0
+				m_Curve = 
+				{
+					m_spline = [  ]
+					m_tangents = [  ]
+					m_vDomainMins = [ 0.0, 0.0 ]
+					m_vDomainMaxs = [ 0.0, 0.0 ]
+				}
 			}
 			m_fFalloffPower = 0.001
 			m_fForceAmountMin = 10000.0
-			m_bApplyMinForce = false
 		},
 	]
-	m_PreEmissionOperators = [  ]
 	m_nBehaviorVersion = 9
 	m_nFirstMultipleOverride_BackwardCompat = 3
 }

@@ -60,7 +60,7 @@ function CheckThirst(keys)
 	end
 
 	-- Checks to see if movespeed is > 522
-	if caster:GetMoveSpeedModifier(caster:GetBaseMoveSpeed()) > 522 and not caster:HasModifier(buff_haste) then
+	if caster:GetMoveSpeedModifier(caster:GetBaseMoveSpeed(),true) > 522 and not caster:HasModifier(buff_haste) then
 		ability:ApplyDataDrivenModifier(caster,caster,buff_haste,{})
 	elseif caster:HasModifier(buff_haste) then
 		caster:RemoveModifierByName(buff_haste)
