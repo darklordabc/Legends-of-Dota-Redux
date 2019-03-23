@@ -457,7 +457,7 @@ function skillManager:ApplyBuild(hero, build, autoLevelSkills)
 
             -- Replace the hero
             inSwap = true
-            if hero:GetUnitName() ~= build.hero then
+            --if hero:GetUnitName() ~= build.hero then
                 local old = hero
                 hero = PlayerResource:ReplaceHeroWith(playerID, build.hero, 0, 0)
                 UTIL_Remove(old)
@@ -469,7 +469,7 @@ function skillManager:ApplyBuild(hero, build, autoLevelSkills)
                         end
                     end
                 end
-            end
+            --end
             inSwap = false
 
             -- Ensure swap is successful

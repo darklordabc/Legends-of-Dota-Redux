@@ -348,7 +348,17 @@ function StartTrackingTalentLevels()
     end)
 end
 
+function RemoveAllTalents(hero)
+    print("REMOVING TALENTS")
+    for j = 0,22 do
+        local ability = hero:GetAbilityByIndex(j)
+        if ability and not ability:IsNull() and string.find(ability:GetAbilityName(),"special_bonus_") then
+            hero:RemoveAbility(ability:GetAbilityName())
+        end
+    end
 
+    --PlayerTalents[hero:GetPlayerOwnerID()] = {}
+end
                     
 
 

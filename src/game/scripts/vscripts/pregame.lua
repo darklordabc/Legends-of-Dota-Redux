@@ -36,6 +36,7 @@ local ingame = require('ingame')
 require('lib/wearables')
 require('lib/timers')
 
+
 -- This should alone be used if duels are on.
 --require('lib/util_aar')
 require('talentmanager')
@@ -47,6 +48,8 @@ require('util')
 require('abilities/angel_arena_reborn/duels')
 
 require('abilities/mutators/convertable_tower_mutator')
+
+ALLHEROES = LoadKeyValues('scripts/npc/npc_heroes.txt')
 
 -- Custom AI script modifiers
 LinkLuaModifier( "modifier_slark_shadow_dance_ai", "abilities/botAI/modifier_slark_shadow_dance_ai.lua" ,LUA_MODIFIER_MOTION_NONE )
@@ -8091,12 +8094,11 @@ function Pregame:fixSpawnedHero( spawnedUnit )
     end
 
     -- Add talents
-    if IsValidEntity(spawnedUnit) and not spawnedUnit.hasTalent then
-
+    if IsValidEntity(spawnedUnit) then
+        if spawnedUnit.hasTalent then
+            RemoveAllTalents(spawnedUnit)
+        end
         AddTalents(spawnedUnit,self.selectedSkills[playerID])
-
-
-        
         spawnedUnit.hasTalent = true
     end
 
@@ -8250,8 +8252,8 @@ function Pregame:fixSpawnedHero( spawnedUnit )
                     spawnedUnit:SwapAbilities("phantom_assassin_coup_de_grace_melee","phantom_assassin_coup_de_grace_ranged",false,true)
                     spawnedUnit:RemoveAbility("phantom_assassin_coup_de_grace_melee")
             end
-            -- Add the BAT manager
-            spawnedUnit:AddNewModifier(spawnedUnit,nil,"modifier_bat_manager",{})
+
+            
 
             -- Custom Flesh Heap fixes
             for abilitySlot=0,6 do

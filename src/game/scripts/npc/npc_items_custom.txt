@@ -1091,9 +1091,9 @@
         "ItemPurchasable"               "0"
     }
 
-    "item_consumable"
+    "item_consumable_redux"
     {
-        "ID"                            "9999"
+        "ID"                            "99999"
         "ScriptFile"                    "abilities/items/consumable_baseclass.lua"
         "AbilityTextureName"            "item_consumable"
         "BaseClass"                     "item_lua"
@@ -1114,7 +1114,7 @@
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
         "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
         "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
-        "AbilityCastRange"              "900"
+        "AbilityCastRange"              "1200"
         "AbilityTextureName"            "item_assault"
         "BaseClass"                     "item_lua"
         "ScriptFile"                    "abilities/items/assault.lua"
@@ -1148,7 +1148,7 @@
           "03"
           {
             "var_type"              "FIELD_INTEGER"
-            "assault_aura_radius"           "900"
+            "assault_aura_radius"           "1200"
           }
           "04"
           {
@@ -1262,7 +1262,7 @@
             "02"
             {
                 "var_type"              "FIELD_INTEGER"
-                "desolator_corruption_armor"      "-6"
+                "desolator_corruption_armor"      "-7"
             }
             "03"
             {
@@ -1457,7 +1457,7 @@
             "02"
             {
                 "var_type"              "FIELD_INTEGER"
-                "heart_bonus_health"          "500"
+                "heart_bonus_health"          "400"
             }
             "03"
             {
@@ -1473,6 +1473,11 @@
             {
                 "var_type"              "FIELD_INTEGER"
                 "heart_cooldown_ranged_tooltip"       "7"
+            }
+            "06"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "heart_hp_regen_amp"       "50"
             }
         }
     }
@@ -1664,7 +1669,7 @@
             "02"
             {
                 "var_type"              "FIELD_FLOAT"
-                "aether_lens_bonus_mana_regen"      "1.25"
+                "aether_lens_bonus_mana_regen"      "3.0"
             }
             "03"
             {
@@ -1674,6 +1679,55 @@
             
         }
     }
+    "item_butterfly_consumable"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "ID"                            "2139"                                                       // unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
+        "AbilityTextureName"            "item_butterfly"
+        "BaseClass"                     "item_lua"
+        "ScriptFile"                    "abilities/items/butterfly.lua"
+
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemCost"                      "5475"
+        "AbilityGoldCost"               "5475"
+        "ItemPurchasable"              "0"
+        
+        
+        // Special  
+        //-------------------------------------------------------------------------------------------------------------
+        //
+
+        // THESE VALUES ARE PURELY FOR THE TOOLTIPS, REAL VALUES ARE IN ABILITY "ability_consumable_item_container"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "butterfly_bonus_damage"          "25"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "butterfly_bonus_attack_speed"      "30"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "butterfly_bonus_agility"   "35"
+            }
+            "04"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "butterfly_bonus_evasion"   "35"
+            }
+        }
+    }
+
     "item_devDagon"
     {
         // General
@@ -2143,42 +2197,42 @@
             "01"
             {
                 "var_type"              "FIELD_INTEGER"
-                "bonus_all_stats"       "2"
+                "vlads_bonus_all_stats"       "2"
             }   
             "02"
             {
                 "var_type"              "FIELD_FLOAT"
-                "hp_regen"              "2.5"
+                "vlads_hp_regen"              "2.5"
             }
             "03"
             {
                 "var_type"              "FIELD_FLOAT"
-                "mana_regen_aura"       "0.65"
+                "vlads_mana_regen_aura"       "1.75"
             }
             "04"
             {
                 "var_type"              "FIELD_INTEGER"
-                "armor_aura"            "4"
+                "vlads_armor_aura"            "4"
             }
             "05"
             {
                 "var_type"              "FIELD_INTEGER"
-                "damage_aura"           "15"
+                "vlads_damage_aura"           "15"
             }           
             "06"
             {
                 "var_type"              "FIELD_INTEGER"
-                "vampiric_aura"         "15"
+                "vlads_vampiric_aura"         "15"
             }
             "07"
             {
                 "var_type"              "FIELD_INTEGER"
-                "vampiric_aura_ranged"  "10"
+                "vlads_vampiric_aura_ranged"  "10"
             }
             "08"
             {
                 "var_type"              "FIELD_INTEGER"
-                "aura_radius"           "900"
+                "vlads_aura_radius"           "1200"
             }           
         }
     }
@@ -2205,47 +2259,47 @@
             "01"
             {
                 "var_type"              "FIELD_INTEGER"
-                "bonus_intellect"       "10"
+                "echo_sabre_bonus_intellect"       "10"
             }
             "02"
             {
                 "var_type"              "FIELD_INTEGER"
-                "bonus_strength"        "10"
+                "echo_sabre_bonus_strength"        "12"
             }
             "03"
             {
                 "var_type"              "FIELD_INTEGER"
-                "bonus_attack_speed"    "10"
+                "echo_sabre_bonus_attack_speed"    "10"
             }
             "04"
             {
                 "var_type"              "FIELD_INTEGER"
-                "bonus_damage"          "15"
+                "echo_sabre_bonus_damage"          "12"
             }
             "05"
             {
                 "var_type"              "FIELD_FLOAT"
-                "bonus_mana_regen"      "0.75"
+                "echo_sabre_bonus_mana_regen"      "1.25"
             }
             "06"
             {
                 "var_type"              "FIELD_INTEGER"
-                "proc_damage"           "0"
+                "echo_sabre_proc_damage"           "0"
             }
             "07"
             {
                 "var_type"              "FIELD_INTEGER"
-                "movement_slow"         "100"
+                "echo_sabre_movement_slow"         "100"
             }
             "08"
             {
                 "var_type"              "FIELD_INTEGER"
-                "attack_speed_slow"         "0"
+                "echo_sabre_attack_speed_slow"         "0"
             }
             "09"
             {
                 "var_type"              "FIELD_FLOAT"
-                "slow_duration"         "0.7"
+                "echo_sabre_slow_duration"         "0.8"
             }
         }
     }
@@ -2257,7 +2311,7 @@
         "BaseClass"                     "item_lua"
         "AbilityTextureName"            "item_aeon_disk"
         "SpellDispellableType"          "SPELL_DISPELLABLE_NO"
-        "AbilityCooldown"               "90.0"
+        "AbilityCooldown"               "115"
         "ItemCost"                      "3350"
 
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
@@ -2271,32 +2325,32 @@
             "01"
             {
                 "var_type"              "FIELD_INTEGER"
-                "bonus_health"          "250"
+                "aeon_disk_bonus_health"          "300"
             }           
             "02"
             {
                 "var_type"              "FIELD_INTEGER"
-                "bonus_mana"            "250"
+                "aeon_disk_bonus_mana"            "300"
             }
             "03"
             {
                 "var_type"              "FIELD_INTEGER"
-                "health_threshold_pct"  "70"
+                "aeon_disk_health_threshold_pct"  "70"
             }
             "04"
             {
                 "var_type"              "FIELD_INTEGER"
-                "status_resistance"     "25"
+                "aeon_disk_status_resistance"     "50"
             }
             "05"
             {
                 "var_type"              "FIELD_FLOAT"
-                "buff_duration"         "2.5"
+                "aeon_disk_buff_duration"         "2.5"
             }
         }
     }
 
-    "item_kaya_consumable"
+    "item_kaya_consumable" // Disabled
     {
         "ID"                            "2259"
         "ScriptFile"                    "abilities/items/kaya.lua"
@@ -2329,6 +2383,53 @@
             }
         }
     }
+
+
+
+//         "AbilitySpecial"
+//         {
+//             "01"
+//             {
+//                 "var_type"              "FIELD_INTEGER"
+//                 "sange_kaya_yasha_bonus_intellect"       "16"
+//             }           
+//             "02"
+//             {
+//                 "var_type"              "FIELD_INTEGER"
+//                 "sange_kaya_yasha_bonus_strength"             "16"
+//             }
+//             "03"
+//             {
+//                 "var_type"              "FIELD_INTEGER"
+//                 "sange_kaya_yasha_bonus_agility"    "16"
+//             }
+//             "04"
+//             {
+//                 "var_type"              "FIELD_INTEGER"
+//                 "sange_kaya_yasha_bonus_damage"    "12"
+//             }
+//             "05"
+//             {
+//                 "var_type"              "FIELD_INTEGER"
+//                 "sange_kaya_yasha_bonus_attack_speed"    "16"
+//             }
+//             "06"
+//             {
+//                 "var_type"              "FIELD_INTEGER"
+//                 "sange_kaya_yasha_movement_speed_percent_bonus"    "35"
+//             }
+//             "07"
+//             {
+//                 "var_type"              "FIELD_INTEGER"
+//                 "sange_kaya_yasha_spell_amp"    "16"
+//             }
+//             "08"
+//             {
+//                 "var_type"              "FIELD_INTEGER"
+//                 "sange_kaya_yasha_manacost_reduction"    "16"
+//             }
+//         }
+//     }
 
     "item_companion_consumable"
     {
@@ -2364,6 +2465,50 @@
             "particle"  "particles/econ/items/wisp/wisp_overcharge_ti7_hearts.vpcf"
             "particle"  "particles/neutral_fx/roshan_valentines_attack_right_hearts_redux.vpcf"
             "soundfile" "soundevents/game_sounds_heroes/game_sounds_wisp.vsndevts"
+        }
+    }
+
+    "item_holy_locket_consumable"
+    {
+        "ID"                            "2269"
+        "ScriptFile"                    "abilities/items/holy_locket.lua"
+        "AbilityTextureName"            "item_holy_locket"
+        "BaseClass"                     "item_lua"
+        "ItemCost"                      "2650"
+
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
+        "AbilityGoldCost"               "2650"
+        "ItemPurchasable"              "0"
+
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "holy_locket_bonus_health"       "200"
+            }           
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "holy_locket_health_regen"             "4"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "holy_locket_mana_regen"    "3"
+            }
+            "04"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "holy_locket_magic_resist"    "15"
+            }
+            "05"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "holy_locket_heal_increase"    "25"
+            }
         }
     }
 }
