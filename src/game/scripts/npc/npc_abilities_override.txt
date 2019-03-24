@@ -3667,6 +3667,29 @@
         {
             "TalentRequiredAbility"                                                   "undying_decay"
         }
+        "special_bonus_unique_mars"
+        {
+            "TalentRequiredAbility"                                                   "undying_decay"
+        }
+
+        special_bonus_unique_mars_spear_stun_duration
+        {
+            "TalentRequiredAbility"                                                   "mars_spear"
+        }
+
+        special_bonus_unique_mars_spear_bonus_damage
+        {
+            "TalentRequiredAbility"                                                   "mars_spear"
+        }
+        special_bonus_unique_mars_arena_of_blood_hp_regen
+        {
+            "TalentRequiredAbility"                                                   "mars_arena_of_blood"
+        }
+        special_bonus_unique_mars_gods_rebuke_extra_crit
+        {
+            "TalentRequiredAbility"                                                   "mars_gods_rebuke"
+        }
+
         "special_bonus_unique_axe"
         {
             "TalentRequiredAbility"                                                   "axe_battle_hunger"
