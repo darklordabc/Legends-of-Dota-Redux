@@ -63,6 +63,89 @@
         "AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_2"
     }
 
+    "pangolier_swashbuckle_op"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                            "pangolier_swashbuckle"  // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_MOVEMENT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+        "SpellDispellableType"          "SPELL_DISPELLABLE_NO"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_PHYSICAL"
+        "AbilityTextureName"            "custom/pangolier_swashbuckle_op"
+        "ReduxCost"                                                            "120"
+        "ReduxFlags"                                                           "mobility"
+        "ReduxPerks"                                                           "mobility"
+
+        "precache"
+        {
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_pangolier.vsndevts"
+        }
+
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastPoint"              "0.0"
+        "AbilityCastRange"              "1500"
+        
+        // Time     
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "10 8 6 4"
+        
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "50"
+        
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "dash_range"            "1500"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "range"                 "1500"
+                "LinkedSpecialBonus"    "special_bonus_unique_pangolier_7"
+            }
+            "05"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "damage"                "24 42 60 78"
+                "LinkedSpecialBonus"    "special_bonus_unique_pangolier_3"
+                "CalculateSpellDamageTooltip"   "0"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "dash_speed"            "1500"
+            }
+            "04"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "attack_interval"       "0.05 0.05 0.05 0.05"
+            }
+            "06"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "start_radius"          "125"
+            }
+            "07"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "end_radius"            "125"
+            }
+            "08"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "strikes"               "10"
+            }
+        }
+        "AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_1"
+    }
+
     "shadow_shaman_mass_serpent_ward_redux"
     {
         // General

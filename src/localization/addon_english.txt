@@ -17329,6 +17329,18 @@
     "DOTA_Tooltip_ability_hero_justice_kick_slow"                                     "%SLOW:"
     "DOTA_Tooltip_ability_hero_justice_kick_duration"                                 "DURATION:"
 
+    // PANGOLIER
+    "DOTA_Tooltip_ability_pangolier_swashbuckle_op"                        "Swashbuckle OP"
+    "DOTA_Tooltip_ability_pangolier_swashbuckle_op_Description"            "Vector Targeted. Pangolier dashes along the target line, then slashes all enemies in the drawn direction with several quick swipes.\n\nLucky Shot has a chance to activate from this damage. <font color='#70EA72'>Longer cast range, more strikes, shortercooldown, faster attack interval and less mana cost</font>."
+    "DOTA_Tooltip_ability_pangolier_swashbuckle_op_Lore"                   "The Pangolier's blade is even nimbler than his tongue."
+    "DOTA_Tooltip_ability_pangolier_swashbuckle_op_Note0"                  "Attack modifiers have a chance to proc on Swashbuckle attacks."
+    "DOTA_Tooltip_ability_pangolier_swashbuckle_op_Note1"                  "Casting Swashbuckle during Rolling Thunder ends Rolling Thunder."
+    "DOTA_Tooltip_ability_pangolier_swashbuckle_op_dash_range"             "DASH RANGE:"
+    "DOTA_Tooltip_ability_pangolier_swashbuckle_op_range"                  "SLASH RANGE:"
+    "DOTA_Tooltip_ability_pangolier_swashbuckle_op_start_radius"           "SLASH WIDTH:"
+    "DOTA_Tooltip_ability_pangolier_swashbuckle_op_damage"                 "DAMAGE PER STRIKE:"
+    "DOTA_Tooltip_ability_pangolier_swashbuckle_op_strikes"                "STRIKES:"
+
 
     "DOTA_Tooltip_ability_hero_one_punch"                                             "One Punch!"
     "DOTA_Tooltip_ability_hero_one_punch_description"                                 "Hero unleashes a devastating punch that deals critical damage, launching the enemy into the air. After a short delay time, they land, creating an explosion that deals Magical damage and stuns any affected units.\n\n<font color=\'#7D7D7D\'>Imported from Dusk\n"
