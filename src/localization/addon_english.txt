@@ -17351,6 +17351,13 @@
     "DOTA_Tooltip_ability_faceless_void_chronosphere_op_cooldown_scepter"              "SCEPTER COOLDOWN:"
     "DOTA_Tooltip_ability_faceless_void_chronosphere_op_aghanim_description"           "Decreases cooldown."
 
+    "DOTA_Tooltip_ability_mars_arena_of_blood_op"                      "Arena Of Blood OP"
+    "DOTA_Tooltip_ability_mars_arena_of_blood_op_Description"          "After a short formation time, Mars summons an arena lined with the undead warriors of the Ash Legion, who block enemy attacks and movement. Enemy heroes near the inside edge of the arena will be attacked by spears, dealing damage and knocking them back. <font color='#70EA72'>Larger radius, longer duration, longer cast range, faster attack interval, larger pushback range and shorter cooldown</font>." 
+    "DOTA_Tooltip_ability_mars_arena_of_blood_op_Lore"                 "The long-dead members of the Ash Legion, assembled from the finest warriors to ever test the might of Mars, still revel in the thrill of combat, gladly beholden to the hand that fell them for as long as he so commands."
+    "DOTA_Tooltip_ability_mars_arena_of_blood_op_duration"             "DURATION:"
+    "DOTA_Tooltip_ability_mars_arena_of_blood_op_radius"               "RADIUS:"
+    "DOTA_Tooltip_ability_mars_arena_of_blood_op_spear_damage"         "SPEAR DAMAGE:"
+    "DOTA_Tooltip_ability_mars_arena_of_blood_op_formation_time"       "FORMATION TIME:"
 
     "DOTA_Tooltip_ability_hero_one_punch"                                             "One Punch!"
     "DOTA_Tooltip_ability_hero_one_punch_description"                                 "Hero unleashes a devastating punch that deals critical damage, launching the enemy into the air. After a short delay time, they land, creating an explosion that deals Magical damage and stuns any affected units.\n\n<font color=\'#7D7D7D\'>Imported from Dusk\n"
