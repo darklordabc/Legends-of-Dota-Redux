@@ -17341,6 +17341,16 @@
     "DOTA_Tooltip_ability_pangolier_swashbuckle_op_damage"                 "DAMAGE PER STRIKE:"
     "DOTA_Tooltip_ability_pangolier_swashbuckle_op_strikes"                "STRIKES:"
 
+    "DOTA_Tooltip_ability_faceless_void_chronosphere_op"                               "Chronosphere Global"
+    "DOTA_Tooltip_ability_faceless_void_chronosphere_op_Description"                   "Creates a blister in spacetime, trapping all units caught in its sphere of influence and causes you to move very quickly inside it.  Only Faceless Void and any units he controls are unaffected.  Invisible units in the sphere will be revealed. <font color='#70EA72'>Global effect, longer duration, shorter cooldown and less mana cost</font>.\n\nUpgradable by Aghanim's Scepter."
+    "DOTA_Tooltip_ability_faceless_void_chronosphere_op_Lore"                          "When a rift opens to Claszureme, all poor souls caught within will likely never return."
+    "DOTA_Tooltip_ability_faceless_void_chronosphere_op_Note0"                         "Pauses all units and buildings, friendly or enemy, except those owned by Faceless Void."
+    "DOTA_Tooltip_ability_faceless_void_chronosphere_op_Note1"                         "Faceless Void is never affected by Chronospheres with any owner."
+    //"DOTA_Tooltip_ability_faceless_void_chronosphere_op_radius"                        "RADIUS:"
+    "DOTA_Tooltip_ability_faceless_void_chronosphere_op_duration"                      "DURATION:"
+    "DOTA_Tooltip_ability_faceless_void_chronosphere_op_cooldown_scepter"              "SCEPTER COOLDOWN:"
+    "DOTA_Tooltip_ability_faceless_void_chronosphere_op_aghanim_description"           "Decreases cooldown."
+
 
     "DOTA_Tooltip_ability_hero_one_punch"                                             "One Punch!"
     "DOTA_Tooltip_ability_hero_one_punch_description"                                 "Hero unleashes a devastating punch that deals critical damage, launching the enemy into the air. After a short delay time, they land, creating an explosion that deals Magical damage and stuns any affected units.\n\n<font color=\'#7D7D7D\'>Imported from Dusk\n"
