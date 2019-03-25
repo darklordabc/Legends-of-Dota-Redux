@@ -477,6 +477,47 @@
         }
     }
 
+    "bounty_hunter_jinada_op"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                            "bounty_hunter_jinada"                                                      // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "SpellDispellableType"          "SPELL_DISPELLABLE_YES"
+        "AbilitySound"                  "Hero_BountyHunter.Jinada"
+
+        "AbilityTextureName"            "custom/bounty_hunter_jinada_op"
+        "ReduxCost"                                                            "120"
+
+        "precache"
+        {
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_bounty_hunter.vsndevts"
+        }
+
+
+        // Time     
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "12 9 6 3"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_damage"          "160 220 280 340"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "gold_steal"            "36 60 84 108"
+                "LinkedSpecialBonus"        "special_bonus_unique_bounty_hunter"
+            }
+        }
+        "AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_2"
+    }
+
     "grimstroke_soul_chain_op"
     {
         // General

@@ -17351,6 +17351,11 @@
     "DOTA_Tooltip_ability_faceless_void_chronosphere_op_cooldown_scepter"              "SCEPTER COOLDOWN:"
     "DOTA_Tooltip_ability_faceless_void_chronosphere_op_aghanim_description"           "Decreases cooldown."
 
+    "DOTA_Tooltip_ability_bounty_hunter_jinada_op"                                      "Jinada OP"
+    "DOTA_Tooltip_ability_bounty_hunter_jinada_op_Description"                         "Bounty Hunter plans his next hit, dealing bonus damage and stealing some unreliable gold. <font color='#70EA72'>Deals double damage and steals triple gold</font>."
+    "DOTA_Tooltip_ability_bounty_hunter_jinada_op_bonus_damage"                        "BONUS DAMAGE:"
+    "DOTA_Tooltip_ability_bounty_hunter_jinada_op_gold_steal"                      "GOLD STEAL:"
+
     "DOTA_Tooltip_ability_mars_arena_of_blood_op"                      "Arena Of Blood OP"
     "DOTA_Tooltip_ability_mars_arena_of_blood_op_Description"          "After a short formation time, Mars summons an arena lined with the undead warriors of the Ash Legion, who block enemy attacks and movement. Enemy heroes near the inside edge of the arena will be attacked by spears, dealing damage and knocking them back. <font color='#70EA72'>Larger radius, longer duration, longer cast range, faster attack interval, larger pushback range and shorter cooldown</font>." 
     "DOTA_Tooltip_ability_mars_arena_of_blood_op_Lore"                 "The long-dead members of the Ash Legion, assembled from the finest warriors to ever test the might of Mars, still revel in the thrill of combat, gladly beholden to the hand that fell them for as long as he so commands."
