@@ -17356,6 +17356,16 @@
     "DOTA_Tooltip_ability_bounty_hunter_jinada_op_bonus_damage"                        "BONUS DAMAGE:"
     "DOTA_Tooltip_ability_bounty_hunter_jinada_op_gold_steal"                      "GOLD STEAL:"
 
+    "DOTA_Tooltip_ability_bristleback_warpath_op"                              "Warpath OP"
+    "DOTA_Tooltip_ability_bristleback_warpath_op_Description"                  "Bristleback works himself up into a fury every time he casts a spell, increasing his movement speed and damage. <font color='#70EA72'>Unlimited Stacks and longer stack duration</font>."
+    "DOTA_Tooltip_ability_bristleback_warpath_op_Lore"                         "'Temper, temper,' his mum always chided.  But in a fight, a temper can come in handy."
+    "DOTA_Tooltip_ability_bristleback_warpath_Note0"                        "Bristleback's illusions will receive the bonuses."
+    "DOTA_Tooltip_ability_bristleback_warpath_op_Note1"                        "Items will not trigger Warpath."
+    "DOTA_Tooltip_ability_bristleback_warpath_op_damage_per_stack"             "DAMAGE PER STACK:"
+    "DOTA_Tooltip_ability_bristleback_warpath_op_move_speed_per_stack"         "%MOVEMENT PER STACK:"
+    "DOTA_Tooltip_ability_bristleback_warpath_op_stack_duration"               "STACK DURATION:"
+    //"DOTA_Tooltip_ability_bristleback_warpath_op_max_stacks"                   "MAX STACKS:"
+
     "DOTA_Tooltip_ability_clinkz_burning_army_op"                                      "Burning Army OP"
     "DOTA_Tooltip_ability_clinkz_burning_army_op_Description"                          "Clinkz summons an army of fiery ranged skeleton archers. Archers are immobile and die with 2 attacks from a hero. Skeletons use your current Searing Arrows ability and attack only heroes. Base damage is equal to your hero's base damage. Attack range is equal to your hero's attack range. <font color='#70EA72'>Longer duration, longer range, higher skeleton count, faster spawn interval and lower cooldown</font>."
     "DOTA_Tooltip_ability_clinkz_burning_army_op_duration"                             "DURATION:"

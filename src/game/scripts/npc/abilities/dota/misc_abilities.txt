@@ -477,6 +477,51 @@
         }
     }
 
+    "bristleback_warpath_op"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                            "bristleback_warpath"                                                      // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+        "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "SpellDispellableType"          "SPELL_DISPELLABLE_NO"
+        "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_4"
+
+        "AbilityTextureName"            "custom/bristleback_warpath_op"
+        "ReduxCost"                                                            "120"
+
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityDuration"               "10.0 10.0 10.0"
+                
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "damage_per_stack"                  "18 24 30"
+                "LinkedSpecialBonus"    "special_bonus_unique_bristleback_3"
+            }
+            "02"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "move_speed_per_stack"              "3 4 5"
+            }
+            "03"
+            {
+                "var_type"                      "FIELD_FLOAT"
+                "stack_duration"                "28.0 42.0 56.0"
+            }
+            "04"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "max_stacks"                    "9999"
+            }
+        }
+    }
+
     "clinkz_burning_army_op"
     {
         // General
