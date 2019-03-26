@@ -17366,6 +17366,15 @@
     "DOTA_Tooltip_ability_bristleback_warpath_op_stack_duration"               "STACK DURATION:"
     //"DOTA_Tooltip_ability_bristleback_warpath_op_max_stacks"                   "MAX STACKS:"
 
+    "DOTA_Tooltip_ability_templar_assassin_psi_blades_op"                              "Psi Blades OP"
+    "DOTA_Tooltip_ability_templar_assassin_psi_blades_op_Lore"                         "Her blades pierce the skin as much as the mind, furthering her understanding of the mystery that is reality."
+    "DOTA_Tooltip_ability_templar_assassin_psi_blades_op_Description"                  "Templar Assassin's psi blades slice through the attacked unit, splitting and damaging enemy units directly behind it, while gaining bonus attack range. <font color='#70EA72'>Double attack range bonus, longer spill range and wider spread</font>."
+    "DOTA_Tooltip_ability_templar_assassin_psi_blades_op_Note0"                        "Split damage hits invisible units."
+    "DOTA_Tooltip_ability_templar_assassin_psi_blades_op_Note1"                        "Attack effects like Bash will only be applied to the main target."
+    "DOTA_Tooltip_ability_templar_assassin_psi_blades_op_bonus_attack_range"           "BONUS ATTACK RANGE:"
+    "DOTA_Tooltip_ability_templar_assassin_psi_blades_op_attack_spill_range"           "SPLIT RANGE:"
+    "DOTA_Tooltip_ability_templar_assassin_psi_blades_op_attack_spill_pct"             "%SPLIT AMOUNT:"
+
     "DOTA_Tooltip_ability_clinkz_burning_army_op"                                      "Burning Army OP"
     "DOTA_Tooltip_ability_clinkz_burning_army_op_Description"                          "Clinkz summons an army of fiery ranged skeleton archers. Archers are immobile and die with 2 attacks from a hero. Skeletons use your current Searing Arrows ability and attack only heroes. Base damage is equal to your hero's base damage. Attack range is equal to your hero's attack range. <font color='#70EA72'>Longer duration, longer range, higher skeleton count, faster spawn interval and lower cooldown</font>."
     "DOTA_Tooltip_ability_clinkz_burning_army_op_duration"                             "DURATION:"

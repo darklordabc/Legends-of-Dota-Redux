@@ -477,6 +477,51 @@
         }
     }
 
+    "templar_assassin_psi_blades_op"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                    "templar_assassin_psi_blades"                                                      // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_PURE"  
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+
+        "AbilityTextureName"            "custom/templar_assassin_psi_blades_op"
+        "ReduxCost"                                                            "120"
+
+        "precache"
+        {
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_templar_assassin.vsndevts"
+        }
+    
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "bonus_attack_range"        "120 280 640 720"
+            }
+            "02"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "attack_spill_range"        "600 800 1000 1500"
+            }
+            "03"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "attack_spill_width"        "100"
+            }
+            "04"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "attack_spill_pct"          "100"
+            }
+        }
+        "AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_3"
+    }   
+
     "bristleback_warpath_op"
     {
         // General
