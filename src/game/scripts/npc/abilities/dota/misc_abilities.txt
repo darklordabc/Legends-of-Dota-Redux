@@ -477,6 +477,72 @@
         }
     }
 
+    "clinkz_burning_army_op"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                    "clinkz_burning_army"                                                      // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+        "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_PHYSICAL"
+        "FightRecapLevel"               "1"
+        "AbilitySound"                  "Hero_Clinkz.DeathPact"
+
+        "AbilityTextureName"            "custom/clinkz_burning_army_op"
+        "ReduxCost"                                                            "120"
+
+        "precache"
+        {
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_clinkz.vsndevts"
+        }
+
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastRange"              "3000"
+        "AbilityCastPoint"              "0"
+        "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_4"
+        
+        // Time     
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "60 50 40"
+        
+
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "125 175 225"
+        
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "range"         "1300 2300 3300"
+            }
+            "02"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "duration"  "60"
+            }
+            "03"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "count"         "10 15 20"
+            }
+            "04"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "attack_rate"           "1.75 1.6 1.4"
+            }
+            "05"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "spawn_interval"            "0.8 0.6 0.4"
+            }
+        }
+    }
+
     "bounty_hunter_jinada_op"
     {
         // General

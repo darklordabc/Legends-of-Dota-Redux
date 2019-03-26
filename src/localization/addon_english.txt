@@ -17356,6 +17356,14 @@
     "DOTA_Tooltip_ability_bounty_hunter_jinada_op_bonus_damage"                        "BONUS DAMAGE:"
     "DOTA_Tooltip_ability_bounty_hunter_jinada_op_gold_steal"                      "GOLD STEAL:"
 
+    "DOTA_Tooltip_ability_clinkz_burning_army_op"                                      "Burning Army OP"
+    "DOTA_Tooltip_ability_clinkz_burning_army_op_Description"                          "Clinkz summons an army of fiery ranged skeleton archers. Archers are immobile and die with 2 attacks from a hero. Skeletons use your current Searing Arrows ability and attack only heroes. Base damage is equal to your hero's base damage. Attack range is equal to your hero's attack range. <font color='#70EA72'>Longer duration, longer range, higher skeleton count, faster spawn interval and lower cooldown</font>."
+    "DOTA_Tooltip_ability_clinkz_burning_army_op_duration"                             "DURATION:"
+    "DOTA_Tooltip_ability_clinkz_burning_army_op_range"                                "RANGE:"
+    "DOTA_Tooltip_ability_clinkz_burning_army_op_count"                                "COUNT:"
+    "DOTA_Tooltip_ability_clinkz_burning_army_op_attack_rate"                          "ATTACK RATE:"
+    "DOTA_Tooltip_ability_clinkz_burning_army_op_spawn_interval"                       "SPAWN INTERVAL:"
+
     "DOTA_Tooltip_ability_mars_arena_of_blood_op"                      "Arena Of Blood OP"
     "DOTA_Tooltip_ability_mars_arena_of_blood_op_Description"          "After a short formation time, Mars summons an arena lined with the undead warriors of the Ash Legion, who block enemy attacks and movement. Enemy heroes near the inside edge of the arena will be attacked by spears, dealing damage and knocking them back. <font color='#70EA72'>Larger radius, longer duration, longer cast range, faster attack interval, larger pushback range and shorter cooldown</font>." 
     "DOTA_Tooltip_ability_mars_arena_of_blood_op_Lore"                 "The long-dead members of the Ash Legion, assembled from the finest warriors to ever test the might of Mars, still revel in the thrill of combat, gladly beholden to the hand that fell them for as long as he so commands."
