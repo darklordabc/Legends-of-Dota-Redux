@@ -5079,7 +5079,7 @@
 
         "special_bonus_unique_spirit_breaker_2"
         {
-            "TalentRequiredAbility"                                                   "spirit_breaker_charge_of_darkness"
+            "TalentRequiredAbility"                                                   "spirit_breaker_bulldoze"
         }
 
         "special_bonus_unique_spirit_breaker_3"
