@@ -17366,6 +17366,17 @@
     "DOTA_Tooltip_ability_bristleback_warpath_op_stack_duration"               "STACK DURATION:"
     //"DOTA_Tooltip_ability_bristleback_warpath_op_max_stacks"                   "MAX STACKS:"
 
+    "DOTA_Tooltip_ability_abyssal_underlord_atrophy_aura_op"               "Atrophy Aura OP"
+    "DOTA_Tooltip_ability_abyssal_underlord_atrophy_aura_op_Description"   "Nearby enemy units are weakened, losing a portion of their base damage. If a unit dies while under this effect, Underlord gains bonus damage. <font color='#70EA72'>15 Levels, nearly global range (at max level), higher damage reduction</font>.\n\nUpgradable by Aghanim's Scepter."
+    "DOTA_Tooltip_ability_abyssal_underlord_atrophy_aura_op_Lore"          "To merely stand in the presence of the Underlord is to feel the conviction of battle sapped from one's soul."
+    "DOTA_Tooltip_ability_abyssal_underlord_atrophy_aura_op_radius"        "RADIUS:"
+    "DOTA_Tooltip_ability_abyssal_underlord_atrophy_aura_op_damage_reduction_pct"       "%DAMAGE REDUCTION:"
+    "DOTA_Tooltip_ability_abyssal_underlord_atrophy_aura_op_bonus_damage_from_creep"   "BONUS DAMAGE(CREEP):"
+    "DOTA_Tooltip_ability_abyssal_underlord_atrophy_aura_op_bonus_damage_from_hero"    "BONUS DAMAGE(HERO):"
+    "DOTA_Tooltip_ability_abyssal_underlord_atrophy_aura_op_bonus_damage_duration"     "DURATION:"
+    "DOTA_Tooltip_ability_abyssal_underlord_atrophy_aura_op_permanent_bonus"       "PERMANENT BONUS DAMAGE:"
+    "DOTA_Tooltip_ability_abyssal_underlord_atrophy_aura_op_aghanim_description"       "Causes bonus damage to be granted to nearby allied heroes for half the values."
+
     "DOTA_Tooltip_ability_templar_assassin_psi_blades_op"                              "Psi Blades OP"
     "DOTA_Tooltip_ability_templar_assassin_psi_blades_op_Lore"                         "Her blades pierce the skin as much as the mind, furthering her understanding of the mystery that is reality."
     "DOTA_Tooltip_ability_templar_assassin_psi_blades_op_Description"                  "Templar Assassin's psi blades slice through the attacked unit, splitting and damaging enemy units directly behind it, while gaining bonus attack range. <font color='#70EA72'>Double attack range bonus, longer spill range and wider spread</font>."
