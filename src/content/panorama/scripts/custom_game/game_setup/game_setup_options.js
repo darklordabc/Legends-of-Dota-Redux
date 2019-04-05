@@ -198,6 +198,10 @@ var basicOptions = {
                         }
                     },
                     {
+                        name: 'lodOptionStacking',
+                        about: 'lodMutatorStacking'
+                    },
+                    {
                         name: 'lodOptionCommonMaxUlts',
                         default: {
                             'lodMutatorMaxUlts1': 2
@@ -1687,6 +1691,22 @@ var advancedOptions = {
                     {
                         text: 'lodOptionQuadruple',
                         value: 4
+                    }
+                ]
+            },
+            {
+                name: 'lodOptionStacking',
+                des: 'lodOptionDesStacking',
+                about: 'lodOptionAboutStacking',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
                     }
                 ]
             },

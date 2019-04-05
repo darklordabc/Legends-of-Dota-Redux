@@ -207,6 +207,7 @@
     "lodMutatorShareEXP"                            "Team Shared EXP"
     "lodMutatorWTF"                                 "Crazy WTF"
     "lodMutatorDisablePerks"                        "Disable Perks"
+    "lodMutatorStacking"                            "Neutrals Stack"
     "lodMutatorDuel"                                "Duels"
     "lodMutatorBoosterDraft"                        "Booster Draft"
     "lodMutatorDoubleCreeps"                        "Multiple Lane Creeps"
@@ -777,6 +778,7 @@
     "lodOptionDesAdvancedSelectPrimaryAttr"         "Allow Selecting Primary Attribute"
     "lodOptionDesBanningMaxHeroBans"                "Max Hero Bans"
     "lodOptionDesDisablePerks"                      "Disable Perks"
+    "lodOptionDesStacking"                          "Neutrals Stack"
 
     "lodOptionDesCrazyFatOMeter"                    "Fat-O-Meter"
     "lodOptionNoFatOMeter"                          "Disabled"
@@ -973,6 +975,7 @@
     "lodOptionAboutIngameBuilder"                   "Enable an ingame hero builder that allows you to change your skills during gameplay."
     "lodOptionAboutIngameBuilderPenalty"            "This sets how long the switching player will be dead for. If its zero, player's can switch builds without dying. Dead players cannot use the build switcher."
     "lodOptionAboutDisablePerks"                    "Hero Perks will not be assigned to heroes."
+    "lodOptionAboutStacking"                    "Neutrals will continualyl spawn even if something is blocking them. Will die after 7 minutes to prevent game crashes."
 
     //Builds
     "loadingBuilds"                                 "Loading builds"
