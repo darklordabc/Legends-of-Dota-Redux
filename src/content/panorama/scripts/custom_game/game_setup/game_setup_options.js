@@ -709,6 +709,10 @@ var basicOptions = {
                             }
                         }
                     },	
+                    {
+                        name: 'lodOptionZombie',
+                        about: 'lodMutatorZombie'
+                    },
                 ]
             }
         ]
@@ -1709,7 +1713,7 @@ var advancedOptions = {
                         value: 1
                     }
                 ]
-            },
+            },            
             {
                 name: 'lodOptionLaneCreepBonusAbility',
                 des: 'lodOptionDesLaneCreepBonusAbility',
@@ -2657,6 +2661,22 @@ var advancedOptions = {
                        value: 1
                    }
                ]
+            },
+            {
+                name: 'lodOptionZombie',
+                des: 'lodOptionDesZombie',
+                about: 'lodOptionAboutZombie',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
             },
             //{
             //    name: 'lodOptionMonkeyBusiness',

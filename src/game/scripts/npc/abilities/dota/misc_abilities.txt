@@ -1,5 +1,139 @@
 "DOTAAbilities"
 {
+    "summon_zombie"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"           "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+        "FightRecapLevel"               "1"
+        "BaseClass"                     "ability_lua"
+        "AbilityTextureName"            "custom/summon_zombie"
+        "AbilitySound"                  "Hero_Undying.Tombstone"
+        "ScriptFile"                    "summon_zombie"
+        "MaxLevel"                      "1"
+        "ReduxCost"                                                            "150"
+        
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastRange"              "800"
+        "AbilityCastPoint"              "0.45 0.45 0.45 0.45"
+
+        // Time     
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "30"
+
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "30"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "summon_distance"           "1075"
+            }
+        }
+    }
+
+    "Brainthirsty"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "FightRecapLevel"               "1"
+        "BaseClass"                     "ability_lua"
+        "AbilityTextureName"            "custom/Brainthirsty"
+        "AbilitySound"                  "Hero_Undying.Tombstone"
+        "ScriptFile"                    "Brainthirsty"
+        "MaxLevel"                      "1"
+    
+
+        // Stats
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityModifierSupportBonus"   "5"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_1"
+        
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "brainthirsty_movement_speed_buff_amount"                   "4"
+            }
+            "02"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "brainthirsty_attack_speed_bonus_amount"                    "4"
+            }
+        }
+    }
+
+    "undying_tombstone_zombie_deathstrike_zombie"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                            "undying_tombstone_zombie_deathstrike"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+        "SpellDispellableType"          "SPELL_DISPELLABLE_YES"
+    
+
+        // Stats
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityModifierSupportBonus"   "5"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "slow"                  "-20"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "health_threshold"      "300"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "health_threshold_pct"  "100"
+            }
+            "04"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "duration"              "0.4"
+            }
+            "05"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_move_speed"          "35"
+            }
+            "06"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_attack_speed"            "50"
+            }
+            "07"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "radius"                "1200"
+            }
+        }
+        "AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_1"
+    }
+
     "tinker_heat_seeking_missile_redux"
     {
         // General

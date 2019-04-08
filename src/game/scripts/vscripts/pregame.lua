@@ -833,6 +833,7 @@ function Pregame:loadDefaultSettings()
 
     self:setOption('lodOptionLaneCreepBonusAbility', 0, true)
     self:setOption('lodOptionStacking', 0, true)
+    self:setOption('lodOptionZombie', 0, true)
 
     -- Start with a free courier
     self:setOption('lodOptionGameSpeedFreeCourier', 1, true)
@@ -3307,6 +3308,11 @@ function Pregame:initOptionSelector()
             return value == 0 or value == 1
         end,
 
+         -- Other - Zombie Apocalypse
+        lodOptionZombie = function(value)
+            return value == 0 or value == 1
+        end,
+
          -- Other -- Memes Redux
         lodOptionMemesRedux = function(value)
             -- When the player activates this potion, they have a chance to hear a meme sound. Becomes more unlikely the more they hear.
@@ -4251,6 +4257,7 @@ function Pregame:processOptions()
         OptionManager:SetOption('laneMultiply', this.optionStore['lodOptionLaneMultiply'])
         OptionManager:SetOption('laneCreepAbility', this.optionStore['lodOptionLaneCreepBonusAbility'])
         OptionManager:SetOption('stacking', this.optionStore['lodOptionStacking'])
+        OptionManager:SetOption('zombie', this.optionStore['lodOptionZombie'])
         OptionManager:SetOption('useFatOMeter', this.optionStore['lodOptionCrazyFatOMeter'])
         OptionManager:SetOption('universalShops', this.optionStore['lodOptionCrazyUniversalShop'])
         OptionManager:SetOption('allowIngameHeroBuilder', this.optionStore['lodOptionIngameBuilder'] == 1)
@@ -4398,7 +4405,7 @@ function Pregame:processOptions()
         -- Disabling Hero Perks
         if this.optionStore['lodOptionDisablePerks'] == 1 then
             this.perksDisabled = true
-        end
+        end 
 
         -- Single Player Ability Bans
         if not disableBanLists and this.optionStore['lodOptionBanningUseBanList'] == 1 then
@@ -4596,6 +4603,7 @@ function Pregame:processOptions()
                     ['Gamemode: Max Ults'] = this.optionStore['lodOptionCommonMaxUlts'],
                     ['Gamemode: Preset Gamemode'] = this.optionStore['lodOptionGamemode'],
                     ['Other: Enable All Vision'] = this.optionStore['lodOptionCrazyAllVision'],
+                    ['Other: Zombie Apocalypse'] = this.optionStore['lodOptionZombie'],
                     ['Other: Enable Ingame Hero Builder'] = this.optionStore['lodOptionIngameBuilder'],
                     ['Other: Enable Multicast Madness'] = this.optionStore['lodOptionCrazyMulticast'],
                     ['Other: Enable Universal Shop'] = this.optionStore['lodOptionCrazyUniversalShop'],
@@ -8374,6 +8382,14 @@ function Pregame:fixSpawnedHero( spawnedUnit )
          end
     end
 
+    if this.optionStore['lodOptionZombie'] == 1 then
+        spawnedUnit:AddAbility("summon_zombie")
+        local givenAbility = spawnedUnit:FindAbilityByName("summon_zombie")
+        if givenAbility then
+            givenAbility:SetLevel(givenAbility:GetMaxLevel())
+        end
+    end
+
     -- Handle pocket tower stuff
     if OptionManager:GetOption('pocketTowers') ~= 0 and util:isPlayerBot(playerID) == false then --TODO: MAKE BOTS USE POCKET TOWERS
         Timers:CreateTimer(function()
@@ -8825,7 +8841,7 @@ function Pregame:fixSpawningIssues()
                 if OptionManager:GetOption('stacking') == 1 and spawnedUnit:GetUnitName() ~= "npc_dota_roshan" then
                     if IsValidEntity(spawnedUnit) then
                             -- Have to delete creeps after time or game will crash because of too many creeps
-                            spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_kill", {duration = 420})
+                            spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_kill", {duration = 300})
                     end
                 end
                 

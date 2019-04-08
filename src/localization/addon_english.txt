@@ -208,6 +208,7 @@
     "lodMutatorWTF"                                 "Crazy WTF"
     "lodMutatorDisablePerks"                        "Disable Perks"
     "lodMutatorStacking"                            "Neutrals Stack"
+    "lodMutatorZombie"                              "Zombie Apocalypse "
     "lodMutatorDuel"                                "Duels"
     "lodMutatorBoosterDraft"                        "Booster Draft"
     "lodMutatorDoubleCreeps"                        "Multiple Lane Creeps"
@@ -779,6 +780,7 @@
     "lodOptionDesBanningMaxHeroBans"                "Max Hero Bans"
     "lodOptionDesDisablePerks"                      "Disable Perks"
     "lodOptionDesStacking"                          "Neutrals Stack"
+    "lodOptionDesZombie"                            "Zombie Apocalypse"
 
     "lodOptionDesCrazyFatOMeter"                    "Fat-O-Meter"
     "lodOptionNoFatOMeter"                          "Disabled"
@@ -975,7 +977,8 @@
     "lodOptionAboutIngameBuilder"                   "Enable an ingame hero builder that allows you to change your skills during gameplay."
     "lodOptionAboutIngameBuilderPenalty"            "This sets how long the switching player will be dead for. If its zero, player's can switch builds without dying. Dead players cannot use the build switcher."
     "lodOptionAboutDisablePerks"                    "Hero Perks will not be assigned to heroes."
-    "lodOptionAboutStacking"                    "Neutrals will continualyl spawn even if something is blocking them. Will die after 7 minutes to prevent game crashes."
+    "lodOptionAboutStacking"                    "Neutrals will continualyl spawn even if something is blocking them. Will die after 5 minutes to prevent game crashes."
+    "lodOptionAboutZombie"                    "Zombies will spawn from every hero every 4 seconds. Larger zombies can be manually summoned by the player. Imported from, Dota 2 But It's a Zombie Apocalypse mod."
 
     //Builds
     "loadingBuilds"                                 "Loading builds"
@@ -1912,6 +1915,8 @@
     "credit_lina_grapefruit_redux"           "<font color=\'#7D7D7D\'>Imported from Memes Reborn</font>"
 
     "credit_lina_blazer"           "<font color=\'#7D7D7D\'>Imported from Memes Reborn</font>"
+
+    "credit_summon_zombie"           "<font color=\'#7D7D7D\'>Imported from Dota 2 But It's a Zombie Apocalypse mod</font>"
 
     "credit_spell_lab_symbiotic"           "<font color=\'#7D7D7D\'>Credits: Otso Turpeinen | github.com/OtsoTurpeinen</font>"
     "credit_sight"           "<font color=\'#7D7D7D\'>Imported from One Shot One Kill</font>"
@@ -18102,6 +18107,26 @@
     "DOTA_Tooltip_ability_slardar_bash_redux_chance"                                        "%CHANCE:"
     "DOTA_Tooltip_ability_slardar_bash_redux_bonus_damage"                              "BONUS DAMAGE:"
     "DOTA_Tooltip_ability_slardar_bash_redux_duration"                                  "DURATION:"
+
+    "DOTA_Tooltip_ability_summon_zombie"                            "Summon Zombies"
+    "DOTA_Tooltip_ability_summon_zombie_Description"                "Passively spawn hordes of zombies that gain more power as you lvl up. In addition, this ability can summon a large zombie after targeting an enemy. This large zombie is also based on you hero lvl.</font>"
+    "DOTA_Tooltip_ability_summon_zombie_Lore"                       "The zombie horde will rise."
+    "DOTA_Tooltip_ability_summon_zombie_summon_distance"            "<font color='#70EA72'>SUMMON ZOMBIE RANGE:</font>"
+
+    "DOTA_Tooltip_ability_Brainthirsty"                             "Brainthirsty"
+    "DOTA_Tooltip_ability_Brainthirsty_Description"                 "This unit thirsts for brains. Therefore, movepeed and attackspeed increases the longer this unit is alive. Additionally, this unit takes damage over time which further increases the incentive.</font>"
+    "DOTA_Tooltip_ability_Brainthirsty_Lore"                        "Brrraaaaaains!"
+    "DOTA_Tooltip_ability_Brainthirsty_brainthirsty_movement_speed_buff_amount"         "<font color='#70EA72'>MOVESPEED INCREASE PER HALF SECOND:</font>"
+    "DOTA_Tooltip_ability_Brainthirsty_brainthirsty_attack_speed_bonus_amount"          "<font color='#70EA72'>ATTACKSPEED INCREASE PER HALF SECOND:</font>"
+
+    "DOTA_Tooltip_ability_undying_tombstone_zombie_deathstrike_zombie"     "Deathlust Zombie"
+    "DOTA_Tooltip_ability_undying_tombstone_zombie_deathstrike_zombie_Description"     "Slows enemy units on attack.  If the attacked unit's health goes below the threshold, the zombie receives enhanced movement and attack speed."
+    "DOTA_Tooltip_ability_undying_tombstone_zombie_deathstrike_zombie_health_threshold"    "HEALTH THRESHOLD BY NUMBER:"
+    "DOTA_Tooltip_ability_undying_tombstone_zombie_deathstrike_zombie_health_threshold_pct"    "%HEALTH THRESHOLD BY PERCENT:"
+    "DOTA_Tooltip_ability_undying_tombstone_zombie_deathstrike_zombie_duration"            "SLOW DURATION:"
+    "DOTA_Tooltip_ability_undying_tombstone_zombie_deathstrike_zombie_slow"                "%MOVEMENT SLOW:"
+    "DOTA_Tooltip_ability_undying_tombstone_zombie_deathstrike_zombie_bonus_move_speed"            "%BONUS MOVE SPEED:"
+    "DOTA_Tooltip_ability_undying_tombstone_zombie_deathstrike_zombie_bonus_attack_speed"          "BONUS ATTACK SPEED:"
 
     "DOTA_Tooltip_ability_sled_penguin_redux"                                               "Sled Penguin"
     "DOTA_Tooltip_ability_sled_penguin_redux_Description"                                   "The hero jumps on a penguin, sliding forward and damaging and knocking back every foe it hit's. Hero has reduced turnrate. Stuns himself when crashed. Colliding with units slows you down."
