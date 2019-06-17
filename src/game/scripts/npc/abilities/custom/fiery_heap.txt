@@ -1,0 +1,73 @@
+"DOTAAbilities"
+{
+    "pudge_flesh_heap_fiery_soul"
+    {
+        "BaseClass"                                                            "ability_lua"
+        "AbilityTextureName"                                                   "lina_fiery_soul"
+        "ScriptFile"                                                           "abilities/fiery_heap.lua"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        //"AbilityCastRange"                                                     "900"
+        "precache"
+        {
+            "particle"                                                     "particles/units/heroes/hero_pudge/pudge_fleshheap_count.vpcf"
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "attack_speed_bonus"                  "5 10 15 20"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "move_speed_bonus"                                     "4 9 12 16"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "int_bonus"                                     "1 2 3 4"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "health_bonus"                                     "5 10 15 20"
+            }
+            "05"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "cast_range_bonus"                                     "4 8 12 16"
+            }
+            "06"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "model_scale_bonus"                                     "0.05"
+            }
+            "07"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "spell_lifesteal_bonus"                                     "0.1 0.2 0.3 0.4"
+            }
+        }
+        "ReduxFlags"                                                           "dota_custom"
+        "ReduxCost"                                                            "120"
+    }
+
+    
+    "special_bonus_unique_fiery_soul_collector_0" 
+    {
+        "BaseClass"               "special_bonus_unique_antimage_3"
+        "TalentRank"              "3"
+        "TalentRequiredAbility" "ranged_punch"
+        "AbilityType"                   "DOTA_ABILITY_TYPE_ATTRIBUTES"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "value"                                                "1"
+            }
+        }
+    }
+}

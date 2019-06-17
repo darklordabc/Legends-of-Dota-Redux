@@ -37,6 +37,12 @@ class modifier_basic_bat_reduction extends CDOTA_Modifier_Lua {
 	IsPermanent() {return true;}
 	IsHidden() {return true;}
 
+	OnCreated() {
+		if (IsServer()) {
+			this.GetParent().AddNewModifier(this.GetParent(),null,"modifier_bat_manager",{})
+		}
+	}
+
 	GetBATReductionConstant() {
 		return -this.GetAbility().GetSpecialValueFor("new_bat")
 	}

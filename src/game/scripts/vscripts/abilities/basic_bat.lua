@@ -86,6 +86,11 @@ end
 function modifier_basic_bat_reduction.IsHidden(self)
     return true
 end
+function modifier_basic_bat_reduction.OnCreated(self)
+    if IsServer() then
+        self:GetParent():AddNewModifier(self:GetParent(),nil,"modifier_bat_manager",{});
+    end
+end
 function modifier_basic_bat_reduction.GetBATReductionConstant(self)
     return -self:GetAbility():GetSpecialValueFor("new_bat")
 end

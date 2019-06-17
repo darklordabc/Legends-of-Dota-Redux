@@ -64,7 +64,7 @@ function perkDeathProphet(filterTable)  --ModifierGainedFilter
   local caster = EntIndexToHScript( caster_index )
   local ability = EntIndexToHScript( ability_index )
   if ability then
-    if caster:HasModifier("modifier_npc_dota_hero_death_prophet_perk") then
+    if caster:HasModifier("modifier_npc_dota_hero_death_prophet_perk") and caster ~= parent then
       if ability:HasAbilityFlag("silence") then
         local modifierDuration = filterTable["duration"]
         parent:AddNewModifier(caster,ability,"modifier_npc_dota_hero_death_prophet_perk_mute",{duration = modifierDuration})
@@ -72,10 +72,10 @@ function perkDeathProphet(filterTable)  --ModifierGainedFilter
     end
   -- Exception for silencer glaives
   else
-    if caster:HasAbility("silencer_glaives_of_wisdom") and caster:HasAbility("special_bonus_unique_silencer_5") then
-      if caster:FindAbilityByName("silencer_glaives_of_wisdom"):GetToggleState() and caster:FindAbilityByName("special_bonus_unique_silencer_5"):GetLevel() > 0 then
-        parent:AddNewModifier(caster,nil,"modifier_npc_dota_hero_death_prophet_perk_mute",{duration = modifierDuration})
-      end
-    end
+    -- if caster:HasAbility("silencer_glaives_of_wisdom") and caster:HasAbility("special_bonus_unique_silencer_5") then
+    --   if caster:FindAbilityByName("silencer_glaives_of_wisdom"):GetToggleState() and caster:FindAbilityByName("special_bonus_unique_silencer_5"):GetLevel() > 0 then
+    --     parent:AddNewModifier(caster,nil,"modifier_npc_dota_hero_death_prophet_perk_mute",{duration = modifierDuration})
+    --   end
+    -- end
   end  
 end

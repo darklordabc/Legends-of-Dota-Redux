@@ -28,6 +28,7 @@
 	"npc_dota_hero_mirana" "1"
 	"npc_dota_hero_morphling" "1"
 	"npc_dota_hero_monkey_king"	"1"
+	"npc_dota_hero_mars"	"1"
 	"npc_dota_hero_necrolyte" "1"
 	"npc_dota_hero_nevermore" "1"
 	"npc_dota_hero_night_stalker" "1"

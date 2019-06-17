@@ -261,6 +261,10 @@
             "lycan_howl"            "1"
             "lycan_shapeshift"            "1"
             "lycan_summon_wolves"            "1"
+            "mars_spear"            "1"
+            "mars_gods_rebuke" "1"
+            "mars_bulwark" "1"
+            "mars_arena_of_blood" "1"
             "magnataur_empower"            "1"
             "magnataur_reverse_polarity"            "1"
             "magnataur_shockwave"            "1"
@@ -396,7 +400,7 @@
             "shredder_timber_chain"            "1"
             "shredder_whirling_death"            "1"
             "silencer_curse_of_the_silent"            "1"
-            "silencer_glaives_of_wisdom"            "1"
+            //"silencer_glaives_of_wisdom"            "1"
             "silencer_global_silence"            "1"
             "silencer_last_word"            "1"
             "silencer_glaives_of_wisdom_steal"  "1"
@@ -496,7 +500,8 @@
             "ursa_overpower_melee"        "1"
             "vengefulspirit_command_aura"            "1"
             "vengefulspirit_magic_missile"            "1"
-            "vengefulspirit_nether_swap"            "1"
+            //"vengefulspirit_nether_swap"            "1"
+            "vengefulspirit_nether_swap_redux"            "1"
             "vengefulspirit_wave_of_terror"            "1"
             "venomancer_plague_ward"            "1"
             "venomancer_poison_nova"            "1"
@@ -1871,6 +1876,23 @@
                   "android_pocket_factory"      "1"  
                   "aabs_nightshadow_op"     "1"
             }
+            "singlePlayer_actives_4" {
+                  "pangolier_swashbuckle_op" "1"
+                  "faceless_void_chronosphere_op" "1"
+                  "mars_arena_of_blood_op" "1"
+                  "grimstroke_soul_chain_friendly"    "1"
+                  "grimstroke_soul_chain_op" "1"
+                  "clinkz_burning_army_op" "1"
+                  "summon_zombie"   "1"
+            }
+
+            "singlePlayer_passive_4" {
+                  "bounty_hunter_jinada_op" "1"
+                  "bristleback_warpath_op" "1"
+                  "templar_assassin_psi_blades_op" "1"
+                  "abyssal_underlord_atrophy_aura_op" "1"
+            }
+
             "singlePlayer_passive" {
                   "imba_tower_aegis_OP"   "1"
                   //"erra_grave_guard_op"   "1" //Has been deleted since we brought in the LUA versions
@@ -1891,6 +1913,7 @@
                   "aether_range_lod_OP"   "1"
                   "ebf_rubick_arcane_echo_OP"   "1"
                   "frost_lord_freezing_OP"      "1"
+                  "pudge_flesh_heap_fiery_soul" "1"
             }
             "singlePlayer_passive_3" {
                   "zhanhun_op"   "1"
@@ -2026,6 +2049,12 @@
             "Ability3"            "zuus_static_field"
             "Ability4"            "zuus_cloud"
             "Ability5"            "zuus_thundergods_wrath"
+        }
+        "npc_dota_hero_vengefulspirit" {
+            "Ability1"            "vengefulspirit_magic_missile"
+            "Ability2"            "vengefulspirit_wave_of_terror"
+            "Ability3"            "vengefulspirit_command_aura"
+            "Ability4"            "vengefulspirit_nether_swap_redux"
         }
         "npc_dota_hero_brewmaster" {
             "Ability1"            "brewmaster_thunder_clap"
@@ -2164,7 +2193,7 @@
         }
         "npc_dota_hero_silencer" {
             "Ability1"            "silencer_curse_of_the_silent"
-            "Ability2"            "silencer_glaives_of_wisdom"
+            //"Ability2"            "silencer_glaives_of_wisdom"
             "Ability3"            "silencer_last_word"
             "Ability4"            "silencer_global_break"
             "Ability5"            "silencer_global_disarm"
@@ -2284,6 +2313,15 @@
             //"Ability6" "monkey_king_mischief"
             "Ability6"  "monkey_king_wukongs_command"
         }
+        "npc_dota_hero_mars"
+        {
+            "Ability1" "mars_spear"
+            "Ability2"  "mars_gods_rebuke"
+            "Ability3"  "mars_bulwark"
+            "Ability4"  "mars_arena_of_blood"
+
+        }
+
         "npc_dota_hero_necrolyte"
         {
             "Ability1" "necrolyte_death_pulse"

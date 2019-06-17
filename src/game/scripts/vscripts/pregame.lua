@@ -36,6 +36,7 @@ local ingame = require('ingame')
 require('lib/wearables')
 require('lib/timers')
 
+
 -- This should alone be used if duels are on.
 --require('lib/util_aar')
 require('talentmanager')
@@ -47,6 +48,8 @@ require('util')
 require('abilities/angel_arena_reborn/duels')
 
 require('abilities/mutators/convertable_tower_mutator')
+
+ALLHEROES = LoadKeyValues('scripts/npc/npc_heroes.txt')
 
 -- Custom AI script modifiers
 LinkLuaModifier( "modifier_slark_shadow_dance_ai", "abilities/botAI/modifier_slark_shadow_dance_ai.lua" ,LUA_MODIFIER_MOTION_NONE )
@@ -829,6 +832,8 @@ function Pregame:loadDefaultSettings()
     self:setOption('lodOptionLaneMultiply', 0, true)
 
     self:setOption('lodOptionLaneCreepBonusAbility', 0, true)
+    self:setOption('lodOptionStacking', 0, true)
+    self:setOption('lodOptionZombie', 0, true)
 
     -- Start with a free courier
     self:setOption('lodOptionGameSpeedFreeCourier', 1, true)
@@ -3036,6 +3041,11 @@ function Pregame:initOptionSelector()
             return value == 0 or value == 1 or value == 2 or value == 3
         end,
 
+         -- Game Speed - Neutrals Stack automatically
+        lodOptionStacking = function(value)
+            return value == 0 or value == 1
+        end,
+
         -- Game Speed - Lane Creeps Bonus aBility
        lodOptionLaneCreepBonusAbility = function(value)   
            return value == 0 or value == 1 or value == 2 or value == 3 or value == 4 or value == 5 or value == 6 or value == 7 or value == 8 or value == 9 or value == 10 or value == 11 or value == 12 or value == 13 or value == 14  
@@ -3295,6 +3305,11 @@ function Pregame:initOptionSelector()
 
          -- Other - Black Forest
         lodOptionBlackForest = function(value)
+            return value == 0 or value == 1
+        end,
+
+         -- Other - Zombie Apocalypse
+        lodOptionZombie = function(value)
             return value == 0 or value == 1
         end,
 
@@ -4241,6 +4256,8 @@ function Pregame:processOptions()
         OptionManager:SetOption('neutralMultiply', this.optionStore['lodOptionNeutralMultiply'])
         OptionManager:SetOption('laneMultiply', this.optionStore['lodOptionLaneMultiply'])
         OptionManager:SetOption('laneCreepAbility', this.optionStore['lodOptionLaneCreepBonusAbility'])
+        OptionManager:SetOption('stacking', this.optionStore['lodOptionStacking'])
+        OptionManager:SetOption('zombie', this.optionStore['lodOptionZombie'])
         OptionManager:SetOption('useFatOMeter', this.optionStore['lodOptionCrazyFatOMeter'])
         OptionManager:SetOption('universalShops', this.optionStore['lodOptionCrazyUniversalShop'])
         OptionManager:SetOption('allowIngameHeroBuilder', this.optionStore['lodOptionIngameBuilder'] == 1)
@@ -4388,7 +4405,7 @@ function Pregame:processOptions()
         -- Disabling Hero Perks
         if this.optionStore['lodOptionDisablePerks'] == 1 then
             this.perksDisabled = true
-        end
+        end 
 
         -- Single Player Ability Bans
         if not disableBanLists and this.optionStore['lodOptionBanningUseBanList'] == 1 then
@@ -4566,6 +4583,7 @@ function Pregame:processOptions()
                     ['Creeps: Multiply Neutral Camps'] = this.optionStore['lodOptionNeutralMultiply'],
                     ['Creeps: Multiply Lane Creeps'] = this.optionStore['lodOptionLaneMultiply'],
                     ['Creeps: Creep Ability'] = this.optionStore['lodOptionLaneCreepBonusAbility'],
+                    ['Creeps: Neutral Stacking'] = this.optionStore['lodOptionStacking'],
                     ['Game Speed: Bonus Starting Gold'] = this.optionStore['lodOptionGameSpeedStartingGold'],
                     ['Game Speed: Buyback Cooldown Constant'] = this.optionStore['lodOptionBuybackCooldownTimeConstant'],
                     ['Game Speed: Gold Modifier'] = math.floor(this.optionStore['lodOptionGameSpeedGoldModifier']),
@@ -4585,6 +4603,7 @@ function Pregame:processOptions()
                     ['Gamemode: Max Ults'] = this.optionStore['lodOptionCommonMaxUlts'],
                     ['Gamemode: Preset Gamemode'] = this.optionStore['lodOptionGamemode'],
                     ['Other: Enable All Vision'] = this.optionStore['lodOptionCrazyAllVision'],
+                    ['Other: Zombie Apocalypse'] = this.optionStore['lodOptionZombie'],
                     ['Other: Enable Ingame Hero Builder'] = this.optionStore['lodOptionIngameBuilder'],
                     ['Other: Enable Multicast Madness'] = this.optionStore['lodOptionCrazyMulticast'],
                     ['Other: Enable Universal Shop'] = this.optionStore['lodOptionCrazyUniversalShop'],
@@ -8091,12 +8110,11 @@ function Pregame:fixSpawnedHero( spawnedUnit )
     end
 
     -- Add talents
-    if IsValidEntity(spawnedUnit) and not spawnedUnit.hasTalent then
-
+    if IsValidEntity(spawnedUnit) then
+        if spawnedUnit.hasTalent then
+            RemoveAllTalents(spawnedUnit)
+        end
         AddTalents(spawnedUnit,self.selectedSkills[playerID])
-
-
-        
         spawnedUnit.hasTalent = true
     end
 
@@ -8250,8 +8268,8 @@ function Pregame:fixSpawnedHero( spawnedUnit )
                     spawnedUnit:SwapAbilities("phantom_assassin_coup_de_grace_melee","phantom_assassin_coup_de_grace_ranged",false,true)
                     spawnedUnit:RemoveAbility("phantom_assassin_coup_de_grace_melee")
             end
-            -- Add the BAT manager
-            spawnedUnit:AddNewModifier(spawnedUnit,nil,"modifier_bat_manager",{})
+
+            
 
             -- Custom Flesh Heap fixes
             for abilitySlot=0,6 do
@@ -8362,6 +8380,14 @@ function Pregame:fixSpawnedHero( spawnedUnit )
                 bonus_mana = 0
             })
          end
+    end
+
+    if this.optionStore['lodOptionZombie'] == 1 then
+        spawnedUnit:AddAbility("summon_zombie")
+        local givenAbility = spawnedUnit:FindAbilityByName("summon_zombie")
+        if givenAbility then
+            givenAbility:SetLevel(givenAbility:GetMaxLevel())
+        end
     end
 
     -- Handle pocket tower stuff
@@ -8770,8 +8796,8 @@ function Pregame:fixSpawningIssues()
 
                     creepAbility:SetLevel(level)
                 end
-
-            elseif string.match(spawnedUnit:GetUnitName(), "creep") or string.match(spawnedUnit:GetUnitName(), "siege") then
+            end
+            if string.match(spawnedUnit:GetUnitName(), "creep") or string.match(spawnedUnit:GetUnitName(), "siege") then
                 if this.optionStore['lodOptionCreepPower'] > 0 then
                     local dotaTime = GameRules:GetDOTATime(false, false)
                     local level = math.ceil(dotaTime / this.optionStore['lodOptionCreepPower'])
@@ -8809,12 +8835,20 @@ function Pregame:fixSpawningIssues()
                     end, DoUniqueString('evolveCreep'), .5)
 
                 end
+            end
 
-            elseif spawnedUnit:GetTeam() == DOTA_TEAM_NEUTRALS then
+            if spawnedUnit:GetTeam() == DOTA_TEAM_NEUTRALS then  
+                if OptionManager:GetOption('stacking') == 1 and spawnedUnit:GetUnitName() ~= "npc_dota_roshan" then
+                    if IsValidEntity(spawnedUnit) then
+                            -- Have to delete creeps after time or game will crash because of too many creeps
+                            spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_kill", {duration = 300})
+                    end
+                end
+                
                 -- Increasing creep power over time
                 if this.optionStore['lodOptionNeutralCreepPower'] > 0 then
                     if IsValidEntity(spawnedUnit) then
-                                spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_neutral_power", {interval_time = this.optionStore['lodOptionNeutralCreepPower']})
+                        spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_neutral_power", {interval_time = this.optionStore['lodOptionNeutralCreepPower']})
                     end
                 end
             end
@@ -8949,5 +8983,3 @@ ListenToGameEvent('game_rules_state_change', function(keys)
 end, nil)
 
 return _instance
-
-

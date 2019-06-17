@@ -490,6 +490,14 @@ function Ingame:onStart()
             return 1
         end, 'check_consumable_items', 1)
     end
+
+    if OptionManager:GetOption('stacking') == 1 then
+        for k,Ent in pairs(Entities:FindAllByClassname("trigger_multiple")) do
+            if Ent:GetName():find("neutralcamp")~=nil then
+            Ent:Disable()
+            end
+        end
+    end
     
     if not randomLaneCreepSpawnerMade and OptionManager:GetOption("randomLaneCreeps") ~= 0 then
             randomLaneCreepSpawnerMade = true

@@ -198,6 +198,10 @@ var basicOptions = {
                         }
                     },
                     {
+                        name: 'lodOptionStacking',
+                        about: 'lodMutatorStacking'
+                    },
+                    {
                         name: 'lodOptionCommonMaxUlts',
                         default: {
                             'lodMutatorMaxUlts1': 2
@@ -705,6 +709,10 @@ var basicOptions = {
                             }
                         }
                     },	
+                    {
+                        name: 'lodOptionZombie',
+                        about: 'lodMutatorZombie'
+                    },
                 ]
             }
         ]
@@ -1691,6 +1699,22 @@ var advancedOptions = {
                 ]
             },
             {
+                name: 'lodOptionStacking',
+                des: 'lodOptionDesStacking',
+                about: 'lodOptionAboutStacking',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },            
+            {
                 name: 'lodOptionLaneCreepBonusAbility',
                 des: 'lodOptionDesLaneCreepBonusAbility',
                 about: 'lodOptionAboutLaneCreepBonusAbility',
@@ -2637,6 +2661,22 @@ var advancedOptions = {
                        value: 1
                    }
                ]
+            },
+            {
+                name: 'lodOptionZombie',
+                des: 'lodOptionDesZombie',
+                about: 'lodOptionAboutZombie',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
             },
             //{
             //    name: 'lodOptionMonkeyBusiness',
