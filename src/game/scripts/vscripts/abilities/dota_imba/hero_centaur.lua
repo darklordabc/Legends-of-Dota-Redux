@@ -15,12 +15,7 @@
 -- Editors:
 --     Seinken, 05.03.2017
 --     suthernfriend, 03.02.2018
-
-if IsClient() then
-    require('lib/util_imba_client')
-end
-
-CreateEmptyTalents("centaur")
+--     Elfansoer, 22.06.2019
 
 ---------------------------------
 -- 		   Thick Hide          --
@@ -28,10 +23,6 @@ CreateEmptyTalents("centaur")
 
 imba_centaur_thick_hide = class({})
 LinkLuaModifier("modifier_imba_thick_hide", "abilities/dota_imba/hero_centaur.lua", LUA_MODIFIER_MOTION_NONE)
-
-function imba_centaur_thick_hide:GetAbilityTextureName()
-	return "custom/centaur_thick_hide"
-end
 
 function imba_centaur_thick_hide:GetIntrinsicModifierName()
 	return "modifier_imba_thick_hide"
@@ -55,7 +46,10 @@ function modifier_imba_thick_hide:OnCreated()
 end
 
 function modifier_imba_thick_hide:DeclareFunctions()
-	local decFuncs = {MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE}
+	local decFuncs = {
+		MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
+		MODIFIER_PROPERTY_STATUS_RESISTANCE_STACKING,
+	}
 
 	return decFuncs
 end
@@ -69,10 +63,9 @@ function modifier_imba_thick_hide:GetModifierIncomingDamage_Percentage()
 	return self.damage_reduction_pct * (-1)
 end
 
-function modifier_imba_thick_hide:GetCustomTenacity()
+function modifier_imba_thick_hide:GetModifierStatusResistanceStacking()
 	return self.debuff_duration_red_pct
 end
-
 
 ---------------------------------
 -- 		   Hoof Stomp          --
@@ -83,10 +76,6 @@ imba_centaur_hoof_stomp = class({})
 LinkLuaModifier("modifier_imba_hoof_stomp_stun", "abilities/dota_imba/hero_centaur.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_imba_hoof_stomp_arena_debuff", "abilities/dota_imba/hero_centaur.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_imba_hoof_stomp_arena_buff", "abilities/dota_imba/hero_centaur.lua", LUA_MODIFIER_MOTION_NONE)
-
-function imba_centaur_hoof_stomp:GetAbilityTextureName()
-	return "centaur_hoof_stomp"
-end
 
 function imba_centaur_hoof_stomp:IsHiddenWhenStolen()
 	return false
@@ -116,6 +105,7 @@ function imba_centaur_hoof_stomp:OnSpellStart()
 		self.lastCasterLocation = nil
 
 		caster:RemoveModifierByName("modifier_imba_return_passive")
+		
 		if caster:HasAbility("imba_centaur_return") then
 			caster:AddNewModifier(caster,caster:FindAbilityByName("imba_centaur_return"),"modifier_imba_return_passive",{})
 		end
@@ -180,7 +170,13 @@ function imba_centaur_hoof_stomp:OnSpellStart()
 				end
 			end
 		end
-
+	
+		-- Prevents overlapping permanent particle effects from Hoof Stomp spam
+		if self.particle_arena_fx then
+			ParticleManager:DestroyParticle(self.particle_arena_fx, false)
+			ParticleManager:ReleaseParticleIndex(self.particle_arena_fx)
+		end
+		
 		-- Add arena particles for the duration
 		self.particle_arena_fx = ParticleManager:CreateParticle(particle_arena, PATTACH_ABSORIGIN, caster)
 		ParticleManager:SetParticleControl(self.particle_arena_fx, 0, caster:GetAbsOrigin())
@@ -476,22 +472,39 @@ function modifier_imba_hoof_stomp_arena_buff:IsDebuff()
 	return false
 end
 
-
-
 ---------------------------------
 -- 		   Double Edge         --
 ---------------------------------
 
 
 imba_centaur_double_edge = class({})
-LinkLuaModifier("modifier_imba_double_edge_death_prevent", "abilities/dota_imba/hero_centaur", LUA_MODIFIER_MOTION_NONE)
 
 function imba_centaur_double_edge:GetAbilityTextureName()
-	return "centaur_double_edge"
+	if not IsClient() then return end
+	if not self:GetCaster().arcana_style then return "centaur_double_edge" end
+	return "centaur_double_edge_ti9"
 end
 
 function imba_centaur_double_edge:IsHiddenWhenStolen()
 	return false
+end
+
+function imba_centaur_double_edge:OnAbilityPhaseStart()
+	if IsServer() then
+		self.phase_double_edge_pfx = ParticleManager:CreateParticle(self:GetCaster().double_edge_phase_pfx, PATTACH_CUSTOMORIGIN, self:GetCaster())
+		ParticleManager:SetParticleControl(self.phase_double_edge_pfx, 0, self:GetCaster():GetAbsOrigin())
+		ParticleManager:SetParticleControl(self.phase_double_edge_pfx, 3, self:GetCaster():GetAbsOrigin())
+		ParticleManager:SetParticleControl(self.phase_double_edge_pfx, 9, self:GetCaster():GetAbsOrigin())
+	end
+
+	return true
+end
+
+function imba_centaur_double_edge:OnAbilityPhaseInterrupted()
+	if self.phase_double_edge_pfx then
+		ParticleManager:DestroyParticle(self.phase_double_edge_pfx, false)
+		ParticleManager:ReleaseParticleIndex(self.phase_double_edge_pfx)
+	end
 end
 
 function imba_centaur_double_edge:OnSpellStart()
@@ -503,8 +516,6 @@ function imba_centaur_double_edge:OnSpellStart()
 		local sound_cast = "Hero_Centaur.DoubleEdge"
 		local cast_response
 		local kill_response = "centaur_cent_doub_edge_0"..RandomInt(5, 6)
-		local particle_edge = "particles/units/heroes/hero_centaur/centaur_double_edge.vpcf"
-		local modifier_prevent = "modifier_imba_double_edge_death_prevent"
 
 		-- Ability specials
 		-- #4 Talent: Damage increased by 2*strength
@@ -549,34 +560,15 @@ function imba_centaur_double_edge:OnSpellStart()
 		end
 
 		-- Add double edge particle
-		local particle_edge_fx = ParticleManager:CreateParticle(particle_edge, PATTACH_ABSORIGIN, caster)
+		local particle_edge_fx = ParticleManager:CreateParticle(caster.double_edge_pfx, PATTACH_ABSORIGIN, caster)
 		ParticleManager:SetParticleControl(particle_edge_fx, 0, target:GetAbsOrigin())
-		ParticleManager:SetParticleControl(particle_edge_fx, 1, caster:GetAbsOrigin())
-		ParticleManager:SetParticleControl(particle_edge_fx, 2, caster:GetAbsOrigin())
-		ParticleManager:SetParticleControl(particle_edge_fx, 4, caster:GetAbsOrigin())
+		ParticleManager:SetParticleControl(particle_edge_fx, 1, target:GetAbsOrigin())
+		ParticleManager:SetParticleControl(particle_edge_fx, 2, target:GetAbsOrigin())
+		ParticleManager:SetParticleControl(particle_edge_fx, 3, target:GetAbsOrigin())
+		ParticleManager:SetParticleControl(particle_edge_fx, 4, target:GetAbsOrigin())
 		ParticleManager:SetParticleControl(particle_edge_fx, 5, target:GetAbsOrigin())
+		ParticleManager:SetParticleControl(particle_edge_fx, 9, target:GetAbsOrigin())
 		ParticleManager:ReleaseParticleIndex(particle_edge_fx)
-
-		-- Apply death prevention modifier to caster
-		caster:AddNewModifier(caster, ability, modifier_prevent, {})
-
-		-- Calculate self damage, using Centaur's Strength
-		local strength = caster:GetStrength() * (str_damage_reduction/100)
-		local self_damage = damage - strength
-
-		-- Damage caster
-		local damageTable = {victim = caster,
-			attacker = caster,
-			damage = self_damage,
-			damage_type = DAMAGE_TYPE_MAGICAL,
-			ability = ability}
-
-		ApplyDamage(damageTable)
-
-		-- Remove death prevention modifier
-		if caster:HasModifier(modifier_prevent) then
-			caster:RemoveModifierByName(modifier_prevent)
-		end
 
 		-- Find all enemies in the target's radius
 		local enemies = FindUnitsInRadius(caster:GetTeamNumber(),
@@ -596,7 +588,8 @@ function imba_centaur_double_edge:OnSpellStart()
 					attacker = caster,
 					damage = damage,
 					damage_type = DAMAGE_TYPE_MAGICAL,
-					ability = ability}
+					ability = ability
+				}
 
 				ApplyDamage(damageTable)
 
@@ -609,37 +602,21 @@ function imba_centaur_double_edge:OnSpellStart()
 			end
 		end
 
+		-- Calculate self damage, using Centaur's Strength
+		local strength = caster:GetStrength() * (str_damage_reduction/100)
+		local self_damage = damage - strength
+
+		-- Damage caster
+		local damageTable = {victim = caster,
+			attacker = caster,
+			damage = self_damage,
+			damage_type = DAMAGE_TYPE_MAGICAL,
+			damage_flags = DOTA_DAMAGE_FLAG_NON_LETHAL,
+			ability = ability}
+
+		ApplyDamage(damageTable)
 	end
-
 end
-
-
--- Death prevention modifier for the caster
-modifier_imba_double_edge_death_prevent = class({})
-
-function modifier_imba_double_edge_death_prevent:IsHidden()
-	return true
-end
-
-function modifier_imba_double_edge_death_prevent:IsPurgable()
-	return false
-end
-
-function modifier_imba_double_edge_death_prevent:IsDebuff()
-	return false
-end
-
-function modifier_imba_double_edge_death_prevent:DeclareFunctions()
-	local decFuncs = {MODIFIER_PROPERTY_MIN_HEALTH}
-
-	return decFuncs
-end
-
-function modifier_imba_double_edge_death_prevent:GetMinHealth()
-	return 1
-end
-
-
 
 ---------------------------------
 -- 		   Return 		       --
@@ -650,13 +627,26 @@ LinkLuaModifier("modifier_imba_return_aura", "abilities/dota_imba/hero_centaur",
 LinkLuaModifier("modifier_imba_return_passive", "abilities/dota_imba/hero_centaur", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_imba_return_damage_block", "abilities/dota_imba/hero_centaur", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_imba_return_damage_block_buff", "abilities/dota_imba/hero_centaur", LUA_MODIFIER_MOTION_NONE)
-
-function imba_centaur_return:GetAbilityTextureName()
-	return "centaur_return"
-end
+LinkLuaModifier("modifier_imba_return_bonus_damage", "abilities/dota_imba/hero_centaur", LUA_MODIFIER_MOTION_NONE)
 
 function imba_centaur_return:GetIntrinsicModifierName()
 	return "modifier_imba_return_aura"
+end
+
+function imba_centaur_return:OnAbilityPhaseStart()
+	if self:GetCaster():FindModifierByName("modifier_imba_return_passive"):GetStackCount() == 0 then
+		return false
+	end
+
+	return true
+end
+
+function imba_centaur_return:OnSpellStart()
+	if IsServer() then
+		self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_imba_return_bonus_damage", {duration=self:GetSpecialValueFor("duration")}):SetStackCount(self:GetCaster():FindModifierByName("modifier_imba_return_passive"):GetStackCount())
+		self:GetCaster():FindModifierByName("modifier_imba_return_passive"):SetStackCount(0)
+		self:GetCaster():EmitSound("Hero_Centaur.Retaliate.Cast")
+	end
 end
 
 -- Return Aura
@@ -729,9 +719,10 @@ end
 modifier_imba_return_passive = class({})
 
 function modifier_imba_return_passive:DeclareFunctions()
-	local decFuncs = {MODIFIER_EVENT_ON_TAKEDAMAGE}
-
-	return decFuncs
+	return {
+		MODIFIER_EVENT_ON_TAKEDAMAGE,
+		MODIFIER_EVENT_ON_ATTACK_LANDED,
+	}
 end
 
 function modifier_imba_return_passive:OnTakeDamage(keys)
@@ -788,9 +779,9 @@ function modifier_imba_return_passive:OnTakeDamage(keys)
 			-- Note: Might remove this `if` this happens again
 			if attacker:FindModifierByName("modifier_imba_spiked_carapace") then
 				self.reflect_handler = true
-				Timers:CreateTimer(function()
+				Timers:CreateTimer(FrameTime(),function()
 					self.reflect_handler = false
-				end, DoUniqueString('fixreflect'), FrameTime())
+				end)
 			end
 
 			-- Add return particle
@@ -807,7 +798,7 @@ function modifier_imba_return_passive:OnTakeDamage(keys)
 				attacker = parent,
 				damage = final_damage,
 				damage_type = DAMAGE_TYPE_PHYSICAL,
-				damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION,
+				damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_REFLECTION,
 				ability = ability}
 
 			ApplyDamage(damageTable)
@@ -818,6 +809,24 @@ function modifier_imba_return_passive:OnTakeDamage(keys)
 			end
 
 			parent:AddNewModifier(parent, ability, "modifier_imba_return_damage_block_buff", {duration = block_duration})
+		end
+	end
+end
+
+function modifier_imba_return_passive:OnAttackLanded(keys)
+	if IsServer() then
+		local attacker = keys.attacker
+		local target = keys.target
+
+		if self:GetStackCount() >= self:GetAbility():GetSpecialValueFor("max_stacks") then
+			return nil
+		end
+
+		-- Only apply if the parent is the victim and the attacker is on the opposite team
+		if self:GetParent() == target and attacker:GetTeamNumber() ~= target:GetTeamNumber() then
+			if attacker:IsHero() or attacker:IsTower() then
+				self:SetStackCount(self:GetStackCount() + 1)
+			end
 		end
 	end
 end
@@ -878,19 +887,34 @@ function modifier_imba_return_damage_block_buff:IsStunDebuff() 		return false en
 function modifier_imba_return_damage_block_buff:RemoveOnDeath() 	return true end
 function modifier_imba_return_damage_block_buff:GetAttributes() 	return MODIFIER_ATTRIBUTE_MULTIPLE end
 
+modifier_imba_return_bonus_damage = class({})
+
+function modifier_imba_return_bonus_damage:GetEffectName()
+	return "particles/units/heroes/hero_centaur/centaur_return_buff.vpcf"
+end
+
+function modifier_imba_return_bonus_damage:GetEffectAttachType()
+	return "attach_attack1"
+end
+
+function modifier_imba_return_bonus_damage:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE,
+	}
+end
+
+function modifier_imba_return_bonus_damage:GetModifierBaseDamageOutgoing_Percentage()
+	return self:GetAbility():GetSpecialValueFor("bonus_damage") * self:GetStackCount()
+end
+
 ---------------------------------
 -- 		   Stampede            --
 ---------------------------------
-
 
 imba_centaur_stampede = class({})
 LinkLuaModifier("modifier_imba_stampede_haste", "abilities/dota_imba/hero_centaur", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_imba_stampede_trample_stun", "abilities/dota_imba/hero_centaur", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_imba_stampede_trample_slow", "abilities/dota_imba/hero_centaur", LUA_MODIFIER_MOTION_NONE)
-
-function imba_centaur_stampede:GetAbilityTextureName()
-	return "centaur_stampede"
-end
 
 function imba_centaur_stampede:IsHiddenWhenStolen()
 	return false
@@ -1062,8 +1086,11 @@ function modifier_imba_stampede_haste:OnIntervalThink()
 end
 
 function modifier_imba_stampede_haste:DeclareFunctions()
-	local decFuncs = {MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE,
-		MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE}
+	local decFuncs = {
+		MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE,
+		MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
+		MODIFIER_PROPERTY_STATUS_RESISTANCE_STACKING
+	}
 
 	return decFuncs
 end
@@ -1081,7 +1108,7 @@ function modifier_imba_stampede_haste:GetModifierIncomingDamage_Percentage()
 	return nil
 end
 
-function modifier_imba_stampede_haste:GetCustomTenacity()
+function modifier_imba_stampede_haste:GetModifierStatusResistanceStacking()
 	return self:GetCaster():FindTalentValue("special_bonus_imba_centaur_5")
 end
 

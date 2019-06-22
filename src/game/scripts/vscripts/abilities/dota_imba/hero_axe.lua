@@ -15,12 +15,12 @@
 -- Editors:
 --     sercankd, 17.05.2017
 --     suthernfriend, 03.02.2018
+--     Elfansoer, 21.06.2019
 
 if IsClient() then
     require('lib/util_imba_client')
 end
 
-CreateEmptyTalents("axe")
 local LinkedModifiers = {}
 -------------------------------------------
 --			     Berserker's Call            --
@@ -37,8 +37,12 @@ MergeTables(LinkedModifiers,{
 
 imba_axe_berserkers_call = imba_axe_berserkers_call or class({})
 
-function imba_axe_berserkers_call:GetAbilityTextureName()
-	return "axe_berserkers_call"
+function imba_axe_berserkers_call:OnAbilityPhaseStart()
+	if IsServer() then
+		EmitSoundOn("Hero_Axe.BerserkersCall.Start", self:GetCaster())
+	end
+
+	return true
 end
 
 function imba_axe_berserkers_call:OnSpellStart()
@@ -308,13 +312,25 @@ function imba_axe_battle_hunger:CastFilterResultTarget(target)
 	end
 end
 
-function imba_axe_battle_hunger:GetAbilityTextureName()
-	return "axe_battle_hunger"
-end
-
 --Do the battle hunger animation
 function imba_axe_battle_hunger:GetCastAnimation()
 	return(ACT_DOTA_OVERRIDE_ABILITY_2)
+end
+
+function imba_axe_battle_hunger:GetBehavior()
+	if self:GetCaster():HasScepter() then
+		return DOTA_ABILITY_BEHAVIOR_AOE + DOTA_ABILITY_BEHAVIOR_UNIT_TARGET
+	end
+
+	return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET
+end
+
+function imba_axe_battle_hunger:GetAOERadius()
+	if self:GetCaster():HasScepter() then
+		return self:GetSpecialValueFor("scepter_range")
+	end
+
+	return 0
 end
 
 function imba_axe_battle_hunger:OnSpellStart()
@@ -323,8 +339,8 @@ function imba_axe_battle_hunger:OnSpellStart()
 	local ability                   =       self
 	local random_response           =       "axe_axe_ability_battlehunger_0"..math.random(1,3)
 
-	self:GetCaster():EmitSound("Hero_Axe.Battle_Hunger")
-	self:GetCaster():EmitSound(random_response)
+	caster:EmitSound("Hero_Axe.Battle_Hunger")
+	caster:EmitSound(random_response)
 
 	if caster ~= target then
 		-- If the target possesses a ready Linken's Sphere, do nothing
@@ -334,7 +350,14 @@ function imba_axe_battle_hunger:OnSpellStart()
 			end
 		end
 
-		self:ApplyBattleHunger(caster, target)
+		if caster:HasScepter() then
+			local enemies = FindUnitsInRadius(caster:GetTeamNumber(), target:GetAbsOrigin(), nil, self:GetAOERadius(), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
+			for _, enemy in pairs(enemies) do
+				self:ApplyBattleHunger(caster, enemy)
+			end
+		else
+			self:ApplyBattleHunger(caster, target)
+		end
 		-- Self-cast with the talent (the cast permission is checked in CastFilterResultTarget)
 	else
 		local berserkers_call = caster:FindAbilityByName("imba_axe_berserkers_call")
@@ -371,7 +394,9 @@ function imba_axe_battle_hunger:ApplyBattleHunger(caster, target)
 
 	-- Roshan Battle Hunger doesn't pause due to no damage done, sorry, no cheesing
 	-- feel free to cast on creeps, though
-	if IsRoshan(target) then
+	--[[Elfansoer: Fix portability problem]]
+	-- if target:IsRoshan() then
+	if target:GetUnitName() == "npc_dota_roshan" then
 		target:AddNewModifier(caster, self, target_modifier, {duration = duration, no_pause = true})
 	else
 		target:AddNewModifier(caster, self, target_modifier, {duration = duration, no_pause = false})
@@ -677,7 +702,9 @@ function imba_axe_counter_helix:GetCastRange()
 end
 
 function imba_axe_counter_helix:GetAbilityTextureName()
-	return "axe_counter_helix"
+	if not IsClient() then return end
+	if not self:GetCaster().arcana_style then return "axe_counter_helix" end
+	return "axe_counter_helix_unleashed"
 end
 
 function imba_axe_counter_helix:GetIntrinsicModifierName()
@@ -694,8 +721,6 @@ function modifier_imba_counter_helix_passive:OnCreated()
 
 	self.caster = self:GetCaster()
 	self.ability = self:GetAbility()
-	self.particle_spin_1 = "particles/units/heroes/hero_axe/axe_attack_blur_counterhelix.vpcf"
-	self.particle_spin_2 = "particles/units/heroes/hero_axe/axe_counterhelix.vpcf"
 	self.modifier_enemy_taunt = "modifier_imba_berserkers_call_debuff_cmd"
 	self.spin_to_win_modifier = "modifier_imba_counter_helix_spin_stacks"
 
@@ -726,7 +751,12 @@ function modifier_imba_counter_helix_passive:OnRefresh()
 end
 
 function modifier_imba_counter_helix_passive:DeclareFunctions()
-	local decFuncs = {MODIFIER_EVENT_ON_ATTACKED}
+	local decFuncs =
+	{
+		MODIFIER_EVENT_ON_ATTACKED,
+		MODIFIER_EVENT_ON_ATTACK_LANDED
+	}
+	
 	return decFuncs
 end
 
@@ -751,11 +781,11 @@ function modifier_imba_counter_helix_passive:OnAttacked(keys)
 
 			-- Talent : Your armor value is added to Counter Helix damage
 			if self.caster:HasTalent("special_bonus_imba_axe_7") then
-				self.total_damage = self.total_damage + self.caster:GetPhysicalArmorValue() * self.caster:FindTalentValue("special_bonus_imba_axe_7")
+				self.total_damage = self.total_damage + self.caster:GetPhysicalArmorValue(false) * self.caster:FindTalentValue("special_bonus_imba_axe_7")
 			end
 
 			--calculate chance to counter helix
-			if RollPercentage(self.proc_chance) then
+			if RollPseudoRandom(self.proc_chance, self) then
 				self:Spin(self.allow_repeat)
 			end
 			return true
@@ -763,14 +793,43 @@ function modifier_imba_counter_helix_passive:OnAttacked(keys)
 	end
 end
 
+function modifier_imba_counter_helix_passive:OnAttackLanded(keys)
+	if not IsServer() or keys.attacker ~= self:GetParent() or self.caster:PassivesDisabled() or not self.caster:HasTalent("special_bonus_imba_axe_9") then return end
+
+	-- +30% of your strength added to Counter Helix damage.
+	if self.caster:HasTalent("special_bonus_imba_axe_4") then
+		self.str = self.caster:GetStrength() / 100
+		self.talent_4_value = self.caster:FindTalentValue("special_bonus_imba_axe_4")
+		self.bonus_damage = self.str * self.talent_4_value
+		self.total_damage = self.base_damage + self.bonus_damage
+	else
+		self.total_damage = self.base_damage
+	end
+
+	-- Talent : Your armor value is added to Counter Helix damage
+	if self.caster:HasTalent("special_bonus_imba_axe_7") then
+		self.total_damage = self.total_damage + self.caster:GetPhysicalArmorValue(false) * self.caster:FindTalentValue("special_bonus_imba_axe_7")
+	end
+
+	--calculate chance to counter helix
+	if RollPseudoRandom(self.proc_chance, self) then
+		self:Spin(self.allow_repeat)
+	end
+end
+
 function modifier_imba_counter_helix_passive:Spin( repeat_allowed )
-	self.helix_pfx_1 = ParticleManager:CreateParticle(self.particle_spin_1, PATTACH_ABSORIGIN_FOLLOW, self.caster)
+	self.helix_pfx_1 = ParticleManager:CreateParticle(self.caster.counter_helix_pfx, PATTACH_ABSORIGIN_FOLLOW, self.caster)
 	ParticleManager:SetParticleControl(self.helix_pfx_1, 0, self.caster:GetAbsOrigin())
+	if Battlepass and Battlepass:HasAxeArcana(self.caster:GetPlayerID()) then
+		ParticleManager:SetParticleControlEnt(self.helix_pfx_1, 1, self.caster, PATTACH_POINT_FOLLOW, "attach_attack1", self.caster:GetAbsOrigin(), true)
+		ParticleManager:SetParticleControlEnt(self.helix_pfx_1, 2, self.caster, PATTACH_POINT_FOLLOW, "attach_attack2", self.caster:GetAbsOrigin(), true)
+		ParticleManager:SetParticleControl(self.helix_pfx_1, 3, self.caster:GetAbsOrigin())
+	end
 	ParticleManager:ReleaseParticleIndex(self.helix_pfx_1)
 
-	self.helix_pfx_2 = ParticleManager:CreateParticle(self.particle_spin_2, PATTACH_ABSORIGIN_FOLLOW, self.caster)
-	ParticleManager:SetParticleControl(self.helix_pfx_2, 0, self.caster:GetAbsOrigin())
-	ParticleManager:ReleaseParticleIndex(self.helix_pfx_2)
+--	self.helix_pfx_2 = ParticleManager:CreateParticle("particles/units/heroes/hero_axe/axe_counterhelix.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.caster)
+--	ParticleManager:SetParticleControl(self.helix_pfx_2, 0, self.caster:GetAbsOrigin())
+--	ParticleManager:ReleaseParticleIndex(self.helix_pfx_2)
 
 	self.caster:StartGesture(ACT_DOTA_CAST_ABILITY_3)
 	self.caster:EmitSound("Hero_Axe.CounterHelix")
@@ -793,7 +852,7 @@ function modifier_imba_counter_helix_passive:Spin( repeat_allowed )
 			SendOverheadEventMessage(nil, OVERHEAD_ALERT_DAMAGE, enemy, damage, nil)
 		end
 
-		ApplyDamage({attacker = self.caster, victim = enemy, ability = self.ability, damage = self.total_damage, damage_type = DAMAGE_TYPE_PURE})
+		ApplyDamage({attacker = self.caster, victim = enemy, ability = self.ability, damage = damage, damage_type = DAMAGE_TYPE_PURE})
 	end
 
 	if spin_to_win then
@@ -864,11 +923,17 @@ MergeTables(LinkedModifiers,{
 imba_axe_culling_blade = imba_axe_culling_blade or class({})
 
 function imba_axe_culling_blade:GetAbilityTextureName()
-	return "axe_culling_blade"
+	if not IsClient() then return end
+	if not self:GetCaster().arcana_style then return "axe_culling_blade" end
+	return "axe_culling_blade_unleashed"
 end
 
-function imba_axe_culling_blade:GetCastRange()
-	return 150 + self:GetCaster():FindTalentValue("special_bonus_imba_axe_8");
+function imba_axe_culling_blade:GetCastRange(location, target)
+	if IsClient() then
+		return self.BaseClass.GetCastRange(self, location, target)
+	else
+		return self.BaseClass.GetCastRange(self, location, target) + self:GetCaster():FindTalentValue("special_bonus_imba_axe_8")
+	end
 end
 
 function imba_axe_culling_blade:OnSpellStart()
@@ -880,7 +945,6 @@ function imba_axe_culling_blade:OnSpellStart()
 	self.scepter = self.caster:HasScepter()
 
 	--particle
-	self.particle_kill = "particles/units/heroes/hero_axe/axe_culling_blade_kill.vpcf"
 	self.kill_enemy_response = "axe_axe_ability_cullingblade_0"..math.random(1,2)
 
 	--ability specials
@@ -932,7 +996,7 @@ function imba_axe_culling_blade:OnSpellStart()
 
 	-- Check if the target HP is equal or below the threshold
 	if ( self.target:GetHealth() <= self.kill_threshold or (self.target:GetHealth()/self.target:GetMaxHealth() <= self.kill_threshold_max_hp_pct) ) and not self.target:HasModifier("modifier_imba_reincarnation_scepter_wraith") then
-		if self.caster:HasTalent("special_bonus_imba_axe_8") then
+		if self.caster:HasTalent("special_bonus_imba_axe_8") and (self:GetCaster():GetAbsOrigin() - self.target_location):Length2D() > self.BaseClass.GetCastRange(self, self.target_location, self.target) then
 			self:GetCaster():AddNewModifier( self:GetCaster(), self, "modifier_imba_culling_blade_motion", kv )
 			self:GetCaster():StartGestureWithPlaybackRate( ACT_DOTA_CAST_ABILITY_4, 1 )
 			Timers:CreateTimer(0.40, function()
@@ -975,7 +1039,10 @@ function imba_axe_culling_blade:OnSpellStart()
 			else
 				dunk_modifier = self.caster:AddNewModifier(self.caster, self, self.culling_modifier, {duration = self.culling_stack_duration})
 			end
+			--[[Fixed error dunk_modifier is nil when caster also killed because of lotus
 			dunk_modifier:IncrementStackCount()
+			]]
+			if dunk_modifier then dunk_modifier:IncrementStackCount() end
 		end
 
 		--scepter apply battle hunger to enemies in radius
@@ -988,18 +1055,19 @@ function imba_axe_culling_blade:OnSpellStart()
 				end
 			end
 		end
-
 	else
-		if self.caster:HasTalent("special_bonus_imba_axe_8") then
+		if self.caster:HasTalent("special_bonus_imba_axe_8") and (self:GetCaster():GetAbsOrigin() - self.target_location):Length2D() > self.BaseClass.GetCastRange(self, self.target_location, self.target) then
 			self:GetCaster():AddNewModifier( self:GetCaster(), self, "modifier_imba_culling_blade_motion", kv )
 			self:GetCaster():StartGestureWithPlaybackRate( ACT_DOTA_CAST_ABILITY_4, 1 )
-			Timers:CreateTimer(0.50, function()
+			Timers:CreateTimer(0.4, function()
+				EmitSoundOn("Hero_Axe.Culling_Blade_Fail", self:GetCaster())
 				ApplyDamage( self.damageTable )
 			end)
 		else
+			EmitSoundOn("Hero_Axe.Culling_Blade_Fail", self:GetCaster())
 			ApplyDamage( self.damageTable )
 		end
-		EmitSoundOn("Hero_Axe.Culling_Blade_Fail", self:GetCaster())
+
 		-- You get nothing! You lose! Good day, sir!
 		self.caster:RemoveModifierByName(self.culling_modifier)
 	end
@@ -1011,18 +1079,19 @@ function imba_axe_culling_blade:KillUnit(target)
 	self.heal_amount = (self.caster:GetMaxHealth() / 100) * self.max_health_kill_heal_pct
 	self.caster:Heal(self.heal_amount, self.caster)
 	-- Play the kill particle
-	self.culling_kill_particle = ParticleManager:CreateParticle(self.particle_kill, PATTACH_CUSTOMORIGIN, self.caster)
-	ParticleManager:SetParticleControlEnt(self.culling_kill_particle, 0, self.target, PATTACH_POINT_FOLLOW, "attach_hitloc", self.target_location, true)
-	ParticleManager:SetParticleControlEnt(self.culling_kill_particle, 1, self.target, PATTACH_POINT_FOLLOW, "attach_hitloc", self.target_location, true)
-	ParticleManager:SetParticleControlEnt(self.culling_kill_particle, 2, self.target, PATTACH_POINT_FOLLOW, "attach_hitloc", self.target_location, true)
-	ParticleManager:SetParticleControlEnt(self.culling_kill_particle, 4, self.target, PATTACH_POINT_FOLLOW, "attach_hitloc", self.target_location, true)
-	ParticleManager:SetParticleControlEnt(self.culling_kill_particle, 8, self.target, PATTACH_POINT_FOLLOW, "attach_hitloc", self.target_location, true)
+	self.culling_kill_particle = ParticleManager:CreateParticle(self.caster.culling_blade_kill_pfx, PATTACH_CUSTOMORIGIN, self.caster)
+	--ParticleManager:SetParticleControlEnt(self.culling_kill_particle, 0, self.target, PATTACH_POINT_FOLLOW, "attach_hitloc", self.target_location, true)
+	--ParticleManager:SetParticleControlEnt(self.culling_kill_particle, 1, self.target, PATTACH_POINT_FOLLOW, "attach_hitloc", self.target_location, true)
+	--ParticleManager:SetParticleControlEnt(self.culling_kill_particle, 2, self.target, PATTACH_POINT_FOLLOW, "attach_hitloc", self.target_location, true)
+	-- ParticleManager:SetParticleControlEnt(self.culling_kill_particle, 4, self.target, PATTACH_POINT_FOLLOW, "attach_hitloc", self.target_location, true)
+	ParticleManager:SetParticleControl(self.culling_kill_particle, 4, self.target_location)
+	-- ParticleManager:SetParticleControlEnt(self.culling_kill_particle, 8, self.target, PATTACH_POINT_FOLLOW, "attach_hitloc", self.target_location, true)
 	ParticleManager:ReleaseParticleIndex(self.culling_kill_particle)
 
 end
 
 function imba_axe_culling_blade:GetCastAnimation(target)
-	if self:GetCaster():HasTalent("special_bonus_imba_axe_8") then
+	if self:GetCaster():HasTalent("special_bonus_imba_axe_8") and (self:GetCaster():GetAbsOrigin() - self.target_location):Length2D() > self.BaseClass.GetCastRange(self, self.target_location, self.target) then
 		return ACT_SHOTGUN_PUMP
 	else
 		return ACT_DOTA_CAST_ABILITY_4
@@ -1050,10 +1119,15 @@ end
 modifier_imba_culling_blade_buff_haste = modifier_imba_culling_blade_buff_haste or class({})
 
 function modifier_imba_culling_blade_buff_haste:OnCreated()
+	-- I know that's a terrible workaround
+	if self:GetCaster().culling_blade_boost_pfx == "particles/econ/items/axe/ti9_jungle_axe/ti9_jungle_axe_culling_blade_boost.vpcf" then
+		self:SetStackCount(1)
+	end
 
-	self.axe_culling_blade_boost = ParticleManager:CreateParticle("particles/units/heroes/hero_axe/axe_culling_blade_boost.vpcf", PATTACH_CUSTOMORIGIN, self.caster)
+	self.axe_culling_blade_boost = ParticleManager:CreateParticle(self:GetCaster().culling_blade_boost_pfx, PATTACH_CUSTOMORIGIN, self:GetCaster())
 	ParticleManager:ReleaseParticleIndex(self.axe_culling_blade_boost)
 
+	self.pfx = ParticleManager:CreateParticle(self:GetCaster().culling_blade_sprint_pfx, PATTACH_ABSORIGIN_FOLLOW, self:GetCaster())
 end
 
 function modifier_imba_culling_blade_buff_haste:DeclareFunctions()
@@ -1079,8 +1153,26 @@ function modifier_imba_culling_blade_buff_haste:IsPurgable()
 	return true
 end
 
+function modifier_imba_culling_blade_buff_haste:StatusEffectPriority()
+	return 11
+end
+
+-- Pretty sure these effects are not working at all. Maybe they're not status effects
 function modifier_imba_culling_blade_buff_haste:GetStatusEffectName()
-	return "particles/units/heroes/hero_axe/axe_cullingblade_sprint.vpcf"
+	if self:GetStackCount() == 1 then
+		return "particles/econ/items/axe/ti9_jungle_axe/ti9_jungle_axe_culling_blade_hero_effect.vpcf"
+	else
+		return "particles/units/heroes/hero_axe/axe_culling_blade_hero_effect.vpcf"
+	end
+end
+
+function modifier_imba_culling_blade_buff_haste:OnDestroy()
+	if IsServer() then
+		if self.pfx then
+			ParticleManager:DestroyParticle(self.pfx, false)
+			ParticleManager:ReleaseParticleIndex(self.pfx)
+		end
+	end
 end
 
 -------------------------------------------
@@ -1205,4 +1297,37 @@ end
 -------------------------------------------
 for LinkedModifier, MotionController in pairs(LinkedModifiers) do
 	LinkLuaModifier(LinkedModifier, "abilities/dota_imba/hero_axe", MotionController)
+end
+
+-- Arcana handler
+modifier_axe_arcana = modifier_axe_arcana or class ({})
+
+function modifier_axe_arcana:RemoveOnDeath()
+	return false
+end
+
+function modifier_axe_arcana:IsHidden()
+	return true
+end
+
+function modifier_axe_arcana:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_TRANSLATE_ATTACK_SOUND
+	}
+end
+
+function modifier_axe_arcana:OnCreated()
+	if IsServer() then
+		if Battlepass and Battlepass:HasAxeArcana(self:GetParent():GetPlayerID()) then
+			self:SetStackCount(1)
+		end
+	end
+end
+
+function modifier_axe_arcana:GetAttackSound()
+	if self:GetStackCount() == 1 then
+		return "Hero_Axe.Attack.Jungle"
+	else
+		return "Hero_Axe.Attack"
+	end
 end

@@ -15,12 +15,12 @@
 -- Editors:
 --     Shush, Date: 02.03.2017
 --     suthernfriend, 03.02.2018
+--     Elfansoer: 21.06.2019
 
 if IsClient() then
     require('lib/util_imba_client')
 end
 
-CreateEmptyTalents("bounty_hunter")
 local LinkedModifiers = {}
 -------------------------------------------
 --			SHURIKEN TOSS
@@ -33,7 +33,11 @@ MergeTables(LinkedModifiers,{
 imba_bounty_hunter_shuriken_toss = imba_bounty_hunter_shuriken_toss or class({})
 
 function imba_bounty_hunter_shuriken_toss:GetCastRange()
-	return self:GetSpecialValueFor("cast_range")
+	if self:GetCaster():HasScepter() then
+		return self:GetSpecialValueFor("scepter_cast_range")
+	else
+		return self:GetSpecialValueFor("cast_range")
+	end
 end
 
 function imba_bounty_hunter_shuriken_toss:GetAbilityTextureName()
@@ -177,7 +181,7 @@ function imba_bounty_hunter_shuriken_toss:OnProjectileHit_ExtraData(target, loca
 
 			if jinada_ability and jinada_ability:GetLevel() > 0 then
 				-- Get Jinada's critical rate and maim duration
-				local crit_damage = jinada_ability:GetSpecialValueFor("crit_damage") /2
+				local crit_damage = jinada_ability:GetSpecialValueFor("crit_damage")
 				local slow_duration = jinada_ability:GetSpecialValueFor("slow_duration")
 
 				damage = damage * crit_damage * 0.01
@@ -212,7 +216,8 @@ function imba_bounty_hunter_shuriken_toss:OnProjectileHit_ExtraData(target, loca
 			DOTA_UNIT_TARGET_HERO,
 			DOTA_UNIT_TARGET_FLAG_NONE,
 			FIND_CLOSEST,
-			false)
+			false
+		)
 
 
 		local projectile_fired = false
@@ -499,7 +504,7 @@ function imba_bounty_hunter_jinada:ShadowJaunt(caster, ability, target)
 	caster:SetForwardVector((target:GetAbsOrigin() - caster:GetAbsOrigin()):Normalized())
 
 	-- Start skill cooldown.
-	ability:StartCooldown(ability:GetCooldown(ability:GetLevel()-1))
+	ability:UseResources(false, false, true)
 
 	-- Wait for one second. If crit buff is still not used, remove it.
 	Timers:CreateTimer(1, function()
@@ -636,11 +641,16 @@ function modifier_imba_jinada_buff_crit:OnCreated()
 end
 
 function modifier_imba_jinada_buff_crit:DeclareFunctions()
-	local decFuncs = {MODIFIER_EVENT_ON_ATTACK,
+	return {
+		MODIFIER_EVENT_ON_ATTACK,
 		MODIFIER_EVENT_ON_ATTACK_LANDED,
-		MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE}
+		MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE,
+		MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
+	}
+end
 
-	return decFuncs
+function modifier_imba_jinada_buff_crit:GetModifierPreAttack_BonusDamage()
+	return self:GetAbility():GetSpecialValueFor("bonus_damage")
 end
 
 function modifier_imba_jinada_buff_crit:OnAttack(keys)
@@ -691,7 +701,6 @@ function modifier_imba_jinada_buff_crit:OnAttackLanded(keys)
 
 		-- Only apply on caster attacking enemies
 		if self.parent == attacker and target:GetTeamNumber() ~= self.parent:GetTeamNumber() then
-
 			-- Add hit particle effects
 			self.particle_hit_fx = ParticleManager:CreateParticle(self.particle_hit, PATTACH_ABSORIGIN, self.parent)
 			ParticleManager:SetParticleControl(self.particle_hit_fx, 0, target:GetAbsOrigin())
@@ -702,7 +711,14 @@ function modifier_imba_jinada_buff_crit:OnAttackLanded(keys)
 
 			-- Start the skill's cooldown if it's ready (might not be because of active)
 			if self.ability:IsCooldownReady() then
-				self.ability:StartCooldown(self.ability:GetCooldown(self.ability:GetLevel()-1))
+				self.ability:UseResources(false, false, true)
+			end
+
+			-- transfer gold from target to caster
+			if target:IsRealHero() then
+				target:ModifyGold(-self:GetAbility():GetSpecialValueFor("bonus_gold"), false, 0)
+				attacker:ModifyGold(self:GetAbility():GetSpecialValueFor("bonus_gold"), false, 0)
+				SendOverheadEventMessage(attacker, OVERHEAD_ALERT_GOLD, attacker, self:GetAbility():GetSpecialValueFor("bonus_gold"), nil)
 			end
 
 			-- Remove the critical strike modifier from the caster
@@ -1070,9 +1086,6 @@ function imba_bounty_hunter_track:OnSpellStart()
 		local projectile_speed = ability:GetSpecialValueFor("projectile_speed")
 		local duration = ability:GetSpecialValueFor("duration")
 
-		-- #6 Talent: Track duration increase
-		duration = duration + caster:FindTalentValue("special_bonus_imba_bounty_hunter_6")
-
 		-- Cast responses
 		local cast_response_chance = 10
 		local cast_response_roll = RandomInt(1, 100)
@@ -1132,10 +1145,14 @@ function modifier_imba_track_debuff_mark:OnCreated()
 	self.bonus_gold_allies = self.ability:GetSpecialValueFor("bonus_gold_allies")
 	self.haste_radius = self.ability:GetSpecialValueFor("haste_radius")
 	self.haste_linger = self.ability:GetSpecialValueFor("haste_linger")
+	self.target_crit_multiplier = self.ability:GetSpecialValueFor("target_crit_multiplier")
 
 	if IsServer() then
 		-- Adjust custom lobby gold settings to the gold
-		local custom_gold_bonus = 1-- tonumber(CustomNetTables:GetTableValue("game_options", "bounty_multiplier")["1"])
+		--[[Elfansoer: hotfix to nettable is nil
+		local custom_gold_bonus = tonumber(CustomNetTables:GetTableValue("game_options", "bounty_multiplier")["1"])
+		]]
+		local custom_gold_bonus = 100
 		self.bonus_gold_self = self.bonus_gold_self * (custom_gold_bonus / 100)
 		self.bonus_gold_allies = self.bonus_gold_allies * (custom_gold_bonus / 100)
 
@@ -1156,11 +1173,8 @@ function modifier_imba_track_debuff_mark:OnCreated()
 			self.has_talent_2 = true
 			self.talent_2_vision_radius = self.caster:FindTalentValue("special_bonus_imba_bounty_hunter_2")
 		end
-
-		-- If Bounty has the talent, start thinking
-		if self.has_talent_2 then
-			self:StartIntervalThink(FrameTime())
-		end
+		
+		self:StartIntervalThink(FrameTime())
 	end
 end
 
@@ -1169,7 +1183,12 @@ function modifier_imba_track_debuff_mark:OnRefresh()
 end
 
 function modifier_imba_track_debuff_mark:OnIntervalThink()
-	AddFOWViewer(self.caster:GetTeamNumber(), self.parent:GetAbsOrigin(), self.talent_2_vision_radius, FrameTime(), false)
+	self:SetStackCount(self.parent:GetGold())
+	
+	-- If Bounty has the talent, add extra vision
+	if self.has_talent_2 then
+		AddFOWViewer(self.caster:GetTeamNumber(), self.parent:GetAbsOrigin(), self.talent_2_vision_radius, FrameTime(), false)
+	end
 end
 
 function modifier_imba_track_debuff_mark:CheckState()
@@ -1235,11 +1254,22 @@ function modifier_imba_track_debuff_mark:IsHidden()
 end
 
 function modifier_imba_track_debuff_mark:DeclareFunctions()
-	local decFuncs = {MODIFIER_PROPERTY_PROVIDES_FOW_POSITION,
+	local decFuncs = {
+		MODIFIER_PROPERTY_PREATTACK_TARGET_CRITICALSTRIKE,
+		MODIFIER_PROPERTY_PROVIDES_FOW_POSITION,
 		MODIFIER_EVENT_ON_HERO_KILLED,
-		MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE}
+		MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
+		MODIFIER_PROPERTY_TOOLTIP }
 
 	return decFuncs
+end
+
+function modifier_imba_track_debuff_mark:GetModifierPreAttack_Target_CriticalStrike(keys)
+	if keys.attacker == self:GetCaster() then
+		return self.target_crit_multiplier
+	else
+		return 0
+	end
 end
 
 function modifier_imba_track_debuff_mark:GetModifierIncomingDamage_Percentage()
@@ -1263,11 +1293,13 @@ function modifier_imba_track_debuff_mark:OnHeroKilled(keys)
 
 			-- If the target was an illusion, do nothing
 			if not target:IsRealHero() then
+				self:Destroy()
 				return nil
 			end
 
 			-- If the target is reincarnating, do nothing
 			if reincarnate then
+				self:Destroy()
 				return nil
 			end
 
@@ -1300,6 +1332,10 @@ function modifier_imba_track_debuff_mark:OnHeroKilled(keys)
 	end
 end
 
+function modifier_imba_track_debuff_mark:OnTooltip()
+	return self:GetStackCount()
+end
+
 function modifier_imba_track_debuff_mark:GetModifierProvidesFOWVision()
 	-- If the caster has #2 Talent, fogvision is disabled.
 	if self.has_talent_2 then
@@ -1330,14 +1366,13 @@ function modifier_imba_track_buff_ms:OnCreated()
 
 	-- Ability specials
 	self.ms_bonus_allies_pct = self.ability:GetSpecialValueFor("ms_bonus_allies_pct")
-	self.bonus_gold_allies = self.ability:GetSpecialValueFor("bonus_gold_allies")
 
 	if IsServer() then
 		-- Create haste particle
 		self.particle_haste_fx = ParticleManager:CreateParticle(self.particle_haste, PATTACH_ABSORIGIN_FOLLOW, self.parent)
-		ParticleManager:SetParticleControl(self.particle_haste_fx, 0, self.parent:GetAbsOrigin())
-		ParticleManager:SetParticleControl(self.particle_haste_fx, 1, self.parent:GetAbsOrigin())
-		ParticleManager:SetParticleControl(self.particle_haste_fx, 2, self.parent:GetAbsOrigin())
+		-- ParticleManager:SetParticleControl(self.particle_haste_fx, 0, self.parent:GetAbsOrigin())
+		-- ParticleManager:SetParticleControl(self.particle_haste_fx, 1, self.parent:GetAbsOrigin())
+		-- ParticleManager:SetParticleControl(self.particle_haste_fx, 2, self.parent:GetAbsOrigin())
 
 		self:AddParticle(self.particle_haste_fx, false, false, -1, false, false)
 	end
@@ -1401,6 +1436,7 @@ function imba_bounty_hunter_headhunter:OnProjectileHit(target, location)
 		return nil
 	end
 
+	local duration = 20
 	-- Apply contract modifiers
 	caster:AddNewModifier(caster, ability, modifier_contract_buff, {duration = duration})
 	target:AddNewModifier(caster, ability, modifier_contract_debuff, {duration = duration})
@@ -1421,9 +1457,14 @@ function modifier_imba_headhunter_passive:OnCreated()
 		self.particle_projectile = "particles/units/heroes/hero_bounty_hunter/bounty_hunter_track_cast.vpcf"
 
 		-- Ability specials
+		--[[Elfansoer: hotfixed only using level 0 during oncreated.
 		self.projectile_speed = self.ability:GetSpecialValueFor("projectile_speed")
 		self.starting_cd = self.ability:GetSpecialValueFor("starting_cd")
 		self.vision_radius = self.ability:GetSpecialValueFor("vision_radius")
+		]]
+		self.projectile_speed = self.ability:GetLevelSpecialValueFor("projectile_speed",1)
+		self.starting_cd = self.ability:GetLevelSpecialValueFor("starting_cd",1)
+		self.vision_radius = self.ability:GetLevelSpecialValueFor("vision_radius",1)
 
 		-- Start the game with a cooldown
 		self.ability:StartCooldown(self.starting_cd)
@@ -1461,6 +1502,7 @@ function modifier_imba_headhunter_passive:OnIntervalThink()
 			for _, enemy in pairs(enemies) do
 				-- Check if that hero has the contract debuff, go out if it was found
 				if enemy:HasModifier(self.modifier_contract) then
+					GameRules:SendCustomMessage( "has existing contract", 0, 0 )
 					return nil
 				end
 			end

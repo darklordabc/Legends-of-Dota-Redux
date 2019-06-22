@@ -15,12 +15,13 @@
 -- Editors:
 --     AtroCty, 04.07.2017
 --     suthernfriend, 03.02.2018
+--     Elfansoer, 21.06.2019
+
 
 if IsClient() then
     require('lib/util_imba_client')
 end
 
-CreateEmptyTalents("antimage")
 local LinkedModifiers = {}
 -------------------------------------------
 --        MANA BREAK
@@ -503,7 +504,7 @@ function modifier_imba_antimage_blink_charges:OnStackCountChanged(old_stack_coun
 
 		-- Current stacks
 		local stacks = self:GetStackCount()
-		local true_replenish_cooldown = self.charge_replenish_rate * (1 - self.caster:GetCooldownReduction() * 0.01)
+		local true_replenish_cooldown = self.charge_replenish_rate
 
 		-- If the stacks are now 0, start the ability's cooldown
 		if stacks == 0 then
@@ -568,7 +569,7 @@ modifier_imba_antimage_blink_spell_immunity = modifier_imba_antimage_blink_spell
 
 function modifier_imba_antimage_blink_spell_immunity:OnCreated()
 	-- Purge the target
-	self:GetParent():Purge(false, true, false, false, false)
+	self:GetParent():Purge(false, true, false, false, false) -- TODO: Purge is a nil value? WTF? WHITE IS BLACK? BLACK IS WHITE?
 end
 
 function modifier_imba_antimage_blink_spell_immunity:GetEffectName()
@@ -631,7 +632,9 @@ function imba_antimage_spell_shield:OnSpellStart()
 		-- Run visual + sound
 		local shield_pfx = ParticleManager:CreateParticle("particles/units/heroes/hero_antimage/antimage_blink_end_glow.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
 		ParticleManager:ReleaseParticleIndex(shield_pfx)
-		caster:EmitSound("Hero_Antimage.SpellShield.Block")
+		caster:EmitSound("Hero_Antimage.Counterspell.Cast")
+		
+		caster:StartGesture(ACT_DOTA_CAST_ABILITY_3)
 	end
 end
 
@@ -652,11 +655,13 @@ local function SpellReflect(parent, params)
 	-- If some spells shouldn't be reflected, enter it into this spell-list
 	local exception_spell =
 		{
-			["rubick_spell_steal"] = true,
-			["imba_alchemist_greevils_greed"] = true,
-			["imba_alchemist_unstable_concoction"] = true,
-			["imba_disruptor_glimpse"] = true,
-		}
+		["rubick_spell_steal"] = true,
+		["imba_alchemist_greevils_greed"] = true,
+		--[[Elfansoer: fixed. Unstable Concoction is now lotus safe]]
+		-- ["imba_alchemist_unstable_concoction"] = true,
+		["imba_disruptor_glimpse"] = true,
+		["legion_commander_duel"] = true,
+	}
 
 	local reflected_spell_name = params.ability:GetAbilityName()
 	local target = params.ability:GetCaster()
@@ -709,8 +714,9 @@ local function SpellReflect(parent, params)
 		-- Set target & fire spell
 		parent:SetCursorCastTarget(target)
 		ability:OnSpellStart()
-		target:EmitSound("Hero_Antimage.SpellShield.Reflect")
+		target:EmitSound("Hero_Antimage.Counterspell.Target")
 	end
+
 	return false
 end
 
@@ -846,7 +852,9 @@ end
 -- Initialize old-spell-checker
 function modifier_imba_spell_shield_buff_reflect:OnCreated( params )
 	if IsServer() then
-
+		self.particle = ParticleManager:CreateParticle("particles/units/heroes/hero_antimage/antimage_counter.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetParent())
+		-- Random numbers
+		ParticleManager:SetParticleControl(self.particle, 1, Vector(150, 150, 150))
 	end
 end
 
@@ -881,6 +889,12 @@ function modifier_imba_spell_shield_buff_passive:OnIntervalThink()
 	end
 end
 
+function modifier_imba_spell_shield_buff_reflect:OnDestroy()
+	if IsServer() then
+		ParticleManager:DestroyParticle(self.particle, false)
+		ParticleManager:ReleaseParticleIndex(self.particle)
+	end
+end
 
 
 -- Scepter block Ready modifier
@@ -919,7 +933,7 @@ function modifier_imba_spellshield_scepter_recharge:IsHidden()
 end
 
 function modifier_imba_spellshield_scepter_recharge:IsPurgable() return false end
-function modifier_imba_spellshield_scepter_recharge:IsDebuff() return false end
+function modifier_imba_spellshield_scepter_recharge:IsDebuff() return true end
 function modifier_imba_spellshield_scepter_recharge:RemoveOnDeath() return false end
 
 
@@ -928,14 +942,11 @@ function modifier_imba_spellshield_scepter_recharge:RemoveOnDeath() return false
 -------------------------------------------
 -- Visible Modifiers:
 MergeTables(LinkedModifiers,{
+	["modifier_imba_mana_void_scepter"] = LUA_MODIFIER_MOTION_NONE,
 	["modifier_imba_mana_void_stunned"] = LUA_MODIFIER_MOTION_NONE,
 	["modifier_imba_mana_void_delay_counter"] = LUA_MODIFIER_MOTION_NONE,
 })
 imba_antimage_mana_void = imba_antimage_mana_void or class({})
-
-function imba_antimage_mana_void:GetAbilityTextureName()
-	return "antimage_mana_void"
-end
 
 function imba_antimage_mana_void:OnAbilityPhaseStart()
 	if IsServer() then
@@ -974,6 +985,10 @@ function imba_antimage_mana_void:OnSpellStart()
 		local mana_burn_pct = ability:GetSpecialValueFor("mana_void_mana_burn_pct")
 		local mana_void_ministun = ability:GetSpecialValueFor("mana_void_ministun")
 		local damage = 0
+
+		if caster:HasScepter() then
+			mana_void_ministun = ability:GetSpecialValueFor("scepter_ministun")
+		end
 
 		-- If the target possesses a ready Linken's Sphere, do nothing
 		if target:GetTeam() ~= caster:GetTeam() then
@@ -1024,6 +1039,16 @@ function imba_antimage_mana_void:OnSpellStart()
 
 			-- Damage all enemies in the area for the total damage tally
 			for _,enemy in pairs(nearby_enemies) do
+				if caster:HasScepter() and enemy:IsHero() then
+					enemy:AddNewModifier(caster, self, "modifier_imba_mana_void_scepter", {})
+
+					Timers:CreateTimer(mana_void_ministun, function()
+						if enemy:IsAlive() then
+							enemy:RemoveModifierByName("modifier_imba_mana_void_scepter")
+						end
+					end)
+				end
+			
 				ApplyDamage({attacker = caster, victim = enemy, ability = ability, damage = damage, damage_type = DAMAGE_TYPE_PURE})
 				SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE, enemy, damage, nil)
 			end
@@ -1038,6 +1063,28 @@ function imba_antimage_mana_void:OnSpellStart()
 			target:EmitSound("Hero_Antimage.ManaVoid")
 		end)
 	end
+end
+
+modifier_imba_mana_void_scepter = modifier_imba_mana_void_scepter or class({})
+
+function modifier_imba_mana_void_scepter:IsDebuff() return true end
+function modifier_imba_mana_void_scepter:IsHidden() return false end
+function modifier_imba_mana_void_scepter:RemoveOnDeath() return false end
+
+function modifier_imba_mana_void_scepter:DeclareFunctions()
+	return {
+		MODIFIER_EVENT_ON_RESPAWN,
+	}
+end
+
+function modifier_imba_mana_void_scepter:OnRespawn(kv)
+	if kv.unit == self:GetParent() and self:GetParent():FindAbilityWithHighestCooldown() then
+		local affected_ability = self:GetParent():FindAbilityWithHighestCooldown()
+	
+		affected_ability:StartCooldown(affected_ability:GetCooldownTimeRemaining() + self:GetAbility():GetSpecialValueFor("scepter_cooldown_increase"))
+	end
+
+	self:Destroy()
 end
 
 -------------------------------------------

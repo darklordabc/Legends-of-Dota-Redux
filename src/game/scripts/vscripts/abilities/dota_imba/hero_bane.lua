@@ -15,18 +15,23 @@
 -- Editors:
 --     Seinken, 16.03.2017
 --     suthernfriend, 03.02.2018
+--     Elfansoer, 21.06.2019
 
 if IsClient() then
     require('lib/util_imba_client')
 end
-
-CreateEmptyTalents("bane")
 
 --------------------------------------
 ----------    ENFEEBLE    ------------
 --------------------------------------
 LinkLuaModifier("modifier_imba_enfeeble_debuff", "abilities/dota_imba/hero_bane", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_imba_enfeeble_debuff_vision_handler", "abilities/dota_imba/hero_bane", LUA_MODIFIER_MOTION_NONE)
+
+local function findtarget(source) -- simple list return function for finding a players current target entity
+	local t = source:GetCursorTarget()
+	local c = source:GetCaster()
+	if t and c then return t,c end
+end
 
 -- Main enfeeble casting
 imba_bane_enfeeble = imba_bane_enfeeble or class({})
@@ -53,12 +58,12 @@ function imba_bane_enfeeble:OnSpellStart()
 				FIND_ANY_ORDER,
 				false)
 			for _, enemy in pairs(enemies) do
-				enemy:AddNewModifier( caster, self, "modifier_imba_enfeeble_debuff", {duration = enfeeble_duration} )
+				enemy:AddNewModifier( caster, self, "modifier_imba_enfeeble_debuff", {duration = enfeeble_duration} ):SetDuration(enfeeble_duration * (1 - enemy:GetStatusResistance()), true)
 			end
 		else
 
 			-- Apply enfeeble debuff
-			target:AddNewModifier(caster, self, "modifier_imba_enfeeble_debuff", {duration = enfeeble_duration})
+			target:AddNewModifier(caster, self, "modifier_imba_enfeeble_debuff", {duration = enfeeble_duration}):SetDuration(enfeeble_duration * (1 - target:GetStatusResistance()), true)
 		end
 
 		-- Emit sound effect
@@ -99,9 +104,6 @@ end
 -- Enfeeble Debuff
 modifier_imba_enfeeble_debuff = modifier_imba_enfeeble_debuff or class({})
 
-function modifier_imba_enfeeble_debuff:IsDebuff() return true end
-function modifier_imba_enfeeble_debuff:IsPurgable() return false end
-function modifier_imba_enfeeble_debuff:IsPurgableException() return false end
 function modifier_imba_enfeeble_debuff:GetEffectName() return "particles/units/heroes/hero_bane/bane_enfeeble.vpcf" end
 function modifier_imba_enfeeble_debuff:GetEffectAttachType() return PATTACH_OVERHEAD_FOLLOW end
 
@@ -113,7 +115,7 @@ function modifier_imba_enfeeble_debuff:OnCreated()
 		self.parent = self:GetParent()
 
 		-- Ability paramaters
-		self.duration = self:GetDuration()
+		self.duration = self:GetDuration() * (1 - self.parent:GetStatusResistance())
 		self.max_stacks	= ability:GetSpecialValueFor("max_stacks")
 
 		-- Initialize table
@@ -186,20 +188,21 @@ end
 
 function modifier_imba_enfeeble_debuff:DeclareFunctions()
 	local funcs = {
-		MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
+		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
 		MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
 		MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
 		MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
+		MODIFIER_PROPERTY_STATUS_RESISTANCE_STACKING,
 	}
 	return funcs
 end
 
-function modifier_imba_enfeeble_debuff:GetModifierPreAttack_BonusDamage()
+function modifier_imba_enfeeble_debuff:GetModifierAttackSpeedBonus_Constant()
 	-- Keep working if the stacks were consumed
 	if self:GetStackCount() > 0 then
-		return self:GetAbility():GetSpecialValueFor("damage_reduction")  * (self:GetStackCount())
+		return self:GetAbility():GetSpecialValueFor("as_reduction")  * (self:GetStackCount())
 	else
-		return self:GetAbility():GetSpecialValueFor("damage_reduction")
+		return self:GetAbility():GetSpecialValueFor("as_reduction")
 	end
 end
 
@@ -242,6 +245,10 @@ function modifier_imba_enfeeble_debuff:GetModifierBonusStats_Intellect()
 	else
 		return 0
 	end
+end
+
+function modifier_imba_enfeeble_debuff:GetModifierStatusResistanceStacking()
+	return self:GetAbility():GetSpecialValueFor("bonus_status_resistance")
 end
 
 -- Enfeeble vision debuff applier
@@ -306,6 +313,14 @@ LinkLuaModifier("modifier_imba_brain_sap_baby_bane", "abilities/dota_imba/hero_b
 -- Main Brain Sap casting
 imba_bane_brain_sap = imba_bane_brain_sap or class({})
 
+function imba_bane_brain_sap:GetCastPoint()
+	if not self:GetCaster():HasScepter() then
+		return self.BaseClass.GetCastPoint(self)
+	else
+		return self:GetSpecialValueFor("castpoint_scepter")
+	end
+end
+
 -- Brain Sap Spell Cast
 function imba_bane_brain_sap:OnSpellStart()
 	if IsServer() then
@@ -364,7 +379,12 @@ function imba_bane_brain_sap:OnSpellStart()
 		caster:Heal(sapdamage, caster)
 
 		-- Apply brain sap debuff
-		target:AddNewModifier(caster, self, "modifier_imba_brain_sap_mana", {duration = sapduration})
+		local real_duration = sapduration
+		if target.GetStatusResistance then
+			real_duration = sapduration * (1 - target:GetStatusResistance())
+		end
+
+		target:AddNewModifier(caster, self, "modifier_imba_brain_sap_mana", {duration = real_duration})
 
 		-- Emit brain sap particle
 		local sapFX = ParticleManager:CreateParticle("particles/units/heroes/hero_bane/bane_sap.vpcf", PATTACH_ABSORIGIN, caster)
@@ -391,6 +411,8 @@ function imba_bane_brain_sap:GetCooldown(level)
 end
 
 function imba_bane_brain_sap:CastFilterResultTarget(target)
+	if not IsServer() then return end
+
 	local caster = self:GetCaster()
 
 	if caster:HasScepter() and caster:GetTeamNumber() ~= target:GetTeamNumber() and target:IsMagicImmune() then
@@ -523,11 +545,20 @@ function imba_bane_nightmare:OnSpellStart()
 		-- #1 TALENT: nightmare applies enfeeble stacks on enemies
 		local talent_enfeeble_stacks = caster:FindTalentValue("special_bonus_imba_bane_1")
 		local enfeeble	=	caster:FindAbilityByName("imba_bane_enfeeble")
-		local enfeeble_duration	=	enfeeble:GetSpecialValueFor("enfeeble_duration")
 
-		if enfeeble and caster:GetTeamNumber() ~= target:GetTeamNumber() and caster:HasTalent("special_bonus_imba_bane_1") then
+		--[[Elfansoer: fix nightmare error on lotus
+		local enfeeble_duration	=	enfeeble:GetSpecialValueFor("enfeeble_duration")
+		]]
+		local enfeeble_duration
+		if enfeeble then
+			enfeeble_duration	=	enfeeble:GetSpecialValueFor("enfeeble_duration")
+		else
+			enfeeble_duration = 0
+		end
+
+		if caster:GetTeamNumber() ~= target:GetTeamNumber() and caster:HasTalent("special_bonus_imba_bane_1") then
 			for i=1, talent_enfeeble_stacks do
-				target:AddNewModifier(caster, enfeeble, "modifier_imba_enfeeble_debuff", {duration = enfeeble_duration} )
+				target:AddNewModifier(caster, enfeeble, "modifier_imba_enfeeble_debuff", {duration = enfeeble_duration} ):SetDuration(enfeeble_duration * (1 - target:GetStatusResistance()), true)
 			end
 		end
 
@@ -662,7 +693,7 @@ end
 function modifier_imba_nightmare_dot:OnTakeDamage(t)
 	if IsServer() then
 		-- Stop Nightmare when hit (by anything other than an auto attack)
-		if t.unit == self:GetParent() then
+		if t.unit == self:GetParent() and t.attacker ~= self:GetCaster() then
 			self:Destroy()
 		end
 	end
@@ -678,7 +709,7 @@ function modifier_imba_nightmare_dot:OnAttackStart(t)
 		local nightmare_invuln_duration	= ability:GetSpecialValueFor("nightmare_invuln_duration")
 
 		-- Redirect Nightmare to auto-attackers
-		if t.target == self:GetParent() then
+		if t.target == self:GetParent() and t.attacker ~= self:GetCaster() then
 			--Don't Nightmare buildings lul
 			if t.attacker:IsBuilding() then
 				return nil
@@ -686,6 +717,8 @@ function modifier_imba_nightmare_dot:OnAttackStart(t)
 			-- Apply Nightmare debuff to attackers
 			t.attacker:AddNewModifier(caster, ability, "modifier_imba_nightmare_dot", {duration = nightmare_duration})
 			t.attacker:AddNewModifier(caster, ability, "modifier_imba_nightmare_invul", {duration = nightmare_invuln_duration})
+			
+			self:Destroy()
 		end
 	end
 end
@@ -858,6 +891,8 @@ function imba_bane_fiends_grip:OnChannelFinish(bInterrupted)
 				self.fiendgriptable[k]:FindModifierByName("modifier_imba_fiends_grip_handler"):Destroy() -- if our target has been gripped, and it has not been spread by itself, destroy it (which will reinvoke and set propogated to 1)
 			end
 		end
+		
+		StopSoundOn("Hero_Bane.FiendsGrip.Cast", self.fiendcaster)
 	end
 end
 
@@ -938,6 +973,7 @@ function modifier_imba_fiends_grip_handler:IsPurgableException() return true end
 function modifier_imba_fiends_grip_handler:GetEffectName() return "particles/units/heroes/hero_bane/bane_fiends_grip.vpcf" end
 function modifier_imba_fiends_grip_handler:GetEffectAttachType() return PATTACH_OVERHEAD_FOLLOW end
 function modifier_imba_fiends_grip_handler:GetOverrideAnimation() return ACT_DOTA_FLAIL end
+function modifier_imba_fiends_grip_handler:IgnoreTenacity() return true end
 
 function modifier_imba_fiends_grip_handler:DeclareFunctions()
 	local funcs = {MODIFIER_PROPERTY_OVERRIDE_ANIMATION}
@@ -1007,7 +1043,12 @@ function modifier_imba_fiends_grip_handler:OnIntervalThink()
 				enfeeble_debuff:DecrementStackCount()
 
 				-- Spawn daemon
-				local demon	=	CreateUnitByName("npc_imba_fiends_grip_demon", caster:GetAbsOrigin() + RandomVector(100), true, caster, caster, caster:GetTeam() )
+				--[[Elfansoer: temporary hot fix to unknown reason `demon` return false]]
+				-- local demon	=	CreateUnitByName("npc_imba_fiends_grip_demon", caster:GetAbsOrigin() + RandomVector(100), true, caster, caster, caster:GetTeam() )
+				local demon	=	CreateUnitByName("npc_dota_techies_minefield_sign", caster:GetAbsOrigin() + RandomVector(100), true, caster, caster, caster:GetTeam() )
+				parent.demons = parent.demons or {}
+				parent.demons[demon] = true
+
 				demon:AddNewModifier(caster, nil, "modifier_imba_fiends_grip_demon", {} )
 				demon:SetRenderColor(75,0,130)
 				-- Apply link particle
@@ -1068,9 +1109,13 @@ function modifier_imba_fiends_grip_handler:OnDestroy()
 				parent:InterruptChannel()
 		end
 
-		parent:AddNewModifier(	caster,
+		local modifier = parent:AddNewModifier(	caster,
 			ability, "modifier_imba_fiends_grip_handler",
 			{duration = fiends_grip_linger_duration, propogated = 1})
+			
+			if modifier then
+				modifier:SetDuration(fiends_grip_linger_duration * (1 - parent:GetStatusResistance()), true)
+			end
 		end
 
 		if not self.baby then
@@ -1098,7 +1143,15 @@ function modifier_imba_fiends_grip_handler:OnDestroy()
 				for _,creature in pairs(creatures) do -- check each friendly creep
 					if creature:GetUnitName() == "npc_imba_fiends_grip_demon" and creature:GetPlayerOwnerID() == caster:GetPlayerID() then -- If it's your demon, kill it
 						creature:ForceKill(false)
+					end
 				end
+				--[[Elfansoer: fixed fiends grip sound not ended on Lotus]]
+				StopSoundOn("Hero_Bane.FiendsGrip.Cast", caster)
+				--[[Elfansoer: temporary hot fix to unknown reason `demon` return false above]]
+				if parent.demons then
+					for demon,_ in pairs(parent.demons) do
+						UTIL_Remove( demon )
+					end
 				end
 			end
 		end
@@ -1226,3 +1279,22 @@ function imba_bane_brain_sap:IsHiddenWhenStolen() return false end
 function imba_bane_nightmare:IsHiddenWhenStolen() return false end
 function imba_bane_nightmare_end:IsHiddenWhenStolen() return false end
 function imba_bane_fiends_grip:IsHiddenWhenStolen() return false end
+
+-- -- Client-side helper functions --
+
+LinkLuaModifier("modifier_special_bonus_imba_bane_2", "abilities/dota_imba/hero_bane", LUA_MODIFIER_MOTION_NONE)
+
+modifier_special_bonus_imba_bane_2		= class({})
+
+-------------------------
+-- ENFEEBLE AOE TALENT --
+-------------------------
+function modifier_special_bonus_imba_bane_2:IsHidden() 		return true end
+function modifier_special_bonus_imba_bane_2:IsPurgable() 		return false end
+function modifier_special_bonus_imba_bane_2:RemoveOnDeath() 	return false end
+
+function imba_bane_enfeeble:OnOwnerSpawned()
+	if self:GetCaster():HasTalent("special_bonus_imba_bane_2") and not self:GetCaster():HasModifier("modifier_special_bonus_imba_bane_2") then
+		self:GetCaster():AddNewModifier(self:GetCaster(), self:GetCaster():FindAbilityByName("special_bonus_imba_bane_2"), "modifier_special_bonus_imba_bane_2", {})
+	end
+end

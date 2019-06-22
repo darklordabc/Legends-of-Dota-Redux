@@ -3221,13 +3221,14 @@
 
 	//=================================================================================================================
 	// Abaddon's Mist Coil
+	//e
 	//=================================================================================================================
 	"imba_abaddon_mist_coil"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"										"ability_lua"
-		"ScriptFile"									"abilities/dota_imba/hero_abaddon.lua"
+		"ScriptFile"				"abilities/dota_imba/hero_abaddon.lua"
 		"AbilityBehavior"								"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"							"DOTA_UNIT_TARGET_TEAM_BOTH"
 		"AbilityUnitTargetType"							"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
@@ -3239,6 +3240,7 @@
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"								"4.5"
 		"AbilityCastPoint"								"0.25"
 
 		// Cost
@@ -3257,17 +3259,18 @@
 			"02"
 			{
 				"var_type"								"FIELD_INTEGER"
-				"damage"								"100 200 300 400"
+				"damage"								"130 220 310 400"
 			}
+			
 			"03"
 			{
 				"var_type"								"FIELD_INTEGER"
-				"heal"									"100 200 300 400"
+				"heal"									"130 220 310 400"
 			}
 			"04"
 			{
 				"var_type"								"FIELD_INTEGER"
-				"cast_range"							"800 800 875 1025"
+				"cast_range"							"800"
 			}
 			"05"
 			{
@@ -3277,33 +3280,23 @@
 			"06"
 			{
 				"var_type"								"FIELD_INTEGER"
-				"on_hit_damage"							"10 12 15 19 24 30 37 45"
+				"damage_heal_pct"						"10"
+				"CalculateSpellDamageTooltip"			"0"
 			}
 			"07"
-			{
-				"var_type"								"FIELD_INTEGER"
-				"damage_heal_pct"						"10 11 12 15 18 22 26 30"
-			}
-			"08"
 			{
 				"var_type"								"FIELD_FLOAT"
 				"shield_duration_extend"				"3.0"
 			}
-			"09"
+			"08"
 			{
 				"var_type"								"FIELD_FLOAT"
 				"cooldown"								"4.5"
 			}
-			"10"
+			"09"
 			{
 				"var_type"								"FIELD_FLOAT"
-				"damage_threshold"						"50"
-			}
-
-			"11"
-			{
-				"var_type"								"FIELD_FLOAT"
-				"self_damage"							"50 100 140 160"
+				"self_damage"							"75 100 125 150"
 			}
 		}
 
@@ -3318,16 +3311,17 @@
 
 	//=================================================================================================================
 	// Abaddon's Aphotic Shield
+	//e
 	//=================================================================================================================
 	"imba_abaddon_aphotic_shield"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"										"ability_lua"
-		"ScriptFile"									"abilities/dota_imba/hero_abaddon.lua"
+		"ScriptFile"				"abilities/dota_imba/hero_abaddon.lua"
 		"AbilityBehavior"								"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"							"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-		"AbilityUnitTargetType"							"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+		"AbilityUnitTargetType"							"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"SpellImmunityType"								"SPELL_IMMUNITY_ALLIES_YES"
 		"FightRecapLevel"								"1"
 		"AbilityTextureName"							"abaddon_aphotic_shield"
@@ -3358,7 +3352,7 @@
 			"02"
 			{
 				"var_type"								"FIELD_INTEGER"
-				"shield"								"110 170 240 320"
+				"shield"								"110 165 220 275"
 			}
 			"03"
 			{
@@ -3385,6 +3379,7 @@
 
 	//=================================================================================================================
 	// Abaddon's Curse of Avernus
+	//e
 	//=================================================================================================================
 	"imba_abaddon_curse_of_avernus"
 	{
@@ -3393,7 +3388,7 @@
 		"BaseClass"										"ability_lua"
 		"AbilityUnitTargetType"							"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"							"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"ScriptFile"									"abilities/dota_imba/hero_abaddon.lua"
+		"ScriptFile"				"abilities/dota_imba/hero_abaddon.lua"
 		"SpellImmunityType"								"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityTextureName"							"abaddon_frostmourne"
 		"MaxLevel"										"4"
@@ -3411,11 +3406,13 @@
 			{
 				"var_type"								"FIELD_INTEGER"
 				"move_slow"								"8 12 16 20"
+				"LinkedSpecialBonus"					"special_bonus_imba_abaddon_2"
 			}
 			"03"
 			{
 				"var_type"								"FIELD_INTEGER"
-				"attack_slow"							"8 12 16 20"
+				"attack_slow"							"10 20 30 40"
+				"LinkedSpecialBonus"					"special_bonus_imba_abaddon_2"
 			}
 			"04"
 			{
@@ -3426,11 +3423,13 @@
 			{
 				"var_type"								"FIELD_INTEGER"
 				"move_increase"							"15"
+				"LinkedSpecialBonus"					"special_bonus_imba_abaddon_2"
 			}
 			"06"
 			{
 				"var_type"								"FIELD_INTEGER"
 				"attack_increase"						"10 20 30 40"
+				"LinkedSpecialBonus"					"special_bonus_imba_abaddon_2"
 			}
 			"07"
 			{
@@ -3449,14 +3448,15 @@
 
 	//=================================================================================================================
 	// Abaddon's Overchannel
+	//e
 	//=================================================================================================================
 	"imba_abaddon_over_channel"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"										"ability_lua"
-		"ScriptFile"									"abilities/dota_imba/hero_abaddon.lua"
-		"AbilityBehavior"								"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE"
+		"ScriptFile"				"abilities/dota_imba/hero_abaddon.lua"
+		"AbilityBehavior"								"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE"
 		"AbilityTextureName"							"custom/abaddon_over_channel"
 		"MaxLevel"										"4"
 
@@ -3486,6 +3486,16 @@
 				"var_type"								"FIELD_FLOAT"
 				"curse_of_avernus_multiplier"			"2"
 			}
+			"05"
+			{
+				"var_type"								"FIELD_INTEGER"
+				"reduction_duration"					"20"
+			}
+			"06"
+			{
+				"var_type"								"FIELD_INTEGER"
+				"reduction_multiplier"					"20"
+			}
 		}
 
 		"precache"
@@ -3496,13 +3506,14 @@
 
 	//=================================================================================================================
 	// Abaddon's Borrowed Time
+	//e
 	//=================================================================================================================
 	"imba_abaddon_borrowed_time"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"										"ability_lua"
-		"ScriptFile"									"abilities/dota_imba/hero_abaddon.lua"
+		"ScriptFile"				"abilities/dota_imba/hero_abaddon.lua"
 		"AbilityBehavior"								"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE"
 		"AbilityType"									"DOTA_ABILITY_TYPE_ULTIMATE"
 		"FightRecapLevel"								"2"
@@ -3513,7 +3524,8 @@
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"								"0.0"
-
+		"AbilityCastRange"								"900"
+		
 		// Time
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"								"60.0 50.0 40.0"
@@ -3534,17 +3546,32 @@
 			"02"
 			{
 				"var_type"								"FIELD_FLOAT"
-				"duration"								"4.0 6.0 7.0"
+				"duration"								"4.0 5.5 7.0"
 			}
 			"03"
 			{
 				"var_type"								"FIELD_INTEGER"
-				"redirect"								"10 20 40"
+				"redirect"								"10 25 40"
 			}
 			"04"
 			{
 				"var_type"								"FIELD_INTEGER"
 				"redirect_range"						"900"
+			}
+			"05"
+			{
+				"var_type"								"FIELD_INTEGER"
+				"ally_threshold_scepter"			"525"
+			}
+			"06"
+			{
+				"var_type"								"FIELD_INTEGER"
+				"redirect_range_scepter"				"1600"
+			}
+			"07"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration_scepter"			"5.0 6.0 7.0"
 			}
 		}
 
@@ -3806,9 +3833,9 @@
 		}
 	}
 
-
 	//=================================================================================================================
 	// Alchemist's Acid Spray
+	//e
 	//=================================================================================================================
 	"imba_alchemist_acid_spray"
 	{
@@ -3823,7 +3850,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityTextureName"			"alchemist_acid_spray"
 		"MaxLevel"						"4"
-		"ScriptFile"					"abilities/dota_imba/hero_alchemist"
+		"ScriptFile"				"abilities/dota_imba/hero_alchemist"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -3856,45 +3883,38 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"				"400 475 550 625"				
+				"radius"				"475 525 575 625"				
 			}
-
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"16"
+				"duration"				"16.0"
 			}
-
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"15 25 35 45"
+				"damage"				"25 35 45 55"
 			}
-
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"armor_reduction"		"4 5 6 7"				
 			}
-
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"tick_rate"				"1.0"
 			}
-
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"stack_damage"			"5"
 			}
-
 			"07"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"stack_armor_reduction"	"1"
 			}
-
 			"08"
 			{
 				"var_type"				"FIELD_INTEGER"
@@ -3905,13 +3925,14 @@
 
 	//=================================================================================================================
 	// Alchemist's Unstable Concoction
+	//e
 	//=================================================================================================================
 	"imba_alchemist_unstable_concoction"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"             		"ability_lua"
-		"ScriptFile"					"abilities/dota_imba/hero_alchemist"
+		"ScriptFile"				"abilities/dota_imba/hero_alchemist"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO"
@@ -3957,55 +3978,46 @@
 				"var_type"					"FIELD_FLOAT"
 				"brew_time"					"5"				
 			}
-
 			"02"
 			{
 				"var_type"					"FIELD_FLOAT"
 				"extra_brew_time"			"0.5"
 			}
-
 			"03"
 			{
 				"var_type"					"FIELD_FLOAT"
 				"stun"						"1.75 2.5 3.25 4.0"
 			}
-
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
 				"damage"					"150 250 350 450"
 			}
-
 			"05"
 			{
 				"var_type"					"FIELD_INTEGER"
 				"radius"					"175"
 			}
-
 			"06"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"radius_increase"			"45 90 145 180"
+				"radius_increase"			"45 90 135 180"
 			}
-
 			"07"
 			{
 				"var_type"					"FIELD_FLOAT"
 				"time_per_stack"			"0.02"
 			}
-
 			"08"
 			{
 				"var_type"					"FIELD_INTEGER"
 				"acid_spray_damage"			"25"				
 			}
-
 			"09"
 			{
 				"var_type"					"FIELD_INTEGER"
 				"movement_speed"			"900"
 			}
-			
 			"10"
 			{
 				"var_type"					"FIELD_INTEGER"
@@ -4016,11 +4028,12 @@
 
 	//=================================================================================================================
 	// Alchemist: Goblin's Greed
+	//e
 	//=================================================================================================================
 	"imba_alchemist_goblins_greed"
 	{
 		"BaseClass"             		"ability_lua"
-		"ScriptFile"					"abilities/dota_imba/hero_alchemist"
+		"ScriptFile"				"abilities/dota_imba/hero_alchemist"
 		"AbilityTextureName"			"alchemist_goblins_greed"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
@@ -4055,7 +4068,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_gold"			"8 10 12 14"
+				"bonus_gold"			"4 6 8 10"
 			}
 			"03"
 			{
@@ -4070,7 +4083,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"gold_multiplier"		"2.2"
+				"gold_multiplier"		"1.5"
 			}
 			"06"
 			{
@@ -4095,7 +4108,7 @@
 			"10"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"bounty_multiplier"			"150"
+				"bounty_multiplier"			"200 250 300 350"
 				"LinkedSpecialBonus"		"special_bonus_imba_alchemist_7"
 			}
 		}
@@ -4103,11 +4116,12 @@
 
 	//=================================================================================================================
 	// Alchemist Pet Greevil: Greevil's Greed
+	//e
 	//=================================================================================================================
 	"imba_alchemist_greevils_greed"
 	{
 		"BaseClass"             		"ability_lua"
-		"ScriptFile"					"abilities/dota_imba/hero_alchemist"
+		"ScriptFile"				"abilities/dota_imba/hero_alchemist"
 		"AbilityTextureName"			"alchemist_goblins_greed"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
@@ -4117,11 +4131,12 @@
 	
 	//=================================================================================================================
 	// Alchemist: Chemical Rage
+	//e
 	//=================================================================================================================
 	"imba_alchemist_chemical_rage"
 	{
 		"BaseClass"             		"ability_lua"
-		"ScriptFile"					"abilities/dota_imba/hero_alchemist"
+		"ScriptFile"				"abilities/dota_imba/hero_alchemist"
 		"AbilityTextureName"			"alchemist_chemical_rage"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
@@ -4156,50 +4171,46 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"25"				
+				"duration"				"25.0"				
 			}
-
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"transformation_time"	"0.35"
 			}
-
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"base_attack_time"		"1.4 1.0 0.8"
+				"base_attack_time"		"1.2 1.0 0.8"
 			}
-
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_health_regen"	"50 100 150"				
+				"bonus_health_regen"	"50 75 100"				
 			}
-
 			"06"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"bonus_mana_regen"		"3 12 20"
+				"var_type"				"FIELD_INTEGER"
+				"bonus_mana_regen"		"4 13 22"
 			}
-
 			"07"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_movespeed"		"40 60 80"
-			}			
+				"bonus_movespeed"		"40 50 60"
+			}
 		}		
 	}
 
 	//=================================================================================================================
 	// Alchemist: Mammonite
+	//e
 	//=================================================================================================================
 	"imba_alchemist_mammonite"
 	{
 		"BaseClass"             		"ability_lua"
-		"ScriptFile"					"abilities/dota_imba/hero_alchemist"
+		"ScriptFile"				"abilities/dota_imba/hero_alchemist"
 		"AbilityTextureName"			"custom/alchemist_mammonite"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_HIDDEN"		
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"		
 		"MaxLevel" 						"1"		
 
 		"HasScepterUpgrade"				"1"
@@ -4443,13 +4454,14 @@
 
 	//=================================================================================================================
 	// Axe Berserker's Call
+	//e
 	//=================================================================================================================
 	"imba_axe_berserkers_call"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"abilities/dota_imba/hero_axe"
+		"ScriptFile"				"abilities/dota_imba/hero_axe"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_MOVEMENT"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"FightRecapLevel"				"1"
@@ -4485,21 +4497,18 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"				"250 300 325 350"
+				"radius"				"300 340 380 420"
 			}
-
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_armor"			"40 60 80 100"
+				"bonus_armor"			"100"
 			}
-
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"1.75 2.0 2.5 3.0"
+				"duration"				"2.2 2.6 3.0 3.4"
 			}
-
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
@@ -4510,13 +4519,14 @@
 
 	//=================================================================================================================
 	// Axe's Battle Hunger
+	//e
 	//=================================================================================================================
 	"imba_axe_battle_hunger"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"abilities/dota_imba/hero_axe"
+		"ScriptFile"				"abilities/dota_imba/hero_axe"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -4547,7 +4557,7 @@
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"75"
+		"AbilityManaCost"				"50 60 70 80"
 
 		// Cast Range
 		//-------------------------------------------------------------------------------------------------------------
@@ -4586,46 +4596,50 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"scepter_damage_reduction"	"-30"
+				"CalculateSpellDamageTooltip"	"0"
 			}
 			"07"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"duration"					"10"
+				"duration"					"12"
 			}
 			"08"
 			{
 				"var_type"					"FIELD_INTEGER"
 				"pause_time"				"2"
 			}
-
 			"09"
 			{
 				"var_type"					"FIELD_INTEGER"
 				"max_maddening_duration"	"2"
 			}
-
 			"10"
 			{
 				"var_type"					"FIELD_INTEGER"
 				"maddening_buffer_distance"	"120"
+			}
+			"11"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"scepter_range"				"400"
 			}
 		}
 	}
 
 	//=================================================================================================================
 	// Axe's Counter Helix
+	//e
 	//=================================================================================================================
 	"imba_axe_counter_helix"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"abilities/dota_imba/hero_axe"
+		"ScriptFile"				"abilities/dota_imba/hero_axe"
 		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityUnitDamageType"         "DAMAGE_TYPE_PURE"
 		"AbilityTextureName"            "axe_counter_helix"
-		"MaxLevel"						"4"
 
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
@@ -4635,6 +4649,7 @@
 			"particle"									"particles/units/heroes/hero_axe/axe_attack_blur_counterhelix.vpcf"
 			"particle"									"particles/units/heroes/hero_axe/axe_counterhelix.vpcf"
 		}
+
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
@@ -4667,25 +4682,27 @@
 			"06"
 			{
 				"var_type"								"FIELD_INTEGER"
-				"base_damage"							"75 150 225 300"
+				"base_damage"							"70 120 170 220"
 			}
 			"07"
 			{
 				"var_type"								"FIELD_INTEGER"
-				"taunted_damage_bonus_pct"				"12 18 24 30"
+				"taunted_damage_bonus_pct"				"10 15 20 25"
+				"CalculateSpellDamageTooltip"			"0"
 			}
 		}
 	}
 
 	//=================================================================================================================
 	// Axe Culling Blade
+	//e
 	//=================================================================================================================
 	"imba_axe_culling_blade"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"abilities/dota_imba/hero_axe"
+		"ScriptFile"				"abilities/dota_imba/hero_axe"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -4718,7 +4735,7 @@
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"60 120 160"
+		"AbilityManaCost"				"60 120 180"
 
 		// Cast Range
 		//-------------------------------------------------------------------------------------------------------------
@@ -5006,6 +5023,7 @@
 
 	//=================================================================================================================
 	// Bane's Enfeeble
+	//e
 	//=================================================================================================================
 	"imba_bane_enfeeble"
 	{
@@ -5019,15 +5037,15 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"bane_enfeeble"
 		"AbilityCastAnimation"			"ACT_DOTA_ENFEEBLE"
-		"ScriptFile"					"abilities/dota_imba/hero_bane"
+		"ScriptFile"				"abilities/dota_imba/hero_bane"
 		"MaxLevel"						"4"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"1000"
-		"AbilityCastPoint"				"0.5"
-		"AbilityCooldown"				"4"
-		"AbilityManaCost"				"95"
+		"AbilityCastPoint"				"0.3"
+		"AbilityCooldown"				"12.0 10.0 8.0 6.0"
+		"AbilityManaCost"				"50 75 100 125"
 
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
@@ -5054,7 +5072,7 @@
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage_reduction"			"-30 -60 -90 -120"
+				"as_reduction"				"-100 -125 -150 -175"
 			}
 			"04"
 			{
@@ -5071,11 +5089,17 @@
 				"var_type"					"FIELD_INTEGER"
 				"stack_vision_efficiency"	"33"
 			}
+			"08"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_status_resistance"	"-40 -50 -60 -70"
+			}
 		}
 	}
 
 	//=================================================================================================================
 	// Bane Brain Sap
+	//e
 	//=================================================================================================================
 	"imba_bane_brain_sap"
 	{
@@ -5096,9 +5120,9 @@
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"600"
-		"AbilityCastPoint"				"0.5"
+		"AbilityCastPoint"				"0.4"
 		"AbilityCooldown"				"14 12 10 8"
-		"AbilityManaCost"				"70 100 130 160"
+		"AbilityManaCost"				"70 95 120 145"
 
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
@@ -5126,7 +5150,7 @@
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"brain_sap_damage"			"100 200 300 400"
+				"brain_sap_damage"			"125 225 325 425"
 			}
 			"04"
 			{
@@ -5136,13 +5160,19 @@
 			"05"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"enfeeble_stack_to_damage"	"50 100 150 200"
+				"enfeeble_stack_to_damage"	"80 120 160 200"
+			}
+			"06"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"castpoint_scepter"				"0.2"
 			}
 		}
 	}
 
 	//=================================================================================================================
 	// Bane Nightmare
+	//e
 	//=================================================================================================================
 	"imba_bane_nightmare"
 	{
@@ -5156,7 +5186,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ALLIES_NO"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
 		"AbilityTextureName"			"bane_nightmare"
-		"ScriptFile"					"abilities/dota_imba/hero_bane"
+		"ScriptFile"				"abilities/dota_imba/hero_bane"
 		"MaxLevel"						"4"
 
 		// Casting
@@ -5222,7 +5252,7 @@
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
 		"MaxLevel"						"1"
 		"AbilityTextureName"			"bane_nightmare_end"
-		"ScriptFile"					"abilities/dota_imba/hero_bane"
+		"ScriptFile"				"abilities/dota_imba/hero_bane"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -5234,6 +5264,7 @@
 
 	//=================================================================================================================
 	// Bane Fiend's Grip
+	//e
 	//=================================================================================================================
 	"imba_bane_fiends_grip"
 	{
@@ -5250,12 +5281,12 @@
 		"AnimationPlaybackRate"			"1"
 		"FightRecapLevel"				"1"
 		"AbilityTextureName"			"bane_fiends_grip"	
-		"ScriptFile"					"abilities/dota_imba/hero_bane"
+		"ScriptFile"				"abilities/dota_imba/hero_bane"
 		"MaxLevel"						"3"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------		
-		"AbilityCastPoint"				"0.5"
+		"AbilityCastPoint"				"0.4"
 		"AbilityCooldown"				"100 90 80"
 		"AbilityManaCost"				"200 300 400"
 
@@ -5277,7 +5308,7 @@
 			"01"
 			{
 				"var_type"								"FIELD_FLOAT"
-				"fiends_grip_duration"					"5"
+				"fiends_grip_duration"					"9"
 			}
 
 			"02"
@@ -5313,7 +5344,7 @@
 			"07"
 			{
 				"var_type"								"FIELD_INTEGER"
-				"demon_damage"							"30 70 90"
+				"demon_damage"							"50 70 90"
 			}
 
 			"08"
@@ -5774,7 +5805,309 @@
 	}
 
 	//=================================================================================================================
+	// Bristleback: Viscous Nasal Goo
+	//e
+	//=================================================================================================================
+	"imba_bristleback_viscous_nasal_goo"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/dota_imba/hero_bristleback.lua"
+		"AbilityTextureName"			"bristleback_viscous_nasal_goo"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"FightRecapLevel"				"1"
+		"AbilitySound"					"Hero_Bristleback.ViscousGoo.Cast"
+
+		"HasScepterUpgrade"			"1"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"600"
+		"AbilityCastPoint"				"0.1"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"1.5 1.5 1.5 1.5"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"12 16 20 24"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"goo_speed"				"1000"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"goo_duration"			"6.0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"base_armor"		"2"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"armor_per_stack"		"1.4 1.8 2.2 2.6"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"base_move_slow"		"20"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"move_slow_per_stack"	"3 6 9 12"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"stack_limit"			"4 5 5 6"
+				"LinkedSpecialBonus"	"special_bonus_unique_bristleback"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"goo_duration_creep"	"10.0"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius_scepter"		"900"
+			}
+			"10"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"disgust_knockback"		"20"
+			}
+			"11"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"disgust_knockup"		"20"
+			}
+			"12"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"base_disgust_duration"		"0.1"
+			}
+			"12"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"disgust_duration_per_stack"		"0.02"
+			}
+		}
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
+	}
+
+	//=================================================================================================================
+	// Bristleback: Quill Spray
+	//e
+	//=================================================================================================================
+	"imba_bristleback_quill_spray"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/dota_imba/hero_bristleback.lua"
+		"AbilityTextureName"			"bristleback_quill_spray"
+		
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"FightRecapLevel"				"1"
+		"AbilitySound"					"Hero_Bristleback.QuillSpray"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastAnimation"			"ACT_INVALID"
+		"AbilityCastRange"				"650"
+		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"3.0 3.0 3.0 3.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"35 35 35 35"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"700"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"quill_base_damage"		"20.0 40.0 60.0 80.0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"quill_stack_damage"	"35.0 40.0 45.0 50.0"
+				"LinkedSpecialBonus"	"special_bonus_unique_bristleback_2"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"quill_stack_duration"	"14.0"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"max_damage"			"700.0"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"projectile_speed"		"2400"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cardio_threshold"		"900"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Bristleback: Bristleback
+	//e
+	//=================================================================================================================
+	"imba_bristleback_bristleback"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/dota_imba/hero_bristleback.lua"
+		"AbilityTextureName"			"bristleback_bristleback"
+		
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilitySound"					"Hero_Bristleback.Bristleback"
+		
+		"AbilityCooldown"				"12.0"
+		"AbilityManaCost"				"120"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"side_damage_reduction"			"10 16 22 28"
+			}	// "8 12 16 20"
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"back_damage_reduction"			"24 32 40 48"
+			}	// "16 24 32 40"
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"side_angle"					"110"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"back_angle"					"70"
+			}
+			"05"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"quill_release_threshold"				"210"
+			}
+			"06"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"HAS_damage_reduction_inc"		"12"
+			}
+			"07"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"HAS_quill_release_threshold"	"140"
+			}
+		}
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
+	}
+
+	//=================================================================================================================
+	// Bristleback: Warpath
+	//e
+	//=================================================================================================================
+	"imba_bristleback_warpath"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/dota_imba/hero_bristleback.lua"
+		"AbilityTextureName"			"bristleback_warpath"
+
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityDuration"				"10.0 10.0 10.0"
+				
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"damage_per_stack"					"25 30 35"
+				//"LinkedSpecialBonus"	"special_bonus_unique_bristleback_3"
+				"LinkedSpecialBonus"	"special_bonus_imba_bristleback_3"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"move_speed_per_stack"				"4 5 6"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"stack_duration"				"14.0"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"max_stacks"					"6 8 10"
+			}
+			"05"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"revenge_inc_dmg_pct"			"25"
+			}
+		}
+	}
+
+	//=================================================================================================================
 	// Centaur's Thick Hide
+	//e
 	//=================================================================================================================
 	"imba_centaur_thick_hide"
 	{
@@ -5784,7 +6117,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"FightRecapLevel"				"1"
 		"AbilityTextureName"			"custom/centaur_thick_hide"
-		"ScriptFile"					"abilities/dota_imba/hero_centaur.lua"
+		"ScriptFile"				"abilities/dota_imba/hero_centaur.lua"
 		"MaxLevel"						"1"
 
 
@@ -5808,6 +6141,7 @@
 
 	//=================================================================================================================
 	// Centaur's Hoof Stomp
+	//e
 	//=================================================================================================================
 	"imba_centaur_hoof_stomp"
 	{
@@ -5821,15 +6155,15 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"				"1"
 		"AbilityTextureName"			"centaur_hoof_stomp"
-		"ScriptFile"					"abilities/dota_imba/hero_centaur.lua"
+		"ScriptFile"				"abilities/dota_imba/hero_centaur.lua"
 		"MaxLevel"						"4"
 
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"				"0.5"
-		"AbilityCastRange"				"315"
+		"AbilityCastRange"				"350"
 		"AbilityCooldown"				"13"
-		"AbilityManaCost"				"130"
+		"AbilityManaCost"				"115 120 125 130"
 
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
@@ -5848,22 +6182,22 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"				"315"				
+				"radius"				"350"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"stun_duration"			"2.0 2.25 2.5 2.75"				
+				"stun_duration"			"2.25 2.5 2.75 3.0"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"stomp_damage"			"100 200 250 300"
+				"stomp_damage"			"100 160 220 280"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"pit_duration"			"4.75"
+				"pit_duration"			"5.5"
 			}
 			"05"
 			{
@@ -5880,6 +6214,7 @@
 
 	//=================================================================================================================
 	// Centaur's Double Edge
+	//e
 	//=================================================================================================================
 	"imba_centaur_double_edge"
 	{
@@ -5893,13 +6228,13 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"				"1"
 		"AbilityTextureName"			"centaur_double_edge"
-		"ScriptFile"					"abilities/dota_imba/hero_centaur.lua"
+		"ScriptFile"				"abilities/dota_imba/hero_centaur.lua"
 		"MaxLevel"						"4"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"5 4.5 4 3.5"
-		"AbilityCastRange"				"150"
+		"AbilityCastRange"				"250"
 		"AbilityCastPoint"				"0.5"
 
 		// Precache
@@ -5923,30 +6258,38 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"				"190"
+				"radius"				"250"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"str_damage_reduction"	"100"				
+				"str_damage_reduction"	"100"
+				"CalculateSpellDamageTooltip"	"0"
 			}
 		}
 	}
 
 	//=================================================================================================================
 	// Centaur's Return
+	//e
 	//=================================================================================================================
 	"imba_centaur_return"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"
+		"AbilityCastGestureSlot"		"DEFAULT"
 		"AbilityTextureName"			"centaur_return"
 		"ScriptFile"					"abilities/dota_imba/hero_centaur.lua"
 		"MaxLevel"						"4"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"55.0 50.0 45.0 40.0"
 
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
@@ -5967,12 +6310,14 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"str_pct_as_damage"		"30 50 80 90"
+				"str_pct_as_damage"		"40 60 80 100"
+				"CalculateSpellDamageTooltip"	"0"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_block"			"3 6 9 12"				
+				"damage_block"			"3 6 9 12"
+				"CalculateSpellDamageTooltip"	"0"
 			}
 			"04"
 			{
@@ -5984,11 +6329,28 @@
 				"var_type"				"FIELD_INTEGER"
 				"aura_radius"			"900"				
 			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"20.0"				
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"max_stacks"			"13"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_damage"			"6 9 12 15" // %
+				"CalculateSpellDamageTooltip"	"0"
+			}
 		}
 	}
 
 	//=================================================================================================================
 	// Centaur's Stampede
+	//e
 	//=================================================================================================================
 	"imba_centaur_stampede"
 	{
@@ -6001,14 +6363,14 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"				"2"
 		"AbilityTextureName"			"centaur_stampede"
-		"ScriptFile"					"abilities/dota_imba/hero_centaur.lua"
+		"ScriptFile"				"abilities/dota_imba/hero_centaur.lua"
 		"MaxLevel"						"3"
 		"LevelsBetweenUpgrades"			"6"
 		"HasScepterUpgrade" 			"1"
 
 		// Time
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"90 75 60"
+		"AbilityCooldown"				"80 60 40"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -6036,6 +6398,7 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"strength_damage"			"100 200 300"
+				"CalculateSpellDamageTooltip"	"0"
 			}
 			"03"
 			{
@@ -6051,6 +6414,7 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"damage_reduction_scepter"	"40"
+				"CalculateSpellDamageTooltip"	"0"
 			}
 			"06"
 			{
@@ -6076,6 +6440,7 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"nether_ward_damage"		"20"
+				"CalculateSpellDamageTooltip"	"0"
 			}
 		}
 	}
@@ -6309,6 +6674,391 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"value"						"1"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Chen: Penitence
+	//e
+	//=================================================================================================================
+	"imba_chen_penitence"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/dota_imba/hero_chen.lua"
+		"AbilityTextureName"			"chen_penitence"		
+	
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"AbilitySound"					"Hero_Chen.PenitenceCast"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.3 0.3 0.3 0.3"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"800"
+		"AbilityCooldown"				"14.0 12.0 10.0 8.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"70"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"8 10 12 14"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"speed"					"2000"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_movement_speed"	"-18 -30 -38 -42"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_attack_speed"	"60 120 180 240"
+			}
+
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"		
+				"buff_duration"			"2"
+			}			
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"		
+				"creep_mult"			"2"
+			}
+		}
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
+	}
+
+	
+	//=================================================================================================================
+	// Chen: Test of Faith
+	//e
+	//=================================================================================================================
+	"imba_chen_test_of_faith"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/dota_imba/hero_chen.lua"
+		"AbilityTextureName"			"chen_test_of_faith"	
+	
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"FightRecapLevel"				"1"
+		"AbilitySound"					"Hero_Chen.TestOfFaith.Target"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.3 0.3 0.3 0.3"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"800"
+		"AbilityCooldown"				"16"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"60 80 100 120"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_min"			"75 150 225 300"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_max"			"125 250 375 500"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal_min"			"50 100 150 200"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal_max"			"75 175 275 375"
+			}
+			
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"faithful_assist_mult"			"5"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"unfaithful_assist_mult"		"25"
+			}
+		}
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
+	}
+
+	//=================================================================================================================
+	// Chen: Divine Favor
+	//e
+	//=================================================================================================================
+	"imba_chen_divine_favor"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/dota_imba/hero_chen.lua"
+		"AbilityTextureName"			"chen_divine_favor"
+		
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AURA"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ALLIES_YES"
+		"FightRecapLevel"				"1"
+		"AbilitySound"					"Hero_Chen.TestOfFaith.Target"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.3 0.3 0.3 0.3"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"800"
+		"AbilityCooldown"				"26 24 22 20"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"70 80 90 100"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal_amp"				"50"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal_rate"					"7 13 19 25"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_bonus"		"24 36 48 60"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"8 10 12 14"
+			}
+			
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"			
+				"creep_damage_mult"		"5"
+			}
+			
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal_amp_aura"				"8 12 16 20"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal_rate_aura"					"1 2 3 4"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_bonus_aura"		"4 8 12 16"
+				"LinkedSpecialBonus"	"special_bonus_unique_chen_5"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"army_damage_multiplier"		"2"
+			}
+			"10"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"aura_radius"		"1200"
+			}			
+		}
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
+	}
+
+	//=================================================================================================================
+	// Chen: Holy Persuasion
+	//e
+	//=================================================================================================================
+	"imba_chen_holy_persuasion"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/dota_imba/hero_chen.lua"
+		"AbilityTextureName"			"chen_holy_persuasion"		
+	
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilitySound"					"Hero_Chen.HolyPersuasionCast"
+
+		"HasScepterUpgrade"			"1"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.3 0.3 0.3 0.3"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1500"
+		"AbilityCooldown"				"0.5"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"70 90 110 130"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"max_units"				"2 3 4 5"
+				//"LinkedSpecialBonus"	"special_bonus_unique_chen_1"
+				"LinkedSpecialBonus"	"special_bonus_imba_chen_holy_persuasion_max_unit_increase"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"level_req"				"4 5 6 6"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"health_min"			"1000 2000 3000 4000"
+				"LinkedSpecialBonus"	"special_bonus_unique_chen_4"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"teleport_delay"	"6.0 5.0 4.0 3.0"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"teleport_distance"		"120"
+			}
+			"06"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"commonwealth_pct"	"22 28 34 40"
+			}
+			"07"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"commonwealth_caster_pct"	"50"
+			}
+			"08"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"immortalize_max_units"	"1 2 3 4"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"movement_speed_bonus"	"10 15 20 25"
+			}
+		}
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
+	}
+
+	//=================================================================================================================
+	// Chen: Hand of God
+	//e
+	//=================================================================================================================
+	"imba_chen_hand_of_god"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/dota_imba/hero_chen.lua"
+		"AbilityTextureName"			"chen_hand_of_god"			
+	
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ALLIES_YES"
+		"FightRecapLevel"				"2"
+		"AbilitySound"					"Hero_Chen.HandOfGodHealHero"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.3 0.3 0.3"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"160 140 120"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"200 300 400"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal_amount"			"400 1100 1800"
+				"LinkedSpecialBonus"	"special_bonus_unique_chen_2"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"ancient_creeps_scepter"		"2 3 4"
+			}
+			
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"overheal_loss_per_tick"		"5"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"overheal_tick_rate"	"0.1"
 			}
 		}
 	}
@@ -29050,6 +29800,7 @@
 
 	//=================================================================================================================
 	// Antimage Mana Break
+	//e
 	//=================================================================================================================
 	"imba_antimage_mana_break"
 	{
@@ -29061,7 +29812,7 @@
 		"AbilityUnitTargetType"				"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"				"DAMAGE_TYPE_PHYSICAL"
 		"AbilityTextureName"				"antimage_mana_break"
-		"ScriptFile"						"abilities/dota_imba/hero_antimage"
+		"ScriptFile"				"abilities/dota_imba/hero_antimage"
 
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
@@ -29080,13 +29831,13 @@
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"damage_per_burn"				"0.6"
+				"damage_per_burn"				"0.5"
 				"CalculateSpellDamageTooltip"   "0"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"base_mana_burn"			"30 45 60 75"				
+				"base_mana_burn"			"28 40 52 64"				
 			}
 			"03"
 			{
@@ -29114,6 +29865,7 @@
 
 	//=================================================================================================================
 	// Antimage Blink
+	//e
 	//=================================================================================================================
 	"imba_antimage_blink"
 	{
@@ -29126,7 +29878,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"FightRecapLevel"				"1"
 		"AbilityTextureName"			"antimage_blink"
-		"ScriptFile"					"abilities/dota_imba/hero_antimage"
+		"ScriptFile"				"abilities/dota_imba/hero_antimage"
 
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
@@ -29158,7 +29910,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"percent_mana_burn"			"18 21 24"				
+				"percent_mana_burn"			"18 21 24 27"
 			}
 			"03"
 			{
@@ -29181,6 +29933,7 @@
 
 	//=================================================================================================================
 	// Antimage Spell Shield
+	//e
 	//=================================================================================================================
 	"imba_antimage_spell_shield"
 	{
@@ -29189,13 +29942,14 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"BaseClass"						"ability_lua"
 		"AbilityTextureName"			"antimage_spell_shield"
-		"ScriptFile"					"abilities/dota_imba/hero_antimage"
+		"ScriptFile"				"abilities/dota_imba/hero_antimage"
 		"HasScepterUpgrade"				"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"10"
+		"AbilityCooldown"				"15 11 7 3"
 		"AbilityCastPoint"				"0.0"
+		"AbilityManaCost"				"45 50 55 60"
 
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
@@ -29214,12 +29968,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"magic_resistance"		"20 35 50 65"
+				"magic_resistance"		"20 30 40 50"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"active_duration"		"1.5"				
+				"active_duration"		"1.2"	
 			}
 			"03"
 			{
@@ -29234,16 +29988,16 @@
 		}
 	}
 
-
 	//=================================================================================================================
 	// Antimage Mana Void
+	//e
 	//=================================================================================================================
 	"imba_antimage_mana_void"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"abilities/dota_imba/hero_antimage"
+		"ScriptFile"				"abilities/dota_imba/hero_antimage"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -29254,6 +30008,7 @@
 		"FightRecapLevel"				"2"
 		"AbilityTextureName"			"antimage_mana_void"
 		"AOERadius"						"%mana_void_aoe_radius%"
+		"HasScepterUpgrade"				"1"
 
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
@@ -29278,7 +30033,7 @@
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"125 225 325"
+		"AbilityManaCost"				"125 200 275"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -29287,7 +30042,7 @@
 			"01"
 			{
 				"var_type"							"FIELD_FLOAT"
-				"mana_void_damage_per_mana"			"0.6 0.85 1.1"
+				"mana_void_damage_per_mana"			"0.8 0.95 1.1"
 			}
 			"02"
 			{
@@ -29303,6 +30058,16 @@
 			{
 				"var_type"							"FIELD_INTEGER"
 				"mana_void_mana_burn_pct"			"10 15 20"
+			}
+			"05"
+			{
+				"var_type"							"FIELD_FLOAT"
+				"scepter_cooldown_increase"			"70.0"
+			}
+			"06"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"scepter_ministun"			"1.3"
 			}
 		}
 	}
@@ -29553,13 +30318,14 @@
 
 	//=================================================================================================================
 	// Bloodseeker's Bloodrage
+	//e
 	//=================================================================================================================
 	"imba_bloodseeker_bloodrage"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"abilities/dota_imba/hero_bloodseeker"
+		"ScriptFile"				"abilities/dota_imba/hero_bloodseeker"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -29575,7 +30341,7 @@
 
 		// Time
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"12 10 8 6"
+		"AbilityCooldown"				"9 8 7 6"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -29610,11 +30376,12 @@
 			{
 				"var_type"					"FIELD_INTEGER"
 				"damage_increase_pct"		"25 30 35 40"
+				"CalculateSpellDamageTooltip"	"0"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"health_bonus_pct"			"19 21 23 25"
+				"health_bonus_pct"			"18 22 26 30"
 			}
 			"04"
 			{
@@ -29651,13 +30418,14 @@
 
 	//=================================================================================================================
 	// Ability: Bloodseekers Blood Rite/Bath
+	//e
 	//=================================================================================================================
 	"imba_bloodseeker_blood_bath"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"abilities/dota_imba/hero_bloodseeker"
+		"ScriptFile"				"abilities/dota_imba/hero_bloodseeker"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
 		"AbilityTextureName"			"bloodseeker_blood_bath"
@@ -29674,7 +30442,7 @@
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"100"
+		"AbilityManaCost"				"70 80 90 100"
 
 		"precache"
 		{
@@ -29697,22 +30465,22 @@
 			"02"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"silence_duration"			"3 4 5 6"
+				"silence_duration"			"3.5 4.5 5.5 6.5"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"120 160 200 240"
+				"damage"					"175 225 275 325"
 			}
 			"04"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"delay"						"2.6"
+				"delay"						"2.2"
 			}
 			"05"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"delay_plus_castpoint_tooltip"	"3"
+				"delay_plus_castpoint_tooltip"	"2.5"
 			}
 			"06"
 			{
@@ -29739,18 +30507,24 @@
 				"var_type"						"FIELD_FLOAT"
 				"vision_duration"				"6.0"
 			}
+			"11"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"cooldown_reduction_talent"		"6"
+			}
 		}
 	}
 
 	//=================================================================================================================
 	// Ability: Bloodseekers Thirst
+	//e
 	//=================================================================================================================
 	"imba_bloodseeker_thirst"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"abilities/dota_imba/hero_bloodseeker"
+		"ScriptFile"				"abilities/dota_imba/hero_bloodseeker"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"			"bloodseeker_thirst"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
@@ -29779,12 +30553,12 @@
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"bonus_movement_speed"		"16 24 32 40"
+				"bonus_movement_speed"		"14 26 38 50"
 			}
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"bonus_damage"				"16 24 32 40"
+				"bonus_damage"				"35 50 65 80"
 			}
 			"06"
 			{
@@ -29794,7 +30568,7 @@
 			"07"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"bonus_damage_atk"			"2 4 6 8"
+				"bonus_damage_atk"			"4 8 12 16"
 			}
 			"08"
 			{
@@ -29816,13 +30590,14 @@
 
 	//=================================================================================================================
 	// Ability: Bloodseekers Rupture
+	//e
 	//=================================================================================================================
 	"imba_bloodseeker_rupture"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"abilities/dota_imba/hero_bloodseeker"
+		"ScriptFile"				"abilities/dota_imba/hero_bloodseeker"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -29847,7 +30622,7 @@
 
 		// Time
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"60"
+		"AbilityCooldown"				"60 50 40"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -29870,56 +30645,47 @@
 				"var_type"					"FIELD_INTEGER"
 				"duration"					"12"
 			}
-
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
 				"movement_damage_pct"		"30 45 60"
 			}
-
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
 				"damage_cap_amount"			"1300"
 				"LinkedSpecialBonus"		"special_bonus_imba_bloodseeker_6"
 			}
-
 			"04"
 			{
 				"var_type"					"FIELD_FLOAT"
 				"damage_cap_interval"		"0.25"
 			}
-
 			"05"
 			{
 				"var_type"					"FIELD_INTEGER"
 				"cast_range_tooltip"		"1000"
 			}
-
 			"06"
 			{
 				"var_type"					"FIELD_INTEGER"
 				"damage_initial_pct"		"75"
 			}
-
 			"07"
 			{
 				"var_type"					"FIELD_INTEGER"
 				"attack_damage"				"20 35 50"
 			}
-
 			"08"
 			{
 				"var_type"					"FIELD_INTEGER"
 				"cast_damage"				"40 70 100"
 			}
-
 			"09"
 			{
 				"var_type"					"FIELD_INTEGER"
 				"rupture_charges"			"2"
 			}
-
 			"10"
 			{
 				"var_type"						"FIELD_INTEGER"
@@ -29927,8 +30693,6 @@
 			}
 		}
 	}
-
-	
 
 	//=================================================================================================================
 	// Bloodseeker Talents
@@ -30161,6 +30925,7 @@
 
 	//=================================================================================================================
 	// Bounty Hunter's Shuriken Toss
+	//e
 	//=================================================================================================================
 	"imba_bounty_hunter_shuriken_toss"
 	{
@@ -30170,7 +30935,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"FightRecapLevel"				"1"
 		"AbilityTextureName"			"bounty_hunter_shuriken_toss"
-		"ScriptFile"					"abilities/dota_imba/hero_bounty_hunter"
+		"ScriptFile"				"abilities/dota_imba/hero_bounty_hunter"
 		"HasScepterUpgrade"				"1"
 
 		// Precache
@@ -30205,7 +30970,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"150 225 300 375"				
+				"damage"				"200 275 350 425"				
 			}
 			"02"
 			{
@@ -30267,11 +31032,17 @@
 				"var_type"					"FIELD_INTEGER"
 				"cast_range"				"400 500 600 700"
 			}
+			"14"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"scepter_cast_range"	"800 900 1000 1100"
+			}
 		}
 	}
 
 	//=================================================================================================================
 	// Bounty Hunter's Jinada
+	//e
 	//=================================================================================================================
 	"imba_bounty_hunter_jinada"
 	{
@@ -30281,7 +31052,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"		
 		"FightRecapLevel"				"1"
 		"AbilityTextureName"			"bounty_hunter_jinada"
-		"ScriptFile"					"abilities/dota_imba/hero_bounty_hunter"
+		"ScriptFile"				"abilities/dota_imba/hero_bounty_hunter"
 
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
@@ -30303,7 +31074,7 @@
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------		
 		"AbilityCastPoint"				"0.1"
-		"AbilityCooldown"				"12 10 8 6"
+		"AbilityCooldown"				"12 9 6 3"
 		"AbilityManaCost"				"65"
 
 		// Special
@@ -30314,6 +31085,7 @@
 			{
 				"var_type"				"FIELD_INTEGER"
 				"crit_damage"			"150 175 200 225"
+				"CalculateSpellDamageTooltip"	"0"
 			}
 			"02"
 			{
@@ -30323,7 +31095,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"ms_slow_pct"			"15 20 25 30"				
+				"ms_slow_pct"			"15 20 25 30"
 			}
 			"04"
 			{
@@ -30335,11 +31107,22 @@
 				"var_type"				"FIELD_INTEGER"
 				"cast_range"			"600 700 800 900"
 			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_damage"			"80 110 140 170"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_gold"			"15 25 35 45"
+			}
 		}
 	}
 
 	//=================================================================================================================
 	// Bounty Hunter's Shadow Walk
+	//e
 	//=================================================================================================================
 	"imba_bounty_hunter_shadow_walk"
 	{
@@ -30349,7 +31132,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL" 
 		"FightRecapLevel"				"1"
 		"AbilityTextureName"			"bounty_hunter_wind_walk"
-		"ScriptFile"					"abilities/dota_imba/hero_bounty_hunter"
+		"ScriptFile"				"abilities/dota_imba/hero_bounty_hunter"
 
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
@@ -30413,6 +31196,7 @@
 
 	//=================================================================================================================
 	// Bounty Hunter's Track
+	//e
 	//=================================================================================================================
 	"imba_bounty_hunter_track"
 	{
@@ -30423,7 +31207,7 @@
 		"FightRecapLevel"				"1"
 		"AbilityTextureName"			"bounty_hunter_track"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-		"ScriptFile"					"abilities/dota_imba/hero_bounty_hunter"
+		"ScriptFile"				"abilities/dota_imba/hero_bounty_hunter"
 
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
@@ -30461,48 +31245,47 @@
 				"var_type"				"FIELD_INTEGER"
 				"projectile_speed"		"900"
 			}
-
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"ms_bonus_allies_pct"	"16 18 20"
 			}
-
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"duration"				"30"				
 			}
-
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"bonus_gold_self"		"150 250 350"
 			}
-
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
 				"bonus_gold_allies"		"40 80 120"
 			}
-
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"haste_radius"			"900"
+				"haste_radius"			"1200"
 			}
-
 			"07"
 			{
 				"var_type"				"FIELD_FLOAT"
 				"haste_linger"			"0.5"
 			}
-
+			"08"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"target_crit_multiplier"	"140 170 200"
+			}			
 		}
 	}
 
 	//=================================================================================================================
 	// Bounty Hunter's Headhunter
+	//e
 	//=================================================================================================================
 	"imba_bounty_hunter_headhunter"
 	{
@@ -30512,7 +31295,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"FightRecapLevel"				"1"
 		"AbilityTextureName"			"custom/bounty_hunter_headhunter"
-		"ScriptFile"					"abilities/dota_imba/hero_bounty_hunter"
+		"ScriptFile"				"abilities/dota_imba/hero_bounty_hunter"
 		"MaxLevel"						"1"
 
 		// Precache

@@ -15,14 +15,13 @@
 -- Editors:
 --     Hewdraw
 --     suthernfriend, 03.02.2018
+--     Elfansoer, 21.06.2019
 
 if IsClient() then
     require('lib/util_imba_client')
 end
 
-CreateEmptyTalents("alchemist")
 local LinkedModifiers = {}
-
 
 -------------------------------------------
 --              ACID SPRAY
@@ -43,15 +42,11 @@ function imba_alchemist_acid_spray:GetAbilityTextureName()
 	return "alchemist_acid_spray"
 end
 
-function imba_alchemist_acid_spray:GetCastRange(location, target)
-	return self.BaseClass.GetCastRange(self, location, target)
-end
-
 function imba_alchemist_acid_spray:IsHiddenWhenStolen()
-	local caster = self:GetCaster()
-	if caster:HasAbility("imba_alchemist_chemical_rage") then
-		return true
-	end
+--	local caster = self:GetCaster()
+--	if caster:HasAbility("imba_alchemist_chemical_rage") then
+--		return true
+--	end
 	return false
 end
 
@@ -213,7 +208,6 @@ function modifier_imba_acid_spray_handler:OnDeath(params)
 			end
 
 			if caster:HasTalent("special_bonus_imba_alchemist_4") and caster:HasModifier("modifier_imba_goblins_greed_passive") then
-
 				-- Ability paramaters
 				local greed_stacks		=	caster:FindModifierByName("modifier_imba_goblins_greed_passive"):GetStackCount()
 				local stacks_to_gold 	=	caster:FindTalentValue("special_bonus_imba_alchemist_4", "stacks_to_gold_percentage" ) * 0.01
@@ -259,15 +253,14 @@ function modifier_imba_acid_spray_debuff_dot:OnCreated()
 	self.caster = self:GetCaster()
 	local ability = self:GetAbility()
 
-
+	self.armor_reduction = ability:GetSpecialValueFor("armor_reduction")
+	self.stack_armor_reduction = ability:GetSpecialValueFor("stack_armor_reduction")
+	
 	if IsServer() then
 		self:SetStackCount(1)
 		local tick_rate = ability:GetSpecialValueFor("tick_rate")
 		self:StartIntervalThink(tick_rate)
 	end
-	self.armor_reduction = ability:GetSpecialValueFor("armor_reduction")
-	self.stack_armor_reduction = ability:GetSpecialValueFor("stack_armor_reduction")
-
 end
 
 function modifier_imba_acid_spray_debuff_dot:OnIntervalThink(aura_tick, consume_stacks)
@@ -400,6 +393,37 @@ function imba_alchemist_unstable_concoction:OnSpellStart()
 	local caster = self:GetCaster()
 	local cast_response = {"alchemist_alch_ability_concoc_01", "alchemist_alch_ability_concoc_02", "alchemist_alch_ability_concoc_03", "alchemist_alch_ability_concoc_04", "alchemist_alch_ability_concoc_05", "alchemist_alch_ability_concoc_06", "alchemist_alch_ability_concoc_07", "alchemist_alch_ability_concoc_08", "alchemist_alch_ability_concoc_10"}
 	local last_second_throw_response = {"alchemist_alch_ability_concoc_16", "alchemist_alch_ability_concoc_17"}
+
+	--[[Elfansoer: Fixed buggy Lotus orb interaction.]]
+	--[[fix start]]
+	-- check reflected
+	if imba_alchemist_unstable_concoction.reflect_check then
+		local original_ability = imba_alchemist_unstable_concoction.reflect_check
+
+		-- copy relevant data from original
+		self.brew_start = GameRules:GetGameTime() - original_ability.time_charged
+		self.stun = original_ability.stun
+		self.damage = original_ability.damage
+		self.brew_time = original_ability.brew_time
+		self.radius_increase = original_ability.radius_increase
+
+		local target = self:GetCursorTarget()
+		local projectile_speed = self:GetSpecialValueFor("movement_speed")
+		local info =
+		{
+			Target = target,
+			Source = caster,
+			Ability = self,
+			bDodgeable = false,
+			EffectName = "particles/units/heroes/hero_alchemist/alchemist_unstable_concoction_projectile.vpcf",
+			iMoveSpeed = projectile_speed,
+		}
+
+		ProjectileManager:CreateTrackingProjectile(info)
+		return
+	end
+	--[[fix end]]
+
 	if caster:HasModifier("modifier_imba_unstable_concoction_handler") then
 		local target = self:GetCursorTarget()
 		-- Stops the charging sound
@@ -429,15 +453,16 @@ function imba_alchemist_unstable_concoction:OnSpellStart()
 		Timers:CreateTimer(0.3, function()
 			local projectile_speed = self:GetSpecialValueFor("movement_speed")
 			local info =
-				{
-					Target = target,
-					Source = caster,
-					Ability = self,
-					EffectName = "particles/units/heroes/hero_alchemist/alchemist_unstable_concoction_projectile.vpcf",
-					iMoveSpeed = projectile_speed,
-				}
-			ProjectileManager:CreateTrackingProjectile(info)
+			{
+				Target = target,
+				Source = caster,
+				Ability = self,
+				bDodgeable = false,
+				EffectName = "particles/units/heroes/hero_alchemist/alchemist_unstable_concoction_projectile.vpcf",
+				iMoveSpeed = projectile_speed,
+			}
 
+			ProjectileManager:CreateTrackingProjectile(info)
 		end)
 		return
 	end
@@ -524,9 +549,18 @@ function imba_alchemist_unstable_concoction:OnProjectileHit(target, location)
 						end
 					end
 				else
+					--[[Elfansoer: Fix buggy interaction with Lotus orb.
 					if target:TriggerSpellAbsorb(self) then
 						return
 					end
+					]]
+
+					imba_alchemist_unstable_concoction.reflect_check = self
+					if target:TriggerSpellAbsorb(self) then
+						imba_alchemist_unstable_concoction.reflect_check = nil
+						return
+					end
+					imba_alchemist_unstable_concoction.reflect_check = nil
 				end
 			end
 
@@ -558,7 +592,10 @@ function imba_alchemist_unstable_concoction:OnProjectileHit(target, location)
 						ParticleManager:SetParticleControl(particle_acid_blast_fx, 2, Vector(acid_spray_radius, 0, 0))
 						ParticleManager:ReleaseParticleIndex(particle_acid_blast_fx)
 
+						--[[Elfansoer: fixed Highly Combustible twice the radius.
 						local acid_spray_units = FindUnitsInRadius(caster:GetTeam(), location, nil, acid_spray_radius * 2, self:GetAbilityTargetTeam(), DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO, self:GetAbilityTargetFlags(), FIND_ANY_ORDER, false)
+						]]
+						local acid_spray_units = FindUnitsInRadius(caster:GetTeam(), location, nil, acid_spray_radius, self:GetAbilityTargetTeam(), DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO, self:GetAbilityTargetFlags(), FIND_ANY_ORDER, false)
 						local damage_multiplier = self:GetSpecialValueFor("acid_spray_damage") * 0.01
 
 						for _,acid_spray_unit in pairs(acid_spray_units) do
@@ -781,6 +818,7 @@ function modifier_imba_unstable_concoction_handler:OnIntervalThink()
 					Target = caster,
 					Source = caster,
 					Ability = ability,
+					bDodgeable = false,
 					EffectName = "particles/units/heroes/hero_alchemist/alchemist_unstable_concoction_projectile.vpcf",
 					iMoveSpeed = ability:GetSpecialValueFor("movement_speed"),
 				}
@@ -1067,6 +1105,7 @@ function modifier_imba_goblins_greed_passive:OnDeath(keys)
 		self:SetStackCount(stacks + stack_bonus)
 
 		Timers:CreateTimer(duration, function()
+			if not stacks then return nil end
 			stacks = self:GetStackCount()
 			self:SetStackCount(stacks - stack_bonus)
 		end)
@@ -1125,6 +1164,9 @@ end
 function modifier_imba_greevils_greed_handler:OnIntervalThink()
 	if IsServer() then
 		-- If Alchemist is invisible, remove the model
+		--[[Elfansoer: temporary fix imba portability
+		-- if self.owner:IsImbaInvisible() then
+		]]
 		if self.owner:IsInvisible() then
 			self.caster:AddNoDraw()
 		else
@@ -1196,11 +1238,10 @@ function imba_alchemist_chemical_rage:OnSpellStart()
 	local caster = self:GetCaster()
 	local cast_response = {"alchemist_alch_ability_rage_01", "alchemist_alch_ability_rage_02", "alchemist_alch_ability_rage_03", "alchemist_alch_ability_rage_04", "alchemist_alch_ability_rage_05", "alchemist_alch_ability_rage_06", "alchemist_alch_ability_rage_07", "alchemist_alch_ability_rage_08", "alchemist_alch_ability_rage_09", "alchemist_alch_ability_rage_10", "alchemist_alch_ability_rage_11", "alchemist_alch_ability_rage_12", "alchemist_alch_ability_rage_13", "alchemist_alch_ability_rage_15", "alchemist_alch_ability_rage_16", "alchemist_alch_ability_rage_17", "alchemist_alch_ability_rage_18", "alchemist_alch_ability_rage_19", "alchemist_alch_ability_rage_20", "alchemist_alch_ability_rage_21", "alchemist_alch_ability_rage_22", "alchemist_alch_ability_rage_23", "alchemist_alch_ability_rage_24", "alchemist_alch_ability_rage_25"}
 
-
 	-- See if enough enemies are nearby to inform them about the visitation rules of your swamp
 	local radius_of_swamp = 800
 	local enemies = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(), nil, radius_of_swamp, DOTA_UNIT_TARGET_TEAM_ENEMY,DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE,FIND_ANY_ORDER, false)
-	local swamp_maximum_occupancy = PlayerResource:GetTeamPlayerCount() * 0.25
+	local swamp_maximum_occupancy = PlayerResource:GetPlayerCount() * 0.25
 
 	--Wait how many of you are there around me?
 	if #enemies >= swamp_maximum_occupancy then
@@ -1211,6 +1252,7 @@ function imba_alchemist_chemical_rage:OnSpellStart()
 		EmitSoundOn(cast_response[math.random(1,#cast_response)], caster)
 	end
 
+	caster:Purge(false, true, false, false, false)
 	caster:AddNewModifier(caster, self, "modifier_imba_chemical_rage_handler", {})
 	caster:EmitSound("Hero_Alchemist.ChemicalRage.Cast")
 end
@@ -1275,7 +1317,6 @@ function modifier_imba_chemical_rage_buff_haste:OnCreated()
 		local particle_acid_aura = "particles/hero/alchemist/chemical_rage_acid_aura.vpcf"
 		-- Ability paramaters
 		self.ability			= 	caster:FindAbilityByName("imba_alchemist_acid_spray")
-		self.bat_change			=	self:GetAbility():GetSpecialValueFor("base_attack_time")
 		self.radius				=	self.ability:GetSpecialValueFor("radius")
 
 		local particle_acid_aura_fx = ParticleManager:CreateParticle(particle_acid_aura, PATTACH_ABSORIGIN_FOLLOW, parent)
@@ -1327,7 +1368,7 @@ function modifier_imba_chemical_rage_buff_haste:DeclareFunctions()
 		MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
 		MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS,
 		MODIFIER_PROPERTY_TRANSLATE_ATTACK_SOUND,
-		MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT
+		MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT,
 	}
 	return table
 end
@@ -1341,23 +1382,19 @@ function modifier_imba_chemical_rage_buff_haste:GetAttackSound()
 end
 
 function modifier_imba_chemical_rage_buff_haste:GetModifierBaseManaRegen()
-	local ability = self:GetAbility()
-	return ability:GetSpecialValueFor("bonus_mana_regen")
+	return self:GetAbility():GetSpecialValueFor("bonus_mana_regen")
 end
 
 function modifier_imba_chemical_rage_buff_haste:GetModifierConstantHealthRegen()
-	local ability = self:GetAbility()
-	local regen = ability:GetSpecialValueFor("bonus_health_regen")
-	return regen
+	return self:GetAbility():GetSpecialValueFor("bonus_health_regen")
 end
 
 function modifier_imba_chemical_rage_buff_haste:GetModifierMoveSpeedBonus_Constant()
-	local ability = self:GetAbility()
-	return ability:GetSpecialValueFor("bonus_movespeed")
+	return self:GetAbility():GetSpecialValueFor("bonus_movespeed")
 end
 
 function modifier_imba_chemical_rage_buff_haste:GetModifierBaseAttackTimeConstant()
-	return self.bat_change
+	return self:GetAbility():GetSpecialValueFor("base_attack_time")
 end
 
 function modifier_imba_chemical_rage_buff_haste:GetEffectName()
@@ -1522,11 +1559,9 @@ function modifier_mammonite_passive:OnRefresh()
 end
 
 function modifier_mammonite_passive:DeclareFunctions()
-	local decFuncs = {
-		MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
+	local decFuncs = {MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
 		MODIFIER_EVENT_ON_ATTACK_FINISHED,
-		--MODIFIER_PROPERTY_ABILITY_LAYOUT
-	}
+		MODIFIER_PROPERTY_ABILITY_LAYOUT}
 
 	return decFuncs
 end
@@ -1537,14 +1572,14 @@ end
 
 function modifier_mammonite_passive:GetModifierPreAttack_BonusDamage()
 	if IsServer() then
-		--if self.caster:HasScepter() then
+		if self.caster:HasScepter() then
 			if self.ability:GetToggleState() then
 				local gold = self.caster:GetGold()
 				local gold_percent = self.gold_damage * 0.01
 				local gold_damage = gold * gold_percent
 				return gold_damage
 			end
-		--end
+		end
 	end
 end
 
@@ -1554,14 +1589,14 @@ function modifier_mammonite_passive:OnAttackFinished(keys)
 
 		-- Only apply if the attacker is the caster
 		if self.caster == attacker then
-			--if self.caster:HasScepter() then
+			if self.caster:HasScepter() then
 				if self.ability:GetToggleState() then
 					local gold = self.caster:GetGold()
 					local gold_percent = self.gold_damage * 0.01
 					local gold_damage = gold * gold_percent
 					self.caster:SpendGold(gold_damage, DOTA_ModifyGold_Unspecified)
 				end
-			--end
+			end
 		end
 	end
 end
