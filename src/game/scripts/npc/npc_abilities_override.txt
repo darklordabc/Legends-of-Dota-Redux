@@ -3769,7 +3769,7 @@
         }
         "special_bonus_unique_chaos_knight_2"
         {
-            "TalentRequiredAbility"                                                   "chaos_knight_reality_rift"
+            "TalentRequiredAbility"                                                   "chaos_knight_chaos_strike"
         }
         "special_bonus_unique_chaos_knight_3"
         {
@@ -3971,7 +3971,11 @@
 
         "special_bonus_unique_huskar"
         {
-            "TalentRequiredAbility"                                                   "huskar_life_break_redux"
+            "TalentRequiredAbility" 
+            {
+                "1" "huskar_life_break"
+                "2" "huskar_life_break_redux"
+            }
         }
 
         "special_bonus_unique_huskar_2"
@@ -3981,7 +3985,11 @@
 
         "special_bonus_unique_huskar_5"
         {
-            "TalentRequiredAbility"                                                   "huskar_burning_spear"
+            "TalentRequiredAbility" 
+            {
+                "1" "huskar_life_break"
+                "2" "huskar_life_break_redux"
+            }   
         }
 
         "special_bonus_unique_invoker_1"
@@ -4012,6 +4020,16 @@
         "special_bonus_unique_invoker_6"
         {
             "TalentRequiredAbility"                                                   "invoker_chaos_meteor_lod"
+        }
+
+        "special_bonus_unique_invoker_9"
+        {
+            "TalentRequiredAbility"                                                   "invoker_cold_snap_lod"
+        }
+
+        "special_bonus_unique_invoker_10"
+        {
+            "TalentRequiredAbility"                                                   "invoker_ghost_walk_lod"
         }
 
         "special_bonus_unique_jakiro"
@@ -4136,7 +4154,7 @@
 
         "special_bonus_unique_lich_1"
         {
-            "TalentRequiredAbility"                                                   "lich_frost_armor"
+            "TalentRequiredAbility"                                                   "lich_frost_shield"
         }
 
         //"special_bonus_unique_lich_2"
@@ -4465,7 +4483,7 @@
 
         "special_bonus_unique_necrophos_3"
         {
-            "TalentRequiredAbility"                                                   "imba_necrolyte_ghost_shroud"
+            "TalentRequiredAbility"                                                   "necrolyte_sadist"
         }
 
         "special_bonus_unique_necrophos_4"
@@ -4480,7 +4498,12 @@
 
         "special_bonus_unique_nevermore_2"
         {
-            "TalentRequiredAbility"                                                   "nevermore_shadowraze1"
+            "TalentRequiredAbility" 
+            {
+                "1" "nevermore_shadowraze1"
+                "2" "nevermore_shadowraze2"
+                "3" "nevermore_shadowraze3"
+            } 
         }
 
         "special_bonus_unique_nevermore_3"
@@ -5243,7 +5266,7 @@
 
         "special_bonus_unique_tiny_5"
         {
-            "TalentRequiredAbility"                                                   "tiny_craggy_exterior"
+            "TalentRequiredAbility"                                                   "tiny_toss"
         }
 
 
@@ -5621,6 +5644,16 @@
             "TalentRequiredAbility"                                                   "wisp_tether"
         }
 
+        "special_bonus_unique_wisp_6"
+        {
+            "TalentRequiredAbility"                                                   "wisp_relocate"
+        }
+
+        "special_bonus_unique_wisp_7"
+        {
+            "TalentRequiredAbility"                                                   "wisp_spirits"
+        }
+
         "special_bonus_unique_witch_doctor_1"
         {
             "TalentRequiredAbility"                                                   "witch_doctor_death_ward"
@@ -5648,8 +5681,12 @@
 
         "special_bonus_unique_wraith_king_1"
         {
-            "TalentRequiredAbility"                                                   "skeleton_king_reincarnation_redux"
-        }
+            "TalentRequiredAbility" 
+            {
+                "1" "skeleton_king_reincarnation"
+                "2" "skeleton_king_reincarnation_redux"
+            }
+        }   
 
         "special_bonus_unique_wraith_king_2"
         {
@@ -5663,7 +5700,11 @@
 
         "special_bonus_unique_wraith_king_4"
         {
-            "TalentRequiredAbility"                                                   "skeleton_king_reincarnation_redux"
+            "TalentRequiredAbility" 
+            {
+                "1" "skeleton_king_reincarnation"
+                "2" "skeleton_king_reincarnation_redux"
+            }
         }
 
         "special_bonus_unique_wraith_king_6"
@@ -6095,7 +6136,7 @@
 
         "special_bonus_unique_alchemist"
         {
-            "TalentRequiredAbility"                                                   "alchemist_acid_spray"
+            "TalentRequiredAbility"                                                   "alchemist_unstable_concoction"
         }
 
         "special_bonus_unique_alchemist_2"
