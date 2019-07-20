@@ -12,14 +12,18 @@
 -- See the License for the specific language governing permissions and
 -- limitations under the License.
 --
--- Editors:
+-- Editors: 
 --     SquawkyArctangent
 --     EarthSalamander #42, 29.01.2018
 --     suthernfriend, 03.02.2018
+--     naowin, 12.07.2018
+--     Elfansoer, 04.07.2019
 
 if IsClient() then
     require('lib/util_imba_client')
 end
+
+CreateEmptyTalents("dragon_knight")
 
 ---------------------------
 --		BREATH FIRE  	 --
@@ -30,18 +34,14 @@ LinkLuaModifier("modifier_imba_breathe_fire_debuff", "abilities/dota_imba/hero_d
 imba_dragon_knight_breathe_fire = class({})
 
 function imba_dragon_knight_breathe_fire:GetAbilityTextureName()
-	return "dragon_knight_breathe_fire"
-end
-
-function imba_dragon_knight_breathe_fire:IsHiddenWhenStolen()
-	return false
+   return "dragon_knight_breathe_fire"
 end
 
 function imba_dragon_knight_breathe_fire:OnSpellStart()
-	local ability = self
-	local target = self:GetCursorTarget()
-	local target_point = self:GetCursorPosition()
-	local speed = self:GetSpecialValueFor("speed")
+local ability = self
+local target = self:GetCursorTarget()
+local target_point = self:GetCursorPosition()
+local speed = self:GetSpecialValueFor("speed")
 
 	EmitSoundOn("Hero_DragonKnight.BreathFire", self:GetCaster())
 
@@ -55,20 +55,19 @@ function imba_dragon_knight_breathe_fire:OnSpellStart()
 		Source = self:GetCaster(),
 		bHasFrontalCone = false,
 		bReplaceExisting = false,
-		iUnitTargetTeam = self:GetAbilityTargetTeam(),
-		iUnitTargetType = self:GetAbilityTargetType(),
+		iUnitTargetTeam = self:GetAbilityTargetTeam(),							
+		iUnitTargetType = self:GetAbilityTargetType(),							
 		bDeleteOnHit = false,
 		vVelocity = (((target_point - self:GetCaster():GetAbsOrigin()) * Vector(1, 1, 0)):Normalized()) * speed,
-		bProvidesVision = false,
+		bProvidesVision = false,							
 	}
 
 	ProjectileManager:CreateLinearProjectile(projectile)
 
 	if self:GetCaster():HasTalent("special_bonus_imba_dragon_knight_5") then
-		print("Purge hero!")
 		self:GetCaster():Purge(false, true, false, true, true)
 	end
-end
+end 
 
 function imba_dragon_knight_breathe_fire:OnProjectileHit(target, location)
 	if IsServer() then
@@ -91,7 +90,7 @@ function imba_dragon_knight_breathe_fire:OnProjectileHit(target, location)
 		end
 
 		-- Deal damage
-		ApplyDamage({victim = target, damage = damage + health_as_damage, damage_type = damage_type, attacker = self:GetCaster(), ability = self})
+		ApplyDamage({victim = target, damage = damage + health_as_damage, damage_type = damage_type, attacker = self:GetCaster(), ability = self})	
 
 		SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE, target, health_as_damage, nil)
 		target:AddNewModifier(self:GetCaster(), self, "modifier_imba_breathe_fire_debuff", {duration = debuff_duration})
@@ -118,7 +117,7 @@ function modifier_imba_breathe_fire_debuff:DeclareFunctions()
 end
 
 function modifier_imba_breathe_fire_debuff:GetModifierBaseDamageOutgoing_Percentage()
-	return self:GetAbility():GetSpecialValueFor("reduction")
+    return self:GetAbility():GetSpecialValueFor("reduction")
 end
 
 function modifier_imba_breathe_fire_debuff:GetModifierBonusStats_Strength()
@@ -129,7 +128,8 @@ function modifier_imba_breathe_fire_debuff:GetEffectName()
 	return "particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire_trail.vpcf"
 end
 
-function modifier_imba_breathe_fire_debuff:GetEffectAttachType() return PATTACH_ABSORIGIN_FOLLOW end
+function modifier_imba_breathe_fire_debuff:GetAttributes() return MODIFIER_ATTRIBUTE_MULTIPLE end
+function modifier_imba_breathe_fire_debuff:GetEffectAttachType() return PATTACH_ABSORIGIN_FOLLOW end	
 function modifier_imba_breathe_fire_debuff:IsHidden() return false end
 function modifier_imba_breathe_fire_debuff:IsPurgable() return true end
 function modifier_imba_breathe_fire_debuff:IsDebuff() return true end
@@ -145,7 +145,7 @@ LinkLuaModifier("modifier_imba_dragon_tail_debuff", "abilities/dota_imba/hero_dr
 imba_dragon_knight_dragon_tail = class({})
 
 function imba_dragon_knight_dragon_tail:GetCastRange()
-	self.cast_range = 150
+self.cast_range = 150
 
 	if self:GetCaster() and self:GetCaster().HasModifier and self:GetCaster():HasModifier("modifier_dragon_knight_dragon_form") then
 		self.cast_range = self:GetSpecialValueFor("dragon_cast_range")
@@ -186,14 +186,14 @@ function imba_dragon_knight_dragon_tail:OnSpellStart()
 					enemy:AddNewModifier(self:GetCaster(), self, "modifier_imba_dragon_tail_debuff", {duration = self:GetSpecialValueFor("stun_duration") /2})
 				end
 
-				local info =
-					{
-						Target = self.main_target,
-						Source = self:GetCaster(),
-						Ability = self,
-						EffectName = "particles/units/heroes/hero_dragon_knight/dragon_knight_dragon_tail_dragonform_proj.vpcf",
-						iMoveSpeed = speed,
-					}
+				local info = 
+				{
+					Target = self.main_target,
+					Source = self:GetCaster(),
+					Ability = self, 
+					EffectName = "particles/units/heroes/hero_dragon_knight/dragon_knight_dragon_tail_dragonform_proj.vpcf",
+					iMoveSpeed = speed,
+				}
 				ProjectileManager:CreateTrackingProjectile(info)
 			end
 		end
@@ -222,16 +222,11 @@ end
 
 modifier_imba_dragon_tail = modifier_imba_dragon_tail or class({})
 
-function modifier_imba_dragon_tail:IsHidden() return false end
-function modifier_imba_dragon_tail:IsPurgable() return false end
-function modifier_imba_dragon_tail:IsPermanent() return true end
-function modifier_imba_dragon_tail:RemoveOnDeath() return false end
-function modifier_imba_dragon_tail:IsDebuff() return false end
+function modifier_imba_dragon_tail:IsHidden() 		return false end
+function modifier_imba_dragon_tail:IsDebuff() 		return false end
 
 function modifier_imba_dragon_tail:OnCreated()
 	if IsServer() then
-		self.attackers = self.attackers or {}
-
 		--SORRY RUBICK!
 		if self:GetAbility():IsStolen() then
 			self:Destroy()
@@ -242,93 +237,35 @@ function modifier_imba_dragon_tail:OnCreated()
 	end
 end
 
-function modifier_imba_dragon_tail:DeclareFunctions()
-	local funcs = {MODIFIER_EVENT_ON_ATTACK_START,
-		MODIFIER_EVENT_ON_ATTACK_FINISHED,
-		MODIFIER_PROPERTY_EVASION_CONSTANT,
-	}
+function modifier_imba_dragon_tail:OnRefresh()
+	if IsServer() then
+		self:OnCreated()
+	end
+end
 
+function modifier_imba_dragon_tail:DeclareFunctions()
+	local funcs = {
+	MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK,
+	MODIFIER_EVENT_ON_ATTACK_LANDED
+	}
+	
 	return funcs
 end
 
-function modifier_imba_dragon_tail:GetModifierEvasion_Constant(params)
-	--If the attack is to be parried, maximize evasion
-	local parried = false
-
-	for k,v in pairs(self.attackers) do
-		if v == params.attacker then --has the attacker launched an attack to parry?
-			parried = true
-			break
-		end
-	end
-
-	if parried then
-		return 100
-	else
-		return 0
-	end
+function modifier_imba_dragon_tail:GetModifierPhysical_ConstantBlock(keys)
+	return keys.damage
 end
 
-function modifier_imba_dragon_tail:OnAttackStart(keys)
-	if IsServer() then
-		local attacker = keys.attacker
-		local target = keys.target
-		--proceed only if the target is Pangolier and the attacker is an hero
-		if target == self:GetCaster() and attacker:GetTeam() ~= target:GetTeam() then
-			--if no parry stacks remains, do nothing
-			local stacks = self:GetStackCount()
-
-			if stacks == 0 then
-				--clears the attackers table to avoid inconsistencies
-				self.attackers = {}
-				target:RemoveModifierByName("modifier_imba_dragon_tail")
-				return nil
-			end
-
-			--Makes the attacking hero ignore true strike
-			attacker:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_imba_dragon_tail_miss", {})
-
-			--Register the attacker
-			table.insert(self.attackers, attacker)
+function modifier_imba_dragon_tail:OnAttackLanded(keys)
+	if self:GetParent() == keys.target and not self:IsNull() then
+		self:DecrementStackCount()
+		SendOverheadEventMessage(nil, OVERHEAD_ALERT_BLOCK, self:GetParent(), keys.damage, nil)
+		if self:GetStackCount() <= 0 then
+			Timers:CreateTimer(FrameTime(), function()
+				self:Destroy()
+			end)
 		end
 	end
-end
-
-function modifier_imba_dragon_tail:OnAttackFinished(keys)
-	if IsServer() then
-		local attacker = keys.attacker
-		local target = keys.target
-
-		--Proceed only if the target is Pangolier and the attacker is an hero
-		if target == self:GetCaster() and attacker:IsHero() then
-			--Remove debuff on attacker and remove him from table
-			if attacker:HasModifier("modifier_imba_dragon_tail_miss") then
-				attacker:RemoveModifierByName("modifier_imba_dragon_tail_miss")
-				for k,v in pairs(self.attackers) do
-					if v == attacker then
-						table.remove(self.attackers, k)
-					end
-				end
-			end
-
-			self:SetStackCount(self:GetStackCount() -1)
-		end
-	end
-end
-
---Attackers debuff: deny their true strike effect while Pangolier is parrying their attack
-modifier_imba_dragon_tail_miss = modifier_imba_dragon_tail_miss or class({})
-
-function modifier_imba_dragon_tail_miss:IsHidden() return true end
-function modifier_imba_dragon_tail_miss:IsDebuff() return true end
-function modifier_imba_dragon_tail_miss:IsPurgable() return false end
-function modifier_imba_dragon_tail_miss:RemoveOnDeath() return true end
-function modifier_imba_dragon_tail_miss:StatusEffectPriority() return MODIFIER_PRIORITY_SUPER_ULTRA end
-
-function modifier_imba_dragon_tail_miss:CheckState()
-	state = {[MODIFIER_STATE_CANNOT_MISS] = false}
-
-	return state
 end
 
 modifier_imba_dragon_tail_debuff = class({})
@@ -343,6 +280,13 @@ function modifier_imba_dragon_tail_debuff:CheckState()
 	state[MODIFIER_STATE_STUNNED] = true
 
 	return state
+end
+
+function modifier_imba_dragon_tail_debuff:OnRefresh()
+	if not IsServer() then return end
+
+	-- Custom Status Resist nonsense (need to learn how to make an all-encompassing function for this...)
+	self:SetDuration(self:GetDuration() * (1 - self:GetParent():GetStatusResistance()), true)
 end
 
 function modifier_imba_dragon_tail_debuff:DeclareFunctions()
@@ -411,23 +355,29 @@ LinkLuaModifier( "modifier_imba_elder_dragon_charge", "abilities/dota_imba/hero_
 
 imba_dragon_knight_elder_dragon_charge = class({})
 
-function imba_dragon_knight_elder_dragon_charge:IsInnateAbility()
-	return true
-end
+function imba_dragon_knight_elder_dragon_charge:IsInnateAbility() return true end
+function imba_dragon_knight_elder_dragon_charge:GetAssociatedSecondaryAbilities() return "imba_dragon_knight_elder_dragon_form" end
 
 function imba_dragon_knight_elder_dragon_charge:OnUpgrade()
 	self:SetActivated(false)
 end
 
+function imba_dragon_knight_elder_dragon_charge:OnOwnerSpawned()
+	if not IsServer() then return end
+	if not self:GetCaster():HasModifier("modifier_dragon_knight_dragon_form") then
+		self:SetActivated(false)
+	end
+end
+
 function imba_dragon_knight_elder_dragon_charge:OnSpellStart()
-	local caster_loc = self:GetCaster():GetAbsOrigin()
-	local direction =  self:GetCaster():GetForwardVector()
-	local initial_radius = self:GetSpecialValueFor("initial_radius")
-	local final_radius = self:GetSpecialValueFor("final_radius")
-	local cone_length = self:GetSpecialValueFor("cone_length")
-	local fire_speed = self:GetSpecialValueFor("fire_speed")
-	local rush_distance = self:GetSpecialValueFor("rush_distance") + GetCastRangeIncrease(self:GetCaster()) + self:GetCaster():FindTalentValue("special_bonus_imba_dragon_knight_2")
-	local rush_speed = rush_distance / self:GetSpecialValueFor("rush_duration")
+local caster_loc = self:GetCaster():GetAbsOrigin()
+local direction =  self:GetCaster():GetForwardVector()
+local initial_radius = self:GetSpecialValueFor("initial_radius")
+local final_radius = self:GetSpecialValueFor("final_radius")
+local cone_length = self:GetSpecialValueFor("cone_length")
+local fire_speed = self:GetSpecialValueFor("fire_speed")
+local rush_distance = self:GetSpecialValueFor("rush_distance") + GetCastRangeIncrease(self:GetCaster()) + self:GetCaster():FindTalentValue("special_bonus_imba_dragon_knight_2")
+local rush_speed = rush_distance / self:GetSpecialValueFor("rush_duration")
 
 	self:GetCaster():EmitSound("Hero_DragonKnight.BreathFire")
 
@@ -485,30 +435,29 @@ function imba_dragon_knight_elder_dragon_charge:OnProjectileHit(target, location
 	if IsServer() then
 		local breathe_fire = self:GetCaster():FindAbilityByName("imba_dragon_knight_breathe_fire")
 		local dragon_tail = self:GetCaster():FindAbilityByName("imba_dragon_knight_dragon_tail")
-		health_as_damage = 0
+		local health_as_damage = self:GetCaster():GetHealth() / 100
 		if breathe_fire then
-			health_as_damage = self:GetCaster():GetHealth() / 100 * breathe_fire:GetSpecialValueFor("health_as_damage")
-			if self:GetCaster():HasTalent("special_bonus_imba_dragon_knight_1") then
-				health_as_damage = self:GetCaster():GetMaxHealth() / 100 * breathe_fire:GetSpecialValueFor("health_as_damage")
-			end
+			health_as_damage = health_as_damage * breathe_fire:GetSpecialValueFor("health_as_damage")
 		end
-		local dmg_type = DAMAGE_TYPE_MAGICAL
 
-		
+		local dmg_type = DAMAGE_TYPE_MAGICAL
 
 		if self:GetCaster():HasTalent("special_bonus_imba_dragon_knight_4") then
 			dmg_type = DAMAGE_TYPE_PURE
 		end
-		if breathe_fire then
-			ApplyDamage({attacker = self:GetCaster(), victim = target, damage = breathe_fire:GetSpecialValueFor("damage") + health_as_damage, damage_type = dmg_type, ability = breathe_fire})
-			target:AddNewModifier(self:GetCaster(), breathe_fire, "modifier_imba_breathe_fire_debuff", {duration = breathe_fire:GetSpecialValueFor("duration")})
+
+		if self:GetCaster():HasTalent("special_bonus_imba_dragon_knight_1") then
+			health_as_damage = self:GetCaster():GetMaxHealth() / 100 * breathe_fire:GetSpecialValueFor("health_as_damage")
 		end
+		
+		ApplyDamage({attacker = self:GetCaster(), victim = target, damage = breathe_fire:GetSpecialValueFor("damage") + health_as_damage, damage_type = dmg_type, ability = breathe_fire})	
+		SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE, target, health_as_damage, nil)
+		target:AddNewModifier(self:GetCaster(), breathe_fire, "modifier_imba_breathe_fire_debuff", {duration = breathe_fire:GetSpecialValueFor("duration")})
+
 		if dragon_tail then
 			ApplyDamage({attacker = self:GetCaster(), victim = target, damage = dragon_tail:GetAbilityDamage(), damage_type = dragon_tail:GetAbilityDamageType(), ability = dragon_tail})
 			target:AddNewModifier(self:GetCaster(), dragon_tail, "modifier_imba_dragon_tail_debuff", {duration = dragon_tail:GetSpecialValueFor("stun_duration")})
-			self:GetCaster():AddNewModifier(self:GetCaster(), dragon_tail, "modifier_imba_dragon_tail", {duration = dragon_tail:GetSpecialValueFor("duration_instances")})
 		end
-		SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE, target, health_as_damage, nil)
 
 		target:EmitSound("Hero_DragonKnight.DragonTail.Target")
 		ParticleManager:CreateParticle("particles/units/heroes/hero_dragon_knight/dragon_knight_dragon_tail.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
@@ -516,14 +465,6 @@ function imba_dragon_knight_elder_dragon_charge:OnProjectileHit(target, location
 		if self:GetCaster():HasTalent("special_bonus_imba_dragon_knight_5") then
 			self:GetCaster():Purge(false, true, false, true, true)
 		end
-
-		
-	end
-end
-
-function imba_dragon_knight_elder_dragon_charge:GetIntrinsicModifierName()
-	if self:GetCaster():HasScepter() then
-		return "modifier_imba_elder_dragon_charge"
 	end
 end
 
@@ -583,10 +524,12 @@ LinkLuaModifier( "modifier_imba_elder_dragon_form_debuff", "abilities/dota_imba/
 
 imba_dragon_knight_elder_dragon_form = class({})
 
+function imba_dragon_knight_elder_dragon_form:GetAssociatedPrimaryAbilities() return "imba_dragon_knight_elder_dragon_charge" end
+
 -- this makes the ability passive when it has scepter
 function imba_dragon_knight_elder_dragon_form:GetBehavior()
 	if self:GetCaster():HasScepter() then
-		return DOTA_ABILITY_BEHAVIOR_PASSIVE
+		return DOTA_ABILITY_BEHAVIOR_TOGGLE
 	end
 
 	return self.BaseClass.GetBehavior( self )
@@ -614,23 +557,32 @@ function imba_dragon_knight_elder_dragon_form:OnSpellStart()
 	modifier_imba_elder_dragon_form:AddElderForm(self:GetCaster(), self, self:GetLevel(), self:GetSpecialValueFor("duration"))
 end
 
-function imba_dragon_knight_elder_dragon_form:GetIntrinsicModifierName()
-	if self:GetCaster():HasScepter() then
-		return "modifier_imba_elder_dragon_form"
-	end
-end
-
-function imba_dragon_knight_elder_dragon_form:OnUpgrade()
-	self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_imba_elder_dragon_form", {})
-
-	if self:GetCaster():HasScepter() then
+function imba_dragon_knight_elder_dragon_form:OnToggle()
+	if self:GetToggleState() then
 		modifier_imba_elder_dragon_form:AddElderForm(self:GetCaster(), self, self:GetLevel())
+	else
+		self:GetCaster():RemoveModifierByName("modifier_dragon_knight_dragon_form")
+		self:GetCaster():RemoveModifierByName("modifier_dragon_knight_corrosive_breath")
+		self:GetCaster():RemoveModifierByName("modifier_dragon_knight_splash_attack")
+		self:GetCaster():RemoveModifierByName("modifier_dragon_knight_frost_breath")
 	end
 end
+
+function imba_dragon_knight_elder_dragon_form:GetIntrinsicModifierName()
+	return "modifier_imba_elder_dragon_form"
+end
+
+-- function imba_dragon_knight_elder_dragon_form:OnUpgrade()
+	-- self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_imba_elder_dragon_form", {})
+
+	-- if self:GetCaster():HasScepter() then
+		-- modifier_imba_elder_dragon_form:AddElderForm(self:GetCaster(), self, self:GetLevel())
+	-- end
+-- end
 
 function imba_dragon_knight_elder_dragon_form:OnInventoryContentsChanged()
 	if self:GetCaster():HasScepter() then
-		modifier_imba_elder_dragon_form:AddElderForm(self:GetCaster(), self, self:GetLevel())
+		-- modifier_imba_elder_dragon_form:AddElderForm(self:GetCaster(), self, self:GetLevel())
 	else
 		if self:GetCaster():HasModifier("modifier_dragon_knight_dragon_form") and self:GetCaster():FindModifierByName("modifier_dragon_knight_dragon_form"):GetDuration() == -1 then
 			self:GetCaster():RemoveModifierByName("modifier_dragon_knight_dragon_form")
@@ -643,53 +595,60 @@ end
 
 modifier_imba_elder_dragon_form = class({})
 
-function modifier_imba_elder_dragon_form:IsHidden() return true end
-function modifier_imba_elder_dragon_form:IsDebuff() return false end
-function modifier_imba_elder_dragon_form:IsPurgable() return false end
-function modifier_imba_elder_dragon_form:RemoveOnDeath() return false end
+function modifier_imba_elder_dragon_form:IsHidden() 		return true end
+function modifier_imba_elder_dragon_form:IsDebuff() 		return false end
+function modifier_imba_elder_dragon_form:IsPurgable() 		return false end
+function modifier_imba_elder_dragon_form:RemoveOnDeath() 	return false end
 
 function modifier_imba_elder_dragon_form:OnCreated( event )
-	self:StartIntervalThink(0.5)
-	self.bonus_ms = self:GetCaster():GetHealth() / 100 * self:GetParent():FindTalentValue("special_bonus_imba_dragon_knight_8")
-	self:SetStackCount(self.bonus_ms)
-
-	-- apply all the edf modifiers on creation if has scepter
-	if self:GetParent():HasScepter() then
-		modifier_imba_elder_dragon_form:AddElderForm(self:GetParent(), self:GetAbility(), self:GetAbility():GetLevel())
+	if IsServer() then
+		self:StartIntervalThink(0.5)
+	
+		-- apply all the edf modifiers on creation if has scepter
+		-- if self:GetParent():HasScepter() then
+			-- modifier_imba_elder_dragon_form:AddElderForm(self:GetParent(), self:GetAbility(), self:GetAbility():GetLevel())
+		-- end
 	end
 end
 
-if IsServer() then
-	function modifier_imba_elder_dragon_form:OnRefresh( event )
-		-- apply all the edf modifiers on creation if has scepter
-		if self:GetParent():HasScepter() then
-			modifier_imba_elder_dragon_form:AddElderForm(self:GetParent(), self:GetAbility(), self:GetAbility():GetLevel())
-		end
-	end
 
-	function modifier_imba_elder_dragon_form:DeclareFunctions()
-		local funcs = {
-			MODIFIER_EVENT_ON_ATTACK_LANDED,
-			MODIFIER_EVENT_ON_RESPAWN,
-			MODIFIER_EVENT_ON_DEATH,
-			MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
-		}
+-- function modifier_imba_elder_dragon_form:OnRefresh( event )
+	-- if IsServer() then
+		-- -- apply all the edf modifiers on creation if has scepter
+		-- if self:GetParent():HasScepter() then
+			-- modifier_imba_elder_dragon_form:AddElderForm(self:GetParent(), self:GetAbility(), self:GetAbility():GetLevel())
+		-- end
+	-- end
+-- end
 
-		return funcs
-	end
+function modifier_imba_elder_dragon_form:DeclareFunctions()
+	local funcs = {
+		-- MODIFIER_EVENT_ON_RESPAWN,
+		MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT
+	}
 
-	function modifier_imba_elder_dragon_form:OnRespawn( event )
-		if event.unit == self:GetParent() and self:GetParent():HasScepter() then
-			-- apply the edf modifiers on respawn
-			modifier_imba_elder_dragon_form:AddElderForm(self:GetParent(), self:GetAbility(), self:GetAbility():GetLevel())
-		end
-	end
+	return funcs
+end
 
-	function modifier_imba_elder_dragon_form:OnIntervalThink()
-		if self:GetParent().HasModifier and self:GetParent():HasModifier("modifier_dragon_knight_dragon_form") then
-			self:GetParent():FindAbilityByName("imba_dragon_knight_elder_dragon_charge"):SetActivated(true)
-		else
-			self:GetParent():FindAbilityByName("imba_dragon_knight_elder_dragon_charge"):SetActivated(false)
+-- function modifier_imba_elder_dragon_form:OnRespawn( event )
+	-- if IsServer() then
+		-- if event.unit == self:GetParent() and self:GetParent():HasScepter() then
+			-- -- apply the edf modifiers on respawn
+			-- modifier_imba_elder_dragon_form:AddElderForm(self:GetParent(), self:GetAbility(), self:GetAbility():GetLevel())
+		-- end
+	-- end
+-- end
+
+function modifier_imba_elder_dragon_form:OnIntervalThink()
+	if IsServer() then
+		
+		-- Only allow EDC to be usable if parent is in Dragon Form
+		if self:GetParent():HasAbility("imba_dragon_knight_elder_dragon_charge") then
+			if self:GetParent():HasModifier("modifier_dragon_knight_dragon_form") then
+				self:GetParent():FindAbilityByName("imba_dragon_knight_elder_dragon_charge"):SetActivated(true)
+			else
+				self:GetParent():FindAbilityByName("imba_dragon_knight_elder_dragon_charge"):SetActivated(false)
+			end
 		end
 
 		if self:GetParent():HasTalent("special_bonus_imba_dragon_knight_6") and self:GetParent():HasModifier("modifier_dragon_knight_dragon_form") then
@@ -699,24 +658,32 @@ if IsServer() then
 			end
 		end
 
-		if self:GetParent():HasModifier("modifier_item_ultimate_scepter_consumed") then
-			self:AddElderForm(self:GetParent(), self:GetAbility(), self:GetAbility():GetLevel())
-		end
+		-- if self:GetParent():HasModifier("modifier_item_ultimate_scepter_consumed") then
+			-- self:AddElderForm(self:GetParent(), self:GetAbility(), self:GetAbility():GetLevel())
+		-- end
 
 		if self:GetParent():HasScepter() then
 			if self:GetParent():PassivesDisabled() then
-				print("Passive Disabled!")
 				self:GetParent():RemoveModifierByName("modifier_dragon_knight_dragon_form")
 				self:GetParent():RemoveModifierByName("modifier_dragon_knight_corrosive_breath")
 				self:GetParent():RemoveModifierByName("modifier_dragon_knight_splash_attack")
 				self:GetParent():RemoveModifierByName("modifier_dragon_knight_frost_breath")
-			else
+			elseif not self:GetParent():HasModifier("modifier_dragon_knight_dragon_form") and self:GetAbility() and self:GetAbility():GetToggleState() then
 				self:AddElderForm(self:GetParent(), self:GetAbility(), self:GetAbility():GetLevel())
 			end
 		end
+		
+		if self:GetParent():HasTalent("special_bonus_imba_dragon_knight_8") and self:GetParent():HasModifier("modifier_dragon_knight_dragon_form") then
+			self.bonus_ms = self:GetCaster():GetHealth() * 0.01 * self:GetParent():FindTalentValue("special_bonus_imba_dragon_knight_8")
+			self:SetStackCount(self.bonus_ms)
+		else
+			self:SetStackCount(0)
+		end
 	end
+end
 
-	function modifier_imba_elder_dragon_form:AddElderForm(hero, ability, level, duration)
+function modifier_imba_elder_dragon_form:AddElderForm(hero, ability, level, duration)
+	if IsServer() then
 		local modifier_duration = -1
 		if not self.level then self.level = 0 end
 		if duration then modifier_duration = duration end
@@ -725,7 +692,7 @@ if IsServer() then
 		if hero:HasModifier("modifier_dragon_knight_dragon_form") and hero:FindModifierByName("modifier_dragon_knight_dragon_form"):GetDuration() == -1 and modifier_duration == -1 and self.level == level then
 			return
 		end
-
+		
 		if level >= 1 then
 			hero:AddNewModifier(hero, ability, "modifier_dragon_knight_dragon_form", {duration = modifier_duration})
 			hero:AddNewModifier(hero, ability, "modifier_dragon_knight_corrosive_breath", {duration = modifier_duration})
@@ -740,15 +707,16 @@ if IsServer() then
 		end
 
 		self.level = level
+		
+		-- Remove human form blocks if they exist
+		if hero:HasModifier("modifier_imba_dragon_tail") then
+			hero:RemoveModifierByName("modifier_imba_dragon_tail")
+		end
 	end
 end
 
 function modifier_imba_elder_dragon_form:GetModifierMoveSpeedBonus_Constant()
-	if self:GetParent():HasModifier("modifier_dragon_knight_dragon_form") and self:GetParent():HasTalent("special_bonus_imba_dragon_knight_8") then
-		return self:GetStackCount()
-	else
-		return 0
-	end
+	return self:GetStackCount()
 end
 
 modifier_imba_elder_dragon_form_debuff = class({})
@@ -766,7 +734,7 @@ function modifier_imba_elder_dragon_form_debuff:DeclareFunctions()
 end
 
 function modifier_imba_elder_dragon_form_debuff:GetModifierBaseDamageOutgoing_Percentage()
-	return self:GetCaster():FindTalentValue("special_bonus_imba_dragon_knight_6", "reduction")
+    return self:GetCaster():FindTalentValue("special_bonus_imba_dragon_knight_6", "reduction")
 end
 
 function modifier_imba_elder_dragon_form_debuff:GetEffectName() return "particles/econ/items/windrunner/windrunner_cape_cascade/windrunner_windrun_slow_cascade.vpcf" end

@@ -16,12 +16,16 @@
 --     Hewdraw
 --     Noobsauce
 --     suthernfriend, 03.02.2018
+--     Elfansoer, 24.06.2019
 
 if IsClient() then
     require('lib/util_imba_client')
-end
 
-CreateEmptyTalents("crystal_maiden")
+	-- Skip talent for now
+	function C_DOTABaseAbility:GetTalentSpecialValueFor( str )
+		return 0
+	end
+end
 
 ---------------------------------
 -- 		   Arcane Dynamo       --
@@ -48,6 +52,9 @@ function modifier_imba_arcane_dynamo:IsDebuff() return false end
 function modifier_imba_arcane_dynamo:IsPurgable() return false end
 
 function modifier_imba_arcane_dynamo:OnCreated()
+	-- Elfansoer: Fix generic intrinsic problem
+	if self:GetAbility():GetLevel()<1 then self:Destroy(); return end
+
 	-- Ability properties
 	self.caster = self:GetCaster()
 	self.ability = self:GetAbility()
@@ -88,6 +95,8 @@ function modifier_imba_arcane_dynamo:DeclareFunctions()
 end
 
 function modifier_imba_arcane_dynamo:GetModifierMoveSpeedBonus_Percentage()
+	if not self.caster or self.caster:IsNull() then return end
+
 	-- Does nothing if hero has break
 	if self.caster:PassivesDisabled() then
 		return nil
@@ -162,6 +171,7 @@ LinkLuaModifier("modifier_imba_crystal_nova_snowfield_ally_aura", "abilities/dot
 LinkLuaModifier("modifier_imba_crystal_nova_snowfield_enemy_aura", "abilities/dota_imba/hero_crystal_maiden.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_imba_crystal_nova_snowfield_debuff", "abilities/dota_imba/hero_crystal_maiden.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_imba_crystal_nova_snowfield_buff", "abilities/dota_imba/hero_crystal_maiden.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_special_bonus_imba_crystal_maiden_3", "abilities/dota_imba/hero_crystal_maiden.lua", LUA_MODIFIER_MOTION_NONE)
 
 function imba_crystal_maiden_crystal_nova:GetAbilityTextureName()
 	return "crystal_maiden_crystal_nova"
@@ -171,6 +181,22 @@ function imba_crystal_maiden_crystal_nova:GetAOERadius()
 	return self:GetSpecialValueFor("nova_radius")
 end
 
+-- Mini section here to ensure the Snowfield Protection talent shows health regen on client-side
+
+modifier_special_bonus_imba_crystal_maiden_3 = class({})
+
+function modifier_special_bonus_imba_crystal_maiden_3:IsHidden() 		return true end
+function modifier_special_bonus_imba_crystal_maiden_3:IsPurgable() 		return false end
+function modifier_special_bonus_imba_crystal_maiden_3:RemoveOnDeath() 	return false end
+
+function imba_crystal_maiden_crystal_nova:OnOwnerSpawned()
+	if not IsServer() then return end
+	if self:GetCaster():HasAbility("special_bonus_imba_crystal_maiden_3") and self:GetCaster():FindAbilityByName("special_bonus_imba_crystal_maiden_3"):IsTrained() and not self:GetCaster():HasModifier("modifier_special_bonus_imba_crystal_maiden_3") then
+		self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_special_bonus_imba_crystal_maiden_3", {})
+	end
+end
+
+------------------------------------------------------------------------------------------
 
 function imba_crystal_maiden_crystal_nova:OnSpellStart()
 	-- Ability properties
@@ -487,7 +513,10 @@ function imba_crystal_maiden_frostbite:OnSpellStart()
 
 		-- Applies root and damage to attacking unit according to its type, then triggers the cooldown accordingly
 		if target:GetTeam() ~= caster:GetTeam() then
-			if target:IsHero() or IsRoshan(target) or target:IsAncient() then
+			--[[Elfansoer: Fix import problem: isroshan missing
+			if target:IsHero() or target:IsRoshan() or target:IsAncient() then
+			]]
+			if target:IsHero() or target:GetUnitName()=="npc_dota_roshan" or target:IsAncient() then
 				target:AddNewModifier(caster, self, "modifier_stunned", {duration = duration_stun})
 				target:AddNewModifier(caster, self, "modifier_imba_crystal_maiden_frostbite_enemy", { duration = duration })
 			else
@@ -620,6 +649,14 @@ function modifier_imba_crystal_maiden_frostbite_ally:GetModifierIncomingDamage_P
 modifier_imba_crystal_maiden_frostbite_passive_ready = class({})
 
 function modifier_imba_crystal_maiden_frostbite_passive_ready:OnCreated()
+	if not IsServer() then return end
+
+	-- Elfansoer: Fix passive modifier not removed on lotus-reflected
+	if not self:GetAbility() then self:Destroy(); return end
+
+	-- Elfansoer: Fix generic intrinsic problem
+	if self:GetAbility():GetLevel()<1 then self:Destroy(); return end
+
 	-- Ability properties
 	self.caster = self:GetCaster()
 	self.ability = self:GetAbility()
@@ -702,6 +739,12 @@ LinkLuaModifier("modifier_imba_crystal_maiden_brilliance_aura", "abilities/dota_
 -- Brilcane Aura Emitter
 modifier_imba_crystal_maiden_brilliance_aura_emitter = class({})
 
+-- Elfansoer: Fix generic intrinsic problem
+function modifier_imba_crystal_maiden_brilliance_aura_emitter:OnCreated()
+	if not IsServer() then return end
+	if self:GetAbility():GetLevel()<1 then self:Destroy(); return end
+end
+
 function modifier_imba_crystal_maiden_brilliance_aura_emitter:GetAuraRadius() return 25000 end -- global
 function modifier_imba_crystal_maiden_brilliance_aura_emitter:GetAuraSearchFlags() return DOTA_UNIT_TARGET_FLAG_NONE end
 function modifier_imba_crystal_maiden_brilliance_aura_emitter:GetAuraSearchTeam() return DOTA_UNIT_TARGET_TEAM_FRIENDLY end
@@ -746,6 +789,8 @@ end
 
 function modifier_imba_crystal_maiden_brilliance_aura:OnIntervalThink()
 	if IsServer() then
+		if not self:GetAbility() then return end
+	
 		-- Only apply if the parent has more than the spellpower threshold
 		if self.parent and self.parent:GetManaPercent() > self.spellpower_threshold_pct then
 			if self.parent == self.caster then
@@ -773,6 +818,8 @@ function modifier_imba_crystal_maiden_brilliance_aura:DeclareFunctions()
 end
 
 function modifier_imba_crystal_maiden_brilliance_aura:GetModifierConstantManaRegen()
+	if not self:GetAbility() then return end
+
 	if self.parent == self.caster then
 		return self:GetAbility():GetSpecialValueFor("mana_regen")* self.bonus_self
 	else
@@ -781,6 +828,8 @@ function modifier_imba_crystal_maiden_brilliance_aura:GetModifierConstantManaReg
 end
 
 function modifier_imba_crystal_maiden_brilliance_aura:GetModifierBonusStats_Intellect()
+	if not self:GetAbility() then return end
+
 	if self.parent == self.caster then
 		return self:GetAbility():GetSpecialValueFor("bonus_int")* self.bonus_self
 	else
@@ -801,6 +850,7 @@ function modifier_imba_crystal_maiden_brilliance_aura:IsPurgable() return false 
 ---------------------------------
 LinkLuaModifier("modifier_imba_crystal_maiden_freezing_field_aura", "abilities/dota_imba/hero_crystal_maiden.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_imba_crystal_maiden_freezing_field_slow", "abilities/dota_imba/hero_crystal_maiden.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_imba_crystal_maiden_freezing_field_armor_bonus", "abilities/dota_imba/hero_crystal_maiden.lua", LUA_MODIFIER_MOTION_NONE)
 
 imba_crystal_maiden_freezing_field = class({})
 
@@ -883,7 +933,7 @@ function imba_crystal_maiden_freezing_field:OnSpellStart()
 		ParticleManager:SetParticleControl(self.freezing_field_particle, 5, Vector (1000, 0, 0))
 
 		-- Let it go?
-		if USE_MEME_SOUNDS and RollPercentage(10) then
+		if USE_MEME_SOUNDS and RollPercentage(MEME_SOUNDS_CHANCE) then
 			--LET IT GO
 			EmitSoundOnLocationWithCaster(self.freezing_field_center , "Hero_Crystal.CrystalNova", self.caster)
 			self:EmitSound("Imba.CrystalMaidenLetItGo0"..RandomInt(1, 3))
@@ -897,6 +947,9 @@ function imba_crystal_maiden_freezing_field:OnSpellStart()
 			self:EmitSound("hero_Crystal.freezingField.wind")
 		end
 	end
+	
+	-- Self armor modifier
+	self.caster:AddNewModifier(self.caster, self, "modifier_imba_crystal_maiden_freezing_field_armor_bonus", {duration = duration})
 end
 
 function imba_crystal_maiden_freezing_field:OnChannelThink()
@@ -1043,6 +1096,11 @@ function imba_crystal_maiden_freezing_field:OnChannelFinish(bInterrupted)
 					end
 			end)
 		end
+		
+		-- Remove self armor modifier
+		if self.caster:HasModifier("modifier_imba_crystal_maiden_freezing_field_armor_bonus") then
+			self.caster:RemoveModifierByName("modifier_imba_crystal_maiden_freezing_field_armor_bonus")
+		end
 	end
 end
 
@@ -1078,8 +1136,8 @@ function modifier_imba_crystal_maiden_freezing_field_slow:OnCreated()
 	self.ability = self:GetAbility()
 	self.parent = self:GetParent()
 
-	self.move_slow_pct = self.ability:GetSpecialValueFor("slow")
-	self.attack_speed_slow = self.move_slow_pct
+	self.move_slow_pct 		= self.ability:GetSpecialValueFor("slow")
+	self.attack_speed_slow	= self.ability:GetSpecialValueFor("attack_slow")
 
 	-- Talent (Level 30) : Freezing field applies a Frostbite every 3 seconds (after the previous frostbite ended) at half the regular duration
 	if self.caster:HasTalent("special_bonus_imba_crystal_maiden_6") then
@@ -1110,3 +1168,31 @@ function modifier_imba_crystal_maiden_freezing_field_slow:GetModifierAttackSpeed
 function modifier_imba_crystal_maiden_freezing_field_slow:IsHidden() return false end
 function modifier_imba_crystal_maiden_freezing_field_slow:IsDebuff() return true end
 function modifier_imba_crystal_maiden_freezing_field_slow:IsPurgable() return false end
+
+----------------------------------------
+-- FREEZING FIELD SELF ARMOR MODIFIER --
+----------------------------------------
+
+modifier_imba_crystal_maiden_freezing_field_armor_bonus = class({})
+
+function modifier_imba_crystal_maiden_freezing_field_armor_bonus:IsHidden()		return true end
+function modifier_imba_crystal_maiden_freezing_field_armor_bonus:IsPurgable()	return false end
+
+function modifier_imba_crystal_maiden_freezing_field_armor_bonus:OnCreated()
+	self.ability		= self:GetAbility()
+	
+	self.bonus_armor	= self.ability:GetSpecialValueFor("bonus_armor")
+end
+
+
+function modifier_imba_crystal_maiden_freezing_field_armor_bonus:DeclareFunctions()
+	local decFuncs = {
+		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
+	}
+
+	return decFuncs
+end
+
+function modifier_imba_crystal_maiden_freezing_field_armor_bonus:GetModifierPhysicalArmorBonus()
+	return self.bonus_armor
+end
