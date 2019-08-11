@@ -25,10 +25,12 @@ end
 
 
 function spell_lab_one_with_nothing:GetManaCost(level)
-	local hMod = self:GetCaster():FindModifierByName("spell_lab_one_with_nothing_modifier")
-	if hMod ~= nil then
-		iCount = hMod:GetStackCount()
-		return iCount
+	if self:GetCaster().FindModifierByName ~= nil then
+		local hMod = self:GetCaster():FindModifierByName("spell_lab_one_with_nothing_modifier")
+		if hMod ~= nil then
+			iCount = hMod:GetStackCount()
+			return iCount
+		end
 	end
 	return 0
 end

@@ -354,6 +354,7 @@
 #base "abilities\generation\zulf_typhoon.txt"
 #base "abilities\generation\zulf_typhoon_OP.txt"
 #base "abilities\spelllab\spell_lab_ggs.txt"
+#base "abilities\spelllab\spell_lab_void_step.txt"
 #base "abilities\spelllab\spell_lab_taxi.txt"
 #base "abilities\spelllab\spell_lab_bfg.txt"
 #base "abilities\spelllab\spell_lab_missile_storm.txt"

@@ -12,8 +12,8 @@ function RestoreMana(keys)
 	if caster:PassivesDisabled() then return end
 	
     -- Validate level
+    if ability == nil or ability:GetLevel() <= 0 then return end
     local abLevel = ability:GetLevel()
-    if abLevel <= 0 then return end
 
     -- Calculate how much mana to restore
     local restorePercentage = ability:GetLevelSpecialValueFor("restore_amount", abLevel -1)
