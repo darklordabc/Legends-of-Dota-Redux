@@ -4,6 +4,11 @@ function CheckBackstab(params)
 	
 	local ability = params.ability
 	local agilityDamageMultiplier = ability:GetLevelSpecialValueFor("agility_damage", ability:GetLevel() - 1) / 100
+	local talent = params.attacker:FindAbilityByName("special_bonus_unique_riki_1")
+	if talent then
+		agilityDamageMultiplier = agilityDamageMultiplier + talent:GetSpecialValueFor("value")
+	end
+	
 
 	-- The y value of the angles vector contains the angle we actually want: where units are directionally facing in the world.
 	local victimAngle = params.target:GetAnglesAsVector().y
