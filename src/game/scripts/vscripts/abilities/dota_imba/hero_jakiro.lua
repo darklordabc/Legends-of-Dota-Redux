@@ -15,12 +15,21 @@
 -- Editors:
 --     Broccoli, 24.03.2017
 --     suthernfriend, 03.02.2018
+--     Elfansoer, 20.07.2019
 
 if IsClient() then
     require('lib/util_imba_client')
 end
 
--- Copy shallow copy given input
+-- utils
+-- Sets level of the ability with [ability_name] to [level] for [caster] if the caster has this ability
+local function SetAbilityLevelIfPresent(caster, ability_name, level)
+	local ability = caster:FindAbilityByName(ability_name)
+	if ability then
+		ability:SetLevel(level)
+	end
+end
+
 local function ShallowCopy(orig)
 	local copy = {}
 	for orig_key, orig_value in pairs(orig) do
@@ -83,7 +92,6 @@ local base_modifier_dual_breath_caster = class({
 	IsHidden 						= function(self) return true end,
 	IsPurgable 						= function(self) return false end,
 	IsDebuff 						= function(self) return false end,
-	IgnoreTenacity					= function(self) return true end,
 	IsMotionController				= function(self) return true end,
 	GetMotionControllerPriority		= function(self) return DOTA_MOTION_CONTROLLER_PRIORITY_MEDIUM end,
 	AllowIllusionDuplicate			= function(self) return false end,
@@ -240,8 +248,10 @@ function base_modifier_dual_breath_caster:HorizontalMotion()
 		local breath_traveled = self.breath_traveled
 
 		self:_DualBreathAOEApplyModifier()
-
-		if breath_traveled < self.breath_distance and not caster:IsStunned() and not caster:IsSilenced() and not caster:IsHexed() and not caster:IsNightmared() then
+		
+		-- Let Jakiro still complete the Dual Breath if disabled
+		-- if breath_traveled < self.breath_distance and not caster:IsStunned() and not caster:IsSilenced() and not caster:IsHexed() and not caster:IsNightmared() then
+		if breath_traveled < self.breath_distance then
 			local set_point = caster:GetAbsOrigin() + self.breath_direction * breath_speed
 			caster:SetAbsOrigin(Vector(set_point.x, set_point.y, GetGroundPosition(set_point, caster).z))
 			self.breath_traveled = breath_traveled + breath_speed
@@ -296,6 +306,11 @@ function base_modifier_dot_debuff:_UpdateDebuffLevelValues()
 	if IsServer() then
 		local ability = self.ability
 		local damage = ability:GetSpecialValueFor("damage")
+		
+		if ability:GetName() == "imba_jakiro_macropyre" and self:GetCaster():HasScepter() then
+			damage = ability:GetSpecialValueFor("damage_scepter")
+		end
+		
 		self.tick_damage = damage * self.damage_interval
 	end
 
@@ -332,7 +347,12 @@ function base_modifier_dot_debuff:OnCreated()
 		-- Apply damage immediately
 		self:OnIntervalThink()
 		-- Run interval applying of damage
-		self:StartIntervalThink(self.damage_interval)
+		
+		if ability:GetName() == "imba_jakiro_macropyre" then
+			self:StartIntervalThink(self.damage_interval)
+		else
+			self:StartIntervalThink(self.damage_interval * (1 - self.parent:GetStatusResistance()))
+		end
 	end
 end
 
@@ -361,8 +381,6 @@ function base_modifier_dot_debuff:OnIntervalThink()
 		ApplyDamage({attacker = caster, victim = victim, ability = self.ability, damage = final_tick_damage, damage_type = self.ability_dmg_type })
 	end
 end
-
-CreateEmptyTalents("jakiro")
 
 -----------------------------
 --		Fire Breath        --
@@ -840,10 +858,8 @@ function modifier_imba_liquid_fire_caster:OnAttack(keys)
 				self.apply_aoe_modifier_debuff_on_hit[target] = self.apply_aoe_modifier_debuff_on_hit[target] + 1;
 			end
 
-			local cooldown = ability:GetCooldown( ability:GetLevel() - 1 ) *  (1 - caster:GetCooldownReduction() * 0.01)
-
 			-- Start cooldown
-			ability:StartCooldown( cooldown )
+			ability:UseResources(false, false, true)
 		end
 	end
 end
@@ -887,7 +903,7 @@ function modifier_imba_liquid_fire_caster:_ApplyAOELiquidFire( keys )
 			-- Apply liquid fire modifier to enemies in the area
 			local enemies = FindUnitsInRadius(caster:GetTeamNumber(), target:GetAbsOrigin(), nil, radius, ability:GetAbilityTargetTeam(), ability:GetAbilityTargetType(), DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
 			for _,enemy in pairs(enemies) do
-				enemy:AddNewModifier(caster, ability, modifier_liquid_fire_debuff, { duration = duration })
+				enemy:AddNewModifier(caster, ability, modifier_liquid_fire_debuff, { duration = duration }):SetDuration(duration * (1 - enemy:GetStatusResistance()), true)
 			end
 		end
 	end
@@ -976,6 +992,16 @@ LinkLuaModifier("modifier_imba_macropyre_debuff", "abilities/dota_imba/hero_jaki
 function imba_jakiro_macropyre:GetAbilityTextureName()
 	return "jakiro_macropyre"
 end
+
+function imba_jakiro_macropyre:GetAbilityDamageType()
+	if self:GetCaster():HasTalent("special_bonus_imba_jakiro_9") then
+		return DAMAGE_TYPE_PURE
+	else
+		return DAMAGE_TYPE_MAGICAL
+	end
+end
+
+
 
 function imba_jakiro_macropyre:OnSpellStart()
 	if IsServer() then
@@ -1096,6 +1122,10 @@ function modifier_imba_macropyre_thinker:OnIntervalThink()
 			local ability_target_flags	= self.ability_target_flags
 			local debuff_duration		= self.debuff_duration
 
+			if caster:HasTalent("special_bonus_imba_jakiro_9") then
+				ability_target_flags = ability_target_flags + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES 
+			end
+			
 			--Increase Modifier Duration
 			local modifier_list 		= {
 				"modifier_imba_liquid_fire_debuff",

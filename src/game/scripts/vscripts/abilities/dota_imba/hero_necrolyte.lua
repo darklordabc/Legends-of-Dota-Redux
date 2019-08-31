@@ -16,9 +16,15 @@
 --     Firetoad
 --     AtroCty, 02.04.2017
 --     suthernfriend, 03.02.2018
+--     naowin, 07.04.2018
+--	   AltiV, 08.08.2018
+--     Elfansoer, 10.08.2019
 
 if IsClient() then
-    require('lib/util_imba_client')
+    -- require('lib/util_imba_client')
+	function C_DOTABaseAbility:GetTalentSpecialValueFor( field )
+		return self:GetSpecialValueFor( field )
+	end
 end
 
 CreateEmptyTalents("necrolyte")
@@ -37,8 +43,7 @@ function imba_necrolyte_sadist:GetAbilityTextureName()
 end
 
 function imba_necrolyte_sadist:GetIntrinsicModifierName()
-	if self:GetCaster():IsRealHero() then return "modifier_imba_sadist" end
-	return false
+	return "modifier_imba_sadist"
 end
 
 function imba_necrolyte_sadist:IsInnateAbility()
@@ -56,6 +61,12 @@ function modifier_imba_sadist:DeclareFunctions()
 end
 
 function modifier_imba_sadist:OnCreated()
+	-- elfansoer: fix generic intrinsic problem
+	if IsServer() and self:GetAbility():GetLevel()<1 then
+		self:Destroy()
+		return
+	end
+
 	-- Ability properties
 	self.caster = self:GetCaster()
 	self.ability = self:GetAbility()
@@ -181,7 +192,7 @@ function modifier_imba_sadist_stack:OnIntervalThink()
 
 			-- If after removing the stacks, the table is empty, remove the modifier.
 			if #self.stacks_table == 0 then
-				self:Destroy()
+				self:GetParent():RemoveModifierByName("modifier_imba_sadist_stack")
 
 				-- Otherwise, set its stack count
 			else
@@ -190,7 +201,7 @@ function modifier_imba_sadist_stack:OnIntervalThink()
 
 			-- If there are no stacks on the table, just remove the modifier.
 		else
-			self:Destroy()
+			self:GetParent():RemoveModifierByName("modifier_imba_sadist_stack")
 		end
 	end
 end
@@ -214,22 +225,24 @@ function modifier_imba_sadist_stack:DeclareFunctions()
 end
 
 function modifier_imba_sadist_stack:GetModifierConstantManaRegen()
-	local mana_regen = self.mana_regen + self.caster:FindTalentValue("special_bonus_imba_necrolyte_6")
-	mana_regen = mana_regen * self:GetStackCount() * self:GetParent():GetMaxMana() * 0.01
-	local regen_minimum = self.regen_minimum * self:GetStackCount()
-	return math.max(mana_regen, regen_minimum)
-end
-
-function modifier_imba_sadist_stack:GetModifierConstantHealthRegen()
-	if IsServer() then
-		local health_regen = self.health_regen + self.caster:FindTalentValue("special_bonus_imba_necrolyte_6")
-		local expected_health_regen = health_regen * self:GetStackCount() * self:GetParent():GetMaxHealth() * 0.01
+	if not IsServer() then return end
+	if self.caster and self.mana_regen and self.regen_minimum then 
+		local mana_regen = self.mana_regen + self.caster:FindTalentValue("special_bonus_imba_necrolyte_6")
+		mana_regen = mana_regen * self:GetStackCount() * self:GetParent():GetMaxMana() * 0.01
 		local regen_minimum = self.regen_minimum * self:GetStackCount()
-
-		return math.max(expected_health_regen, regen_minimum)
+		return math.max(mana_regen, regen_minimum)
 	end
 end
 
+function modifier_imba_sadist_stack:GetModifierConstantHealthRegen()
+	if not IsServer() then return end
+	if self.caster and self.health_regen and self.regen_minimum then 	
+		local health_regen = self.health_regen + self.caster:FindTalentValue("special_bonus_imba_necrolyte_6")
+		health_regen = health_regen * self:GetStackCount() * self:GetParent():GetMaxHealth() * 0.01
+		local regen_minimum = self.regen_minimum * self:GetStackCount()
+		return math.max(health_regen, regen_minimum)
+	end
+end
 
 -------------------------------------------
 --			DEATH PULSE
@@ -252,7 +265,7 @@ function imba_necrolyte_death_pulse:OnSpellStart()
 		-- Parameters
 		local radius = self:GetTalentSpecialValueFor("radius")
 		local damage = self:GetSpecialValueFor("damage")
-		local heal_amp = 1 + (caster:GetSpellPower() * 0.01)
+		local heal_amp = 1 + (caster:GetSpellAmplification(false) * 0.01)
 		local base_heal = self:GetSpecialValueFor("base_heal")
 		local sec_heal_pct = self:GetSpecialValueFor("sec_heal_pct")
 		local enemy_speed = self:GetSpecialValueFor("enemy_speed")
@@ -368,9 +381,9 @@ end
 -------------------------------------------
 
 imba_necrolyte_ghost_shroud = imba_necrolyte_ghost_shroud or class({})
+LinkLuaModifier("modifier_imba_ghost_shroud_active", "abilities/dota_imba/hero_necrolyte", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_imba_ghost_shroud_aura", "abilities/dota_imba/hero_necrolyte", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_imba_ghost_shroud_aura_debuff", "abilities/dota_imba/hero_necrolyte", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_imba_ghost_shroud_aura_purge", "abilities/dota_imba/hero_necrolyte", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_imba_ghost_shroud_buff", "abilities/dota_imba/hero_necrolyte", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_imba_ghost_shroud_debuff", "abilities/dota_imba/hero_necrolyte", LUA_MODIFIER_MOTION_NONE)
 
@@ -391,9 +404,9 @@ function imba_necrolyte_ghost_shroud:OnSpellStart()
 		caster:EmitSound("Hero_Necrolyte.SpiritForm.Cast")
 
 		caster:StartGesture(ACT_DOTA_NECRO_GHOST_SHROUD)
+		caster:AddNewModifier(caster, self, "modifier_imba_ghost_shroud_active", { duration = duration })
 		caster:AddNewModifier(caster, self, "modifier_imba_ghost_shroud_aura", { duration = duration, radius = radius, healing_amp_pct = healing_amp_pct, slow_pct = slow_pct})
 		caster:AddNewModifier(caster, self, "modifier_imba_ghost_shroud_aura_debuff", { duration = duration, radius = radius, healing_amp_pct = healing_amp_pct, slow_pct = slow_pct})
-		caster:AddNewModifier(caster, self, "modifier_imba_ghost_shroud_aura_purge", { duration = duration - FrameTime()})
 	end
 end
 
@@ -405,31 +418,67 @@ function imba_necrolyte_ghost_shroud:IsHiddenWhenStolen()
 	return false
 end
 
-modifier_imba_ghost_shroud_aura_purge = modifier_imba_ghost_shroud_aura_purge or class({})
-function modifier_imba_ghost_shroud_aura_purge:IsPurgable()
-	return true
+---------------------------------------------
+-- Ghost Shroud Active Modifier (Purgable) --
+---------------------------------------------
+
+modifier_imba_ghost_shroud_active = class({})
+
+function modifier_imba_ghost_shroud_active:IsHidden() return false end
+function modifier_imba_ghost_shroud_active:IsPurgable() return true end
+
+function modifier_imba_ghost_shroud_active:GetEffectName()
+	return "particles/units/heroes/hero_pugna/pugna_decrepify.vpcf"
 end
 
--- Make the aura purgable
-function modifier_imba_ghost_shroud_aura_purge:OnRemoved()
-	if IsServer() then
-		local parent = self:GetParent()
-		if parent:HasModifier("modifier_imba_ghost_shroud_aura") then
-			parent:RemoveModifierByName("modifier_imba_ghost_shroud_aura")
-			parent:RemoveModifierByName("modifier_imba_ghost_shroud_aura_debuff")
-		end
-	end
+function modifier_imba_ghost_shroud_active:GetEffectAttachType()
+	return PATTACH_POINT_FOLLOW
 end
 
-function modifier_imba_ghost_shroud_aura_purge:IsDebuff()
-	return false
+function modifier_imba_ghost_shroud_active:DeclareFunctions()
+	return 
+	{ MODIFIER_PROPERTY_MAGICAL_RESISTANCE_DECREPIFY_UNIQUE,
+	MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL }
 end
 
-function modifier_imba_ghost_shroud_aura_purge:IsHidden()
-	return true
+function modifier_imba_ghost_shroud_active:GetModifierMagicalResistanceDecrepifyUnique( params )
+	return self:GetAbility():GetSpecialValueFor("magic_amp_pct") * (-1)
 end
+
+function modifier_imba_ghost_shroud_active:GetAbsoluteNoDamagePhysical()
+	if self:GetCaster() == self:GetParent() then return 1
+	else return nil end
+end
+
+function modifier_imba_ghost_shroud_active:CheckState()
+	return
+		{
+			[MODIFIER_STATE_DISARMED] = true,
+			[MODIFIER_STATE_ATTACK_IMMUNE] = true,
+		}
+end
+
+-- IntervalThink to remove active if magic immune (so you can't stack the two)
+function modifier_imba_ghost_shroud_active:OnCreated()
+	if not IsServer() then return end
+	self:StartIntervalThink(FrameTime())
+end
+
+function modifier_imba_ghost_shroud_active:OnIntervalThink()
+	if not IsServer() then return end
+	if self:GetParent():IsMagicImmune() then self:Destroy()	end
+end
+
+-----------------------------------------------------
+-- Ghost Shroud Positive Aura Handler (Unpurgable) --
+-----------------------------------------------------
 
 modifier_imba_ghost_shroud_aura = class({})
+
+function modifier_imba_ghost_shroud_aura:IsHidden() return false end
+function modifier_imba_ghost_shroud_aura:IsPurgable() return false end
+function modifier_imba_ghost_shroud_aura:IsAura() return true end
+
 function modifier_imba_ghost_shroud_aura:OnCreated( params )
 	if IsServer() then
 		self.radius = params.radius
@@ -476,34 +525,47 @@ function modifier_imba_ghost_shroud_aura:GetModifierAura()
 	return "modifier_imba_ghost_shroud_buff"
 end
 
-function modifier_imba_ghost_shroud_aura:IsAura()
-	return true
-end
+------------------------------------------------
+-- Ghost Shroud Positive Aura Buff (Heal Amp) --
+------------------------------------------------
 
-function modifier_imba_ghost_shroud_aura:IsHidden()
+modifier_imba_ghost_shroud_buff = modifier_imba_ghost_shroud_buff or class({})
+
+function modifier_imba_ghost_shroud_buff:IsHidden()
 	if self:GetParent() == self:GetCaster() then return true end
 	return false
 end
+function modifier_imba_ghost_shroud_buff:IsDebuff()	return false end
+
+function modifier_imba_ghost_shroud_buff:DeclareFunctions()
+	local decFuncs =
+		{
+			MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE
+		}
+	return decFuncs
+end
+
+function modifier_imba_ghost_shroud_buff:GetModifierHPRegenAmplify_Percentage()
+	local healing_amp_pct = self:GetAbility():GetSpecialValueFor("healing_amp_pct")
+	if self:GetCaster() ~= self:GetParent() then
+		healing_amp_pct = healing_amp_pct / 2
+	end
+	return healing_amp_pct
+end
+
+----------------------------------------
+-- Ghost Shroud Negative Aura Handler --
+----------------------------------------
 
 modifier_imba_ghost_shroud_aura_debuff = modifier_imba_ghost_shroud_aura_debuff or class({})
+
+function modifier_imba_ghost_shroud_aura_debuff:IsHidden() return true end
+function modifier_imba_ghost_shroud_aura_debuff:IsPurgable() return false end
+function modifier_imba_ghost_shroud_aura_debuff:IsAura() return true end
+
 function modifier_imba_ghost_shroud_aura_debuff:OnCreated( params )
 	if IsServer() then
 		self.radius = params.radius
-		self.healing_amp_pct = params.healing_amp_pct
-	end
-end
-
-function modifier_imba_ghost_shroud_aura_debuff:GetEffectName()
-	return "particles/units/heroes/hero_pugna/pugna_decrepify.vpcf"
-end
-
-function modifier_imba_ghost_shroud_aura_debuff:GetEffectAttachType()
-	return PATTACH_POINT_FOLLOW
-end
-
-function modifier_imba_ghost_shroud_aura_debuff:GetAuraEntityReject(target)
-	if IsServer() then
-		return false
 	end
 end
 
@@ -527,68 +589,17 @@ function modifier_imba_ghost_shroud_aura_debuff:GetModifierAura()
 	return "modifier_imba_ghost_shroud_debuff"
 end
 
-function modifier_imba_ghost_shroud_aura_debuff:IsAura()
-	return true
-end
-
-function modifier_imba_ghost_shroud_aura_debuff:DeclareFunctions()
-	return { MODIFIER_PROPERTY_MAGICAL_RESISTANCE_DECREPIFY_UNIQUE, }
-end
-
-function modifier_imba_ghost_shroud_aura_debuff:CheckState()
-	return
-		{
-			[MODIFIER_STATE_DISARMED] = true,
-			[MODIFIER_STATE_ATTACK_IMMUNE] = true,
-		}
-end
-
-function modifier_imba_ghost_shroud_aura_debuff:GetModifierMagicalResistanceDecrepifyUnique( params )
-	return self:GetAbility():GetSpecialValueFor("magic_amp_pct") * (-1)
-end
-
-modifier_imba_ghost_shroud_buff = modifier_imba_ghost_shroud_buff or class({})
-function modifier_imba_ghost_shroud_buff:DeclareFunctions()
-	local decFuncs =
-		{
-			MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE,
-			MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL,
-		}
-	return decFuncs
-end
-
-function modifier_imba_ghost_shroud_buff:GetModifierHPRegenAmplify_Percentage()
-	local healing_amp_pct = self:GetAbility():GetSpecialValueFor("healing_amp_pct")
-	if self:GetCaster() ~= self:GetParent() then
-		healing_amp_pct = healing_amp_pct / 2
-	end
-	return healing_amp_pct
-end
-
-function modifier_imba_ghost_shroud_buff:GetAbsoluteNoDamagePhysical()
-	if self:GetCaster() == self:GetParent() then
-		return 1
-	else
-		return nil
-	end
-end
-
-function modifier_imba_ghost_shroud_buff:IsDebuff()
-	return false
-end
-
-function modifier_imba_ghost_shroud_buff:IsHidden()
-	if self:GetParent() == self:GetCaster() then return true end
-	return false
-end
-
-function modifier_imba_ghost_shroud_buff:IsPurgable()
-	return true
-end
+-------------------------------------------------------
+-- Ghost Shroud Negative Aura Debuff (Movement Slow) --
+-------------------------------------------------------
 
 modifier_imba_ghost_shroud_debuff = modifier_imba_ghost_shroud_debuff or class({})
-function modifier_imba_ghost_shroud_debuff:GetEffectAttachType()
-	return PATTACH_POINT_FOLLOW
+
+function modifier_imba_ghost_shroud_debuff:IsHidden() return false end
+function modifier_imba_ghost_shroud_debuff:IsDebuff() return true end
+
+function modifier_imba_ghost_shroud_debuff:GetEffectName()
+	return "particles/units/heroes/hero_necrolyte/necrolyte_spirit_debuff.vpcf"
 end
 
 function modifier_imba_ghost_shroud_debuff:DeclareFunctions()
@@ -601,22 +612,6 @@ end
 
 function modifier_imba_ghost_shroud_debuff:GetModifierMoveSpeedBonus_Percentage()
 	return self:GetAbility():GetSpecialValueFor("slow_pct") * (-1)
-end
-
-function modifier_imba_ghost_shroud_debuff:IsDebuff()
-	return true
-end
-
-function modifier_imba_ghost_shroud_debuff:GetEffectName()
-	return "particles/units/heroes/hero_necrolyte/necrolyte_spirit_debuff.vpcf"
-end
-
-function modifier_imba_ghost_shroud_debuff:GetEffectAttachType()
-	return PATTACH_POINT_FOLLOW
-end
-
-function modifier_imba_ghost_shroud_debuff:IsPurgable()
-	return true
 end
 
 -------------------------------------------
@@ -640,40 +635,19 @@ function imba_necrolyte_heartstopper_aura:GetCastRange( location , target)
 end
 
 modifier_imba_heartstopper_aura = class({})
+
 function modifier_imba_heartstopper_aura:OnCreated()
-	if IsServer() then
-		self.radius = self:GetAbility():GetSpecialValueFor("radius")
-		self.damage_pct = self:GetAbility():GetTalentSpecialValueFor("damage_pct")
-		if not self.timer then
-			self:StartIntervalThink(1)
-			self.timer = true
-		end
+	-- elfansoer: fix generic intrinsic problem
+	if IsServer() and self:GetAbility():GetLevel()<1 then
+		self:Destroy()
+		return
 	end
+	self.radius = self:GetAbility():GetSpecialValueFor("radius")
 end
 
 function modifier_imba_heartstopper_aura:OnRefresh()
 	if IsServer() then
 		self:OnCreated()
-	end
-end
-
-function modifier_imba_heartstopper_aura:OnIntervalThink()
-	if IsServer() then
-		local caster = self:GetCaster()
-		if not caster:PassivesDisabled() then
-			local enemies = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(), nil, 25000, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
-			for _,enemy in ipairs(enemies) do
-				local modifier = enemy:FindModifierByNameAndCaster("modifier_imba_heartstopper_aura_damage",caster)
-				if modifier then
-					-- Calculates damage
-					local damage = enemy:GetMaxHealth() * self.damage_pct / 100
-					ApplyDamage({attacker = caster, victim = enemy, ability = self:GetAbility(), damage = damage, damage_type = DAMAGE_TYPE_PURE, damage_flags = DOTA_DAMAGE_FLAG_HPLOSS})
-					if (math.random(1,1000) <= 2) and (caster:GetName() == "npc_dota_hero_necrolyte") then
-						caster:EmitSound("necrolyte_necr_ability_aura_0"..math.random(1,3))
-					end
-				end
-			end
-		end
 	end
 end
 
@@ -725,8 +699,12 @@ function modifier_imba_heartstopper_aura:GetEffectAttachType()
 end
 
 modifier_imba_heartstopper_aura_damage = modifier_imba_heartstopper_aura_damage or class({})
+
+
 function modifier_imba_heartstopper_aura_damage:IsHidden()
-	return false
+	if self:GetStackCount() == 0 then
+		return true
+	end
 end
 
 function modifier_imba_heartstopper_aura_damage:IsDebuff()
@@ -737,6 +715,51 @@ function modifier_imba_heartstopper_aura_damage:IsPurgable()
 	return false
 end
 
+function modifier_imba_heartstopper_aura_damage:OnCreated()
+	if IsServer() then
+		self.parent	= self:GetParent()
+	
+		self.radius = self:GetAbility():GetSpecialValueFor("radius")
+		self.damage_pct = self:GetAbility():GetTalentSpecialValueFor("damage_pct")
+		self.tick_rate	= self:GetAbility():GetTalentSpecialValueFor("tick_rate")
+		
+		if self:GetParent():CanEntityBeSeenByMyTeam(self:GetCaster()) then
+			self:SetStackCount(self:GetAbility():GetTalentSpecialValueFor("heal_reduce_pct"))
+		end
+		
+		if not self.timer then
+			self:StartIntervalThink(self.tick_rate)
+			self.timer = true
+		end
+	end
+end
+
+function modifier_imba_heartstopper_aura_damage:OnIntervalThink()
+	if IsServer() then
+		local caster = self:GetCaster()
+		
+		-- Jank way of hiding modifier if the caster is invisible (client/server issues...as usual)
+		if self:GetParent():CanEntityBeSeenByMyTeam(caster) then
+			self:SetStackCount(self:GetAbility():GetTalentSpecialValueFor("heal_reduce_pct"))
+		else
+			self:SetStackCount(0)
+		end
+		
+		if not caster:PassivesDisabled() then
+			-- Calculates damage
+			local damage = self.parent:GetMaxHealth() * (self.damage_pct * self.tick_rate) / 100
+			ApplyDamage({attacker = caster, victim = self.parent, ability = self:GetAbility(), damage = damage, damage_type = DAMAGE_TYPE_PURE, damage_flags = DOTA_DAMAGE_FLAG_HPLOSS + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION})
+			
+			if (math.random(1,1000) <= 1) and (caster:GetName() == "npc_dota_hero_necrolyte") then
+				caster:EmitSound("necrolyte_necr_ability_aura_0"..math.random(1,3))
+			end
+			
+			
+		end
+	end
+end
+
+
 function modifier_imba_heartstopper_aura_damage:DeclareFunctions()
 	local decFuncs =
 		{
@@ -746,7 +769,9 @@ function modifier_imba_heartstopper_aura_damage:DeclareFunctions()
 end
 
 function modifier_imba_heartstopper_aura_damage:GetModifierHPRegenAmplify_Percentage()
-	return ( self:GetAbility():GetTalentSpecialValueFor("heal_reduce_pct") * (-1) )
+	if self:GetAbility() ~= nil then
+		return ( self:GetAbility():GetTalentSpecialValueFor("heal_reduce_pct") * (-1) )
+	end
 end
 
 -------------------------------------------
@@ -796,8 +821,7 @@ end
 
 modifier_imba_reapers_scythe = modifier_imba_reapers_scythe or class({})
 function modifier_imba_reapers_scythe:IgnoreTenacity() return true end
-function modifier_imba_reapers_scythe:GetAttributes() return MODIFIER_ATTRIBUTE_MULTIPLE end
-function modifier_imba_reapers_scythe:OnCreated( params )
+function modifier_imba_reapers_scythe:OnCreated()
 	if IsServer() then
 		local caster = self:GetCaster()
 		local target = self:GetParent()
@@ -805,9 +829,9 @@ function modifier_imba_reapers_scythe:OnCreated( params )
 		self.damage = self.ability:GetSpecialValueFor("damage")
 
 		local stun_fx = ParticleManager:CreateParticle("particles/generic_gameplay/generic_stunned.vpcf", PATTACH_OVERHEAD_FOLLOW, target)
-		self:AddParticle(stun_fx,false,false,-1,false,false)
+		self:AddParticle(stun_fx, false, false, -1, false, false)
 		local orig_fx = ParticleManager:CreateParticle("particles/units/heroes/hero_necrolyte/necrolyte_scythe_orig.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
-		self:AddParticle(orig_fx,false,false,-1,false,false)
+		self:AddParticle(orig_fx, false, false, -1, false, false)
 
 		local scythe_fx = ParticleManager:CreateParticle("particles/units/heroes/hero_necrolyte/necrolyte_scythe_start.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
 		ParticleManager:SetParticleControlEnt(scythe_fx, 0, caster, PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true)
@@ -816,16 +840,22 @@ function modifier_imba_reapers_scythe:OnCreated( params )
 	end
 end
 
-function modifier_imba_reapers_scythe:OnDestroy()
-	if IsServer() then
+function modifier_imba_reapers_scythe:OnRefresh()
+		if IsServer() then
 		local caster = self:GetCaster()
 		local target = self:GetParent()
-		if target:IsAlive() and self.ability then
-			self.damage = self.damage * (target:GetMaxHealth() - target:GetHealth())
-			-- Deals damage
-			local actually_dmg = ApplyDamage({attacker = caster, victim = target, ability = self.ability, damage = self.damage, damage_type = DAMAGE_TYPE_MAGICAL})
-			SendOverheadEventMessage(nil, OVERHEAD_ALERT_DAMAGE, target, actually_dmg, nil)
-		end
+		self.ability = self:GetAbility()
+		self.damage = self.ability:GetSpecialValueFor("damage")
+
+		local stun_fx = ParticleManager:CreateParticle("particles/generic_gameplay/generic_stunned.vpcf", PATTACH_OVERHEAD_FOLLOW, target)
+		self:AddParticle(stun_fx, false, false, -1, false, false)
+		local orig_fx = ParticleManager:CreateParticle("particles/units/heroes/hero_necrolyte/necrolyte_scythe_orig.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
+		self:AddParticle(orig_fx, false, false, -1, false, false)
+
+		local scythe_fx = ParticleManager:CreateParticle("particles/units/heroes/hero_necrolyte/necrolyte_scythe_start.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
+		ParticleManager:SetParticleControlEnt(scythe_fx, 0, caster, PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true)
+		ParticleManager:SetParticleControlEnt(scythe_fx, 1, target, PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
+		ParticleManager:ReleaseParticleIndex(scythe_fx)
 	end
 end
 
@@ -856,8 +886,6 @@ end
 function modifier_imba_reapers_scythe:IsPurgable() return false end
 function modifier_imba_reapers_scythe:IsPurgeException() return false end
 
-
-
 function modifier_imba_reapers_scythe:DeclareFunctions()
 	local decFuncs =
 		{
@@ -871,10 +899,25 @@ function modifier_imba_reapers_scythe:GetOverrideAnimation()
 end
 
 function modifier_imba_reapers_scythe:OnRemoved()
-	if self.ability then
-		if self.ability.ghost_death then
-			self.ability.ghost_death = nil
-			self:GetParent():AddNewModifier(self:GetCaster(), self.ability, "modifier_imba_reapers_scythe_respawn", {})
+	if IsServer() then
+		local caster = self:GetCaster()
+		local target = self:GetParent()
+		if target:IsAlive() and self.ability then
+			self.damage = self.damage * (target:GetMaxHealth() - target:GetHealth())
+			-- If this very rough formula for damage exceeds that of the target's health, apply the respawn modifier that increases respawn time of target...
+			if (self.damage * (1 + (caster:GetSpellAmplification(false) * 0.01)) * (1 - target:GetMagicalArmorValue())) >= target:GetHealth() then
+				self:GetParent():AddNewModifier(self:GetCaster(), self.ability, "modifier_imba_reapers_scythe_respawn", {})
+			end
+			-- Deals damage (optimally, the ApplyDamage float number would be used for calculating whether the respawn modifier should be applied.
+			-- However, that doesn't seem to be possible without actually inflicting the damage, and modifiers cannot be applied on dead units)
+			local actually_dmg = ApplyDamage({attacker = caster, victim = target, ability = self.ability, damage = self.damage, damage_type = DAMAGE_TYPE_MAGICAL})
+			SendOverheadEventMessage(nil, OVERHEAD_ALERT_DAMAGE, target, actually_dmg, nil)
+			
+			-- ...HOWEVER, in the case of the target not actually dying under scythe due to incorrect calculations (ex. Dazzle Grave, Oracle False Promise, Bristleback damage reduction, etc.), remove the modifier
+			-- This will prevent a indefinitely lingering respawn modifier that increases respawn time (or worse) upon an actual death later
+			if target:IsAlive() and target:HasModifier("modifier_imba_reapers_scythe_respawn") then
+				self:GetParent():RemoveModifierByName("modifier_imba_reapers_scythe_respawn")
+			end
 		end
 	end
 end
@@ -895,12 +938,8 @@ function modifier_imba_reapers_scythe_respawn:OnCreated()
 	end
 end
 
-function modifier_imba_reapers_scythe_respawn:RespawnTimeStacking()
-	return self.respawn_increase
-end
-
 function modifier_imba_reapers_scythe_respawn:IsHidden()
-	return true
+	return false
 end
 
 function modifier_imba_reapers_scythe_respawn:IsPurgable()
@@ -925,13 +964,13 @@ end
 
 function modifier_imba_reapers_scythe_respawn:OnRespawn( params )
 	if IsServer() then
-		if (self:GetParent() == params.unit) then
+		if self:GetParent() == params.unit then
 			if self.ability and not self.reincarnate_respawn then
 				local debuff_duration = self.ability:GetSpecialValueFor("debuff_duration")
 				params.unit:AddNewModifier(params.unit, self.ability, "modifier_imba_reapers_scythe_debuff", {duration = debuff_duration})
 			end
 
-			self:Destroy()
+			self:GetParent():RemoveModifierByName("modifier_imba_reapers_scythe_respawn")
 		end
 	end
 end

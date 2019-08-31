@@ -13,8 +13,9 @@
 -- limitations under the License.
 --
 -- Editors:
---     Fudge
+--     Fudge: 20.07.2017
 --     suthernfriend, 03.02.2018
+--     Elfansoer, 17.08.2019
 
 if IsClient() then
     require('lib/util_imba_client')
@@ -29,73 +30,99 @@ LinkLuaModifier("modifier_imba_static_remnant", "abilities/dota_imba/hero_storm_
 ---		    STATIC REMNANT		   ---
 --------------------------------------
 
--- TODO: give it a animation
 function imba_storm_spirit_static_remnant:OnSpellStart()
 	if IsServer() then
-		--Ability properties
-		local caster				=	self:GetCaster()
-		local cast_response			=	"stormspirit_ss_ability_static_0"
-		local cast_sound			=	"Hero_StormSpirit.StaticRemnantPlant"
-		--Ability paramaters
-		local remnant_duration		=	self:GetSpecialValueFor("big_remnant_duration")
+		local caster = self:GetCaster()
+		local cast_sound = "Hero_StormSpirit.StaticRemnantPlant"
+		local remnant_duration = self:GetSpecialValueFor("big_remnant_duration")
+		local remnant_count = self:GetSpecialValueFor("remnant_count")
 
-		--Play a random cast response 50% of the time
-		if RollPercentage(50) and (caster:GetName() == "npc_dota_hero_storm_spirit") then
-			EmitSoundOn(cast_response..math.random(1,6),caster)
+		if caster:HasTalent("special_bonus_imba_storm_spirit_7") then
+			remnant_count = remnant_count + caster:FindTalentValue("special_bonus_imba_storm_spirit_7")
 		end
-		-- Play cast sound
-		EmitSoundOn(cast_sound,caster)
 
-		--Create remnant
-		local dummy = CreateUnitByName( "npc_imba_dota_stormspirit_remnant", caster:GetAbsOrigin(), false, caster, nil, caster:GetTeamNumber() )
-		-- Give it the necessary modifier
-		dummy:AddNewModifier(caster, self, "modifier_imba_static_remnant", {duration = remnant_duration})
+		EmitSoundOn(cast_sound, caster)
 
+		local far_distance = 250
+		local remnant_pos = {}
+		remnant_pos[1] = Vector(0, far_distance, 0)		-- North
+		remnant_pos[2] = Vector(-far_distance, -far_distance, 0)	-- South-West
+		remnant_pos[3] = Vector(far_distance, -far_distance, 0)	-- South-East
+
+		if remnant_count > 1 then
+			for i = 1, remnant_count do
+				local dummy = CreateUnitByName("npc_imba_dota_stormspirit_remnant", caster:GetAbsOrigin() + remnant_pos[i], false, caster, nil, caster:GetTeamNumber())
+				dummy:AddNewModifier(caster, self, "modifier_imba_static_remnant", {duration = remnant_duration})
+			end
+		else
+			-- elfansoer: fix missing unit reference
+			-- local dummy = CreateUnitByName("npc_imba_dota_stormspirit_remnant", caster:GetAbsOrigin(), false, caster, nil, caster:GetTeamNumber())
+			local dummy = CreateUnitByName("npc_dota_stormspirit_remnant", caster:GetAbsOrigin(), false, caster, nil, caster:GetTeamNumber())
+			dummy:AddNewModifier(caster, self, "modifier_imba_static_remnant", {duration = remnant_duration})
+		end
 	end
 end
 
 modifier_imba_static_remnant = modifier_imba_static_remnant or class({})
 
-function modifier_imba_static_remnant:OnCreated()
+function modifier_imba_static_remnant:OnCreated( params )
 	if IsServer() then
-
 		--Ability properties
 		self.ability			= 	self:GetAbility()
-		self.caster				=	self:GetCaster()
 		local remnant_particle	=	"particles/units/heroes/hero_stormspirit/stormspirit_static_remnant.vpcf"
-		self.caster_location	=	self.caster:GetAbsOrigin()
 		self.dummy				=	self:GetParent()
-
+		self.caster_location	=	self.dummy:GetAbsOrigin()
+		
+		-- Check to see if Remnant was created by Ball Lightning or not
+		self.ballLightning		=	params.ballLightning or false
+		
 		--Ability paramaters
-		local activation_delay		=	self.ability:GetSpecialValueFor("big_remnant_activation_delay")
-		local check_interval		=	self.ability:GetSpecialValueFor("explosion_check_interval")
+		local activation_delay = self.ability:GetSpecialValueFor("big_remnant_activation_delay")
+		if self:GetCaster():HasTalent("special_bonus_imba_storm_spirit_6") then
+			activation_delay = activation_delay - 0.3 -- self:GetCaster():FindTalentValue("special_bonus_imba_storm_spirit_6") -- doesn't work with FindTalentValue for reasons..
+		end
 
+		local check_interval = self.ability:GetSpecialValueFor("explosion_check_interval")
 		-- Create remnant in the location
-		self.remnant_particle_fx = ParticleManager:CreateParticle(remnant_particle, PATTACH_ABSORIGIN, self.caster)
+		-- PATTACH_ABSORIGIN shows the proper particles but makes them invisible if vision of Storm Spirit is lost which is arguably worse -_-
+
+		-- elfansoer: set remnant model to be the same as owner
+		-- self.remnant_particle_fx = ParticleManager:CreateParticle(remnant_particle, PATTACH_WORLDORIGIN, self:GetCaster())
+		self.remnant_particle_fx = ParticleManager:CreateParticle(remnant_particle, PATTACH_CUSTOMORIGIN, self:GetParent())
+
 		ParticleManager:SetParticleControl(self.remnant_particle_fx, 0, self.caster_location)
 		-- Make the remnant clone the hero
-		ParticleManager:SetParticleControlEnt(self.remnant_particle_fx, 1, self.caster, PATTACH_POINT_FOLLOW, "attach_hitloc", self.caster_location, true)
-		ParticleManager:SetParticleControl(self.remnant_particle_fx, 2, Vector(100, 1, 100) )
+		ParticleManager:SetParticleControlEnt(self.remnant_particle_fx, 1, self:GetCaster(), PATTACH_POINT_FOLLOW, "attach_hitloc", self.caster_location, true)
+		ParticleManager:SetParticleControl(self.remnant_particle_fx, 2, Vector(RandomInt(37, 52), 1, 100) )
 		ParticleManager:SetParticleControl(self.remnant_particle_fx, 11, self.caster_location)
 
 		--Create a timer to delay the remnant explosion
 		Timers:CreateTimer(activation_delay, function()
-			--Start checking for nearby enemies
-			self:StartIntervalThink(check_interval)
-		end)
+				if not self:IsNull() then 
+					--Start checking for nearby enemies
+					self:StartIntervalThink(check_interval)
+				end
+			end)
 	end
 end
 
 function modifier_imba_static_remnant:OnIntervalThink()
 	if IsServer() then
 
+		-- ReplaceHeroWith and Rubick stuff
+		if self.ability:IsNull() then
+			self:StartIntervalThink(-1)
+			return
+		end
+		
 		--Ability properties
-		local remnant_location 	=	self.dummy:GetAbsOrigin()
+		local remnant_location = self.dummy:GetAbsOrigin()
 		--Ability paramaters
-		local activation_range	=	self.ability:GetSpecialValueFor("big_remnant_activation_radius")
+		local activation_range = self.ability:GetSpecialValueFor("big_remnant_activation_radius")
 
 		--Find nearby enemies
-		local nearby_enemies	=	FindUnitsInRadius(	self.caster:GetTeamNumber(),
+		local nearby_enemies = FindUnitsInRadius(
+			self:GetCaster():GetTeamNumber(),
 			remnant_location,
 			nil,
 			activation_range,
@@ -103,7 +130,9 @@ function modifier_imba_static_remnant:OnIntervalThink()
 			self.ability:GetAbilityTargetType(),
 			DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
 			FIND_ANY_ORDER,
-			false)
+			false
+		)
+
 		--Blow up if there are nearby enemies
 		if #nearby_enemies > 0 then
 			self:Destroy()
@@ -111,8 +140,17 @@ function modifier_imba_static_remnant:OnIntervalThink()
 	end
 end
 
-function modifier_imba_static_remnant:OnDestroy()
+function modifier_imba_static_remnant:OnDestroy( params )
 	if IsServer() then
+		-- ReplaceHeroWith and Rubick stuff
+		if self.ability:IsNull() then
+			--Get rid of the dummy
+			ParticleManager:DestroyParticle(self.remnant_particle_fx, false)
+			ParticleManager:ReleaseParticleIndex(self.remnant_particle_fx)
+			UTIL_Remove(self.dummy)
+			return
+		end
+	
 		--Ability properties
 		local remnant_blowup_sound		=	"Hero_StormSpirit.StaticRemnantExplode"
 		local remnant_location			=	self.dummy:GetAbsOrigin()
@@ -124,26 +162,62 @@ function modifier_imba_static_remnant:OnDestroy()
 		EmitSoundOn(remnant_blowup_sound,self.dummy)
 
 		--Find nearby enemies
-		local nearby_enemies	=	FindUnitsInRadius(	self.caster:GetTeamNumber(),
+		local nearby_enemies = FindUnitsInRadius(
+			self:GetCaster():GetTeamNumber(),
 			remnant_location,
 			nil,
 			damage_radius,
 			self.ability:GetAbilityTargetTeam(),
 			self.ability:GetAbilityTargetType(),
 			self.ability:GetAbilityTargetFlags(),
-			FIND_ANY_ORDER, false)
+			FIND_ANY_ORDER, false
+		)
+
+		-- Dumb Rubick stuff
+		local pull_duration					= 0
+		local speed 						= 0
+		local electric_vortex_pull_distance	= 0
+		
+		if self:GetCaster():HasAbility("imba_storm_spirit_electric_vortex") then
+			pull_duration = self:GetCaster():FindAbilityByName("imba_storm_spirit_electric_vortex"):GetSpecialValueFor("pull_duration") + self:GetCaster():FindTalentValue("special_bonus_imba_storm_spirit_1")
+			speed = self:GetCaster():FindAbilityByName("imba_storm_spirit_electric_vortex"):GetSpecialValueFor("pull_units_per_second") --+ self:GetCaster():FindTalentValue("special_bonus_imba_storm_spirit_2")
+			electric_vortex_pull_distance = self:GetCaster():FindAbilityByName("imba_storm_spirit_electric_vortex"):GetSpecialValueFor("electric_vortex_pull_distance")
+			
+			-- Description says vortex_time_pct is percentage shorter (so 0% means the vortex is full duration)
+			pull_duration =  pull_duration * (100 - self:GetAbility():GetSpecialValueFor("vortex_time_pct")) / 100
+		end
+
+		local lingering_sound	=	"Hero_StormSpirit.ElectricVortex"
+		local cast_sound		=	"Hero_StormSpirit.ElectricVortexCast"
 
 		-- Damage nearby enemies
-		for _,enemy in pairs(nearby_enemies) do
+		local electric_sound = false
+		for _, enemy in pairs(nearby_enemies) do
 			-- Deal damage
 			local damageTable = {victim = enemy,
 				damage = damage,
 				damage_type = DAMAGE_TYPE_MAGICAL,
-				attacker = self.caster,
+				attacker = self:GetCaster(),
 				ability = self.ability
 			}
 
 			ApplyDamage(damageTable)
+
+			if enemy:IsAlive() then
+				if electric_sound == false then
+					electric_sound = true
+				end
+
+				-- cast shorter Electric Vortex
+				if pull_duration ~= 0 and not self.ballLightning then
+					enemy:AddNewModifier(self:GetCaster(), self, "modifier_imba_vortex_root", {duration = pull_duration, speed = speed, pos_x = remnant_location.x, pos_y = remnant_location.y, pos_z = remnant_location.z, electric_vortex_pull_distance = electric_vortex_pull_distance})
+				end
+			end
+		end
+
+		if pull_duration ~= 0 and not self.ballLightning and electric_sound == true then
+			self:GetCaster():EmitSound(cast_sound)
+			EmitSoundOn(lingering_sound, self:GetCaster())
 		end
 
 		--Get rid of the dummy
@@ -186,6 +260,7 @@ end
 --------------------------------------
 imba_storm_spirit_electric_vortex = storm_spirit_electric_vortex or class({})
 LinkLuaModifier("modifier_imba_vortex_pull", "abilities/dota_imba/hero_storm_spirit.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_imba_vortex_root", "abilities/dota_imba/hero_storm_spirit.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_imba_vortex_self_slow", "abilities/dota_imba/hero_storm_spirit.lua", LUA_MODIFIER_MOTION_NONE)
 
 function imba_storm_spirit_electric_vortex:OnSpellStart()
@@ -198,15 +273,16 @@ function imba_storm_spirit_electric_vortex:OnSpellStart()
 		-- Ability paramaters															-- #1 TALENT: more pull duration
 		local pull_duration			=	self:GetSpecialValueFor("pull_duration") + caster:FindTalentValue("special_bonus_imba_storm_spirit_1")
 		local self_slow_duration	=	self:GetSpecialValueFor("self_slow_duration")	-- #2 TALENT: more pull speed
-		local speed					=	self:GetSpecialValueFor("pull_units_per_second") + caster:FindTalentValue("special_bonus_imba_storm_spirit_2")
+		local speed =	self:GetSpecialValueFor("pull_units_per_second") --+ caster:FindTalentValue("special_bonus_imba_storm_spirit_2")
+		local electric_vortex_pull_distance = self:GetSpecialValueFor("electric_vortex_pull_distance")
 
 		-- Sound effect
 		caster:EmitSound(cast_sound)
 		EmitSoundOn(lingering_sound, caster)
 
 
-		-- Apply pull slow side effect on caster
-		caster:AddNewModifier(caster, self, "modifier_imba_vortex_self_slow",	{duration = self_slow_duration} )
+		-- Apply pull slow side effect on caster (removed in official patch 7.21c)
+		-- caster:AddNewModifier(caster, self, "modifier_imba_vortex_self_slow",	{duration = self_slow_duration} )
 
 		if not caster:HasScepter() then
 			local target			=	self:GetCursorTarget()
@@ -216,8 +292,7 @@ function imba_storm_spirit_electric_vortex:OnSpellStart()
 			if target:TriggerSpellAbsorb(self) then return end
 
 			-- Apply pull modifier on target
-			target:AddNewModifier(caster, self, "modifier_imba_vortex_pull",		{duration = pull_duration, direction_x =direction.x, direction_y = direction.y, direction_z = direction.z, speed = speed} )
-
+			target:AddNewModifier(caster, self, "modifier_imba_vortex_pull", {duration = pull_duration, speed = speed, electric_vortex_pull_distance = electric_vortex_pull_distance})
 		else
 			-- AGHANIM'S SCEPTER: Electric Vortex affects multiple targets around Storm.
 			--Find nearby enemies
@@ -235,7 +310,7 @@ function imba_storm_spirit_electric_vortex:OnSpellStart()
 			for _,enemy in pairs(enemies) do
 				local direction 		= 	(caster:GetAbsOrigin() - enemy:GetAbsOrigin()):Normalized()
 				-- Apply vortex on enemy
-				enemy:AddNewModifier(caster, self, "modifier_imba_vortex_pull",		{duration = pull_duration, direction_x =direction.x, direction_y = direction.y, direction_z = direction.z, speed = speed} )
+				enemy:AddNewModifier(caster, self, "modifier_imba_vortex_pull", {duration = pull_duration, speed = speed, electric_vortex_pull_distance = electric_vortex_pull_distance} )
 			end
 		end
 
@@ -263,6 +338,7 @@ function imba_storm_spirit_electric_vortex:GetBehavior()
 		return DOTA_ABILITY_BEHAVIOR_NO_TARGET
 	end
 end
+
 --- PULL MODIFIER
 modifier_imba_vortex_pull = modifier_imba_vortex_pull or class({})
 
@@ -278,24 +354,32 @@ function modifier_imba_vortex_pull:GetMotionControllerPriority() return DOTA_MOT
 function modifier_imba_vortex_pull:OnCreated( params )
 	if IsServer() then
 		-- Ability properties
-		local caster	=	self:GetCaster()
 		local parent	=	self:GetParent()
 		local vortex_particle	=	"particles/units/heroes/hero_stormspirit/stormspirit_electric_vortex.vpcf"
 
-		self.vortex_loc	=	caster:GetAbsOrigin()
+		self.vortex_loc	=	self:GetCaster():GetAbsOrigin()
 		-- Apply vortex particle on location
-		self.vortex_particle_fx = ParticleManager:CreateParticle(vortex_particle, PATTACH_ABSORIGIN, caster)
-		ParticleManager:SetParticleControl(self.vortex_particle_fx, 0, caster:GetAbsOrigin())
+		self.vortex_particle_fx = ParticleManager:CreateParticle(vortex_particle, PATTACH_ABSORIGIN_FOLLOW, self:GetCaster())
+--		ParticleManager:SetParticleControl(self.vortex_particle_fx, 0, self:GetCaster():GetAbsOrigin())
 		-- Apply vortex particle on target
 		ParticleManager:SetParticleControlEnt(self.vortex_particle_fx, 1, parent, PATTACH_POINT_FOLLOW, "attach_hitloc", parent:GetAbsOrigin(), true)
 
 		-- Motion controller (moves the target)
-		self.direction = Vector(params.direction_x, params.direction_y, params.direction_z)
 		self.speed = params.speed * FrameTime()
 
-		self.frametime = FrameTime()
-		self:StartIntervalThink(self.frametime)
+		--7.21d version (fixed distance instead of fixed speed)
+		self.electric_vortex_pull_distance	= params.electric_vortex_pull_distance
+		self.speed							= (self.electric_vortex_pull_distance / self:GetDuration()) * FrameTime()
+
+		self:StartIntervalThink(FrameTime())
 	end
+end
+
+function modifier_imba_vortex_pull:OnRefresh()
+	if not IsServer() then return end
+
+	-- Custom Status Resist nonsense (need to learn how to make an all-encompassing function for this...)
+	self:SetDuration(self:GetDuration() * (1 - self:GetParent():GetStatusResistance()), true)
 end
 
 function modifier_imba_vortex_pull:OnIntervalThink()
@@ -305,14 +389,13 @@ function modifier_imba_vortex_pull:OnIntervalThink()
 	end
 
 	-- Horizontal motion
-	self:HorizontalMotion(self:GetParent(), self.frametime)
+	self:HorizontalMotion(self:GetParent(), FrameTime())
 end
 
 function modifier_imba_vortex_pull:OnDestroy()
 	if IsServer() then
-		local caster = self:GetCaster()
 		-- Find a clear space to stand on
-		caster:SetUnitOnClearGround()
+		self:GetCaster():SetUnitOnClearGround()
 	end
 end
 
@@ -322,9 +405,10 @@ end
 
 function modifier_imba_vortex_pull:CheckState()
 	local state =
-		{
-			[MODIFIER_STATE_STUNNED] = true
-		}
+	{
+		[MODIFIER_STATE_STUNNED] = true,
+		[MODIFIER_STATE_NO_UNIT_COLLISION] = true
+	}
 	return state
 end
 
@@ -332,21 +416,20 @@ function modifier_imba_vortex_pull:HorizontalMotion( unit, time )
 	if IsServer() then
 
 		-- Move the target
-		local set_point = unit:GetAbsOrigin() + self.direction * self.speed
+		local set_point = unit:GetAbsOrigin() + (self:GetCaster():GetAbsOrigin() - unit:GetAbsOrigin()):Normalized() * self.speed
 		-- Stop moving when the vortex has been reached
-		if (unit:GetAbsOrigin() - self.vortex_loc):Length2D() > 50 then
-			unit:SetAbsOrigin(Vector(set_point.x, set_point.y, GetGroundPosition(set_point, unit).z))
-		end
-
+--		if (unit:GetAbsOrigin() - self.vortex_loc):Length2D() > 50 then
+		unit:SetAbsOrigin(Vector(set_point.x, set_point.y, GetGroundPosition(set_point, unit).z))
+--		end
 	end
 end
 
 
 function modifier_imba_vortex_pull:DeclareFunctions()
 	local decFuncs =
-		{
-			MODIFIER_PROPERTY_OVERRIDE_ANIMATION,
-		}
+	{
+		MODIFIER_PROPERTY_OVERRIDE_ANIMATION,
+	}
 	return decFuncs
 end
 
@@ -364,7 +447,125 @@ function modifier_imba_vortex_pull:OnDestroy()
 
 		-- Find a clear space to stand on
 		self:GetParent():SetUnitOnClearGround()
+	end
+end
 
+--- PULL MODIFIER (root only)
+modifier_imba_vortex_root = modifier_imba_vortex_root or class({})
+
+-- Modifier properties
+function modifier_imba_vortex_root:IsHidden() 		  return false end
+function modifier_imba_vortex_root:IsPurgable() 	  return false end
+function modifier_imba_vortex_root:IsPurgeException() return true end
+function modifier_imba_vortex_root:IsDebuff() 		  return true end
+function modifier_imba_vortex_root:IsStunDebuff() 	  return true end
+function modifier_imba_vortex_root:IsMotionController() return true end
+function modifier_imba_vortex_root:GetMotionControllerPriority() return DOTA_MOTION_CONTROLLER_PRIORITY_LOW end
+
+function modifier_imba_vortex_root:OnCreated( params )
+	if IsServer() then
+		-- Ability properties
+		-- elfansoer: fix particle missing
+		-- local vortex_particle = "particles/units/heroes/hero_stormspirit/stormspirit_electric_vortex_root.vpcf"
+		local vortex_particle = "particles/units/heroes/hero_stormspirit/stormspirit_electric_vortex.vpcf"
+
+--		print(params.pos_x, params.pos_y, params.pos_z)
+		self.vortex_loc	= Vector(params.pos_x, params.pos_y, params.pos_z)
+--		print(self.vortex_loc)
+		-- Apply vortex particle on location
+		-- self.vortex_particle_fx = ParticleManager:CreateParticle(vortex_particle, PATTACH_ABSORIGIN_FOLLOW, self:GetParent())
+		self.vortex_particle_fx = ParticleManager:CreateParticle(vortex_particle, PATTACH_CUSTOMORIGIN, self:GetParent())
+		ParticleManager:SetParticleControl(self.vortex_particle_fx, 0, self.vortex_loc)
+		-- Apply vortex particle on target
+		ParticleManager:SetParticleControlEnt(self.vortex_particle_fx, 1, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_hitloc", self.vortex_loc, true)
+
+		-- Motion controller (moves the target)
+		self.speed = params.speed * FrameTime()
+
+		--7.21d version (fixed distance instead of fixed speed)
+		self.electric_vortex_pull_distance	= params.electric_vortex_pull_distance
+		self.speed							= (self.electric_vortex_pull_distance / self:GetDuration()) * FrameTime()
+
+		self:StartIntervalThink(FrameTime())
+		
+		-- Weird stuff with this not being affected by status resist so I'm forcing it here
+		Timers:CreateTimer(FrameTime(), function()
+			self:SetDuration(self:GetDuration() * (1 - self:GetParent():GetStatusResistance()), true)
+		end)
+	end
+end
+
+function modifier_imba_vortex_root:OnRefresh()
+	if not IsServer() then return end
+
+	-- Custom Status Resist nonsense (need to learn how to make an all-encompassing function for this...)
+	self:SetDuration(self:GetDuration() * (1 - self:GetParent():GetStatusResistance()), true)
+end
+
+function modifier_imba_vortex_root:OnIntervalThink()
+	-- Check for motion controllers
+	if not self:CheckMotionControllers() then
+		return nil
+	end
+
+	-- Horizontal motion
+	self:HorizontalMotion(self:GetParent(), FrameTime())
+end
+
+function modifier_imba_vortex_root:OnDestroy()
+	if IsServer() then
+		-- Find a clear space to stand on
+		self:GetCaster():SetUnitOnClearGround()
+	end
+end
+
+function modifier_imba_vortex_root:GetMotionControllerPriority()
+	return DOTA_MOTION_CONTROLLER_PRIORITY_MEDIUM
+end
+
+function modifier_imba_vortex_root:CheckState()
+	local state =
+	{
+		[MODIFIER_STATE_ROOTED] = true,
+		[MODIFIER_STATE_NO_UNIT_COLLISION] = true
+	}
+	return state
+end
+
+function modifier_imba_vortex_root:HorizontalMotion( unit, time )
+	if IsServer() then
+		-- Move the target
+		local set_point = unit:GetAbsOrigin() + (self.vortex_loc - unit:GetAbsOrigin()):Normalized() * self.speed
+		-- Stop moving when the vortex has been reached
+--		if (unit:GetAbsOrigin() - self.vortex_loc):Length2D() > 50 then
+		unit:SetAbsOrigin(Vector(set_point.x, set_point.y, GetGroundPosition(set_point, unit).z))
+--		end
+	end
+end
+
+
+function modifier_imba_vortex_root:DeclareFunctions()
+	local decFuncs =
+	{
+		MODIFIER_PROPERTY_OVERRIDE_ANIMATION,
+	}
+	return decFuncs
+end
+
+function modifier_imba_vortex_root:GetOverrideAnimation()
+	return ACT_DOTA_FLAIL
+end
+
+function modifier_imba_vortex_root:OnDestroy()
+	if IsServer() then
+		-- Remove the vortex particle
+		ParticleManager:DestroyParticle(self.vortex_particle_fx, false)
+		ParticleManager:ReleaseParticleIndex(self.vortex_particle_fx)
+		-- Stop making that noise
+		StopSoundOn("Hero_StormSpirit.ElectricVortex", self:GetParent())
+
+		-- Find a clear space to stand on
+		self:GetParent():SetUnitOnClearGround()
 	end
 end
 
@@ -372,9 +573,9 @@ end
 modifier_imba_vortex_self_slow = modifier_imba_vortex_self_slow or class({})
 
 -- Modifier properties
-function modifier_imba_vortex_pull:IsHidden() 		  return false end
-function modifier_imba_vortex_pull:IsPurgable() 	  return true end
-function modifier_imba_vortex_pull:IsDebuff() 		  return true end
+function modifier_imba_vortex_self_slow:IsHidden() return false end
+function modifier_imba_vortex_self_slow:IsPurgable() return true end
+function modifier_imba_vortex_self_slow:IsDebuff() return true end
 
 function modifier_imba_vortex_self_slow:DeclareFunctions()
 	local funcs ={
@@ -384,7 +585,12 @@ function modifier_imba_vortex_self_slow:DeclareFunctions()
 end
 
 function modifier_imba_vortex_self_slow:GetModifierMoveSpeedBonus_Percentage()
-	return self:GetAbility():GetSpecialValueFor("self_slow")
+	local ms = self:GetAbility():GetSpecialValueFor("self_slow")
+	if self:GetCaster():HasTalent("special_bonus_imba_storm_spirit_8") then
+		ms = ms + self:GetCaster():FindTalentValue("special_bonus_imba_storm_spirit_8")
+	end
+
+	return ms
 end
 
 --------------------------------------
@@ -405,6 +611,14 @@ end
 
 --- OVERLOAD PASSIVE MODIFIER
 modifier_imba_overload = modifier_imba_overload or class({})
+
+-- elfansoer: fix intrinsic problem
+function modifier_imba_overload:OnCreated()
+	if IsServer() and self:GetAbility():GetLevel()<1 then
+		self:Destroy()
+		return
+	end
+end
 
 -- Modifier properties
 function modifier_imba_overload:IsPassive() return true end
@@ -430,16 +644,18 @@ function modifier_imba_overload:OnAbilityExecuted( keys )
 				-- Doesn't work when Storm is broken
 				if not parent:PassivesDisabled() then
 					-- Ignore toggles and items
-					if ( not keys.ability:IsItem() and not keys.ability:IsToggle() )  then
-
-						parent:AddNewModifier(parent, self:GetAbility(), "modifier_imba_overload_buff",	{} )
+					if (not keys.ability:IsItem() and not keys.ability:IsToggle()) then
+						if parent:FindModifierByName("modifier_imba_overload_buff") and parent:FindModifierByName("modifier_imba_overload_buff"):GetStackCount() < self:GetAbility():GetSpecialValueFor("max_stacks") then
+							parent:FindModifierByName("modifier_imba_overload_buff"):SetStackCount(parent:FindModifierByName("modifier_imba_overload_buff"):GetStackCount() + 1)
+						else
+							parent:AddNewModifier(parent, self:GetAbility(), "modifier_imba_overload_buff",	{})
+						end
 					end
 				end
 			end
 		end
 	end
 end
-
 
 --------------------------------
 --- OVERLOAD "ACTIVE" MODIFIER
@@ -458,7 +674,7 @@ function modifier_imba_overload_buff:OnCreated()
 		local particle	=	"particles/units/heroes/hero_stormspirit/stormspirit_overload_ambient.vpcf"
 		self.particle_fx = ParticleManager:CreateParticle(particle, PATTACH_CUSTOMORIGIN, parent)
 		ParticleManager:SetParticleControlEnt(self.particle_fx, 0, parent, PATTACH_POINT_FOLLOW, "attach_attack1", parent:GetAbsOrigin(), true)
-
+		self:SetStackCount(1)
 	end
 end
 
@@ -471,7 +687,7 @@ function modifier_imba_overload_buff:DeclareFunctions()
 	return funcs
 end
 
-function modifier_imba_overload_buff:OnAttackLanded( keys )
+function modifier_imba_overload_buff:OnAttackLanded(keys)
 	if IsServer() then
 		-- When someone affected by overload buff has attacked
 		if keys.attacker == self:GetParent() then
@@ -483,8 +699,8 @@ function modifier_imba_overload_buff:OnAttackLanded( keys )
 				local ability	=	self:GetAbility()
 				local particle	=	"particles/units/heroes/hero_stormspirit/stormspirit_overload_discharge.vpcf"
 				-- Ability paramaters
-				local radius 		=	ability:GetSpecialValueFor("aoe")
-				local damage		=	ability:GetSpecialValueFor("damage")
+				local radius 		=	ability:GetSpecialValueFor("aoe") + (ability:GetSpecialValueFor("bonus_aoe_stack") * self:GetStackCount())
+				local damage		=	ability:GetSpecialValueFor("damage") + (ability:GetSpecialValueFor("bonus_dmg_stack") * self:GetStackCount())
 				local slow_duration	=	ability:GetSpecialValueFor("slow_duration")
 
 				local target_flag = ability:GetAbilityTargetFlags()
@@ -629,51 +845,54 @@ function imba_storm_spirit_ball_lightning:OnSpellStart()
 
 		-- Fire the ball of death!
 		local projectile =
-			{
-				Ability				= self,
-				EffectName			= "particles/hero/storm_spirit/no_particle_particle.vpcf",
-				vSpawnOrigin		= caster_loc,
-				fDistance			= self.distance,
-				fStartRadius		= damage_radius,
-				fEndRadius			= damage_radius,
-				Source				= caster,
-				bHasFrontalCone		= false,
-				bReplaceExisting	= false,
-				iUnitTargetTeam		= self:GetAbilityTargetTeam(),
-				iUnitTargetFlags	= self:GetAbilityTargetFlags(),
-				iUnitTargetType		= self:GetAbilityTargetType(),
-				bDeleteOnHit		= false,
-				vVelocity 			= self.direction * speed * Vector(1, 1, 0),
-				bProvidesVision		= true,
-				iVisionRadius 		= vision,
-				iVisionTeamNumber 	= caster:GetTeamNumber(),
-				ExtraData			= {damage = damage,
-					tree_radius = tree_radius,
-					base_mana_cost = base_mana_cost,
-					pct_mana_cost = pct_mana_cost,
-					total_mana_cost = total_mana_cost,
-					speed = speed * FrameTime(),
-					max_spell_amp_range = max_spell_amp_range
-				}
+		{
+			Ability				= self,
+			EffectName			= "particles/hero/storm_spirit/no_particle_particle.vpcf",
+			vSpawnOrigin		= caster_loc,
+			fDistance			= self.distance,
+			fStartRadius		= damage_radius,
+			fEndRadius			= damage_radius,
+			Source				= caster,
+			bHasFrontalCone		= false,
+			bReplaceExisting	= false,
+			iUnitTargetTeam		= self:GetAbilityTargetTeam(),
+			iUnitTargetFlags	= self:GetAbilityTargetFlags(),
+			iUnitTargetType		= self:GetAbilityTargetType(),
+			bDeleteOnHit		= false,
+			vVelocity 			= self.direction * speed * Vector(1, 1, 0),
+			bProvidesVision		= true,
+			iVisionRadius 		= vision,
+			iVisionTeamNumber 	= caster:GetTeamNumber(),
+			ExtraData			= {damage = damage,
+				tree_radius = tree_radius,
+				base_mana_cost = base_mana_cost,
+				pct_mana_cost = pct_mana_cost,
+				total_mana_cost = total_mana_cost,
+				speed = speed * FrameTime(),
+				max_spell_amp_range = max_spell_amp_range
 			}
+		}
+
 		self.projectileID = ProjectileManager:CreateLinearProjectile(projectile)
 
 		-- Add Motion-Controller Modifier
 		caster:AddNewModifier(caster, self, "modifier_imba_ball_lightning", {})
-
+--		StartAnimation(self:GetCaster(), {duration=10.0, activity=ACT_DOTA_OVERRIDE_ABILITY_4, rate=1.0})
 	end
 end
 
 function imba_storm_spirit_ball_lightning:OnProjectileThink_ExtraData(location, ExtraData)
 	-- Move the caster as long as he has not reached the distance he wants to go to, and he still has enough mana
 	local caster = self:GetCaster()
-	if (self.traveled + ExtraData.speed < self.distance) and caster:IsAlive() and (caster:GetMana() > ExtraData.total_mana_cost * 0.01 ) then
 
+	if (self.traveled + ExtraData.speed < self.distance) and caster:IsAlive() and (caster:GetMana() > ExtraData.total_mana_cost * 0.01 ) then
 		-- Destroy the trees in the way
 		GridNav:DestroyTreesAroundPoint(location, ExtraData.tree_radius, false)
 
 		-- Set the caster slightly forwards
 		caster:SetAbsOrigin(Vector(location.x, location.y, GetGroundPosition(location, caster).z))
+		caster:Purge(false, true, true, true, true)
+		caster:AddNewModifier(caster, self, "modifier_item_lotus_orb_active", {duration=FrameTime()})
 
 		-- Calculate the new travel distance
 		self.traveled = self.traveled + ExtraData.speed
@@ -694,7 +913,7 @@ function imba_storm_spirit_ball_lightning:OnProjectileThink_ExtraData(location, 
 				--Create remnant
 				local dummy = CreateUnitByName( "npc_imba_dota_stormspirit_remnant", caster:GetAbsOrigin(), false, caster, nil, caster:GetTeamNumber() )
 				-- Give it the necessary modifier
-				dummy:AddNewModifier(caster, self.remnant, "modifier_imba_static_remnant", {duration = self.remnant:GetSpecialValueFor("big_remnant_duration")})
+				dummy:AddNewModifier(caster, self.remnant, "modifier_imba_static_remnant", {duration = self.remnant:GetSpecialValueFor("big_remnant_duration"), ballLightning = true})
 			end
 		end
 		-- Once the caster can no longer travel, remove this projectile
@@ -714,28 +933,29 @@ function imba_storm_spirit_ball_lightning:OnProjectileThink_ExtraData(location, 
 		-- Find a clear space to stand on
 		caster:SetUnitOnClearGround()
 
-		caster:StopSound("Hero_StormSpirit.BallLightning.Loop")
+		-- Destroying sound handled in the Ball Lightning modifier (doing it here results in looping sound not stopping if ability is cast in place)
+		-- caster:StopSound("Hero_StormSpirit.BallLightning.Loop")
 
 		-- Get rid of the Ball
-		caster:FindModifierByName("modifier_imba_ball_lightning"):Destroy()
+		if caster:FindModifierByName("modifier_imba_ball_lightning") then
+			caster:FindModifierByName("modifier_imba_ball_lightning"):Destroy()
+		end
 		ProjectileManager:DestroyLinearProjectile(self.projectileID)
-
 	end
 end
 
 function imba_storm_spirit_ball_lightning:OnProjectileHit_ExtraData(target, location, ExtraData)
 	if IsServer() then
 		if target then
-
-			local caster	=	self:GetCaster()
-			local damage		=	ExtraData.damage * math.floor(self.traveled * 0.01)
-			local damage_flags 	= 	DOTA_DAMAGE_FLAG_NONE
+			local caster = self:GetCaster()
+			local damage = ExtraData.damage * math.floor(self.traveled * 0.01)
+			local damage_flags = DOTA_DAMAGE_FLAG_NONE
 
 			-- Prevent spell amp at large distances
 			if self.traveled > ExtraData.max_spell_amp_range then
 				damage_flags = damage_flags + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION
 
-				local damage_at_max_distance =  ExtraData.damage * ExtraData.max_spell_amp_range * 0.01 * (1 + (caster:GetSpellPower() * 0.01))
+				local damage_at_max_distance =  ExtraData.damage * ExtraData.max_spell_amp_range * 0.01 * (1 + (caster:GetSpellAmplification(false) * 0.01))
 
 				-- If you are doing less damage because you went slightly more than the max range, set the damage to how much it would be at max range.
 				if damage < damage_at_max_distance then
@@ -762,6 +982,8 @@ function imba_storm_spirit_ball_lightning:OnProjectileHit_ExtraData(target, loca
 				end
 			end
 		end
+
+--		StartAnimation(self:GetCaster(), {duration=0.3, activity=ACT_DOTA_STORM_ABILITY_4, rate=1.0})
 	end
 end
 
@@ -786,32 +1008,84 @@ function modifier_imba_ball_lightning:GetEffectName()
 	return "particles/units/heroes/hero_stormspirit/stormspirit_ball_lightning.vpcf"
 end
 
+-- Once again with the Rubick exceptions...
+function modifier_imba_ball_lightning:OnCreated()
+	self:StartIntervalThink(1)
+end
+
+function modifier_imba_ball_lightning:OnIntervalThink()
+	if not self:GetAbility() then
+		self:Destroy()
+	end
+end
+
+function modifier_imba_ball_lightning:OnDestroy()
+	if not IsServer() then return end
+	
+	local parent = self:GetParent()
+	
+	Timers:CreateTimer(FrameTime(), function()
+		parent:StopSound("Hero_StormSpirit.BallLightning.Loop")
+	end)
+end
+
+
+
+function modifier_imba_ball_lightning:CheckState()
+	local state	=	{
+--		[MODIFIER_STATE_MAGIC_IMMUNE] = true
+	}
+	return state
+end
+
 function modifier_imba_ball_lightning:GetEffectAttachType()
 	-- Yep, this is a thing.
 	return PATTACH_ROOTBONE_FOLLOW
 end
 
-function modifier_imba_ball_lightning:CheckState()
-	local state	=	{
-		[MODIFIER_STATE_INVULNERABLE] = true
-	}
-	return state
-end
-
 function modifier_imba_ball_lightning:DeclareFunctions()
 	local funcs	=	{
-		MODIFIER_PROPERTY_OVERRIDE_ANIMATION,
+--		MODIFIER_PROPERTY_OVERRIDE_ANIMATION,
+		MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL,
+		MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_MAGICAL,
+		MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PURE,
 	}
 	return funcs
 end
 
-function modifier_imba_ball_lightning:GetOverrideAnimation()
-	return ACT_DOTA_OVERRIDE_ABILITY_4
+--	function modifier_imba_ball_lightning:GetOverrideAnimation()
+--		return ACT_DOTA_OVERRIDE_ABILITY_4
+--	end
+
+function modifier_imba_ball_lightning:GetAbsoluteNoDamagePhysical()
+	return 1
 end
 
+function modifier_imba_ball_lightning:GetAbsoluteNoDamageMagical()
+	return 1
+end
+
+function modifier_imba_ball_lightning:GetAbsoluteNoDamagePure()
+	return 1
+end
 
 -- Rubick shit
 function imba_storm_spirit_static_remnant:IsHiddenWhenStolen() return false end
 function imba_storm_spirit_electric_vortex:IsHiddenWhenStolen() return false end
 function imba_storm_spirit_ball_lightning:IsHiddenWhenStolen() return false end
 
+-- CLient-side stuff
+
+LinkLuaModifier("modifier_special_bonus_imba_storm_spirit_2", "abilities/dota_imba/hero_storm_spirit", LUA_MODIFIER_MOTION_NONE)
+
+modifier_special_bonus_imba_storm_spirit_2 = class({})
+
+function modifier_special_bonus_imba_storm_spirit_2:IsHidden()		return true end
+function modifier_special_bonus_imba_storm_spirit_2:IsPurgable()	return false end
+function modifier_special_bonus_imba_storm_spirit_2:RemoveOnDeath()	return false end
+
+function imba_storm_spirit_electric_vortex:OnOwnerSpawned()
+	if self:GetCaster():HasTalent("special_bonus_imba_storm_spirit_2") and not self:GetCaster():HasModifier("modifier_special_bonus_imba_storm_spirit_2") then
+		self:GetCaster():AddNewModifier(self:GetCaster(), self:GetCaster():FindAbilityByName("special_bonus_imba_storm_spirit_2"), "modifier_special_bonus_imba_storm_spirit_2", {})
+	end
+end

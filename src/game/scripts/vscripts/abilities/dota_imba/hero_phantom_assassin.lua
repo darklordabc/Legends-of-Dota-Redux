@@ -15,10 +15,18 @@
 -- Editors:
 --     sercankd, 15.04.2017
 --     suthernfriend, 03.02.2018
+--		01.06.2018 - zimberzimber
+--		18.08.2018 - EarthSalamander #42
+--     Elfansoer, 15.08.2019
 
 if IsClient() then
     require('lib/util_imba_client')
+else
+	function CDOTA_BaseNPC:IsRoshan()
+		return self:GetUnitName()=="npc_dota_roshan"
+	end
 end
+
 
 CreateEmptyTalents("phantom_assassin")
 
@@ -40,26 +48,19 @@ end
 function imba_phantom_assassin_stifling_dagger:OnSpellStart()
 
 	local caster 	= self:GetCaster()
-	local ability 	= self
 	local target 	= self:GetCursorTarget()
 	local scepter 	= caster:HasScepter()
 
 	--ability specials
-	move_slow 				=	ability:GetSpecialValueFor("move_slow")
-	dagger_speed 			=	ability:GetSpecialValueFor("dagger_speed")
-	slow_duration 			=	ability:GetSpecialValueFor("slow_duration")
-	silence_duration 		= 	ability:GetSpecialValueFor("silence_duration")
-	damage_reduction 		=	ability:GetSpecialValueFor("damage_reduction")
-	dagger_vision 			=	ability:GetSpecialValueFor("dagger_vision")
-	scepter_knives_interval =	0.3
-	cast_range				=	ability:GetCastRange() + GetCastRangeIncrease(caster)
-	playbackrate			=	1 + scepter_knives_interval
+	self.scepter_knives_interval 	=	0.3
+	self.cast_range					=	self:GetCastRange() + GetCastRangeIncrease(caster)
+	self.playbackrate				=	1 + self.scepter_knives_interval
 
 	--TALENT: +35 Stifling Dagger bonus damage
 	if caster:HasTalent("special_bonus_imba_phantom_assassin_1") then
-		bonus_damage	=	ability:GetSpecialValueFor("bonus_damage") + self:GetCaster():FindTalentValue("special_bonus_imba_phantom_assassin_1")
+		bonus_damage	=	self:GetSpecialValueFor("bonus_damage") + self:GetCaster():FindTalentValue("special_bonus_imba_phantom_assassin_1")
 	else
-		bonus_damage	=	ability:GetSpecialValueFor("bonus_damage")
+		bonus_damage	=	self:GetSpecialValueFor("bonus_damage")
 	end
 
 	--coup de grace variables
@@ -70,29 +71,10 @@ function imba_phantom_assassin_stifling_dagger:OnSpellStart()
 
 	local extra_data = {main_dagger = true}
 
-	local dagger_projectile
-
-	dagger_projectile = {
-		EffectName = "particles/units/heroes/hero_phantom_assassin/phantom_assassin_stifling_dagger.vpcf",
-		Dodgeable = true,
-		Ability = ability,
-		ProvidesVision = true,
-		VisionRadius = 600,
-		bVisibleToEnemies = true,
-		iMoveSpeed = dagger_speed,
-		Source = caster,
-		iVisionTeamNumber = caster:GetTeamNumber(),
-		Target = target,
-		iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_ATTACK_1,
-		bReplaceExisting = false,
-		ExtraData = extra_data
-	}
-	ProjectileManager:CreateTrackingProjectile( dagger_projectile )
-
+	self:LaunchDagger(target, extra_data)
 
 	-- Secondary knives
 	if scepter or caster:HasTalent("special_bonus_imba_phantom_assassin_3") then
-
 		local secondary_knives_thrown = 0
 
 		-- TALENT: +1 Stifling Dagger bonus dagger (like aghs)
@@ -100,9 +82,9 @@ function imba_phantom_assassin_stifling_dagger:OnSpellStart()
 			scepter_dagger_count = self:GetCaster():FindTalentValue("special_bonus_imba_phantom_assassin_3")
 			secondary_knives_thrown = scepter_dagger_count
 		elseif scepter and caster:HasTalent("special_bonus_imba_phantom_assassin_3") then
-			scepter_dagger_count = ability:GetSpecialValueFor("scepter_dagger_count") + self:GetCaster():FindTalentValue("special_bonus_imba_phantom_assassin_3")
+			scepter_dagger_count = self:GetSpecialValueFor("scepter_dagger_count") + self:GetCaster():FindTalentValue("special_bonus_imba_phantom_assassin_3")
 		else
-			scepter_dagger_count = ability:GetSpecialValueFor("scepter_dagger_count")
+			scepter_dagger_count = self:GetSpecialValueFor("scepter_dagger_count")
 		end
 
 		-- Prepare extra_data
@@ -112,12 +94,14 @@ function imba_phantom_assassin_stifling_dagger:OnSpellStart()
 		local enemies = FindUnitsInRadius(caster:GetTeamNumber(),
 			caster:GetAbsOrigin(),
 			nil,
-			cast_range,
+			self.cast_range,
 			DOTA_UNIT_TARGET_TEAM_ENEMY,
 			DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
 			DOTA_UNIT_TARGET_FLAG_NONE,
 			FIND_UNITS_EVERYWHERE,
-			false)
+			false
+		)
+
 		for _, enemy in pairs (enemies) do
 			enemy.hit_by_pa_dagger = false
 		end
@@ -127,7 +111,7 @@ function imba_phantom_assassin_stifling_dagger:OnSpellStart()
 		local dagger_target_found
 
 		-- Look for a secondary target to throw a knife at
-		Timers:CreateTimer(scepter_knives_interval, function()
+		Timers:CreateTimer(self.scepter_knives_interval, function()
 			-- Set variable for clear action
 			dagger_target_found = false
 
@@ -135,7 +119,7 @@ function imba_phantom_assassin_stifling_dagger:OnSpellStart()
 			local enemies = FindUnitsInRadius(caster:GetTeamNumber(),
 				caster:GetAbsOrigin(),
 				nil,
-				cast_range,
+				self.cast_range,
 				DOTA_UNIT_TARGET_TEAM_ENEMY,
 				DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
 				DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE,
@@ -148,25 +132,9 @@ function imba_phantom_assassin_stifling_dagger:OnSpellStart()
 					enemy.hit_by_pa_dagger = true
 					dagger_target_found = true
 
-					caster:StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_1, playbackrate)
+					caster:StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_1, self.playbackrate)
 
-					dagger_projectile = {
-						EffectName = "particles/units/heroes/hero_phantom_assassin/phantom_assassin_stifling_dagger.vpcf",
-						Dodgeable = true,
-						Ability = ability,
-						ProvidesVision = true,
-						VisionRadius = 600,
-						bVisibleToEnemies = true,
-						iMoveSpeed = dagger_speed,
-						Source = caster,
-						iVisionTeamNumber = caster:GetTeamNumber(),
-						Target = enemy,
-						iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_ATTACK_1,
-						bReplaceExisting = false,
-						ExtraData = extra_data
-					}
-
-					ProjectileManager:CreateTrackingProjectile(dagger_projectile)
+					self:LaunchDagger(enemy, extra_data)
 					break -- only hit the first enemy found
 				end
 			end
@@ -180,36 +148,40 @@ function imba_phantom_assassin_stifling_dagger:OnSpellStart()
 				-- Throw dagger at a random enemy
 				local enemy = enemies[RandomInt(1, #enemies)]
 
-				dagger_projectile = {
-					EffectName = "particles/units/heroes/hero_phantom_assassin/phantom_assassin_stifling_dagger.vpcf",
-					Dodgeable = true,
-					Ability = ability,
-					ProvidesVision = true,
-					VisionRadius = 600,
-					bVisibleToEnemies = true,
-					iMoveSpeed = dagger_speed,
-					Source = caster,
-					iVisionTeamNumber = caster:GetTeamNumber(),
-					Target = enemy,
-					iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_ATTACK_1,
-					bReplaceExisting = false,
-					ExtraData = extra_data
-				}
-
-				ProjectileManager:CreateTrackingProjectile(dagger_projectile)
+				self:LaunchDagger(enemy, extra_data)
 			end
 
 			-- Check if there are knives remaining
 			secondary_knives_thrown = secondary_knives_thrown + 1
 			if secondary_knives_thrown < scepter_dagger_count then
-				return scepter_knives_interval
+				return self.scepter_knives_interval
 			else
 				return nil
 			end
 		end)
-
 	end
+end
 
+function imba_phantom_assassin_stifling_dagger:LaunchDagger(enemy)
+	if enemy == nil then return end
+
+	local dagger_projectile = {
+		EffectName = "particles/units/heroes/hero_phantom_assassin/phantom_assassin_stifling_dagger.vpcf",
+		Dodgeable = true,
+		Ability = self,
+		ProvidesVision = true,
+		VisionRadius = 600,
+		bVisibleToEnemies = true,
+		iMoveSpeed = self:GetSpecialValueFor("dagger_speed"),
+		Source = self:GetCaster(),
+		iVisionTeamNumber = self:GetCaster():GetTeamNumber(),
+		Target = enemy,
+		iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_ATTACK_1,
+		bReplaceExisting = false,
+		ExtraData = extra_data
+	}
+
+	ProjectileManager:CreateTrackingProjectile(dagger_projectile)
 end
 
 function imba_phantom_assassin_stifling_dagger:OnProjectileHit( target, location )
@@ -217,7 +189,7 @@ function imba_phantom_assassin_stifling_dagger:OnProjectileHit( target, location
 	local caster = self:GetCaster()
 
 	if not target then
-		return nil
+		return false
 	end
 
 	-- With 20 percentage play random stifling dagger response
@@ -227,18 +199,23 @@ function imba_phantom_assassin_stifling_dagger:OnProjectileHit( target, location
 	-- If the target possesses a ready Linken's Sphere, do nothing else
 	if target:GetTeamNumber() ~= caster:GetTeamNumber() then
 		if target:TriggerSpellAbsorb(self) then
-			return nil
+			return false
 		end
 	end
 
 	-- Apply slow and silence modifiers
 	if not target:IsMagicImmune() then
-		target:AddNewModifier(caster, self, "modifier_imba_stifling_dagger_silence", {duration = silence_duration})
-		target:AddNewModifier(caster, self, "modifier_imba_stifling_dagger_slow", {duration = slow_duration})
+		target:AddNewModifier(caster, self, "modifier_imba_stifling_dagger_silence", {duration = self:GetSpecialValueFor("silence_duration")})
+		target:AddNewModifier(caster, self, "modifier_imba_stifling_dagger_slow", {duration = self:GetSpecialValueFor("slow_duration")})
 	end
 
 	caster:AddNewModifier(caster, self, "modifier_imba_stifling_dagger_dmg_reduction", {})
 	caster:AddNewModifier(caster, self, "modifier_imba_stifling_dagger_bonus_damage", {})
+
+	-- fix to not decrement phantom strike attacks on dagger hit
+	if caster:HasModifier("modifier_imba_phantom_strike_coup_de_grace") then
+		caster:SetModifierStackCount("modifier_imba_phantom_strike_coup_de_grace", caster, caster:GetModifierStackCount("modifier_imba_phantom_strike_coup_de_grace", caster) + 1)
+	end
 
 	-- Attack (calculates on-hit procs)
 	local initial_pos = caster:GetAbsOrigin()
@@ -258,7 +235,10 @@ function imba_phantom_assassin_stifling_dagger:OnProjectileHit( target, location
 	target_pos.y = target_pos.y - offset * distance_vector.y
 
 	caster:SetAbsOrigin(target_pos)
-	caster:PerformAttack(target, true, true, true, true, true, false, true)
+
+	-- elfansoer: fix stifling dagger launches projectiles for ranged attacker
+	-- caster:PerformAttack(target, true, true, true, true, true, false, true)
+	caster:PerformAttack(target, true, true, true, true, false, false, true)
 	caster:SetAbsOrigin(initial_pos)
 
 	caster:RemoveModifierByName( "modifier_imba_stifling_dagger_bonus_damage" )
@@ -278,9 +258,8 @@ modifier_imba_stifling_dagger_slow = class({})
 function modifier_imba_stifling_dagger_slow:OnCreated()
 	if IsServer() then
 		local caster = self:GetCaster()
-		local ability = self:GetAbility()
-		local dagger_vision = ability:GetSpecialValueFor("dagger_vision")
-		local duration = ability:GetSpecialValueFor("slow_duration")
+		local dagger_vision = self:GetAbility():GetSpecialValueFor("dagger_vision")
+		local duration = self:GetAbility():GetSpecialValueFor("slow_duration")
 		local stifling_dagger_modifier_slow_particle = ParticleManager:CreateParticle("particles/units/heroes/hero_phantom_assassin/phantom_assassin_stifling_dagger_debuff.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.target)
 		ParticleManager:ReleaseParticleIndex(stifling_dagger_modifier_slow_particle)
 
@@ -338,8 +317,7 @@ function modifier_imba_stifling_dagger_bonus_damage:DeclareFunctions()
 end
 
 function modifier_imba_stifling_dagger_bonus_damage:GetModifierPreAttack_BonusDamage()
-	local ability = self:GetAbility()
-	return ability:GetSpecialValueFor("bonus_damage");
+	return self:GetAbility():GetSpecialValueFor("bonus_damage")
 end
 
 function modifier_imba_stifling_dagger_bonus_damage:IsBuff()			return true end
@@ -355,8 +333,7 @@ function modifier_imba_stifling_dagger_bonus_damage:IsHidden() 	  return true en
 modifier_imba_stifling_dagger_dmg_reduction = class({})
 
 function modifier_imba_stifling_dagger_dmg_reduction:OnCreated()
-	self.ability = self:GetAbility()
-	self.damage_reduction = self.ability:GetSpecialValueFor("damage_reduction")
+	self.damage_reduction = self:GetAbility():GetSpecialValueFor("damage_reduction")
 end
 
 function modifier_imba_stifling_dagger_dmg_reduction:DeclareFunctions()
@@ -407,21 +384,20 @@ end
 function imba_phantom_assassin_phantom_strike:OnSpellStart()
 	if IsServer() then
 		self.caster 	= self:GetCaster()
-		self.ability	= self
 		self.target 	= self:GetCursorTarget()
 
 		--ability specials
-		self.bonus_attack_speed =	self.ability:GetSpecialValueFor("bonus_attack_speed")
-		self.buff_duration 		=	self.ability:GetSpecialValueFor("buff_duration")
-		self.projectile_speed 	=	self.ability:GetSpecialValueFor("projectile_speed")
-		self.projectile_width 	=	self.ability:GetSpecialValueFor("projectile_width")
-		self.attacks 			= 	self.ability:GetSpecialValueFor("attacks")
+		self.bonus_attack_speed =	self:GetSpecialValueFor("bonus_attack_speed")
+		self.buff_duration 		=	self:GetSpecialValueFor("buff_duration")
+		self.projectile_speed 	=	self:GetSpecialValueFor("projectile_speed")
+		self.projectile_width 	=	self:GetSpecialValueFor("projectile_width")
+		self.attacks 			= 	self:GetSpecialValueFor("attacks")
 
 		--TALENT: +30 Phantom Strike bonus attack speed
 		if self.caster:HasTalent("special_bonus_imba_phantom_assassin_2") then
-			self.bonus_attack_speed	=	self.ability:GetSpecialValueFor("bonus_attack_speed") + self.caster:FindTalentValue("special_bonus_imba_phantom_assassin_2")
+			self.bonus_attack_speed	=	self:GetSpecialValueFor("bonus_attack_speed") + self.caster:FindTalentValue("special_bonus_imba_phantom_assassin_2")
 		else
-			self.bonus_attack_speed =	self.ability:GetSpecialValueFor("bonus_attack_speed")
+			self.bonus_attack_speed =	self:GetSpecialValueFor("bonus_attack_speed")
 		end
 
 		-- Trajectory calculations
@@ -432,13 +408,13 @@ function imba_phantom_assassin_phantom_strike:OnSpellStart()
 
 		-- If the target possesses a ready Linken's Sphere, do nothing else
 		if self.target:GetTeamNumber() ~= self.caster:GetTeamNumber() then
-			if self.target:TriggerSpellAbsorb(self.ability) then
+			if self.target:TriggerSpellAbsorb(self) then
 				return nil
 			end
 		end
 
 		self.blink_projectile = {
-			Ability				= self.ability,
+			Ability				= self,
 			vSpawnOrigin		= self.caster_pos,
 			fDistance			= self.distance,
 			fStartRadius		= self.projectile_width,
@@ -516,8 +492,7 @@ end
 
 function modifier_imba_phantom_strike:GetModifierAttackSpeedBonus_Constant()
 	local caster = self:GetCaster()
-	local ability = self:GetAbility()
-	self.speed_bonus = ability:GetSpecialValueFor("bonus_attack_speed")
+	self.speed_bonus = self:GetAbility():GetSpecialValueFor("bonus_attack_speed")
 	return self.speed_bonus
 end
 
@@ -539,20 +514,20 @@ end
 function modifier_imba_phantom_strike_coup_de_grace:OnAttackLanded(keys)
 	if IsServer() then
 		local caster = self:GetCaster()
-		local ability = self:GetAbility()
 		local owner = self:GetParent()
 		local modifier_speed = "modifier_imba_phantom_strike"
 		local stackcount = self:GetStackCount()
 
 		-- If attack was not performed by the modifier's owner, do nothing
 		if owner ~= keys.attacker then
-			return end
+			return
+		end
 
 		if stackcount == 1 then
 			self:Destroy()
-			if caster:HasModifier(modifier_speed) then
-				caster:RemoveModifierByName(modifier_speed)
-			end
+			-- if caster:HasModifier(modifier_speed) then
+				-- caster:RemoveModifierByName(modifier_speed)
+			-- end
 		else
 			self:DecrementStackCount()
 		end
@@ -574,7 +549,7 @@ imba_phantom_assassin_blur = class({})
 LinkLuaModifier("modifier_imba_blur", "abilities/dota_imba/hero_phantom_assassin", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_imba_blur_blur", "abilities/dota_imba/hero_phantom_assassin", LUA_MODIFIER_MOTION_NONE) --wat
 LinkLuaModifier("modifier_imba_blur_speed", "abilities/dota_imba/hero_phantom_assassin", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_imba_blur_opacity", "abilities/dota_imba/hero_phantom_assassin", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_imba_blur_smoke", "abilities/dota_imba/hero_phantom_assassin", LUA_MODIFIER_MOTION_VERTICAL)
 
 function imba_phantom_assassin_blur:GetAbilityTextureName()
 	return "phantom_assassin_blur"
@@ -584,6 +559,34 @@ function imba_phantom_assassin_blur:GetIntrinsicModifierName()
 	return "modifier_imba_blur"
 end
 
+function imba_phantom_assassin_blur:GetCastPoint()
+	if not self:GetCaster():HasScepter() then
+		return self.BaseClass.GetCastPoint(self)
+	else
+		return 0
+	end
+end
+
+function imba_phantom_assassin_blur:GetCooldown(level)
+	if not self:GetCaster():HasScepter() then
+		return self.BaseClass.GetCooldown(self, level)
+	else
+		return 12
+		-- return self:GetSpecialValueFor("scepter_cooldown")
+	end
+end
+
+function imba_phantom_assassin_blur:OnSpellStart()
+	if IsServer() then
+		ProjectileManager:ProjectileDodge(self:GetCaster())
+		self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_imba_blur_smoke", { duration = self:GetSpecialValueFor("duration")})
+		
+		if self:GetCaster():HasScepter() then
+			self:GetCaster():Purge(false, true, false, false, false)
+		end
+	end
+end
+
 -------------------------------------------
 -- Blur modifier
 -------------------------------------------
@@ -591,20 +594,25 @@ end
 modifier_imba_blur = class({})
 
 function modifier_imba_blur:OnCreated()
+	-- elfansoer: fix intrinsic problem
+	if IsServer() and self:GetAbility():GetLevel()<1 then
+		self:Destroy()
+		return
+	end
+
+	-- Ability properties
+	self.caster = self:GetCaster()
+	self.parent = self:GetParent()
+	self.modifier_aura = "modifier_imba_blur_blur"
+	self.modifier_speed = "modifier_imba_blur_speed"
+
+	-- Ability specials
+	self.radius = self:GetAbility():GetSpecialValueFor("radius")
+	self.evasion = self:GetAbility():GetSpecialValueFor("evasion")
+	self.ms_duration = self:GetAbility():GetSpecialValueFor("speed_bonus_duration")
+
 	if IsServer() then
-		-- Ability properties
-		self.caster = self:GetCaster()
-		self.ability = self:GetAbility()
-		self.parent = self:GetParent()
-		self.modifier_aura = "modifier_imba_blur_blur"
-		self.modifier_blur_transparent = "modifier_imba_blur_opacity"
-		self.modifier_speed = "modifier_imba_blur_speed"
-
-		-- Ability specials
-		self.radius = self.ability:GetSpecialValueFor("radius")
-		self.evasion = self.ability:GetSpecialValueFor("evasion")
-		self.ms_duration = self.ability:GetSpecialValueFor("speed_bonus_duration")
-
+	
 		-- Start thinking
 		self:StartIntervalThink(0.2)
 	end
@@ -624,15 +632,10 @@ function modifier_imba_blur:OnIntervalThink()
 		if #nearby_enemies > 0 and self.caster:HasModifier(self.modifier_aura) then
 			self.caster:RemoveModifierByName(self.modifier_aura)
 
-			-- Make mortred transparent (wtf firetoad)
-			self.caster:AddNewModifier(self.caster, self, self.modifier_blur_transparent, {})
-
 			-- Else, if there are no enemies, remove the modifier
 		elseif #nearby_enemies == 0 and not self.caster:HasModifier(self.modifier_aura) then
-			self.caster:AddNewModifier(self.caster, self.ability, self.modifier_aura, {})
+			self.caster:AddNewModifier(self.caster, self:GetAbility(), self.modifier_aura, {})
 
-			-- Make mortred not transparent (wtf firetoad)
-			self.caster:RemoveModifierByName(self.modifier_blur_transparent)
 			local responses = {"phantom_assassin_phass_ability_blur_01",
 				"phantom_assassin_phass_ability_blur_02",
 				"phantom_assassin_phass_ability_blur_03"
@@ -642,11 +645,12 @@ function modifier_imba_blur:OnIntervalThink()
 	end
 end
 
-
 function modifier_imba_blur:DeclareFunctions()
 	local funcs = { MODIFIER_PROPERTY_EVASION_CONSTANT,
 		MODIFIER_EVENT_ON_ATTACK_FAIL,
-		MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE}
+		MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
+		
+		MODIFIER_EVENT_ON_HERO_KILLED}
 	return funcs
 end
 
@@ -667,11 +671,11 @@ end
 
 function modifier_imba_blur:OnAttackFail(keys)
 	if IsServer() then
-
 		if keys.target == self:GetParent() then
+			
 			-- If the caster doesn't have the evasion speed modifier yet, give it to him
 			if not self.caster:HasModifier(self.modifier_speed) then
-				self.caster:AddNewModifier(self.caster, self.ability, self.modifier_speed, {duration = self.ms_duration})
+				self.caster:AddNewModifier(self.caster, self:GetAbility(), self.modifier_speed, {duration = self.ms_duration})
 			end
 
 			-- Increment a stack and refresh
@@ -684,9 +688,23 @@ function modifier_imba_blur:OnAttackFail(keys)
 	end
 end
 
-function modifier_imba_blur:IsHidden()	  return true end
-function modifier_imba_blur:IsBuff()			return true end
-function modifier_imba_blur:IsPurgable()  return false end
+function modifier_imba_blur:OnHeroKilled(keys)
+	if not IsServer() then return end
+	
+	if keys.attacker == self:GetParent() and keys.target:GetTeamNumber() ~= self:GetParent():GetTeamNumber() and self:GetAbility():IsTrained() then
+		for abilities = 0, 23 do
+			local ability = self:GetParent():GetAbilityByIndex(abilities)
+		
+			if ability and ability:GetAbilityType() ~= ABILITY_TYPE_ULTIMATE then
+				ability:EndCooldown()
+			end
+		end
+	end
+end
+
+function modifier_imba_blur:IsHidden() return true end
+function modifier_imba_blur:IsBuff() return true end
+function modifier_imba_blur:IsPurgable() return false end
 
 
 -- Evasion speed buff modifier
@@ -695,12 +713,11 @@ modifier_imba_blur_speed = class({})
 function modifier_imba_blur_speed:OnCreated()
 	-- Ability properties
 	self.caster = self:GetCaster()
-	self.ability = self:GetAbility()
 	self.parent = self:GetParent()
 
 	-- Ability specials
-	self.speed_bonus_duration = self.ability:GetSpecialValueFor("speed_bonus_duration")
-	self.blur_ms = self.ability:GetSpecialValueFor("blur_ms")
+	self.speed_bonus_duration = self:GetAbility():GetSpecialValueFor("speed_bonus_duration")
+	self.blur_ms = self:GetAbility():GetSpecialValueFor("blur_ms")
 
 	if IsServer() then
 
@@ -796,30 +813,72 @@ function modifier_imba_blur_blur:OnDestroy()
 	ParticleManager:ReleaseParticleIndex(self.blur_particle)
 end
 
-function modifier_imba_blur_blur:IsHidden()	   return true end
-function modifier_imba_blur_blur:IsDebuff()	 return false end
-function modifier_imba_blur_blur:IsPurgable()  return false end
+function modifier_imba_blur_blur:IsHidden() return true end
+function modifier_imba_blur_blur:IsDebuff() return false end
+function modifier_imba_blur_blur:IsPurgable() return false end
 
 -------------------------------------------
--- Blur opacity modifier
+-- Blur invuln modifier
 -------------------------------------------
 
-modifier_imba_blur_opacity = class({})
+modifier_imba_blur_smoke = class({})
+function modifier_imba_blur_smoke:IsHidden()	return false end
+function modifier_imba_blur_smoke:IsDebuff()	return false end
+function modifier_imba_blur_smoke:IsPurgable() return false end
 
-function modifier_imba_blur_opacity:IsHidden()	return false end
-function modifier_imba_blur_opacity:IsDebuff()	return false end
-function modifier_imba_blur_opacity:IsPurgable()return false end
-
-function modifier_imba_blur_opacity:DeclareFunctions()
-	return {MODIFIER_PROPERTY_INVISIBILITY_LEVEL}
+function modifier_imba_blur_smoke:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_INVISIBILITY_LEVEL
+	}
 end
 
-function modifier_imba_blur_opacity:GetModifierInvisibilityLevel()
+function modifier_imba_blur_smoke:GetEffectName()
+	return "particles/units/heroes/hero_phantom_assassin/phantom_assassin_active_blur.vpcf"
+end
+
+function modifier_imba_blur_smoke:GetEffectAttachType()
+	return PATTACH_ABSORIGIN_FOLLOW
+end
+
+function modifier_imba_blur_smoke:CheckState()
+	return {
+		[MODIFIER_STATE_INVISIBLE] = true,
+	}
+end
+
+function modifier_imba_blur_smoke:GetPriority()
+	return MODIFIER_PRIORITY_NORMAL
+end
+
+function modifier_imba_blur_smoke:GetModifierInvisibilityLevel()
 	return 1
 end
 
-function modifier_imba_blur_opacity:IsHidden()
-	return true
+function modifier_imba_blur_smoke:OnCreated()
+	if IsServer() then
+		self:GetParent():EmitSound("Hero_PhantomAssassin.Blur")
+		self:StartIntervalThink(FrameTime())
+	end
+end
+
+function modifier_imba_blur_smoke:OnIntervalThink()
+	if self.linger == true then return end
+
+	local enemies = FindUnitsInRadius(self:GetParent():GetTeamNumber(), self:GetParent():GetAbsOrigin(), nil, self:GetAbility():GetSpecialValueFor("vanish_radius"), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BUILDING, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
+
+	if #enemies > 0 then
+		self.linger = true
+		self:StartIntervalThink(-1)
+		Timers:CreateTimer(self:GetAbility():GetSpecialValueFor("fade_duration"), function()
+			self:Destroy()
+		end)
+	end
+end
+
+function modifier_imba_blur_smoke:OnRemoved()
+	if IsServer() then
+		self:GetParent():EmitSound("Hero_PhantomAssassin.Blur.Break")
+	end
 end
 
 ----------------------------------------------------------------------------------------------------------------------------------
@@ -848,18 +907,26 @@ end
 modifier_imba_coup_de_grace = class({})
 
 function modifier_imba_coup_de_grace:OnCreated()
+	-- elfansoer: fix intrinsic problem
+	if IsServer() and self:GetAbility():GetLevel()<1 then
+		self:Destroy()
+		return
+	end
+
+	-- Elfansoer: fix inconsistency of crit effects for ranged heroes
+	self.crit_record = {}
+
 	-- Ability properties
 	self.caster = self:GetCaster()
 	if self.caster:IsIllusion() then return end
-	self.ability = self:GetAbility()
 	self.parent = self:GetParent()
 	self.ps_coup_modifier = "modifier_imba_phantom_strike_coup_de_grace"
 	self.modifier_stacks = "modifier_imba_coup_de_grace_crit"
 
 	-- Ability specials
-	self.crit_chance = self.ability:GetSpecialValueFor("crit_chance")
-	self.crit_increase_duration = self.ability:GetSpecialValueFor("crit_increase_duration")
-	self.crit_bonus = self.ability:GetSpecialValueFor("crit_bonus")
+	self.crit_chance = self:GetAbility():GetSpecialValueFor("crit_chance")
+	self.crit_increase_duration = self:GetAbility():GetSpecialValueFor("crit_increase_duration")
+	self.crit_bonus = self:GetAbility():GetSpecialValueFor("crit_bonus")
 end
 
 function modifier_imba_coup_de_grace:OnRefresh()
@@ -867,9 +934,21 @@ function modifier_imba_coup_de_grace:OnRefresh()
 end
 
 function modifier_imba_coup_de_grace:DeclareFunctions()
-	local funcs = {MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE,
+	-- Elfansoer: fix inconsistency of crit effects for ranged heroes
+	-- local funcs = {MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE,
+	local funcs = {MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE, MODIFIER_EVENT_ON_ATTACK_RECORD_DESTROY,
 		MODIFIER_EVENT_ON_ATTACK_LANDED}
 	return funcs
+end
+
+-- Elfansoer: fix inconsistency of crit effects for ranged heroes
+function modifier_imba_coup_de_grace:OnAttackRecordDestroy( params )
+	if not IsServer() then return end
+
+	-- clean up attack record
+	if self.crit_record[ params.record ] then
+		self.crit_record[ params.record ] = nil
+	end
 end
 
 function modifier_imba_coup_de_grace:GetModifierPreAttack_CriticalStrike(keys)
@@ -897,18 +976,18 @@ function modifier_imba_coup_de_grace:GetModifierPreAttack_CriticalStrike(keys)
 		end
 
 		if RollPseudoRandom(crit_chance_total, self) then
-
-			StartSoundEvent("Hero_PhantomAssassin.CoupDeGrace", target)
-			local responses = {"phantom_assassin_phass_ability_coupdegrace_01",
-				"phantom_assassin_phass_ability_coupdegrace_02",
-				"phantom_assassin_phass_ability_coupdegrace_03",
-				"phantom_assassin_phass_ability_coupdegrace_04"
-			}
-			self.caster:EmitCasterSound("npc_dota_hero_phantom_assassin",responses, 50, DOTA_CAST_SOUND_FLAG_BOTH_TEAMS, 20,"coup_de_grace")
+			-- elfansoer: fix crit sound plays on attack start instead on attack landed (for ranged heroes)
+			-- StartSoundEvent("Hero_PhantomAssassin.CoupDeGrace", target)
+			-- local responses = {"phantom_assassin_phass_ability_coupdegrace_01",
+			-- 	"phantom_assassin_phass_ability_coupdegrace_02",
+			-- 	"phantom_assassin_phass_ability_coupdegrace_03",
+			-- 	"phantom_assassin_phass_ability_coupdegrace_04"
+			-- }
+			-- self.caster:EmitCasterSound("npc_dota_hero_phantom_assassin",responses, 50, DOTA_CAST_SOUND_FLAG_BOTH_TEAMS, 20,"coup_de_grace")
 
 			-- If the caster doesn't have the stacks modifier, give it to him
 			if not self.caster:HasModifier(self.modifier_stacks) then
-				self.caster:AddNewModifier(self.caster, self.ability, self.modifier_stacks, {duration = crit_duration})
+				self.caster:AddNewModifier(self.caster, self:GetAbility(), self.modifier_stacks, {duration = crit_duration})
 			end
 
 			-- Find the modifier, increase a stack and refresh it
@@ -922,7 +1001,10 @@ function modifier_imba_coup_de_grace:GetModifierPreAttack_CriticalStrike(keys)
 			local crit_bonus = self.crit_bonus + self.caster:FindTalentValue("special_bonus_imba_phantom_assassin_5")
 
 			-- Mark the attack as a critical in order to play the bloody effect on attack landed
-			self.crit_strike = true
+			-- Elfansoer: fix inconsistency of crit effects for ranged heroes
+			-- self.crit_strike = true
+			self.crit_record[ keys.record ] = true
+			
 			return crit_bonus
 		else
 			-- If this attack wasn't a critical strike, remove possible markers from it.
@@ -937,15 +1019,78 @@ function modifier_imba_coup_de_grace:OnAttackLanded(keys)
 	if IsServer() then
 		local target = keys.target
 		local attacker = keys.attacker
+		local fatality = self:GetAbility():GetSpecialValueFor("fatality_chance")
+		if IsInToolsMode() then fatality = 25 end
 
 		-- Only apply if the attacker is the caster and it was a critical strike
-		if self:GetCaster() == attacker and self.crit_strike then
+		if self:GetCaster() == attacker then
+			-- Elfansoer: fix inconsistency of crit effects for ranged heroes
+			-- if self.crit_strike then
+			if self.crit_record[ keys.record ] then
+				self.crit_record[ keys.record ] = nil
 
-			-- If that attack was marked as a critical strike, apply the particles
-			local coup_pfx = ParticleManager:CreateParticle("particles/units/heroes/hero_phantom_assassin/phantom_assassin_crit_impact.vpcf", PATTACH_CUSTOMORIGIN, attacker)
-			ParticleManager:SetParticleControlEnt(coup_pfx, 0, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
-			ParticleManager:SetParticleControlEnt(coup_pfx, 1, target, PATTACH_ABSORIGIN_FOLLOW, "attach_origin", target:GetAbsOrigin(), true)
-			ParticleManager:ReleaseParticleIndex(coup_pfx)
+				-- elfansoer: fix crit sound plays on attack start instead on attack landed (for ranged heroes)
+				EmitSoundOn("Hero_PhantomAssassin.CoupDeGrace", target)
+				local responses = {"phantom_assassin_phass_ability_coupdegrace_01",
+					"phantom_assassin_phass_ability_coupdegrace_02",
+					"phantom_assassin_phass_ability_coupdegrace_03",
+					"phantom_assassin_phass_ability_coupdegrace_04"
+				}
+				self.caster:EmitCasterSound("npc_dota_hero_phantom_assassin",responses, 50, DOTA_CAST_SOUND_FLAG_BOTH_TEAMS, 20,"coup_de_grace")
+
+
+				-- If that attack was marked as a critical strike, apply the particles
+				-- Elfansoer: fix crit particles facing wrong direction
+				-- local coup_pfx = ParticleManager:CreateParticle("particles/units/heroes/hero_phantom_assassin/phantom_assassin_crit_impact.vpcf", PATTACH_CUSTOMORIGIN, attacker)
+				-- ParticleManager:SetParticleControlEnt(coup_pfx, 0, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
+				-- ParticleManager:SetParticleControlEnt(coup_pfx, 1, target, PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
+				-- ParticleManager:ReleaseParticleIndex(coup_pfx)
+				local particle_cast = "particles/units/heroes/hero_phantom_assassin/phantom_assassin_crit_impact.vpcf"
+				local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, target )
+				ParticleManager:SetParticleControlEnt(
+					effect_cast,
+					0,
+					target,
+					PATTACH_POINT_FOLLOW,
+					"attach_hitloc",
+					target:GetOrigin(), -- unknown
+					true -- unknown, true
+				)
+				ParticleManager:SetParticleControlForward( effect_cast, 1, (self:GetParent():GetOrigin()-target:GetOrigin()):Normalized() )
+				ParticleManager:ReleaseParticleIndex( effect_cast )
+			end
+
+
+			-- Elfansoer: switched algorithm order ( previously crit particle->fatality ) so that crit particles always appear
+			-- Prevent Fatality on buildings
+			if target:IsBuilding() or target:IsRoshan() then return end
+
+			-- Roll for fatality
+			if RandomInt(1, 100) <= fatality then
+				if target:GetHealthPercent() >= self:GetAbility():GetSpecialValueFor("fatality_threshold") then
+					target:EmitSound("Hero_Pangolier.TailThump.Shield")
+					SendOverheadEventMessage(nil, OVERHEAD_ALERT_BLOCK, target, 999999, nil)
+					return
+				end
+
+				TrueKill(self.caster, target, self:GetAbility())
+				SendOverheadEventMessage(nil, OVERHEAD_ALERT_CRITICAL, target, 999999, nil)
+
+				-- Global effect when killing a real hero
+				if target:IsRealHero() then
+					-- Play screen blood particle
+					local blood_pfx = ParticleManager:CreateParticle("particles/hero/phantom_assassin/screen_blood_splatter.vpcf", PATTACH_EYES_FOLLOW, target)
+
+					-- Play fatality message
+					Notifications:BottomToAll({text = "FATALITY!", duration = 4.0, style = {["font-size"] = "50px", color = "Red"} })
+
+					-- Play global sounds
+					self:GetCaster():EmitSound("Hero_PhantomAssassin.CoupDeGrace")
+					self:GetCaster():EmitSound("Imba.PhantomAssassinFatality")
+					return nil
+				end
+			end
+
 		end
 	end
 end
@@ -967,12 +1112,11 @@ modifier_imba_coup_de_grace_crit = class({})
 function modifier_imba_coup_de_grace_crit:OnCreated(params)
 	-- Ability properties
 	self.caster = self:GetCaster()
-	self.ability = self:GetAbility()
 	self.parent = self:GetParent()
 
 	-- Ability specials
 	self.crit_increase_duration = params.duration
-	self.crit_increase_damage = self.ability:GetSpecialValueFor("crit_increase_damage")
+	self.crit_increase_damage = self:GetAbility():GetSpecialValueFor("crit_increase_damage")
 
 	if IsServer() then
 		-- Initialize table

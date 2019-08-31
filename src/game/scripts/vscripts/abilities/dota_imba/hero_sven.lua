@@ -16,6 +16,7 @@
 --     Firetoad
 --     AtroCty, 23.04.2017
 --     suthernfriend, 03.02.2018
+--     Elfansoer, 17.08.2019
 
 if IsClient() then
     require('lib/util_imba_client')
@@ -96,9 +97,10 @@ function imba_sven_storm_bolt:OnProjectileHit_ExtraData(target, location, ExtraD
 		EmitSoundOnLocationWithCaster(location, "Hero_Sven.StormBoltImpact", caster)
 		caster:RemoveModifierByName("modifier_imba_storm_bolt_caster")
 		caster:RemoveNoDraw()
-		if target then
-			-- Teleport the caster to the target
-			local target_pos = target:GetAbsOrigin()
+		
+		if target or location then
+			-- Teleport the caster to the target or location
+			local target_pos = location or target:GetAbsOrigin()
 			local caster_pos = caster:GetAbsOrigin()
 			local blink_pos = target_pos + ( caster_pos - target_pos ):Normalized() * 100
 			FindClearSpaceForUnit(caster, blink_pos, true)
@@ -107,7 +109,9 @@ function imba_sven_storm_bolt:OnProjectileHit_ExtraData(target, location, ExtraD
 			if (( target_pos - caster_pos ):Length2D() > 600) and (RandomInt(1, 100) <= 20) and (caster:GetName() == "npc_dota_hero_sven") then
 				caster:EmitSound("sven_sven_ability_teleport_0"..math.random(1,3))
 			end
-
+		end
+		
+		if target then
 			-- Start attacking the target + apply crit
 			caster:SetAttacking(target)
 			local crit_max_duration = self:GetSpecialValueFor("crit_max_duration")
@@ -246,7 +250,14 @@ function modifier_imba_great_cleave:OnAttackLanded( params )
 			local cleave_radius_start = ability:GetSpecialValueFor("cleave_starting_width")
 			local cleave_radius_end = ability:GetTalentSpecialValueFor("cleave_ending_width")
 			local cleave_distance = ability:GetTalentSpecialValueFor("cleave_distance")
+
+			-- elfansoer: fix cleave centered at target for ranged heroes (originally centered on caster)
+			local origin = caster:GetOrigin()
+			local vector = (origin - params.target:GetOrigin()):Normalized()
+			local target = params.target:GetOrigin() + vector * 50
+			caster:SetOrigin( target )
 			DoCleaveAttack( params.attacker, params.target, ability, (params.damage * cleave_damage_pct), cleave_radius_start, cleave_radius_end, cleave_distance, cleave_particle )
+			caster:SetOrigin( origin )
 		end
 	end
 end
@@ -288,19 +299,22 @@ end
 function modifier_imba_great_cleave_active:GetModifierTotalDamageOutgoing_Percentage( params )
 	if IsServer() then
 		if params.target and not params.inflictor then
-			local armor = params.target:GetPhysicalArmorValue()
+			local armor = params.target:GetPhysicalArmorValue(false)
 			local armor_ignore = self:GetAbility():GetTalentSpecialValueFor("armor_ignore")
 			local reduction_feedback
 			if armor < 0 then
 				return 0
 			elseif armor <= armor_ignore then
 				reduction_feedback = CalculateReductionFromArmor_Percentage( 0, armor )
-
 			else
 				reduction_feedback = CalculateReductionFromArmor_Percentage( (armor - armor_ignore), armor )
 			end
-			reduction_feedback = reduction_feedback * (1 + ( reduction_feedback / 100))
-			return reduction_feedback
+			-- reduction_feedback = reduction_feedback * (1 + ( reduction_feedback / 100))
+
+			-- elfansoer: fix armor penetration not working			
+			-- return reduction_feedback * -100
+			local actual = 100 - reduction_feedback
+			return 100/actual * 100 - 100
 		end
 		return 0
 	end
@@ -372,66 +386,84 @@ function modifier_imba_warcry:RemoveOnDeath() return true end
 -------------------------------------------
 
 function modifier_imba_warcry:DeclareFunctions()
-	local decFuns =
-		{
-			MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-			MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
-			MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS
-		}
-	return decFuns
+	return {
+		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
+		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
+		MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS,
+		MODIFIER_PROPERTY_STATUS_RESISTANCE_STACKING,
+		MODIFIER_PROPERTY_TOTAL_CONSTANT_BLOCK,
+	}
 end
 
 function modifier_imba_warcry:GetActivityTranslationModifiers()
 	if self:GetParent():GetName() == "npc_dota_hero_sven" then
 		return "sven_warcry"
 	end
+
 	return 0
 end
 
 function modifier_imba_warcry:OnCreated()
-	local ability = self:GetAbility()
-	local caster = self:GetCaster()
-	local parent = self:GetParent()
+	self.ms_bonus_pct = self:GetAbility():GetTalentSpecialValueFor("ms_bonus_pct")
+	self.armor_bonus = self:GetAbility():GetSpecialValueFor("armor_bonus")
+	self.tenacity_pct = self:GetAbility():GetSpecialValueFor("tenacity_bonus_pct")
+	
+	if IsServer() then
+		self.hp_shield = self:GetAbility():GetSpecialValueFor("hp_shield") + (self:GetCaster():GetStrength() * self:GetAbility():GetSpecialValueFor("hp_shield_str_mult"))
 
-	self.ms_bonus_pct = ability:GetTalentSpecialValueFor("ms_bonus_pct")
-	self.armor_bonus = ability:GetSpecialValueFor("armor_bonus")
-	if parent == caster then
-		if IsServer() then
-			caster:EmitSound("Hero_Sven.WarCry")
-			if caster:GetName() == "npc_dota_hero_sven" then
-				caster:EmitSound("sven_sven_ability_warcry_0"..math.random(1,6))
+		self.shield_size = 120
+
+		if self:GetParent() == self:GetCaster() then
+			self:GetCaster():EmitSound("Hero_Sven.WarCry")
+
+			if self:GetCaster():GetName() == "npc_dota_hero_sven" then
+				self:GetCaster():EmitSound("sven_sven_ability_warcry_0"..math.random(1,6))
 			end
+
+			if self.cast_fx then
+				ParticleManager:DestroyParticle(self.cast_fx, false)
+				ParticleManager:ReleaseParticleIndex(self.cast_fx)
+			end
+
+			self.cast_fx = ParticleManager:CreateParticle("particles/units/heroes/hero_sven/sven_spell_warcry.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetCaster())
+			ParticleManager:SetParticleControlEnt(self.cast_fx, 0, self:GetCaster(), PATTACH_POINT_FOLLOW, nil, self:GetCaster():GetAbsOrigin(), true)
+			ParticleManager:SetParticleControlEnt(self.cast_fx, 1, self:GetCaster(), PATTACH_POINT_FOLLOW, nil, self:GetCaster():GetAbsOrigin(), true)
+			ParticleManager:SetParticleControlEnt(self.cast_fx, 2, self:GetCaster(), PATTACH_POINT_FOLLOW, nil, self:GetCaster():GetAbsOrigin(), true)
+			ParticleManager:SetParticleControlEnt(self.cast_fx, 4, self:GetCaster(), PATTACH_POINT_FOLLOW, nil, self:GetCaster():GetAbsOrigin(), true)
+			self:AddParticle(self.cast_fx, false, false, -1, false, false)
 		end
-		local caster_loc = caster:GetAbsOrigin()
-		self.tenacity_pct = ability:GetSpecialValueFor("tenacity_self_pct")
-		if self.cast_fx then
-			ParticleManager:DestroyParticle(self.cast_fx, false)
-			ParticleManager:ReleaseParticleIndex(self.cast_fx)
+
+		if self.buff_fx then
+			ParticleManager:DestroyParticle(self.buff_fx, false)
+			ParticleManager:ReleaseParticleIndex(self.buff_fx)
 		end
-		self.cast_fx = ParticleManager:CreateParticle("particles/units/heroes/hero_sven/sven_spell_warcry.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
-		ParticleManager:SetParticleControlEnt(self.cast_fx, 0, caster, PATTACH_POINT_FOLLOW, nil, caster_loc, true)
-		ParticleManager:SetParticleControlEnt(self.cast_fx, 1, caster, PATTACH_POINT_FOLLOW, nil, caster_loc, true)
-		ParticleManager:SetParticleControlEnt(self.cast_fx, 2, caster, PATTACH_POINT_FOLLOW, nil, caster_loc, true)
-		ParticleManager:SetParticleControlEnt(self.cast_fx, 4, caster, PATTACH_POINT_FOLLOW, nil, caster_loc, true)
-		self:AddParticle(self.cast_fx, false, false, -1, false, false)
-	else
-		self.tenacity_pct = ability:GetSpecialValueFor("tenacity_bonus_pct")
+
+		self.buff_fx = ParticleManager:CreateParticle("particles/units/heroes/hero_sven/sven_warcry_buff.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
+		-- Proper Particle attachment courtesy of BMD. Only PATTACH_POINT_FOLLOW will give the proper shield position
+		ParticleManager:SetParticleControlEnt(self.buff_fx, 0, self:GetParent(), PATTACH_POINT_FOLLOW, nil, self:GetParent():GetAbsOrigin(), true)
+		ParticleManager:SetParticleControlEnt(self.buff_fx, 1, self:GetParent(), PATTACH_OVERHEAD_FOLLOW, nil, self:GetParent():GetAbsOrigin(), true)
+		self:AddParticle(self.buff_fx, false, false, -1, false, false)
+
+		if self.buff2_fx then
+			ParticleManager:DestroyParticle(self.buff_fx, false)
+			ParticleManager:ReleaseParticleIndex(self.buff_fx)
+		end
+
+		self.buff2_fx = ParticleManager:CreateParticle("particles/units/heroes/hero_sven/sven_warcry_buff_shield.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetCaster())
+		ParticleManager:SetParticleControl(self.buff2_fx, 0, self:GetParent():GetAbsOrigin() + Vector(0, 0, 0))
+		ParticleManager:SetParticleControl(self.buff2_fx, 1, Vector(self.shield_size, 0, 0))
+		ParticleManager:SetParticleControlEnt(self.buff2_fx, 0, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetParent():GetAbsOrigin(), true)
+		self:AddParticle(self.buff2_fx, false, false, -1, false, false)
+		
+		self:SetStackCount(self.hp_shield)
 	end
-	if self.buff_fx then
-		ParticleManager:DestroyParticle(self.buff_fx, false)
-		ParticleManager:ReleaseParticleIndex(self.buff_fx)
-	end
-	self.buff_fx = ParticleManager:CreateParticle("particles/units/heroes/hero_sven/sven_warcry_buff.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
-	ParticleManager:SetParticleControlEnt(self.buff_fx, 0, parent, PATTACH_POINT_FOLLOW, nil, parent:GetAbsOrigin(), true)
-	ParticleManager:SetParticleControlEnt(self.buff_fx, 1, parent, PATTACH_OVERHEAD_FOLLOW, nil, parent:GetAbsOrigin(), true)
-	self:AddParticle(self.buff_fx, false, false, -1, false, false)
 end
 
 function modifier_imba_warcry:OnRefresh()
 	self:OnCreated()
 end
 
-function modifier_imba_warcry:GetCustomTenacity()
+function modifier_imba_warcry:GetModifierStatusResistanceStacking()
 	return self.tenacity_pct
 end
 
@@ -441,6 +473,53 @@ end
 
 function modifier_imba_warcry:GetModifierPhysicalArmorBonus()
 	return self.armor_bonus
+end
+
+function modifier_imba_warcry:GetModifierTotal_ConstantBlock(keys)
+	if not IsServer() then return end
+	
+	-- Block for the smaller value between total current stacks and total damage
+
+--	local real_damage = keys.damage - (keys.damage * GetReductionFromArmor(self:GetParent():GetPhysicalArmorValue(false)))
+
+	if keys.damage_category ~= DOTA_DAMAGE_CATEGORY_ATTACK then return 0 end
+
+	if keys.damage >= self.hp_shield then
+		if self.cast_fx then
+			ParticleManager:DestroyParticle(self.cast_fx, false)
+			ParticleManager:ReleaseParticleIndex(self.cast_fx)
+		end
+
+		if self.buff_fx then
+			ParticleManager:DestroyParticle(self.buff_fx, false)
+			ParticleManager:ReleaseParticleIndex(self.buff_fx)
+		end
+
+		if self.buff2_fx then
+			ParticleManager:DestroyParticle(self.buff2_fx, false)
+			ParticleManager:ReleaseParticleIndex(self.buff2_fx)
+		end
+
+		if self:GetParent():HasModifier("modifier_imba_warcry") then
+			self:GetParent():RemoveModifierByName("modifier_imba_warcry")
+		end
+
+		return self.hp_shield
+	end
+
+	local hit_pfx = ParticleManager:CreateParticle("particles/units/heroes/hero_sven/sven_warcry_buff_shield_hit.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetCaster())
+--	ParticleManager:SetParticleControlEnt(hit_pfx, 0, self:GetParent(), PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", self:GetParent():GetAbsOrigin(), true)
+--	ParticleManager:SetParticleControlEnt(hit_pfx, 1, self:GetParent(), PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", Vector(100, 0, 0), true)
+	ParticleManager:SetParticleControl(hit_pfx, 0, self:GetParent():GetAbsOrigin())
+	ParticleManager:SetParticleControl(hit_pfx, 1, Vector(self.shield_size, 0, 0))
+	self:AddParticle(hit_pfx, false, false, -1, false, false)
+
+	self.hp_shield = self.hp_shield - keys.damage
+	SendOverheadEventMessage(self:GetParent(), OVERHEAD_ALERT_BLOCK , self:GetParent(), math.min(self.hp_shield, keys.damage), self:GetParent())
+	
+	self:SetStackCount(self.hp_shield)
+
+	return keys.damage
 end
 
 -------------------------------------------
@@ -487,14 +566,14 @@ function imba_sven_gods_strength:GetCooldown( nLevel )
 	return self.BaseClass.GetCooldown( self, nLevel ) - self:GetCaster():FindTalentValue("special_bonus_imba_sven_4")
 end
 
-function imba_sven_gods_strength:GetAssociatedSecondaryAbilities()
+function imba_sven_gods_strength:GetAssociatedPrimaryAbilities()
 	return "imba_sven_colossal_slash"
 end
 
 function imba_sven_gods_strength:OnUpgrade()
 	if IsServer() then
 		local caster = self:GetCaster()
-		local ability_slash = caster:FindAbilityByName(self:GetAssociatedSecondaryAbilities())
+		local ability_slash = caster:FindAbilityByName(self:GetAssociatedPrimaryAbilities())
 		ability_slash:SetLevel(self:GetLevel())
 		if not caster:HasModifier("modifier_imba_god_strength") then
 			ability_slash:SetActivated(false)
@@ -665,7 +744,7 @@ function imba_sven_colossal_slash:GetAbilityTextureName()
 end
 -------------------------------------------
 
-function imba_sven_colossal_slash:GetAssociatedPrimaryAbilities()
+function imba_sven_colossal_slash:GetAssociatedSecondaryAbilities()
 	return "imba_sven_gods_strength"
 end
 
@@ -791,7 +870,9 @@ function imba_sven_colossal_slash:OnProjectileHit(target, location)
 	if target then
 		local caster = self:GetCaster()
 		local mod = caster:AddNewModifier(caster, self, "modifier_imba_colossal_slash_crit", {})
-		caster:PerformAttack(target, true, false, true, true, true, false, true)
+		-- elfansoer: fix colossal slash uses projectile on ranged
+		-- caster:PerformAttack(target, true, false, true, true, true, false, true)
+		caster:PerformAttack(target, true, false, true, true, false, false, true)
 		mod:Destroy()
 	end
 end
@@ -820,6 +901,9 @@ end
 
 function modifier_imba_colossal_slash_crit:OnCreated()
 	self.crit_bonus_pct = self:GetAbility():GetSpecialValueFor("crit_bonus_pct") - 100
+	
+	if not IsServer() then return end
+	
 	if self:GetCaster():HasModifier("modifier_imba_god_strength") then
 		self.bonus_dmg_pct = 0
 	else

@@ -15,10 +15,17 @@
 -- Editors:
 --     Shush, 26.03.2017
 --     suthernfriend, 03.02.2018
+--     Elfansoer, 10.08.2019
 
 if IsClient() then
     require('lib/util_imba_client')
+else
+	-- elfansoer: fix missing IsRoshan reference
+	function CDOTA_BaseNPC:IsRoshan()
+		return self:GetUnitName()=="npc_dota_roshan"
+	end
 end
+
 
 CreateEmptyTalents("mirana")
 
@@ -43,18 +50,16 @@ function imba_mirana_starfall:IsHiddenWhenStolen()
 end
 
 function imba_mirana_starfall:OnUnStolen()
-	local caster = self:GetCaster()
 	local modifier_agh_starfall = "modifier_imba_starfall_scepter_thinker"
 
 	-- Remove modifier from Rubick when he loses the spell
-	if caster:HasModifier(modifier_agh_starfall) then
-		caster:RemoveModifierByName(modifier_agh_starfall)
+	if self:GetCaster():HasModifier(modifier_agh_starfall) then
+		self:GetCaster():RemoveModifierByName(modifier_agh_starfall)
 	end
 end
 
 function imba_mirana_starfall:OnSpellStart()
 	-- Ability properties
-	local caster = self:GetCaster()
 	local ability = self
 	local particle_circle = "particles/units/heroes/hero_mirana/mirana_starfall_circle.vpcf"
 	local particle_moon = "particles/units/heroes/hero_mirana/mirana_moonlight_owner.vpcf"
@@ -72,18 +77,18 @@ function imba_mirana_starfall:OnSpellStart()
 	-- Roll cast response for "longer" line
 	if RollPercentage(10) then
 		cast_response = cast_response..3
-		EmitSoundOn(cast_response, caster)
+		EmitSoundOn(cast_response, self:GetCaster())
 
 	elseif RollPercentage(75) then -- If it failed, roll for normal cast response
 		cast_response = cast_response..math.random(1,2)
-		EmitSoundOn(cast_response, caster)
+		EmitSoundOn(cast_response, self:GetCaster())
 	end
 
 	-- Play cast sound
-	EmitSoundOn(sound_cast, caster)
+	EmitSoundOn(sound_cast, self:GetCaster())
 
 	-- Assign caster's location on cast, since the waves do not move with Mirana
-	local caster_position = caster:GetAbsOrigin()
+	local caster_position = self:GetCaster():GetAbsOrigin()
 
 	-- Add circle particle, repeat it every second until all waves came down
 	local repeats = additional_waves_count * additional_waves_interval
@@ -91,7 +96,7 @@ function imba_mirana_starfall:OnSpellStart()
 
 	-- Start repeating
 	Timers:CreateTimer(function()
-		local particle_circle_fx = ParticleManager:CreateParticle(particle_circle, PATTACH_ABSORIGIN, caster)
+		local particle_circle_fx = ParticleManager:CreateParticle(particle_circle, PATTACH_ABSORIGIN, self:GetCaster())
 		ParticleManager:SetParticleControl(particle_circle_fx, 0, caster_position)
 		ParticleManager:ReleaseParticleIndex(particle_circle_fx)
 
@@ -106,7 +111,7 @@ function imba_mirana_starfall:OnSpellStart()
 	end)
 
 	-- Add moon particle
-	local particle_moon_fx = ParticleManager:CreateParticle(particle_moon, PATTACH_ABSORIGIN, caster)
+	local particle_moon_fx = ParticleManager:CreateParticle(particle_moon, PATTACH_ABSORIGIN, self:GetCaster())
 	ParticleManager:SetParticleControl(particle_moon_fx, 0, Vector(caster_position.x, caster_position.y, caster_position.z + 400))
 
 	-- Remove moon particle after the duration elapsed
@@ -116,11 +121,11 @@ function imba_mirana_starfall:OnSpellStart()
 	end)
 
 	-- First Starfall wave
-	StarfallWave(caster, ability, caster_position, radius, damage)
+	StarfallWave(self:GetCaster(), ability, caster_position, radius, damage)
 
 	-- Secondary Starfall
 	local secondary_wave_damage = damage * (secondary_damage_pct * 0.01)
-	SecondaryStarfall(caster, ability, caster_position, radius, secondary_wave_damage)
+	SecondaryStarfall(self:GetCaster(), ability, caster_position, radius, secondary_wave_damage)
 
 	-- Additional waves
 	local current_wave = 1
@@ -129,8 +134,8 @@ function imba_mirana_starfall:OnSpellStart()
 
 	Timers:CreateTimer(additional_waves_interval, function()
 		-- Commence Starfalls
-		StarfallWave(caster, ability, caster_position, radius, additional_wave_damage)
-		SecondaryStarfall(caster, ability, caster_position, radius, additional_secondary_damage)
+		StarfallWave(self:GetCaster(), ability, caster_position, radius, additional_wave_damage)
+		SecondaryStarfall(self:GetCaster(), ability, caster_position, radius, additional_secondary_damage)
 
 		current_wave = current_wave + 1
 
@@ -172,28 +177,27 @@ function StarfallWave(caster, ability, caster_position, radius, damage)
 
 			-- Wait for the star to get to the target
 			Timers:CreateTimer(hit_delay, function()
+				-- Deal damage if the target did not become magic immune
+				if not enemy:IsMagicImmune() then
 
-					-- Deal damage if the target did not become magic immune
-					if not enemy:IsMagicImmune() then
+					-- Play impact sound
+					EmitSoundOn(sound_impact, enemy)
 
-						-- Play impact sound
-						EmitSoundOn(sound_impact, enemy)
+					local damageTable = {victim = enemy,
+						damage = damage,
+						damage_type = DAMAGE_TYPE_MAGICAL,
+						attacker = caster,
+						ability = ability
+					}
 
-						local damageTable = {victim = enemy,
-							damage = damage,
-							damage_type = DAMAGE_TYPE_MAGICAL,
-							attacker = caster,
-							ability = ability
-						}
+					ApplyDamage(damageTable)
 
-						ApplyDamage(damageTable)
-
-						-- #8 Talent: Each Starstorm wave marks the target. If Mirana lands an attack on the target, she drops an additional secondary star on it.
-						if caster:HasTalent("special_bonus_imba_mirana_8") then
-							local seed_duration = caster:FindTalentValue("special_bonus_imba_mirana_8")
-							enemy:AddNewModifier(caster, ability, "modifier_imba_starfall_talent_seed_debuff", {duration = seed_duration})
-						end
+					-- #8 Talent: Each Starstorm wave marks the target. If Mirana lands an attack on the target, she drops an additional secondary star on it.
+					if caster:HasTalent("special_bonus_imba_mirana_8") then
+						local seed_duration = caster:FindTalentValue("special_bonus_imba_mirana_8")
+						enemy:AddNewModifier(caster, ability, "modifier_imba_starfall_talent_seed_debuff", {duration = seed_duration})
 					end
+				end
 			end)
 		end
 	end
@@ -236,22 +240,21 @@ function SecondaryStarfallTarget(caster, ability, target, damage)
 
 	-- Wait for the star to get to the target
 	Timers:CreateTimer(hit_delay, function()
+		-- Deal damage if the target did not become magic immune
+		if not target:IsMagicImmune() then
 
-			-- Deal damage if the target did not become magic immune
-			if not target:IsMagicImmune() then
+			-- Play impact sound
+			EmitSoundOn(sound_impact, target)
 
-				-- Play impact sound
-				EmitSoundOn(sound_impact, target)
+			local damageTable = {victim = target,
+				damage = damage,
+				damage_type = DAMAGE_TYPE_MAGICAL,
+				attacker = caster,
+				ability = ability
+			}
 
-				local damageTable = {victim = target,
-					damage = damage,
-					damage_type = DAMAGE_TYPE_MAGICAL,
-					attacker = caster,
-					ability = ability
-				}
-
-				ApplyDamage(damageTable)
-			end
+			ApplyDamage(damageTable)
+		end
 	end)
 end
 
@@ -309,6 +312,8 @@ function modifier_imba_starfall_scepter_thinker:OnIntervalThink()
 		end
 
 		-- If caster is invisible, do nothing
+		-- elfansoer: fix missing method reference
+		-- if self.caster:IsImbaInvisible() then
 		if self.caster:IsInvisible() then
 			return nil
 		end
@@ -345,6 +350,7 @@ modifier_imba_starfall_talent_seed_debuff = modifier_imba_starfall_talent_seed_d
 function modifier_imba_starfall_talent_seed_debuff:IsHidden() return false end
 function modifier_imba_starfall_talent_seed_debuff:IsPurgable() return true end
 function modifier_imba_starfall_talent_seed_debuff:IsDebuff() return true end
+function modifier_imba_starfall_talent_seed_debuff:IgnoreTenacity()	return true end
 
 function modifier_imba_starfall_talent_seed_debuff:OnCreated()
 	-- Talent properties
@@ -381,8 +387,8 @@ function modifier_imba_starfall_talent_seed_debuff:OnAttackLanded(keys)
 		-- Drop a star!
 		SecondaryStarfallTarget(self.caster, self.ability, target, self.secondary_damage)
 
-		-- Destroy modifier
-		self:Destroy()
+		-- Destroy modifier (let's not for MAXIMUM CARNAGE)
+		-- self:Destroy()
 	end
 end
 
@@ -467,9 +473,11 @@ function FireSacredArrow(caster, ability, spawn_point, direction)
 		vision_radius = ability:GetSpecialValueFor("vision_radius")
 		arrow_distance = ability:GetSpecialValueFor("arrow_distance")
 	end
+	print("distance", arrow_distance)
 
 	-- Fire arrow in the set direction
-	local arrow_projectile = {  Ability = ability,
+	local arrow_projectile = {
+		Ability = ability,
 		EffectName = particle_arrow,
 		vSpawnOrigin = spawn_point,
 		fDistance = arrow_distance,
@@ -481,7 +489,7 @@ function FireSacredArrow(caster, ability, spawn_point, direction)
 		iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
 		iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
 		bDeleteOnHit = true,
-		vVelocity = direction * arrow_speed * Vector(1, 1, 0),
+		vVelocity = direction * (arrow_speed + caster:FindTalentValue("special_bonus_imba_mirana_10")) * Vector(1, 1, 0),
 		bProvidesVision = true,
 		iVisionRadius = vision_radius,
 		iVisionTeamNumber = caster:GetTeamNumber(),
@@ -521,13 +529,13 @@ function imba_mirana_arrow:OnProjectileHit_ExtraData(target, location, extra_dat
 	local vision_linger_duration = ability:GetSpecialValueFor("vision_linger_duration")
 
 	-- Cast response for creeps
-	if target:IsCreep() and not IsRoshan(target) then
+	if target:IsCreep() and not target:IsRoshan() then
 		local chosen_response = cast_response_creep[math.random(1, 5)]
 		EmitSoundOn(chosen_response, caster)
 	end
 
 	-- Cast response for Roshan
-	if IsRoshan(target) then
+	if target:IsRoshan() then
 		local chosen_response = cast_response_roshan[math.random(1,4)]
 		EmitSoundOn(chosen_response, caster)
 	end
@@ -539,7 +547,7 @@ function imba_mirana_arrow:OnProjectileHit_ExtraData(target, location, extra_dat
 	AddFOWViewer(caster:GetTeamNumber(), location, vision_radius, vision_linger_duration, false)
 
 	-- If target was a creep, kill it immediately and exit
-	if target:IsCreep() and not IsRoshan(target) and not target:IsAncient() then
+	if target:IsCreep() and not target:IsRoshan() and not target:IsAncient() then
 		target:Kill(ability, caster)
 		return true
 	end
@@ -658,6 +666,7 @@ function modifier_imba_sacred_arrow_stun:OnOrder(keys)
 	end
 end
 
+-- The actual crit damage modifier is handled in the Damage Filter in filters.lua
 function modifier_imba_sacred_arrow_stun:OnTakeDamage(keys)
 	if IsServer() then
 		local attacker = keys.attacker
@@ -741,12 +750,12 @@ function modifier_imba_sacred_arrow_haste:GetEffectAttachType()
 	return PATTACH_ABSORIGIN_FOLLOW
 end
 
-
 -------------------------------
 --           LEAP            --
 -------------------------------
 
 imba_mirana_leap = class({})
+LinkLuaModifier("modifier_imba_mirana_leap", "abilities/dota_imba/hero_mirana", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_imba_leap_movement", "abilities/dota_imba/hero_mirana", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_imba_leap_aura", "abilities/dota_imba/hero_mirana", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_imba_leap_speed_boost", "abilities/dota_imba/hero_mirana", LUA_MODIFIER_MOTION_NONE)
@@ -756,33 +765,69 @@ function imba_mirana_leap:GetAbilityTextureName()
 	return "mirana_leap"
 end
 
-function imba_mirana_leap:GetCastRange(location, target)
-	if IsServer() then return end
-	local ability = self
-	local leap_range = ability:GetSpecialValueFor("leap_range")
-	local night_leap_range_bonus = ability:GetSpecialValueFor("night_leap_range_bonus")
-
-	if IsDaytime() then
-		return leap_range
-	else
-		return leap_range + night_leap_range_bonus
-	end
+function imba_mirana_leap:GetIntrinsicModifierName()
+	return "modifier_imba_mirana_leap"
 end
+
+-- Calling it here differently so the UI just shows point target but you can still self-cast
+function imba_mirana_leap:GetBehavior()
+	return DOTA_ABILITY_BEHAVIOR_POINT + DOTA_ABILITY_BEHAVIOR_UNIT_TARGET + DOTA_ABILITY_BEHAVIOR_AUTOCAST + DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES
+end
+
+-- function imba_mirana_leap:GetCastRange(location, target)
+-- --	if IsServer() then return end
+	-- local leap_range = self:GetSpecialValueFor("leap_range")
+	-- local night_leap_range_bonus = self:GetSpecialValueFor("night_leap_range_bonus")
+
+	-- if IsDaytime() then
+		-- return leap_range
+	-- else
+		-- return leap_range + night_leap_range_bonus
+	-- end
+-- end
 
 function imba_mirana_leap:IsHiddenWhenStolen()
 	return false
 end
 
+-- In case this skill somehow glitches and stays deactivated after a Leap
+function imba_mirana_leap:OnOwnerDied()
+	self:SetActivated(true) 
+end
+
+function imba_mirana_leap:OnOwnerSpawned()
+	self:SetActivated(true) 
+end
+
 function imba_mirana_leap:OnSpellStart()
 	-- Ability properties
 	local caster = self:GetCaster()
-	local ability = self
 	local target_point = self:GetCursorPosition()
 	local modifier_movement = "modifier_imba_leap_movement"
 	local sound_cast = "Ability.Leap"
 
-	-- Ability specials
-	local jump_speed = ability:GetSpecialValueFor("jump_speed")
+	-- Adding a little more useability with self-cast to propel forward
+	if target_point == caster:GetAbsOrigin() and not self:GetAutoCastState() then
+		if IsDaytime() then
+			target_point = caster:GetAbsOrigin() + (caster:GetForwardVector() * self:GetSpecialValueFor("leap_range"))
+		else
+			target_point = caster:GetAbsOrigin() + (caster:GetForwardVector() * (self:GetSpecialValueFor("leap_range") + self:GetSpecialValueFor("night_leap_range_bonus")))
+		end
+	else
+		-- A block to allow proper logic for distance calculations (even with "infinite" cast range now)
+		local selected_distance = (self:GetCaster():GetAbsOrigin() - target_point):Length2D()
+		local leap_range = self:GetSpecialValueFor("leap_range")
+
+		if not IsDaytime() then
+			leap_range = leap_range + self:GetSpecialValueFor("night_leap_range_bonus")
+		end
+	
+		local new_distance = math.min(selected_distance, leap_range + GetCastRangeIncrease(caster))
+	
+		local new_target_point = self:GetCaster():GetAbsOrigin() + (target_point - self:GetCaster():GetAbsOrigin()):Normalized() * new_distance
+	
+		target_point = new_target_point
+	end
 
 	-- Start gesture
 	caster:StartGesture(ACT_DOTA_OVERRIDE_ABILITY_3)
@@ -795,9 +840,9 @@ function imba_mirana_leap:OnSpellStart()
 
 	-- Make Mirana face the target (relevant with #7 Talent)
 	caster:FaceTowards(target_point)
-
+	
 	-- Start moving
-	local modifier_movement_handler = caster:AddNewModifier(caster, ability, modifier_movement, {})
+	local modifier_movement_handler = caster:AddNewModifier(caster, self, modifier_movement, {})
 
 	-- Assign the target location in the modifier
 	if modifier_movement_handler then
@@ -806,6 +851,7 @@ function imba_mirana_leap:OnSpellStart()
 
 	-- #6 Talent: Free Sacred Arrow after Leap ends
 	if caster:HasTalent("special_bonus_imba_mirana_6") then
+		local jump_speed = self:GetSpecialValueFor("jump_speed")
 
 		-- Calculate the landing time
 		local distance = (caster:GetAbsOrigin() - target_point):Length2D()
@@ -819,25 +865,65 @@ function imba_mirana_leap:OnSpellStart()
 
 		-- Create Timer
 		Timers:CreateTimer(jump_time, function()
+			-- Get the Sacred Arrow ability definition and distance
+			local sacred_arrow_ability = caster:FindAbilityByName("imba_mirana_arrow")
 
-				-- Get the Sacred Arrow ability definition and distance
-				local sacred_arrow_ability = caster:FindAbilityByName("imba_mirana_arrow")
+			-- Get values for at least level 1 arrow
+			local spawn_distance
 
-				-- Get values for at least level 1 arrow
-				local spawn_distance
+			if sacred_arrow_ability:GetLevel() > 0 then
+				spawn_distance = sacred_arrow_ability:GetSpecialValueFor("spawn_distance")
+			else
+				spawn_distance = sacred_arrow_ability:GetLevelSpecialValueFor("spawn_distance", sacred_arrow_ability:GetLevel()+1)
+			end
 
-				if sacred_arrow_ability:GetLevel() > 0 then
-					spawn_distance = sacred_arrow_ability:GetSpecialValueFor("spawn_distance")
-				else
-					spawn_distance = sacred_arrow_ability:GetLevelSpecialValueFor("spawn_distance", sacred_arrow_ability:GetLevel()+1)
-				end
+			-- Get spawn point
+			local spawn_point = caster_location + direction * (spawn_distance + distance)
 
-				-- Get spawn point
-				local spawn_point = caster_location + direction * (spawn_distance + distance)
-
-				-- Fire Sacred Arrow
-				FireSacredArrow(caster, sacred_arrow_ability, spawn_point, direction)
+			-- Fire Sacred Arrow
+			FireSacredArrow(caster, sacred_arrow_ability, spawn_point, direction)
 		end)
+	end
+	
+	-- Prevents spamming (and "wasting") multiple charges in one leap
+	self:SetActivated(false)
+end
+
+function imba_mirana_leap:OnUpgrade()
+	if self:GetCaster():HasModifier("modifier_imba_mirana_leap") then
+		if self:GetCaster():FindModifierByName("modifier_imba_mirana_leap"):GetDuration() == -1 and self:GetCaster():FindModifierByName("modifier_imba_mirana_leap"):GetStackCount() < self:GetSpecialValueFor("max_charges") then
+			self:GetCaster():FindModifierByName("modifier_imba_mirana_leap"):SetDuration(self:GetSpecialValueFor("charge_restore_time"), true)
+			self:GetCaster():FindModifierByName("modifier_imba_mirana_leap"):StartIntervalThink(self:GetSpecialValueFor("charge_restore_time"))
+		end
+	end
+end
+
+-- Charges modifier
+modifier_imba_mirana_leap = class ({})
+
+function modifier_imba_mirana_leap:IsHidden()			return false end
+function modifier_imba_mirana_leap:DestroyOnExpire() 	return false end
+function modifier_imba_mirana_leap:IsPurgable() 		return false end
+function modifier_imba_mirana_leap:RemoveOnDeath() 		return false end
+
+function modifier_imba_mirana_leap:OnCreated()
+	self:SetStackCount(self:GetAbility():GetSpecialValueFor("max_charges"))
+end
+
+-- This function should run whenever the modifier duration ends
+function modifier_imba_mirana_leap:OnIntervalThink()
+	self:IncrementStackCount()
+
+	if self:GetStackCount() < self:GetAbility():GetSpecialValueFor("max_charges") then
+		-- +1 Leap Charge Replenish
+		if self:GetCaster():HasTalent("special_bonus_imba_mirana_9") then
+			self:IncrementStackCount()
+		end
+	
+		self:SetDuration(self:GetAbility():GetSpecialValueFor("charge_restore_time"), true)
+	else
+		self:SetDuration(-1, true)
+		self:StartIntervalThink(-1)
 	end
 end
 
@@ -876,7 +962,7 @@ end
 
 function modifier_imba_leap_movement:OnIntervalThink()
 	-- Check motion controllers
-	if not self:CheckMotionControllers() then
+	if not self:CheckMotionControllers() then		
 		self:Destroy()
 		return nil
 	end
@@ -886,6 +972,8 @@ function modifier_imba_leap_movement:OnIntervalThink()
 
 	-- Horizontal Motion
 	self:HorizontalMotion(self.caster, self.frametime)
+	
+	self.ability:StartCooldown(0)
 end
 
 function modifier_imba_leap_movement:IsHidden() return true end
@@ -930,6 +1018,22 @@ function modifier_imba_leap_movement:HorizontalMotion(me, dt)
 			local new_location = self.caster:GetAbsOrigin() + self.direction * self.jump_speed * dt
 			self.caster:SetAbsOrigin(new_location)
 		else
+			-- This should always be true
+			if self:GetCaster():HasModifier("modifier_imba_mirana_leap") then
+				-- Start by ending cooldown before checking for remaining charges
+				self.ability:EndCooldown()
+				-- If charges are at max, start the modifier countdown
+				if self:GetCaster():FindModifierByName("modifier_imba_mirana_leap"):GetStackCount() == self.ability:GetSpecialValueFor("max_charges") then
+					self:GetCaster():FindModifierByName("modifier_imba_mirana_leap"):SetDuration(self.ability:GetSpecialValueFor("charge_restore_time"), true)
+					self:GetCaster():FindModifierByName("modifier_imba_mirana_leap"):StartIntervalThink(self.ability:GetSpecialValueFor("charge_restore_time"))
+				-- If only one charge left, start the cooldown equivalent to remaining modifier time
+				elseif self:GetCaster():FindModifierByName("modifier_imba_mirana_leap"):GetStackCount() <= 1 then
+					self.ability:StartCooldown(self:GetCaster():FindModifierByName("modifier_imba_mirana_leap"):GetRemainingTime())
+				end
+				
+				-- Consume a charge
+				self:GetCaster():FindModifierByName("modifier_imba_mirana_leap"):DecrementStackCount()
+			end
 			self:Destroy()
 		end
 	end
@@ -951,7 +1055,7 @@ end
 
 function modifier_imba_leap_movement:CheckState()
 	local state
-	-- #7 Talent: Leap can now be cast without needing to turn. Makes Mirana invisible for the duration of the jump, causing her to dodge projectiles.
+	-- #7 Talent: Makes Mirana invisible for the duration of the jump, causing her to dodge projectiles.
 	-- Check if the caster should get invisibility
 	if self.caster:HasTalent("special_bonus_imba_mirana_7") then
 		state = {[MODIFIER_STATE_INVISIBLE] = true}
@@ -965,6 +1069,9 @@ function modifier_imba_leap_movement:OnRemoved()
 	if IsServer() then
 		self.caster:SetUnitOnClearGround()
 		self.caster:AddNewModifier(self.caster, self.ability, self.modifier_aura, {duration = self.aura_duration})
+		
+		-- Allow usage of Leap again
+		self.ability:SetActivated(true) 
 	end
 end
 
@@ -1229,8 +1336,6 @@ function modifier_imba_moonlight_shadow:OnDestroy()
 	end
 end
 
-
-
 -- Invisibility modifier (hidden)
 modifier_imba_moonlight_shadow_invis = class({})
 
@@ -1246,12 +1351,15 @@ function modifier_imba_moonlight_shadow_invis:OnCreated()
 	self.parent = self:GetParent()
 	self.modifier_dummy_name = "modifier_imba_moonlight_shadow_invis_dummy"
 
-	-- Ability specials
-	self.fade_delay = self.ability:GetSpecialValueFor("fade_delay")
-	self.truesight_immunity_radius = self.ability:GetSpecialValueFor("truesight_immunity_radius")
+	if self.ability then
+		self.fade_delay = self.ability:GetSpecialValueFor("fade_delay")
+		self.truesight_immunity_radius = self.ability:GetSpecialValueFor("truesight_immunity_radius")
+	else
+		self.fade_delay = 0
+		self.truesight_immunity_radius = 1
+	end
 
 	if IsServer() then
-
 		self.modifier_dummy = self.parent:FindModifierByName("modifier_imba_moonlight_shadow_invis_dummy")
 
 		-- Set stack count to level 2
@@ -1306,7 +1414,7 @@ end
 function modifier_imba_moonlight_shadow_invis:GetModifierMoveSpeedBonus_Percentage()
 	-- #3 Talent: Moonlight Shadow grants bonus move speed to invisible allies
 	if self:GetStackCount() > 0 then
-		return self.caster:FindTalentValue("special_bonus_imba_mirana_3")
+		return self.ability:GetSpecialValueFor("bonus_movement_speed") + self.caster:FindTalentValue("special_bonus_imba_mirana_3")
 	end
 
 	return 0
@@ -1428,11 +1536,13 @@ function modifier_imba_moonlight_shadow_talent_starstorm:OnCreated()
 
 		-- Wait for the delay time before starting to think
 		Timers:CreateTimer(self.delay_time, function()
-			-- Think immediately
-			self:OnIntervalThink()
+			if not self:IsNull() then
+				-- Think immediately
+				self:OnIntervalThink()
 
-			-- Set thinker to think every second
-			self:StartIntervalThink(1)
+				-- Set thinker to think every half second
+				self:StartIntervalThink(0.5)
+			end
 		end)
 	end
 end
@@ -1472,19 +1582,6 @@ function modifier_imba_moonlight_shadow_talent_starstorm:OnIntervalThink()
 	end
 end
 
-
-
-
-
--- #5 Talent: Standing in the same spot for a few seconds grants Mirana invisibility until she moves or attack. Casting spells does not break the invisibility.
-function modifier_special_bonus_imba_mirana_5:OnCreated()
-	if IsServer() then
-		self:GetParent():AddNewModifier(self:GetParent(), nil, "modifier_imba_mirana_silence_stance", {})
-		self:GetParent():AddNewModifier(self:GetParent(), nil, "modifier_imba_mirana_silence_stance_visible", {})
-	end
-end
-
-
 modifier_imba_mirana_silence_stance = modifier_imba_mirana_silence_stance or class({})
 
 function modifier_imba_mirana_silence_stance:IsHidden() return true end
@@ -1518,7 +1615,6 @@ end
 
 function modifier_imba_mirana_silence_stance:OnIntervalThink()
 	if IsServer() then
-
 		-- Check if this is a day. If so, Mirana cannot hide, and the stance does nothing
 		if GameRules:IsDaytime() then
 			self:SetStackCount(0)

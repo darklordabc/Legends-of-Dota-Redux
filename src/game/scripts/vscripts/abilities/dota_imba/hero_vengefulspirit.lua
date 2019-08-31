@@ -16,16 +16,31 @@
 --     Firetoad
 --     AtroCty, 20.04.2017
 --     suthernfriend, 03.02.2018
+--     Elfansoer, 17.08.2019
 
 if IsClient() then
     require('lib/util_imba_client')
+
+	-- define gettalent
+	function C_DOTABaseAbility:GetTalentSpecialValueFor( str )
+		return self:GetSpecialValueFor( str )
+	end
+else
+	-- define gettalent
+	function CDOTABaseAbility:GetTalentSpecialValueFor( str )
+		return self:GetSpecialValueFor( str )
+	end
 end
 
 CreateEmptyTalents("vengefulspirit")
 
-function modifier_special_bonus_imba_vengefulspirit_4:IsAura()
-	return true
-end
+LinkLuaModifier("modifier_special_bonus_imba_vengefulspirit_4", "abilities/dota_imba/hero_vengefulspirit.lua", LUA_MODIFIER_MOTION_NONE)
+
+modifier_special_bonus_imba_vengefulspirit_4 = modifier_special_bonus_imba_vengefulspirit_4 or class({})
+
+function modifier_special_bonus_imba_vengefulspirit_4:IsHidden() 		return true end
+function modifier_special_bonus_imba_vengefulspirit_4:RemoveOnDeath() 	return false end
+function modifier_special_bonus_imba_vengefulspirit_4:IsAura()			return true	end
 
 function modifier_special_bonus_imba_vengefulspirit_4:GetAuraEntityReject(target)
 	if IsServer() then
@@ -62,7 +77,6 @@ function modifier_special_bonus_imba_vengefulspirit_4:GetAuraSearchType()
 	return DOTA_UNIT_TARGET_HERO
 end
 
-
 -------------------------------------------
 --				 RANCOR
 -------------------------------------------
@@ -96,6 +110,12 @@ function modifier_imba_rancor:IsStunDebuff() return false end
 -------------------------------------------
 
 function modifier_imba_rancor:OnCreated()
+	-- elfansoer: fix intrinsic problem
+	if IsServer() and self:GetAbility():GetLevel()<1 then
+		self:Destroy()
+		return
+	end
+
 	self.dmg_received_pct = self.dmg_received_pct or 0
 	self.max_stacks = self:GetAbility():GetSpecialValueFor("max_stacks")
 end
@@ -204,8 +224,15 @@ function imba_vengefulspirit_magic_missile:IsStealable() return true end
 function imba_vengefulspirit_magic_missile:IsNetherWardStealable() return true end
 
 function imba_vengefulspirit_magic_missile:GetAbilityTextureName()
-	return "vengefulspirit_magic_missile"
+	if not IsClient() then return end
+	if not self:GetCaster().magic_missile_icon then return "vengefulspirit_magic_missile" end
+	return "custom/imba_vengefulspirit_magic_missile_immortal"..self:GetCaster().magic_missile_icon
 end
+
+function imba_vengefulspirit_magic_missile:GetIntrinsicModifierName()
+	return "modifier_imba_vengefulspirit_magic_missile_handler"
+end
+
 -------------------------------------------
 
 function imba_vengefulspirit_magic_missile:GetAOERadius()
@@ -243,6 +270,10 @@ function imba_vengefulspirit_magic_missile:OnSpellStart( params , reduce_pct, ta
 		local split_amount = self:GetSpecialValueFor("split_amount")
 		local projectile_speed = self:GetSpecialValueFor("projectile_speed")
 		local index
+		local sound = "Hero_VengefulSpirit.MagicMissile"
+		if caster.magic_missile_sound then
+			sound = caster.magic_missile_sound
+		end
 
 		-- Create an unique index, else use the old
 		if ix then
@@ -263,10 +294,15 @@ function imba_vengefulspirit_magic_missile:OnSpellStart( params , reduce_pct, ta
 			stun_duration = stun_duration - (stun_duration * (reduce_pct / 100))
 			split_reduce_pct = reduce_pct + (reduce_pct * (split_reduce_pct / 100))
 		else
-			caster:EmitSound("Hero_VengefulSpirit.MagicMissile")
+			caster:EmitSound(sound)
 			if (math.random(1,100) <= 5) and (caster:GetName() == "npc_dota_hero_vengefulspirit") then
 				caster:EmitSound("vengefulspirit_vng_cast_05")
 			end
+		end
+
+		local particle = "particles/units/heroes/hero_vengeful/vengeful_magic_missle.vpcf"
+		if caster.magic_missile_effect then
+			particle = caster.magic_missile_effect
 		end
 
 		local projectile
@@ -276,7 +312,7 @@ function imba_vengefulspirit_magic_missile:OnSpellStart( params , reduce_pct, ta
 					Target 				= target,
 					Source 				= target_loc,
 					Ability 			= self,
-					EffectName 			= "particles/units/heroes/hero_vengeful/vengeful_magic_missle.vpcf",
+					EffectName 			= particle,
 					iMoveSpeed			= projectile_speed,
 					bDrawsOnMinimap 	= false,
 					bDodgeable 			= true,
@@ -299,7 +335,7 @@ function imba_vengefulspirit_magic_missile:OnSpellStart( params , reduce_pct, ta
 					Target 				= target,
 					Source 				= caster,
 					Ability 			= self,
-					EffectName 			= "particles/units/heroes/hero_vengeful/vengeful_magic_missle.vpcf",
+					EffectName 			= particle,
 					iMoveSpeed			= projectile_speed,
 					vSpawnOrigin 		= caster:GetAbsOrigin(),
 					bDrawsOnMinimap 	= false,
@@ -331,13 +367,25 @@ function imba_vengefulspirit_magic_missile:OnProjectileHit_ExtraData(target, loc
 				end
 			end
 			ApplyDamage({victim = target, attacker = caster, ability = self, damage = ExtraData.damage, damage_type = self:GetAbilityDamageType()})
-			if (not target:IsMagicImmune()) or caster:HasTalent("special_bonus_imba_vengefulspirit_5") then
-				target:AddNewModifier(caster, self, "modifier_stunned", {duration = ExtraData.stun_duration})
+			-- elfansoer: fix magic missile not working if the target dies before stunned
+			-- if (not target:IsMagicImmune()) or caster:HasTalent("special_bonus_imba_vengefulspirit_5") then
+			if target:IsAlive() and (not target:IsMagicImmune()) or caster:HasTalent("special_bonus_imba_vengefulspirit_5") then
+				target:AddNewModifier(caster, self, "modifier_stunned", {duration = ExtraData.stun_duration}):SetDuration(ExtraData.stun_duration * (1 - target:GetStatusResistance()), true)
 			end
 		else
 			target = CreateUnitByName("npc_dummy_unit", location, false, caster, caster, caster:GetTeamNumber() )
+
+			-- elfansoer: fix memory leak caused by unit not removed
+			target.dummy = true
 		end
-		EmitSoundOnLocationWithCaster(location, "Hero_VengefulSpirit.MagicMissileImpact", caster)
+
+		local sound_hit = "Hero_VengefulSpirit.MagicMissileImpact"
+		if caster.magic_missile_sound_hit then
+			sound_hit = caster.magic_missile_sound_hit
+		end
+
+		EmitSoundOnLocationWithCaster(location, sound_hit, caster)
+
 		local valid_targets = {}
 		local enemies = FindUnitsInRadius(caster:GetTeamNumber(), location, nil, ExtraData.split_radius, self:GetAbilityTargetTeam(), self:GetAbilityTargetType(), self:GetAbilityTargetFlags(), FIND_ANY_ORDER, false)
 		for _,enemy in ipairs(enemies) do
@@ -362,6 +410,34 @@ function imba_vengefulspirit_magic_missile:OnProjectileHit_ExtraData(target, loc
 			self[ExtraData.index] = nil
 			self[proj_index] = nil
 		end
+
+		-- elfansoer: fix memory leak caused by unit not removed
+		if target.dummy then
+			Timers:CreateTimer(0, function()
+				UTIL_Remove( target )
+			end)
+		end
+	end
+end
+
+LinkLuaModifier("modifier_imba_vengefulspirit_magic_missile_handler", "abilities/dota_imba/hero_vengefulspirit", LUA_MODIFIER_MOTION_NONE)
+
+if modifier_imba_vengefulspirit_magic_missile_handler == nil then modifier_imba_vengefulspirit_magic_missile_handler = class({}) end
+
+function modifier_imba_vengefulspirit_magic_missile_handler:IsHidden() return true end
+function modifier_imba_vengefulspirit_magic_missile_handler:RemoveOnDeath() return false end
+
+function modifier_imba_vengefulspirit_magic_missile_handler:OnCreated()
+	if self:GetCaster():IsIllusion() then self:Destroy() return end
+
+	if IsServer() then
+		if self:GetCaster().magic_missile_icon == nil then self:Destroy() return end
+		self:SetStackCount(self:GetCaster().magic_missile_icon)
+	end
+
+	if IsClient() then
+		if self:GetStackCount() == 0 then self:Destroy() return end
+		self:GetCaster().magic_missile_icon = self:GetStackCount()
 	end
 end
 
@@ -445,6 +521,9 @@ function imba_vengefulspirit_wave_of_terror:OnSpellStart()
 			current_distance = current_distance + vision_aoe / 2
 			if current_distance < primary_distance then
 				return tick_rate
+			else
+				-- elfansoer: fix memory leak on terror
+				UTIL_Remove( dummy )
 			end
 		end)
 	end
@@ -454,7 +533,7 @@ function imba_vengefulspirit_wave_of_terror:OnProjectileHit_ExtraData(target, lo
 	if target then
 		local caster = self:GetCaster()
 		ApplyDamage({victim = target, attacker = caster, ability = self, damage = ExtraData.damage, damage_type = self:GetAbilityDamageType()})
-		target:AddNewModifier(caster, self, "modifier_imba_wave_of_terror", {duration = ExtraData.duration})
+		target:AddNewModifier(caster, self, "modifier_imba_wave_of_terror", {duration = ExtraData.duration}):SetDuration(ExtraData.duration * (1 - target:GetStatusResistance()), true)
 	else
 		self:CreateVisibilityNode(location, self:GetSpecialValueFor("vision_aoe"), self:GetSpecialValueFor("vision_duration"))
 	end
@@ -579,6 +658,14 @@ function modifier_imba_command_aura_positive_aura:IsPurgeException() return fals
 function modifier_imba_command_aura_positive_aura:IsStunDebuff() return false end
 function modifier_imba_command_aura_positive_aura:RemoveOnDeath() return false end
 -------------------------------------------
+
+-- elfansoer: fix intrinsic problem
+function modifier_imba_command_aura_positive_aura:OnCreated( kv )
+	if IsServer() and self:GetAbility():GetLevel()<1 then
+		self:Destroy()
+		return
+	end
+end
 
 function modifier_imba_command_aura_positive_aura:DeclareFunctions()
 	local decFuncs =
@@ -768,7 +855,7 @@ function imba_vengefulspirit_nether_swap:CastTalentMeteor(target)
 			Source 				= caster,
 			Ability 			= self,
 			EffectName 			= "particles/hero/vengefulspirit/rancor_magic_missile.vpcf",
-			iMoveSpeed			= 1350,
+			iMoveSpeed			= 1250,
 			vSpawnOrigin 		= caster:GetAbsOrigin(),
 			bDrawsOnMinimap 	= false,
 			bDodgeable 			= true,
@@ -852,7 +939,11 @@ function imba_vengefulspirit_nether_swap:OnSpellStart()
 					self:CastTalentMeteor(enemy)
 				end
 				if #enemies >= 1 then
-					caster:EmitSound("Hero_VengefulSpirit.MagicMissile")
+					local sound = "Hero_VengefulSpirit.MagicMissile"
+					if caster.magic_missile_sound then
+						sound = caster.magic_missile_sound
+					end
+					caster:EmitSound(sound)
 				end
 			end
 		end)
@@ -888,15 +979,22 @@ end
 
 function imba_vengefulspirit_nether_swap:OnProjectileHit(target, location)
 	local caster = self:GetCaster()
+
 	if target then
 		local damage = caster:FindTalentValue("special_bonus_imba_vengefulspirit_6", "damage")
 		local stun_duration = caster:FindTalentValue("special_bonus_imba_vengefulspirit_6", "stun_duration")
 		ApplyDamage({victim = target, attacker = caster, ability = self, damage = damage, damage_type = self:GetAbilityDamageType()})
 		if not target:IsMagicImmune() then
-			target:AddNewModifier(caster, self, "modifier_stunned", {duration = stun_duration})
+			target:AddNewModifier(caster, self, "modifier_stunned", {duration = stun_duration}):SetDuration(stun_duration * (1 - target:GetStatusResistance()), true)
 		end
 	end
-	EmitSoundOnLocationWithCaster(location, "Hero_VengefulSpirit.MagicMissileImpact", caster)
+
+	local sound_hit = "Hero_VengefulSpirit.MagicMissileImpact"
+	if caster.magic_missile_sound_hit then
+		sound_hit = caster.magic_missile_sound_hit
+	end
+
+	EmitSoundOnLocationWithCaster(location, sound_hit, caster)
 end
 
 function imba_vengefulspirit_nether_swap:OnOwnerDied()
@@ -916,17 +1014,36 @@ function imba_vengefulspirit_nether_swap:OnOwnerDied()
 			super_illusion:HeroLevelUp(false)
 		end
 
-		-- Set the skill points to 0 and learn the skills of the caster
+		-- -- Set the skill points to 0 and learn the skills of the caster
+
+		-- elfansoer: fix illusions does not have redux ability
+		-- super_illusion:SetAbilityPoints(0)
+		-- for abilitySlot=0,15 do
+		-- 	local ability = caster:GetAbilityByIndex(abilitySlot)
+		-- 	if ability ~= nil then
+		-- 		local abilityLevel = ability:GetLevel()
+		-- 		local abilityName = ability:GetAbilityName()
+		-- 		local illusionAbility = super_illusion:FindAbilityByName(abilityName)
+		-- 		if illusionAbility then
+		-- 			illusionAbility:SetLevel(abilityLevel)
+		-- 		end
+		-- 	end
+		-- end
 		super_illusion:SetAbilityPoints(0)
 		for abilitySlot=0,15 do
+			-- erase original ability
+			local ability_illusion = super_illusion:GetAbilityByIndex(abilitySlot)
+			if ability_illusion then
+				super_illusion:RemoveAbilityByHandle( ability_illusion )
+			end
+
+			-- copy original ability
 			local ability = caster:GetAbilityByIndex(abilitySlot)
 			if ability ~= nil then
 				local abilityLevel = ability:GetLevel()
 				local abilityName = ability:GetAbilityName()
-				local illusionAbility = super_illusion:FindAbilityByName(abilityName)
-				if illusionAbility then
-					illusionAbility:SetLevel(abilityLevel)
-				end
+				local ability_copy = super_illusion:AddAbility( abilityName )
+				ability_copy:SetLevel( abilityLevel )
 			end
 		end
 
@@ -1042,5 +1159,29 @@ function modifier_imba_swap_back:RemoveOnDeath() return false end
 function modifier_imba_swap_back:OnCreated()
 	if IsServer() then
 		self:GetAbility():SetActivated(false)
+	end
+end
+
+-- Client-side helper functions --
+LinkLuaModifier("modifier_special_bonus_imba_vengefulspirit_3", "abilities/dota_imba/hero_vengefulspirit", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_special_bonus_imba_vengefulspirit_8", "abilities/dota_imba/hero_vengefulspirit", LUA_MODIFIER_MOTION_NONE)
+
+modifier_special_bonus_imba_vengefulspirit_3 = class({})
+function modifier_special_bonus_imba_vengefulspirit_3:IsHidden() 		return true end
+function modifier_special_bonus_imba_vengefulspirit_3:IsPurgable() 		return false end
+function modifier_special_bonus_imba_vengefulspirit_3:RemoveOnDeath() 	return false end
+
+modifier_special_bonus_imba_vengefulspirit_8 = class({})
+function modifier_special_bonus_imba_vengefulspirit_8:IsHidden() 		return true end
+function modifier_special_bonus_imba_vengefulspirit_8:IsPurgable() 		return false end
+function modifier_special_bonus_imba_vengefulspirit_8:RemoveOnDeath() 	return false end
+
+function imba_vengefulspirit_command_aura:OnOwnerSpawned()
+	if self:GetCaster():HasTalent("special_bonus_imba_vengefulspirit_3") and not self:GetCaster():HasModifier("modifier_special_bonus_imba_vengefulspirit_3") then
+		self:GetCaster():AddNewModifier(self:GetCaster(), self:GetCaster():FindAbilityByName("special_bonus_imba_vengefulspirit_3"), "modifier_special_bonus_imba_vengefulspirit_3", {})
+	end
+	
+	if self:GetCaster():HasTalent("special_bonus_imba_vengefulspirit_8") and not self:GetCaster():HasModifier("modifier_special_bonus_imba_vengefulspirit_8") then
+		self:GetCaster():AddNewModifier(self:GetCaster(), self:GetCaster():FindAbilityByName("special_bonus_imba_vengefulspirit_8"), "modifier_special_bonus_imba_vengefulspirit_8", {})
 	end
 end

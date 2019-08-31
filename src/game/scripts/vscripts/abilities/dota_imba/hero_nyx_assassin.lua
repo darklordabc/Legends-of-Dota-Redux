@@ -15,6 +15,7 @@
 -- Editors:
 --     Shush, 01.04.2017
 --     suthernfriend, 03.02.2018
+--     Elfansoer, 10.08.2019
 
 if IsClient() then
     require('lib/util_imba_client')
@@ -33,10 +34,6 @@ LinkLuaModifier("modifier_imba_impale_suffering_damage_counter", "abilities/dota
 LinkLuaModifier("modifier_imba_impale_stun", "abilities/dota_imba/hero_nyx_assassin", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_imba_impale_talent_slow", "abilities/dota_imba/hero_nyx_assassin", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_imba_impale_talent_thinker", "abilities/dota_imba/hero_nyx_assassin", LUA_MODIFIER_MOTION_NONE)
-
-function imba_nyx_assassin_impale:GetAbilityTextureName()
-	return "nyx_assassin_impale"
-end
 
 function imba_nyx_assassin_impale:IsHiddenWhenStolen()
 	return false
@@ -201,6 +198,10 @@ function imba_nyx_assassin_impale:OnProjectileHit_ExtraData(target, location, Ex
 		damage = ability:GetSpecialValueFor("damage")
 	end
 
+	if caster:HasTalent("special_bonus_imba_nyx_assassin_13") then
+		damage_repeat_pct = damage_repeat_pct + caster:FindTalentValue("special_bonus_imba_nyx_assassin_13")
+	end
+
 	-- Play impact sound
 	EmitSoundOn(sound_impact, target)
 
@@ -256,7 +257,7 @@ function imba_nyx_assassin_impale:OnProjectileHit_ExtraData(target, location, Ex
 				local damageTable = {victim = target,
 					attacker = caster,
 					damage = suffering_damage,
-					damage_type = DAMAGE_TYPE_MAGICAL,
+					damage_type = DAMAGE_TYPE_PURE,
 					damgae_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION,
 					ability = ability,
 				}
@@ -345,7 +346,7 @@ function modifier_imba_impale_suffering:OnTakeDamage(keys)
 		local damage = keys.damage
 
 		-- Only apply if the unit taking damage is the parent of the modifier
-		if self.parent == unit then
+		if self.parent == unit and self.parent:IsAlive() then
 			if damage > 0 then
 				local buff = self.parent:AddNewModifier(self.parent, self.ability, "modifier_imba_impale_suffering_damage_counter", {duration = self.damage_duration})
 				buff:SetStackCount(math.floor(damage+0.5))
@@ -553,10 +554,6 @@ LinkLuaModifier("modifier_imba_mana_burn_parasite", "abilities/dota_imba/hero_ny
 LinkLuaModifier("modifier_imba_mana_burn_parasite_charged", "abilities/dota_imba/hero_nyx_assassin", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_imba_mana_burn_talent_parasite", "abilities/dota_imba/hero_nyx_assassin", LUA_MODIFIER_MOTION_NONE)
 
-function imba_nyx_assassin_mana_burn:GetAbilityTextureName()
-	return "nyx_assassin_mana_burn"
-end
-
 function imba_nyx_assassin_mana_burn:IsHiddenWhenStolen()
 	return false
 end
@@ -591,6 +588,11 @@ function imba_nyx_assassin_mana_burn:OnSpellStart(target)
 	local intelligence_mult = ability:GetSpecialValueFor("intelligence_mult")
 	local mana_burn_damage_pct = ability:GetSpecialValueFor("mana_burn_damage_pct")
 	local parasite_duration = ability:GetSpecialValueFor("parasite_duration")
+
+	-- Scarab Parasite no duration talent
+	if caster:HasTalent("special_bonus_imba_nyx_assassin_9") then
+		parasite_duration = -1
+	end
 
 	-- Play cast sound
 	EmitSoundOn(sound_cast, target)
@@ -656,7 +658,8 @@ end
 modifier_imba_mana_burn_parasite = class({})
 
 function modifier_imba_mana_burn_parasite:DeclareFunctions()
-	local decFuncs = {MODIFIER_EVENT_ON_HERO_KILLED}
+	local decFuncs = {MODIFIER_EVENT_ON_HERO_KILLED,
+	MODIFIER_EVENT_ON_TAKEDAMAGE}
 
 	return decFuncs
 end
@@ -675,6 +678,7 @@ function modifier_imba_mana_burn_parasite:OnCreated()
 		self.parasite_charge_threshold_pct = self.ability:GetSpecialValueFor("parasite_charge_threshold_pct")
 		self.explosion_delay = self.ability:GetSpecialValueFor("explosion_delay")
 		self.leech_interval = self.ability:GetSpecialValueFor("leech_interval")
+		self.scarring_burn_pct = self.ability:GetSpecialValueFor("scarring_burn_pct")
 
 		-- Adjust leech per second
 		self.parasite_mana_leech = self.parasite_mana_leech * self.leech_interval
@@ -690,7 +694,7 @@ function modifier_imba_mana_burn_parasite:OnCreated()
 		self.starting_target_mana = self.parent:GetMana()
 		self.charge_threshold = self.starting_target_mana * self.parasite_charge_threshold_pct * 0.01
 		self.last_known_target_mana = self.starting_target_mana
-
+		
 		-- Start charging/count mana
 		self.parasite_charged_mana = 0
 
@@ -698,6 +702,9 @@ function modifier_imba_mana_burn_parasite:OnCreated()
 		self.particle_flames_fx = ParticleManager:CreateParticle(self.particle_flames, PATTACH_CUSTOMORIGIN_FOLLOW, self.parent)
 		ParticleManager:SetParticleControlEnt(self.particle_flames_fx, 0, self.parent, PATTACH_POINT_FOLLOW, "attach_hitloc", self.parent:GetAbsOrigin(), true)
 		self:AddParticle(self.particle_flames_fx, false, false, -1, false, false)
+
+		-- Make damage ticks change based on parent's status resistance (so it will always tick the same amount)
+		self.leech_interval = self.leech_interval * (1 - self:GetParent():GetStatusResistance())
 
 		-- Start thinking
 		self:StartIntervalThink(self.leech_interval)
@@ -722,15 +729,17 @@ function modifier_imba_mana_burn_parasite:OnIntervalThink()
 		end
 
 		-- Check if the target has lost mana since the last check. If he has, add it to the charge count
-		if target_current_mana < self.last_known_target_mana then
-			mana_lost = self.last_known_target_mana - target_current_mana - mana_leeched
-		end
+		--if target_current_mana < self.last_known_target_mana then
+		--	mana_lost = self.last_known_target_mana - target_current_mana - mana_leeched
+		--end
 
 		-- Update the charge meter
-		self.parasite_charged_mana = self.parasite_charged_mana + mana_leeched + math.max(mana_lost, 0)
+		self.parasite_charged_mana = self.parasite_charged_mana + mana_leeched --+ math.max(mana_lost, 0)
+
+		self:SetStackCount(self.parasite_charged_mana)
 
 		-- Update last known target mana
-		self.last_known_target_mana = target_current_mana
+		--self.last_known_target_mana = target_current_mana
 
 		-- Check if the threshold has been reached
 		if self.parasite_charged_mana >= self.charge_threshold then
@@ -739,6 +748,7 @@ function modifier_imba_mana_burn_parasite:OnIntervalThink()
 			local modifier_charged_handler = self.parent:AddNewModifier(self.caster, self.ability, self.modifier_charged, {duration = self.explosion_delay})
 			if modifier_charged_handler then
 				modifier_charged_handler.starting_target_mana = self.starting_target_mana
+				modifier_charged_handler.parasite_charged_mana = self.parasite_charged_mana
 			end
 
 			-- Remove self
@@ -758,6 +768,29 @@ function modifier_imba_mana_burn_parasite:OnHeroKilled( keys )
 	end
 
 	self.caster:AddNewModifier(self.caster, self.ability, self.scarab_modifier, { duration = self.scarab_duration })
+end
+
+function modifier_imba_mana_burn_parasite:OnTakeDamage(keys)
+	if IsServer() then
+		local unit = keys.unit
+		local damage = keys.damage
+
+		-- Only apply if the unit taking damage is the parent of the modifier
+		if self.parent == unit and damage > 0 then
+			
+			local mana_burned = damage * (self.scarring_burn_pct / 100) -- 8%/10%/12%/14%
+			
+			if mana_burned > self.parent:GetMana() then
+				mana_burned = self.parent:GetMana()
+			end
+			
+			self.parent:ReduceMana(mana_burned)
+			
+			self.parasite_charged_mana = self.parasite_charged_mana + mana_burned
+			
+			self:SetStackCount(self.parasite_charged_mana)
+		end
+	end
 end
 
 function modifier_imba_mana_burn_parasite:IsHidden() return false end
@@ -828,12 +861,13 @@ function modifier_imba_mana_burn_parasite_charged:OnDestroy()
 		ParticleManager:ReleaseParticleIndex(self.particle_explosion_fx)
 
 		-- If the target now has more mana than what he had when parasite was planted, do nothing
-		if target_current_mana >= self.starting_target_mana then
-			return nil
-		end
+		--if target_current_mana >= self.starting_target_mana then
+		--	return nil
+		--end
 
 		-- Deal damage according to mana lost
-		local damage = (self.starting_target_mana - target_current_mana) * self.parasite_mana_as_damage_pct * 0.01
+		--local damage = (self.starting_target_mana - target_current_mana) * self.parasite_mana_as_damage_pct * 0.01
+		local damage = self.parasite_charged_mana * self.parasite_mana_as_damage_pct * 0.01
 
 		damageTable = {victim = self.parent,
 			attacker = self.caster,
@@ -928,7 +962,9 @@ LinkLuaModifier("modifier_imba_spiked_carapace", "abilities/dota_imba/hero_nyx_a
 LinkLuaModifier("modifier_imba_spiked_carapace_stun", "abilities/dota_imba/hero_nyx_assassin", LUA_MODIFIER_MOTION_NONE)
 
 function imba_nyx_assassin_spiked_carapace:GetAbilityTextureName()
-	return "nyx_assassin_spiked_carapace"
+	if not IsClient() then return end
+	if not self:GetCaster().arcana_style then return "nyx_assassin_spiked_carapace" end
+	return "nyx_assassin_spiked_carapace_ti9"
 end
 
 function imba_nyx_assassin_spiked_carapace:IsHiddenWhenStolen()
@@ -962,16 +998,28 @@ end
 -- Spiked carapace modifier (owner)
 modifier_imba_spiked_carapace = class({})
 
+function modifier_imba_spiked_carapace:GetStatusEffectName()
+	if self:GetStackCount() == 1 then
+		return "particles/econ/items/nyx_assassin/nyx_ti9_immortal/status_effect_nyx_ti9_carapace.vpcf"
+	end
+
+	return "particles/units/heroes/hero_nyx_assassin/status_effect_nyx_assassin_spiked_carapace.vpcf"
+end
+
 function modifier_imba_spiked_carapace:OnCreated()
 	if IsServer() then
 		-- Ability properties
 		self.caster = self:GetCaster()
 		self.ability = self:GetAbility()
 		self.vendetta_ability = self.caster:FindAbilityByName("imba_nyx_assassin_vendetta")
-		self.particle_spikes = "particles/units/heroes/hero_nyx_assassin/nyx_assassin_spiked_carapace.vpcf"
 		self.modifier_stun = "modifier_imba_spiked_carapace_stun"
 		self.modifier_vendetta = "modifier_imba_vendetta_charge"
 		self.modifier_burrowed = "modifier_nyx_assassin_burrow"
+
+		-- Yes, i know. If you find another way to send a particle name clientside for the status effect i'll take it.
+		if Battlepass and BATTLEPASS_NYX_ASSASSIN and Battlepass:GetRewardUnlocked(self.caster:GetPlayerID()) >= BATTLEPASS_NYX_ASSASSIN["nyx_assassin_immortal"] then
+			self:SetStackCount(1)
+		end
 
 		-- Ability specials
 		self.stun_duration = self.ability:GetSpecialValueFor("stun_duration")
@@ -980,8 +1028,18 @@ function modifier_imba_spiked_carapace:OnCreated()
 		self.burrowed_vendetta_stacks = self.ability:GetSpecialValueFor("burrowed_vendetta_stacks")
 		self.damage_reflection_pct = self.ability:GetSpecialValueFor("damage_reflection_pct")
 
+		-- Increased reflection damage talent
+		self.damage_reflection_pct = self.ability:GetSpecialValueFor("damage_reflection_pct")
+		
+		if self.caster:HasTalent("special_bonus_imba_nyx_assassin_10") then
+			self.damage_reflection_pct = self.damage_reflection_pct + self.caster:FindTalentValue("special_bonus_imba_nyx_assassin_10")
+		end
+
 		-- Add spikes particles
-		self.particle_spikes_fx = ParticleManager:CreateParticle(self.particle_spikes, PATTACH_CUSTOMORIGIN_FOLLOW, self.caster)
+		-- elfansoer: fix caraprace particle not appearing
+		-- self.particle_spikes_fx = ParticleManager:CreateParticle(self.caster.spiked_carapace_pfx, PATTACH_CUSTOMORIGIN_FOLLOW, self.caster)
+		
+		self.particle_spikes_fx = ParticleManager:CreateParticle("particles/units/heroes/hero_nyx_assassin/nyx_assassin_spiked_carapace.vpcf", PATTACH_CUSTOMORIGIN_FOLLOW, self.caster)
 		ParticleManager:SetParticleControlEnt(self.particle_spikes_fx, 0, self.caster, PATTACH_POINT_FOLLOW, "attach_hitloc", self.caster:GetAbsOrigin(), true)
 		self:AddParticle(self.particle_spikes_fx, false, false, -1, false, false)
 
@@ -1071,7 +1129,12 @@ function modifier_imba_spiked_carapace:OnTakeDamage(keys)
 			if attacker:IsBuilding() then
 				return nil
 			end
-
+	
+			-- If the unit dealing damage is on the same team, do nothing (ex. Bloodseeker's Bloodrage)
+			if attacker:GetTeam() == unit:GetTeam() then
+				return nil
+			end
+			
 			-- If the attacking unit has Nyx's Carapace as well, do nothing
 			if attacker:HasModifier("modifier_imba_spiked_carapace") then
 				return nil
@@ -1123,8 +1186,8 @@ function modifier_imba_spiked_carapace:OnTakeDamage(keys)
 				local damageTable = {victim = attacker,
 					attacker = self.caster,
 					damage = damage,
-					damage_type = DAMAGE_TYPE_MAGICAL,
-					damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION,
+					damage_type = keys.damage_type,
+					damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_REFLECTION,
 					ability = self.ability
 				}
 
@@ -1132,10 +1195,9 @@ function modifier_imba_spiked_carapace:OnTakeDamage(keys)
 			end
 
 			-- Stun it
-			attacker:AddNewModifier(self.caster, self.ability, self.modifier_stun, {duration = self.stun_duration})
+			attacker:AddNewModifier(self.caster, self.ability, self.modifier_stun, {duration = self.stun_duration}):SetDuration(self.stun_duration * (1 - attacker:GetStatusResistance()), true)
 		end
 	end
-
 end
 
 -- Spiked carapace stun modifier
@@ -1145,13 +1207,15 @@ function modifier_imba_spiked_carapace_stun:OnCreated()
 	if IsServer() then
 		self.parent = self:GetParent()
 		self.sound_hit = "Hero_NyxAssassin.SpikedCarapace.Stun"
-		self.particle_spike_hit = "particles/units/heroes/hero_nyx_assassin/nyx_assassin_spiked_carapace_hit.vpcf"
 
 		-- Play hit sound
 		EmitSoundOn(self.sound_hit, self.parent)
 
 		-- Add spikes hit particle
-		self.particle_spike_hit_fx = ParticleManager:CreateParticle(self.particle_spike_hit, PATTACH_CUSTOMORIGIN_FOLLOW, self.parent)
+		-- elfansoer: fix spiked carapace not creating particles
+		-- self.particle_spike_hit_fx = ParticleManager:CreateParticle(self:GetCaster().spiked_carapace_debuff_pfx, PATTACH_CUSTOMORIGIN_FOLLOW, self.parent)
+
+		self.particle_spike_hit_fx = ParticleManager:CreateParticle("particles/units/heroes/hero_nyx_assassin/nyx_assassin_spiked_carapace_hit.vpcf", PATTACH_CUSTOMORIGIN_FOLLOW, self.parent)
 		ParticleManager:SetParticleControl(self.particle_spike_hit_fx, 0, self.parent:GetAbsOrigin())
 		ParticleManager:SetParticleControlEnt(self.particle_spike_hit_fx, 1, self.parent, PATTACH_POINT_FOLLOW, "attach_hitloc", self.parent:GetAbsOrigin(), true)
 		ParticleManager:SetParticleControl(self.particle_spike_hit_fx, 2, Vector(1,0,0))
@@ -1186,10 +1250,7 @@ end
 imba_nyx_assassin_vendetta = class({})
 LinkLuaModifier("modifier_imba_vendetta", "abilities/dota_imba/hero_nyx_assassin", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_imba_vendetta_charge", "abilities/dota_imba/hero_nyx_assassin", LUA_MODIFIER_MOTION_NONE)
-
-function imba_nyx_assassin_vendetta:GetAbilityTextureName()
-	return "nyx_assassin_vendetta"
-end
+LinkLuaModifier("modifier_imba_vendetta_break", "abilities/dota_imba/hero_nyx_assassin", LUA_MODIFIER_MOTION_NONE)
 
 function imba_nyx_assassin_vendetta:IsNetherWardStealable() return false end
 function imba_nyx_assassin_vendetta:IsHiddenWhenStolen()
@@ -1241,6 +1302,7 @@ function modifier_imba_vendetta:OnCreated()
 	-- Ability specials
 	self.movement_speed_pct = self.ability:GetSpecialValueFor("movement_speed_pct")
 	self.bonus_damage = self.ability:GetSpecialValueFor("bonus_damage")
+	self.break_duration = self.ability:GetSpecialValueFor("break_duration")
 
 	-- Talent: If Vendetta kills an enemy unit, it doesn't consume the Eye for Eye stacks
 	if self.caster:HasTalent("special_bonus_imba_nyx_assassin_1") then
@@ -1264,8 +1326,17 @@ function modifier_imba_vendetta:IsPurgable() return false end
 function modifier_imba_vendetta:IsDebuff() return false end
 
 function modifier_imba_vendetta:CheckState()
-	local state = {[MODIFIER_STATE_INVISIBLE] = true,
-		[MODIFIER_STATE_NO_UNIT_COLLISION]= true}
+	local state
+
+	if self:GetCaster():HasTalent("special_bonus_imba_nyx_assassin_11") then
+		state = {[MODIFIER_STATE_INVISIBLE] = true,
+		[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
+		[MODIFIER_STATE_FLYING_FOR_PATHING_PURPOSES_ONLY] = true}
+	else
+		state = {[MODIFIER_STATE_INVISIBLE] = true,
+		[MODIFIER_STATE_NO_UNIT_COLLISION] = true}
+	end
+	
 	return state
 end
 
@@ -1343,11 +1414,21 @@ function modifier_imba_vendetta:OnAttackLanded(keys)
 				self.mana_burn_ability:OnSpellStart(target)
 			end
 
+			-- Elfansoer: WHY APPLYDAMAGE DOESN'T WORK ONLY FOR PHYSICAL, ONLY FOR THIS PLACE?
 			-- Deal damage
+			-- local damageTable = {victim = target,
+			-- 	attacker = self.caster,
+			-- 	damage = damage,
+			-- 	damage_type = DAMAGE_TYPE_PHYSICAL,
+			-- 	ability = self.ability
+			-- }
+
+			-- ApplyDamage(damageTable)
+
 			local damageTable = {victim = target,
 				attacker = self.caster,
 				damage = damage,
-				damage_type = DAMAGE_TYPE_PHYSICAL,
+				damage_type = DAMAGE_TYPE_PURE,
 				ability = self.ability
 			}
 
@@ -1361,6 +1442,9 @@ function modifier_imba_vendetta:OnAttackLanded(keys)
 					modifier_charged_handler:Destroy()
 				end
 			end
+			
+			-- Add the break debuff
+			target:AddNewModifier(self.caster, self.ability, "modifier_imba_vendetta_break", {duration = self.break_duration})
 
 			-- Remove modifier
 			self:Destroy()
@@ -1379,6 +1463,10 @@ function modifier_imba_vendetta_charge:OnCreated()
 
 		-- Ability specials
 		self.maximum_vendetta_stacks = self.ability:GetSpecialValueFor("maximum_vendetta_stacks")
+		
+		if self.caster:HasTalent("special_bonus_imba_nyx_assassin_12") then
+			self.maximum_vendetta_stacks = self.maximum_vendetta_stacks + self.caster:FindTalentValue("special_bonus_imba_nyx_assassin_12")
+		end
 	end
 end
 
@@ -1401,12 +1489,27 @@ function modifier_imba_vendetta_charge:OnStackCountChanged()
 	end
 end
 
+-----------------------------
+-- VENDETTA BREAK MODIFIER --
+-----------------------------
+
+modifier_imba_vendetta_break	= class({})
+
+function modifier_imba_vendetta_break:CheckState()
+	local state = {[MODIFIER_STATE_PASSIVES_DISABLED] = true}
+	
+	return state
+end
+
 -----------------------------------------------------------------
 -- Custom Talent Modifier code
 -----------------------------------------------------------------
---
 -- Falling below 30% procs Spiked Carapace automatically if the skill is off cooldown. Triggers cooldown.
---
+
+LinkLuaModifier("modifier_special_bonus_imba_nyx_assassin_5", "abilities/dota_imba/hero_nyx_assassin.lua", LUA_MODIFIER_MOTION_NONE)
+
+modifier_special_bonus_imba_nyx_assassin_5 = class({})
+
 function modifier_special_bonus_imba_nyx_assassin_5:IsHidden() return true end
 function modifier_special_bonus_imba_nyx_assassin_5:IsPurgable() return false end
 function modifier_special_bonus_imba_nyx_assassin_5:IsDebuff() return false end

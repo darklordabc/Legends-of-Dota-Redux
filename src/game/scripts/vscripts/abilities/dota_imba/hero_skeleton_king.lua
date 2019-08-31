@@ -15,12 +15,42 @@
 -- Editors:
 --     Shush, 30.04.2017
 --     suthernfriend, 03.02.2018
+--     Elfansoer, 17.08.2018
 
 if IsClient() then
     require('lib/util_imba_client')
 end
 
 CreateEmptyTalents("skeleton_king")
+
+-- Setting the two behavior changing talents to call for behavior again so the update works properly
+LinkLuaModifier("modifier_special_bonus_imba_skeleton_king_2", "abilities/dota_imba/hero_skeleton_king.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_special_bonus_imba_skeleton_king_5", "abilities/dota_imba/hero_skeleton_king.lua", LUA_MODIFIER_MOTION_NONE)
+
+modifier_special_bonus_imba_skeleton_king_2 = class({})
+modifier_special_bonus_imba_skeleton_king_5 = class({})
+
+function modifier_special_bonus_imba_skeleton_king_2:IsHidden() 		return true end
+function modifier_special_bonus_imba_skeleton_king_2:IsPurgable() 		return false end
+function modifier_special_bonus_imba_skeleton_king_2:RemoveOnDeath() 	return false end
+
+function modifier_special_bonus_imba_skeleton_king_5:IsHidden() 		return true end
+function modifier_special_bonus_imba_skeleton_king_5:IsPurgable() 		return false end
+function modifier_special_bonus_imba_skeleton_king_5:RemoveOnDeath() 	return false end
+
+function modifier_special_bonus_imba_skeleton_king_2:OnCreated()
+	if not IsServer() then return end
+	if self:GetParent():FindAbilityByName("imba_wraith_king_kingdom_come") then
+		self:GetParent():FindAbilityByName("imba_wraith_king_kingdom_come"):GetBehavior()
+	end
+end
+
+function modifier_special_bonus_imba_skeleton_king_5:OnCreated()
+	if not IsServer() then return end
+	if self:GetParent():FindAbilityByName("imba_wraith_king_reincarnation") then
+		self:GetParent():FindAbilityByName("imba_wraith_king_reincarnation"):GetBehavior()
+	end
+end
 
 --------------------------------
 --      WRAITHFIRE BLAST      --
@@ -31,7 +61,7 @@ LinkLuaModifier("modifier_imba_wraithfire_blast_debuff", "abilities/dota_imba/he
 LinkLuaModifier("modifier_imba_wraithfire_blast_debuff_talent", "abilities/dota_imba/hero_skeleton_king.lua", LUA_MODIFIER_MOTION_NONE)
 
 function imba_wraith_king_wraithfire_blast:GetAbilityTextureName()
-	return "skeleton_king_hellfire_blast"
+   return "skeleton_king_hellfire_blast"
 end
 
 function imba_wraith_king_wraithfire_blast:IsHiddenWhenStolen()
@@ -47,17 +77,17 @@ function imba_wraith_king_wraithfire_blast:OnSpellStart()
 	local target = self:GetCursorTarget()
 	local sound_cast = "Hero_SkeletonKing.Hellfire_Blast"
 	local cast_response = {"skeleton_king_wraith_ability_hellfire_05", "skeleton_king_wraith_ability_hellfire_06", "skeleton_king_wraith_ability_hellfire_07"}
-	local rare_cast_response = {"skeleton_king_wraith_ability_hellfire_03", "skeleton_king_wraith_ability_hellfire_04"}
-	local particle_warmup = "particles/units/heroes/hero_skeletonking/skeletonking_hellfireblast_warmup.vpcf"
+	local rare_cast_response = {"skeleton_king_wraith_ability_hellfire_03", "skeleton_king_wraith_ability_hellfire_04"}        
+	local particle_warmup = "particles/units/heroes/hero_skeletonking/skeletonking_hellfireblast_warmup.vpcf"    
 
 	-- Roll for rare cast response
 	if RollPercentage(5) then
 		EmitSoundOn(rare_cast_response[math.random(1,#rare_cast_response)], caster)
 
-		-- If failed, roll for normal cast response
+	-- If failed, roll for normal cast response
 	elseif RollPercentage(75) then
 		EmitSoundOn(cast_response[math.random(1,#cast_response)], caster)
-	end
+	end        
 
 	-- Play cast sound
 	EmitSoundOn(sound_cast, caster)
@@ -71,27 +101,31 @@ function imba_wraith_king_wraithfire_blast:OnSpellStart()
 	LaunchWraithblastProjectile(caster, ability, caster, target, true)
 end
 
-function LaunchWraithblastProjectile(caster, ability, source, target, main)
+function LaunchWraithblastProjectile(caster, ability, source, target, main, bTalent)
 	-- Ability properties
-	local particle_projectile = "particles/units/heroes/hero_skeletonking/skeletonking_hellfireblast.vpcf"
+	local particle_projectile = "particles/units/heroes/hero_skeletonking/skeletonking_hellfireblast.vpcf"    
 
 	-- Ability specials
 	local projectile_speed = ability:GetSpecialValueFor("projectile_speed")
 
-	-- Launch projectile on target
+	-- Launch projectile on target    
 	local wraithblast_projectile
 	wraithblast_projectile = {Target = target,
-		Source = source,
-		Ability = ability,
-		EffectName = particle_projectile,
-		iMoveSpeed = projectile_speed,
-		bDodgeable = true,
-		bVisibleToEnemies = true,
-		bReplaceExisting = false,
-		bProvidesVision = false,
-		iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_ATTACK_2,
-		ExtraData = {main_blast = main}
+							  Source = source,
+							  Ability = ability,
+							  EffectName = particle_projectile,
+							  iMoveSpeed = projectile_speed,
+							  bDodgeable = true, 
+							  bVisibleToEnemies = true,
+							  bReplaceExisting = false,
+							  bProvidesVision = false,  
+							  iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_ATTACK_2,
+							  ExtraData = {main_blast = main, bTalent = bTalent or false}
 	}
+	
+	if bTalent then
+		wraithblast_projectile.iMoveSpeed = 500
+	end
 
 	ProjectileManager:CreateTrackingProjectile(wraithblast_projectile)
 end
@@ -106,7 +140,7 @@ function imba_wraith_king_wraithfire_blast:OnProjectileHit_ExtraData(target, loc
 	local caster = self:GetCaster()
 	local ability = self
 	local kill_response = "skeleton_king_wraith_ability_hellfire_01"
-	local sound_hit = "Hero_SkeletonKing.Hellfire_BlastImpact"
+	local sound_hit = "Hero_SkeletonKing.Hellfire_BlastImpact"    
 	local modifier_stun = "modifier_imba_wraithfire_blast_stun"
 	local modifier_debuff = "modifier_imba_wraithfire_blast_debuff"
 
@@ -116,10 +150,10 @@ function imba_wraith_king_wraithfire_blast:OnProjectileHit_ExtraData(target, loc
 	local secondary_targets_radius = ability:GetSpecialValueFor("secondary_targets_radius")
 	local secondary_target_stun_duration = ability:GetSpecialValueFor("secondary_target_stun_duration")
 	local debuff_duration = ability:GetSpecialValueFor("debuff_duration")
-	local projectile_speed = ability:GetSpecialValueFor("projectile_speed")
+	local projectile_speed = ability:GetSpecialValueFor("projectile_speed")    
 
 	-- Play impact sound
-	EmitSoundOn(sound_hit, caster)
+	EmitSoundOn(sound_hit, caster)    
 
 	-- If the target suddenly became magic immune, do nothing
 	if target:IsMagicImmune() then
@@ -134,36 +168,41 @@ function imba_wraith_king_wraithfire_blast:OnProjectileHit_ExtraData(target, loc
 			end
 		end
 
-		if caster:FindTalentValue("special_bonus_imba_skeleton_king_3", "talent_trained") == 1 then
+		if caster:HasTalent("special_bonus_imba_skeleton_king_3") then
 			target:AddNewModifier(caster, ability, "modifier_imba_wraithfire_blast_debuff_talent", {duration = caster:FindTalentValue("special_bonus_imba_skeleton_king_3", "duration")})
 		end
+
 		-- If it was a main blast, deal damage
 		local damageTable = {victim = target,
-			attacker = caster,
-			damage = damage,
-			damage_type = DAMAGE_TYPE_MAGICAL,
-			ability = ability
-		}
-
+							 attacker = caster, 
+							 damage = damage,
+							 damage_type = DAMAGE_TYPE_MAGICAL,
+							 ability = ability
+							 }
+		
 		ApplyDamage(damageTable)
 
 		-- Main stun the target
 		target:AddNewModifier(caster, ability, modifier_stun, {duration = main_target_stun_duration})
 
-		-- Split to enemies around
-		local enemies = FindUnitsInRadius(caster:GetTeamNumber(),
-			target:GetAbsOrigin(),
-			nil,
-			secondary_targets_radius,
-			DOTA_UNIT_TARGET_TEAM_ENEMY,
-			DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-			DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE + DOTA_UNIT_TARGET_FLAG_NO_INVIS,
-			FIND_ANY_ORDER,
-			false)
+		-- elfansoer: fix Blast split not working
+		-- if not extra_data.bTalent then
+		if not extra_data.bTalent or extra_data.bTalent==0 then
+			-- Split to enemies around
+			local enemies = FindUnitsInRadius(caster:GetTeamNumber(),
+											  target:GetAbsOrigin(),
+											  nil,
+											  secondary_targets_radius,
+											  DOTA_UNIT_TARGET_TEAM_ENEMY,
+											  DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+											  DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE + DOTA_UNIT_TARGET_FLAG_NO_INVIS,
+											  FIND_ANY_ORDER,
+											  false)
 
-		for _,enemy in pairs(enemies) do
-			if enemy ~= target then
-				LaunchWraithblastProjectile(caster, ability, target, enemy, false)
+			for _,enemy in pairs(enemies) do
+				if enemy ~= target then
+					LaunchWraithblastProjectile(caster, ability, target, enemy, false)
+				end
 			end
 		end
 
@@ -183,11 +222,11 @@ function imba_wraith_king_wraithfire_blast:OnProjectileHit_ExtraData(target, loc
 	target:AddNewModifier(caster, ability, modifier_debuff, {duration = debuff_duration})
 
 	-- #7 Talent: Wraithfire Blast now summons Wraiths on all targets hit
-	if caster:HasTalent("special_bonus_imba_skeleton_king_7") then
+	if caster:HasTalent("special_bonus_imba_skeleton_king_7") and not bTalent then
 		local direction = (target:GetAbsOrigin() - caster:GetAbsOrigin()):Normalized()
 		local distance = (target:GetAbsOrigin() - caster:GetAbsOrigin()):Length2D()
 		local summon_point = caster:GetAbsOrigin() + direction * distance - 100
-		local wraith = CreateUnitByName("npc_imba_wraith_king_wraith", summon_point, true, caster, caster, caster:GetTeamNumber())
+		local wraith = CreateUnitByName("npc_imba_wraith_king_wraith", summon_point, true, caster, caster, caster:GetTeamNumber())        
 
 		-- Set the wraith as controllable by the player
 		local playerid = caster:GetPlayerID()
@@ -197,6 +236,10 @@ function imba_wraith_king_wraithfire_blast:OnProjectileHit_ExtraData(target, loc
 
 		-- Set the owner of the wraith as the caster
 		wraith:SetOwner(caster)
+
+		-- Set the Wraith to die after a small duration
+		local duration = caster:FindAbilityByName("imba_wraith_king_kingdom_come"):GetSpecialValueFor("wraith_duration")
+		wraith:AddNewModifier(wraith, nil, "modifier_kill", {duration = duration})
 
 		-- Set the Wraith's health to be the same as its origin
 		wraith:SetBaseMaxHealth(target:GetBaseMaxHealth())
@@ -240,7 +283,10 @@ function modifier_imba_wraithfire_blast_debuff:OnCreated()
 	self.ability = self:GetAbility()
 	self.parent = self:GetParent()
 	self.particle_debuff = "particles/units/heroes/hero_skeletonking/skeletonking_hellfireblast_debuff.vpcf"
-	self.particle_lifesteal = "particles/hero/skeleton_king/wraithblast_lifesteal.vpcf"
+
+	-- elfansoer: fix blast lifesteal particle missing
+	-- self.particle_lifesteal = "particles/hero/skeleton_king/wraithblast_lifesteal.vpcf"
+	self.particle_lifesteal = "particles/units/heroes/hero_skeletonking/wraith_king_vampiric_aura_lifesteal.vpcf"
 
 	-- Ability specials
 	self.ms_slow_pct = self.ability:GetSpecialValueFor("ms_slow_pct")
@@ -248,20 +294,23 @@ function modifier_imba_wraithfire_blast_debuff:OnCreated()
 	self.attacker_lifesteal_pct = self.ability:GetSpecialValueFor("attacker_lifesteal_pct")
 	self.damage_interval = self.ability:GetSpecialValueFor("damage_interval")
 
-	-- Add debuff particle
-	self.particle_debuff_fx = ParticleManager:CreateParticle(self.particle_debuff, PATTACH_ABSORIGIN_FOLLOW, self.parent)
-	ParticleManager:SetParticleControl(self.particle_debuff_fx, 0, self.parent:GetAbsOrigin())
+	-- Add debuff particle    
+	self.particle_debuff_fx = ParticleManager:CreateParticle(self.particle_debuff, PATTACH_ABSORIGIN_FOLLOW, self.parent)    
+	ParticleManager:SetParticleControl(self.particle_debuff_fx, 0, self.parent:GetAbsOrigin())    
 	self:AddParticle(self.particle_debuff_fx, false, false, -1, false, false)
 
 	-- Start thinking
 	if IsServer() then
+		self:SetStackCount(self.ms_slow_pct * (1 - self.parent:GetStatusResistance()))
+	
 		self:StartIntervalThink(self.damage_interval)
 	end
 end
 
-function modifier_imba_wraithfire_blast_debuff:IsHidden() return false end
-function modifier_imba_wraithfire_blast_debuff:IsPurgable() return true end
-function modifier_imba_wraithfire_blast_debuff:IsDebuff() return true end
+function modifier_imba_wraithfire_blast_debuff:IsHidden()		return false end
+function modifier_imba_wraithfire_blast_debuff:IsPurgable()		return true end
+function modifier_imba_wraithfire_blast_debuff:IsDebuff() 		return true end
+function modifier_imba_wraithfire_blast_debuff:IgnoreTenacity()	return true end
 
 function modifier_imba_wraithfire_blast_debuff:OnIntervalThink()
 	if IsServer() then
@@ -269,25 +318,25 @@ function modifier_imba_wraithfire_blast_debuff:OnIntervalThink()
 		local damage = self.damage_per_second * self.damage_interval
 
 		local damageTable = {victim = self.parent,
-			attacker = self.caster,
-			damage = damage,
-			damage_type = DAMAGE_TYPE_MAGICAL,
-			ability = self.ability
-		}
-
+							 attacker = self.caster, 
+							 damage = damage,
+							 damage_type = DAMAGE_TYPE_MAGICAL,
+							 ability = self.ability
+							 }
+		
 		ApplyDamage(damageTable)
 	end
 end
 
 function modifier_imba_wraithfire_blast_debuff:DeclareFunctions()
 	local decFuncs = {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-		MODIFIER_EVENT_ON_ATTACK_LANDED}
+					  MODIFIER_EVENT_ON_ATTACK_LANDED}
 
 	return decFuncs
 end
 
 function modifier_imba_wraithfire_blast_debuff:GetModifierMoveSpeedBonus_Percentage()
-	return self.ms_slow_pct * (-1)
+	return self:GetStackCount() * (-1)
 end
 
 function modifier_imba_wraithfire_blast_debuff:OnAttackLanded(keys)
@@ -360,14 +409,14 @@ function modifier_imba_wraithfire_blast_debuff_talent:OnIntervalThink()
 	local additional_dmg = caster:FindTalentValue("special_bonus_imba_skeleton_king_3", "add_target_dmg")
 
 	local enemies = FindUnitsInRadius(caster:GetTeamNumber(),
-		target:GetAbsOrigin(),
-		nil,
-		radius,
-		DOTA_UNIT_TARGET_TEAM_ENEMY,
-		DOTA_UNIT_TARGET_HERO,
-		DOTA_UNIT_TARGET_FLAG_NONE,
-		FIND_ANY_ORDER,
-		false)
+							  target:GetAbsOrigin(),
+							  nil,
+							  radius,
+							  DOTA_UNIT_TARGET_TEAM_ENEMY,
+							  DOTA_UNIT_TARGET_HERO,
+							  DOTA_UNIT_TARGET_FLAG_NONE,
+							  FIND_ANY_ORDER,
+							  false)
 	for _, enemy in pairs(enemies) do
 		local modifier = enemy:FindModifierByNameAndCaster("modifier_imba_wraithfire_blast_debuff", self:GetCaster())
 		if modifier and enemy ~= target then
@@ -378,22 +427,22 @@ function modifier_imba_wraithfire_blast_debuff_talent:OnIntervalThink()
 	local damage = base_dmg + num * additional_dmg
 
 	local damage_targets = FindUnitsInRadius(caster:GetTeamNumber(),
-		target:GetAbsOrigin(),
-		nil,
-		radius,
-		DOTA_UNIT_TARGET_TEAM_ENEMY,
-		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-		DOTA_UNIT_TARGET_FLAG_NONE,
-		FIND_ANY_ORDER,
-		false)
+							  target:GetAbsOrigin(),
+							  nil,
+							  radius,
+							  DOTA_UNIT_TARGET_TEAM_ENEMY,
+							  DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+							  DOTA_UNIT_TARGET_FLAG_NONE,
+							  FIND_ANY_ORDER,
+							  false)
 	for _, damage_target in pairs(damage_targets) do
 		local damageTable = {
-			victim = damage_target,
-			attacker = caster,
-			damage = damage,
-			damage_type = DAMAGE_TYPE_MAGICAL,
-			ability = self:GetAbility(),
-		}
+					victim = damage_target,
+					attacker = caster,
+					damage = damage,
+					damage_type = DAMAGE_TYPE_MAGICAL,
+					ability = self:GetAbility(),
+					}
 		ApplyDamage(damageTable)
 	end
 end
@@ -407,7 +456,7 @@ LinkLuaModifier("modifier_imba_vampiric_aura", "abilities/dota_imba/hero_skeleto
 LinkLuaModifier("modifier_imba_vampiric_aura_buff", "abilities/dota_imba/hero_skeleton_king.lua", LUA_MODIFIER_MOTION_NONE)
 
 function imba_wraith_king_vampiric_aura:GetAbilityTextureName()
-	return "skeleton_king_vampiric_aura"
+   return "skeleton_king_vampiric_aura"
 end
 
 function imba_wraith_king_vampiric_aura:OnToggle() return nil end
@@ -421,6 +470,12 @@ end
 modifier_imba_vampiric_aura = class({})
 
 function modifier_imba_vampiric_aura:OnCreated()
+	-- elfansoer: fix intrinsic problem
+	if IsServer() and self:GetAbility():GetLevel()<1 then
+		self:Destroy()
+		return
+	end
+
 	-- Ability properties
 	self.caster = self:GetCaster()
 	self.ability = self:GetAbility()
@@ -432,7 +487,7 @@ end
 function modifier_imba_vampiric_aura:AllowIllusionDuplicate() return true end
 function modifier_imba_vampiric_aura:IsHidden() return true end
 function modifier_imba_vampiric_aura:IsPurgable() return false end
-function modifier_imba_vampiric_aura:IsDebuff() return false end
+function modifier_imba_vampiric_aura:IsDebuff() return false end    
 
 function modifier_imba_vampiric_aura:GetAuraRadius()
 	return self.radius
@@ -479,14 +534,17 @@ function modifier_imba_vampiric_aura_buff:OnCreated()
 	self.ability = self:GetAbility()
 	self.parent = self:GetParent()
 	self.particle_lifesteal = "particles/units/heroes/hero_skeletonking/wraith_king_vampiric_aura_lifesteal.vpcf"
-	self.particle_spellsteal = "particles/hero/skeleton_king/skeleton_king_vampiric_aura_lifesteal.vpcf"
+
+	-- elfansoer: fix particle missing
+	-- self.particle_spellsteal = "particles/hero/skeleton_king/skeleton_king_vampiric_aura_lifesteal.vpcf"
+	self.particle_spellsteal = "particles/units/heroes/hero_skeletonking/wraith_king_vampiric_aura_lifesteal.vpcf"
 
 	-- Ability specials
 	self.radius = self.ability:GetSpecialValueFor("radius")
 	self.lifesteal_pct = self.ability:GetSpecialValueFor("lifesteal_pct")
 	self.spellsteal_pct = self.ability:GetSpecialValueFor("spellsteal_pct")
 	self.caster_heal = self.ability:GetSpecialValueFor("caster_heal")
-	self.heal_delay = self.ability:GetSpecialValueFor("heal_delay")
+	self.heal_delay = self.ability:GetSpecialValueFor("heal_delay")    
 end
 
 function modifier_imba_vampiric_aura_buff:OnRefresh()
@@ -528,28 +586,28 @@ function modifier_imba_vampiric_aura_buff:OnTakeDamage(keys)
 			-- If the damage was physical, use the lifesteal particle, and heal using the lifesteal values
 			if damage_type == DAMAGE_TYPE_PHYSICAL then
 				local particle_lifesteal_fx = ParticleManager:CreateParticle(self.particle_lifesteal, PATTACH_CUSTOMORIGIN_FOLLOW, attacker)
-				ParticleManager:SetParticleControlEnt(particle_lifesteal_fx, 0, attacker, PATTACH_POINT_FOLLOW, "attach_hitloc", attacker:GetAbsOrigin(), true)
-				ParticleManager:SetParticleControlEnt(particle_lifesteal_fx, 1, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
-				ParticleManager:ReleaseParticleIndex(particle_lifesteal_fx)
+				ParticleManager:SetParticleControlEnt(particle_lifesteal_fx, 0, attacker, PATTACH_POINT_FOLLOW, "attach_hitloc", attacker:GetAbsOrigin(), true)                
+				ParticleManager:SetParticleControlEnt(particle_lifesteal_fx, 1, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)                                
+				ParticleManager:ReleaseParticleIndex(particle_lifesteal_fx)                
 
 				-- If it was an illusion, no heal is done (fakes lifesteal)
 				if attacker:IsIllusion() then
 					return nil
 				end
 
-				-- #3 Talent: Vampiric Aura lifesteal/spellsteal increase
-				local lifesteal_pct = self.lifesteal_pct + self.caster:FindTalentValue("special_bonus_imba_skeleton_king_3")
+				-- #9 Talent: Vampiric Aura lifesteal increase
+				local lifesteal_pct = self.lifesteal_pct + self.caster:FindTalentValue("special_bonus_imba_skeleton_king_9")
 
 				-- Calculate lifesteal and heal the attacker
 				heal_amount = damage * lifesteal_pct * 0.01
 				self.parent:Heal(heal_amount, self.caster)
 
-				-- If the damage was magical or pure, use the skeletonking particle instead, and heal using the spellsteal values
+			-- If the damage was magical or pure, use the skeletonking particle instead, and heal using the spellsteal values
 			else
 				if not self.delay_particle_time or (GameRules:GetGameTime() - self.delay_particle_time > 1) then
 					local particle_spellsteal_fx = ParticleManager:CreateParticle(self.particle_spellsteal, PATTACH_CUSTOMORIGIN_FOLLOW, attacker)
-					ParticleManager:SetParticleControlEnt(particle_spellsteal_fx, 0, attacker, PATTACH_POINT_FOLLOW, "attach_hitloc", attacker:GetAbsOrigin(), true)
-					ParticleManager:SetParticleControlEnt(particle_spellsteal_fx, 1, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
+					ParticleManager:SetParticleControlEnt(particle_spellsteal_fx, 0, attacker, PATTACH_POINT_FOLLOW, "attach_hitloc", attacker:GetAbsOrigin(), true)                
+					ParticleManager:SetParticleControlEnt(particle_spellsteal_fx, 1, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)                
 					ParticleManager:ReleaseParticleIndex(particle_spellsteal_fx)
 
 					self.delay_particle_time = GameRules:GetGameTime()
@@ -560,37 +618,34 @@ function modifier_imba_vampiric_aura_buff:OnTakeDamage(keys)
 					return nil
 				end
 
-				-- #3 Talent: Vampiric Aura lifesteal/spellsteal increase
-				local spellsteal_pct = self.spellsteal_pct + self.caster:FindTalentValue("special_bonus_imba_skeleton_king_3")
-
 				-- Calculate lifesteal and heal the attacker
-				heal_amount = damage * spellsteal_pct * 0.01
+				heal_amount = damage * self.spellsteal_pct * 0.01
 				self.parent:Heal(heal_amount, self.caster)
 			end
 
 			-- After a small delay, find both illusions and the real aura bearer
 			Timers:CreateTimer(self.heal_delay, function()
 				local casters = FindUnitsInRadius(self.parent:GetTeamNumber(),
-					self.parent:GetAbsOrigin(),
-					nil,
-					self.radius,
-					DOTA_UNIT_TARGET_TEAM_FRIENDLY,
-					DOTA_UNIT_TARGET_HERO,
-					DOTA_UNIT_TARGET_FLAG_INVULNERABLE,
-					FIND_ANY_ORDER,
-					false)
+												  self.parent:GetAbsOrigin(),
+												  nil,
+												  self.radius,
+												  DOTA_UNIT_TARGET_TEAM_FRIENDLY,
+												  DOTA_UNIT_TARGET_HERO,
+												  DOTA_UNIT_TARGET_FLAG_INVULNERABLE,
+												  FIND_ANY_ORDER,
+												  false)
 
 				for _,caster in pairs(casters) do
 
 					-- Ignore everyone that are not the same name as the caster
 					if caster:GetUnitName() == self.caster:GetUnitName() and attacker:GetUnitName() ~= self.caster:GetUnitName() then
 
-						-- If any healing was done by anyone that is not the caster, show a transition to the aura bearer(s)
+						-- If any healing was done by anyone that is not the caster, show a transition to the aura bearer(s)            
 						if heal_amount > 0 and caster ~= attacker then
 							local particle_lifesteal_fx = ParticleManager:CreateParticle(self.particle_lifesteal, PATTACH_CUSTOMORIGIN_FOLLOW, caster)
-							ParticleManager:SetParticleControlEnt(particle_lifesteal_fx, 0, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true)
-							ParticleManager:SetParticleControlEnt(particle_lifesteal_fx, 1, self.parent, PATTACH_POINT_FOLLOW, "attach_hitloc", self.parent:GetAbsOrigin(), true)
-							ParticleManager:ReleaseParticleIndex(particle_lifesteal_fx)
+							ParticleManager:SetParticleControlEnt(particle_lifesteal_fx, 0, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true)                
+							ParticleManager:SetParticleControlEnt(particle_lifesteal_fx, 1, self.parent, PATTACH_POINT_FOLLOW, "attach_hitloc", self.parent:GetAbsOrigin(), true)                                
+							ParticleManager:ReleaseParticleIndex(particle_lifesteal_fx)                                        
 
 							-- Heal the aura bearer, if it's a real hero
 							if caster:IsRealHero() then
@@ -603,7 +658,7 @@ function modifier_imba_vampiric_aura_buff:OnTakeDamage(keys)
 			end)
 		end
 
-		if self.caster:FindTalentValue("special_bonus_imba_skeleton_king_1", "talent_trained") == 1 and self.parent == target and target ~= self.caster then
+		if self.parent == target and target ~= self.caster and self:GetCaster():HasTalent("special_bonus_imba_skeleton_king_1") then
 			local heal_amount = 0
 
 			-- If the target is on the same team, do nothing
@@ -622,7 +677,7 @@ function modifier_imba_vampiric_aura_buff:OnTakeDamage(keys)
 			end
 
 			-- Calculate lifesteal and heal the attacker
-			heal_amount = damage
+			heal_amount = damage 
 
 			-- After a small delay, find both illusions and the real aura bearer
 			Timers:CreateTimer(self.heal_delay, function()
@@ -630,30 +685,30 @@ function modifier_imba_vampiric_aura_buff:OnTakeDamage(keys)
 					return nil
 				end
 				local casters = FindUnitsInRadius(self.parent:GetTeamNumber(),
-					self.parent:GetAbsOrigin(),
-					nil,
-					self.radius,
-					DOTA_UNIT_TARGET_TEAM_FRIENDLY,
-					DOTA_UNIT_TARGET_HERO,
-					DOTA_UNIT_TARGET_FLAG_INVULNERABLE,
-					FIND_ANY_ORDER,
-					false)
+												  self.parent:GetAbsOrigin(),
+												  nil,
+												  self.radius,
+												  DOTA_UNIT_TARGET_TEAM_FRIENDLY,
+												  DOTA_UNIT_TARGET_HERO,
+												  DOTA_UNIT_TARGET_FLAG_INVULNERABLE,
+												  FIND_ANY_ORDER,
+												  false)
 
 				for _,caster in pairs(casters) do
 
 					-- Ignore everyone that are not the same name as the caster
 					if caster:GetUnitName() == self.caster:GetUnitName() and attacker:GetUnitName() ~= self.caster:GetUnitName() then
 
-						-- If any healing was done by anyone that is not the caster, show a transition to the aura bearer(s)
+						-- If any healing was done by anyone that is not the caster, show a transition to the aura bearer(s)            
 						if heal_amount > 0 and caster ~= attacker then
 							local particle_lifesteal_fx = ParticleManager:CreateParticle(self.particle_lifesteal, PATTACH_CUSTOMORIGIN_FOLLOW, caster)
-							ParticleManager:SetParticleControlEnt(particle_lifesteal_fx, 0, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true)
-							ParticleManager:SetParticleControlEnt(particle_lifesteal_fx, 1, target, PATTACH_POINT_FOLLOW, "attach_hitloc", self.parent:GetAbsOrigin(), true)
-							ParticleManager:ReleaseParticleIndex(particle_lifesteal_fx)
+							ParticleManager:SetParticleControlEnt(particle_lifesteal_fx, 0, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true)                
+							ParticleManager:SetParticleControlEnt(particle_lifesteal_fx, 1, target, PATTACH_POINT_FOLLOW, "attach_hitloc", self.parent:GetAbsOrigin(), true)                                
+							ParticleManager:ReleaseParticleIndex(particle_lifesteal_fx)                                        
 
 							-- Heal the aura bearer, if it's a real hero
 							if caster:IsRealHero() then
-								local caster_heal = heal_amount * self.caster:FindTalentValue("special_bonus_imba_skeleton_king_1", "dmg_drain_pct") * 0.01
+								local caster_heal = heal_amount * self.caster:FindTalentValue("special_bonus_imba_skeleton_king_1") * 0.01
 								caster:Heal(caster_heal, caster)
 							end
 						end
@@ -674,20 +729,138 @@ imba_wraith_king_mortal_strike = class({})
 LinkLuaModifier("modifier_imba_mortal_strike", "abilities/dota_imba/hero_skeleton_king.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_imba_mortal_strike_buff", "abilities/dota_imba/hero_skeleton_king.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_imba_mortal_strike_buff_talent", "abilities/dota_imba/hero_skeleton_king.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_imba_mortal_strike_skeleton", "abilities/dota_imba/hero_skeleton_king.lua", LUA_MODIFIER_MOTION_NONE)
 
 function imba_wraith_king_mortal_strike:GetAbilityTextureName()
-	return "skeleton_king_mortal_strike"
+   return "skeleton_king_mortal_strike"
 end
 
 function imba_wraith_king_mortal_strike:GetIntrinsicModifierName()
 	return "modifier_imba_mortal_strike"
 end
 
+function imba_wraith_king_mortal_strike:OnSpellStart()
+	self.caster	= self:GetCaster()
+	
+	-- AbilitySpecials
+	self.skeleton_duration		=	self:GetSpecialValueFor("skeleton_duration")
+	self.max_skeleton_charges	=	self:GetSpecialValueFor("max_skeleton_charges")
+	self.spawn_interval			=	self:GetSpecialValueFor("spawn_interval")
+	self.reincarnate_time		=	self:GetSpecialValueFor("reincarnate_time")
+	self.skeletons_per_charge	=	self:GetSpecialValueFor("skeletons_per_charge")
+	
+	if self.caster:HasModifier("modifier_imba_mortal_strike") then
+		local skeleton_modifier = self.caster:FindModifierByName("modifier_imba_mortal_strike")
+		
+		for unit = 0, skeleton_modifier:GetStackCount() - 1 do
+			Timers:CreateTimer(unit * self.spawn_interval, function()
+				for units_per_charge = 1, self.skeletons_per_charge do
+					CreateUnitByNameAsync("npc_dota_wraith_king_skeleton_warrior", self.caster:GetAbsOrigin() + RandomVector(100), true, self.caster, self.caster, self.caster:GetTeam(), function(skeleton) -- IDK how accurate 100 is but w/e I don't want too much overlap
+						skeleton:AddNewModifier(self.caster, self, "modifier_kill", {duration = self.skeleton_duration})
+						skeleton:AddNewModifier(self.caster, self, "modifier_imba_mortal_strike_skeleton", {duration = self.skeleton_duration - FrameTime()})
+						skeleton:SetControllableByPlayer( self.caster:GetPlayerID(),  true )
+						skeleton:SetOwner(self.caster)
+						
+						-- Resolve NPC positions to try and make sure skeletons don't get stuck on each other
+						ResolveNPCPositions(skeleton:GetAbsOrigin(), skeleton:GetHullRadius())
+						
+						-- No gold/exp on first death
+						skeleton:SetMaximumGoldBounty(0)
+						skeleton:SetMinimumGoldBounty(0)
+						skeleton:SetDeathXP(0)
+						
+						-- First spawn, so it will reincarnate if it dies once
+						skeleton.fresh	= true
+						
+						-- Issue one aggressive move command to the enemy's ancient and that's it
+						Timers:CreateTimer(FrameTime(), function()
+							if self.caster:GetTeam() == DOTA_TEAM_GOODGUYS then
+								skeleton:MoveToPositionAggressive(Vector(5654, 4939, 0))
+							elseif self.caster:GetTeam() == DOTA_TEAM_BADGUYS then
+								skeleton:MoveToPositionAggressive(Vector(-5864, -5340, 0))
+							end
+						end)
+					end)
+				end
+				
+				skeleton_modifier.skeleton_counter = skeleton_modifier.skeleton_counter - 1
+				skeleton_modifier:DecrementStackCount()
+			end)
+		end
+	end
+	
+	self.caster:EmitSound("Hero_SkeletonKing.MortalStrike.Cast")
+end
+
+-- Skeleton Modifier (mostly handles reincarnation)
+modifier_imba_mortal_strike_skeleton	= class ({})
+
+function modifier_imba_mortal_strike_skeleton:RemoveOnDeath()	return end
+
+function modifier_imba_mortal_strike_skeleton:OnCreated()
+	self.ability	= self:GetAbility()
+	self.caster		= self:GetCaster()
+	self.parent		= self:GetParent()
+	
+	-- AbilitySpecials
+	self.skeleton_duration		=	self.ability:GetSpecialValueFor("skeleton_duration")
+	self.max_skeleton_charges	=	self.ability:GetSpecialValueFor("max_skeleton_charges")
+	self.spawn_interval			=	self.ability:GetSpecialValueFor("spawn_interval")
+	self.reincarnate_time		=	self.ability:GetSpecialValueFor("reincarnate_time")
+end
+
+function modifier_imba_mortal_strike_skeleton:DeclareFunctions()
+	local decFuncs = {MODIFIER_EVENT_ON_DEATH}
+
+	return decFuncs
+end
+
+function modifier_imba_mortal_strike_skeleton:OnDeath(keys)
+	if not IsServer() then return end
+	
+	if self.parent == keys.unit and self:GetParent().fresh and self.parent ~= keys.attacker then
+		self.remaining_time = math.max(self.parent:FindModifierByName("modifier_kill"):GetRemainingTime() - self.reincarnate_time, 0)
+		self:StartIntervalThink(self.reincarnate_time)
+	end
+end
+
+function modifier_imba_mortal_strike_skeleton:OnIntervalThink()
+	CreateUnitByNameAsync("npc_dota_wraith_king_skeleton_warrior", self.parent:GetOrigin(), true, self.caster, self.caster, self.caster:GetTeam(), function(skeleton)
+		skeleton:AddNewModifier(self.caster, self.ability, "modifier_kill", {duration = self.remaining_time})
+		skeleton:AddNewModifier(self.caster, self.ability, "modifier_imba_mortal_strike_skeleton", {duration = self.remaining_time - FrameTime()})
+		skeleton:SetControllableByPlayer( self.caster:GetPlayerID(),  true )
+		skeleton:SetOwner(self.caster)
+		skeleton.fresh	= false
+		
+		-- Issue one aggressive move command to the enemy's ancient and that's it
+		Timers:CreateTimer(FrameTime(), function()
+			if self.caster:GetTeam() == DOTA_TEAM_GOODGUYS then
+				skeleton:MoveToPositionAggressive(Vector(5654, 4939, 0))
+			elseif self.caster:GetTeam() == DOTA_TEAM_BADGUYS then
+				skeleton:MoveToPositionAggressive(Vector(-5864, -5340, 0))
+			end
+		end)
+	end)
+	
+	self:StartIntervalThink(-1)
+end
+
+function modifier_imba_mortal_strike_skeleton:OnRemoved()
+	if not IsServer() then return end
+
+	self.parent:ForceKill(false)
+end
 
 -- Critical strikes modifier
 modifier_imba_mortal_strike = class({})
 
 function modifier_imba_mortal_strike:OnCreated()
+	-- elfansoer: fix intrinsic problem
+	if IsServer() and self:GetAbility():GetLevel()<1 then
+		self:Destroy()
+		return
+	end
+
 	-- Ability properties
 	self.caster = self:GetCaster()
 	self.ability = self:GetAbility()
@@ -702,21 +875,46 @@ function modifier_imba_mortal_strike:OnCreated()
 	self.bonus_health_duration = self.ability:GetSpecialValueFor("bonus_health_duration")
 	self.bonus_health_hero_mult = self.ability:GetSpecialValueFor("bonus_health_hero_mult")
 	self.stack_value = self.ability:GetSpecialValueFor("stack_value")
+	
+	self.skeleton_duration		=	self.ability:GetSpecialValueFor("skeleton_duration")
+	self.max_skeleton_charges	=	self.ability:GetSpecialValueFor("max_skeleton_charges")
+	self.spawn_interval			=	self.ability:GetSpecialValueFor("spawn_interval")
+	self.reincarnate_time		=	self.ability:GetSpecialValueFor("reincarnate_time")
+	
+	-- Initialize skeleton stacks
+	self.skeleton_counter	= self.skeleton_counter or 0
+
+	-- elfansoer: fix mortal strike bonuses not working
+	if not IsServer() then return end
+	self.records = {}
 end
 
 function modifier_imba_mortal_strike:OnRefresh()
 	self:OnCreated()
 end
 
-function modifier_imba_mortal_strike:IsHidden() return true end
+function modifier_imba_mortal_strike:IsHidden() return false end
 function modifier_imba_mortal_strike:IsPurgable() return false end
 function modifier_imba_mortal_strike:IsDebuff() return false end
 
 function modifier_imba_mortal_strike:DeclareFunctions()
-	local decFuncs = {MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE,
-		MODIFIER_EVENT_ON_ATTACK_LANDED}
+	local decFuncs = {
+		MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE,
+		MODIFIER_EVENT_ON_ATTACK_LANDED,
+		MODIFIER_EVENT_ON_DEATH,
+
+		MODIFIER_EVENT_ON_ATTACK_RECORD_DESTROY,
+	}
 
 	return decFuncs
+end
+
+-- elfansoer: fix mortal strike bonuses not working
+function modifier_imba_mortal_strike:OnAttackRecordDestroy( params )
+	if not IsServer() then return end
+	if self.records[ params.record ] then
+		self.records[ params.record ] = nil
+	end
 end
 
 function modifier_imba_mortal_strike:GetModifierPreAttack_CriticalStrike(keys)
@@ -726,7 +924,6 @@ function modifier_imba_mortal_strike:GetModifierPreAttack_CriticalStrike(keys)
 
 		-- Only apply on attacks of the caster
 		if attacker == self.caster then
-
 			-- If the caster is broken, do nothing
 			if self.caster:PassivesDisabled() then
 				return nil
@@ -737,15 +934,19 @@ function modifier_imba_mortal_strike:GetModifierPreAttack_CriticalStrike(keys)
 				return nil
 			end
 
-			-- Psuedo Roll for a critical
+			-- Psuedo Roll for a critical            
 			if RollPseudoRandom(self.crit_chance, self) then
-
 				-- Mark this attack as a critical for a small duration
-				self.mortal_critical_strike = true
 
-				Timers:CreateTimer(self.caster:GetAttackSpeed(), function()
-					self.mortal_critical_strike = false
-				end)
+				-- elfansoer: fix mortal strike bonuses not working
+				-- self.mortal_critical_strike = true
+
+				-- Timers:CreateTimer(self.caster:GetAttackSpeed(), function()                    
+				-- 	self.mortal_critical_strike = false
+				-- end)    
+
+				-- self.caster:EmitSound("Hero_SkeletonKing.CriticalStrike")
+				self.records[ keys.record ] = true
 
 				-- Determine crit power, depending on the target type
 				if target:IsHero() then
@@ -765,18 +966,21 @@ function modifier_imba_mortal_strike:OnAttackLanded(keys)
 		local damage = keys.damage
 
 		-- Only apply on attacks of the caster
-		if attacker == self.caster then
-
+		if attacker == self.caster then            
 			-- If this attack was not a crit, do nothing
-			if not self.mortal_critical_strike then
+
+			-- elfansoer: fix mortal strike bonuses not working
+			-- if not self.mortal_critical_strike then
+			if not self.records[ keys.record ] then
 				return nil
 			end
+			self.caster:EmitSound("Hero_SkeletonKing.CriticalStrike")
 
 			-- Remove crit mark
 			self.mortal_critical_strike = false
 
 			-- #5 Talent: Mortal Strike bonus health per damage
-			local bonus_health_pct = self.bonus_health_pct + self.caster:FindTalentValue("special_bonus_imba_skeleton_king_5")
+			local bonus_health_pct = self.bonus_health_pct
 
 			-- Calculate stacks to add
 			local new_stacks = damage * bonus_health_pct * 0.01
@@ -786,7 +990,7 @@ function modifier_imba_mortal_strike:OnAttackLanded(keys)
 				new_stacks = new_stacks * self.bonus_health_hero_mult
 			end
 
-			-- Each stack has its value, so the actual number of stacks is lower. Number is always rounded up
+			-- Each stack has its value, so the actual number of stacks is lower. Number is always rounded up 
 			new_stacks = math.ceil(new_stacks / self.stack_value)
 
 			-- Add (or refresh) the bonus health modifier
@@ -795,7 +999,7 @@ function modifier_imba_mortal_strike:OnAttackLanded(keys)
 				for i = 1, new_stacks do
 					modifier_health_handler:IncrementStackCount()
 					modifier_health_handler:ForceRefresh()
-				end
+				end                
 			end
 
 			if self.caster:HasTalent("special_bonus_imba_skeleton_king_8") then
@@ -814,10 +1018,30 @@ function modifier_imba_mortal_strike:OnAttackLanded(keys)
 					end
 				end
 			end
+			-- Make sure Wraith King can't do this: https://gfycat.com/gifs/detail/HealthyHighlevelKusimanse
+			if target:IsCreep() and not target:IsAncient() then
+				local damageTable = {
+					victim = target,
+					attacker = attacker,
+					damage = target:GetHealth() * (1 + 0.05 * math.abs(target:GetPhysicalArmorValue(false))) + 1,
+					damage_type = DAMAGE_TYPE_PURE,
+					ability = self:GetAbility()
+				}
+
+				ApplyDamage(damageTable)
+			end
 		end
 	end
 end
 
+function modifier_imba_mortal_strike:OnDeath(keys)
+	if not IsServer() then return end
+	
+	if self.caster == keys.attacker and (not keys.unit.WillReincarnate or keys.unit.WillReincarnate and not keys.unit:WillReincarnate()) then
+		self.skeleton_counter = math.min(self.skeleton_counter + 0.5, self.max_skeleton_charges)
+		self:SetStackCount(self.skeleton_counter)
+	end
+end
 
 -- Bonus health modifier
 modifier_imba_mortal_strike_buff = class({})
@@ -833,7 +1057,7 @@ function modifier_imba_mortal_strike_buff:OnCreated()
 		self.stack_value = self.ability:GetSpecialValueFor("stack_value")
 
 		-- Initialize table
-		self.stacks_table = {}
+		self.stacks_table = {}        
 
 		-- Start thinking
 		self:StartIntervalThink(0.1)
@@ -853,15 +1077,15 @@ function modifier_imba_mortal_strike_buff:OnIntervalThink()
 			-- For each stack, check if it is past its expiration time. If it is, remove it from the table
 			for i = #self.stacks_table, 1, -1 do
 				if self.stacks_table[i] + self.bonus_health_duration < GameRules:GetGameTime() then
-					table.remove(self.stacks_table, i)
+					table.remove(self.stacks_table, i)             
 				end
 			end
-
+			
 			-- If after removing the stacks, the table is empty, remove the modifier.
 			if #self.stacks_table == 0 then
 				self:Destroy()
 
-				-- Otherwise, set its stack count
+			-- Otherwise, set its stack count
 			else
 				self:SetStackCount(#self.stacks_table)
 			end
@@ -869,7 +1093,7 @@ function modifier_imba_mortal_strike_buff:OnIntervalThink()
 			-- Recalculate health bonus based on new stack count
 			self:GetParent():CalculateStatBonus()
 
-			-- If there are no stacks on the table, just remove the modifier.
+		-- If there are no stacks on the table, just remove the modifier.
 		else
 			self:Destroy()
 		end
@@ -914,7 +1138,7 @@ function modifier_imba_mortal_strike_buff_talent:OnCreated()
 		self.stack_value = self.ability:GetSpecialValueFor("stack_value")
 
 		-- Initialize table
-		self.stacks_table = {}
+		self.stacks_table = {}        
 
 		-- Start thinking
 		self:StartIntervalThink(0.1)
@@ -934,15 +1158,15 @@ function modifier_imba_mortal_strike_buff_talent:OnIntervalThink()
 			-- For each stack, check if it is past its expiration time. If it is, remove it from the table
 			for i = #self.stacks_table, 1, -1 do
 				if self.stacks_table[i] + self.bonus_health_duration < GameRules:GetGameTime() then
-					table.remove(self.stacks_table, i)
+					table.remove(self.stacks_table, i)             
 				end
 			end
-
+			
 			-- If after removing the stacks, the table is empty, remove the modifier.
 			if #self.stacks_table == 0 then
 				self:Destroy()
 
-				-- Otherwise, set its stack count
+			-- Otherwise, set its stack count
 			else
 				self:SetStackCount(#self.stacks_table)
 			end
@@ -950,7 +1174,7 @@ function modifier_imba_mortal_strike_buff_talent:OnIntervalThink()
 			-- Recalculate health bonus based on new stack count
 			self:GetParent():CalculateStatBonus()
 
-			-- If there are no stacks on the table, just remove the modifier.
+		-- If there are no stacks on the table, just remove the modifier.
 		else
 			self:Destroy()
 		end
@@ -993,16 +1217,18 @@ LinkLuaModifier("modifier_imba_reincarnation_wraith_form_buff", "abilities/dota_
 LinkLuaModifier("modifier_imba_reincarnation_wraith_form", "abilities/dota_imba/hero_skeleton_king.lua", LUA_MODIFIER_MOTION_NONE)
 
 function imba_wraith_king_reincarnation:GetAbilityTextureName()
-	return "skeleton_king_reincarnation"
+   return "skeleton_king_reincarnation"
 end
 
 function imba_wraith_king_reincarnation:GetManaCost(level)
 	local caster = self:GetCaster()
-	local ability = self
+	local ability = self    
 	local reincarnate_mana_cost = ability:GetSpecialValueFor("reincarnate_mana_cost")
 
 	-- #6 Talent: Reincarnation no longer needs mana
-	reincarnate_mana_cost = reincarnate_mana_cost - caster:FindTalentValue("special_bonus_imba_skeleton_king_6")
+	if caster:HasTalent("special_bonus_imba_skeleton_king_6") then
+		reincarnate_mana_cost = caster:FindTalentValue("special_bonus_imba_skeleton_king_6")
+	end
 
 	return reincarnate_mana_cost
 end
@@ -1010,10 +1236,20 @@ end
 function imba_wraith_king_reincarnation:OnAbilityPhaseStart() return false end
 
 function imba_wraith_king_reincarnation:GetBehavior()
-	if self:GetCaster():FindTalentValue("special_bonus_imba_skeleton_king_5", "talent_trained") == 1 then
+--	print("Reincarnation Behavior:", self:GetCaster():HasTalent("special_bonus_imba_skeleton_king_2"))
+
+	if self:GetCaster():HasTalent("special_bonus_imba_skeleton_king_5") then
 		return DOTA_ABILITY_BEHAVIOR_NO_TARGET + DOTA_ABILITY_BEHAVIOR_AUTOCAST
-	else
-		return DOTA_ABILITY_BEHAVIOR_PASSIVE
+	end
+
+	return DOTA_ABILITY_BEHAVIOR_PASSIVE
+end
+
+-- Should fully close out talent behavior change problems
+function imba_wraith_king_reincarnation:OnOwnerSpawned()
+	if not IsServer() then return end
+	if self:GetCaster():HasAbility("special_bonus_imba_skeleton_king_5") and self:GetCaster():FindAbilityByName("special_bonus_imba_skeleton_king_5"):IsTrained() and not self:GetCaster():HasModifier("modifier_special_bonus_imba_skeleton_king_5") then
+		self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_special_bonus_imba_skeleton_king_5", {})
 	end
 end
 
@@ -1031,9 +1267,15 @@ function imba_wraith_king_reincarnation:TheWillOfTheKing( OnDeathKeys, BuffInfo 
 		-- Use the Reincarnation's ability cooldown
 		BuffInfo.ability:UseResources(false, false, true)
 
+		-- THIS BLOCK FORCES NO CDR FOR """BALANCE""" REASONS IN MUTATION/FRANTIC
+		-- if GameMode:GetCustomGamemode() >= 1 then
+			-- BuffInfo.ability:StartCooldown(BuffInfo.ability:GetCooldown(BuffInfo.ability:GetLevel() - 1))
+		-- end
+
 		-- Play reincarnate sound
 		if BuffInfo.caster == unit then
-			local heroes = FindUnitsInRadius(BuffInfo.caster:GetTeamNumber(),
+			local heroes = FindUnitsInRadius(
+				BuffInfo.caster:GetTeamNumber(),
 				BuffInfo.caster:GetAbsOrigin(),
 				nil,
 				BuffInfo.slow_radius,
@@ -1041,9 +1283,10 @@ function imba_wraith_king_reincarnation:TheWillOfTheKing( OnDeathKeys, BuffInfo 
 				DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
 				DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD + DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS,
 				FIND_ANY_ORDER,
-				false)
+				false
+			)
 
-			if USE_MEME_SOUNDS and #heroes >= IMBA_PLAYERS_ON_GAME * 0.35 then
+			if USE_MEME_SOUNDS and #heroes >= PlayerResource:GetPlayerCount() * 0.35 then
 				BuffInfo.caster:EmitSound(BuffInfo.sound_be_back)
 			else
 				BuffInfo.caster:EmitSound(BuffInfo.sound_death)
@@ -1059,41 +1302,54 @@ function imba_wraith_king_reincarnation:TheWillOfTheKing( OnDeathKeys, BuffInfo 
 		ParticleManager:ReleaseParticleIndex(particle_death_fx)
 
 		-- Add a FOW Viewer, depending on if it is a day or night
-		if IsDaytime() then
+		if GameRules:IsDaytime() then
 			AddFOWViewer(BuffInfo.caster:GetTeamNumber(), BuffInfo.caster:GetAbsOrigin(), BuffInfo.caster:GetDayTimeVisionRange(), BuffInfo.reincarnate_delay, true)
 		else
 			AddFOWViewer(BuffInfo.caster:GetTeamNumber(), BuffInfo.caster:GetAbsOrigin(), BuffInfo.caster:GetNightTimeVisionRange(), BuffInfo.reincarnate_delay, true)
 		end
 
+		if BuffInfo.caster:HasTalent("special_bonus_imba_skeleton_king_10") then
+			local wraithfire_blast = BuffInfo.caster:FindAbilityByName("imba_wraith_king_wraithfire_blast")
+			
+			if wraithfire_blast and wraithfire_blast:IsTrained() then
+		
+				local enemies = FindUnitsInRadius(BuffInfo.caster:GetTeamNumber(), unit:GetAbsOrigin(), nil, 900, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
+				
+				for _, enemy in pairs(enemies) do
+					LaunchWraithblastProjectile(BuffInfo.caster, wraithfire_blast, unit, enemy, true, true)
+				end
+			end
+		end
+
 		-- Wait for the caster to reincarnate, then play its sound
 		--Timers:CreateTimer(BuffInfo.reincarnate_delay, function()
-		--    EmitSoundOn(BuffInfo.sound_reincarnation, BuffInfo.caster)
-		--end)
-
-	else
-		BuffInfo.reincarnation_death = false
+		--    EmitSoundOn(BuffInfo.sound_reincarnation, BuffInfo.caster) 
+		--end)                
+		
+	else                
+		BuffInfo.reincarnation_death = false     
 	end
 end
 
 -- Reicarnation modifier
 modifier_imba_reincarnation = modifier_imba_reincarnation or class({})
 
-function modifier_imba_reincarnation:OnCreated()
-	-- Ability properties
-	self.caster = self:GetCaster()
-	self.ability = self:GetAbility()
-	self.particle_death = "particles/units/heroes/hero_skeletonking/wraith_king_reincarnate.vpcf"
-	self.sound_death = "Hero_SkeletonKing.Reincarnate"
-	self.sound_reincarnation = "Hero_SkeletonKing.Reincarnate.Stinger"
-	self.sound_be_back = "Hero_WraithKing.IllBeBack"
-	self.modifier_wraith = "modifier_imba_reincarnation_wraith_form"
+function modifier_imba_reincarnation:OnCreated()    
+		-- Ability properties
+		self.caster = self:GetCaster()
+		self.ability = self:GetAbility()    
+		self.particle_death = "particles/units/heroes/hero_skeletonking/wraith_king_reincarnate.vpcf"
+		self.sound_death = "Hero_SkeletonKing.Reincarnate"
+		self.sound_reincarnation = "Hero_SkeletonKing.Reincarnate.Stinger"
+		self.sound_be_back = "Hero_WraithKing.IllBeBack"
+		self.modifier_wraith = "modifier_imba_reincarnation_wraith_form"
 
-	-- Ability specials
-	self.reincarnate_delay = self.ability:GetSpecialValueFor("reincarnate_delay")
-	self.passive_respawn_haste = self.ability:GetSpecialValueFor("passive_respawn_haste")
-	self.slow_radius = self.ability:GetSpecialValueFor("slow_radius")
-	self.slow_duration = self.ability:GetSpecialValueFor("slow_duration")
-	self.scepter_wraith_form_radius = self.ability:GetSpecialValueFor("scepter_wraith_form_radius")
+		-- Ability specials
+		self.reincarnate_delay = self.ability:GetSpecialValueFor("reincarnate_delay")
+		self.passive_respawn_haste = self.ability:GetSpecialValueFor("passive_respawn_haste")        
+		self.slow_radius = self.ability:GetSpecialValueFor("slow_radius")
+		self.slow_duration = self.ability:GetSpecialValueFor("slow_duration")
+		self.scepter_wraith_form_radius = self.ability:GetSpecialValueFor("scepter_wraith_form_radius")        
 
 	if IsServer() then
 		-- Set WK as immortal!
@@ -1104,7 +1360,7 @@ function modifier_imba_reincarnation:OnCreated()
 	end
 end
 
-function modifier_imba_reincarnation:IsHidden()
+function modifier_imba_reincarnation:IsHidden() 
 	if self:GetParent() == self.caster then
 		return true
 	else
@@ -1116,27 +1372,27 @@ function modifier_imba_reincarnation:IsDebuff() return false end
 
 function modifier_imba_reincarnation:OnIntervalThink()
 	-- If caster has sufficent mana and the ability is ready, apply
-	if (self.caster:GetMana() >= self.ability:GetManaCost(-1)) and (self.ability:IsCooldownReady()) and (not self.caster:HasModifier("modifier_item_imba_aegis")) then
+	if (self.ability:IsOwnersManaEnough()) and (self.ability:IsCooldownReady()) and (not self.caster:HasModifier("modifier_item_imba_aegis")) then
 		self.can_die = false
 	else
 		self.can_die = true
 	end
 
-	if CalcDistanceBetweenEntityOBB(self:GetParent(),self.caster) > self.caster:FindTalentValue("special_bonus_imba_skeleton_king_5","radius") then
-		self:Destroy()
-	end
+	if self:GetParent():HasTalent("special_bonus_imba_skeleton_king_5") and self:GetCaster():IsAlive() then
+		if CalcDistanceBetweenEntityOBB(self:GetParent(), self.caster) > self.caster:FindTalentValue("special_bonus_imba_skeleton_king_5") then
+			self:Destroy()
+		end
 
-	if self:GetParent():FindTalentValue("special_bonus_imba_skeleton_king_5", "talent_trained") == 1 and self:GetCaster():IsAlive() then
 		if self:GetAbility():GetAutoCastState() and self:GetAbility():IsCooldownReady()  then
 			local units = FindUnitsInRadius(self.caster:GetTeamNumber(),
-				self.caster:GetAbsOrigin(),
-				nil,
-				self.caster:FindTalentValue("special_bonus_imba_skeleton_king_5","radius"),
-				DOTA_UNIT_TARGET_TEAM_FRIENDLY,
-				DOTA_UNIT_TARGET_HERO,
-				DOTA_UNIT_TARGET_FLAG_NONE,
-				FIND_ANY_ORDER,
-				false)
+									self.caster:GetAbsOrigin(),
+									nil,
+									self.caster:FindTalentValue("special_bonus_imba_skeleton_king_5"),
+									DOTA_UNIT_TARGET_TEAM_FRIENDLY,
+									DOTA_UNIT_TARGET_HERO,
+									DOTA_UNIT_TARGET_FLAG_NONE,
+									FIND_ANY_ORDER,
+									false)
 			for _,unit in pairs(units) do
 				if unit ~= self.caster then
 					unit:AddNewModifier(self.caster, self.ability, "modifier_imba_reincarnation", {})
@@ -1152,28 +1408,20 @@ function modifier_imba_reincarnation:OnRefresh()
 end
 
 function modifier_imba_reincarnation:DeclareFunctions()
-	local decFuncs = {MODIFIER_PROPERTY_REINCARNATION,
-		MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS,
-		MODIFIER_EVENT_ON_DEATH,
-		MODIFIER_PROPERTY_RESPAWNTIME_STACKING}
+	local decFuncs = {MODIFIER_PROPERTY_REINCARNATION,                      
+					  MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS,
+					  MODIFIER_EVENT_ON_DEATH,
+					  MODIFIER_PROPERTY_RESPAWNTIME_STACKING}
 
 	return decFuncs
 end
 
 function modifier_imba_reincarnation:ReincarnateTime()
-	if IsServer() then
+	if IsServer() then  
 		if not self.can_die and self.caster:IsRealHero() then
 			return self.reincarnate_delay
 		end
 
-		return nil
-	end
-end
-
-function modifier_imba_reincarnation:RespawnTimeStacking()
-	if self:GetParent() == self.caster then
-		return self.passive_respawn_haste * (-1)
-	else
 		return nil
 	end
 end
@@ -1192,9 +1440,9 @@ function modifier_imba_reincarnation:OnDeath(keys)
 		local reincarnate = keys.reincarnate
 
 		-- Only apply if the caster is the unit that died
-		if self:GetParent() == unit then
+		if self:GetParent() == unit then            
 			imba_wraith_king_reincarnation:TheWillOfTheKing( keys, self )
-
+			
 		end
 	end
 end
@@ -1206,12 +1454,12 @@ function modifier_imba_reincarnation:GetAuraRadius()
 end
 
 function modifier_imba_reincarnation:GetAuraEntityReject(target)
-	-- Aura ignores everyone that are already under the effects of Wraith Form
-	if target:HasModifier(self.modifier_wraith) then
-		return true
+	-- Aura ignores everyone that are already under the effects of Wraith Form (also edge case for Phoenix Scepter Supernova -_-)
+	if target:HasModifier(self.modifier_wraith) or (target:HasModifier("modifier_imba_phoenix_supernova_scepter_passive") and target:HasScepter() and not target:HasModifier("modifier_imba_phoenix_supernova_scepter_passive_cooldown")) then
+		return true 
 	end
 
-	return false
+	return false    
 end
 
 function modifier_imba_reincarnation:GetAuraSearchFlags()
@@ -1231,8 +1479,8 @@ function modifier_imba_reincarnation:GetModifierAura()
 end
 
 function modifier_imba_reincarnation:IsAura()
-	if self.caster:IsRealHero() and self.caster:HasScepter() and self.caster == self:GetParent() then
-		return true
+	if not self.caster:IsNull() and self.caster:IsRealHero() and self.caster:HasScepter() and self.caster == self:GetParent() then
+		return true        
 	end
 
 	return false
@@ -1249,14 +1497,14 @@ function modifier_imba_reincarnation_wraith_form_buff:OnCreated()
 	self.parent = self:GetParent()
 	self.modifier_wraith_form = "modifier_imba_reincarnation_wraith_form"
 
-	-- Ability specials
+	-- Ability specials    
 	self.scepter_wraith_form_duration = self.ability:GetSpecialValueFor("scepter_wraith_form_duration")
 	self.max_wraith_form_heroes = self.ability:GetSpecialValueFor("max_wraith_form_heroes")
 end
 
 function modifier_imba_reincarnation_wraith_form_buff:DeclareFunctions()
 	local decFuncs = {MODIFIER_PROPERTY_MIN_HEALTH,
-		MODIFIER_EVENT_ON_TAKEDAMAGE}
+					  MODIFIER_EVENT_ON_TAKEDAMAGE}
 
 	return decFuncs
 end
@@ -1268,13 +1516,13 @@ end
 function modifier_imba_reincarnation_wraith_form_buff:OnTakeDamage(keys)
 	if IsServer() then
 		local attacker = keys.attacker
-		local target = keys.unit
+		local target = keys.unit 
 		local damage = keys.damage
 
 		-- Only apply if the unit taking damage is the parent
 		if self.parent == target then
-
-			-- Check if the damage is fatal
+			
+			-- Check if the damage is fatal 
 			if damage >= self.parent:GetHealth() then
 
 				-- Check for Shallow Grave: nothing happens
@@ -1311,7 +1559,7 @@ function modifier_imba_reincarnation_wraith_form_buff:OnTakeDamage(keys)
 							keys.inflictor.ghost_death = true
 						end
 					end
-				end
+				end                
 			end
 		end
 	end
@@ -1341,11 +1589,11 @@ function modifier_imba_reincarnation_wraith_form:IsPurgable() return false end
 
 function modifier_imba_reincarnation_wraith_form:DeclareFunctions()
 	local decFuncs = {MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_MAGICAL,
-		MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL,
-		MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PURE,
-		MODIFIER_PROPERTY_DISABLE_HEALING,
-		MODIFIER_PROPERTY_MODEL_SCALE,
-		MODIFIER_EVENT_ON_TAKEDAMAGE}
+					  MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL,
+					  MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PURE,
+					  MODIFIER_PROPERTY_DISABLE_HEALING,
+					  MODIFIER_PROPERTY_MODEL_SCALE,
+					  MODIFIER_EVENT_ON_TAKEDAMAGE}
 
 	return decFuncs
 end
@@ -1387,7 +1635,7 @@ function modifier_imba_reincarnation_wraith_form:OnTakeDamage( keys )
 
 	if keys.damage_type == DAMAGE_TYPE_PHYSICAL then
 		local source_dmg = keys.original_damage
-		local armor = keys.unit:GetPhysicalArmorValue()
+		local armor = keys.unit:GetPhysicalArmorValue(false)
 		local multiplier = 1 - (0.06 * armor) / (1 + 0.06 * math.abs(armor))
 		local actually_dmg = source_dmg * multiplier
 		self.damage_pool = self.damage_pool + actually_dmg
@@ -1416,8 +1664,8 @@ end
 
 function modifier_imba_reincarnation_wraith_form:CheckState()
 	local state = {[MODIFIER_STATE_NO_HEALTH_BAR] = true,
-		[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
-		[MODIFIER_STATE_FLYING_FOR_PATHING_PURPOSES_ONLY] = true}
+				   [MODIFIER_STATE_NO_UNIT_COLLISION] = true,
+				   [MODIFIER_STATE_FLYING_FOR_PATHING_PURPOSES_ONLY] = true}
 	return state
 end
 
@@ -1425,17 +1673,19 @@ function modifier_imba_reincarnation_wraith_form:OnDestroy()
 	if IsServer() then
 		-- Force kill the unit
 		TrueKill(self.original_killer, self.parent, self.ability_killer)
+
 		if self.parent:IsAlive() then
 			self.parent:Kill(self.ability_killer, self.original_killer)
 		end
+
 		if self.parent:IsAlive() then
 			local damageTable = {
-				victim = self.parent,
-				attacker = self.original_killer,
-				damage = 100000000,
-				damage_type = DAMAGE_TYPE_PURE,
-				ability = self.ability_killer,
-				damage_flags = DOTA_DAMAGE_FLAG_BYPASSES_INVULNERABILITY + DOTA_DAMAGE_FLAG_BYPASSES_BLOCK + DOTA_DAMAGE_FLAG_HPLOSS + DOTA_DAMAGE_FLAG_NO_DAMAGE_MULTIPLIERS + DOTA_DAMAGE_FLAG_REFLECTION,
+			victim = self.parent,
+			attacker = self.original_killer,
+			damage = 100000000,
+			damage_type = DAMAGE_TYPE_PURE,
+			ability = self.ability_killer,
+			damage_flags = DOTA_DAMAGE_FLAG_BYPASSES_INVULNERABILITY + DOTA_DAMAGE_FLAG_BYPASSES_BLOCK + DOTA_DAMAGE_FLAG_HPLOSS + DOTA_DAMAGE_FLAG_NO_DAMAGE_MULTIPLIERS + DOTA_DAMAGE_FLAG_REFLECTION,
 			}
 			ApplyDamage(damageTable)
 		end
@@ -1461,7 +1711,7 @@ end
 --        KINGDOM COME        --
 --------------------------------
 imba_wraith_king_kingdom_come = imba_wraith_king_kingdom_come or class({})
-LinkLuaModifier("modifier_imba_kingdom_come", "abilities/dota_imba/hero_skeleton_king.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_imba_kingdom_come", "abilities/dota_imba/hero_skeleton_king.lua", LUA_MODIFIER_MOTION_NONE)    
 LinkLuaModifier("modifier_imba_kingdom_come_slow", "abilities/dota_imba/hero_skeleton_king.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_imba_kingdom_come_stun", "abilities/dota_imba/hero_skeleton_king.lua", LUA_MODIFIER_MOTION_NONE)
 
@@ -1470,7 +1720,7 @@ function imba_wraith_king_kingdom_come:IsRefreshable()             return true e
 function imba_wraith_king_kingdom_come:IsStealable()               return true end
 
 function imba_wraith_king_kingdom_come:GetAbilityTextureName()
-	return "custom/wraith_king_wraithfire_aura"
+   return "custom/wraith_king_wraithfire_aura"
 end
 
 function imba_wraith_king_kingdom_come:GetCastAnimation()
@@ -1487,30 +1737,50 @@ function imba_wraith_king_kingdom_come:GetIntrinsicModifierName()
 end
 
 function imba_wraith_king_kingdom_come:GetBehavior()
-	if self:GetCaster():FindTalentValue("special_bonus_imba_skeleton_king_2","talent_trained") == 0 then
-		return DOTA_ABILITY_BEHAVIOR_PASSIVE + DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE
-	else
-		return DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE + DOTA_ABILITY_BEHAVIOR_NO_TARGET
+--	print("Kingdom Come Behavior:", self:GetCaster():HasTalent("special_bonus_imba_skeleton_king_2"))
+
+	if self:GetCaster():HasTalent("special_bonus_imba_skeleton_king_2") then
+		return DOTA_ABILITY_BEHAVIOR_NO_TARGET
+	end
+
+	return DOTA_ABILITY_BEHAVIOR_PASSIVE
+end
+
+-- Should fully close out talent behavior change problems
+function imba_wraith_king_kingdom_come:OnOwnerSpawned()
+	if not IsServer() then return end
+	if self:GetCaster():HasAbility("special_bonus_imba_skeleton_king_2") and self:GetCaster():FindAbilityByName("special_bonus_imba_skeleton_king_2"):IsTrained() and not self:GetCaster():HasModifier("modifier_special_bonus_imba_skeleton_king_2") then
+		self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_special_bonus_imba_skeleton_king_2", {})
 	end
 end
 
 function imba_wraith_king_kingdom_come:GetCastPoint()
-	if self:GetCaster():FindTalentValue("special_bonus_imba_skeleton_king_2","talent_trained") == 0 then
-		return nil
-	else
+	if self:GetBehavior() ~= DOTA_ABILITY_BEHAVIOR_PASSIVE then
 		return 1.0
 	end
+
+	return nil
 end
 
 function imba_wraith_king_kingdom_come:GetCooldown()
-	if self:GetCaster():FindTalentValue("special_bonus_imba_skeleton_king_2","talent_trained") == 0 then
-		return nil
-	else
-		return self:GetCaster():FindTalentValue("special_bonus_imba_skeleton_king_2","cooldown")
+	if self:GetBehavior() ~= DOTA_ABILITY_BEHAVIOR_PASSIVE then
+		return self:GetCaster():FindTalentValue("special_bonus_imba_skeleton_king_2")
 	end
+
+	return 0
 end
 
-function imba_wraith_king_kingdom_come:OnSpellStart()
+function imba_wraith_king_kingdom_come:OnAbilityPhaseStart()
+	self:GetCaster():EmitSound("Hero_WraithKing.EruptionCast")
+
+	return true
+end
+
+function imba_wraith_king_kingdom_come:OnAbilityPhaseInterrupted()
+	self:GetCaster():StopSound("Hero_WraithKing.EruptionCast")
+end
+
+function imba_wraith_king_kingdom_come:OnSpellStart()    
 	local keys = self:GetCaster():FindModifierByNameAndCaster("modifier_imba_kingdom_come", self:GetCaster())
 	-- Create Kingdom
 
@@ -1520,16 +1790,21 @@ end
 modifier_imba_kingdom_come = class({})
 
 function modifier_imba_kingdom_come:OnCreated()
+	-- elfansoer: fix intrinsic problem
+	if IsServer() and self:GetAbility():GetLevel()<1 then
+		self:Destroy()
+		return
+	end
+
 	-- Ability properties
 	self.caster = self:GetCaster()
 	self.ability = self:GetAbility()
-	self.sound_kingdom = "Hero_WraithKing.EruptionCast"
 	self.particle_kingdom = "particles/hero/skeleton_king/wraith_king_hellfire_eruption_tell.vpcf"
 	self.modifier_slow = "modifier_imba_kingdom_come_slow"
 
 	-- Ability specials
 	self.radius = self.ability:GetSpecialValueFor("radius")
-	self.slow_duration = self.ability:GetSpecialValueFor("slow_duration")
+	self.slow_duration = self.ability:GetSpecialValueFor("slow_duration")        
 end
 
 function modifier_imba_kingdom_come:IsHidden() return true end
@@ -1559,31 +1834,32 @@ end
 -- Kingdom Come slow
 modifier_imba_kingdom_come_slow = class({})
 
-function modifier_imba_kingdom_come_slow:OnCreated()
+function modifier_imba_kingdom_come_slow:OnCreated()    
 	-- Ability properties
 	self.caster = self:GetCaster()
 	self.ability = self:GetAbility()
 	self.parent = self:GetParent()
 	self.particle_slow = "particles/units/heroes/hero_skeletonking/wraith_king_reincarnate_slow_debuff.vpcf"
 	self.modifier_stun = "modifier_imba_kingdom_come_stun"
-
+	self.position = self:GetCaster():GetAbsOrigin()
+	
 	-- Ability specials
 	self.ms_slow_pct = self.ability:GetSpecialValueFor("ms_slow_pct")
 	self.as_slow = self.ability:GetSpecialValueFor("as_slow")
 	self.stun_duration = self.ability:GetSpecialValueFor("stun_duration")
-	self.damage = self.ability:GetSpecialValueFor("damage")
+	self.damage = self.ability:GetSpecialValueFor("damage")        
 	self.radius = self.ability:GetSpecialValueFor("radius")
 	self.wraith_duration = self.ability:GetSpecialValueFor("wraith_duration")
 
 	-- Add particle effect
 	local particle_slow_fx = ParticleManager:CreateParticle(self.particle_slow, PATTACH_ABSORIGIN_FOLLOW, self.parent)
 	ParticleManager:SetParticleControl(particle_slow_fx, 0, self.parent:GetAbsOrigin())
-	self:AddParticle(particle_slow_fx, false, false, -1, false, false)
+	self:AddParticle(particle_slow_fx, false, false, -1, false, false)    
 end
 
 function modifier_imba_kingdom_come_slow:DeclareFunctions()
 	local decFuncs = {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT}
+					  MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT}
 
 	return decFuncs
 end
@@ -1600,15 +1876,15 @@ function modifier_imba_kingdom_come_slow:GetModifierAttackSpeedBonus_Constant()
 	return self.as_slow * (-1)
 end
 
-function modifier_imba_kingdom_come_slow:OnDestroy()
+function modifier_imba_kingdom_come_slow:OnDestroy()    
 	if IsServer() then
-		-- Check the distance, see if it's still inside the ring AoE
-		local distance = (self.caster:GetAbsOrigin() - self.parent:GetAbsOrigin()):Length2D()
+		-- Check the distance, see if it's still inside the ring AoE        
+		local distance = (self.position - self.parent:GetAbsOrigin()):Length2D()
 
 		-- if the parent is too far, do nothing
 		if distance > self.radius then
 			return nil
-		end
+		end 
 
 		-- If this is a real hero, stun and deal damage to it
 		if self.parent:IsRealHero() then
@@ -1616,19 +1892,25 @@ function modifier_imba_kingdom_come_slow:OnDestroy()
 			self.parent:AddNewModifier(self.caster, self.ability, self.modifier_stun, {duration = self.stun_duration})
 
 			local damageTable = {victim = self.parent,
-				attacker = self.caster,
-				damage = self.damage,
-				damage_type = DAMAGE_TYPE_MAGICAL,
-				ability = self.ability
-			}
-
+								 attacker = self.caster, 
+								 damage = self.damage,
+								 damage_type = DAMAGE_TYPE_MAGICAL,
+								 ability = self.ability
+								 }
+			
 			ApplyDamage(damageTable)
 
 			-- Summon a Wraith near it
 			local direction = (self.parent:GetAbsOrigin() - self.caster:GetAbsOrigin()):Normalized()
 			local distance = (self.parent:GetAbsOrigin() - self.caster:GetAbsOrigin()):Length2D()
 			local summon_point = self.caster:GetAbsOrigin() + direction * distance - 100
-			local wraith = CreateUnitByName("npc_imba_wraith_king_wraith", summon_point, true, self.caster, self.caster, self.caster:GetTeamNumber())
+
+			-- elfansoer: fix missing unit
+			-- local wraith = CreateUnitByName("npc_imba_wraith_king_wraith", summon_point, true, self.caster, self.caster, self.caster:GetTeamNumber())        
+			local wraith = CreateUnitByName("npc_dota_wraith_king_skeleton_warrior", summon_point, true, self.caster, self.caster, self.caster:GetTeamNumber())        
+			wraith:SetModel( "models/creeps/neutral_creeps/n_creep_ghost_b/n_creep_ghost_frost.vmdl" )
+			wraith:SetOriginalModel( "models/creeps/neutral_creeps/n_creep_ghost_b/n_creep_ghost_frost.vmdl" )
+			wraith:AddAbility( "imba_wraith_king_wraith_soul_strike" ):SetLevel( 1 )
 
 			-- Set the wraith as controllable by the player
 			local playerid = self.caster:GetPlayerID()
@@ -1645,13 +1927,12 @@ function modifier_imba_kingdom_come_slow:OnDestroy()
 			wraith:SetHealth(wraith:GetMaxHealth())
 
 			-- Set the Wraith to die after a small duration
-			wraith:AddNewModifier(self.caster, self.ability, "modifier_kill", {duration = self.wraith_duration})
+			wraith:AddNewModifier(wraith, nil, "modifier_kill", {duration = self.wraith_duration})
 
 			ResolveNPCPositions(self.parent:GetAbsOrigin(), 164)
-
-			-- If it is a creep or an illusion, instantly kill it
+		-- If it is a creep or an illusion, instantly kill it
 		else
-			if not IsRoshan(self.parent) and not self.parent:IsConsideredHero() then
+			if (self.parent:IsCreep() and not self.parent:IsAncient()) or self.parent:IsIllusion() then
 				self.parent:Kill(self.ability, self.caster)
 			end
 		end
@@ -1668,7 +1949,7 @@ function modifier_imba_kingdom_come_stun:CheckState()
 end
 
 function modifier_imba_kingdom_come_stun:IsHidden() return false end
-function modifier_imba_kingdom_come_stun:IsPurgeException() return false end
+function modifier_imba_kingdom_come_stun:IsPurgeException() return false end 
 function modifier_imba_kingdom_come_stun:IsStunDebuff() return false end
 
 function modifier_imba_kingdom_come_stun:GetEffectName()
@@ -1681,17 +1962,17 @@ end
 
 function imba_wraith_king_create_kingdom(keys)
 	local enemy_units = FindUnitsInRadius(keys.caster:GetTeamNumber(),
-		keys.caster:GetAbsOrigin(),
-		nil,
-		keys.radius,
-		DOTA_UNIT_TARGET_TEAM_ENEMY,
-		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-		DOTA_UNIT_TARGET_FLAG_NONE,
-		FIND_ANY_ORDER,
-		false)
+									 keys.caster:GetAbsOrigin(),
+									 nil,
+									 keys.radius,
+									 DOTA_UNIT_TARGET_TEAM_ENEMY,
+									 DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+									 DOTA_UNIT_TARGET_FLAG_NONE,
+									 FIND_ANY_ORDER,
+									 false)
 
 	for _,enemy_unit in pairs(enemy_units) do
-		enemy_unit:AddNewModifier(keys.caster, keys.ability, keys.modifier_slow, {duration = keys.slow_duration})
+				enemy_unit:AddNewModifier(keys.caster, keys.ability, keys.modifier_slow, {duration = keys.slow_duration})
 	end
 
 	-- Play the Wraith Fire ring particle
@@ -1713,11 +1994,11 @@ end
 --    WRAITH'S SOUL STRIKE    --
 --------------------------------
 imba_wraith_king_wraith_soul_strike = class({})
-LinkLuaModifier("modifier_imba_wraith_soul_strike", "abilities/dota_imba/hero_skeleton_king.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_imba_wraith_soul_strike_slow", "abilities/dota_imba/hero_skeleton_king.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_imba_wraith_soul_strike", "abilities/dota_imba/hero_skeleton_king.lua", LUA_MODIFIER_MOTION_NONE)    
+LinkLuaModifier("modifier_imba_wraith_soul_strike_slow", "abilities/dota_imba/hero_skeleton_king.lua", LUA_MODIFIER_MOTION_NONE)    
 
 function imba_wraith_king_wraith_soul_strike:GetAbilityTextureName()
-	return "ghost_frost_attack"
+   return "ghost_frost_attack"
 end
 
 function imba_wraith_king_wraith_soul_strike:GetIntrinsicModifierName()
@@ -1728,8 +2009,14 @@ modifier_imba_wraith_soul_strike = class({})
 
 function modifier_imba_wraith_soul_strike:OnCreated()
 	if IsServer() then
+		-- elfansoer: fix intrinsic problem
+		if IsServer() and self:GetAbility():GetLevel()<1 then
+			self:Destroy()
+			return
+		end
+
 		-- Ability properties
-		self.caster = self:GetCaster()
+		self.caster = self:GetCaster()    
 		self.ability = self:GetAbility()
 		self.owner = self.caster:GetOwner()
 		self.modifier_slow = "modifier_imba_wraith_soul_strike_slow"
@@ -1745,7 +2032,7 @@ end
 
 function modifier_imba_wraith_soul_strike:DeclareFunctions()
 	local decFuncs = {MODIFIER_EVENT_ON_ATTACK,
-		MODIFIER_EVENT_ON_ATTACK_LANDED}
+					  MODIFIER_EVENT_ON_ATTACK_LANDED}
 
 	return decFuncs
 end
@@ -1755,28 +2042,28 @@ function modifier_imba_wraith_soul_strike:OnAttack(keys)
 		local target = keys.target
 		local attacker = keys.attacker
 
-		-- Only apply on caster's attacks
+		-- Only apply on caster's attacks 
 		if attacker == self.caster then
 
 			-- Reduce a stack
-			self:DecrementStackCount()
+			self:DecrementStackCount()     
 
-			-- If there are no more stacks, kill the Wraith
+			-- If there are no more stacks, kill the Wraith            
 			local stacks = self:GetStackCount()
-			if stacks == 0 then
+			if stacks == 0 then            
 				Timers:CreateTimer(0.3, function()
 					self.caster:Kill(self.ability, self.caster)
 				end)
 			end
 		end
 	end
-end
+end 
 
-function modifier_imba_wraith_soul_strike:OnAttackLanded(keys)
+function modifier_imba_wraith_soul_strike:OnAttackLanded(keys)    
 	local target = keys.target
 	local attacker = keys.attacker
 
-	-- Only apply on caster's attacks
+	-- Only apply on caster's attacks 
 	if attacker == self.caster then
 
 		-- If the target is a building, do nothing
@@ -1787,14 +2074,14 @@ function modifier_imba_wraith_soul_strike:OnAttackLanded(keys)
 		-- Calculate damage based on Max HP
 		local damage = self.caster:GetMaxHealth() * self.max_hp_as_damage_pct * 0.01
 
-		-- Deal pure damage to enemy
+		-- Deal pure damage to enemy 
 		local damageTable = {victim = target,
-			attacker = self.caster,
-			damage = damage,
-			damage_type = DAMAGE_TYPE_MAGICAL,
-			ability = self.ability
-		}
-
+							 attacker = self.caster, 
+							 damage = damage,
+							 damage_type = DAMAGE_TYPE_MAGICAL,
+							 ability = self.ability
+							 }
+		
 		ApplyDamage(damageTable)
 
 		-- #4 Talent: Kingdom Come Wraiths's attacks slow enemies
@@ -1829,7 +2116,7 @@ end
 
 function modifier_imba_wraith_soul_strike_slow:IsHidden() return false end
 function modifier_imba_wraith_soul_strike_slow:IsPurgable() return false end
-function modifier_imba_wraith_soul_strike_slow:IsDebuff() return false end
+function modifier_imba_wraith_soul_strike_slow:IsDebuff() return true end
 
 function modifier_imba_wraith_soul_strike_slow:DeclareFunctions()
 	local decFuncs = {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE}

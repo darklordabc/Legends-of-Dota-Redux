@@ -16,9 +16,20 @@
 --     Firetoad
 --     AtroCty, 23.04.2017
 --     suthernfriend, 03.02.2018
+--     Elfansoer, 17.08.2019
 
 if IsClient() then
     require('lib/util_imba_client')
+
+	-- define gettalent
+	function C_DOTABaseAbility:GetTalentSpecialValueFor( str )
+		return self:GetSpecialValueFor( str )
+	end
+else
+	-- define gettalent
+	function CDOTABaseAbility:GetTalentSpecialValueFor( str )
+		return self:GetSpecialValueFor( str )
+	end
 end
 
 CreateEmptyTalents("venomancer")
@@ -57,6 +68,12 @@ function modifier_imba_toxicity:RemoveOnDeath() return false end
 
 function modifier_imba_toxicity:OnCreated()
 	if IsServer() then
+		-- elfansoer: fix intrinsic problem
+		if self:GetAbility():GetLevel()<1 then
+			self:Destroy()
+			return
+		end
+
 		self:StartIntervalThink(1)
 	end
 end
@@ -137,7 +154,9 @@ function modifier_imba_toxicity_debuff:DeclareFunctions()
 end
 
 function modifier_imba_toxicity_debuff:GetModifierMagicalResistanceBonus()
-	return (self:GetAbility():GetTalentSpecialValueFor("magic_amp_pct") * self:GetStackCount()) * (-1)
+	-- elfansoer: fix toxicity not giving appropriate bonus
+	-- return (self:GetAbility():GetTalentSpecialValueFor("magic_amp_pct") * self:GetStackCount()) * (-1)
+	return (self:GetAbility():GetSpecialValueFor("magic_amp_pct") * self:GetStackCount()) * (-1)
 end
 
 -------------------------------------------
@@ -157,7 +176,7 @@ function imba_venomancer_venomous_gale:GetAbilityTextureName()
 end
 -------------------------------------------
 
-function imba_venomancer_venomous_gale:GetCastRange( location , target)
+function imba_venomancer_venomous_gale:GetCastRange(location , target)
 	local range = self:GetSpecialValueFor("cast_range")
 	if IsServer() then
 		local caster = self:GetCaster()
@@ -191,6 +210,18 @@ function imba_venomancer_venomous_gale:OnSpellStart()
 		local caster = self:GetCaster()
 		local target_loc = self:GetCursorPosition()
 		local caster_loc
+		local cast_range = self:GetSpecialValueFor("cast_range")
+		local ward_range = self:GetSpecialValueFor("ward_range") + GetCastRangeIncrease(caster)
+
+		if (caster:GetAbsOrigin() - target_loc):Length2D() >= (cast_range + GetCastRangeIncrease(caster)) then
+			local wards = FindUnitsInRadius(caster:GetTeamNumber(), target_loc, nil, ward_range, DOTA_UNIT_TARGET_TEAM_FRIENDLY,  DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_INVULNERABLE, FIND_CLOSEST, false)
+			for _, ward in pairs(wards) do
+				if ward:GetUnitName() == "npc_imba_venomancer_scourge_ward" then
+					self.bWardCaster = ward
+					break
+				end
+			end
+		end
 
 		local mouth_pfx = ParticleManager:CreateParticle("particles/units/heroes/hero_venomancer/venomancer_venomous_gale_mouth.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
 		if self.bWardCaster then
@@ -212,8 +243,8 @@ function imba_venomancer_venomous_gale:OnSpellStart()
 		local strike_damage = self:GetSpecialValueFor("strike_damage")
 		local tick_damage = self:GetSpecialValueFor("tick_damage")
 		local tick_interval = self:GetSpecialValueFor("tick_interval")
-		local radius = self:GetSpecialValueFor("radius")
 		local projectile_speed = self:GetSpecialValueFor("speed")
+		local radius = self:GetSpecialValueFor("radius")
 
 		local direction
 		if target_loc == caster_loc then
@@ -322,8 +353,6 @@ end
 modifier_imba_venomous_gale = class({})
 function modifier_imba_venomous_gale:IsDebuff() return true end
 function modifier_imba_venomous_gale:IsHidden() return false end
-function modifier_imba_venomous_gale:IsPurgable() return false end
-function modifier_imba_venomous_gale:IsPurgeException() return true end
 function modifier_imba_venomous_gale:IsStunDebuff() return false end
 function modifier_imba_venomous_gale:RemoveOnDeath() return true end
 -------------------------------------------
@@ -429,6 +458,14 @@ function modifier_imba_poison_sting:IsStunDebuff() return false end
 function modifier_imba_poison_sting:RemoveOnDeath() return false end
 -------------------------------------------
 
+-- elfansoer: fix intrinsic problem
+function modifier_imba_poison_sting:OnCreated()
+	if IsServer() and self:GetAbility():GetLevel()<1 then
+		self:Destroy()
+		return
+	end
+end
+
 function modifier_imba_poison_sting:DeclareFunctions()
 	local decFuns =
 		{
@@ -457,6 +494,9 @@ function modifier_imba_poison_sting:OnAttackLanded( params )
 		local caster = self:GetCaster()
 		local ability = self:GetAbility()
 		local duration = ability:GetSpecialValueFor("duration")
+		
+		if caster:PassivesDisabled() then return end
+		
 		if (caster == params.attacker) and (params.target.IsCreep or params.target.IsHero) then
 			if not params.target:IsBuilding() then
 				local mod = params.target:AddNewModifier(caster, ability, "modifier_imba_poison_sting_debuff", {duration = duration})
@@ -469,9 +509,13 @@ function modifier_imba_poison_sting:OnAttackLanded( params )
 			if (params.attacker:GetPlayerOwnerID() == caster:GetPlayerID()) and params.attacker.bIsScourge and (params.target.IsCreep or params.target.IsHero) then
 				if not params.target:IsBuilding() then
 					local poison = params.target:FindModifierByNameAndCaster("modifier_imba_poison_sting_debuff",caster)
+					
 					if poison then
 						poison:SetDuration(poison:GetDuration(), true)
+					else -- Scrouge Wards can now apply poison sting but it won't make it stack like crazy without talent
+						params.target:AddNewModifier(caster, ability, "modifier_imba_poison_sting_debuff", {duration = duration})
 					end
+					
 					if caster:HasTalent("special_bonus_imba_venomancer_8") then
 						local mod = params.target:AddNewModifier(caster, ability, "modifier_imba_poison_sting_debuff_ward", {duration = duration})
 						if mod then
@@ -488,8 +532,6 @@ end
 modifier_imba_poison_sting_debuff = class({})
 function modifier_imba_poison_sting_debuff:IsDebuff() return true end
 function modifier_imba_poison_sting_debuff:IsHidden() return false end
-function modifier_imba_poison_sting_debuff:IsPurgable() return false end
-function modifier_imba_poison_sting_debuff:IsPurgeException() return false end
 function modifier_imba_poison_sting_debuff:IsStunDebuff() return false end
 function modifier_imba_poison_sting_debuff:RemoveOnDeath() return true end
 -------------------------------------------
@@ -512,6 +554,10 @@ function modifier_imba_poison_sting_debuff:OnCreated(params)
 end
 
 function modifier_imba_poison_sting_debuff:OnRefresh(params)
+	if not IsServer() then return end
+	
+	self:SetDuration(self:GetAbility():GetSpecialValueFor("duration") * (1 - self:GetParent():GetStatusResistance()), true)
+
 	self:OnCreated(params)
 end
 
@@ -524,14 +570,16 @@ function modifier_imba_poison_sting_debuff:DamageTick(bFirstHit)
 	end
 	local parent = self:GetParent()
 	if IsServer() then
-		SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, parent, damage, nil)
-		-- If the enemy is at low enough HP, kill it
-		if parent:GetHealth() <= (damage + 5) then
-			ApplyDamage({attacker = self:GetCaster(), victim = parent, ability = self:GetAbility(), damage = damage + 10, damage_type = DAMAGE_TYPE_PURE})
-			-- Else, remove some HP from it
-		else
-			parent:SetHealth(parent:GetHealth() - damage)
-		end
+		local final_damage 	= ApplyDamage({
+			attacker 		= self:GetCaster(),
+			victim 			= parent,
+			ability 		= self:GetAbility(),
+			damage 			= damage,
+			damage_type 	= DAMAGE_TYPE_MAGICAL,
+			damage_flags	= DOTA_DAMAGE_FLAG_HPLOSS
+		})
+		
+		SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, parent, final_damage, nil)
 	end
 end
 
@@ -555,8 +603,6 @@ end
 modifier_imba_poison_sting_debuff_ward = class({})
 function modifier_imba_poison_sting_debuff_ward:IsDebuff() return true end
 function modifier_imba_poison_sting_debuff_ward:IsHidden() return false end
-function modifier_imba_poison_sting_debuff_ward:IsPurgable() return false end
-function modifier_imba_poison_sting_debuff_ward:IsPurgeException() return false end
 function modifier_imba_poison_sting_debuff_ward:IsStunDebuff() return false end
 function modifier_imba_poison_sting_debuff_ward:RemoveOnDeath() return true end
 -------------------------------------------
@@ -591,14 +637,16 @@ function modifier_imba_poison_sting_debuff_ward:DamageTick(bFirstHit)
 	end
 	local parent = self:GetParent()
 	if IsServer() then
-		SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, parent, damage, nil)
-		-- If the enemy is at low enough HP, kill it
-		if parent:GetHealth() <= (damage + 5) then
-			ApplyDamage({attacker = self:GetCaster(), victim = parent, ability = self:GetAbility(), damage = damage + 10, damage_type = DAMAGE_TYPE_PURE})
-			-- Else, remove some HP from it
-		else
-			parent:SetHealth(parent:GetHealth() - damage)
-		end
+		local final_damage 	= ApplyDamage({
+			attacker 		= self:GetCaster(),
+			victim 			= parent,
+			ability 		= self:GetAbility(),
+			damage 			= damage,
+			damage_type 	= DAMAGE_TYPE_MAGICAL,
+			damage_flags	= DOTA_DAMAGE_FLAG_HPLOSS
+		})
+		
+		SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_POISON_DAMAGE, parent, final_damage, nil)
 	end
 end
 
@@ -632,6 +680,7 @@ function imba_venomancer_plague_ward:IsNetherWardStealable() return false end
 function imba_venomancer_plague_ward:GetAbilityTextureName()
 	return "venomancer_plague_ward"
 end
+
 -------------------------------------------
 
 function imba_venomancer_plague_ward:OnSpellStart()
@@ -681,6 +730,8 @@ function imba_venomancer_plague_ward:OnSpellStart()
 			scourge_ward:AddRangeIndicator(caster, ability_gale, "ward_range", nil, 183, 247, 33, false, false, true)
 		end
 
+		-- elfansoer: fix scourge_ward not being able to attack
+		scourge_ward:SetAttackCapability( DOTA_UNIT_CAP_RANGED_ATTACK )
 		scourge_ward:SetControllableByPlayer(caster:GetPlayerID(), true)
 		scourge_ward:SetForwardVector(direction)
 		scourge_ward:AddNewModifier(caster, self, "modifier_kill", {duration = duration})
@@ -707,10 +758,13 @@ function imba_venomancer_plague_ward:OnSpellStart()
 				plague_ward:SetForwardVector(direction)
 				local mod_kill = plague_ward:AddNewModifier(caster, self, "modifier_kill", {duration = duration})
 				plague_ward:AddNewModifier(caster, self, "modifier_magic_immune", {duration = duration})
-				local link_fx = ParticleManager:CreateParticle("particles/hero/venomancer/ward_link.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
-				ParticleManager:SetParticleControlEnt(link_fx, 0, scourge_ward, PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", scourge_ward:GetAbsOrigin(), true)
-				ParticleManager:SetParticleControlEnt(link_fx, 1, plague_ward, PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", plague_ward:GetAbsOrigin(), true)
-				mod_kill:AddParticle(link_fx,false,false,-1,false,false)
+
+				-- causing lag!
+--				local link_fx = ParticleManager:CreateParticle("particles/hero/venomancer/ward_link.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
+--				ParticleManager:SetParticleControlEnt(link_fx, 0, scourge_ward, PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", scourge_ward:GetAbsOrigin(), true)
+--				ParticleManager:SetParticleControlEnt(link_fx, 1, plague_ward, PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", plague_ward:GetAbsOrigin(), true)
+--				mod_kill:AddParticle(link_fx,false,false,-1,false,false)
+
 				plague_ward:SetBaseMaxHealth(plague_hp)
 				plague_ward:SetMaxHealth(plague_hp)
 				plague_ward:SetHealth(plague_hp)
@@ -731,6 +785,10 @@ function modifier_imba_plague_ward:IsPurgeException() return false end
 function modifier_imba_plague_ward:IsStunDebuff() return false end
 function modifier_imba_plague_ward:RemoveOnDeath() return true end
 -------------------------------------------
+
+function modifier_imba_plague_ward:GetEffectName()
+	return "particles/items_fx/black_king_bar_avatar.vpcf"
+end
 
 function modifier_imba_plague_ward:DeclareFunctions()
 	local decFuns =
@@ -856,6 +914,7 @@ function modifier_imba_poison_nova:IsPurgable() return false end
 function modifier_imba_poison_nova:IsPurgeException() return false end
 function modifier_imba_poison_nova:IsStunDebuff() return false end
 function modifier_imba_poison_nova:RemoveOnDeath() return true end
+function modifier_imba_poison_nova:IgnoreTenacity() return true end
 -------------------------------------------
 
 function modifier_imba_poison_nova:OnCreated( params )
@@ -937,3 +996,57 @@ function modifier_imba_poison_nova:GetAttributes()
 end
 
 -------------------------------------------
+
+-- Client-side helper functions --
+LinkLuaModifier("modifier_special_bonus_imba_venomancer_1", "abilities/dota_imba/hero_venomancer", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_special_bonus_imba_venomancer_2", "abilities/dota_imba/hero_venomancer", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_special_bonus_imba_venomancer_3", "abilities/dota_imba/hero_venomancer", LUA_MODIFIER_MOTION_NONE)
+
+modifier_special_bonus_imba_venomancer_1		= class({})
+modifier_special_bonus_imba_venomancer_2		= class({})
+modifier_special_bonus_imba_venomancer_3		= class({})
+
+-- -----------------------
+-- -- TALENT 1 MODIFIER --
+-- -----------------------
+-- +x% Venomous Gale Slow
+
+function modifier_special_bonus_imba_venomancer_1:IsHidden() 		return true end
+function modifier_special_bonus_imba_venomancer_1:IsPurgable() 		return false end
+function modifier_special_bonus_imba_venomancer_1:RemoveOnDeath() 	return false end
+
+-- -----------------------
+-- -- TALENT 2 MODIFIER --
+-- -----------------------
+-- Poison Sting now adds +x% slow per stack
+
+function modifier_special_bonus_imba_venomancer_2:IsHidden() 		return true end
+function modifier_special_bonus_imba_venomancer_2:IsPurgable() 		return false end
+function modifier_special_bonus_imba_venomancer_2:RemoveOnDeath() 	return false end
+
+-- -----------------------
+-- -- TALENT 3 MODIFIER --
+-- -----------------------
+-- +x% Compound Toxicity Magic Resistance Reduction
+
+function modifier_special_bonus_imba_venomancer_3:IsHidden() 		return true end
+function modifier_special_bonus_imba_venomancer_3:IsPurgable() 		return false end
+function modifier_special_bonus_imba_venomancer_3:RemoveOnDeath() 	return false end
+
+function imba_venomancer_venomous_gale:OnOwnerSpawned()
+	if self:GetCaster():HasTalent("special_bonus_imba_venomancer_1") and not self:GetCaster():HasModifier("modifier_special_bonus_imba_venomancer_1") then
+		self:GetCaster():AddNewModifier(self:GetCaster(), self:GetCaster():FindAbilityByName("special_bonus_imba_venomancer_1"), "modifier_special_bonus_imba_venomancer_1", {})
+	end
+end
+
+function imba_venomancer_poison_sting:OnOwnerSpawned()
+	if self:GetCaster():HasTalent("special_bonus_imba_venomancer_2") and not self:GetCaster():HasModifier("modifier_special_bonus_imba_venomancer_2") then
+		self:GetCaster():AddNewModifier(self:GetCaster(), self:GetCaster():FindAbilityByName("special_bonus_imba_venomancer_2"), "modifier_special_bonus_imba_venomancer_2", {})
+	end
+end
+
+function imba_venomancer_toxicity:OnOwnerSpawned()
+	if self:GetCaster():HasTalent("special_bonus_imba_venomancer_3") and not self:GetCaster():HasModifier("modifier_special_bonus_imba_venomancer_3") then
+		self:GetCaster():AddNewModifier(self:GetCaster(), self:GetCaster():FindAbilityByName("special_bonus_imba_venomancer_3"), "modifier_special_bonus_imba_venomancer_3", {})
+	end
+end

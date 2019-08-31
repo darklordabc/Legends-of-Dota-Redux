@@ -16,6 +16,9 @@
 --     Firetoad
 --     AtroCty, 23.03.2017
 --     suthernfriend, 03.02.2018
+--     naowin, 20.05.2018
+--     Elfansoer, 10.08.2019
+
 
 if IsClient() then
     require('lib/util_imba_client')
@@ -26,11 +29,20 @@ CreateEmptyTalents("lina")
 -------------------------------------------
 -- 	#8 Talent - Blazing strike
 -------------------------------------------
+
+LinkLuaModifier("modifier_special_bonus_imba_lina_8", "abilities/dota_imba/hero_lina.lua", LUA_MODIFIER_MOTION_NONE)
+
+modifier_special_bonus_imba_lina_8 = modifier_special_bonus_imba_lina_8 or class({})
+
+function modifier_special_bonus_imba_lina_8:IsHidden() return true end
+function modifier_special_bonus_imba_lina_8:RemoveOnDeath() return false end
+
 function modifier_special_bonus_imba_lina_8:DeclareFunctions()
 	local decFuncs =
-		{
-			MODIFIER_EVENT_ON_ATTACK_LANDED
-		}
+	{
+		MODIFIER_EVENT_ON_ATTACK_LANDED
+	}
+
 	return decFuncs
 end
 
@@ -106,7 +118,9 @@ end
 imba_lina_dragon_slave = class({})
 
 function imba_lina_dragon_slave:GetAbilityTextureName()
-	return "lina_dragon_slave"
+	if not IsClient() then return end
+	if not self:GetCaster().arcana_style then return "lina_dragon_slave" end
+	return "custom/imba_lina_dragon_slave_arcana_"..self:GetCaster().arcana_style
 end
 
 function imba_lina_dragon_slave:OnUpgrade()
@@ -142,10 +156,15 @@ function imba_lina_dragon_slave:OnSpellStart()
 		local velocity = direction * speed
 		local primary_velocity = primary_direction * speed
 
+		local particle_effect = "particles/units/heroes/hero_lina/lina_spell_dragon_slave.vpcf"
+		if caster.dragon_slave_effect then
+			particle_effect = caster.dragon_slave_effect
+		end
+
 		local projectile =
 			{
 				Ability				= self,
-				EffectName			= "particles/units/heroes/hero_lina/lina_spell_dragon_slave.vpcf",
+				EffectName			= particle_effect,
 				vSpawnOrigin		= caster_loc,
 				fDistance			= primary_distance,
 				fStartRadius		= width_initial,
@@ -203,7 +222,7 @@ function imba_lina_dragon_slave:OnSpellStart()
 				local projectile =
 					{
 						Ability				= self,
-						EffectName			= "particles/units/heroes/hero_lina/lina_spell_dragon_slave.vpcf",
+						EffectName			= particle_effect,
 						vSpawnOrigin		= target_loc,
 						fDistance			= secondary_distance,
 						fStartRadius		= secondary_width_initial,
@@ -234,7 +253,7 @@ function imba_lina_dragon_slave:OnSpellStart()
 				local projectile =
 					{
 						Ability				= self,
-						EffectName			= "particles/units/heroes/hero_lina/lina_spell_dragon_slave.vpcf",
+						EffectName			= particle_effect,
 						vSpawnOrigin		= new_loc,
 						fDistance			= primary_distance,
 						fStartRadius		= width_initial,
@@ -311,10 +330,6 @@ end
 
 imba_lina_light_strike_array = class({})
 LinkLuaModifier("modifier_imba_lsa_talent_magma", "abilities/dota_imba/hero_lina", LUA_MODIFIER_MOTION_NONE)
-
-function imba_lina_light_strike_array:GetAbilityTextureName()
-	return "lina_light_strike_array"
-end
 
 function imba_lina_light_strike_array:OnSpellStart()
 	if IsServer() then
@@ -447,7 +462,9 @@ function imba_lina_light_strike_array:OnHit( target, damage, stun_duration )
 		end
 	end
 	target:RemoveModifierByName("modifier_imba_blazing_fire")
-	target:AddNewModifier(caster, self, "modifier_stunned", {duration = stun_duration})
+	
+	target:AddNewModifier(caster, self, "modifier_stunned", {duration = stun_duration}):SetDuration(stun_duration * (1 - target:GetStatusResistance()), true)
+
 end
 
 function imba_lina_light_strike_array:GetAOERadius()
@@ -473,7 +490,7 @@ function modifier_imba_lsa_talent_magma:OnCreated(kv)
 
 		-- Talent specials
 		self.radius = kv.radius
-		print(self.radius)
+		-- print(self.radius)
 		self.damage = self.caster:FindTalentValue("special_bonus_imba_lina_4", "damage")
 		self.tick_interval = self.caster:FindTalentValue("special_bonus_imba_lina_4", "tick_interval")
 
@@ -525,17 +542,22 @@ end
 -------------------------------------------
 
 imba_lina_fiery_soul = class({})
+
 LinkLuaModifier("modifier_imba_fiery_soul", "abilities/dota_imba/hero_lina", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_imba_fiery_soul_counter", "abilities/dota_imba/hero_lina", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_imba_fiery_soul_blaze_burn", "abilities/dota_imba/hero_lina", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_imba_fiery_soul_talent", "abilities/dota_imba/hero_lina", LUA_MODIFIER_MOTION_NONE)
+
+function imba_lina_fiery_soul:IsStealable() return false end
 
 function imba_lina_fiery_soul:GetIntrinsicModifierName()
 	return "modifier_imba_fiery_soul"
 end
 
-
 function imba_lina_fiery_soul:GetAbilityTextureName()
-	return "lina_fiery_soul"
+	if not IsClient() then return end
+	if not self:GetCaster().arcana_style then return "lina_fiery_soul" end
+	return "custom/imba_lina_fiery_soul_arcana_"..self:GetCaster().arcana_style
 end
 
 function imba_lina_fiery_soul:GetCooldown()
@@ -609,7 +631,6 @@ function imba_lina_fiery_soul:OnSpellStart()
 				end
 			end
 		end
-
 	end
 end
 
@@ -677,6 +698,13 @@ function modifier_imba_fiery_soul:IsPurgable()
 	return false
 end
 
+-- ClientSide fails the check on "GetCaster():HasTalent" so we need a workaround. 
+-- instead i created a permanent modifier and used check GetCaster():HasModifier() 
+-- to determine if we have talent selected. // naowin
+modifier_imba_fiery_soul_talent = class({})
+function modifier_imba_fiery_soul_talent:IsPassive() return true end
+function modifier_imba_fiery_soul_talent:IsPermanent() return true end
+function modifier_imba_fiery_soul_talent:IsHidden() return true end
 
 modifier_imba_fiery_soul_counter = class({})
 
@@ -689,31 +717,43 @@ function modifier_imba_fiery_soul_counter:OnCreated()
 		ParticleManager:SetParticleControlEnt(self.particle, 1, caster, PATTACH_POINT_FOLLOW, nil, caster:GetAbsOrigin(), true)
 		ParticleManager:SetParticleControl(self.particle, 3, Vector(1,0,0))
 		ParticleManager:SetParticleControl(self.particle, 4, Vector(1,0,0))
+
+		if caster:HasTalent("special_bonus_imba_lina_3") then 
+			caster:AddNewModifier(caster , self:GetAbility(), "modifier_imba_fiery_soul_talent", {})
+		end
 	end
 end
 
 -- Credits: yannich
 -- #3 Talent: Reaching 3 Fiery Soul stacks allows Lina to unleash a blast of hot shockwave.
 function modifier_imba_fiery_soul_counter:OnRefresh()
-	local serverCheck = 0
-	local ability = self:GetAbility()
-	local stacks = self:GetStackCount()
-	local max_stacks = ability:GetTalentSpecialValueFor("max_stacks")
+	local caster 		= self:GetCaster()
+	local ability 		= self:GetAbility()
+	local stacks 		= self:GetStackCount()
+	local max_stacks 	= ability:GetTalentSpecialValueFor("max_stacks")
 	if IsServer() then
 		if stacks < max_stacks then
 			self:SetStackCount(stacks+1)
 			ParticleManager:SetParticleControl(self.particle, 3, Vector(stacks,0,0))
 			ParticleManager:SetParticleControl(self.particle, 4, Vector(stacks,0,3 ))
 		end
-		serverCheck = 1 -- why ? ? ? ? ? ?
+
+		if caster:HasTalent("special_bonus_imba_lina_3") then 
+			caster:AddNewModifier(caster, ability, "modifier_imba_fiery_soul_talent", {})
+		end
 	end
 
-	if self:GetCaster():HasTalent("special_bonus_imba_lina_3") then
-		if stacks + serverCheck == max_stacks then -- inject function calls clientside and serverside
+	local stacks = self:GetStackCount()
+	if caster:HasModifier("modifier_imba_fiery_soul_talent") then
+		if stacks == max_stacks  then -- inject function calls clientside and serverside (but this is not run on clientside?)
 			-- Change behavior
-			ability.GetBehavior = function() return DOTA_ABILITY_BEHAVIOR_NO_TARGET + DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING end
+			ability.GetBehavior = function() return DOTA_ABILITY_BEHAVIOR_NO_TARGET + DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING + DOTA_ABILITY_BEHAVIOR_IMMEDIATE end
 			ability:GetBehavior()
 			ability:GetCooldown()
+
+			if IsClient() then
+				ability:GetBehavior()
+			end
 		elseif stacks < max_stacks then
 			ability.GetBehavior = function() return DOTA_ABILITY_BEHAVIOR_PASSIVE end
 			ability:GetBehavior()
@@ -723,6 +763,15 @@ function modifier_imba_fiery_soul_counter:OnRefresh()
 end
 
 -- When selecting #3 Talent while having max stacks, refresh the modifier to inject function calls
+
+LinkLuaModifier("modifier_special_bonus_imba_lina_3", "abilities/dota_imba/hero_lina.lua", LUA_MODIFIER_MOTION_NONE)
+
+modifier_special_bonus_imba_lina_3 = modifier_special_bonus_imba_lina_3 or class({})
+
+function modifier_special_bonus_imba_lina_3:IsHidden() return true end
+function modifier_special_bonus_imba_lina_3:IsPurgable() return false end
+function modifier_special_bonus_imba_lina_3:RemoveOnDeath() return false end
+
 function modifier_special_bonus_imba_lina_3:OnCreated()
 	if IsServer() then
 		fiery_soul = self:GetParent():FindAbilityByName("imba_lina_fiery_soul")

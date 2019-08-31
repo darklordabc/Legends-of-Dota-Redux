@@ -15,6 +15,7 @@
 -- Editors:
 --     Seinken, 11.01.2017
 --     suthernfriend, 03.02.2018
+--     Elfansoer, 17.08.2019
 
 if IsClient() then
     require('lib/util_imba_client')
@@ -631,7 +632,13 @@ end
 
 
 -- #8 Talent: Overpower becomes a passive, allowing Ursa to proc Overpower as he attacks
+
+LinkLuaModifier("modifier_special_bonus_imba_ursa_8", "abilities/dota_imba/hero_ursa.lua", LUA_MODIFIER_MOTION_NONE)
+
 modifier_special_bonus_imba_ursa_8 = modifier_special_bonus_imba_ursa_8 or class({})
+
+function modifier_special_bonus_imba_ursa_8:IsHidden() return true end
+function modifier_special_bonus_imba_ursa_8:RemoveOnDeath() return false end
 
 function modifier_special_bonus_imba_ursa_8:OnCreated()
 	if IsServer() then
@@ -763,6 +770,14 @@ function modifier_imba_fury_swipes:IsPurgable()
 	return false
 end
 
+-- elfansoer: fix intrinsic problem
+function modifier_imba_fury_swipes:OnCreated()
+	if IsServer() and self:GetAbility():GetLevel()<1 then
+		self:Destroy()
+		return
+	end
+end
+
 function modifier_imba_fury_swipes:DeclareFunctions()
 	local decFuncs = {
 		MODIFIER_PROPERTY_PROCATTACK_BONUS_DAMAGE_PHYSICAL
@@ -798,7 +813,7 @@ function modifier_imba_fury_swipes:GetModifierProcAttack_BonusDamage_Physical( k
 
 		if keys.attacker == caster then
 			-- Adjust duration if target is Roshan
-			if IsRoshan(target) then
+			if target:GetUnitName()=="npc_dota_roshan" then
 				stack_duration = roshan_stack_duration
 			end
 
@@ -1063,8 +1078,11 @@ function modifier_imba_enrage_buff:OnIntervalThink()
 end
 
 function modifier_imba_enrage_buff:DeclareFunctions()
-	local decFuncs = {MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
-		MODIFIER_PROPERTY_MODEL_SCALE}
+	local decFuncs = {
+		MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
+		MODIFIER_PROPERTY_MODEL_SCALE,
+		MODIFIER_PROPERTY_STATUS_RESISTANCE_STACKING,
+	}
 	return decFuncs
 end
 
@@ -1078,6 +1096,9 @@ function modifier_imba_enrage_buff:GetModifierIncomingDamage_Percentage()
 	return damage_reduction * (-1)
 end
 
+function modifier_imba_enrage_buff:GetModifierStatusResistanceStacking()
+	return self:GetAbility():GetSpecialValueFor("status_resist")
+end
 
 -- #7 Talent: Increases Ursa's damage as a portion of his current health
 modifier_imba_enrage_talent_buff = modifier_imba_enrage_talent_buff or class({})
@@ -1125,11 +1146,19 @@ end
 
 
 -- #1 Talent: When taking the talent, get the modifier
+
+LinkLuaModifier("modifier_special_bonus_imba_ursa_1", "abilities/dota_imba/hero_ursa.lua", LUA_MODIFIER_MOTION_NONE)
+
+modifier_special_bonus_imba_ursa_1 = modifier_special_bonus_imba_ursa_1 or class({})
+
+function modifier_special_bonus_imba_ursa_1:IsHidden() return true end
+function modifier_special_bonus_imba_ursa_1:RemoveOnDeath() return false end
+
 function modifier_special_bonus_imba_ursa_1:OnCreated()
 	if IsServer() then
 		local ability = self:GetParent():FindAbilityByName("imba_ursa_enrage")
 		if ability then
-			self:GetParent():AddNewModifier(self:GetParent(), ability, "modifier_imba_talent_enrage_damage", {})
+			self:GetParent():AddNewModifier(self:GetParent(), ability, "modifier_imba_talent_enrage_damage", {}):SetStackCount(self:GetCaster():FindTalentValue("special_bonus_imba_ursa_1", "damage_threshold"))
 		end
 	end
 end
@@ -1198,7 +1227,7 @@ function modifier_imba_talent_enrage_damage:OnTakeDamage( keys )
 		local damage_taken = keys.damage
 
 		-- Only apply if the target taking damage is the caster
-		if target == self.caster then
+		if target == self.caster and not self.caster:IsIllusion() then
 			if not self.caster:HasTalent("special_bonus_imba_ursa_1") then
 				return nil
 			end
@@ -1302,7 +1331,8 @@ function imba_ursa_territorial_hunter:OnSpellStart()
 
 		-- Create Modifier Thinker
 		ability.territorial_aura_modifier = CreateModifierThinker(caster, ability, aura, {}, ability.territorial_tree:GetAbsOrigin(), caster:GetTeamNumber(), false)
-		ability.territorial_aura_modifier:AddRangeIndicator(caster, ability, "vision_range", nil, 200, 160, 100, true, true, false)
+		-- elfansoer: missing custom library
+		-- ability.territorial_aura_modifier:AddRangeIndicator(caster, ability, "vision_range", nil, 200, 160, 100, true, true, false)
 	end
 end
 
@@ -1317,6 +1347,15 @@ function modifier_terrorital_hunter_aura:OnCreated()
 
 	-- Ability specials
 	self.vision_range = self.ability:GetSpecialValueFor("vision_range")
+
+	-- elfansoer: set small vision to replace indicators
+	if IsServer() then
+		local particle_cast = "particles/units/heroes/hero_treant/treant_eyesintheforest.vpcf"
+		local effect_cast = ParticleManager:CreateParticleForTeam( particle_cast, PATTACH_CUSTOMORIGIN, self:GetParent(), self:GetCaster():GetTeamNumber() )
+		ParticleManager:SetParticleControl( effect_cast, 0, self:GetParent():GetOrigin() )
+		ParticleManager:SetParticleControl( effect_cast, 1, Vector( self.vision_range, 1, 1 ) )
+		self:AddParticle(effect_cast, false, false, -1, false, false)
+	end
 
 	-- Start interval
 	self:StartIntervalThink(0.2)
@@ -1401,7 +1440,6 @@ function modifier_terrorital_hunter_aura:GetVisualZDelta()
 	return 350
 end
 
-
 -- Territorial Hunter debuff
 modifier_terrorital_hunter_fogvision = class({})
 
@@ -1434,10 +1472,13 @@ end
 
 -- Invis particle handling
 function modifier_terrorital_hunter_fogvision:OnStateChanged()
+	-- elfansoer: fix minor missing reference
+	-- if self:GetParent():IsImbaInvisible() and not self.applied_particle then
 	if self:GetParent():IsInvisible() and not self.applied_particle then
 		self.invis_particle_fx = ParticleManager:CreateParticle("particles/units/heroes/hero_ursa/ursa_fury_swipes_debuff.vpcf", PATTACH_OVERHEAD_FOLLOW, self:GetParent())
 		ParticleManager:SetParticleControlEnt(self.invis_particle_fx, 0, caster, PATTACH_OVERHEAD_FOLLOW, "attach_hitloc", self:GetParent():GetAbsOrigin(), true)
 		self.applied_particle = true
+	-- elseif not self:GetParent():IsImbaInvisible() and self.invis_particle_fx then
 	elseif not self:GetParent():IsInvisible() and self.invis_particle_fx then
 		ParticleManager:DestroyParticle(self.invis_particle_fx, false)
 		ParticleManager:ReleaseParticleIndex(self.invis_particle_fx)
@@ -1466,10 +1507,18 @@ function modifier_terrorital_hunter_talent_tenacity:IsHidden() return false end
 function modifier_terrorital_hunter_talent_tenacity:IsPurgable() return false end
 function modifier_terrorital_hunter_talent_tenacity:IsDebuff() return false end
 
+function modifier_terrorital_hunter_talent_tenacity:DeclareFunctions()
+	local decFuncs = {
+		MODIFIER_PROPERTY_STATUS_RESISTANCE_STACKING
+	}
+
+	return decFuncs
+end
+
 function modifier_terrorital_hunter_talent_tenacity:OnCreated()
 	self.tenacity_bonus = self:GetCaster():FindTalentValue("special_bonus_imba_ursa_3", "tenacity_bonus")
 end
 
-function modifier_terrorital_hunter_talent_tenacity:GetCustomTenacity()
+function modifier_terrorital_hunter_talent_tenacity:GetModifierStatusResistanceStacking()
 	return self.tenacity_bonus
 end

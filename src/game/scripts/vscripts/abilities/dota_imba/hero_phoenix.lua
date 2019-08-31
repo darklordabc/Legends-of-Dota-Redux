@@ -15,6 +15,7 @@
 -- Editors:
 --     MouJiaoZi, 01.08.2017
 --     suthernfriend, 03.02.2018
+--     Elfansoer, 15.08.2019
 
 if IsClient() then
     require('lib/util_imba_client')
@@ -113,67 +114,68 @@ function imba_phoenix_icarus_dive:OnSpellStart()
 	local pfx = ParticleManager:CreateParticle( "particles/units/heroes/hero_phoenix/phoenix_icarus_dive.vpcf", PATTACH_WORLDORIGIN, nil )
 
 	caster:SetContextThink( DoUniqueString("updateIcarusDive"), function ( )
+		ParticleManager:SetParticleControl(pfx, 0, caster:GetAbsOrigin() + caster:GetRightVector() * 32 )
 
-			ParticleManager:SetParticleControl(pfx, 0, caster:GetAbsOrigin() + caster:GetRightVector() * 32 )
+		local elapsedTime = GameRules:GetGameTime() - startTime
+		local progress = elapsedTime / dashDuration
+		self.progress = progress
 
-			local elapsedTime = GameRules:GetGameTime() - startTime
-			local progress = elapsedTime / dashDuration
-			self.progress = progress
+		-- Check the Debuff that can interrupt spell
+		if imba_phoenix_check_for_canceled( caster ) then
+			caster:RemoveModifierByName("modifier_imba_phoenix_icarus_dive_dash_dummy")
+		end
 
-			-- Check the Debuff that can interrupt spell
-			if imba_phoenix_check_for_canceled( caster ) then
-				caster:RemoveModifierByName("modifier_imba_phoenix_icarus_dive_dash_dummy")
-			end
+		-- check for interrupted
+		if not caster:HasModifier( dummy_modifier ) then
+			ParticleManager:DestroyParticle(pfx, false)
+			ParticleManager:ReleaseParticleIndex(pfx)
+			return nil
+		end
 
-			-- check for interrupted
-			if not caster:HasModifier( dummy_modifier ) then
-				ParticleManager:DestroyParticle(pfx, false)
-				ParticleManager:ReleaseParticleIndex(pfx)
-				return nil
-			end
+		-- Calculate potision
+		local theta = -2 * math.pi * progress
+		local x =  math.sin( theta ) * dashWidth * 0.5
+		local y = -math.cos( theta ) * dashLength * 0.5
 
-			-- Calculate potision
-			local theta = -2 * math.pi * progress
-			local x =  math.sin( theta ) * dashWidth * 0.5
-			local y = -math.cos( theta ) * dashLength * 0.5
+		local pos = ellipseCenter + rightDir * x + forwardDir * y
+		local yaw = casterAngles.y + 90 + progress * -360
 
-			local pos = ellipseCenter + rightDir * x + forwardDir * y
-			local yaw = casterAngles.y + 90 + progress * -360
+		pos = GetGroundPosition( pos, caster )
+		caster:SetAbsOrigin( pos )
+		caster:SetAngles( casterAngles.x, yaw, casterAngles.z )
 
-			pos = GetGroundPosition( pos, caster )
-			caster:SetAbsOrigin( pos )
-			caster:SetAngles( casterAngles.x, yaw, casterAngles.z )
+		-- Cut Trees
+		GridNav:DestroyTreesAroundPoint(pos, 80, false)
 
-			-- Cut Trees
-			GridNav:DestroyTreesAroundPoint(pos, 80, false)
+		-- Find Enemies apply the debuff
+		local enemies = FindUnitsInRadius(caster:GetTeamNumber(),
+			caster:GetAbsOrigin(),
+			nil,
+			effect_radius,
+			DOTA_UNIT_TARGET_TEAM_BOTH,
+			DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+			DOTA_UNIT_TARGET_FLAG_NONE,
+			FIND_ANY_ORDER,
+			false
+		)
 
-			-- Find Enemies apply the debuff
-			local enemies = FindUnitsInRadius(caster:GetTeamNumber(),
-				caster:GetAbsOrigin(),
-				nil,
-				effect_radius,
-				DOTA_UNIT_TARGET_TEAM_BOTH,
-				DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-				DOTA_UNIT_TARGET_FLAG_NONE,
-				FIND_ANY_ORDER,
-				false)
-			for _,enemy in pairs(enemies) do
-				if enemy ~= caster then
-					if enemy:GetTeamNumber() ~= caster:GetTeamNumber() then
-						enemy:AddNewModifier(caster, self, "modifier_imba_phoenix_icarus_dive_slow_debuff", {duration = self:GetSpecialValueFor("burn_duration")} )
-					else
-						enemy:AddNewModifier(caster, self, "modifier_imba_phoenix_burning_wings_ally_buff", {duration = 0.2})
-					end
-					if caster:HasTalent("special_bonus_imba_phoenix_2") and caster:GetTeamNumber() ~= enemy:GetTeamNumber() then
-						local item = CreateItem( "item_imba_dummy", caster, caster)
-						item:ApplyDataDrivenModifier( caster, enemy, "modifier_stunned", {duration = caster:FindTalentValue("special_bonus_imba_phoenix_2","stun_duration")} )
-						UTIL_Remove(item)
-					end
+		for _,enemy in pairs(enemies) do
+			if enemy ~= caster then
+				if enemy:GetTeamNumber() ~= caster:GetTeamNumber() then
+					enemy:AddNewModifier(caster, self, "modifier_imba_phoenix_icarus_dive_slow_debuff", {duration = self:GetSpecialValueFor("burn_duration")} )
+				else
+					enemy:AddNewModifier(caster, self, "modifier_imba_phoenix_burning_wings_ally_buff", {duration = 0.2})
+				end
+				if caster:HasTalent("special_bonus_imba_phoenix_2") and caster:GetTeamNumber() ~= enemy:GetTeamNumber() then
+					local item = CreateItem( "item_imba_dummy", caster, caster)
+					item:ApplyDataDrivenModifier( caster, enemy, "modifier_stunned", {duration = caster:FindTalentValue("special_bonus_imba_phoenix_2","stun_duration")} )
+					UTIL_Remove(item)
 				end
 			end
-			enemies = {}
+		end
+		enemies = {}
 
-			return 0.03
+		return 0.03
 	end, 0 )
 
 	-- Spend HP cost
@@ -188,6 +190,12 @@ function imba_phoenix_icarus_dive:OnSpellStart()
 		else
 			caster:SetHealth(AfterCastHealth)
 		end
+	end
+
+	-- elfansoer: automatically adds dive stop ability if not exist
+	if not caster:FindAbilityByName( "imba_phoenix_icarus_dive_stop" ) then
+		local ability = caster:AddAbility( "imba_phoenix_icarus_dive_stop" )
+		ability:SetLevel( 1 )
 	end
 
 	-- Swap sub ability
@@ -281,7 +289,7 @@ function modifier_imba_phoenix_icarus_dive_dash_dummy:OnDestroy()
 		false)
 	for _, unit in pairs(units) do -- It's an ally, heal
 		if unit:GetTeamNumber() == caster:GetTeamNumber() and unit ~= caster then
-			local heal_amp = 1 + (caster:GetSpellPower() * 0.01)
+			local heal_amp = 1 + (caster:GetSpellAmplification(false) * 0.01)
 			stop_dmg_heal = stop_dmg_heal * heal_amp
 			unit:Heal(stop_dmg_heal, caster)
 			SendOverheadEventMessage(nil, OVERHEAD_ALERT_HEAL, unit, stop_dmg_heal, nil)
@@ -493,6 +501,8 @@ function imba_phoenix_icarus_dive_stop:OnSpellStart()
 
 	-- IMBA: Stop diving by cast will reduce the CD, which is 50% of diving progress
 	local ability = caster:FindAbilityByName("imba_phoenix_icarus_dive")
+	-- Rubick steal fix
+	if not ability.progress then return end
 	local cdr_pct = ability.progress / 2
 	local cd_now = ability:GetCooldownTimeRemaining()
 	local cd_toSet = cd_now * (1 - cdr_pct)
@@ -566,6 +576,12 @@ function imba_phoenix_fire_spirits:OnSpellStart()
 	caster:AddNewModifier(caster, self, "modifier_imba_phoenix_fire_spirits_count", { duration =  iDuration})
 	if not caster:HasTalent("special_bonus_imba_phoenix_7") then
 		caster:SetModifierStackCount( "modifier_imba_phoenix_fire_spirits_count", caster, numSpirits )
+	end
+
+	-- elfansoer: automatically adds dive stop ability if not exist
+	if not caster:FindAbilityByName( "imba_phoenix_launch_fire_spirit" ) then
+		local ability = caster:AddAbility( "imba_phoenix_launch_fire_spirit" )
+		ability:SetLevel( 1 )
 	end
 
 	-- Swap sub ability
@@ -700,8 +716,13 @@ function imba_phoenix_launch_fire_spirit:OnSpellStart()
 
 	if not caster:HasTalent("special_bonus_imba_phoenix_7") then
 		-- Update spirits count
-		iModifier:DecrementStackCount()
-		local currentStack = iModifier:GetStackCount()
+		local currentStack
+		if iModifier then
+			iModifier:DecrementStackCount()
+			currentStack = iModifier:GetStackCount()
+		else
+			return
+		end
 
 		-- Update the particle FX
 		local pfx = caster.fire_spirits_pfx
@@ -971,7 +992,7 @@ function modifier_imba_phoenix_fire_spirits_buff:OnIntervalThink()
 	local ability = self:GetAbility()
 	local tick = ability:GetSpecialValueFor("tick_interval")
 	local dmg = ability:GetSpecialValueFor("damage_per_second") * ( tick / 1.0 )
-	local heal_amp = 1 + (caster:GetSpellPower() * 0.01)
+	local heal_amp = 1 + (caster:GetSpellAmplification(false) * 0.01)
 	dmg = dmg * heal_amp
 	self:GetParent():Heal(dmg * self:GetStackCount(), caster)
 	SendOverheadEventMessage(nil, OVERHEAD_ALERT_HEAL, self:GetParent(), dmg * self:GetStackCount(), nil)
@@ -1008,10 +1029,11 @@ function imba_phoenix_sun_ray:OnSpellStart()
 
 	local ray_stop = caster:FindAbilityByName("imba_phoenix_sun_ray_stop")
 	local toggle_move = caster:FindAbilityByName("imba_phoenix_sun_ray_toggle_move")
-	if not ray_stop or not toggle_move then
-		caster:RemoveAbility("imba_phoenix_sun_ray")
-		return
-	end
+	-- elfansoer: changed behavior if no stop/move ability
+	-- if not ray_stop or not toggle_move then
+	-- 	caster:RemoveAbility("imba_phoenix_sun_ray")
+	-- 	return
+	-- end
 
 	local pathLength					= self:GetSpecialValueFor("beam_range")
 	local max_duration 					= self:GetSpecialValueFor("duration")
@@ -1062,7 +1084,7 @@ function imba_phoenix_sun_ray:OnSpellStart()
 
 			ParticleManager:SetParticleControl(pfx, 0, caster:GetAttachmentOrigin(attach_point))
 			-- Check the Debuff that can interrupt spell
-			if imba_phoenix_check_for_canceled( caster ) then
+			if (imba_phoenix_check_for_canceled( caster ) and not self:GetCaster():HasScepter() and not self:GetCaster():HasModifier("modifier_imba_phoenix_supernova_caster_dummy")) or caster:IsSilenced() or caster:HasModifier("modifier_legion_commander_duel") or caster:HasModifier("modifier_lone_druid_savage_roar") then
 				caster:RemoveModifierByName("modifier_imba_phoenix_sun_ray_caster_dummy")
 			end
 
@@ -1130,7 +1152,7 @@ function imba_phoenix_sun_ray:OnSpellStart()
 			local casterForward	= caster:GetForwardVector()
 
 			-- Move forward
-			if caster.sun_ray_is_moving then
+			if caster.sun_ray_is_moving and not GameRules:IsGamePaused() then
 				casterOrigin = casterOrigin + casterForward * forwardMoveSpeed * deltaTime
 				casterOrigin = GetGroundPosition( casterOrigin, caster )
 				caster:SetAbsOrigin( casterOrigin )
@@ -1183,6 +1205,14 @@ function imba_phoenix_sun_ray:OnUpgrade()
 		stop:SetLevel(1)
 	end
 	caster.sun_ray_is_moving = false
+
+	-- elfansoer: automatically adds stop/move ability if missing
+	if not caster:FindAbilityByName( "imba_phoenix_sun_ray_stop" ) then
+		caster:AddAbility( "imba_phoenix_sun_ray_stop" )
+	end
+	if not caster:FindAbilityByName( "imba_phoenix_sun_ray_toggle_move" ) then
+		caster:AddAbility( "imba_phoenix_sun_ray_toggle_move" )
+	end
 
 	-- The ability to level up
 	local ray_stop = caster:FindAbilityByName("imba_phoenix_sun_ray_stop")
@@ -1294,7 +1324,9 @@ function modifier_imba_phoenix_sun_ray_caster_dummy:OnDestroy()
 			DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
 			DOTA_UNIT_TARGET_FLAG_NONE)
 		for _,unit in pairs(units) do
-			unit:Purge(false, true, false, true, true)
+			if unit ~= caster then
+				unit:Purge(false, true, false, true, true)
+			end
 		end
 	end
 	caster:RemoveGesture(ACT_DOTA_OVERRIDE_ABILITY_3)
@@ -1516,7 +1548,7 @@ function modifier_imba_phoenix_sun_ray_buff:OnIntervalThink()
 	local taker_health = taker:GetMaxHealth()
 
 	local total_heal = base_heal + taker_health * pct_base_heal
-	total_heal = total_heal * (1 + (caster:GetSpellPower() * 0.01))
+	total_heal = total_heal * (1 + (caster:GetSpellAmplification(false) * 0.01))
 	if taker ~= self:GetCaster() then
 		taker:Heal( total_heal , self:GetCaster())
 		SendOverheadEventMessage(nil, OVERHEAD_ALERT_HEAL, taker, total_heal, nil)
@@ -1666,6 +1698,7 @@ function imba_phoenix_supernova:OnSpellStart()
 	local caster = self:GetCaster()
 	local ability = self
 	local location = caster:GetAbsOrigin()
+	local ground_location = GetGroundPosition(location, caster)
 	local egg_duration = self:GetSpecialValueFor("duration")
 
 	local max_attack = self:GetSpecialValueFor("max_hero_attacks")
@@ -1673,7 +1706,7 @@ function imba_phoenix_supernova:OnSpellStart()
 	caster:AddNewModifier(caster, ability, "modifier_imba_phoenix_supernova_caster_dummy", {duration = egg_duration })
 	caster:AddNoDraw()
 
-	local egg = CreateUnitByName("npc_dota_phoenix_sun",location,false,caster,caster:GetOwner(),caster:GetTeamNumber())
+	local egg = CreateUnitByName("npc_dota_phoenix_sun", ground_location, false, caster, caster:GetOwner(), caster:GetTeamNumber())
 	egg:AddNewModifier(caster, ability, "modifier_kill", {duration = egg_duration })
 	egg:AddNewModifier(caster, ability, "modifier_imba_phoenix_supernova_egg_thinker", {duration = egg_duration + 0.3 })
 
@@ -1772,10 +1805,15 @@ function modifier_imba_phoenix_supernova_caster_dummy:CheckState()
 			[MODIFIER_STATE_DISARMED] = true,
 			[MODIFIER_STATE_ROOTED] = true,
 			[MODIFIER_STATE_MUTED] = true,
-			[MODIFIER_STATE_STUNNED] = true,
+			-- [MODIFIER_STATE_STUNNED] = true,
 			[MODIFIER_STATE_MAGIC_IMMUNE] = true,
 			[MODIFIER_STATE_OUT_OF_GAME] = true,
 		}
+	
+	if self:GetCaster() ~= self:GetParent() then
+		state[MODIFIER_STATE_STUNNED] = true
+	end
+		
 	return state
 end
 
@@ -1801,6 +1839,19 @@ function modifier_imba_phoenix_supernova_caster_dummy:OnCreated()
 	if innate then
 		if innate:GetToggleState() then
 			innate:ToggleAbility()
+		end
+	end
+	
+	self.abilities = {}
+	
+	if self:GetCaster() == self:GetParent() then
+		for slot = 0, 10 do
+			local ability = self:GetParent():GetAbilityByIndex(slot)
+			
+			if ability and ability:IsActivated() and (not self:GetParent():HasScepter() or (self:GetParent():HasScepter() and ability:GetName() ~= "imba_phoenix_sun_ray")) then
+				ability:SetActivated(false)
+				table.insert(self.abilities, ability)
+			end
 		end
 	end
 end
@@ -1837,6 +1888,12 @@ function modifier_imba_phoenix_supernova_caster_dummy:OnDestroy()
 	end
 	if self:GetCaster():GetUnitName() == "npc_imba_hero_phoenix" or self:GetCaster():GetUnitName() == "npc_dota_hero_phoenix" then
 		self:GetCaster():StartGesture(ACT_DOTA_INTRO)
+	end
+	
+	if self:GetCaster() == self:GetParent() then
+		for _, ability in pairs(self.abilities) do
+			ability:SetActivated(true)
+		end
 	end
 end
 
@@ -2054,8 +2111,18 @@ function modifier_imba_phoenix_supernova_egg_thinker:OnCreated()
 	StartSoundEvent( "Hero_Phoenix.SuperNova.Begin", egg)
 	StartSoundEvent( "Hero_Phoenix.SuperNova.Cast", egg)
 
+	self:ResetUnit(caster)
+	caster:SetMana( caster:GetMaxMana() )
+	
+	Timers:CreateTimer(FrameTime() * 2, function()
+		if caster.ally then
+			self:ResetUnit(caster.ally)
+			caster.ally:SetMana( caster.ally:GetMaxMana() )
+		end
+	end)
+
 	local ability = self:GetAbility()
-	GridNav:DestroyTreesAroundPoint(egg:GetAbsOrigin(), ability:GetSpecialValueFor("cast_range") * 1.5 , false)
+	GridNav:DestroyTreesAroundPoint(egg:GetAbsOrigin(), ability:GetSpecialValueFor("cast_range") , false)
 	self:StartIntervalThink(1.0)
 end
 
@@ -2126,13 +2193,13 @@ function modifier_imba_phoenix_supernova_egg_thinker:OnDeath( keys )
 		ParticleManager:SetParticleControl( pfx, 1, Vector(1.5,1.5,1.5) )
 		ParticleManager:SetParticleControl( pfx, 3, egg:GetAbsOrigin() )
 		ParticleManager:ReleaseParticleIndex(pfx)
-		self:ResetUnit(caster)
+		-- self:ResetUnit(caster)
 		caster:SetHealth( caster:GetMaxHealth() )
-		caster:SetMana( caster:GetMaxMana() )
+		-- caster:SetMana( caster:GetMaxMana() )
 		if caster.ally and not caster.HasDoubleEgg and caster.ally:IsAlive() then
-			self:ResetUnit(caster.ally)
+			-- self:ResetUnit(caster.ally)
 			caster.ally:SetHealth( caster.ally:GetMaxHealth() )
-			caster.ally:SetMana( caster.ally:GetMaxMana() )
+			-- caster.ally:SetMana( caster.ally:GetMaxMana() )
 		end
 		local enemies = FindUnitsInRadius(caster:GetTeamNumber(),
 			egg:GetAbsOrigin(),
@@ -2157,17 +2224,17 @@ function modifier_imba_phoenix_supernova_egg_thinker:OnDeath( keys )
 				caster.ally:Kill(ability, killer)
 			end
 		elseif caster:IsAlive() then
-			self:ResetUnit(caster)
+			-- self:ResetUnit(caster)
 			caster:SetHealth( caster:GetMaxHealth() * caster:FindTalentValue("special_bonus_imba_phoenix_5","reborn_pct") / 100 )
-			caster:SetMana( caster:GetMaxMana() * caster:FindTalentValue("special_bonus_imba_phoenix_5","reborn_pct") / 100)
+			-- caster:SetMana( caster:GetMaxMana() * caster:FindTalentValue("special_bonus_imba_phoenix_5","reborn_pct") / 100)
 			local egg_buff = caster:FindModifierByNameAndCaster("modifier_imba_phoenix_supernova_caster_dummy", caster)
 			if egg_buff then
 				egg_buff:Destroy()
 			end
 			if caster.ally and caster.ally:IsAlive() then
-				self:ResetUnit(caster.ally)
+				-- self:ResetUnit(caster.ally)
 				caster.ally:SetHealth( caster.ally:GetMaxHealth() * caster:FindTalentValue("special_bonus_imba_phoenix_5","reborn_pct") / 100 )
-				caster.ally:SetMana( caster.ally:GetMaxMana() * caster:FindTalentValue("special_bonus_imba_phoenix_5","reborn_pct") / 100 )
+				-- caster.ally:SetMana( caster.ally:GetMaxMana() * caster:FindTalentValue("special_bonus_imba_phoenix_5","reborn_pct") / 100 )
 				local egg_buff2 = caster.ally:FindModifierByNameAndCaster("modifier_imba_phoenix_supernova_caster_dummy", caster)
 				if egg_buff2 then
 					egg_buff2:Destroy()
@@ -2220,10 +2287,10 @@ function modifier_imba_phoenix_supernova_egg_thinker:OnAttacked( keys )
 	local max_attack = egg.max_attack
 	local current_attack = egg.current_attack
 
-	if attacker:IsRealHero() then
+	if attacker:IsRealHero() or attacker:IsClone() or attacker:IsTempestDouble() then
 		egg.current_attack = egg.current_attack + 1
-	else
-		egg.current_attack = egg.current_attack + 0.25
+--	else
+--		egg.current_attack = egg.current_attack + 0.25
 	end
 	if egg.current_attack >= egg.max_attack then
 		egg:Kill(ability, attacker)
@@ -2246,7 +2313,7 @@ function modifier_imba_phoenix_supernova_dmg:IsPurgable() return false end
 
 function modifier_imba_phoenix_supernova_dmg:DeclareFunctions()
 	local decFuns = {
-		MODIFIER_PROPERTY_MISS_PERCENTAGE,
+		--MODIFIER_PROPERTY_MISS_PERCENTAGE,
 	}
 	return decFuns
 end
@@ -2267,38 +2334,39 @@ function modifier_imba_phoenix_supernova_dmg:OnCreated()
 
 end
 
-function modifier_imba_phoenix_supernova_dmg:GetModifierMiss_Percentage()
-	if not IsServer() then
-		return
-	end
-	local enemy = self:GetParent()
-	local caster = self:GetCaster()
-	local ability = self:GetAbility()
-	-- Get the miss pct
-	local egg = caster.egg
-	if egg then
-		local miss_pct = ability:GetSpecialValueFor("miss_pct_base") + ability:GetSpecialValueFor("miss_pct_perHit") * egg.current_attack
-		local miss_radius = self:GetAbility():GetSpecialValueFor("cast_range")
-		local miss_angle = self:GetAbility():GetSpecialValueFor("miss_angle")
-		local caster_location = caster:GetAbsOrigin()
-		local enemy_location = enemy:GetAbsOrigin()
-		local distance = CalcDistanceBetweenEntityOBB(caster, enemy)
-		if distance <= miss_radius then
-			local enemy_to_caster_direction = (caster_location - enemy_location):Normalized()
-			local enemy_forward_vector =  enemy:GetForwardVector()
-			local view_angle = math.abs(RotationDelta(VectorToAngles(enemy_to_caster_direction), VectorToAngles(enemy_forward_vector)).y)
-			if view_angle <= ( miss_angle / 2 ) and enemy:CanEntityBeSeenByMyTeam(caster) then
-				return miss_pct
-			else
-				return 0
-			end
-		else
-			return 0
-		end
-	else
-		return 0
-	end
-end
+-- Kit is overloaded so I'm removing this for now
+-- function modifier_imba_phoenix_supernova_dmg:GetModifierMiss_Percentage()
+	-- if not IsServer() then
+		-- return
+	-- end
+	-- local enemy = self:GetParent()
+	-- local caster = self:GetCaster()
+	-- local ability = self:GetAbility()
+	-- -- Get the miss pct
+	-- local egg = caster.egg
+	-- if egg then
+		-- local miss_pct = ability:GetSpecialValueFor("miss_pct_base") + ability:GetSpecialValueFor("miss_pct_perHit") * egg.current_attack
+		-- local miss_radius = self:GetAbility():GetSpecialValueFor("cast_range")
+		-- local miss_angle = self:GetAbility():GetSpecialValueFor("miss_angle")
+		-- local caster_location = caster:GetAbsOrigin()
+		-- local enemy_location = enemy:GetAbsOrigin()
+		-- local distance = CalcDistanceBetweenEntityOBB(caster, enemy)
+		-- if distance <= miss_radius then
+			-- local enemy_to_caster_direction = (caster_location - enemy_location):Normalized()
+			-- local enemy_forward_vector =  enemy:GetForwardVector()
+			-- local view_angle = math.abs(RotationDelta(VectorToAngles(enemy_to_caster_direction), VectorToAngles(enemy_forward_vector)).y)
+			-- if view_angle <= ( miss_angle / 2 ) and enemy:CanEntityBeSeenByMyTeam(caster) then
+				-- return miss_pct
+			-- else
+				-- return 0
+			-- end
+		-- else
+			-- return 0
+		-- end
+	-- else
+		-- return 0
+	-- end
+-- end
 
 function modifier_imba_phoenix_supernova_dmg:OnDestroy()
 	if not IsServer() then
@@ -2308,7 +2376,16 @@ function modifier_imba_phoenix_supernova_dmg:OnDestroy()
 	ParticleManager:ReleaseParticleIndex(self.pfx)
 end
 
-modifier_imba_phoenix_supernova_scepter_passive = modifier_imba_phoenix_supernova_scepter_passive or class({})
+-- modifier_imba_phoenix_supernova_scepter_passive = modifier_imba_phoenix_supernova_scepter_passive or class({})
+modifier_imba_phoenix_supernova_scepter_passive = class({})
+
+-- elfansoer: fix intrinsic problem
+function modifier_imba_phoenix_supernova_scepter_passive:OnCreated()
+	if IsServer() and self:GetAbility():GetLevel()<1 then
+		self:Destroy()
+		return
+	end
+end
 
 function modifier_imba_phoenix_supernova_scepter_passive:IsDebuff()					return false end
 function modifier_imba_phoenix_supernova_scepter_passive:IsHidden()
@@ -2391,6 +2468,8 @@ function modifier_imba_phoenix_supernova_scepter_passive:OnTakeDamage( keys )
 
 		caster.egg = egg
 
+		-- Set health to max here as compromise to prevent easy insta-gibs I guess
+		caster:SetHealth(caster:GetMaxHealth())
 	end
 
 end
@@ -2552,7 +2631,7 @@ function modifier_imba_phoenix_burning_wings_ally_buff:OnDestroy()
 	if not buff or not ability or caster == self:GetParent() then
 		return
 	end
-	local num_heal = ability:GetSpecialValueFor("hit_ally_heal") + ability:GetSpecialValueFor("hit_ally_heal") * ( caster:GetSpellPower() / 100 )
+	local num_heal = ability:GetSpecialValueFor("hit_ally_heal") + ability:GetSpecialValueFor("hit_ally_heal") * ( caster:GetSpellAmplification(false) / 100 )
 	caster:Heal(num_heal, caster)
 	SendOverheadEventMessage(nil, OVERHEAD_ALERT_HEAL, caster, num_heal, nil)
 end

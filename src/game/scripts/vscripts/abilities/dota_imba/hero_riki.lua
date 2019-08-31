@@ -15,6 +15,7 @@
 -- Editors:
 --     zimberzimber, 19.02.2017
 --     suthernfriend, 03.02.2018
+--     Elfansoer, 16.08.2019
 
 -- Attempt to implement A*-algorithm
 -- https://github.com/lattejed/a-star-lua
@@ -413,7 +414,7 @@ function imba_riki_blink_strike:OnAbilityPhaseStart()
 		Timers:CreateTimer(FrameTime(), function()
 			if self.trail_pfx then
 				-- To make sure its the same cast
-				if (index == self.index) then
+				if (index == self.index and not current_target:IsNull()) then
 					ParticleManager:SetParticleControl(self.trail_pfx, 0, last_position+Vector(0,0,35))
 					counter = counter + 1
 					local target_loc = current_target:GetAbsOrigin()
@@ -819,6 +820,23 @@ LinkLuaModifier( "modifier_imba_riki_peek_a_boo", "abilities/dota_imba/hero_riki
 LinkLuaModifier( "modifier_imba_riki_backbreaker", "abilities/dota_imba/hero_riki.lua", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_imba_riki_backbroken", "abilities/dota_imba/hero_riki.lua", LUA_MODIFIER_MOTION_NONE )
 
+-- Adding "modifier_special_bonus_imba_riki_3" as separate modifier to force GetBehavior call from passive to active skill
+LinkLuaModifier("modifier_special_bonus_imba_riki_3", "abilities/dota_imba/hero_riki.lua", LUA_MODIFIER_MOTION_NONE)
+
+modifier_special_bonus_imba_riki_3 = class({})
+
+function modifier_special_bonus_imba_riki_3:IsHidden() 			return true end
+function modifier_special_bonus_imba_riki_3:IsPurgable() 		return false end
+function modifier_special_bonus_imba_riki_3:RemoveOnDeath() 	return false end
+
+function modifier_special_bonus_imba_riki_3:OnCreated()
+	if not IsServer() then return end
+	if self:GetParent():FindAbilityByName("imba_riki_cloak_and_dagger") then
+		self:GetParent():FindAbilityByName("imba_riki_cloak_and_dagger"):GetBehavior()
+	end
+end
+
+---
 
 function imba_riki_cloak_and_dagger:GetAbilityTextureName()
 	return "riki_permanent_invisibility"
@@ -831,6 +849,7 @@ function imba_riki_cloak_and_dagger:GetBehavior()
 		return DOTA_ABILITY_BEHAVIOR_PASSIVE
 	end
 end
+
 function imba_riki_cloak_and_dagger:IsRefreshable() return false end
 
 function imba_riki_cloak_and_dagger:GetIntrinsicModifierName()
@@ -838,7 +857,11 @@ function imba_riki_cloak_and_dagger:GetIntrinsicModifierName()
 end
 
 function imba_riki_cloak_and_dagger:OnOwnerSpawned()
+	if not IsServer() then return end
 	self:EndCooldown()
+	if self:GetCaster():HasAbility("special_bonus_imba_riki_3") and self:GetCaster():FindAbilityByName("special_bonus_imba_riki_3"):IsTrained() and not self:GetCaster():HasModifier("modifier_special_bonus_imba_riki_3") then
+		self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_special_bonus_imba_riki_3", {})
+	end
 end
 
 function imba_riki_cloak_and_dagger:GetCooldown( nLevel )
@@ -873,6 +896,14 @@ modifier_imba_riki_cloak_and_dagger = modifier_imba_riki_cloak_and_dagger or cla
 function modifier_imba_riki_cloak_and_dagger:IsPurgable() return false end
 function modifier_imba_riki_cloak_and_dagger:IsDebuff() return false end
 function modifier_imba_riki_cloak_and_dagger:IsHidden()	return true end
+
+-- elfansoer: fix intrinsic problem
+function modifier_imba_riki_cloak_and_dagger:OnCreated( kv )
+	if IsServer() and self:GetAbility():GetLevel()<1 then
+		self:Destroy()
+		return
+	end
+end
 
 function modifier_imba_riki_cloak_and_dagger:DeclareFunctions()
 	local funcs = { MODIFIER_EVENT_ON_ATTACK_LANDED,}
@@ -945,6 +976,9 @@ function modifier_imba_riki_cloak_and_dagger:OnAttackLanded( keys )
 			if not parent:HasModifier("modifier_imba_riki_tricks_of_the_trade_primary") and not target:IsBuilding() and not parent:PassivesDisabled() then
 
 				-- If the passive is off cooldown, apply invis break bonus to backstab damage
+
+				-- Elfansoer: fix missing reference
+				-- if ability:IsCooldownReady() and parent:IsImbaInvisible() then
 				if ability:IsCooldownReady() and parent:IsInvisible() then
 					agility_multiplier = agility_multiplier * agility_multiplier_invis_break
 					agility_multiplier_smoke = agility_multiplier_smoke * agility_multiplier_invis_break
@@ -1167,6 +1201,12 @@ function modifier_imba_riki_invisibility:IsDebuff() return false end
 function modifier_imba_riki_invisibility:IsHidden()	return false end
 
 function modifier_imba_riki_invisibility:OnCreated()
+	-- elfansoer: fix intrinsic problem
+	if IsServer() and self:GetAbility():GetLevel()<1 then
+		self:Destroy()
+		return
+	end
+
 	local particle = ParticleManager:CreateParticle("particles/generic_hero_status/status_invisibility_start.vpcf", PATTACH_ABSORIGIN, self:GetParent())
 	ParticleManager:ReleaseParticleIndex(particle)
 end
@@ -1318,17 +1358,17 @@ function imba_riki_tricks_of_the_trade:OnSpellStart()
 		local cast_particle = "particles/units/heroes/hero_riki/riki_tricks_cast.vpcf"
 		local tricks_particle = "particles/units/heroes/hero_riki/riki_tricks.vpcf"
 		local cast_sound = "Hero_Riki.TricksOfTheTrade.Cast"
-		local continuos_sound = "Hero_Riki.TricksOfTheTrade"
+		local continous_sound = "Hero_Riki.TricksOfTheTrade"
 		local buttsecks_sound = "Imba.RikiSurpriseButtsex"
 
 		local heroes = FindUnitsInRadius(caster:GetTeamNumber(), origin, nil, aoe, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE + DOTA_UNIT_TARGET_FLAG_NO_INVIS, FIND_ANY_ORDER, false)
-		if #heroes >= IMBA_PLAYERS_ON_GAME * 0.35 then
+		if #heroes >= PlayerResource:GetPlayerCount() * 0.35 then
 			-- caster:EmitSound(buttsecks_sound)
 			EmitSoundOn(buttsecks_sound, caster)
 		end
 
 		EmitSoundOnLocationWithCaster(origin, cast_sound, caster)
-		EmitSoundOn(continuos_sound, caster)
+		EmitSoundOn(continous_sound, caster)
 
 		local caster_loc = caster:GetAbsOrigin()
 
@@ -1395,7 +1435,7 @@ function imba_riki_tricks_of_the_trade:OnChannelFinish()
 			end
 			local portion_refunded = channel_time/channel_duration
 			local new_cooldown = self:GetCooldownTimeRemaining() * (portion_refunded)
-			if new_cooldown < caster:FindTalentValue("special_bonus_imba_riki_6") then
+			if new_cooldown < caster:FindTalentValue("special_bonus_imba_riki_6") and new_cooldown ~= 0 then
 				new_cooldown = caster:FindTalentValue("special_bonus_imba_riki_6")
 			end
 			self:EndCooldown()
@@ -1449,6 +1489,7 @@ function modifier_imba_riki_tricks_of_the_trade_primary:OnCreated()
 	if IsServer() then
 		local ability = self:GetAbility()
 		local interval = ability:GetSpecialValueFor("attack_interval")
+		self:OnIntervalThink()
 		self:StartIntervalThink(interval)
 	end
 end
@@ -1472,9 +1513,14 @@ function modifier_imba_riki_tricks_of_the_trade_primary:OnIntervalThink()
 		local backstab_sound = "Hero_Riki.Backstab"
 
 		local targets = FindUnitsInRadius(caster:GetTeamNumber(), origin, nil, aoe, DOTA_UNIT_TARGET_TEAM_ENEMY , DOTA_UNIT_TARGET_HERO , DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_NO_INVIS + DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS, FIND_ANY_ORDER , false)
+
+		if #targets == 0 then
+			targets = FindUnitsInRadius(caster:GetTeamNumber(), origin, nil, aoe, DOTA_UNIT_TARGET_TEAM_ENEMY , DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_NO_INVIS, FIND_ANY_ORDER , false)
+		end
+
 		for _,unit in pairs(targets) do
 			if unit:IsAlive() and not unit:IsAttackImmune() then
-				caster:PerformAttack(target, true, true, true, false, false, false, false)
+				caster:PerformAttack(unit, true, true, true, false, false, false, false)
 
 				if backstab_ability and backstab_ability:GetLevel() > 0 and not self:GetParent():PassivesDisabled() then
 					local agility_damage_multiplier = backstab_ability:GetSpecialValueFor("agility_damage_multiplier")
@@ -1497,6 +1543,8 @@ function modifier_imba_riki_tricks_of_the_trade_primary:OnIntervalThink()
 					end
 				end
 			end
+			
+			return
 		end
 	end
 end
@@ -1536,6 +1584,10 @@ function modifier_imba_riki_tricks_of_the_trade_secondary:OnIntervalThink()
 		local backstab_sound = "Hero_Riki.Backstab"
 
 		local targets = FindUnitsInRadius(caster:GetTeamNumber(), origin, nil, aoe, DOTA_UNIT_TARGET_TEAM_ENEMY , DOTA_UNIT_TARGET_HERO , DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_NO_INVIS + DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS, FIND_ANY_ORDER , false)
+
+		if #targets == 0 then
+			targets = FindUnitsInRadius(caster:GetTeamNumber(), origin, nil, aoe, DOTA_UNIT_TARGET_TEAM_ENEMY , DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_NO_INVIS, FIND_ANY_ORDER , false)
+		end
 
 		-- #2 Talent: Tricks of the Trade now applies martyrs Mark on the target, targets with martyrs Mark becomes more likely to be targetted by Marty's Strike
 		local martyrs_mark_targets = nil

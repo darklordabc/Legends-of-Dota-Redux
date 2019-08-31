@@ -15,6 +15,7 @@
 -- Editors:
 --     Shush, 05.04.2017
 --     suthernfriend, 03.02.2018
+--     Elfansoer, 10.08.2019
 
 if IsClient() then
     require('lib/util_imba_client')
@@ -30,7 +31,7 @@ imba_night_stalker_stalker_in_the_night = class({})
 LinkLuaModifier("modifier_imba_stalker_in_the_night", "abilities/dota_imba/hero_night_stalker", LUA_MODIFIER_MOTION_NONE)
 
 function imba_night_stalker_stalker_in_the_night:GetAbilityTextureName()
-	return "custom/stalker_in_the_night"
+   return "custom/stalker_in_the_night"
 end
 
 function imba_night_stalker_stalker_in_the_night:GetIntrinsicModifierName()
@@ -45,27 +46,32 @@ end
 modifier_imba_stalker_in_the_night = class({})
 
 function modifier_imba_stalker_in_the_night:OnCreated()
+	-- elfansoer: fix generic intrinsic problem
+	if IsServer() and self:GetAbility():GetLevel()<1 then
+		self:Destroy()
+		return
+	end
+
 	-- Ability properties
 	self.caster = self:GetCaster()
-	self.ability = self:GetAbility()
 	self.modifier_stalker = "modifier_imba_stalker_in_the_night"
 
 	-- Ability specials
-	self.vision_day_loss = self.ability:GetSpecialValueFor("vision_day_loss")
-	self.vision_night_gain = self.ability:GetSpecialValueFor("vision_night_gain")
+	self.vision_day_loss = self:GetAbility():GetSpecialValueFor("vision_day_loss")
+	self.vision_night_gain = self:GetAbility():GetSpecialValueFor("vision_night_gain")
 
 	if IsServer() then
 		-- If it is an illusion, look for the owner
 		if self.caster:IsIllusion() then
-			local heroes = FindUnitsInRadius(self.caster:GetTeamNumber(),
-				self.caster:GetAbsOrigin(),
-				nil,
-				25000, -- global
-				DOTA_UNIT_TARGET_TEAM_FRIENDLY,
-				DOTA_UNIT_TARGET_HERO,
-				DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS + DOTA_UNIT_TARGET_FLAG_DEAD + DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD,
-				FIND_CLOSEST,
-				false)
+			local heroes = FindUnitsInRadius(	self.caster:GetTeamNumber(),
+												self.caster:GetAbsOrigin(),
+												nil,
+												25000, -- global
+												DOTA_UNIT_TARGET_TEAM_FRIENDLY,
+												DOTA_UNIT_TARGET_HERO,
+												DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS + DOTA_UNIT_TARGET_FLAG_DEAD + DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD,
+												FIND_CLOSEST,
+												false) 
 			for _,hero in pairs(heroes) do
 				-- Find a real Night Stalker in your team
 				if hero:IsRealHero() and hero:GetUnitName() == self.caster:GetUnitName() then
@@ -76,7 +82,7 @@ function modifier_imba_stalker_in_the_night:OnCreated()
 						local stacks = modifier_stalker_handler:GetStackCount()
 						self:SetStackCount(stacks)
 						break
-					end
+					end                    
 				end
 			end
 		end
@@ -102,12 +108,12 @@ function modifier_imba_stalker_in_the_night:OnIntervalThink()
 				return nil
 			end
 
-			-- Otherwise, a new night has begun. Give a stack to this modifier
-			self:IncrementStackCount()
+			-- Otherwise, a new night has begun. Give a stack to this modifier            
+			self:IncrementStackCount()                    
 		end
 
 		-- State the current cycle in the modifier
-		self.is_day = current_daytime
+		self.is_day = current_daytime        
 	end
 end
 
@@ -117,12 +123,8 @@ function modifier_imba_stalker_in_the_night:IsDebuff() return false end
 function modifier_imba_stalker_in_the_night:IsPermanent() return true end
 
 function modifier_imba_stalker_in_the_night:DeclareFunctions()
-	local decFuncs = {MODIFIER_PROPERTY_BONUS_DAY_VISION,
-		MODIFIER_PROPERTY_BONUS_NIGHT_VISION,
-		MODIFIER_EVENT_ON_ABILITY_FULLY_CAST}
-
-	return decFuncs
-end
+	return {--MODIFIER_PROPERTY_BONUS_DAY_VISION, 
+	MODIFIER_PROPERTY_BONUS_NIGHT_VISION, MODIFIER_EVENT_ON_ABILITY_FULLY_CAST} end
 
 function modifier_imba_stalker_in_the_night:OnAbilityFullyCast(keys)
 	if IsServer() then
@@ -132,9 +134,7 @@ function modifier_imba_stalker_in_the_night:OnAbilityFullyCast(keys)
 		local night_spell_used = false
 
 		-- If it is a day, do nothing
-		if GameRules:IsDaytime() then
-			return nil
-		end
+		if GameRules:IsDaytime() then return nil end
 
 		-- Check if a night inducing spell was used
 		for _,spell_name in pairs(night_inducing_spells) do
@@ -150,27 +150,21 @@ function modifier_imba_stalker_in_the_night:OnAbilityFullyCast(keys)
 	end
 end
 
-function modifier_imba_stalker_in_the_night:GetBonusDayVision()
-	-- If the caster is afflicted with Break, do nothing
-	if self.caster:PassivesDisabled() then
-		return nil
-	end
-
-	return self.vision_day_loss * (-1)
-end
+-- function modifier_imba_stalker_in_the_night:GetBonusDayVision()
+	-- -- If the caster is afflicted with Break, do nothing
+	-- if self.caster:PassivesDisabled() then return 0 end
+	-- return self.vision_day_loss * (-1)
+-- end
 
 function modifier_imba_stalker_in_the_night:GetBonusNightVision()
 	-- If the caster is afflicted with Break, do nothing
-	if self.caster:PassivesDisabled() then
-		return nil
-	end
+	if self.caster:PassivesDisabled() then return 0 end
 
 	-- #5 Talent: Stalker in the Night night vision bonus
 	local vision_night_gain = self.vision_night_gain + self.caster:FindTalentValue("special_bonus_imba_night_stalker_5")
 
 	return vision_night_gain
 end
-
 
 ----------------------------------
 --            VOID              --
@@ -180,7 +174,31 @@ LinkLuaModifier("modifier_imba_void_ministun", "abilities/dota_imba/hero_night_s
 LinkLuaModifier("modifier_imba_void_slow", "abilities/dota_imba/hero_night_stalker", LUA_MODIFIER_MOTION_NONE)
 
 function imba_night_stalker_void:GetAbilityTextureName()
-	return "night_stalker_void"
+   return "night_stalker_void"
+end
+
+function imba_night_stalker_void:GetBehavior()
+	if self:GetCaster():HasScepter() then
+		return DOTA_ABILITY_BEHAVIOR_NO_TARGET
+	else
+		return self.BaseClass.GetBehavior(self)
+	end
+end
+
+function imba_night_stalker_void:GetCastRange(location, target)
+	if not self:GetCaster():HasScepter() or IsClient() then
+		return self.BaseClass.GetCastRange(self, location, target)
+	else
+		return self:GetSpecialValueFor("radius_scepter") - GetCastRangeIncrease(self:GetCaster())
+	end
+end
+
+function imba_night_stalker_void:GetCooldown(level)
+	if not self:GetCaster():HasScepter() then
+		return self.BaseClass.GetCooldown(self, level)
+	else
+		return self.BaseClass.GetCooldown(self, level) - self:GetSpecialValueFor("scepter_cooldown_reduction")
+	end
 end
 
 function imba_night_stalker_void:IsHiddenWhenStolen()
@@ -188,7 +206,7 @@ function imba_night_stalker_void:IsHiddenWhenStolen()
 end
 
 function imba_night_stalker_void:OnSpellStart()
-	-- Ability properties
+	-- Ability properties    
 	local caster = self:GetCaster()
 	local ability = self
 	local target = self:GetCursorTarget()
@@ -201,7 +219,7 @@ function imba_night_stalker_void:OnSpellStart()
 
 	-- Ability specials
 	local damage = ability:GetSpecialValueFor("damage")
-	local ministun_duration = ability:GetSpecialValueFor("ministun_duration")
+	local ministun_duration = ability:GetSpecialValueFor("ministun_duration")    
 	local day_duration = ability:GetSpecialValueFor("day_duration")
 	local night_pull = ability:GetSpecialValueFor("night_pull")
 	local night_duration = ability:GetSpecialValueFor("night_duration")
@@ -212,102 +230,199 @@ function imba_night_stalker_void:OnSpellStart()
 	if RollPercentage(5) then
 		EmitSoundOnLocationForAllies(caster:GetAbsOrigin(), rare_cast_response, caster)
 
-		-- Roll for normal response
+	-- Roll for normal response
 	elseif RollPercentage(25) then
 		EmitSoundOnLocationForAllies(caster:GetAbsOrigin(), cast_response[math.random(1,#cast_response)], caster)
 	end
 
 	-- Play sound cast
-	EmitSoundOn(sound_cast, caster)
+	EmitSoundOn(sound_cast, caster)    
 
-
-	-- If target has Linken's sphere ready, do nothing
-	if caster:GetTeamNumber() ~= target:GetTeamNumber() then
-		if target:TriggerSpellAbsorb(ability) then
-			return nil
-		end
-	end
-
-	-- Damage target
-	local damageTable = {victim = target,
-		attacker = caster,
-		damage = damage,
-		damage_type = DAMAGE_TYPE_MAGICAL,
-		ability = ability}
-
-	ApplyDamage(damageTable)
-
-	-- Apply ministun on target
-	target:AddNewModifier(caster, ability, modifier_ministun, {duration = ministun_duration})
-
-	-- Set duration variable
-	local duration
-
-	-- If Night Stalker has Darkness active, lengthen it
-	if caster:HasModifier(modifier_darkness) then
-		-- Assign night duration
-		duration = night_duration
-
-		local modifier_darkness_handler = caster:FindModifierByName(modifier_darkness)
-		if modifier_darkness_handler then
-			modifier_darkness_handler:SetDuration(modifier_darkness_handler:GetRemainingTime() + night_extend, true)
-			modifier_darkness_handler:ForceRefresh()
-		end
-	else
-		-- Influence the natural time flow
-		-- Day start time
-		local day_start = 0.25
-		local minutes_per_day = 8
-		local seconds_per_minute = 60
-
-		-- Convert daytime to seconds
-		local daytime_seconds = (GameRules:GetTimeOfDay() - day_start) * minutes_per_day * seconds_per_minute
-
-		-- Negative value handling
-		if daytime_seconds < 0 then
-			daytime_seconds = daytime_seconds + (minutes_per_day * seconds_per_minute)
-		end
-
-		-- Check current daytime cycle
-
-		if GameRules:IsDaytime() then
-			-- Assign day duration
-			duration = day_duration
-
-			-- If the target is a real hero, pull the night closer
-			if target:IsRealHero() then
-
-				-- Add seconds to hasten the day
-				daytime_seconds = daytime_seconds + night_pull
-
-				-- Convert daytime back to dota format
-				local dota_daytime = (daytime_seconds / seconds_per_minute / minutes_per_day) + day_start
-
-				-- Set the time of day
-				GameRules:SetTimeOfDay(dota_daytime)
+	if target then
+		-- If target has Linken's sphere ready, do nothing
+		if caster:GetTeamNumber() ~= target:GetTeamNumber() then
+			if target:TriggerSpellAbsorb(ability) then
+				return nil
 			end
-		else
+		end     		
+
+		-- Damage target
+		local damageTable = {victim = target,
+							attacker = caster,
+							damage = damage,
+							damage_type = DAMAGE_TYPE_MAGICAL,
+							ability = ability}
+											
+		ApplyDamage(damageTable)    
+
+		-- Apply ministun on target
+		target:AddNewModifier(caster, ability, modifier_ministun, {duration = ministun_duration})
+
+		-- Set duration variable
+		local duration
+
+		-- If Night Stalker has Darkness active, lengthen it
+		if caster:HasModifier(modifier_darkness) then
 			-- Assign night duration
 			duration = night_duration
 
-			-- If the target is a real hero, extend the night
-			if target:IsRealHero() then
-				-- Reduce seconds to extend the night
-				daytime_seconds = daytime_seconds - night_extend
+			local modifier_darkness_handler = caster:FindModifierByName(modifier_darkness)
+			if modifier_darkness_handler then
+				modifier_darkness_handler:SetDuration(modifier_darkness_handler:GetRemainingTime() + night_extend, true)
+				modifier_darkness_handler:ForceRefresh()
+			end
+		else
+			-- Influence the natural time flow
+			-- Day start time
+			local day_start = 0.25    
+			local minutes_per_day = 8
+			local seconds_per_minute = 60
 
-				-- Convert daytime back to dota format
-				local dota_daytime = (daytime_seconds / seconds_per_minute / minutes_per_day) + day_start
+			-- Convert daytime to seconds
+			local daytime_seconds = (GameRules:GetTimeOfDay() - day_start) * minutes_per_day * seconds_per_minute
 
-				-- Set the time of day
-				GameRules:SetTimeOfDay(dota_daytime)
+			-- Negative value handling
+			if daytime_seconds < 0 then
+				daytime_seconds = daytime_seconds + (minutes_per_day * seconds_per_minute)
+			end
+
+			-- Check current daytime cycle
+			
+			if GameRules:IsDaytime() then
+				-- Assign day duration
+				duration = day_duration
+
+				-- If the target is a real hero, pull the night closer
+				if target:IsRealHero() then
+
+					-- Add seconds to hasten the day
+					daytime_seconds = daytime_seconds + night_pull
+
+					-- Convert daytime back to dota format
+					local dota_daytime = (daytime_seconds / seconds_per_minute / minutes_per_day) + day_start
+
+					-- Set the time of day
+					GameRules:SetTimeOfDay(dota_daytime)
+				end
+			else        
+				-- Assign night duration
+				duration = night_duration
+
+				-- If the target is a real hero, extend the night
+				if target:IsRealHero() then
+					-- Reduce seconds to extend the night
+					daytime_seconds = daytime_seconds - night_extend
+
+					-- Convert daytime back to dota format
+					local dota_daytime = (daytime_seconds / seconds_per_minute / minutes_per_day) + day_start
+
+					-- Set the time of day
+					GameRules:SetTimeOfDay(dota_daytime)
+				end
+			end
+		end
+
+		-- Apply Void on the target with the correct duration
+		target:AddNewModifier(caster, ability, modifier_void, {duration = duration})
+	else
+		-- Scepter logic
+		local slow_duration	= day_duration
+		local stun_duration	= ministun_duration
+		
+		if not GameRules:IsDaytime() then
+			slow_duration 	= night_duration
+			stun_duration	= self:GetSpecialValueFor("scepter_ministun")
+		end
+	
+		local enemies = FindUnitsInRadius(self:GetCaster():GetTeamNumber(), self:GetCaster():GetAbsOrigin(), nil, self:GetSpecialValueFor("radius_scepter"), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
+		
+		-- Maybe only let this apply Everlasting Night effect only max of one time?
+		local hit_hero = false
+		
+		for _, enemy in pairs(enemies) do
+			-- "Void first applies the slow debuff, then the damage, then the stun debuff."
+			
+			enemy:AddNewModifier(self:GetCaster(), self, "modifier_imba_void_slow", {duration = slow_duration}):SetDuration(slow_duration * (1 - enemy:GetStatusResistance()), true)
+			
+			local damageTable = 
+			{
+				victim		= enemy,
+				attacker	= self:GetCaster(),
+				damage		= damage,
+				damage_type	= DAMAGE_TYPE_MAGICAL,
+				ability		= self
+			}
+			
+			ApplyDamage(damageTable) 
+			
+			-- Apply ministun on target
+			local stun_modifier = enemy:AddNewModifier(self:GetCaster(), self, "modifier_imba_void_ministun", {duration = stun_duration})
+			
+			if stun_modifier then
+				stun_modifier:SetDuration(stun_duration * (1 - enemy:GetStatusResistance()), true)
+			end
+			
+			if not hit_hero and enemy:IsRealHero() then
+				hit_hero = true
+				-- Set duration variable
+				local duration
+
+				-- If Night Stalker has Darkness active, lengthen it
+				if caster:HasModifier(modifier_darkness) then
+					-- Assign night duration
+					duration = night_duration
+
+					local modifier_darkness_handler = caster:FindModifierByName(modifier_darkness)
+					if modifier_darkness_handler then
+						modifier_darkness_handler:SetDuration(modifier_darkness_handler:GetRemainingTime() + night_extend, true)
+						modifier_darkness_handler:ForceRefresh()
+					end
+				else
+					-- Influence the natural time flow
+					-- Day start time
+					local day_start = 0.25    
+					local minutes_per_day = 8
+					local seconds_per_minute = 60
+
+					-- Convert daytime to seconds
+					local daytime_seconds = (GameRules:GetTimeOfDay() - day_start) * minutes_per_day * seconds_per_minute
+
+					-- Negative value handling
+					if daytime_seconds < 0 then
+						daytime_seconds = daytime_seconds + (minutes_per_day * seconds_per_minute)
+					end
+
+					-- Check current daytime cycle
+					
+					if GameRules:IsDaytime() then
+						-- Assign day duration
+						duration = day_duration
+						-- Add seconds to hasten the day
+						daytime_seconds = daytime_seconds + night_pull
+
+						-- Convert daytime back to dota format
+						local dota_daytime = (daytime_seconds / seconds_per_minute / minutes_per_day) + day_start
+
+						-- Set the time of day
+						GameRules:SetTimeOfDay(dota_daytime)
+					else        
+						-- Assign night duration
+						duration = night_duration
+						
+						-- Reduce seconds to extend the night
+						daytime_seconds = daytime_seconds - night_extend
+
+						-- Convert daytime back to dota format
+						local dota_daytime = (daytime_seconds / seconds_per_minute / minutes_per_day) + day_start
+
+						-- Set the time of day
+						GameRules:SetTimeOfDay(dota_daytime)
+					end
+				end
 			end
 		end
 	end
-
-	-- Apply Void on the target with the correct duration
-	target:AddNewModifier(caster, ability, modifier_void, {duration = duration})
 end
-
 
 -- Ministun modifier
 modifier_imba_void_ministun = class({})
@@ -336,13 +451,13 @@ function modifier_imba_void_slow:OnCreated()
 	-- Ability properties
 	self.caster = self:GetCaster()
 	self.ability = self:GetAbility()
-	self.parent = self:GetParent()
+	self.parent = self:GetParent() 
 
 	-- Ability specials
 	self.ms_slow_pct = self.ability:GetSpecialValueFor("ms_slow_pct")
 	self.as_slow = self.ability:GetSpecialValueFor("as_slow")
 	self.vision_reduction = self.ability:GetSpecialValueFor("vision_reduction")
-
+	
 	-- #1 Talent: Void vision reduction increase
 	self.vision_reduction = self.vision_reduction + self.caster:FindTalentValue("special_bonus_imba_night_stalker_1")
 end
@@ -352,10 +467,12 @@ function modifier_imba_void_slow:IsPurgable() return true end
 function modifier_imba_void_slow:IsDebuff() return true end
 
 function modifier_imba_void_slow:DeclareFunctions()
-	local decFuncs = {MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
+	local decFuncs = {
+		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
 		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
 		MODIFIER_PROPERTY_BONUS_DAY_VISION,
-		MODIFIER_PROPERTY_BONUS_NIGHT_VISION}
+		MODIFIER_PROPERTY_BONUS_NIGHT_VISION
+	}
 
 	return decFuncs
 end
@@ -384,8 +501,6 @@ function modifier_imba_void_slow:GetEffectAttachType()
 	return PATTACH_ABSORIGIN_FOLLOW
 end
 
-
-
 ----------------------------------
 --        Crippling Fear        --
 ----------------------------------
@@ -393,7 +508,7 @@ imba_night_stalker_crippling_fear = class({})
 LinkLuaModifier("modifier_imba_crippling_fear_silence", "abilities/dota_imba/hero_night_stalker", LUA_MODIFIER_MOTION_NONE)
 
 function imba_night_stalker_crippling_fear:GetAbilityTextureName()
-	return "night_stalker_crippling_fear"
+   return "night_stalker_crippling_fear"
 end
 
 function imba_night_stalker_crippling_fear:IsHiddenWhenStolen()
@@ -410,23 +525,26 @@ function imba_night_stalker_crippling_fear:GetCooldown(level)
 	return cooldown
 end
 
+function imba_night_stalker_crippling_fear:OnOwnerSpawned()
+	if not IsServer() then return end
+	
+	if self:GetCaster():HasAbility("special_bonus_imba_night_stalker_8") and self:GetCaster():FindAbilityByName("special_bonus_imba_night_stalker_8"):IsTrained() and not self:GetCaster():HasModifier("modifier_special_bonus_imba_night_stalker_8") then
+		self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_special_bonus_imba_night_stalker_8", {})
+	end
+end
+
 function imba_night_stalker_crippling_fear:OnSpellStart()
 	-- Ability properties
 	local caster = self:GetCaster()
 	local ability = self
 	local target = self:GetCursorTarget()
 	local cast_response = {"night_stalker_nstalk_ability_cripfear_01", "night_stalker_nstalk_ability_cripfear_02", "night_stalker_nstalk_ability_cripfear_03"}
-	local sound_cast = "Hero_Nightstalker.Trickling_Fear"
+	local sound_cast = "Hero_Nightstalker.Trickling_Fear"  
 	local modifier_fear = "modifier_imba_crippling_fear_silence"
 
 	-- Ability specials
 	local day_duration = ability:GetSpecialValueFor("day_duration")
 	local night_duration = ability:GetSpecialValueFor("night_duration")
-
-	-- Roll for cast responses
-	if RollPercentage(75) then
-		EmitSoundOnLocationForAllies(caster:GetAbsOrigin(), cast_response[math.random(1,#cast_response)], caster)
-	end
 
 	-- Play cast sound
 	EmitSoundOn(sound_cast, caster)
@@ -436,7 +554,7 @@ function imba_night_stalker_crippling_fear:OnSpellStart()
 		if target:TriggerSpellAbsorb(ability) then
 			return nil
 		end
-	end
+	end     
 
 	-- Check day or night to decide duration
 	local duration
@@ -450,8 +568,6 @@ function imba_night_stalker_crippling_fear:OnSpellStart()
 	target:AddNewModifier(caster, ability, modifier_fear, {duration = duration})
 end
 
-
-
 -- Silence modifier
 modifier_imba_crippling_fear_silence = class({})
 
@@ -460,7 +576,7 @@ function modifier_imba_crippling_fear_silence:OnCreated()
 	self.caster = self:GetCaster()
 	self.ability = self:GetAbility()
 	self.parent = self:GetParent()
-	self.sound_fear = "Imba.CripplingFearKill"
+	self.sound_fear = "Imba.CripplingFearKill"  
 	self.modifier_fear = "modifier_imba_crippling_fear_silence"
 
 	-- Ability specials
@@ -473,7 +589,7 @@ function modifier_imba_crippling_fear_silence:OnCreated()
 	self.day_miss_chance_pct = self.day_miss_chance_pct + self.caster:FindTalentValue("special_bonus_imba_night_stalker_2")
 	self.night_miss_chance_pct = self.night_miss_chance_pct + self.caster:FindTalentValue("special_bonus_imba_night_stalker_2")
 
-	-- #4 Talent: Crippling Fear On-kill effect duration
+	-- #4 Talent: Crippling Fear On-kill effect duration 
 	self.fear_duartion = self.fear_duartion + self.caster:FindTalentValue("special_bonus_imba_night_stalker_4")
 end
 
@@ -486,7 +602,7 @@ function modifier_imba_crippling_fear_silence:CheckState()
 	-- #6 Talent: Crippling Fear now mutes the target as well
 	if self.caster:HasTalent("special_bonus_imba_night_stalker_6") then
 		local state = {[MODIFIER_STATE_SILENCED] = true,
-			[MODIFIER_STATE_MUTED] = true}
+					   [MODIFIER_STATE_MUTED] = true}
 		return state
 	end
 
@@ -496,14 +612,14 @@ end
 
 function modifier_imba_crippling_fear_silence:DeclareFunctions()
 	local decFuncs = {MODIFIER_EVENT_ON_HERO_KILLED,
-		MODIFIER_PROPERTY_MISS_PERCENTAGE}
+					  MODIFIER_PROPERTY_MISS_PERCENTAGE}
 
 	return decFuncs
 end
 
 function modifier_imba_crippling_fear_silence:GetModifierMiss_Percentage()
 	-- Check if it is a day or night
-	local is_day = IsDaytime()
+	local is_day = GameRules:IsDaytime()
 
 	-- Assign miss chance according to day-night cycle
 	if is_day then
@@ -513,7 +629,7 @@ function modifier_imba_crippling_fear_silence:GetModifierMiss_Percentage()
 	return self.night_miss_chance_pct
 end
 
-function modifier_imba_crippling_fear_silence:OnHeroKilled(keys)
+function modifier_imba_crippling_fear_silence:OnHeroKilled(keys)    
 	if IsServer() then
 		local target = keys.target
 
@@ -538,14 +654,14 @@ function modifier_imba_crippling_fear_silence:OnHeroKilled(keys)
 
 			-- Find all nearby enemies around the target that died
 			local enemies = FindUnitsInRadius(self.caster:GetTeamNumber(),
-				self.parent:GetAbsOrigin(),
-				nil,
-				self.radius_fear,
-				DOTA_UNIT_TARGET_TEAM_ENEMY,
-				DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-				DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS,
-				FIND_ANY_ORDER,
-				false)
+											  self.parent:GetAbsOrigin(),
+											  nil,
+											  self.radius_fear,
+											  DOTA_UNIT_TARGET_TEAM_ENEMY,
+											  DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+											  DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS,
+											  FIND_ANY_ORDER,
+											  false)
 
 			-- Afflict them with secondary Crippling Fear
 			for _,enemy in pairs(enemies) do
@@ -566,9 +682,14 @@ function modifier_imba_crippling_fear_silence:GetEffectAttachType()
 	return PATTACH_OVERHEAD_FOLLOW
 end
 
+-- Need this modifier to show Crippling Fear cooldown reduction talent on client-side
+LinkLuaModifier("modifier_special_bonus_imba_night_stalker_8", "abilities/dota_imba/hero_night_stalker", LUA_MODIFIER_MOTION_NONE)
 
+modifier_special_bonus_imba_night_stalker_8 = class({})
 
-
+function modifier_special_bonus_imba_night_stalker_8:IsHidden() 		return true end
+function modifier_special_bonus_imba_night_stalker_8:IsPurgable() 		return false end
+function modifier_special_bonus_imba_night_stalker_8:RemoveOnDeath() 	return false end
 
 ----------------------------------
 --      Hunter in the Night     --
@@ -576,19 +697,18 @@ end
 imba_night_stalker_hunter_in_the_night = class({})
 LinkLuaModifier("modifier_imba_hunter_in_the_night_thinker", "abilities/dota_imba/hero_night_stalker", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_imba_hunter_in_the_night", "abilities/dota_imba/hero_night_stalker", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_imba_hunter_in_the_night_flying", "abilities/dota_imba/hero_night_stalker", LUA_MODIFIER_MOTION_NONE)
 
 function imba_night_stalker_hunter_in_the_night:GetAbilityTextureName()
-	return "night_stalker_hunter_in_the_night"
-end
+   return "night_stalker_hunter_in_the_night" end
 
 function imba_night_stalker_hunter_in_the_night:GetIntrinsicModifierName()
-	return "modifier_imba_hunter_in_the_night_thinker"
-end
+	return "modifier_imba_hunter_in_the_night_thinker" end
 
 function imba_night_stalker_hunter_in_the_night:OnUpgrade()
 	local caster = self:GetCaster()
 	local modifier_hunter = "modifier_imba_hunter_in_the_night"
-
+	
 	-- If the caster has HitN while leveling the ability up, refresh the modifier
 	if caster:HasModifier(modifier_hunter) then
 		local modifier_hunter_handler = caster:FindModifierByName(modifier_hunter)
@@ -598,122 +718,176 @@ function imba_night_stalker_hunter_in_the_night:OnUpgrade()
 	end
 end
 
+function imba_night_stalker_hunter_in_the_night:GetBehavior()
+	if self.nightTime then
+		return DOTA_ABILITY_BEHAVIOR_NO_TARGET + DOTA_ABILITY_BEHAVIOR_IMMEDIATE
+	else
+		return DOTA_ABILITY_BEHAVIOR_PASSIVE
+	end
+end
+
+function imba_night_stalker_hunter_in_the_night:GetManaCost(level)
+	if self.nightTime then
+		return self.BaseClass.GetManaCost(self, level)
+	else
+		return 0
+	end
+end
+
+function imba_night_stalker_hunter_in_the_night:OnSpellStart()
+	if IsServer() then
+		self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_imba_hunter_in_the_night_flying", {duration = self:GetSpecialValueFor("flying_duration")})
+	end
+end
+
 -- Thinker modifier
-modifier_imba_hunter_in_the_night_thinker = class({})
+modifier_imba_hunter_in_the_night_thinker = modifier_imba_hunter_in_the_night_thinker or class({})
+function modifier_imba_hunter_in_the_night_thinker:IsHidden() return true end
+function modifier_imba_hunter_in_the_night_thinker:IsPurgable() return false end
+function modifier_imba_hunter_in_the_night_thinker:IsDebuff() return false end
 
 function modifier_imba_hunter_in_the_night_thinker:OnCreated()
-	-- Ability properties
-	self.caster = self:GetCaster()
-	self.ability = self:GetAbility()
-	self.modifier_hunter = "modifier_imba_hunter_in_the_night"
-	self.modifier_day = "modifier_imba_hunter_in_the_night_day_model"
-	self.night_transform_response = {"night_stalker_nstalk_ability_dark_01", "night_stalker_nstalk_ability_dark_02", "night_stalker_nstalk_ability_dark_04", "night_stalker_nstalk_ability_dark_05", "night_stalker_nstalk_ability_dark_06"}
-	self.night_rare_transform_response = "night_stalker_nstalk_ability_dark_03"
-	self.night_rarest_transform_response = "night_stalker_nstalk_ability_dark_07"
-	self.day_transform_response = {"night_stalker_nstalk_dayrise_01", "night_stalker_nstalk_dayrise_02", "night_stalker_nstalk_dayrise_03"}
-	self.day_rare_transform_response = "night_stalker_nstalk_dayrise_05"
-	self.day_rarest_transform_response = "night_stalker_nstalk_dayrise_04"
+	-- elfansoer: fix generic intrinsic problem
+	if IsServer() and self:GetAbility():GetLevel()<1 then
+		self:Destroy()
+		return
+	end
 
-	if IsServer() then
+	self.ability = self:GetAbility()
+	self.ability.nightTime = false
+	
+	if IsServer() then 
+		-- Ability properties
+		self.caster = self:GetCaster()
+		self.modifier_hunter = "modifier_imba_hunter_in_the_night"
+		self.modifier_day = "modifier_imba_hunter_in_the_night_day_model"
+		self.night_transform_response = {"night_stalker_nstalk_ability_dark_01", "night_stalker_nstalk_ability_dark_02", "night_stalker_nstalk_ability_dark_04", "night_stalker_nstalk_ability_dark_05", "night_stalker_nstalk_ability_dark_06"}
+		self.night_rare_transform_response = "night_stalker_nstalk_ability_dark_03"
+		self.night_rarest_transform_response = "night_stalker_nstalk_ability_dark_07"
+		self.day_transform_response = {"night_stalker_nstalk_dayrise_01", "night_stalker_nstalk_dayrise_02", "night_stalker_nstalk_dayrise_03"}
+		self.day_rare_transform_response = "night_stalker_nstalk_dayrise_05"
+		self.day_rarest_transform_response = "night_stalker_nstalk_dayrise_04"                      
+
 		-- Start thinking
 		self:StartIntervalThink(1)
 	end
 end
 
+function modifier_imba_hunter_in_the_night_thinker:OnStackCountChanged(oldStacks)
+	if self:GetStackCount() == 1 then
+		self.ability.nightTime = false
+	else
+		self.ability.nightTime = true
+	end
+end
+
 function modifier_imba_hunter_in_the_night_thinker:OnIntervalThink()
 	if IsServer() then
-		local current_daycycle = GameRules:IsDaytime()
-
 		-- If the daycycle is a night and Nightstalker doesn't have the buff yet, give it to him
-		if (not current_daycycle) and (not self.caster:HasModifier(self.modifier_hunter)) and self.caster:IsAlive() then
+		if (not GameRules:IsDaytime()) and (not self.caster:HasModifier(self.modifier_hunter)) and self.caster:IsAlive() then
 
 			-- Night transform responses
 			-- Roll for rarest transform response
 			if RollPercentage(5) then
 				EmitSoundOnLocationForAllies(self.caster:GetAbsOrigin(), self.night_rarest_transform_response, self.caster)
 
-				-- Roll for rare transform response
+			-- Roll for rare transform response
 			elseif RollPercentage(15) then
 				EmitSoundOnLocationForAllies(self.caster:GetAbsOrigin(), self.night_rare_transform_response, self.caster)
 
-				-- Roll for normal transform response
+			-- Roll for normal transform response
 			elseif RollPercentage(75) then
 				EmitSoundOnLocationForAllies(self.caster:GetAbsOrigin(), self.night_transform_response[math.random(1, #self.night_transform_response)], self.caster)
 			end
 
 			-- Grant night buff
 			self.caster:AddNewModifier(self.caster, self.ability, self.modifier_hunter, {})
+
+			-- Set stack count to 2, used to tell the ability its night time
+			self:SetStackCount(2)
 		end
 
 		-- If the daycycle is a morning and Nightstalker has the buff, remove it from him
-		if current_daycycle and self.caster:HasModifier(self.modifier_hunter) and self.caster:IsAlive() then
+		if GameRules:IsDaytime() and self.caster:HasModifier(self.modifier_hunter) and self.caster:IsAlive() then
 
 			-- Day transformation responses
 			-- Roll for rarest transform response
 			if RollPercentage(5) then
 				EmitSoundOnLocationForAllies(self.caster:GetAbsOrigin(), self.day_rarest_transform_response, self.caster)
 
-				-- Roll for rare transform response
+			-- Roll for rare transform response
 			elseif RollPercentage(15) then
 				EmitSoundOnLocationForAllies(self.caster:GetAbsOrigin(), self.day_rare_transform_response, self.caster)
 
-				-- Play normal transform response
+			-- Play normal transform response
 			else
 				EmitSoundOnLocationForAllies(self.caster:GetAbsOrigin(), self.day_transform_response[math.random(1,#self.day_transform_response)], self.caster)
 			end
 
 			-- Remove night buff
 			self.caster:RemoveModifierByName(self.modifier_hunter)
+
+			-- Set stack count to 1, used to tell the ability its day time
+			self:SetStackCount(1)			
 		end
 	end
 end
 
-function modifier_imba_hunter_in_the_night_thinker:IsHidden() return true end
-function modifier_imba_hunter_in_the_night_thinker:IsPurgable() return false end
-function modifier_imba_hunter_in_the_night_thinker:IsDebuff() return false end
 
 -- Night buff
 modifier_imba_hunter_in_the_night = modifier_imba_hunter_in_the_night or class({})
 
-function modifier_imba_hunter_in_the_night:OnCreated()
+function modifier_imba_hunter_in_the_night:OnCreated()    
 	-- Ability properties
 	self.caster = self:GetCaster()
 	self.ability = self:GetAbility()
 	self.particle_change = "particles/units/heroes/hero_night_stalker/nightstalker_change.vpcf"
 	self.particle_buff = "particles/units/heroes/hero_night_stalker/nightstalker_night_buff.vpcf"
 	self.modifier_stalker = "modifier_imba_stalker_in_the_night"
-	self.normal_model = "models/heroes/nightstalker/nightstalker.vmdl"
-	self.night_model = "models/heroes/nightstalker/nightstalker_night.vmdl"
+
+	self.normal_model = "models/heroes/nightstalker/nightstalker.vmdl"    
+	self.night_model = "models/heroes/nightstalker/nightstalker_night.vmdl"                    
+
+	-- elfansoer: fix model got replaced
+	if IsServer() then
+		self.should_change_model = self.caster:GetModelName()==self.normal_model
+	end
 
 	-- Ability specials
 	self.base_bonus_ms_pct = self.ability:GetSpecialValueFor("base_bonus_ms_pct")
 	self.base_bonus_as = self.ability:GetSpecialValueFor("base_bonus_as")
 	self.night_vision_bonus = self.ability:GetSpecialValueFor("night_vision_bonus")
 	self.ms_increase_per_stack = self.ability:GetSpecialValueFor("ms_increase_per_stack")
-	self.as_increase_per_stack = self.ability:GetSpecialValueFor("as_increase_per_stack")
+	self.as_increase_per_stack = self.ability:GetSpecialValueFor("as_increase_per_stack")    
 
 	if IsServer() then
 		-- Since illusion getting the buff can actually show who the real one is, don't give them the change particle
 		Timers:CreateTimer(FrameTime(), function()
-			if self.caster:IsRealHero() then
+			if self.caster:IsRealHero() then        
 
 				-- Apply change particle
 				self.particle_change_fx = ParticleManager:CreateParticle(self.particle_change, PATTACH_ABSORIGIN_FOLLOW, self.caster)
 				ParticleManager:SetParticleControl(self.particle_change_fx, 0, self.caster:GetAbsOrigin())
-				ParticleManager:SetParticleControl(self.particle_change_fx, 1, self.caster:GetAbsOrigin())
+				ParticleManager:SetParticleControl(self.particle_change_fx, 1, self.caster:GetAbsOrigin())    
 				ParticleManager:ReleaseParticleIndex(self.particle_change_fx)
 			end
 		end)
 
 		-- Apply buff particle
-		self.particle_buff_fx = ParticleManager:CreateParticle(self.particle_buff, PATTACH_CUSTOMORIGIN_FOLLOW, self.caster)
+		self.particle_buff_fx = ParticleManager:CreateParticle(self.particle_buff, PATTACH_CUSTOMORIGIN_FOLLOW, self.caster)    
 		ParticleManager:SetParticleControl(self.particle_buff_fx, 0, self.caster:GetAbsOrigin())
 		ParticleManager:SetParticleControl(self.particle_buff_fx, 1, Vector(1,0,0))
 		self:AddParticle(self.particle_buff_fx, false, false, -1, false, false)
 
-		-- Apply night model
-		self.caster:SetModel(self.night_model)
-		self.caster:SetOriginalModel(self.night_model)
+		
+		-- elfansoer: fix model got replaced during night
+		-- if not self:GetAbility():IsStolen() then
+		if not self:GetAbility():IsStolen() and self.should_change_model then
+			-- Apply night model
+			self.caster:SetModel(self.night_model)
+			self.caster:SetOriginalModel(self.night_model)
+		end
+
 	end
 end
 
@@ -727,21 +901,21 @@ function modifier_imba_hunter_in_the_night:IsDebuff() return false end
 
 function modifier_imba_hunter_in_the_night:DeclareFunctions()
 	local decFuncs = {MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
-		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
-		MODIFIER_PROPERTY_BONUS_DAY_VISION,
-	}
+					  MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
+					  MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+					  MODIFIER_PROPERTY_BONUS_DAY_VISION,                      
+					  }
 
 	return decFuncs
 end
 
-function modifier_imba_hunter_in_the_night:GetModifierMoveSpeedBonus_Constant()
+function modifier_imba_hunter_in_the_night:GetModifierMoveSpeedBonus_Constant()    
 	-- If the caster is afflicted with Break, do nothing
 	if self.caster:PassivesDisabled() then
 		return nil
 	end
 
-	local stacks = self.caster:GetModifierStackCount(self.modifier_stalker, nil)
+	local stacks = self.caster:GetModifierStackCount(self.modifier_stalker, nil)    
 	return self.ms_increase_per_stack * stacks
 end
 
@@ -766,7 +940,7 @@ function modifier_imba_hunter_in_the_night:GetModifierAttackSpeedBonus_Constant(
 	local stacks = self.caster:GetModifierStackCount(self.modifier_stalker, self.caster)
 
 	-- #3 Talent: Hunter in the Night bonuses
-	local base_bonus_as = self.base_bonus_as + self.caster:FindTalentValue("special_bonus_imba_night_stalker_3", "as_bonus")
+	local base_bonus_as = self.base_bonus_as + self.caster:FindTalentValue("special_bonus_imba_night_stalker_3", "as_bonus")    
 	return (base_bonus_as + self.as_increase_per_stack * stacks)
 end
 
@@ -779,22 +953,61 @@ function modifier_imba_hunter_in_the_night:GetBonusDayVision()
 	return self.night_vision_bonus
 end
 
-function modifier_imba_hunter_in_the_night:OnDestroy()
+function modifier_imba_hunter_in_the_night:OnDestroy()    
 	if IsServer() then
 		-- Apply change particle
 		self.particle_change_fx = ParticleManager:CreateParticle(self.particle_change, PATTACH_ABSORIGIN_FOLLOW, self.caster)
 		ParticleManager:SetParticleControl(self.particle_change_fx, 0, self.caster:GetAbsOrigin())
-		ParticleManager:SetParticleControl(self.particle_change_fx, 1, self.caster:GetAbsOrigin())
-		ParticleManager:ReleaseParticleIndex(self.particle_change_fx)
+		ParticleManager:SetParticleControl(self.particle_change_fx, 1, self.caster:GetAbsOrigin())    
+		ParticleManager:ReleaseParticleIndex(self.particle_change_fx)        
 
-		-- Revert Models
-		self.caster:SetModel(self.normal_model)
-		self.caster:SetOriginalModel(self.normal_model)
+		-- elfansoer: fix model got replaced during day
+		-- if not self:GetAbility():IsStolen() then
+		if not self:GetAbility():IsStolen() and self.should_change_model then
+			-- Revert Models
+			self.caster:SetModel(self.normal_model)
+			self.caster:SetOriginalModel(self.normal_model)
+		end
+
 	end
 end
 
 
+--	Flight Modifier
+modifier_imba_hunter_in_the_night_flying = modifier_imba_hunter_in_the_night_flying or class({})
 
+function modifier_imba_hunter_in_the_night_flying:IsHidden() return false end
+function modifier_imba_hunter_in_the_night_flying:IsPurgable() return false end
+function modifier_imba_hunter_in_the_night_flying:IsDebuff() return false end
+
+function modifier_imba_hunter_in_the_night_flying:DeclareFunctions()
+	return { MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS } end
+
+function modifier_imba_hunter_in_the_night_flying:CheckState()
+	return {[MODIFIER_STATE_FLYING] = true} end
+
+function modifier_imba_hunter_in_the_night_flying:OnCreated()
+	if IsServer() then
+		self.scepter = self:GetParent():HasScepter()
+		self.parent = self:GetParent()
+		self:StartIntervalThink(FrameTime() * 3)
+	end
+end
+
+function modifier_imba_hunter_in_the_night_flying:OnIntervalThink()
+	AddFOWViewer(self.parent:GetTeamNumber(), self.parent:GetAbsOrigin(), self.parent:GetCurrentVisionRange(), FrameTime()*4, false)
+end
+
+function modifier_imba_hunter_in_the_night_flying:OnDestroy()
+	if IsServer() then
+		GridNav:DestroyTreesAroundPoint(self.parent:GetAbsOrigin(), 200, false)
+		FindClearSpaceForUnit(self.parent, self.parent:GetAbsOrigin(), false)
+		GridNav:DestroyTreesAroundPoint(self.parent:GetAbsOrigin(), 200, false) -- Destroy trees again to prevent odd cases
+	end
+end
+
+function modifier_imba_hunter_in_the_night_flying:GetActivityTranslationModifiers()
+	return "hunter_night" end
 
 ----------------------------------
 --           Darkness           --
@@ -810,10 +1023,10 @@ function imba_night_stalker_darkness:IsHiddenWhenStolen()
 end
 
 function imba_night_stalker_darkness:GetAbilityTextureName()
-	return "night_stalker_darkness"
+   return "night_stalker_darkness"
 end
 
-function imba_night_stalker_darkness:OnUpgrade()
+function imba_night_stalker_darkness:OnUpgrade()   
 
 	-- Rubick scepter interaction
 	if self:IsStolen() then
@@ -821,7 +1034,7 @@ function imba_night_stalker_darkness:OnUpgrade()
 			local caster = self:GetCaster()
 			local has_darkness = caster:HasAbility("imba_night_stalker_darkness")
 			local scepter = caster:HasScepter()
-			local is_day = GameRules:IsDaytime()
+			local is_day = GameRules:IsDaytime()        
 
 			-- If the caster doesn't have darkness anymore, do nothing
 			if not has_darkness then
@@ -834,7 +1047,7 @@ function imba_night_stalker_darkness:OnUpgrade()
 				local night_vision = caster:GetNightTimeVisionRange()
 
 				-- Apply a FOW Viewer
-				AddFOWViewer(caster:GetTeamNumber(), caster:GetAbsOrigin(), night_vision, FrameTime(), false)
+				AddFOWViewer(caster:GetTeamNumber(), caster:GetAbsOrigin(), night_vision, FrameTime(), false)            
 			end
 
 			-- Repeat
@@ -846,7 +1059,7 @@ end
 function imba_night_stalker_darkness:OnSpellStart()
 	-- Ability properties
 	local caster = self:GetCaster()
-	local ability = self
+	local ability = self   
 	local sound_cast = "Hero_Nightstalker.Darkness"
 	local particle_darkness = "particles/units/heroes/hero_night_stalker/nightstalker_ulti.vpcf"
 	local modifier_night = "modifier_imba_darkness_night"
@@ -869,18 +1082,18 @@ function imba_night_stalker_darkness:OnSpellStart()
 
 	-- Find all enemy heroes
 	local enemy_heroes = FindUnitsInRadius(caster:GetTeamNumber(),
-		caster:GetAbsOrigin(),
-		nil,
-		25000, -- global
-		DOTA_UNIT_TARGET_TEAM_ENEMY,
-		DOTA_UNIT_TARGET_HERO,
-		DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
-		FIND_ANY_ORDER,
-		false)
+										   caster:GetAbsOrigin(),
+										   nil,
+										   25000, -- global
+										   DOTA_UNIT_TARGET_TEAM_ENEMY,
+										   DOTA_UNIT_TARGET_HERO,
+										   DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
+										   FIND_ANY_ORDER,
+										   false)
 
 	-- Apply fogivision modifier on enemies
 	for _,enemy_hero in pairs(enemy_heroes) do
-		enemy_hero:AddNewModifier(caster, ability, modifier_fogivison, {duration = enemy_vision_duration})
+		enemy_hero:AddNewModifier(caster, ability, modifier_fogivison, {duration = enemy_vision_duration})        
 	end
 end
 
@@ -891,10 +1104,10 @@ modifier_imba_darkness_night = class({})
 function modifier_imba_darkness_night:OnCreated()
 	-- Ability properties
 	self.caster = self:GetCaster()
-	self.ability = self:GetAbility()
+	self.ability = self:GetAbility()       
 
 	-- Start a Night Stalker night
-	if IsServer() then
+	if IsServer() then        
 		self.game_mode = GameRules:GetGameModeEntity()
 
 		GameRules:BeginNightstalkerNight(self:GetDuration())
@@ -956,6 +1169,9 @@ end
 
 -- Darkness vision reduction modifier
 modifier_imba_darkness_vision = class({})
+function modifier_imba_darkness_vision:IsHidden() return false end
+function modifier_imba_darkness_vision:IsPurgable() return false end
+function modifier_imba_darkness_vision:IsDebuff() return true end
 
 function modifier_imba_darkness_vision:OnCreated()
 	if IsServer() then
@@ -965,28 +1181,18 @@ function modifier_imba_darkness_vision:OnCreated()
 		self.parent = self:GetParent()
 
 		-- Ability specials
-		self.vision_radius = self.ability:GetSpecialValueFor("vision_radius")
-		self.ward_vision = self.ability:GetSpecialValueFor("ward_vision")
+		self.vision_reduction_pct = self.ability:GetSpecialValueFor("vision_reduction_pct")
 
 		-- #7 Talent: Darkness maximum vision range reduction
-		self.vision_radius = self.vision_radius - self.caster:FindTalentValue("special_bonus_imba_night_stalker_7")
+		--self.vision_radius = self.vision_radius - self.caster:FindTalentValue("special_bonus_imba_night_stalker_7")
 
 		-- Keep the original base night vision
 		self.original_base_night_vision = self.parent:GetBaseNightTimeVisionRange()
 
-		-- If this is a ward, set the vision as the ward vision.
-		if self.parent:IsOther() then
-			self.vision_radius = self.ward_vision
-		end
-
 		-- Override the base night vision
-		self.parent:SetNightTimeVisionRange(self.vision_radius)
+		self.parent:SetNightTimeVisionRange(self.original_base_night_vision * (100 - self.vision_reduction_pct) / 100)
 	end
 end
-
-function modifier_imba_darkness_vision:IsHidden() return false end
-function modifier_imba_darkness_vision:IsPurgable() return false end
-function modifier_imba_darkness_vision:IsDebuff() return true end
 
 function modifier_imba_darkness_vision:OnDestroy()
 	if IsServer() then
@@ -1010,4 +1216,216 @@ end
 
 function modifier_imba_darkness_fogvision:GetModifierProvidesFOWVision()
 	return 1
+end
+
+LinkLuaModifier("modifier_imba_night_stalker_crippling_fear_720", "abilities/dota_imba/hero_night_stalker", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_imba_night_stalker_crippling_fear_positive_720", "abilities/dota_imba/hero_night_stalker", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_imba_night_stalker_crippling_fear_aura_720", "abilities/dota_imba/hero_night_stalker", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_imba_night_stalker_crippling_fear_aura_positive_720", "abilities/dota_imba/hero_night_stalker", LUA_MODIFIER_MOTION_NONE)
+
+imba_night_stalker_crippling_fear_720							= class({})
+modifier_imba_night_stalker_crippling_fear_aura_720				= class({})
+modifier_imba_night_stalker_crippling_fear_aura_positive_720	= class({})
+modifier_imba_night_stalker_crippling_fear_720					= class({})
+modifier_imba_night_stalker_crippling_fear_positive_720			= class({})
+
+function imba_night_stalker_crippling_fear_720:GetBehavior()
+	if self:GetCaster():HasScepter() then
+		return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET
+	else
+		return DOTA_ABILITY_BEHAVIOR_NO_TARGET
+	end
+end
+
+function imba_night_stalker_crippling_fear_720:GetAbilityTargetTeam()
+	if self:GetCaster():HasScepter() then
+		return DOTA_UNIT_TARGET_TEAM_FRIENDLY
+	else
+		return DOTA_UNIT_TARGET_TEAM_NONE
+	end
+end
+
+function imba_night_stalker_crippling_fear_720:GetAbilityTargetType()
+	if self:GetCaster():HasScepter() then
+		return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
+	else
+		return DOTA_UNIT_TARGET_NONE
+	end
+end
+
+function imba_night_stalker_crippling_fear_720:GetCastRange(location, target)
+	if self:GetCaster():HasScepter() then
+		return self:GetSpecialValueFor("scepter_cast_range")
+	else
+		return self.BaseClass.GetCastRange(self, location, target)
+	end
+end
+
+function imba_night_stalker_crippling_fear_720:OnSpellStart()
+	self.caster	= self:GetCaster()
+	self.target	= self.caster
+
+	if self:GetCursorTarget() ~= nil then
+		self.target	= self:GetCursorTarget()
+	end
+	
+	-- AbilitySpecials
+	self.duration_day		= self:GetSpecialValueFor("duration_day")
+	self.duration_night		= self:GetSpecialValueFor("duration_night")
+	self.radius				= self:GetSpecialValueFor("radius")
+	
+	if not IsServer() then return end
+	
+	if GameRules:IsDaytime() then
+		self.target:AddNewModifier(self.caster, self, "modifier_imba_night_stalker_crippling_fear_aura_720", {duration = self.duration_day})
+	else
+		self.target:AddNewModifier(self.caster, self, "modifier_imba_night_stalker_crippling_fear_aura_720", {duration = self.duration_night})
+	end
+	
+	if self.caster:GetName() == "npc_dota_hero_night_stalker" and RollPercentage(75) then
+		self.caster:EmitSound("night_stalker_nstalk_ability_cripfear_0"..RandomInt(1,3))
+	end
+	
+	self.target:EmitSound("Hero_Nightstalker.Trickling_Fear")
+	self.target:EmitSound("Hero_Nightstalker.Trickling_Fear_lp")
+	
+	-- Loop sound only plays for a short time at cast start
+	Timers:CreateTimer(1.0, function()
+		if not self:IsNull() and not self.target:IsNull() then
+			self.target:StopSound("Hero_Nightstalker.Trickling_Fear_lp")
+		end
+	end)
+end
+
+-----------------------------------------
+-- CRIPPLING FEAR MODIFIER AURA (7.20) --
+-----------------------------------------
+
+function modifier_imba_night_stalker_crippling_fear_aura_720:IsPurgable() 			return false end
+
+function modifier_imba_night_stalker_crippling_fear_aura_720:IsAura() 				return true end
+function modifier_imba_night_stalker_crippling_fear_aura_720:IsAuraActiveOnDeath() 	return false end
+
+function modifier_imba_night_stalker_crippling_fear_aura_720:GetAuraRadius()		return self:GetAbility():GetSpecialValueFor("radius") * self:GetStackCount() end
+function modifier_imba_night_stalker_crippling_fear_aura_720:GetAuraSearchFlags()	return DOTA_UNIT_TARGET_FLAG_NONE end
+function modifier_imba_night_stalker_crippling_fear_aura_720:GetAuraSearchTeam()	return DOTA_UNIT_TARGET_TEAM_ENEMY end
+function modifier_imba_night_stalker_crippling_fear_aura_720:GetAuraSearchType()	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC end
+function modifier_imba_night_stalker_crippling_fear_aura_720:GetModifierAura()		return "modifier_imba_night_stalker_crippling_fear_720" end
+
+function modifier_imba_night_stalker_crippling_fear_aura_720:OnCreated()
+	self.ability	= self:GetAbility()
+	self.parent		= self:GetParent()
+
+	-- AbilitySpecials
+	self.duration_day		= self.ability:GetSpecialValueFor("duration_day")
+	self.duration_night		= self.ability:GetSpecialValueFor("duration_night")
+	self.radius				= self.ability:GetSpecialValueFor("radius")
+
+	self:SetStackCount(1)
+	if not IsServer() then return end
+
+	self.particle = ParticleManager:CreateParticle("particles/units/heroes/hero_night_stalker/nightstalker_crippling_fear_aura.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
+	ParticleManager:SetParticleControl(self.particle, 2, Vector(self.radius, self.radius, self.radius))
+	self:AddParticle(self.particle, false, false, -1, false, false)
+end
+
+function modifier_imba_night_stalker_crippling_fear_aura_720:DeclareFunctions()
+    local decFuncs = {
+		MODIFIER_EVENT_ON_HERO_KILLED,
+		MODIFIER_PROPERTY_TOOLTIP
+    }
+
+    return decFuncs
+end
+
+-- IMBAfication: Night Terror's Growl
+function modifier_imba_night_stalker_crippling_fear_aura_720:OnHeroKilled(keys)
+	if not IsServer() then return end
+
+	-- If the hero was killed within Crippling Fear's aura radius (doesn't have to be by the caster), add base radius to radius and add base duration to remaining amount
+	if keys.target:GetTeam() ~= self.parent:GetTeam() and (keys.target:GetAbsOrigin() - self.parent:GetAbsOrigin()):Length2D() <= self.radius and self.parent:IsAlive() then
+		self.radius = self.radius + self.radius
+		self:IncrementStackCount()
+		
+		if GameRules:IsDaytime() then
+			self:SetDuration(self:GetRemainingTime() + self.duration_day, true)
+		else
+			self:SetDuration(self:GetRemainingTime() + self.duration_night, true)
+		end
+	
+		-- Destroy/Release particle index and re-draw with updated radius (don't technically have to but it looks better)
+		ParticleManager:DestroyParticle(self.particle, true)
+		ParticleManager:ReleaseParticleIndex(self.particle)
+
+		self.particle = ParticleManager:CreateParticle("particles/units/heroes/hero_night_stalker/nightstalker_crippling_fear_aura.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
+		ParticleManager:SetParticleControl(self.particle, 2, Vector(self.radius, self.radius, self.radius))
+		self:AddParticle(self.particle, false, false, -1, false, false)
+	end
+end
+
+function modifier_imba_night_stalker_crippling_fear_aura_720:OnTooltip()
+	return self:GetAbility():GetSpecialValueFor("radius") * self:GetStackCount()
+end
+
+function modifier_imba_night_stalker_crippling_fear_aura_720:OnDestroy()
+	if not IsServer() then return end
+	
+	self.parent:EmitSound("Hero_Nightstalker.Trickling_Fear_end")
+end
+
+------------------------------------
+-- CRIPPLING FEAR MODIFIER (7.20) --
+------------------------------------
+
+function modifier_imba_night_stalker_crippling_fear_720:GetEffectName()
+	return "particles/units/heroes/hero_night_stalker/nightstalker_crippling_fear.vpcf"
+end
+
+function modifier_imba_night_stalker_crippling_fear_720:GetEffectAttachType()
+	return PATTACH_OVERHEAD_FOLLOW
+end
+
+function modifier_imba_night_stalker_crippling_fear_720:OnCreated()
+	self.parent	= self:GetParent()
+	
+	if not IsServer() then return end
+
+	self.parent:EmitSound("Hero_Nightstalker.Trickling_Fear_lp")
+end
+
+function modifier_imba_night_stalker_crippling_fear_720:DeclareFunctions()
+	local decFuncs = {MODIFIER_PROPERTY_MISS_PERCENTAGE}
+
+	return decFuncs
+end
+
+function modifier_imba_night_stalker_crippling_fear_720:GetModifierMiss_Percentage()
+	return self:GetCaster():FindTalentValue("special_bonus_imba_night_stalker_2")
+end
+
+function modifier_imba_night_stalker_crippling_fear_720:CheckState()
+	local state = {}
+	
+	if self:GetCaster():HasScepter() then
+		state = {
+		[MODIFIER_STATE_SILENCED] = true,
+		[MODIFIER_STATE_BLOCK_DISABLED] = true,
+		[MODIFIER_STATE_EVADE_DISABLED] = true
+		}
+	else
+		state = {
+		[MODIFIER_STATE_SILENCED] = true
+		}
+	end
+	
+	return state
+end
+
+function modifier_imba_night_stalker_crippling_fear_720:OnDestroy()
+	self.parent	= self:GetParent()
+	
+	if not IsServer() then return end
+	
+	self.parent:StopSound("Hero_Nightstalker.Trickling_Fear_lp")
+	self.parent:EmitSound("Hero_Nightstalker.Trickling_Fear_end")
 end

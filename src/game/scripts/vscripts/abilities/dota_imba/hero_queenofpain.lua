@@ -17,6 +17,7 @@
 --     Hewdraw
 --     AtroCty, 10.09.2017
 --     suthernfriend, 03.02.2018
+--     Elfansoer, 16.08.2019
 
 if IsClient() then
     require('lib/util_imba_client')
@@ -43,8 +44,7 @@ end
 -------------------------------------------
 
 function imba_queenofpain_delightful_torment:GetIntrinsicModifierName()
-	if self:GetCaster():IsRealHero() then return "modifier_imba_delightful_torment_thinker" end
-	return nil
+	return "modifier_imba_delightful_torment_thinker"
 end
 
 -------------------------------------------
@@ -335,6 +335,14 @@ function imba_queenofpain_blink:OnSpellStart()
 			target_pos = caster_pos + (distance:Normalized() * blink_range)
 		end
 
+		-- Use Scream of Pain if avaible
+		if caster:HasAbility("imba_queenofpain_scream_of_pain") then
+			local scream = caster:FindAbilityByName("imba_queenofpain_scream_of_pain")
+			if scream:GetLevel() >= 1 then
+				scream:OnSpellStart(scream_damage_pct)
+			end
+		end
+
 		-- Disjointing everything
 		ProjectileManager:ProjectileDodge(caster)
 
@@ -616,9 +624,22 @@ function imba_queenofpain_sonic_wave:OnSpellStart()
 		if caster:HasScepter() then
 			damage = self:GetSpecialValueFor("damage_scepter")
 		end
-
-		caster:EmitSound("Hero_QueenOfPain.SonicWave")
-
+		
+		-- Let's not make the percentage too high...
+		if USE_MEME_SOUNDS and RollPercentage(20) then
+			--caster:EmitSound("Imba.QueenOfPainWutFace") -- Complaints of gay orgasms so let's use something else
+			if not self.meme_index then self.meme_index = 1 end
+		
+			caster:EmitSound("Imba.QueenOfPain.AHHHHH"..self.meme_index)
+			
+			if self.meme_index == 5 then
+				self.meme_index = 1
+			else
+				self.meme_index = self.meme_index + 1
+			end
+		else
+			caster:EmitSound("Hero_QueenOfPain.SonicWave")
+		end
 		-- Talent #2 handling
 		local projectiles = 1
 		if caster:HasTalent("special_bonus_imba_queenofpain_2") then
@@ -669,7 +690,8 @@ function imba_queenofpain_sonic_wave:OnProjectileHit_ExtraData(target, location,
 	if target then
 		ApplyDamage({attacker = caster, victim = target, ability = self, damage = ExtraData.damage, damage_type = self:GetAbilityDamageType()})
 		if caster:HasScepter() then
-			target:AddNewModifier(caster, self, "modifier_imba_sonic_wave_daze", {stacks = self:GetSpecialValueFor("orders_scepter")})
+			-- Elfansoer: disabled 'daze'
+			-- target:AddNewModifier(caster, self, "modifier_imba_sonic_wave_daze", {stacks = self:GetSpecialValueFor("orders_scepter")})
 		end
 		if target:IsAlive() == false then
 			if (math.random(1,100) <= 15) and (caster:GetName() == "npc_dota_hero_queenofpain") then
