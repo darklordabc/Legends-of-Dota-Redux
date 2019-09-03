@@ -1436,7 +1436,6 @@ function imba_bounty_hunter_headhunter:OnProjectileHit(target, location)
 		return nil
 	end
 
-	local duration = 20
 	-- Apply contract modifiers
 	caster:AddNewModifier(caster, ability, modifier_contract_buff, {duration = duration})
 	target:AddNewModifier(caster, ability, modifier_contract_debuff, {duration = duration})
@@ -1450,6 +1449,12 @@ modifier_imba_headhunter_passive = modifier_imba_headhunter_passive or class({})
 
 function modifier_imba_headhunter_passive:OnCreated()
 	if IsServer() then
+		-- elfansoer: fix intrinsic problem
+		if self:GetAbility():GetLevel()<1 then
+			self:Destroy()
+			return
+		end
+
 		-- Ability properties
 		self.caster = self:GetCaster()
 		self.ability = self:GetAbility()
@@ -1457,14 +1462,9 @@ function modifier_imba_headhunter_passive:OnCreated()
 		self.particle_projectile = "particles/units/heroes/hero_bounty_hunter/bounty_hunter_track_cast.vpcf"
 
 		-- Ability specials
-		--[[Elfansoer: hotfixed only using level 0 during oncreated.
 		self.projectile_speed = self.ability:GetSpecialValueFor("projectile_speed")
 		self.starting_cd = self.ability:GetSpecialValueFor("starting_cd")
 		self.vision_radius = self.ability:GetSpecialValueFor("vision_radius")
-		]]
-		self.projectile_speed = self.ability:GetLevelSpecialValueFor("projectile_speed",1)
-		self.starting_cd = self.ability:GetLevelSpecialValueFor("starting_cd",1)
-		self.vision_radius = self.ability:GetLevelSpecialValueFor("vision_radius",1)
 
 		-- Start the game with a cooldown
 		self.ability:StartCooldown(self.starting_cd)
@@ -1502,7 +1502,6 @@ function modifier_imba_headhunter_passive:OnIntervalThink()
 			for _, enemy in pairs(enemies) do
 				-- Check if that hero has the contract debuff, go out if it was found
 				if enemy:HasModifier(self.modifier_contract) then
-					GameRules:SendCustomMessage( "has existing contract", 0, 0 )
 					return nil
 				end
 			end

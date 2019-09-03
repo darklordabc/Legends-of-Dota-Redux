@@ -1317,6 +1317,9 @@ function modifier_imba_chemical_rage_buff_haste:OnCreated()
 		local particle_acid_aura = "particles/hero/alchemist/chemical_rage_acid_aura.vpcf"
 		-- Ability paramaters
 		self.ability			= 	caster:FindAbilityByName("imba_alchemist_acid_spray")
+
+		-- elfansoer: fix missing reference to acid spray
+		if not self.ability then return end
 		self.radius				=	self.ability:GetSpecialValueFor("radius")
 
 		local particle_acid_aura_fx = ParticleManager:CreateParticle(particle_acid_aura, PATTACH_ABSORIGIN_FOLLOW, parent)
@@ -1338,7 +1341,9 @@ function modifier_imba_chemical_rage_buff_haste:OnDestroy()
 end
 
 function modifier_imba_chemical_rage_buff_haste:IsAura()
-	return true
+-- elfansoer: fix missing reference to acid spray
+	-- return true
+	return self.ability~=nil
 end
 
 function modifier_imba_chemical_rage_buff_haste:GetAuraRadius()
@@ -1548,6 +1553,12 @@ function modifier_mammonite_passive:IsDebuff() return false end
 function modifier_mammonite_passive:RemoveOnDeath() return false end
 
 function modifier_mammonite_passive:OnCreated()
+	-- elfansoer: fix intrinsic problem
+	if self:GetAbility():GetLevel()<1 then
+		self:Destroy()
+		return
+	end
+
 	self.caster = self:GetCaster()
 	self.ability = self:GetAbility()
 
@@ -1572,14 +1583,15 @@ end
 
 function modifier_mammonite_passive:GetModifierPreAttack_BonusDamage()
 	if IsServer() then
-		if self.caster:HasScepter() then
+		-- elfansoer: remove scepter requirement
+		-- if self.caster:HasScepter() then
 			if self.ability:GetToggleState() then
 				local gold = self.caster:GetGold()
 				local gold_percent = self.gold_damage * 0.01
 				local gold_damage = gold * gold_percent
 				return gold_damage
 			end
-		end
+		-- end
 	end
 end
 
@@ -1589,14 +1601,15 @@ function modifier_mammonite_passive:OnAttackFinished(keys)
 
 		-- Only apply if the attacker is the caster
 		if self.caster == attacker then
-			if self.caster:HasScepter() then
+			-- elfansoer: remove scepter requirement
+			-- if self.caster:HasScepter() then
 				if self.ability:GetToggleState() then
 					local gold = self.caster:GetGold()
 					local gold_percent = self.gold_damage * 0.01
 					local gold_damage = gold * gold_percent
 					self.caster:SpendGold(gold_damage, DOTA_ModifyGold_Unspecified)
 				end
-			end
+			-- end
 		end
 	end
 end

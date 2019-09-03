@@ -60,6 +60,12 @@ end
 
 function modifier_imba_mana_break_passive:OnCreated()
 	if IsServer() then
+		-- elfansoer: fix intrinsic problem
+		if self:GetAbility():GetLevel()<1 then
+			self:Destroy()
+			return
+		end
+
 		self.ability = self:GetAbility()
 		self.parent = self:GetParent()
 		self.particle_blast = "particles/hero/antimage/mana_break_blast.vpcf"
@@ -444,7 +450,10 @@ function modifier_imba_antimage_blink_charges:OnCreated()
 			self:SetStackCount(self.max_charge_count)
 		else
 			-- Illusions find their owner and its charges
-			local playerid = self.caster:GetPlayerOwnerID()
+			-- elfansoer: fix error statement
+			-- local playerid = self.caster:GetPlayerOwnerID()
+			-- local real_hero = playerid:GetAssignedHero()
+			local playerid = self.caster:GetPlayerOwner()
 			local real_hero = playerid:GetAssignedHero()
 
 			if hero:HasModifier(self.modifier_charge) then
