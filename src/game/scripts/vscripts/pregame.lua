@@ -80,6 +80,11 @@ LinkLuaModifier("modifier_resurrection_mutator","abilities/mutators/modifier_res
 LinkLuaModifier("modifier_rune_doubledamage_mutated_redux","abilities/mutators/super_runes.lua",LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_rune_arcane_mutated_redux","abilities/mutators/super_runes.lua",LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_bat_manager","abilities/modifiers/modifier_bat_manager.lua",LUA_MODIFIER_MOTION_NONE)
+
+-- Courier's modifiers
+LinkLuaModifier("modifier_core_courier", 'abilities/courier/modifier_core_courier',LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_core_courier_flying", 'abilities/courier/modifier_core_courier_flying',LUA_MODIFIER_MOTION_NONE)
+
 --[[
     Main pregame, selection related handler
 ]]
@@ -8446,11 +8451,22 @@ function Pregame:fixSpawnedHero( spawnedUnit )
                 if IsValidEntity(spawnedUnit) then
                     if not self.givenCouriers[team] then
                         self.givenCouriers[team] = true
-                        local item = spawnedUnit:AddItemByName('item_courier')
 
-                        if item then
-                            spawnedUnit:CastAbilityImmediately(item, spawnedUnit:GetPlayerID())
-                        end
+                        local courierSpawn = spawnedUnit:GetAbsOrigin() + RandomVector(RandomFloat(100, 100))
+                        local cr = CreateUnitByName("npc_dota_courier", courierSpawn, true, nil, nil, spawnedUnit:GetTeamNumber())
+                        Timers:CreateTimer(.2, function()
+                            cr:AddNewModifier(cr, nil, "modifier_core_courier", nil)
+                            for i = 0, 30 do
+                                local tempPly = PlayerResource:GetPlayer(i)
+                                if (tempPly and IsValidEntity(tempPly)) then
+                                    Timers:CreateTimer(.1, function()
+                                        if (tempPly:GetTeamNumber() == cr:GetTeamNumber()) then
+                                            cr:SetControllableByPlayer(i, true)
+                                        end
+                                    end)
+                                end
+                            end
+                        end)
                     end
                 end
             end, DoUniqueString('spawncourier'), 1)
