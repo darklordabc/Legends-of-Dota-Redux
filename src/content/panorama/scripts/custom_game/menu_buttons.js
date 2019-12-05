@@ -6,12 +6,12 @@ function setupCheats(data){
 }
 
 function toggleCheats() {
-    GameEvents.SendEventClientSide('lodOnCheats', {});
+    GameEvents.SendCustomGameEventToClient('lodOnCheats', Players.GetLocalPlayer()+1, {});
 }
 
 // Play wants to open changelog
 function onBtnOpenChangelog() {
-    GameEvents.SendEventClientSide('lodOnChangelog', { });
+	GameEvents.SendCustomGameEventToClient('lodOnChangelog', Players.GetLocalPlayer()+1, {});
 }
 
 // Play wants to open the hero builder
