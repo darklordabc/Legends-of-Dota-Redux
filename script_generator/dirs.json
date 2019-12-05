@@ -51,6 +51,7 @@
 		{ "link": "../dota/game/scripts/npc/herolist.txt", "dir": "../src/game/scripts/npc/herolist.txt" },
 		{ "link": "../dota/game/scripts/npc/npc_units_custom.txt", "dir": "../script_generator/BIN/npc_units_custom.txt" },
 		{ "link": "../dota/game/scripts/npc/npc_items_custom.txt", "dir": "../src/game/scripts/npc/npc_items_custom.txt" },
+		{ "link": "../dota/game/scripts/npc/neutral_items.txt", "dir": "../src/game/scripts/npc/neutral_items.txt" },
 
 		{ "link": "../dota/game/scripts/vscripts", "dir": "../src/game/scripts/vscripts/" },
 		{ "link": "../dota/game/scripts/kv", "dir": "../src/game/scripts/kv" },
