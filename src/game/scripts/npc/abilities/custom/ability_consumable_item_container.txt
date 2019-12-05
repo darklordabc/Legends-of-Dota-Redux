@@ -221,7 +221,7 @@
       "45"
       {
         "var_type"                "FIELD_INTEGER"
-        "echo_sabre_bonus_damage"            "12"
+        "echo_sabre_bonus_damage"            "15"
       }
       "46"
       {
