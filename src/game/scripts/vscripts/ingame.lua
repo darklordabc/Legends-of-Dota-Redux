@@ -6,6 +6,7 @@ require('abilities/epic_boss_fight/ebf_mana_fiend_essence_amp')
 require('abilities/global_mutators/global_mutator')
 require('abilities/global_mutators/memes_redux')
 require('abilities/nextgeneration/orderfilter')
+require('lib/gpm')
 
 -- Create the class for it
 local Ingame = class({})
@@ -724,6 +725,7 @@ function Ingame:fixRuneBug()
         local newState = GameRules:State_Get()
 
         if newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
+            GpmInit()
             Timers:CreateTimer(function()
                 for playerID=0,DOTA_MAX_TEAM_PLAYERS-1 do
                     local hero = PlayerResource:GetSelectedHeroEntity(playerID)
