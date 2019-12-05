@@ -3672,20 +3672,20 @@
             "TalentRequiredAbility"                                                   "undying_decay"
         }
 
-        special_bonus_unique_mars_spear_stun_duration
+        "special_bonus_unique_mars_spear_stun_duration"
         {
             "TalentRequiredAbility"                                                   "mars_spear"
         }
 
-        special_bonus_unique_mars_spear_bonus_damage
+        "special_bonus_unique_mars_spear_bonus_damage"
         {
             "TalentRequiredAbility"                                                   "mars_spear"
         }
-        special_bonus_unique_mars_arena_of_blood_hp_regen
+        "special_bonus_unique_mars_arena_of_blood_hp_regen"
         {
             "TalentRequiredAbility"                                                   "mars_arena_of_blood"
         }
-        special_bonus_unique_mars_gods_rebuke_extra_crit
+        "special_bonus_unique_mars_gods_rebuke_extra_crit"
         {
             "TalentRequiredAbility"                                                   "mars_gods_rebuke"
         }
@@ -6193,5 +6193,405 @@
             "TalentRequiredAbility" "grimstroke_ink_creature"
         }
 
+    //=================================================================================================================
+    //  Neutral items
+    //=================================================================================================================
+
+    "item_elixer"                   
+    {
+        "ItemCost"                      "300"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_ocean_heart"                
+    {
+        "ItemCost"                      "300"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_keen_optic"               
+    {
+        "ItemCost"                      "400"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_broom_handle"             
+    {
+        "ItemCost"                      "400"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_faded_broach"              
+    {
+        "ItemCost"                      "400"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }  
+    "item_poor_mans_shield"         
+    {
+        "ItemCost"                      "500"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_mango_tree"               
+    {
+        "ItemCost"                      "700"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_royal_jelly"              
+    {
+        "ItemCost"                      "600"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_iron_talon"               
+    {
+        "ItemCost"                      "500"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_arcane_ring"              
+    {
+        "ItemCost"                      "600"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_recipe_ironwood_tree"     
+    {
+        "ItemCost"                      "700"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_trusty_shovel"            
+    {
+        "ItemCost"                      "1000"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_philosophers_stone"       
+    {
+        "ItemCost"                      "500"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_essence_ring"             
+    {
+        "ItemCost"                      "800"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_vampire_fangs"            
+    {
+        "ItemCost"                      "800"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_pupils_gift"              
+    {
+        "ItemCost"                      "900"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_dragon_scale"             
+    {
+        "ItemCost"                      "1000"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_ring_of_aquila"           
+    {
+        "ItemCost"                      "1000"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_recipe_vambrace"          
+    {
+        "ItemCost"                      "600"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_repair_kit"               
+    {
+        "ItemCost"                      "1000"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_quickening_charm"         
+    {
+        "ItemCost"                      "2000"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_greater_faerie_fire"        
+    {
+        "ItemCost"                      "1000"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_craggy_coat"                
+    {
+        "ItemCost"                      "1200"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_orb_of_destruction"        
+    {
+        "ItemCost"                      "1600"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_spider_legs"               
+    {
+        "ItemCost"                      "2500"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_ninja_gear"                
+    {
+        "ItemCost"                      "3250"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_panic_button"               
+    {
+        "ItemCost"                      "2500"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_the_leveller"               
+    {
+        "ItemCost"                      "2750"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_witless_shako"             
+    {
+        "ItemCost"                      "2750"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_havoc_hammer"              
+    {
+        "ItemCost"                      "3000"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_recipe_trident"            
+    {
+        "ItemCost"                      "1000"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_illusionsts_cape"          
+    {
+        "ItemCost"                      "3250"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_spy_gadget"                 
+    {
+        "ItemCost"                      "3500"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_phoenix_ash"                
+    {
+        "ItemCost"                      "4000"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_seer_stone"                 
+    {
+        "ItemCost"                      "6500"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_apex"                       
+    {
+        "ItemCost"                      "6500"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_ballista"                   
+    {
+        "ItemCost"                      "7000"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_desolator_2"                
+    {
+        "ItemCost"                      "7000"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_demonicon"                  
+    {
+        "ItemCost"                      "7500"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_recipe_fallen_sky"          
+    {
+        "ItemCost"                      "7500"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+
+    "item_ex_machina"                 
+    {
+        "ItemCost"                      "7500"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+
+
+ "item_grove_bow"
+    {
+        "ItemCost"                      "600"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+
+    "item_imp_claw"
+    {
+        "ItemCost"                      "800"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+
+    "item_nether_shawl"
+    {
+        "ItemCost"                      "750"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+
+    "item_clumsy_net"
+    {
+        "ItemCost"                      "1000"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+
+    "item_enchanted_quiver"
+    {
+        "ItemCost"                      "1200"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+
+    "item_helm_of_the_undying"
+    {
+        "ItemCost"                      "2500"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+
+    "item_paladin_sword"
+    {
+        "ItemCost"                      "1500"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+
+    "item_mind_breaker"
+    {
+        "ItemCost"                      "2500"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+
+    "item_titan_sliver"
+    {
+        "ItemCost"                      "2250"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+
+    "item_flicker"
+    {
+        "ItemCost"                      "3500"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+
+    "item_minotaur_horn"
+    {
+        "ItemCost"                      "2500"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+
+    "item_princes_knife"
+    {
+        "ItemCost"                      "3250"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+
+    "item_spell_prism"
+    {
+        "ItemCost"                      "3500"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+
+    "item_timeless_relic"
+    {
+        "ItemCost"                      "3500"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+
+    "item_fusion_rune"
+    {
+        "ItemCost"                      "4000"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+
+    "item_force_boots"
+    {
+        "ItemCost"                      "7500"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+
+    "item_trident"
+    {
+        "ItemCost"                      "7000"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+
+    "item_fallen_sky"
+    {
+        "ItemCost"                      "7500"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+
+    "item_mirror_shield"
+    {
+        "ItemCost"                      "8000"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+
+    "item_pirate_hat"
+    {
+        "ItemCost"                      "7500"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+
+    "item_woodland_striders"
+    {
+        "ItemCost"                      "7000"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    
 
     }
