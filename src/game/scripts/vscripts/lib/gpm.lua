@@ -1,8 +1,10 @@
 function GpmInit()
 	-- Every X time all heroes get N gold
 	local goldModifier = OptionManager:GetOption('goldModifier')
+	local goldPerTick = OptionManager:GetOption('goldPerTick')
+
 	local timeToBaseGPM = 0.275
-	local baseGoldPerTick = 1*(goldModifier/100)
+	local baseGoldPerTick = goldPerTick or 1
 
 	-- Every X time all heroes get N*LEVELHERO gold (example, if the hero level is 30, it get 60 gold per minute)
 	local timeAdditionalGPM = 60
