@@ -6,7 +6,7 @@ function PursuitAttack (keys)
 	local baseDamage = ability:GetLevelSpecialValueFor("base_damage", ability:GetLevel() - 1)
 	local movementDamage = ability:GetLevelSpecialValueFor("movement_damage", ability:GetLevel() - 1) / 100
 
-	pursuitMovementDamage = (caster:GetMoveSpeedModifier(caster:GetBaseMoveSpeed()) - caster:GetBaseMoveSpeed()) * movementDamage
+	pursuitMovementDamage = (caster:GetMoveSpeedModifier(caster:GetBaseMoveSpeed(), false) - caster:GetBaseMoveSpeed()) * movementDamage
 	if pursuitMovementDamage < 0 then pursuitMovementDamage = 0 end
 	pursuitDamage = baseDamage + pursuitMovementDamage
 	pursuitTarget = target
@@ -58,7 +58,7 @@ function SetPursuitDamage( keys )
 		ability:ApplyDataDrivenModifier(caster,target,"modifier_pursuit_debuff",{Duration = creepDuration})
 	end
 
-	pursuitMovementDamage = (caster:GetMoveSpeedModifier(caster:GetBaseMoveSpeed()) - caster:GetBaseMoveSpeed()) * movementDamage
+	pursuitMovementDamage = (caster:GetMoveSpeedModifier(caster:GetBaseMoveSpeed(), false) - caster:GetBaseMoveSpeed()) * movementDamage
 	if pursuitMovementDamage < 0 then pursuitMovementDamage = 0 end
 	target.pursuitDamage = baseDamage + pursuitMovementDamage
 end
@@ -105,7 +105,7 @@ end
 function RollInitiate( keys )
 	local caster = keys.caster
 	local ability = keys.ability
-	local leap_speed = caster:GetMoveSpeedModifier(caster:GetBaseMoveSpeed()) + 150
+	local leap_speed = caster:GetMoveSpeedModifier(caster:GetBaseMoveSpeed(), false) + 150
 	local casterAngles = caster:GetAngles()
 
 	-- Clears any current command
