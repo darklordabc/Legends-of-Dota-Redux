@@ -581,7 +581,7 @@ function Pregame:init()
         self:setOption('lodOptionGameSpeedSharedEXP', 1, true)
         self:setOption('lodOptionBanningUseBanList', 1, true)
         self:setOption('lodOptionAdvancedOPAbilities', 1, true)
-        self:setOption('lodOptionGameSpeedMaxLevel', 30, true)
+        self:setOption('lodOptionGameSpeedMaxLevel', 100, true)
         self:setOption('lodOptionGamemode', 1)
         self:setOption('lodOptionBattleThirst', 0)
         self:setOption('lodOptionGameSpeedStartingLevel', 4, true)
@@ -708,7 +708,7 @@ function Pregame:init()
         self:setOption('lodOptionGameSpeedGoldModifier', 150, true)
         self:setOption('lodOptionLimitPassives', 1, true)
         self:setOption('lodOptionGameSpeedEXPModifier', 150, true)
-        self:setOption('lodOptionGameSpeedMaxLevel', 30, true)
+        self:setOption('lodOptionGameSpeedMaxLevel', 100, true)
         self:setOption('lodOptionGameSpeedRespawnTimePercentage', 35, true)
         self:setOption('lodOptionCrazyUniversalShop', 0, true)
         self.useOptionVoting = true
@@ -798,7 +798,7 @@ function Pregame:loadDefaultSettings()
     -- Starting level is lvl 1
     self:setOption('lodOptionGameSpeedStartingLevel', 1, true)
 
-    -- Max level is 28
+    -- Max level is 30
     self:setOption('lodOptionGameSpeedMaxLevel', 30, true)
 
     -- Don't mess with gold rate
