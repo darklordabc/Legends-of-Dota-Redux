@@ -186,6 +186,10 @@ var basicOptions = {
                             'lodMutatorNeutralCreepPowerExtreme': 30
                         }
                     },
+					{
+						name: 'lodOptionBuyingNeutralItems',
+						about: 'lodOptionBuyingNeutralItemsAbout'
+					},
                     {
                         name: 'lodOptionNeutralMultiply',
                         default: {
@@ -1806,7 +1810,23 @@ var advancedOptions = {
                     }
                 ]
             },
-            
+            {
+				name: 'lodOptionBuyingNeutralItems',
+				des: 'lodOptionDesBuyingNeutralItems',
+				about: 'lodOptionAboutBuyingNeutralItems',
+				sort: 'toggle',
+				values: [
+					{
+						text: 'lodOptionNo',
+						value: 0
+					},
+					{
+						text: 'lodOptionYes',
+						value: 1
+					},
+				]
+			},
+
             {
 
                 name: 'lodOptionRandomLaneCreeps',

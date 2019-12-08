@@ -1543,7 +1543,7 @@ function Pregame:onThink()
         if GameRules:State_Get() < DOTA_GAMERULES_STATE_PRE_GAME then
             return 0.1
         end
-
+        CustomGameEventManager:Send_ServerToAllClients("MakeNeutralItemsInShopColored", {})
         -- Do things after a small delay
         local this = self
 
@@ -2916,6 +2916,17 @@ function Pregame:initOptionSelector()
             return true
         end,
 
+        -- Game Speed -- Gold per interval
+        lodOptionBuyingNeutralItems = function(value)
+            -- It needs to be a whole number between a certain range
+            if type(value) ~= 'number' then return false end
+            if math.floor(value) ~= value then return false end
+            if value < 0 or value > 25 then return false end
+
+            -- Valid
+            return true
+        end,
+
         -- Game Speed -- Gold Modifier
         lodOptionGameSpeedGoldModifier = function(value)
             -- It needs to be a whole number between a certain range
@@ -4258,6 +4269,7 @@ function Pregame:processOptions()
         OptionManager:SetOption('towerCount', this.optionStore['lodOptionGameSpeedTowersPerLane'])
         OptionManager:SetOption('creepPower', this.optionStore['lodOptionCreepPower'])
         OptionManager:SetOption('neutralCreepPower', this.optionStore['lodOptionNeutralCreepPower'])
+        OptionManager:SetOption('neutralItems', this.optionStore['lodOptionBuyingNeutralItems'])
         OptionManager:SetOption('neutralMultiply', this.optionStore['lodOptionNeutralMultiply'])
         OptionManager:SetOption('laneMultiply', this.optionStore['lodOptionLaneMultiply'])
         OptionManager:SetOption('laneCreepAbility', this.optionStore['lodOptionLaneCreepBonusAbility'])
@@ -4585,6 +4597,7 @@ function Pregame:processOptions()
                     ['Bans: Use LoD BanList'] = this.optionStore['lodOptionBanningUseBanList'],
                     ['Creeps: Increase Creep Power Over Time'] = this.optionStore['lodOptionCreepPower'],
                     ['Creeps: Increase Neutral Creep Power Over Time'] = this.optionStore['lodOptionNeutralCreepPower'],
+                    ['Other: You can buy neutral items in shop'] = this.optionStore['lodOptionBuyingNeutralItems'],
                     ['Creeps: Multiply Neutral Camps'] = this.optionStore['lodOptionNeutralMultiply'],
                     ['Creeps: Multiply Lane Creeps'] = this.optionStore['lodOptionLaneMultiply'],
                     ['Creeps: Creep Ability'] = this.optionStore['lodOptionLaneCreepBonusAbility'],

@@ -137,6 +137,7 @@ end
 function Ingame:OnPlayerReconnect(keys)
     Timers:CreateTimer(function ()
         local player = PlayerResource:GetPlayer(keys.PlayerID)
+        CustomGameEventManager:Send_ServerToAllClients("MakeNeutralItemsInShopColored", {})
         CustomGameEventManager:Send_ServerToPlayer(player, "lodAttemptReconnect",{})
     end, DoUniqueString('reconnect'), 4.0)
 end
@@ -333,6 +334,15 @@ function Ingame:OnPlayerLearnedAbility( keys )
     end
 end
 
+function IsNeutralItemByID(id)
+    for k,v in pairs(_G.NeutralItems) do
+        if tonumber(v["ID"]) == id then
+            v["name"] = k
+            return v
+        end
+    end
+end
+
 function Ingame:FilterExecuteOrder(filterTable)
     local order_type = filterTable.order_type
     local units = filterTable["units"]
@@ -351,9 +361,15 @@ function Ingame:FilterExecuteOrder(filterTable)
         end
     end      
 
-    -- if order_type == DOTA_UNIT_ORDER_PURCHASE_ITEM then		
-    --     return false		
-    -- end		
+     if order_type == DOTA_UNIT_ORDER_PURCHASE_ITEM then
+         local playerId = filterTable.issuer_player_id_const
+         if IsNeutralItemByID(filterTable["entindex_ability"]) ~= nil then
+             if OptionManager:GetOption('neutralItems') == 0 then
+                 CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(playerId), "display_custom_error", { message = "#you_cannot_buy_neutral_item" })
+                 return false
+             end
+         end
+     end
 		
     -- if units[1] and order_type == DOTA_UNIT_ORDER_SELL_ITEM and ability and not units[1]:IsIllusion() and not units[1]:IsTempestDouble() then		
     --     PanoramaShop:SellItem(units[1], ability)		
