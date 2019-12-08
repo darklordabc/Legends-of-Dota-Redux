@@ -62,7 +62,7 @@ function SlagArmorDamage(keys)
 	local firedamage = ability:GetLevelSpecialValueFor("damage_per_second",ability:GetLevel() -1)
 	
 	if caster:HasScepter() then
-		local armor = target:GetPhysicalArmorValue() * 5
+		local armor = target:GetPhysicalArmorValue(false) * 5
 		if armor > 0 then
 			firedamage = firedamage + armor
 		end

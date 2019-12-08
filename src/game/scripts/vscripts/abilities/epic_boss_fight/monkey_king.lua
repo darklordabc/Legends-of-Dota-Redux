@@ -7,7 +7,7 @@ function JinguHit(keys)
 	--dont think this lifesteal accounts for % based reductions like dispersion
 	if not target:IsBuilding() then
 		-- damage is pre mitigation so we calculate damage post mitigation for lifesteal
-		local armor = target:GetPhysicalArmorValue()
+		local armor = target:GetPhysicalArmorValue(false)
 		local reduction = ((0.02 * armor) / (1 + 0.02 * armor))
 		local lifesteal = (damage - damage * reduction) * ability:GetSpecialValueFor("lifesteal")*0.01
 

@@ -2,7 +2,7 @@ function Ablaze( keys )
 	local caster = keys.caster
 	local ability = keys.ability
 	local target = keys.target
-	local armor = caster:GetPhysicalArmorValue()
+	local armor = caster:GetPhysicalArmorValue(false)
 	local armor_damage = armor * 0.5
 
 	local damageTable = {
@@ -41,7 +41,7 @@ function BulwarkStrikeDamage( keys )
 	local sound = keys.sound
 	local radius = ability:GetLevelSpecialValueFor("radius", ability:GetLevel() - 1)
 	local cooldown = ability:GetTrueCooldown()
-	local armor = caster:GetPhysicalArmorValue()
+	local armor = caster:GetPhysicalArmorValue(false)
 	local armor_multiplier = ability:GetLevelSpecialValueFor("armor_multiplier", ability:GetLevel() - 1)
 	local ablaze_multiplier = ability:GetLevelSpecialValueFor("ablaze_multiplier", ability:GetLevel() - 1)
 	local armor_damage = armor * armor_multiplier
@@ -85,7 +85,7 @@ function SkippingFlames( keys )
 	local radius = ability:GetLevelSpecialValueFor("radius", ability:GetLevel() - 1)
 	local delay = ability:GetLevelSpecialValueFor("delay", ability:GetLevel() - 1)
 	local ablaze_multiplier = ability:GetLevelSpecialValueFor("ablaze_multiplier", ability:GetLevel() - 1)
-	local armor = caster:GetPhysicalArmorValue()
+	local armor = caster:GetPhysicalArmorValue(false)
 	local armor_damage = armor * 0.5 * ablaze_multiplier
 	local sound = keys.sound
 	local caster_location = caster:GetAbsOrigin()
@@ -213,7 +213,7 @@ function MoltenChargeDamage( keys )
 	local caster = keys.caster
 	local target = keys.target
 
-	local armor = caster:GetPhysicalArmorValue()
+	local armor = caster:GetPhysicalArmorValue(false)
 	local armor_multiplier = ability:GetLevelSpecialValueFor("armor_multiplier", ability:GetLevel() - 1)
 	local armor_damage = armor * armor_multiplier
 
