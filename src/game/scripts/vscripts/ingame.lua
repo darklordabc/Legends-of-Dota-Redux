@@ -363,7 +363,7 @@ function Ingame:FilterExecuteOrder(filterTable)
 
      if order_type == DOTA_UNIT_ORDER_PURCHASE_ITEM then
          local playerId = filterTable.issuer_player_id_const
-         if IsNeutralItemByID(filterTable["entindex_ability"]) ~= nil then
+         if filterTable["entindex_ability"] and IsNeutralItemByID(filterTable["entindex_ability"]) ~= nil then
              if OptionManager:GetOption('neutralItems') == 0 then
                  CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(playerId), "display_custom_error", { message = "#you_cannot_buy_neutral_item" })
                  return false
