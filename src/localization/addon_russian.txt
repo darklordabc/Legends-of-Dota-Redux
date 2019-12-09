@@ -231,7 +231,7 @@
     "lodMutatorAllRandom"                           "All Random"
     "lodMutatorSingleDraft"                         "Single Draft"
 
-    "lodMutatorMaxLevel1"                           "Максимальный уровень 28"
+    "lodMutatorMaxLevel1"                           "Максимальный уровень 30"
     "lodMutatorMaxLevel2"                           "Максимальный уровень 50"
     "lodMutatorMaxLevel3"                           "Максимальный уровень 100"
 

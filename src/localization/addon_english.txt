@@ -369,7 +369,7 @@
     "lodMutatorAllRandom"                           "All Random"
     "lodMutatorSingleDraft"                         "Single Draft"
 
-    "lodMutatorMaxLevel1"                           "Max Level 28"
+    "lodMutatorMaxLevel1"                           "Max Level 30"
     "lodMutatorMaxLevel2"                           "Max Level 50"
     "lodMutatorMaxLevel3"                           "Max Level 100"
 
