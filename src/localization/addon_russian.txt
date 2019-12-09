@@ -48,7 +48,7 @@
     "76561198078268404_Description" "Создание Способностей"
 
     // Warning
-    "lodLocalWarning" "Legends of Dota: Redux будет продолжать развиваться в бывшей \"локальной\" версии. Текущая версия заблокирована и вскоре будет удалена!"
+    "lodLocalWarning" "Legends of Dota: Redux будет продолжать развиваться в бывшей (локальной) версии. Текущая версия заблокирована и вскоре будет удалена!"
 
 
     // Chat announcemnts
@@ -238,6 +238,8 @@
     "lodMutatorNoFatOMeter"                         "ЖИР-O-Метр"
     "lodMutatorFarmFatOMeter"                       "ЖИР-O-Метр по общей ценности"
     "lodMutatorKDAFatOMeter"                        "ЖИР-O-Метр по KDA"
+	
+	"lodOptionBuyingNeutralItemsAbout"              "Покупка нейтральных предметов"
 
     "lodOptionAboutBalancedAllPick"                 "За выбор способностей отнимаются очки."
     "lodOptionAboutTraditionalAllPick"              "Выбирайте из всех доступных способностей."
@@ -848,7 +850,7 @@
     "hintLoneDruid"                         "Lone Druid Передаёт 50% урона, полученного им самим на Михаила, если они находятся в радиусе 1100 друг от друга."
     "hintLycan"                         "Snapeshift Длится на 20 секунд дольше, если был использован ночью."
     "hintMagnus"                         "Когда Magnus при использовании способности двигающего врага (skewer), то возвращается 25% потраченной маны и перезарядки способности. Бонус не дается за подбрасывание."
-    "hintMedusa"                         "Medusa Получает +0.5 к мана регену за каждую включаемую способность(как ее щит).
+    "hintMedusa"                         "Medusa Получает +0.5 к мана регену за каждую включаемую способность(как ее щит)."
     "hintMirana"                         "Когда мирана использует Skillshots(стрелы\хуки), возвращается 50% маны, потраченного на его использование и снижение перезарядки на 20%."
     "hintNecrophos"                         "В начале игры Necrophos Получает 1 уровень Heartstopper aura, внезависмиости от ее наличия."
     "hintOmniknight"                         "Способности света возвращают 40% потраченной на них маны, при использовании Omniknight."
@@ -5296,25 +5298,26 @@
     "DOTA_Tooltip_ability_lone_druid_savage_roar_op_duration"                      "DURATION:"
 
     "DOTA_Tooltip_ability_item_assault_consumable"                                     "Assault Cuirass"
-    "DOTA_Tooltip_ability_item_assault_consumable_Description"                           "Passive: Assault Aura - Grants attack speed and armor to nearby allied units and structures, and decreases the armor of nearby enemies.\n\n <font color=\'#70EA72\'>Consume the Assault Cuirass to permanently gain its effects.</font>\n\nMultiple instances of Assault Aura do not stack."
+    "DOTA_Tooltip_ability_item_assault_consumable_Description"                           "<h1>Пассивная: Assault Aura</h1> Увеличивает броню союзных построек и существ на %assault_aura_armor%, а их скорость атаки — на %assault_aura_attack_speed%. Снижает броню врагов поблизости на %assault_aura_armor%.<br><br>Радиус: %assault_aura_radius% \n\n <h1><font color=\'#70EA72\'>Consume</font></h1><font color=\'#70EA72\'>Consume the Assault Cuirass to permanently gain its effects</font>."
     "DOTA_Tooltip_ability_item_assault_consumable_Lore"                                "Forged in the depths of the nether reaches, this hellish mail provides an army with increased armor and attack speed."
     "DOTA_Tooltip_ability_item_assault_consumable_assault_bonus_attack_speed"                  "+$attack"
     "DOTA_Tooltip_ability_item_assault_consumable_assault_bonus_armor"                         "+$armor"
+	"DOTA_Tooltip_ability_item_assault_consumable_assault_bonus_all_stats"                         "+$all"
     "DOTA_Tooltip_ability_item_assault_consumable_assault_aura_attack_speed"                   "AURA ATTACK SPEED:"
     "DOTA_Tooltip_ability_item_assault_consumable_assault_aura_positive_armor"                 "AURA ALLY BONUS ARMOR:"
     "DOTA_Tooltip_ability_item_assault_consumable_assault_aura_negative_armorr"                 "AURA ENEMY ARMOR REDUCTION:"
 
     "DOTA_Tooltip_ability_item_skadi_consumable"                           "Eye of Skadi"
-    "DOTA_Tooltip_ability_item_skadi_consumable_Description"                           "Passive: Cold Attack - Each attack slows the movement and attack speed of the target. The duration of the slow is based on whether the equipped hero is melee or ranged.\n\n <font color=\'#70EA72\'>Consume the Eye of Skadi to permanently gain its effects.\n</font>"
+    "DOTA_Tooltip_ability_item_skadi_consumable_Description"                           "<h1>Пассивная: Cold Attack</h1> Каждая атака уменьшает скорость передвижения и атаки цели на %skadi_cold_duration% сек. Замедление зависит от типа атаки жертвы: у существ дальнего боя замедляет передвижение на %skadi_cold_slow_ranged%%%, атаку — на %skadi_cold_slow_ranged%. У существ ближнего боя замедляет передвижение на %skadi_cold_slow_melee%%%, атаку — на %skadi_cold_slow_melee%. \n\n <font color=\'#70EA72\'>Consume the Eye of Skadi to permanently gain its effects.\n</font>"
     "DOTA_Tooltip_ability_item_skadi_consumable_Lore"                                  "Extremely rare artifact, guarded by the azure dragons."
     "DOTA_Tooltip_ability_item_skadi_consumable_Note0"                                 "Lasts 5 seconds with melee Eye of Skadi, 2.5 seconds with ranged Eye of Skadi."
     "DOTA_Tooltip_ability_item_skadi_consumable_skadi_bonus_all_stats"                       "+$all"
     "DOTA_Tooltip_ability_item_skadi_consumable_skadi_bonus_health"                          "+$health"
     "DOTA_Tooltip_ability_item_skadi_consumable_skadi_bonus_mana"                            "+$mana"
-    "DOTA_Tooltip_ability_item_skadi_consumable_skadi_cold_movement_speed"                   "%COLD MOVE SLOW:"
-    "DOTA_Tooltip_ability_item_skadi_consumable_skadi_cold_attack_speed"                     "COLD ATTACK SLOW:"
-    "DOTA_Tooltip_ability_item_skadi_consumable_skadi_cold_duration_melee"                       "COLD MELEE DURATION:"
-    "DOTA_Tooltip_ability_item_skadi_consumable_skadi_cold_duration_ranged"                  "COLD RANGED DURATION:"
+    //"DOTA_Tooltip_ability_item_skadi_consumable_skadi_cold_movement_speed"                   "%COLD MOVE SLOW:"
+    //"DOTA_Tooltip_ability_item_skadi_consumable_skadi_cold_attack_speed"                     "COLD ATTACK SLOW:"
+    //"DOTA_Tooltip_ability_item_skadi_consumable_skadi_cold_duration_melee"                       "COLD MELEE DURATION:"
+    //"DOTA_Tooltip_ability_item_skadi_consumable_skadi_cold_duration_ranged"                  "COLD RANGED DURATION:"
 
     "DOTA_Tooltip_Ability_item_desolator_consumable"               "Desolator"
     "DOTA_Tooltip_ability_item_desolator_consumable_Description"                       "Passive: Corruption - Your attacks reduce target's armor for 15 seconds.\n\nDesolator is a Unique Attack Modifier, and does not stack with other Unique Attack Modifiers.\n\n <font color=\'#70EA72\'>Consume the Desolator to permanently gain its effects.\n</font>"
@@ -5341,11 +5344,12 @@
     "DOTA_Tooltip_ability_item_octarine_core_consumable_Lore"                      "At the core of spellcraft are spectrums only the very gifted can sense."
 
     "DOTA_Tooltip_Ability_item_heart_consumable"               "Heart of Tarrasque"
-    "DOTA_Tooltip_ability_item_heart_consumable_Description"                           "Passive: Health Regeneration - Restores a percentage of max health per second. If damage is taken from an enemy hero or Roshan, this ability is disabled for %heart_cooldown_melee% seconds for melee heroes, or %heart_cooldown_ranged_tooltip% seconds for ranged heroes.\n\n <font color=\'#70EA72\'>Consume the Heart of Tarrasque to permanently gain its effects.\n</font>"
-    "DOTA_Tooltip_ability_item_heart_consumable_Lore"                              "Preserved heart of an extinct monster, it bolsters the bearer's fortitude."
-    "DOTA_Tooltip_ability_item_heart_consumable_heart_bonus_strength"                        "+$str"
-    "DOTA_Tooltip_ability_item_heart_consumable_heart_bonus_health"                          "+$health"
-    "DOTA_Tooltip_ability_item_heart_consumable_heart_health_regen_rate"                     "%HEALTH RESTORED PER SECOND:"
+	"DOTA_Tooltip_ability_item_heart_consumable_Description"							"<h1>Пассивная: Health Regeneration</h1> Восстанавливает %heart_health_regen_rate%%% от максимального здоровья в секунду. <br><br>Если получить урон от вражеского героя или Рошана, способность отключается на %heart_cooldown_melee% сек. для героев ближнего боя или на %heart_cooldown_ranged_tooltip% сек. для героев дальнего боя."
+    "DOTA_Tooltip_ability_item_heart_consumable_Lore"                              		"Preserved heart of an extinct monster, it bolsters the bearer's fortitude."
+    "DOTA_Tooltip_ability_item_heart_consumable_heart_bonus_strength"                   "+$str"
+    "DOTA_Tooltip_ability_item_heart_consumable_heart_bonus_health"                     "+$health"
+	"DOTA_Tooltip_ability_item_heart_consumable_heart_fixed_health_regen" 					"+$hp_regen"
+    "DOTA_Tooltip_ability_item_heart_consumable_heart_health_regen_rate"                "%HEALTH RESTORED PER SECOND:"
 
     "DOTA_Tooltip_Ability_item_monkey_king_bar_consumable"         "Monkey King Bar"
     "DOTA_Tooltip_ability_item_monkey_king_bar_consumable_Description"                 "Passive: Mini-Bash - Grants each attack a chance to deal bonus damage and deal a mini-stun.\nPassive: True Strike - Prevents your attacks from missing. True Strike does not work when attacking enemy structures."
@@ -6873,11 +6877,7 @@
     "InstructionsObjective"                         "OBJECTIVE"
     "InstructionsObjectiveText"                     "Slay your enemies! Be the first to earn the goal number of kills, or the team with the most kills when the round ends, and you will be victorious."
     "InstructionsHowToPlay"                         "HOW TO PLAY"
-    "InstructionsLines"                             "-Approach the Midas Throne to earn bonus gold and experience.<br>
-                                                    -Snatch up any giant coins the Over Boss tosses to earn even more gold.<br>
-                                                    -Keep an eye out for item deliveries. An icon will appear on your map where an item will appear.<br>
-                                                    -The fewer kills your team has, the better the item you will receive from a delivery.<br>
-                                                    -Slay anyone who isn't on your team."
+    "InstructionsLines"                             "-Approach the Midas Throne to earn bonus gold and experience.<br>-Snatch up any giant coins the Over Boss tosses to earn even more gold.<br>-Keep an eye out for item deliveries. An icon will appear on your map where an item will appear.<br>-The fewer kills your team has, the better the item you will receive from a delivery.<br>-Slay anyone who isn't on your team."
 
     "Chest"                                         "ITEM"
     "ItemWillSpawn"                                 "IS ABOUT TO BE DELIVERED!"

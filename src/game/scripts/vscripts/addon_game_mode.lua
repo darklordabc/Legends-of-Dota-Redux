@@ -90,7 +90,7 @@ function Activate()
 
     -- Ensure LoD is compiled
     local tst = LoadKeyValues('scripts/npc/npc_heroes_custom.txt')
-    _G.NeutralItems = LoadKeyValues("scripts/npc/neutral_items_list.txt")
+    _G.NeutralItems = LoadKeyValues("scripts/kv/neutral_items_list.kv")
 
     if tst == 0 or tst == nil then
         print('FAILURE! You are attempting to run an UNCOMPILED version! Please either compile OR download the latest release from the releases section of github.\n\n')

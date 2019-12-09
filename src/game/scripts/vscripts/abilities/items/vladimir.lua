@@ -100,7 +100,6 @@ modifier_item_vladimir_consumable = class({
       MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
       MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
       MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
-      MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
     }
   end,
 
@@ -125,13 +124,6 @@ modifier_item_vladimir_consumable = class({
     end
     return self:GetAbility():GetSpecialValueFor("vlads_bonus_all_stats")
   end,
-  GetModifierConstantHealthRegen = function(self)    
-    if not self:GetAbility() then
-      self:Destroy()
-      return
-    end
-    return self:GetAbility():GetSpecialValueFor("vlads_hp_regen")
-  end,
 })
 
 modifier_item_vladimir_consumable_aura = class({
@@ -142,20 +134,19 @@ modifier_item_vladimir_consumable_aura = class({
   DeclareFunctions = function() 
     return {
       MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
-      MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
       MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
       MODIFIER_EVENT_ON_ATTACK_LANDED,
       MODIFIER_PROPERTY_TOOLTIP,
     }
   end,
 
-  OnTooltip = function(self)
-    if not self:GetAbility() then
-      self:Destroy()
-      return
-    end
-    return self:GetParent():IsRangedAttacker() and self:GetAbility():GetSpecialValueFor("vlads_vampiric_aura_ranged") or self:GetAbility():GetSpecialValueFor("vlads_vampiric_aura")
-  end,
+  --OnTooltip = function(self)
+  --  if not self:GetAbility() then
+  --    self:Destroy()
+  --    return
+  --  end
+  --  return self:GetParent():IsRangedAttacker() and self:GetAbility():GetSpecialValueFor("vlads_vampiric_aura_ranged") or self:GetAbility():GetSpecialValueFor("vlads_vampiric_aura")
+  --end,
 
   GetModifierConstantManaRegen = function(self)     
     if not self:GetAbility() then
@@ -173,25 +164,11 @@ modifier_item_vladimir_consumable_aura = class({
     return self:GetAbility():GetSpecialValueFor("vlads_armor_aura")
   end,
 
-  GetModifierPreAttack_BonusDamage = function(self)
-    if not self:GetAbility() then
-      self:Destroy()
-      return
-    end
-    if IsServer() then
-      local average = (self:GetParent():GetBaseDamageMin() + self:GetParent():GetBaseDamageMax()) / 2
-      self:GetParent():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_vlads_info", {})
-      self:GetParent():SetModifierStackCount("modifier_vlads_info", self:GetCaster(), average)
-    end
-    local damage = self:GetParent():GetModifierStackCount("modifier_vlads_info", self:GetCaster()) or 0
-    return damage * self:GetAbility():GetSpecialValueFor("vlads_damage_aura") * 0.01
-  end,
-
   OnAttackLanded = function(self, keys)
     if self:GetParent() == keys.attacker then
       if keys.target:IsAlive() then
         if not keys.target:IsOther() and not keys.target:IsBuilding() then
-          local lifesteal = self:GetParent():IsRangedAttacker() and self:GetAbility():GetSpecialValueFor("vampiric_aura_ranged") or self:GetAbility():GetSpecialValueFor("vampiric_aura")
+          local lifesteal = self:GetAbility():GetSpecialValueFor("vlads_vampiric_aura")
           self:GetParent():Heal(lifesteal * keys.damage * 0.01, self:GetParent())
 
           local p = ParticleManager:CreateParticle("particles/generic_gameplay/generic_lifesteal.vpcf", PATTACH_OVERHEAD_FOLLOW, self:GetParent())

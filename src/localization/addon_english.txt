@@ -217,7 +217,9 @@
     "lodMutatorFastBuybackCooldown1"                "Fast Respawn"
     "lodMutatorFastBuybackCooldown2"                "Faster Respawn"
     "lodMutatorFastBuybackCooldown3"                "Instant Respawn"
-
+	
+	"lodOptionBuyingNeutralItemsAbout"              "Neutral items buying"
+	
     "lodMutatorBotDifficulty1"                      "Passive Bots"
     "lodOptionAboutBotDifficulty"                   "For detailed information about bot difficulty differences refer to the DotA 2 Wiki page about bots. Team specific difficulty can be set in advanced options. Random Individual means that every individual bot has a random difficulty setting between easy to unfair."
 
@@ -6142,13 +6144,14 @@
     "DOTA_Tooltip_ability_item_assault_consumable_Note0"                               "Multiple instances of Assault Aura do not stack."
     "DOTA_Tooltip_ability_item_assault_consumable_Lore"                                "Forged in the depths of the nether reaches, this hellish mail provides an army with increased armor and attack speed."
     "DOTA_Tooltip_ability_item_assault_consumable_assault_bonus_attack_speed"                  "+$attack"
+	"DOTA_Tooltip_ability_item_assault_consumable_assault_bonus_all_stats"                         "+$all"
     "DOTA_Tooltip_ability_item_assault_consumable_assault_bonus_armor"                         "+$armor"
     //"DOTA_Tooltip_ability_item_assault_consumable_assault_aura_attack_speed"                   "AURA ATTACK SPEED:"
     //"DOTA_Tooltip_ability_item_assault_consumable_assault_aura_positive_armor"                 "AURA ALLY BONUS ARMOR:"
     //"DOTA_Tooltip_ability_item_assault_consumable_assault_aura_negative_armorr"                 "AURA ENEMY ARMOR REDUCTION:"
 
     "DOTA_Tooltip_ability_item_skadi_consumable"                           "Eye of Skadi"
-    "DOTA_Tooltip_ability_item_skadi_consumable_Description"                           "<h1>Passive: Cold Attack</h1> Attacks lower enemy attack speed by %skadi_cold_attack_speed% and movement speed by %skadi_cold_movement_speed%%%. <br><br>Lasts %skadi_cold_duration_melee% seconds when used by melee heroes, and %skadi_cold_duration_ranged% seconds when used by ranged.\n\n<h1><font color=\'#70EA72\'>Consume</font></h1><font color=\'#70EA72\'>Consume the Eye of Skadi to permanently gain its effects</font>."
+    "DOTA_Tooltip_ability_item_skadi_consumable_Description"                           "<h1>Passive: Cold Attack</h1> Attacks lower enemy movement and attack speed for %skadi_cold_duration% seconds. Slows enemy ranged units by %skadi_cold_slow_ranged%%% movement speed and by %skadi_cold_slow_ranged% attack speed. Slows enemy melee units by %skadi_cold_slow_melee%%% movement speed and by %skadi_cold_slow_melee% attack speed. \n\n<h1><font color=\'#70EA72\'>Consume</font></h1><font color=\'#70EA72\'>Consume the Eye of Skadi to permanently gain its effects</font>."
     "DOTA_Tooltip_ability_item_skadi_consumable_Lore"                                  "Extremely rare artifact, guarded by the azure dragons."
     "DOTA_Tooltip_ability_item_skadi_consumable_Note0"                                 "Lasts 5 seconds with melee Eye of Skadi, 2.5 seconds with ranged Eye of Skadi."
     "DOTA_Tooltip_ability_item_skadi_consumable_skadi_bonus_all_stats"                       "+$all"
@@ -6193,9 +6196,10 @@
     "DOTA_Tooltip_ability_item_octarine_core_consumable_Lore"                      "At the core of spellcraft are spectrums only the very gifted can sense."
 
     "DOTA_Tooltip_Ability_item_heart_consumable"               "Heart of Tarrasque"
-    "DOTA_Tooltip_ability_item_heart_consumable_Description"                           "<h1>Passive: Health Regeneration</h1>Restores %heart_health_regen_rate%%% of max health per second. <br><br>If damage is taken from an enemy hero or Roshan, this ability is disabled for %heart_cooldown_melee% seconds for melee heroes, or %heart_cooldown_ranged_tooltip% seconds for ranged heroes.\n\n<h1><font color=\'#70EA72\'>Consume</font></h1><font color=\'#70EA72\'>Consume the Heart of Tarrasque to permanently gain its effects</font>."
+	"DOTA_Tooltip_ability_item_heart_consumable_Description"							"<h1>Passive: Health Regeneration</h1>Restores %heart_health_regen_rate%%% of max health per second. <br><br>If damage is taken from an enemy hero or Roshan, this ability is disabled for %heart_cooldown_melee% seconds for melee heroes, or %heart_cooldown_ranged_tooltip% seconds for ranged heroes."
     "DOTA_Tooltip_ability_item_heart_consumable_Lore"                              "Preserved heart of an extinct monster, it bolsters the bearer's fortitude."
     "DOTA_Tooltip_ability_item_heart_consumable_heart_bonus_strength"                        "+$str"
+	"DOTA_Tooltip_ability_item_heart_consumable_heart_fixed_health_regen" "+$hp_regen"
     "DOTA_Tooltip_ability_item_heart_consumable_heart_bonus_health"                          "+$health"
     //"DOTA_Tooltip_ability_item_heart_consumable_heart_health_regen_rate"                     "%HEALTH RESTORED PER SECOND:"
 
@@ -6218,7 +6222,7 @@
     "DOTA_Tooltip_ability_item_kaya_consumable_spell_amp"                  "%+Spell Amplification"
     "DOTA_Tooltip_ability_item_kaya_consumable_manacost_reduction"         "%+Manacost and Manaloss Reduction"
 	
-	//Consumable Kaya
+	//Consumable Holy Locket
     "DOTA_Tooltip_ability_item_holy_locket_consumable"                        "Holy Locket"
     "DOTA_Tooltip_ability_item_holy_locket_consumable_Description"                   "Amplifies heals and regeneration you provide."
     "DOTA_Tooltip_ability_item_holy_locket_consumable_Note0"                  "Multiple instances of this item do not stack the amplification."
@@ -6226,6 +6230,13 @@
     "DOTA_Tooltip_ability_item_holy_locket_consumable_health_regen"                  "+$health_regen"
     "DOTA_Tooltip_ability_item_holy_lockete_consumable_mana_regen"         "+$mana_regen"
 	"DOTA_Tooltip_ability_item_holy_locket_consumable_magic_resistance"         "+$spell_resist"
+	
+	"DOTA_Tooltip_ability_item_holy_locket_consumable"              "Holy Locket"
+	"DOTA_Tooltip_ability_item_holy_locket_consumable_Description"				"<h1>Active: Energy Charge</h1>Instantly restores %holy_locket_restore_per_charge% health and mana per charge stored. <br><br>Max %holy_locket_max_charges% charges. Gains a charge whenever a visible enemy within %holy_locket_charge_radius% range uses an ability.  \n\n <h1>Passive: Holy Blessing</h1>Amplifies heals you provide by %holy_locket_heal_increase%%%." 
+	"DOTA_Tooltip_ability_item_holy_locket_consumable_holy_locket_bonus_health"			"+$health"
+	"DOTA_Tooltip_ability_item_holy_locket_consumable_holy_locket_bonus_mana"				"+$mana"
+	"DOTA_Tooltip_ability_item_holy_locket_consumable_holy_locket_health_regen"			"+$hp_regen"
+	"DOTA_Tooltip_ability_item_holy_locket_consumable_holy_locket_bonus_all_stats"			"+$all"		
 
     //Consumable Aeon Disk
     "DOTA_Tooltip_ability_item_aeon_disk_consumable"                   "Aeon Disk"
@@ -6251,10 +6262,10 @@
 
     //Consumable Vlads
     "DOTA_Tooltip_ability_item_vladimir_consumable"                         "Vladmir's Offering"
-    "DOTA_Tooltip_ability_item_vladimir_consumable_Description"                         "<h1>Passive: Vladmir's Aura</h1>Grants lifesteal (%vampiric_aura%%% for melee heroes, %vampiric_aura_ranged%%% for ranged), %hp_regen% health regeneration, %mana_regen_aura% mana regeneration, %damage_aura%%% bonus attack damage, and %armor_aura% armor to nearby allies. <br><br>Radius: %aura_radius%"
-    "DOTA_Tooltip_ability_item_vladimir_consumable_Lore"                                "An eerie mask that is haunted with the malice of a fallen vampire."
+	"DOTA_Tooltip_ability_item_vladimir_consumable_Description"							"<h1>Passive: Vladmir's Aura</h1>Grants %vlads_vampiric_aura%%% lifesteal, %vlads_mana_regen_aura% mana regeneration, and %vlads_armor_aura% armor to nearby allies. <br><br>Radius: %vlads_aura_radius%"
+    "DOTA_Tooltip_ability_item_vladimir_consumable_Lore"											"An eerie mask that is haunted with the malice of a fallen vampire."
     "DOTA_Tooltip_ability_item_vladimir_consumable_Note0"                               "Multiple instances of Vladmir's Aura do not stack."
-    "DOTA_Tooltip_ability_item_vladimir_consumable_bonus_all_stats"                     "+$all"
+    "DOTA_Tooltip_ability_item_vladimir_consumable_vlads_bonus_all_stats"                     "+$all"
 
     //Vlads modifiers
     "DOTA_Tooltip_modifier_item_vladimir_consumable"                    "Vladmir's Offering"
@@ -9517,7 +9528,7 @@
     "dota_tooltip_ability_imba_dragon_knight_elder_dragon_form_aghanim_description" "Increases the level of your ultimate. Adds a 4th level, Black Dragon. Black Drago has 50% more Corrosive Damage, Splash Damage and Slow amount. Increases attack range to 600 and grants 30% Magic resistance.\n\n<font color='#FF7800'>IMBA:</font> Elder Dragon Form is now freely toggleable, but counts as a passive for being disabled."
     "dota_tooltip_ability_imba_dragon_knight_elder_dragon_form_bonus_attack_range" "BONUS ATTACK RANGE:"
     "dota_tooltip_ability_imba_dragon_knight_elder_dragon_form_bonus_movement_speed" "BONUS MOVE SPEED:"
-    "dota_tooltip_ability_imba_dragon_knight_elder_dragon_form_description" "Dragon Knight takes the form of one of three powerful elder dragons, increasing his speed and Dragon Tail's range, while granting him new powers.\n<font color=\"#9acd32\">LEVEL 1 Green Dragon</font> - Corrosive Breath: attacks deal %corrosive_breath_damage% poison damage per second for %corrosive_breath_duration% seconds. Works on structures.\n<font color=\"#ff0000\">LEVEL 2 Red Dragon</font> - Splash Attack: attacks damage all enemy units in a %splash_radius% radius at %splash_damage_percent%%% damage, with Corrosive Breath added to the targets.\n<font color=\"#87ceeb\">LEVEL 3 Blue Dragon</font> - Frost Breath: slows movement speed by %frost_bonus_movement_speed%%% and attack speed by %frost_bonus_attack_speed% of enemy units in Splash Attack range for %frost_duration% seconds, with Corrosive Breath added to the targets.\n\n<font color='#00FF40'>Upgradable by Aghanim's Scepter.</font>"
+    "dota_tooltip_ability_imba_dragon_knight_elder_dragon_form_description" "Dragon Knight takes the form of one of three powerful elder dragons, increasing his speed and Dragon Tail's range, while granting him new powers.\n<font color123='#9ACD32'>LEVEL 1 Green Dragon</font> - Corrosive Breath: attacks deal %corrosive_breath_damage% poison damage per second for %corrosive_breath_duration% seconds. Works on structures.\n<font color='#ff0000'>LEVEL 2 Red Dragon</font> - Splash Attack: attacks damage all enemy units in a %splash_radius% radius at %splash_damage_percent%%% damage, with Corrosive Breath added to the targets.\n<font color='#87ceeb'>LEVEL 3 Blue Dragon</font> - Frost Breath: slows movement speed by %frost_bonus_movement_speed%%% and attack speed by %frost_bonus_attack_speed% of enemy units in Splash Attack range for %frost_duration% seconds, with Corrosive Breath added to the targets.\n\n<font color='#00FF40'>Upgradable by Aghanim's Scepter.</font>"
     "dota_tooltip_ability_imba_dragon_knight_elder_dragon_form_duration" "DURATION:"
     "dota_tooltip_ability_imba_dragon_knight_elder_dragon_form_lore" "The dormant dragon power springs forth from within Davion, combining the powers of a legendary knight with a legendary Eldwurm."
     "dota_tooltip_ability_imba_dragon_knight_elder_dragon_form_note0" "Corrosive Breath poison damage is lethal."
@@ -9728,7 +9739,7 @@
     "dota_tooltip_ability_imba_empress_royal_wrath_description" "Whenever you are damaged and this ability is off-cooldown, the attacker and its nearby allies will be <font color='#C00000'>cursed</font>, and Hellbolt's current cooldown (if any) will decrease by %hellbolt_cdr% seconds."
     "dota_tooltip_ability_imba_empress_royal_wrath_lore" "Eye for an eye is the only justice in Hell. Or both eyes for a slight scratch, that works, too."
     "dota_tooltip_ability_imba_enchantress_enchant" "Enchant"
-    "dota_tooltip_ability_imba_enchantress_enchant_description" "Enchantress charms an enemy. If the enemy is a hero, they are slowed. If the enemy is a creep, she brings it under her control. If cast on a creep already under her control, she refreshes its enchant duration.\n\nDISPEL TYPE: Basic Dispel\n<font color='#FF7800'>Innate Charms: </font>Enchantress can enchant ancients at Level 20.\n<font color='#FF7800'>Instant Karma: </font>Killing a unit affected by Enchant's charm inflicts pure retaliation damage equal to how much the attacker overkilled the target on the killing blow. This damage is not affected by spell amplification or lifesteal.\n<font color='#FF7800'>\"Don't Run Off!\": </font>Enemies affected by Enchant's slow are visible in the fog of war."
+    "dota_tooltip_ability_imba_enchantress_enchant_description" "Enchantress charms an enemy. If the enemy is a hero, they are slowed. If the enemy is a creep, she brings it under her control. If cast on a creep already under her control, she refreshes its enchant duration.\n\nDISPEL TYPE: Basic Dispel\n<font color='#FF7800'>Innate Charms: </font>Enchantress can enchant ancients at Level 20.\n<font color='#FF7800'>Instant Karma: </font>Killing a unit affected by Enchant's charm inflicts pure retaliation damage equal to how much the attacker overkilled the target on the killing blow. This damage is not affected by spell amplification or lifesteal.\n<font color='#FF7800'>Don't Run Off!: </font>Enemies affected by Enchant's slow are visible in the fog of war."
     "dota_tooltip_ability_imba_enchantress_enchant_dominate_duration" "CREEP ENCHANT DURATION:"
     "dota_tooltip_ability_imba_enchantress_enchant_lore" "A true steward of the forest, Aiushtha befriends all within it - from lowly trolls to powerful centaurs."
     "dota_tooltip_ability_imba_enchantress_enchant_note0" "Illusions can be converted."
@@ -11718,13 +11729,13 @@
     "dota_tooltip_ability_imba_tidehunter_anchor_smash" "Anchor Smash"
     "dota_tooltip_ability_imba_tidehunter_anchor_smash_attack_damage" "ATTACK BONUS DAMAGE:"
     "dota_tooltip_ability_imba_tidehunter_anchor_smash_damage_reduction" "%DAMAGE REDUCTION:"
-    "dota_tooltip_ability_imba_tidehunter_anchor_smash_description" "Tidehunter swings his mighty anchor to attack and deal bonus damage to nearby enemies and reduce their attack damage.\n<font color='#FF7800'>Sheer Force:</font> Anchor Smash's damage pierces magic immunity.\n<font color='#FF7800'>Angled:</font> Enemies hit by the base version of Anchor Smash are forced to face the opposite direction upon impact.\n<font color='#FF7800'>\"Anchor\" Throw:</font> Can be set to auto-cast to make Anchor Smash a %throw_range% range point-target ability. A weapon is thrown forward at %throw_speed% speed, applying Anchor Smash on all enemies within %throw_radius% radius that it passes through."
+    "dota_tooltip_ability_imba_tidehunter_anchor_smash_description" "Tidehunter swings his mighty anchor to attack and deal bonus damage to nearby enemies and reduce their attack damage.\n<font color='#FF7800'>Sheer Force:</font> Anchor Smash's damage pierces magic immunity.\n<font color='#FF7800'>Angled:</font> Enemies hit by the base version of Anchor Smash are forced to face the opposite direction upon impact.\n<font color='#FF7800'>Anchor Throw:</font> Can be set to auto-cast to make Anchor Smash a %throw_range% range point-target ability. A weapon is thrown forward at %throw_speed% speed, applying Anchor Smash on all enemies within %throw_radius% radius that it passes through."
     "dota_tooltip_ability_imba_tidehunter_anchor_smash_lore" "Stolen from one of Admiral Kunkka's flagships, Leviathan's heavy anchor proves useful as a melee weapon."
     "dota_tooltip_ability_imba_tidehunter_anchor_smash_note0" "Anchor Smash works on all Ancient creeps except for Roshan."
     "dota_tooltip_ability_imba_tidehunter_anchor_smash_radius" "RADIUS:"
     "dota_tooltip_ability_imba_tidehunter_anchor_smash_reduction_duration" "DURATION:"
     "dota_tooltip_ability_imba_tidehunter_gush" "Gush"
-    "dota_tooltip_ability_imba_tidehunter_gush_aghanim_description" "Gush becomes a ground targeted wave ability that affects enemy units in a line.  Decreases cooldown.\n<font color='#FF7800'>IMBA:</font> The targeted portion can also be used (doing so casts both unit and ground targeted waves, but does not deal damage or apply the armor reduction. Additionally, the ground targeted wave can apply \"Surf's Up!\" on allies as well."
+    "dota_tooltip_ability_imba_tidehunter_gush_aghanim_description" "Gush becomes a ground targeted wave ability that affects enemy units in a line.  Decreases cooldown.\n<font color='#FF7800'>IMBA:</font> The targeted portion can also be used (doing so casts both unit and ground targeted waves, but does not deal damage or apply the armor reduction. Additionally, the ground targeted wave can apply (Surf's Up!) on allies as well."
     "dota_tooltip_ability_imba_tidehunter_gush_aoe_scepter" "SCEPTER RADIUS:"
     "dota_tooltip_ability_imba_tidehunter_gush_cast_range_scepter" "SCEPTER RANGE:"
     "dota_tooltip_ability_imba_tidehunter_gush_cooldown_scepter" "SCEPTER COOLDOWN:"
