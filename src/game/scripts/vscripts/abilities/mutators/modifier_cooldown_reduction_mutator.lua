@@ -25,11 +25,11 @@ function modifier_cooldown_reduction_mutator.OnCreated(self)
     self.mana_regen_pct=0.75
 end
 function modifier_cooldown_reduction_mutator.DeclareFunctions(self)
-    return {MODIFIER_PROPERTY_MANA_REGEN_TOTAL_PERCENTAGE,MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE_STACKING}
+    return {MODIFIER_PROPERTY_MANA_REGEN_TOTAL_PERCENTAGE,MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE}
 end
 function modifier_cooldown_reduction_mutator.GetModifierTotalPercentageManaRegen(self)
     return self.mana_regen_pct
 end
-function modifier_cooldown_reduction_mutator.GetModifierPercentageCooldownStacking(self)
+function modifier_cooldown_reduction_mutator.GetModifierPercentageCooldown(self)
     return self.reduction_pct
 end

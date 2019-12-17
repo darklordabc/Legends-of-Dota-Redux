@@ -123,7 +123,7 @@ end
 
 function modifier_flesh_heap_cooldown_reduction:DeclareFunctions()
   local funcs = {
-    MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE_STACKING ,
+    MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE,
     MODIFIER_EVENT_ON_DEATH,
   }
   return funcs
@@ -181,7 +181,7 @@ function modifier_flesh_heap_cooldown_reduction:OnDeath(keys)
   end
 end
 
-function modifier_flesh_heap_cooldown_reduction:GetModifierPercentageCooldownStacking()
+function modifier_flesh_heap_cooldown_reduction:GetModifierPercentageCooldown()
   local value = (100-math.pow(1-(0.01*self.flesh_heap_value_buff_amount), self:GetStackCount()) * 100) 
   -- Rounding the value to 1
   if math.fmod(value,1) > 0.5 then
