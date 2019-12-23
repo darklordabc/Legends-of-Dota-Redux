@@ -99,10 +99,6 @@ function createCommandGroup(data) {
 	checkHeight();
 }
 
-function toggleCheats(arg){
-	$('#cheatsDisplay').SetHasClass('cheatsDisplayHidden', !$('#cheatsDisplay').BHasClass('cheatsDisplayHidden'));
-}
-
 GameEvents.Subscribe("lodOnCheats", function() {
 	$('#cheatsDisplay').SetHasClass('cheatsDisplayHidden', !$('#cheatsDisplay').BHasClass('cheatsDisplayHidden'));
 });
