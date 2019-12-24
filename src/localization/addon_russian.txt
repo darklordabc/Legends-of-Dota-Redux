@@ -6621,9 +6621,14 @@
     "only_target_creeps"                            "Cannot consume Ancients"
 
     "DOTA_Tooltip_ability_infernal_blade_lua"                      "Infernal Blade"
-    "DOTA_Tooltip_ability_infernal_blade_lua_Description"          "Doom swings his burning sword, igniting the enemy. Stuns for %ministun_duration% seconds and applies a %burn_duration% second burn that deals %damage% + %health_damage_pct%%% of the target's Max HP as damage per second."
+    "DOTA_Tooltip_ability_infernal_blade_lua_Description"          "Doom swings his burning sword, igniting the enemy. Stuns for %stun_duration% seconds and applies a %burn_duration% second burn that deals %base_dmg% + %max_pct_burn%%% of the target's Max HP as damage per second.\n<font color='#70EA72'>Has Aghanim Upgrade:</font> \n<font color='#70EA72'>Increases stun duration, burn duration and applies Break.</font>"
     "DOTA_Tooltip_ability_infernal_blade_lua_Lore"                 "Lucifer shares the fire branding bestowed upon him at the time of his exile."
     "DOTA_Tooltip_ability_infernal_blade_lua_Note0"                    "Interrupts channeling abilities."
+	
+
+    "DOTA_Tooltip_ability_infernal_blade_lua_ministun_duration_scepter"  "STUN DURATION SCEPTER:"
+	"DOTA_Tooltip_ability_infernal_blade_lua_burn_duration_scepter"      "BURN DURATION SCEPTER:"
+	
     "DOTA_Tooltip_ability_infernal_blade_lua_base_dmg"      "BASE BURN DAMAGE:"
     "DOTA_Tooltip_ability_infernal_blade_lua_max_pct_burn"  "%MAX HP AS DAMAGE:"
     "DOTA_Tooltip_ability_infernal_blade_lua_burn_duration"    "BURN DURATION:"

@@ -36,7 +36,7 @@
 			"01"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"burn_duration"		"4"
+				"base_dmg"			"25 30 35 40"
 			}
 			"02"
 			{
@@ -47,17 +47,29 @@
 			"03"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"base_dmg"			"25 30 35 40"
+				"burn_duration"		"4"
 			}
 			"04"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"interval"			"1.0"
+				"stun_duration"		"0.6"
 			}
 			"05"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"stun_duration"		"0.6"
+				"interval"			"1.0"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"ministun_duration_scepter"	"1.75"
+				"RequiresScepter"			"1"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"burn_duration_scepter"		"6.0"
+				"RequiresScepter"			"1"
 			}
 		}
 	}

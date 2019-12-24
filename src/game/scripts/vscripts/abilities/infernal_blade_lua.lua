@@ -38,6 +38,13 @@ modifier_infernal_blade = class({
 	IsPurgable = function(self) return true end,
 	OnRefresh = function(self, kv) return self:OnCreated() end,
 	GetAttributes = function(self) return MODIFIER_ATTRIBUTE_MULTIPLE end,
+	CheckState = function(self)
+		if self.isAghnaimAbility == 1 then
+			return { [MODIFIER_STATE_PASSIVES_DISABLED] = true, }
+		else
+			return {}
+		end
+	end,
 
 	GetEffectName = function(self) return "particles/units/heroes/hero_doom_bringer/doom_infernal_blade_debuff.vpcf" end,
 	GetEffectAttachType = function(self) return PATTACH_ABSORIGIN_FOLLOW end,
@@ -48,7 +55,8 @@ modifier_infernal_blade = class({
 			self.burnPct = self:GetAbility():GetSpecialValueFor("max_pct_burn")
 			self.base = self:GetAbility():GetSpecialValueFor("base_dmg")
 			self.tick = self:GetAbility():GetSpecialValueFor("interval")
-
+			self.isAghnaimAbility = kv.isAghnaimAbility
+			print(self.isAghnaimAbility)
 			local talent = self:GetCaster():FindAbilityByName("special_bonus_unique_doom_1")
 			if talent then
 				if talent:GetLevel() > 0 then
@@ -79,7 +87,7 @@ modifier_infernal_blade_caster = class({
 	GetAttributes = function(self) return MODIFIER_ATTRIBUTE_PERMANENT + MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE end,
 	DeclareFunctions = function(self) return {MODIFIER_EVENT_ON_ORDER, MODIFIER_EVENT_ON_ATTACK_START, MODIFIER_EVENT_ON_ATTACK_LANDED,} end,
 
-	OnCreated = function(self, kv) 
+	OnCreated = function(self, kv)
 		self.duration = self:GetAbility():GetSpecialValueFor("burn_duration")
 		self.stun = self:GetAbility():GetSpecialValueFor("stun_duration")
 	end,
@@ -119,7 +127,15 @@ modifier_infernal_blade_caster = class({
 				--dont infernal roshan or buildings, and dont let illusions use it.
 				if target:GetUnitName() == "npc_dota_roshan" or caster:IsIllusion() or target:IsBuilding() then return end
 
-				target:AddNewModifier(caster, ability, "modifier_infernal_blade", {duration = self.duration})
+				self.duration = self:GetAbility():GetSpecialValueFor("burn_duration")
+				self.stun = self:GetAbility():GetSpecialValueFor("stun_duration")
+				local isAghnaimAbility = false
+				if self:GetCaster():HasScepter() then
+					self.duration = self:GetAbility():GetSpecialValueFor("burn_duration_scepter")
+					self.stun = self:GetAbility():GetSpecialValueFor("ministun_duration_scepter")
+					isAghnaimAbility = true
+				end
+				target:AddNewModifier(caster, ability, "modifier_infernal_blade", {duration = self.duration, isAghnaimAbility = isAghnaimAbility})
 				target:AddNewModifier(caster, ability, "modifier_infernal_blade_stun", {duration = self.stun})
 
 				EmitSoundOn("Hero_DoomBringer.InfernalBlade.Target", target)
