@@ -3282,6 +3282,10 @@
         {
             "ReduxPerks"                                                           "drain | nature"
         }
+		"treant_natures_grasp"
+        {
+            "ReduxPerks"                                                           "nature"
+        }
         "item_sheepstick"
         {
             "ReduxPerks"                                                           "hex"
@@ -5374,6 +5378,12 @@
         {
             "TalentRequiredAbility"                                                   "treant_leech_seed"
         }
+		
+		"special_bonus_unique_treant_9"
+        {
+            "TalentRequiredAbility"                                                   "treant_natures_grasp"
+        }
+
 
         //"special_bonus_unique_treant_3"
         //{
