@@ -1408,6 +1408,7 @@
     "warning_undying_tombstone_zombie_deathstrike"   "<font color=\'#FF4949\'>Warning:</font> Этот скил полу-сломан, вы не получите ни скорости бега ни скорости атаки. Лучше не брать."
     "warning_life_stealer_infest"               "<font color=\'#FF4949\'>Warning:</font> Дает <font color=\'#70EA72\'>Consume</font> и <font color=\'#70EA72\'>Control</font>."
     "warning_zuus_cloud"               "<font color=\'#FF4949\'>Warning:</font> Требует наличия <font color=\'#70EA72\'>Lighting Bolt</font>, чтобы Нимбус бил врагов."
+	"warning_kunkka_torrent_storm"     "<font color=\'#FF4949\'>Warning:</font> Требует наличия <font color=\'#70EA72\'>Torrent</font> для корректой работы умения."
     "warning_night_stalker_darkness"                "<font color=\'#FF4949\'>Hero Requirement:</font> Вы должны играть <font color=\'#70EA72\'>Сталкером</font> чтобы получить ночную видимость с Aghanim's Scepter."
     "warning_lone_druid_true_form"              "<font color=\'#FF4949\'>Hero Requirement:</font> Требуется брать героя с дальностью атаки 400+ иначе бить не сможете."
     "troll_warlord_berserkers_rage"              "<font color=\'#FF4949\'>Hero Requirement:</font> Требуется брать героя с дальностью атаки 350+ иначе бить не сможете."

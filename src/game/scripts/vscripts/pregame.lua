@@ -2505,6 +2505,9 @@ end
 
 -- Tests a build to decide if it is a troll combo
 function Pregame:isTrollCombo(build)
+    local exceptions = {
+        ["kunkka_torrent_storm"] = "kunkka_torrent"
+    }
     local maxSlots = self.optionStore['lodOptionCommonMaxSlots']
 
     for i=1,maxSlots do
@@ -2512,6 +2515,9 @@ function Pregame:isTrollCombo(build)
         if ab1 ~= nil then
             for j=(i+1),maxSlots do
                 local ab2 = build[j]
+                if (exceptions[ab1] and exceptions[ab1] == ab2) or (exceptions[ab2] and exceptions[ab2] == ab1) then
+                    print(ab1.." "..ab2)
+                else
                 if self.banList[ab1] then
             
                 
@@ -2528,7 +2534,7 @@ function Pregame:isTrollCombo(build)
                         return true, ab1, ab2
                     end
                 end
-            
+                end
             end
         end
     end

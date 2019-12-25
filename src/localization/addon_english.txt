@@ -1856,6 +1856,7 @@
     "warning_undying_tombstone_zombie_deathstrike"   "<font color=\'#FF4949\'>Warning:</font> This ability is half broken, you will not gain bonus movementspeed nor bonus attack speed. Its recommended you don't pick it."
     "warning_life_stealer_infest"               "<font color=\'#FF4949\'>Warning:</font> Gives <font color=\'#70EA72\'>Consume</font> and <font color=\'#70EA72\'>Control</font>."
     "warning_zuus_cloud"               "<font color=\'#FF4949\'>Warning:</font> Requires <font color=\'#70EA72\'>Lighting Bolt</font>, for Nimbus to strike enemies."
+	"warning_kunkka_torrent_storm"     "<font color=\'#FF4949\'>Warning:</font> Requires <font color=\'#70EA72\'>Torrent</font>, for correctly ability worked."
     "warning_night_stalker_darkness"                "<font color=\'#FF4949\'>Hero Requirement:</font> You have to play as <font color=\'#70EA72\'>Night Stalker</font> to get the unobstructed vision bonus from Aghanim's Scepter."
     "warning_lone_druid_true_form"              "<font color=\'#FF4949\'>Hero Requirement:</font> Requires picking a hero with more than 400 range or else you will be unable to attack."
     "troll_warlord_berserkers_rage"              "<font color=\'#FF4949\'>Hero Requirement:</font> Requires picking a hero with more than 350 range or else you will be unable to attack."

@@ -2387,6 +2387,61 @@
             "ReduxPerks"                                                           "water"
             "ReduxBans"                                                            "batrider_sticky_napalm"
         }
+		"kunkka_torrent_storm"
+		{
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES"
+			"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+			"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+			"MaxLevel"						"4"
+			"IsGrantedByScepter"			"1"
+			"HasScepterUpgrade"				"1"
+			"AbilitySound"					"Ability.Torrent"
+
+			// Casting
+			//-------------------------------------------------------------------------------------------------------------
+			"AbilityCastPoint"				"0.4"
+			
+			// Time		
+			//-------------------------------------------------------------------------------------------------------------
+			"AbilityCooldown"				"70 65 60 50"
+
+			// Cost
+			//-------------------------------------------------------------------------------------------------------------
+			"AbilityManaCost"				"250"
+			
+			// Special
+			//-------------------------------------------------------------------------------------------------------------
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"					"FIELD_FLOAT"
+					"torrent_interval"		"0.35 0.3 0.25 0.2"
+					"RequiresScepter"			"1"
+				}
+				"02"
+				{
+					"var_type"					"FIELD_FLOAT"
+					"torrent_duration"		"4.5 5.0 5.5 6.0"
+					"RequiresScepter"			"1"
+				}
+				"03"
+				{
+					"var_type"					"FIELD_INTEGER"
+					"torrent_min_distance"		"300"
+					"RequiresScepter"			"1"
+				}
+				"04"
+				{
+					"var_type"					"FIELD_INTEGER"
+					"torrent_max_distance"		"1100"
+					"RequiresScepter"			"1"
+				}
+			}
+			"ReduxFlags"                                                           "stun"
+            "ReduxPerks"                                                           "water"
+            "ReduxBans"                                                            "batrider_sticky_napalm"
+		}
         "lina_light_strike_array"
         {
             "ReduxFlags"                                                           "stun"
