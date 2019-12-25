@@ -2393,7 +2393,6 @@
 			"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 			"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 			"MaxLevel"						"4"
-			"IsGrantedByScepter"			"1"
 			"HasScepterUpgrade"				"1"
 			"AbilitySound"					"Ability.Torrent"
 
@@ -3596,6 +3595,52 @@
         {
             "ReduxPerks"                                                           "rage"
         }
+		"lycan_wolf_bite"
+		{
+			// General
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+			"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+			"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+			"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO"
+			"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+			"SpellImmunityType"				"SPELL_IMMUNITY_ALLIES_YES"
+			
+			"MaxLevel"						"4"
+
+			// Casting
+			//-------------------------------------------------------------------------------------------------------------
+			"AbilityCastPoint"				"0.3 0.3 0.3 0.3"
+
+			// Time		
+			//-------------------------------------------------------------------------------------------------------------
+			"AbilityCastRange"				"300"
+			"AbilityCooldown"				"80 75 70 60"
+
+			// Cost
+			//-------------------------------------------------------------------------------------------------------------
+			"AbilityManaCost"				"150"
+
+
+			"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
+
+			// Special
+			//-------------------------------------------------------------------------------------------------------------
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"			"FIELD_INTEGER"
+					"lifesteal_percent"		"25 30 35 40"		
+				}
+				"02"
+				{
+					"var_type"			"FIELD_INTEGER"
+					"lifesteal_range"		"1200"		
+				}
+			}
+			"ReduxFlags"                                                           "mobility | crit | attack_modifier"
+            "ReduxPerks"                                                           "mobility | attack_modifier"
+		}
         "lone_druid_rabid"
         {
             "ReduxPerks"                                                           "rage"

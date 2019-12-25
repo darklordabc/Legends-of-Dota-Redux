@@ -1397,12 +1397,12 @@
 
     //Scoreboard
     "DOTA_Scoreboard_Header_Abilities"                  "СПОСОБНОСТИ"
-
+ 
     /////////////////
     // Skill Warnings
     ////////////////
-
-     "warning_mercy_angelic_descent"   "<font color=\'#FF4949\'>Warning:</font> Убирает возможность физической атаки.\n"
+	"warning_lycan_wolf_bite"   "<font color=\'#FF4949\'>Warning:</font> Требует наличия изученной <font color=\'#70EA72\'> Shapeshift </font> и <font color=\'#70EA72\'> Aghanim's Scepter </font> для корректой работы умения."
+    "warning_mercy_angelic_descent"   "<font color=\'#FF4949\'>Warning:</font> Убирает возможность физической атаки.\n"
     "warning_imba_tower_plasma_field"   "<font color=\'#FF4949\'>Warning:</font> Требует доп. слот для скила. Если у вас много левых способностей (включая спрятанные), эта способность работать не будет."
     "warning_keeper_of_the_light_spirit_form"   "<font color=\'#FF4949\'>Warning:</font> Не дает доп. способностей.<br><font color=\'#FF4949\'>Hero Requirement:</font> Вы должны играть <font color=\'#70EA72\'>Котлом</font> для получения бонусов с Aghanim's Scepter."
     "warning_undying_tombstone_zombie_deathstrike"   "<font color=\'#FF4949\'>Warning:</font> Этот скил полу-сломан, вы не получите ни скорости бега ни скорости атаки. Лучше не брать."
@@ -7132,4 +7132,10 @@
 
     "DOTA_Tooltip_modifier_imba_deadeye_vision"                                         "Deadeye"
     "DOTA_Tooltip_modifier_imba_deadeye_vision_Description"                             "Увеличенный обзор."
+	
+	"DOTA_Tooltip_ability_kunkka_torrent_storm"										"Torrent Storm"
+	"DOTA_Tooltip_ability_kunkka_torrent_storm_Description"							"Применяет видимую всем способность Torren в случайной области вокруг владельца каждые %torrent_interval% сек. Радиус действия: %torrent_max_distance%. Длительность: %torrent_duration% сек."		
+
+	"DOTA_Tooltip_ability_lycan_wolf_bite"					"Wolf Bite"
+	"DOTA_Tooltip_ability_lycan_wolf_bite_Description"		"Герой кусает союзника, наделяя его бонусами от способности Shapeshift. Они с целью получают %lifesteal_percent%%% вампиризма и восстанавливают друг другу %lifesteal%%% от нанесённого урона в виде здоровья, если находятся на расстоянии не более %lifesteal_range%."
 }

@@ -1847,6 +1847,7 @@
     /////////////////
     // Skill Warnings
     ////////////////
+	"warning_lycan_wolf_bite"   "<font color=\'#FF4949\'>Warning:</font> Requires learned <font color=\'#70EA72\'> Shapeshift </font> and <font color=\'#70EA72\'> Aghanim's Scepter </font>, for correctly ability worked."
     "warning_mercy_angelic_descent"   "<font color=\'#FF4949\'>Warning:</font> Removes the ability to physically attack.\n"
     "warning_morphling_replicate"   "<font color=\'#FF4949\'>Warning:</font> Buggy."
     "warning_imba_queenofpain_blink"   "<font color=\'#FF4949\'>Warning:</font> Swift Encore requires Scream of Pain IMBA being leveled."
@@ -15836,6 +15837,9 @@
     "DOTA_Tooltip_spell_lab_void_step_modifier"                            "Doctor's Detour in The Beyond"
     "DOTA_Tooltip_spell_lab_void_step_modifier_Description"                      "Current location: Beyond"
 
+	"DOTA_Tooltip_ability_kunkka_torrent_storm"										"Torrent Storm"
+	"DOTA_Tooltip_ability_kunkka_torrent_storm_Description"							"Releases a visible Torrent in a random area around you once every %torrent_interval% for %torrent_duration% seconds. Spawns in within %torrent_max_distance% range of you."		
 
-
+	"DOTA_Tooltip_ability_lycan_wolf_bite"					"Wolf Bite"
+	"DOTA_Tooltip_ability_lycan_wolf_bite_Description"		"Lycan bites an ally, granting them Shapeshift properties. Lycan and the bitten target gain %lifesteal_percent%%% Lifesteal and share %lifesteal%%% Lifesteal with each other as long as they are within %lifesteal_range% range of each other."
 }
