@@ -3787,6 +3787,11 @@
             "ReduxPerks"                                                           "trap"
             "ReduxFlags"                                                           "doNotRandom"
         }
+		"templar_assassin_trap_teleport"
+		{
+			"ReduxPerks"                                                           "trap"
+            "ReduxFlags"                                                           "doNotRandom"
+		}
         "bane_nightmare"
         {
             "ReduxPerks"                                                           "sleep"
@@ -3832,6 +3837,48 @@
             "ReduxCost"                                                            "10"
             "ReduxPerks"                                                           "nature"
         }
+		"enchantress_bunny_hop"
+		{
+			"MaxLevel"						"4"
+
+			// Casting
+			//-------------------------------------------------------------------------------------------------------------
+			"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+			"AbilityCastGestureSlot"		"DEFAULT"
+			
+			// Time		
+			//-------------------------------------------------------------------------------------------------------------
+			"AbilityCooldown"				"6 5 4 3"
+
+			// Cost
+			//-------------------------------------------------------------------------------------------------------------
+			"AbilityManaCost"				"50"
+			
+			// Special
+			//-------------------------------------------------------------------------------------------------------------
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"					"FIELD_INTEGER"
+					"hop_distance"					"350 375 400 425"
+					"RequiresScepter"			"1"
+				}
+				"02"
+				{
+					"var_type"					"FIELD_FLOAT"
+					"hop_duration"				"0.4"
+					"RequiresScepter"			"1"
+				}
+				"03"
+				{
+					"var_type"					"FIELD_INTEGER"
+					"hop_height"				"150"
+					"RequiresScepter"			"1"
+				}
+			}
+			"ReduxPerks"                                                           "nature"
+		}
         "life_stealer_consume"
         {
             "ReduxCost"                                                            "10"

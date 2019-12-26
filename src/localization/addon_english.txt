@@ -1847,6 +1847,7 @@
     /////////////////
     // Skill Warnings
     ////////////////
+	"warning_templar_assassin_trap_teleport"   "<font color=\'#FF4949\'>Warning:</font> Requires <font color=\'#70EA72\'> Psionic Trap </font>, for correctly ability worked."
 	"warning_lycan_wolf_bite"   "<font color=\'#FF4949\'>Warning:</font> Requires learned <font color=\'#70EA72\'> Shapeshift </font> and <font color=\'#70EA72\'> Aghanim's Scepter </font>, for correctly ability worked."
     "warning_mercy_angelic_descent"   "<font color=\'#FF4949\'>Warning:</font> Removes the ability to physically attack.\n"
     "warning_morphling_replicate"   "<font color=\'#FF4949\'>Warning:</font> Buggy."
@@ -15842,4 +15843,10 @@
 
 	"DOTA_Tooltip_ability_lycan_wolf_bite"					"Wolf Bite"
 	"DOTA_Tooltip_ability_lycan_wolf_bite_Description"		"Lycan bites an ally, granting them Shapeshift properties. Lycan and the bitten target gain %lifesteal_percent%%% Lifesteal and share %lifesteal%%% Lifesteal with each other as long as they are within %lifesteal_range% range of each other."
+	
+	"DOTA_Tooltip_ability_templar_assassin_trap_teleport"                   	  "Psionic Projection"
+	"DOTA_Tooltip_ability_templar_assassin_trap_teleport_Description"       	  "Allows Templar Assassin to teleport to any Psionic Trap after a brief channel. Does not break meld. Detonates the Psionic Trap on arrival."
+	"DOTA_Tooltip_ability_templar_assassin_trap_teleport_tooltip_channel_time"    "CHANNEL TIME:"
+	"DOTA_Tooltip_ability_templar_assassin_trap_teleport_tooltip_cooldown"        "COOLDOWN:"
+	"DOTA_Tooltip_ability_templar_assassin_trap_teleport_trap_bonus_damage"       "TRAP DETONATE DAMAGE:"
 }

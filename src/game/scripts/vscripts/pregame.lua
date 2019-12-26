@@ -2506,7 +2506,7 @@ end
 -- Tests a build to decide if it is a troll combo
 function Pregame:isTrollCombo(build)
     local exceptions = {
-        ["kunkka_torrent_storm"] = "kunkka_torrent"
+        ["kunkka_torrent_storm"] = "kunkka_torrent",
     }
     local maxSlots = self.optionStore['lodOptionCommonMaxSlots']
 
@@ -2519,8 +2519,8 @@ function Pregame:isTrollCombo(build)
                     print(ab1.." "..ab2)
                 else
                 if self.banList[ab1] then
-            
-                
+
+
 
                     if ab2 ~= nil and self.banList[ab1][ab2] then
                         -- Ability should be banned
