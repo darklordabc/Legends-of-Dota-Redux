@@ -6050,10 +6050,9 @@
         {
             "TalentRequiredAbility"                                                   "zuus_lightning_bolt"
         }
-
         "special_bonus_unique_drow_ranger_1"
         {
-            "TalentRequiredAbility"                                                   "drow_ranger_trueshot"
+            "TalentRequiredAbility"                                                   "drow_ranger_multishot"
         }
 
         "special_bonus_unique_drow_ranger_2"
