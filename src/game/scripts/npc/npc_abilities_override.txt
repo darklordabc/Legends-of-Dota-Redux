@@ -4297,11 +4297,7 @@
 
         "special_bonus_unique_huskar_5"
         {
-            "TalentRequiredAbility" 
-            {
-                "1" "huskar_life_break"
-                "2" "huskar_life_break_redux"
-            }   
+            "TalentRequiredAbility" 												  "huskar_burning_spear"
         }
 
         "special_bonus_unique_invoker_1"
