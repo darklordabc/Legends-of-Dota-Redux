@@ -3950,6 +3950,50 @@
         {
             "ReduxCost"                                                            "40"
         }
+		"grimstroke_scepter"
+		{
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES"
+			"MaxLevel"						"4"
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"				"FIELD_INTEGER"
+					"illusion_duration"			"12 13 14 15"
+					"RequiresScepter"			"1"
+				}
+				"02"
+				{
+					"var_type"				"FIELD_INTEGER"
+					"images_do_damage_percent"	"30 40 50 60"
+					"RequiresScepter"			"1"
+				}
+				"03"
+				{
+					"var_type"				"FIELD_INTEGER"
+					"images_do_damage_percent_tooltip"			"130 140 150 160"
+					"RequiresScepter"			"1"
+				}	
+				"04"
+				{
+					"var_type"				"FIELD_INTEGER"
+					"images_take_damage_percent"	"250"
+					"RequiresScepter"			"1"
+				}
+				"05"
+				{
+					"var_type"				"FIELD_INTEGER"
+					"images_take_damage_percent_tooltip"			"350"
+					"RequiresScepter"			"1"
+				}
+				"06"
+				{
+					"var_type"				"FIELD_INTEGER"
+					"images_movespeed_bonus"			"30"
+					"RequiresScepter"			"1"
+				}				
+			}
+		}
         "neutral_spell_immunity"
         {
             "ReduxCost"                                                            "200"

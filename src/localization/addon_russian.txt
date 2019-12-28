@@ -7145,4 +7145,11 @@
 	"DOTA_Tooltip_ability_templar_assassin_trap_teleport_tooltip_channel_time"  "ВРЕМЯ ПРИМЕНЕНИЯ:"
 	"DOTA_Tooltip_ability_templar_assassin_trap_teleport_tooltip_cooldown"      "ПЕРЕЗАРЯДКА:"
 	"DOTA_Tooltip_ability_templar_assassin_trap_teleport_trap_bonus_damage"     "УРОН:"
+	
+	"DOTA_Tooltip_ability_grimstroke_scepter"					    "Dark Portrait"
+	"DOTA_Tooltip_ability_grimstroke_scepter_description"           "Создаёт чернильную иллюзию вражеского героя. Она невосприимчива к магии и имеет увеличенные скорость передвижения и урон."
+	"DOTA_Tooltip_ability_grimstroke_scepter_illusion_duration"     "ВРЕМЯ ЖИЗНИ ИЛЛЮЗИИ:"
+	"DOTA_Tooltip_ability_grimstroke_scepter_images_movespeed_bonus"     "%ДОП. СКОРОСТЬ ИЛЛЮЗИИ:"
+	"DOTA_Tooltip_ability_grimstroke_scepter_images_do_damage_percent_tooltip"     "%УРОН ИЛЛЮЗИИ:"
+	"DOTA_Tooltip_ability_grimstroke_scepter_images_take_damage_percent_tooltip"     "%УРОН ПО ИЛЛЮЗИИ:"
 }

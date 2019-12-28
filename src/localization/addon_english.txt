@@ -15849,4 +15849,11 @@
 	"DOTA_Tooltip_ability_templar_assassin_trap_teleport_tooltip_channel_time"    "CHANNEL TIME:"
 	"DOTA_Tooltip_ability_templar_assassin_trap_teleport_tooltip_cooldown"        "COOLDOWN:"
 	"DOTA_Tooltip_ability_templar_assassin_trap_teleport_trap_bonus_damage"       "TRAP DETONATE DAMAGE:"
+	
+	"DOTA_Tooltip_ability_grimstroke_scepter"					    "Dark Portrait"
+	"DOTA_Tooltip_ability_grimstroke_scepter_description"           "Creates an ink illusion of a target enemy hero. Illusion is spell immune, and has bonus movement speed and attack damage."
+	"DOTA_Tooltip_ability_grimstroke_scepter_illusion_duration"     "ILLUSION DURATION:"
+	"DOTA_Tooltip_ability_grimstroke_scepter_images_movespeed_bonus"     "%ILLUSION MOVESPEED BONUS:"
+	"DOTA_Tooltip_ability_grimstroke_scepter_images_do_damage_percent_tooltip"     "%ILLUSION OUTGOING DAMAGE:"
+	"DOTA_Tooltip_ability_grimstroke_scepter_images_take_damage_percent_tooltip"     "%ILLUSION DAMAGE TAKEN:"
 }
