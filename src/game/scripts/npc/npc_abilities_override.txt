@@ -6543,7 +6543,52 @@
         {
             "TalentRequiredAbility" "grimstroke_ink_creature"
         }
-
+		
+		"special_bonus_unique_void_spirit_1" 
+        {
+            "TalentRequiredAbility" "void_spirit_astral_step"
+        }
+        "special_bonus_unique_void_spirit_3" 
+        {
+            "TalentRequiredAbility" "void_spirit_dissimilate"
+        }
+        "special_bonus_unique_void_spirit_4" 
+        {
+            "TalentRequiredAbility" "void_spirit_resonant_pulse"
+        }
+        "special_bonus_unique_void_spirit_7"
+        {
+            "TalentRequiredAbility" "void_spirit_aether_remnant"
+        }
+		"special_bonus_unique_void_spirit_8"
+        {
+            "TalentRequiredAbility" "void_spirit_astral_step"
+        }
+		"special_bonus_unique_snapfire_1" 
+        {
+            "TalentRequiredAbility" "snapfire_mortimer_kisses"
+        }
+        "special_bonus_unique_snapfire_3" 
+        {
+            "TalentRequiredAbility" "snapfire_scatterblast"
+        }
+        "special_bonus_unique_snapfire_4" 
+        {
+            "TalentRequiredAbility" "snapfire_mortimer_kisses"
+        }
+        "special_bonus_unique_snapfire_5"
+        {
+            "TalentRequiredAbility" "snapfire_firesnap_cookie"
+        }
+		"special_bonus_unique_snapfire_6"
+        {
+            "TalentRequiredAbility" "snapfire_lil_shredder"
+        }
+		"special_bonus_unique_snapfire_7"
+        {
+            "TalentRequiredAbility" "snapfire_scatterblast"
+        }
+		
     //=================================================================================================================
     //  Neutral items
     //=================================================================================================================
