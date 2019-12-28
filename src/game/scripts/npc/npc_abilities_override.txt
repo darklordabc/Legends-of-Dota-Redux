@@ -1370,12 +1370,6 @@
             "ReduxFlags"                                                           "support"
             "ReduxPerks"                                                           "support"
         }
-        "drow_ranger_trueshot"
-        {       
-            "ReduxFlags"                                                           "support | semi_passive"
-            "ReduxPerks"                                                           "support | aura"
-            "ReduxCost"                                                            "30"
-        }
         "legion_commander_press_the_attack"
         {
             "ReduxFlags"                                                           "support"
@@ -4615,7 +4609,7 @@
 
         "special_bonus_unique_lycan_5"
         {
-            "TalentRequiredAbility"                                                   "lycan_howl"
+            "TalentRequiredAbility"                                                   "lycan_shapeshift"
         }
 
 
