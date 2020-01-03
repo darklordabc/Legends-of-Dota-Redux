@@ -104,7 +104,7 @@ var basicOptions = {
                     },
                     {
                         about: 'lodMutatorTurboCourier',
-                        patreon: false,
+                        //patreon: false,
                         values: {
                             enabled: {
                                 'lodOptionTurboCourier': 1
@@ -137,7 +137,7 @@ var basicOptions = {
                     },
                     {
                         name: 'lodOptionPocketTowers',
-                        patreon: true,
+                        //patreon: true,
                         extraInfo: 'lodOptionAboutPocketTowers',
                         default: {
                             'lodMutatorNoPocketTowers': 0,
@@ -294,7 +294,7 @@ var basicOptions = {
                     },
                     {
                        name: 'lodOptionResurrectAllies',
-                       patreon: true,
+                       //patreon: true,
                        //extraInfo: 'lodOptionAboutResurrectAllies',
                        about: 'lodMutatorResurrectAllies'
                     },
@@ -567,7 +567,7 @@ var basicOptions = {
                     },
                     {
                         name: 'lodOptionCooldownReduction',
-                        patreon: true,
+                        //patreon: true,
                         extraInfo: 'lodOptionAboutCooldownReduction',
                         about: 'lodMutatorCooldownReduction'
                     },
@@ -650,7 +650,7 @@ var basicOptions = {
                     //},
                     {
                         name: 'lodOptionPeriodicSpellCast',
-                        patreon: true,
+                        //patreon: true,
                         extraInfo: 'lodOptionAboutPeriodicSpellCast',
                         about: 'lodMutatorPeriodicSpellCast'
                     },
@@ -661,7 +661,7 @@ var basicOptions = {
                     },
                     {
                         name: 'lodOptionConvertableTowers',
-                        patreon: true,
+                        //patreon: true,
                         //extraInfo: 'lodOptionAboutConvertableTowers',
                         about: 'lodMutatorConvertableTowers'
                     },
@@ -696,13 +696,13 @@ var basicOptions = {
                     // },
                     {
                          name: 'lodOptionRandomLaneCreeps',
-                         patreon: true,
+                         //patreon: true,
                          extraInfo: 'lodOptionAboutRandomLaneCreeps',
                          about: 'lodMutatorRandomLaneCreeps'
                     },            
                     {
                         about: 'lodMutatorRandomOnDeath',
-                        patreon: true,
+                        //patreon: true,
                         extraInfo: 'lodOptionAboutRandomOnDeath',
                         values: {
                             enabled: {
