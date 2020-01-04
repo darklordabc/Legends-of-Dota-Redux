@@ -13,7 +13,7 @@ function GpmInit()
 	Timers:CreateTimer(function()
 		local all_heroes = HeroList:GetAllHeroes()
 		for _, hero in pairs(all_heroes) do
-			if hero:IsRealHero() then
+			if hero:IsRealHero() and hero:IsControllableByAnyPlayer() then
 				hero:ModifyGold(baseGoldPerTick, false, 0)
 			end
 		end
@@ -22,7 +22,7 @@ function GpmInit()
 	Timers:CreateTimer(function()
 		local all_heroes = HeroList:GetAllHeroes()
 		for _, hero in pairs(all_heroes) do
-			if hero:IsRealHero() then
+			if hero:IsRealHero() and hero:IsControllableByAnyPlayer() then
 				hero:ModifyGold(hero:GetLevel() * goldPerLevelGpmInMinute, false, 0)
 			end
 		end
