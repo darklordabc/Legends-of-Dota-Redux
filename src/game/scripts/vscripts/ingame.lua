@@ -350,7 +350,6 @@ function Ingame:FilterExecuteOrder(filterTable)
     local unit = EntIndexToHScript(units["0"])
     local ability = EntIndexToHScript(filterTable.entindex_ability)
     local target = EntIndexToHScript(filterTable.entindex_target)
-
     if order_type == DOTA_UNIT_ORDER_GLYPH  then     
         if RADIANTFORTIFIED and PlayerResource:GetSelectedHeroEntity(issuer):GetTeamNumber() == DOTA_TEAM_GOODGUYS then
             Notifications:Top(PlayerResource:GetPlayer(issuer),{text="Glyph already active",duration = 2})
@@ -370,7 +369,30 @@ function Ingame:FilterExecuteOrder(filterTable)
              end
          end
      end
-		
+
+    if order_type == DOTA_UNIT_ORDER_ATTACK_TARGET then
+        if target:GetName() == "npc_dota_watch_tower" then
+            if not unit:HasAbility("ability_capture") then
+                local hAbility = unit:AddAbility("ability_capture")
+                hAbility:SetStolen(true)
+                hAbility:SetHidden(true)
+                hAbility:SetLevel(1)
+            end
+            local captureAbility
+            for x = 0, 30 do
+                local focusAbility = unit:GetAbilityByIndex(x)
+                if focusAbility and focusAbility:GetName() == "ability_capture" then
+                    captureAbility = focusAbility
+                end
+            end
+            ExecuteOrderFromTable({
+                UnitIndex = unit:entindex(),
+                OrderType = DOTA_UNIT_ORDER_CAST_TARGET,
+                AbilityIndex = captureAbility,
+                TargetIndex = target
+            })
+        end
+    end
     -- if units[1] and order_type == DOTA_UNIT_ORDER_SELL_ITEM and ability and not units[1]:IsIllusion() and not units[1]:IsTempestDouble() then		
     --     PanoramaShop:SellItem(units[1], ability)		
     --     return false		

@@ -24,8 +24,16 @@ function MakeNeutralItemsInShopColored() {
 	}
 }
 
+function OverrideDotaNeutralItemsShop() {
+	var shop_grid_1 = FindDotaHudElement("GridNeutralsCategory")
+	if(shop_grid_1) {
+		shop_grid_1.style.overflow = "squish scroll"
+	}
+}
+
 (function()
 {
-	GameEvents.Subscribe("MakeNeutralItemsInShopColored", MakeNeutralItemsInShopColored)
+	GameEvents.Subscribe("MakeNeutralItemsInShopColored", MakeNeutralItemsInShopColored);
+	OverrideDotaNeutralItemsShop();
 })();
 
