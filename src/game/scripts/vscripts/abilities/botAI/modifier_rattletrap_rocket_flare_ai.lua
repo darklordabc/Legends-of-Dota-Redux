@@ -52,7 +52,7 @@ function modifier_rattletrap_rocket_flare_ai:CastRocketFlare(caster)
         local direction = target:GetForwardVector()
         local speed = 0
         if target.previousPosition then
-          if target:CanEntityBeSeenByMyTeam(caster)
+          if target:CanEntityBeSeenByMyTeam(caster) then
             if target:GetHealth() < (abilityDamage * (1-magicResistance)) - (time * regeneration) then -- Is there enough damage to kill?
             
               local targetLocation = target:GetAbsOrigin()

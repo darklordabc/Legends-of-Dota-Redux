@@ -63,7 +63,7 @@
             "batrider_flamebreak"            "1"
             "batrider_flaming_lasso"            "1"
             "batrider_sticky_napalm"            "1"
-            "beastmaster_call_of_the_wild"            "1"
+            "beastmaster_call_of_the_wild_boar"            "1"
             "beastmaster_inner_beast"            "1"
             "beastmaster_primal_roar"            "1"
             "beastmaster_wild_axes"            "1"
@@ -139,9 +139,9 @@
             "drow_ranger_frost_arrows"            "1"
             "drow_ranger_marksmanship"            "1"
             "drow_ranger_marksmanship_redux"        "1"
-            "drow_ranger_trueshot"            "1"
             "drow_ranger_wave_of_silence"            "1"
             "drow_splitshot"            "1"
+            "drow_ranger_multishot"            "1"
             "marksmanship_int"                        "1"
             "marksmanship_str"                        "1"     
             "earth_spirit_boulder_smash"            "1"
@@ -164,6 +164,7 @@
             "enchantress_impetus"            "1"
             "enchantress_natures_attendants"            "1"
             "enchantress_untouchable"            "1"
+            "enchantress_bunny_hop"            "1"
             "enigma_black_hole"            "1"
             "enigma_demonic_conversion"            "1"
             "enigma_malefice"            "1"
@@ -219,6 +220,7 @@
             "kunkka_ghostship"            "1"
             "kunkka_tidebringer"            "1"
             "kunkka_torrent"            "1"
+            "kunkka_torrent_storm"            "1"
             "kunkka_x_marks_the_spot"            "1"
             "legion_commander_duel"            "1"
             "legion_commander_moment_of_courage"            "1"
@@ -261,6 +263,7 @@
             "lycan_howl"            "1"
             "lycan_shapeshift"            "1"
             "lycan_summon_wolves"            "1"
+            "lycan_wolf_bite" "1"
             "mars_spear"            "1"
             "mars_gods_rebuke" "1"
             "mars_bulwark" "1"
@@ -286,7 +289,7 @@
             "monkey_king_primal_spring"  "1"
             "monkey_king_jingu_mastery_lod"  "1"
             "monkey_king_jingu_mastery_lod_melee"  "1"
-            //"monkey_king_wukongs_command"   "1"
+            "monkey_king_wukongs_command"   "1"
             //"monkey_king_mischief"  "1"
             "morphling_adaptive_strike_agi"            "1"
             "morphling_adaptive_strike_str"           "1"
@@ -372,6 +375,7 @@
             "rattletrap_hookshot"            "1"
             "rattletrap_power_cogs"            "1"
             "rattletrap_rocket_flare"            "1"
+            "rattletrap_overclocking"            "1"
             "razor_eye_of_the_storm"            "1"
             "razor_plasma_field"            "1"
             "razor_static_link"            "1"
@@ -431,6 +435,7 @@
             "spectre_dispersion"            "1"
             "spectre_haunt"            "1"
             //"spectre_reality"            "1"
+            "spectre_haunt_single"            "1"
             "spectre_spectral_dagger"            "1"
             "spirit_breaker_charge_of_darkness"            "1"
             "spirit_breaker_empowering_haste"            "1"
@@ -455,6 +460,7 @@
             "templar_assassin_meld"            "1"
             "templar_assassin_psi_blades"            "1"
             "templar_assassin_psionic_trap"            "1"
+            "templar_assassin_trap_teleport"            "1"
             "templar_assassin_refraction"            "1"
             //"templar_assassin_trap"            "1"
             "terrorblade_conjure_image"            "1"
@@ -475,8 +481,10 @@
             "tiny_grow_lod_redux"            "1"
             "tiny_toss"            "1"
             "tiny_tree_channel"     "1"
+            "tiny_tree_grab"     "1"
             "treant_eyes_in_the_forest"            "1"
             "treant_leech_seed"            "1"
+            "treant_natures_grasp"            "1"
             "treant_living_armor"            "1"
             "treant_natures_guise"            "1"
             "treant_overgrowth"            "1"
@@ -610,6 +618,7 @@
             "grimstroke_ink_creature" "1"
             "grimstroke_spirit_walk"    "1"
             "grimstroke_soul_chain"    "1"
+            "grimstroke_scepter"    "1"
             "sled_penguin_redux"  "1"
         }
         // The neutrals skills
@@ -2020,7 +2029,7 @@
                   "mars_arena_of_blood_op" "1"
                   "grimstroke_soul_chain_friendly"    "1"
                   "grimstroke_soul_chain_op" "1"
-                  "clinkz_burning_army_op" "1"
+                  //"clinkz_burning_army_op" "1" // BUGGED Skeletons dont spawn
                   "summon_zombie"   "1"
             }
 
@@ -2112,7 +2121,7 @@
         }
 
         "npc_dota_hero_beastmaster" {
-            "Ability1"            "beastmaster_call_of_the_wild"
+            "Ability1"            "beastmaster_call_of_the_wild_boar"
             "Ability2"            "beastmaster_inner_beast"
             "Ability3"            "beastmaster_primal_roar"
             "Ability4"            "beastmaster_wild_axes"
@@ -2142,7 +2151,8 @@
             "Ability4"            "tiny_grow"
             "Ability5"            "tiny_grow_lod"
             "Ability6"            "tiny_grow_lod_redux"
-            "Ability7"            "tiny_tree_channel"
+            "Ability7"            "tiny_tree_grab"
+            "Ability8"            "tiny_tree_channel" 
         }
         "npc_dota_hero_tusk" {
             "Ability1"        "tusk_ice_shards"
@@ -2431,7 +2441,7 @@
       "npc_dota_hero_drow_ranger" {
             "Ability1"            "drow_ranger_frost_arrows"
             "Ability2"            "drow_ranger_wave_of_silence"
-            "Ability3"            "drow_ranger_trueshot"
+            "Ability3"            "drow_ranger_multishot"
             "Ability4"            "drow_ranger_marksmanship"
             "Ability5"            "marksmanship_int"
             "Ability6"            "marksmanship_str"
@@ -2463,7 +2473,7 @@
             "Ability4"  "monkey_king_jingu_mastery_lod"
             "Ability5" "monkey_king_jingu_mastery_lod_ranged"
             //"Ability6" "monkey_king_mischief"
-            //"Ability6"  "monkey_king_wukongs_command"
+            "Ability6"  "monkey_king_wukongs_command"
         }
         "npc_dota_hero_mars"
         {

@@ -92,7 +92,7 @@ modifier_npc_dota_hero_viper_armor_debuff = class({
 
   OnCreated = function(self)
     self.debuff = -10
-    self.armorValue = self:GetParent():GetPhysicalArmorValue()
+    self.armorValue = self:GetParent():GetPhysicalArmorValue(false)
 
     --weird hack because GetPhysicalArmorValue would call below function when calcualting armor
     -- so we dont define it until after we calculate armor.

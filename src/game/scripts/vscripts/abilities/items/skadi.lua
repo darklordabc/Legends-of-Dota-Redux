@@ -161,10 +161,10 @@ function modifier_item_skadi_consumable:OnAttackLanded(keys)
       self:Destroy()
       return
     end
-    local duration = self:GetAbility():GetSpecialValueFor("skadi_cold_duration_melee")
-    if keys.attacker:IsRangedAttacker() then
-      duration = self:GetAbility():GetSpecialValueFor("skadi_cold_duration_ranged")
-    end
+    local duration = self:GetAbility():GetSpecialValueFor("skadi_cold_duration")
+    --if keys.attacker:IsRangedAttacker() then
+    --  duration = self:GetAbility():GetSpecialValueFor("skadi_cold_duration_ranged")
+    --end
     keys.target:AddNewModifier(self:GetCaster(),self:GetAbility(),"modifier_item_skadi_consumable_slow",{duration = duration})
   end
 end
@@ -185,11 +185,15 @@ function modifier_item_skadi_consumable_slow:GetTexture()
   return "item_skadi"
 end
 function modifier_item_skadi_consumable_slow:GetModifierAttackSpeedBonus_Constant()
-  if not self:GetAbility() or not self:GetAbility():GetSpecialValueFor("skadi_cold_attack_speed") then
+  if not self:GetAbility() then
     self:Destroy()
     return 0
   end
-  return self:GetAbility():GetSpecialValueFor("skadi_cold_attack_speed")
+  local attackSpeedSlow = self:GetAbility():GetSpecialValueFor("skadi_cold_slow_melee")
+  if self:GetParent():IsRangedAttacker() then
+    attackSpeedSlow = self:GetAbility():GetSpecialValueFor("skadi_cold_slow_ranged")
+  end
+  return attackSpeedSlow
 end
 
 function modifier_item_skadi_consumable_slow:GetModifierMoveSpeedBonus_Percentage()
@@ -197,7 +201,11 @@ function modifier_item_skadi_consumable_slow:GetModifierMoveSpeedBonus_Percentag
     self:Destroy()
     return
   end
-  return self:GetAbility():GetSpecialValueFor("skadi_cold_movement_speed")
+  local movespeedSlow = self:GetAbility():GetSpecialValueFor("skadi_cold_slow_melee")
+  if self:GetParent():IsRangedAttacker() then
+    movespeedSlow = self:GetAbility():GetSpecialValueFor("skadi_cold_slow_ranged")
+  end
+  return movespeedSlow
 end
 
 function modifier_item_skadi_consumable_slow:GetStatusEffectName()

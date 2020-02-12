@@ -1186,7 +1186,7 @@ function CDOTA_BaseNPC:FindItemByNameEverywhere(item_name)
 end
 
 function CDOTA_BaseNPC:PopupNumbers(target, pfx, color, lifetime, number, presymbol, postsymbol)
-    local armor = target:GetPhysicalArmorValue()
+    local armor = target:GetPhysicalArmorValue(false)
     local damageReduction = ((0.02 * armor) / (1 + 0.02 * armor))
     number = number - (number * damageReduction)
     local lens_count = 0

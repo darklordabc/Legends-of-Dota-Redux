@@ -778,7 +778,7 @@ end
 
 -- Calculate physical damage post reduction
 function CDOTA_BaseNPC:GetPhysicalArmorReduction()
-	local armornpc = self:GetPhysicalArmorValue()
+	local armornpc = self:GetPhysicalArmorValue(false)
 	local armor_reduction = 1 - (0.06 * armornpc) / (1 + (0.06 * math.abs(armornpc)))
 	armor_reduction = 100 - (armor_reduction * 100)
 	return armor_reduction

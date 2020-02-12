@@ -81,6 +81,7 @@ function Precache(context)
 end
 
 -- Create the game mode when we activate
+_G.NeutralItems = {}
 function Activate()
     -- Print LoD version header
     local versionFile = LoadKeyValues('addoninfo.txt')
@@ -89,6 +90,8 @@ function Activate()
 
     -- Ensure LoD is compiled
     local tst = LoadKeyValues('scripts/npc/npc_heroes_custom.txt')
+    _G.NeutralItems = LoadKeyValues("scripts/kv/neutral_items_list.kv")
+
     if tst == 0 or tst == nil then
         print('FAILURE! You are attempting to run an UNCOMPILED version! Please either compile OR download the latest release from the releases section of github.\n\n')
         return

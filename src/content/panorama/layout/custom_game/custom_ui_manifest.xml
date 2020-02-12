@@ -5,9 +5,11 @@
         <include src="file://{resources}/scripts/custom_game/util.js" />
         <include src="file://{resources}/scripts/custom_game/stat_uploader.js" />
         <include src="file://{resources}/scripts/custom_game/ability_costs.js" />
-
         <include src="file://{resources}/scripts/custom_game/ui_hack.js" />
         <include src="file://{resources}/scripts/custom_game/camera_zoom.js" />
+
+        <include src="file://{resources}/scripts/custom_game/display_error.js" />
+        <include src="file://{resources}/scripts/custom_game/neutral_items_in_shop.js" />
     </scripts>
 
     <script>

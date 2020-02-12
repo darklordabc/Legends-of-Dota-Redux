@@ -297,6 +297,8 @@
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorMaxUlts3.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorMaxUlts4.png"></Image>
 
+                                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodOptionBuyingNeutralItemsAbout.png"></Image>
+
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorGoldTickRate1.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorGoldTickRate2.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorGoldTickRate3.png"></Image>

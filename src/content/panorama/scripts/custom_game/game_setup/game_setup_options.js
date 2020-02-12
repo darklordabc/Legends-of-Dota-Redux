@@ -74,7 +74,7 @@ var basicOptions = {
                     },{
                         name: 'lodOptionGameSpeedMaxLevel',
                         states: {
-                            'lodMutatorMaxLevel1': 28,
+                            'lodMutatorMaxLevel1': 30,
                             'lodMutatorMaxLevel2': 50,
                             'lodMutatorMaxLevel3': 100
                         }
@@ -104,7 +104,7 @@ var basicOptions = {
                     },
                     {
                         about: 'lodMutatorTurboCourier',
-                        patreon: false,
+                        //patreon: false,
                         values: {
                             enabled: {
                                 'lodOptionTurboCourier': 1
@@ -137,7 +137,7 @@ var basicOptions = {
                     },
                     {
                         name: 'lodOptionPocketTowers',
-                        patreon: true,
+                        //patreon: true,
                         extraInfo: 'lodOptionAboutPocketTowers',
                         default: {
                             'lodMutatorNoPocketTowers': 0,
@@ -186,6 +186,10 @@ var basicOptions = {
                             'lodMutatorNeutralCreepPowerExtreme': 30
                         }
                     },
+					{
+						name: 'lodOptionBuyingNeutralItems',
+						about: 'lodOptionBuyingNeutralItemsAbout'
+					},
                     {
                         name: 'lodOptionNeutralMultiply',
                         default: {
@@ -290,7 +294,7 @@ var basicOptions = {
                     },
                     {
                        name: 'lodOptionResurrectAllies',
-                       patreon: true,
+                       //patreon: true,
                        //extraInfo: 'lodOptionAboutResurrectAllies',
                        about: 'lodMutatorResurrectAllies'
                     },
@@ -563,7 +567,7 @@ var basicOptions = {
                     },
                     {
                         name: 'lodOptionCooldownReduction',
-                        patreon: true,
+                        //patreon: true,
                         extraInfo: 'lodOptionAboutCooldownReduction',
                         about: 'lodMutatorCooldownReduction'
                     },
@@ -646,7 +650,7 @@ var basicOptions = {
                     //},
                     {
                         name: 'lodOptionPeriodicSpellCast',
-                        patreon: true,
+                        //patreon: true,
                         extraInfo: 'lodOptionAboutPeriodicSpellCast',
                         about: 'lodMutatorPeriodicSpellCast'
                     },
@@ -657,7 +661,7 @@ var basicOptions = {
                     },
                     {
                         name: 'lodOptionConvertableTowers',
-                        patreon: true,
+                        //patreon: true,
                         //extraInfo: 'lodOptionAboutConvertableTowers',
                         about: 'lodMutatorConvertableTowers'
                     },
@@ -692,13 +696,13 @@ var basicOptions = {
                     // },
                     {
                          name: 'lodOptionRandomLaneCreeps',
-                         patreon: true,
+                         //patreon: true,
                          extraInfo: 'lodOptionAboutRandomLaneCreeps',
                          about: 'lodMutatorRandomLaneCreeps'
                     },            
                     {
                         about: 'lodMutatorRandomOnDeath',
-                        patreon: true,
+                        //patreon: true,
                         extraInfo: 'lodOptionAboutRandomOnDeath',
                         values: {
                             enabled: {
@@ -1806,7 +1810,23 @@ var advancedOptions = {
                     }
                 ]
             },
-            
+            {
+				name: 'lodOptionBuyingNeutralItems',
+				des: 'lodOptionDesBuyingNeutralItems',
+				about: 'lodOptionAboutBuyingNeutralItems',
+				sort: 'toggle',
+				values: [
+					{
+						text: 'lodOptionNo',
+						value: 0
+					},
+					{
+						text: 'lodOptionYes',
+						value: 1
+					},
+				]
+			},
+
             {
 
                 name: 'lodOptionRandomLaneCreeps',

@@ -1160,6 +1160,11 @@
             "var_type"              "FIELD_INTEGER"
             "assault_aura_armor"   "5"
           }
+		  "05"
+          {
+            "var_type"              "FIELD_INTEGER"
+            "assault_bonus_all_stats"   "5"
+          }
         }
     }
 
@@ -1190,41 +1195,36 @@
         // THESE VALUES ARE PURELY FOR THE TOOLTIPS, REAL VALUES ARE IN ABILITY "ability_consumable_item_container"
         "AbilitySpecial"
         {
-            "01"
-            {
-                "var_type"              "FIELD_INTEGER"
-                "skadi_bonus_all_stats"     "25"
-            }
-            "02"
-            {
-                "var_type"              "FIELD_INTEGER"
-                "skadi_bonus_health"            "225"
-            }
-            "03"
-            {
-                "var_type"              "FIELD_INTEGER"
-                "skadi_bonus_mana"          "250"
-            }
-            "04"
-            {
-                "var_type"              "FIELD_INTEGER"
-                "skadi_cold_movement_speed" "-35"
-            }
-            "05"
-            {
-                "var_type"              "FIELD_INTEGER"
-                "skadi_cold_attack_speed"       "-45"
-            }
-            "06"
-            {
-                "var_type"              "FIELD_FLOAT"
-                "skadi_cold_duration_melee" "5.0"
-            }
-            "07"
-            {
-                "var_type"              "FIELD_FLOAT"
-                "skadi_cold_duration_ranged"    "2.5"
-            }
+			  "01"
+			  {
+				"var_type"        "FIELD_INTEGER"
+				"skadi_bonus_all_stats"   "25"
+			  }
+			  "02"
+			  {
+				"var_type"        "FIELD_INTEGER"
+				"skadi_bonus_health"      "225"
+			  }
+			  "03"
+			  {
+				"var_type"        "FIELD_INTEGER"
+				"skadi_bonus_mana"      "250"
+			  }
+			  "04"
+			  {
+				"var_type"        "FIELD_INTEGER"
+				"skadi_cold_slow_melee" "-20"
+			  }
+			  "05"
+			  {
+				"var_type"        "FIELD_INTEGER"
+				"skadi_cold_slow_ranged"   "-45"
+			  }
+			  "06"
+			  {
+				"var_type"        "FIELD_FLOAT"
+				"skadi_cold_duration" "3.0"
+			  }
         }
     }
 
@@ -1479,6 +1479,11 @@
                 "var_type"              "FIELD_INTEGER"
                 "heart_hp_regen_amp"       "50"
             }
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heart_fixed_health_regen"		"10"
+			}
         }
     }
     "item_greater_crit_consumable"
@@ -2194,46 +2199,31 @@
 
         "AbilitySpecial"
         {
-            "01"
-            {
-                "var_type"              "FIELD_INTEGER"
-                "vlads_bonus_all_stats"       "2"
-            }   
-            "02"
-            {
-                "var_type"              "FIELD_FLOAT"
-                "vlads_hp_regen"              "2.5"
-            }
-            "03"
-            {
-                "var_type"              "FIELD_FLOAT"
-                "vlads_mana_regen_aura"       "1.75"
-            }
-            "04"
-            {
-                "var_type"              "FIELD_INTEGER"
-                "vlads_armor_aura"            "4"
-            }
-            "05"
-            {
-                "var_type"              "FIELD_INTEGER"
-                "vlads_damage_aura"           "15"
-            }           
-            "06"
-            {
-                "var_type"              "FIELD_INTEGER"
-                "vlads_vampiric_aura"         "15"
-            }
-            "07"
-            {
-                "var_type"              "FIELD_INTEGER"
-                "vlads_vampiric_aura_ranged"  "10"
-            }
-            "08"
-            {
-                "var_type"              "FIELD_INTEGER"
-                "vlads_aura_radius"           "1200"
-            }           
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"vlads_mana_regen_aura"		"1.5"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"vlads_armor_aura"			"3"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"vlads_vampiric_aura"			"25"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"vlads_aura_radius"	"1200"
+			}			
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"vlads_bonus_all_stats"		"6"
+			}        
         }
     }
 
@@ -2274,7 +2264,7 @@
             "04"
             {
                 "var_type"              "FIELD_INTEGER"
-                "echo_sabre_bonus_damage"          "12"
+                "echo_sabre_bonus_damage"          "15"
             }
             "05"
             {
@@ -2484,31 +2474,46 @@
 
         "AbilitySpecial"
         {
-            "01"
-            {
-                "var_type"              "FIELD_INTEGER"
-                "holy_locket_bonus_health"       "200"
-            }           
-            "02"
-            {
-                "var_type"              "FIELD_INTEGER"
-                "holy_locket_health_regen"             "4"
-            }
-            "03"
-            {
-                "var_type"              "FIELD_INTEGER"
-                "holy_locket_mana_regen"    "3"
-            }
-            "04"
-            {
-                "var_type"              "FIELD_INTEGER"
-                "holy_locket_magic_resist"    "15"
-            }
-            "05"
-            {
-                "var_type"              "FIELD_INTEGER"
-                "holy_locket_heal_increase"    "25"
-            }
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"holy_locket_bonus_health"			"250"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"holy_locket_bonus_mana"			"325"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"holy_locket_health_regen"	"4"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"holy_locket_heal_increase"		"35"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"holy_locket_max_charges"			"20"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"holy_locket_charge_radius"			"1200"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"holy_locket_bonus_all_stats"		"3"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"holy_locket_restore_per_charge"	"15"
+			}
         }
     }
 }

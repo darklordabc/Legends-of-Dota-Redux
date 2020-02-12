@@ -6,6 +6,7 @@ require('abilities/epic_boss_fight/ebf_mana_fiend_essence_amp')
 require('abilities/global_mutators/global_mutator')
 require('abilities/global_mutators/memes_redux')
 require('abilities/nextgeneration/orderfilter')
+require('lib/gpm')
 
 -- Create the class for it
 local Ingame = class({})
@@ -136,6 +137,7 @@ end
 function Ingame:OnPlayerReconnect(keys)
     Timers:CreateTimer(function ()
         local player = PlayerResource:GetPlayer(keys.PlayerID)
+        CustomGameEventManager:Send_ServerToAllClients("MakeNeutralItemsInShopColored", {})
         CustomGameEventManager:Send_ServerToPlayer(player, "lodAttemptReconnect",{})
     end, DoUniqueString('reconnect'), 4.0)
 end
@@ -332,6 +334,15 @@ function Ingame:OnPlayerLearnedAbility( keys )
     end
 end
 
+function IsNeutralItemByID(id)
+    for k,v in pairs(_G.NeutralItems) do
+        if tonumber(v["ID"]) == id then
+            v["name"] = k
+            return v
+        end
+    end
+end
+
 function Ingame:FilterExecuteOrder(filterTable)
     local order_type = filterTable.order_type
     local units = filterTable["units"]
@@ -339,7 +350,6 @@ function Ingame:FilterExecuteOrder(filterTable)
     local unit = EntIndexToHScript(units["0"])
     local ability = EntIndexToHScript(filterTable.entindex_ability)
     local target = EntIndexToHScript(filterTable.entindex_target)
-
     if order_type == DOTA_UNIT_ORDER_GLYPH  then     
         if RADIANTFORTIFIED and PlayerResource:GetSelectedHeroEntity(issuer):GetTeamNumber() == DOTA_TEAM_GOODGUYS then
             Notifications:Top(PlayerResource:GetPlayer(issuer),{text="Glyph already active",duration = 2})
@@ -350,10 +360,39 @@ function Ingame:FilterExecuteOrder(filterTable)
         end
     end      
 
-    -- if order_type == DOTA_UNIT_ORDER_PURCHASE_ITEM then		
-    --     return false		
-    -- end		
-		
+     if order_type == DOTA_UNIT_ORDER_PURCHASE_ITEM then
+         local playerId = filterTable.issuer_player_id_const
+         if filterTable["entindex_ability"] and IsNeutralItemByID(filterTable["entindex_ability"]) ~= nil then
+             if OptionManager:GetOption('neutralItems') == 0 then
+                 CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(playerId), "display_custom_error", { message = "#you_cannot_buy_neutral_item" })
+                 return false
+             end
+         end
+     end
+
+    if order_type == DOTA_UNIT_ORDER_ATTACK_TARGET then
+        if target:GetName() == "npc_dota_watch_tower" and unit:IsRealHero() then
+            if not unit:HasAbility("ability_capture") then
+                local hAbility = unit:AddAbility("ability_capture")
+                hAbility:SetStolen(true)
+                hAbility:SetHidden(true)
+                hAbility:SetLevel(1)
+            end
+            local captureAbility
+            for x = 0, 30 do
+                local focusAbility = unit:GetAbilityByIndex(x)
+                if focusAbility and focusAbility:GetName() == "ability_capture" then
+                    captureAbility = focusAbility
+                end
+            end
+            ExecuteOrderFromTable({
+                UnitIndex = unit:entindex(),
+                OrderType = DOTA_UNIT_ORDER_CAST_TARGET,
+                AbilityIndex = captureAbility,
+                TargetIndex = target
+            })
+        end
+    end
     -- if units[1] and order_type == DOTA_UNIT_ORDER_SELL_ITEM and ability and not units[1]:IsIllusion() and not units[1]:IsTempestDouble() then		
     --     PanoramaShop:SellItem(units[1], ability)		
     --     return false		
@@ -724,6 +763,7 @@ function Ingame:fixRuneBug()
         local newState = GameRules:State_Get()
 
         if newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
+            GpmInit()
             Timers:CreateTimer(function()
                 for playerID=0,DOTA_MAX_TEAM_PLAYERS-1 do
                     local hero = PlayerResource:GetSelectedHeroEntity(playerID)

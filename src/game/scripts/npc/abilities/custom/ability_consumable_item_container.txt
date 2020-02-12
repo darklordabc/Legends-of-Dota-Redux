@@ -41,6 +41,11 @@
         "var_type"              "FIELD_INTEGER"
         "assault_aura_armor"   "5"
       }
+	  "106"
+	  {
+	    "var_type"             		"FIELD_INTEGER"
+	    "assault_bonus_all_stats"   "5"
+	  }
       // Skadi
       "06"
       {
@@ -70,12 +75,7 @@
       "11"
       {
         "var_type"        "FIELD_FLOAT"
-        "skadi_cold_duration_melee" "5.0"
-      }
-      "12"
-      {
-        "var_type"        "FIELD_FLOAT"
-        "skadi_cold_duration_ranged"  "2.5"
+        "skadi_cold_duration" "3.0"
       }
       // Desolator
       "13"
@@ -221,7 +221,7 @@
       "45"
       {
         "var_type"                "FIELD_INTEGER"
-        "echo_sabre_bonus_damage"            "12"
+        "echo_sabre_bonus_damage"            "15"
       }
       "46"
       {
@@ -265,46 +265,31 @@
         "manacost_reduction"       "10"
       }
       //Vlads
-      "54"
-      {
-        "var_type"                "FIELD_INTEGER"
-        "vlads_aura_radius"             "1200"
-      }
-      "55"
-      {
-        "var_type"                "FIELD_INTEGER"
-        "vlads_bonus_all_stats"         "2"
-      }
-      "56"
-      {
-        "var_type"                "FIELD_FLOAT"
-        "vlads_hp_regen"                "2.5"
-      }
-      "57"
-      {
-        "var_type"                "FIELD_INTEGER"
-        "vlads_vampiric_aura_ranged"    "10"
-      }
-      "58"
-      {
-        "var_type"                "FIELD_INTEGER"
-        "vlads_vampiric_aura"           "15"
-      }
-      "59"
-      {
-        "var_type"                "FIELD_FLOAT"
-        "vlads_mana_regen_aura"          "1.75"
-      }
-      "60"
-      {
-        "var_type"                "FIELD_INTEGER"
-        "vlads_armor_aura"              "4"
-      }
-      "61"
-      {
-        "var_type"                "FIELD_INTEGER"
-        "vlads_damage_aura"             "15"
-      }
+	  "301"
+	  {
+	  	"var_type"				"FIELD_FLOAT"
+	  	"vlads_mana_regen_aura"	"1.5"
+	  }
+	  "302"
+	  {
+	  	"var_type"				"FIELD_INTEGER"
+	  	"vlads_armor_aura"		"3"
+	  }
+	  "303"
+	  {
+	  	"var_type"				"FIELD_INTEGER"
+	  	"vlads_vampiric_aura"	"25"
+	  }
+	  "304"
+	  {
+	  	"var_type"				"FIELD_INTEGER"
+	  	"vlads_aura_radius"		"1200"
+	  }
+	  "305"
+	  {
+	  	"var_type"				"FIELD_INTEGER"
+	  	"vlads_bonus_all_stats"		"6"
+	  }
       "70"
       {
         "var_type"                "FIELD_INTEGER"
@@ -351,6 +336,12 @@
         "var_type"              "FIELD_INTEGER"
         "heart_hp_regen_amp"       "50"
       }
+	  "200"
+	  {
+	    "var_type"              "FIELD_INTEGER"
+	    "heart_fixed_health_regen"       "10"
+	  }
+	  // Butterfly
       "90"
       {
           "var_type"              "FIELD_INTEGER"
@@ -371,31 +362,46 @@
           "var_type"              "FIELD_INTEGER"
           "butterfly_bonus_evasion"   "35"
       }
-      "101"
-      {
-          "var_type"              "FIELD_INTEGER"
-          "holy_locket_bonus_health"       "200"
-      }           
-      "102"
-      {
-          "var_type"              "FIELD_INTEGER"
-          "holy_locket_health_regen"             "4"
-      }
-      "103"
-      {
-          "var_type"              "FIELD_INTEGER"
-          "holy_locket_mana_regen"    "3"
-      }
-      "104"
-      {
-          "var_type"              "FIELD_INTEGER"
-          "holy_locket_magic_resist"    "15"
-      }
-      "105"
-      {
-          "var_type"              "FIELD_INTEGER"
-          "holy_locket_heal_increase"    "25"
-      }
+      "201"
+	  {
+	  	"var_type"				"FIELD_INTEGER"
+	  	"holy_locket_bonus_health"			"250"
+	  }
+	  "202"
+	  {
+	  	"var_type"				"FIELD_INTEGER"
+	  	"holy_locket_bonus_mana"			"325"
+	  }
+	  "203"
+	  {
+	  	"var_type"				"FIELD_FLOAT"
+	  	"holy_locket_health_regen"	"4"
+	  }
+	  "204"
+	  {
+	  	"var_type"				"FIELD_INTEGER"
+	  	"holy_locket_heal_increase"		"35"
+	  }
+	  "205"
+	  {
+	  	"var_type"				"FIELD_INTEGER"
+	  	"holy_locket_max_charges"			"20"
+	  }
+	  "206"
+	  {
+	  	"var_type"				"FIELD_INTEGER"
+	  	"holy_locket_charge_radius"			"1200"
+	  }
+	  "207"
+	  {
+	  	"var_type"				"FIELD_INTEGER"
+	  	"holy_locket_bonus_all_stats"		"3"
+	  }
+	  "208"
+	  {
+	  	"var_type"				"FIELD_INTEGER"
+	  	"holy_locket_restore_per_charge"	"15"
+	  }
     }
   }
 }

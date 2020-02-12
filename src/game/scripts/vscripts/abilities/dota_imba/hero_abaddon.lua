@@ -1044,12 +1044,12 @@ end
 
 function modifier_over_channel_reduction:DeclareFunctions()
     local funcs    =    {
-		MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE_STACKING
+		MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE
     }
     return funcs
 end
 
-function modifier_over_channel_reduction:GetModifierPercentageCooldownStacking()
+function modifier_over_channel_reduction:GetModifierPercentageCooldown()
     return -self:GetStackCount() * self:GetAbility():GetSpecialValueFor("reduction_multiplier")
 end
 

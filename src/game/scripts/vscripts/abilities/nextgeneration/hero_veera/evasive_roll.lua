@@ -2,7 +2,7 @@ require('lib/physics')
 function EvasiveRollInitiate( keys )
 	local caster = keys.caster
 	local ability = keys.ability
-	local leap_speed = caster:GetMoveSpeedModifier(caster:GetBaseMoveSpeed()) + ability:GetLevelSpecialValueFor("bonus_speed", (ability:GetLevel() - 1))
+	local leap_speed = caster:GetMoveSpeedModifier(caster:GetBaseMoveSpeed() + ability:GetLevelSpecialValueFor("bonus_speed", (ability:GetLevel() - 1)), false)
 	local casterAngles = caster:GetAngles()
 
 	-- Clears any current command

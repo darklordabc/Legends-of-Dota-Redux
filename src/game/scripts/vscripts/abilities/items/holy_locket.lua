@@ -15,6 +15,13 @@ end
 function item_holy_locket_consumable.GetIntrinsicModifierName(self)
     return "modifier_item_holy_locket_consumable"
 end
+--function item_holy_locket_consumable:OnSpellStart(self)
+--    local caster = self:GetCaster();
+--    local stacks = ability:GetCurrentCharges();
+--    local to_restore = stacks * self:GetSpecialValueFor("holy_locket_restore_per_charge");
+--    caster:Heal(to_restore, self);
+--    caster:SpendMana(to_restore, self);
+--end
 modifier_item_holy_locket_consumable = modifier_item_holy_locket_consumable or {}
 modifier_item_holy_locket_consumable.__index = modifier_item_holy_locket_consumable
 function modifier_item_holy_locket_consumable.new(construct, ...)
@@ -47,7 +54,13 @@ end
 function modifier_item_holy_locket_consumable.OnDestroy(self)
 end
 function modifier_item_holy_locket_consumable.DeclareFunctions(self)
-    return {MODIFIER_PROPERTY_HEALTH_BONUS,MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE}
+    return {
+        MODIFIER_PROPERTY_HEALTH_BONUS,
+        MODIFIER_PROPERTY_MANA_BONUS,
+        MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
+        MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE,
+        MODIFIER_EVENT_ON_ABILITY_FULLY_CAST,
+        }
 end
 function modifier_item_holy_locket_consumable.GetModifierHealthBonus(self)
     if (not self:GetAbility()) then
@@ -56,26 +69,19 @@ function modifier_item_holy_locket_consumable.GetModifierHealthBonus(self)
     end
     return self:GetAbility():GetSpecialValueFor("holy_locket_bonus_health")
 end
+function modifier_item_holy_locket_consumable.GetModifierManaBonus(self)
+    if (not self:GetAbility()) then
+        self:Destroy();
+        return 0
+    end
+    return self:GetAbility():GetSpecialValueFor("holy_locket_bonus_mana")
+end
 function modifier_item_holy_locket_consumable.GetModifierConstantHealthRegen(self)
     if (not self:GetAbility()) then
         self:Destroy();
         return 0
     end
     return self:GetAbility():GetSpecialValueFor("holy_locket_health_regen")
-end
-function modifier_item_holy_locket_consumable.GetModifierConstantManaRegen(self)
-    if (not self:GetAbility()) then
-        self:Destroy();
-        return 0
-    end
-    return self:GetAbility():GetSpecialValueFor("holy_locket_mana_regen")
-end
-function modifier_item_holy_locket_consumable.GetModifierMagicalResistanceBonus(self)
-    if (not self:GetAbility()) then
-        self:Destroy();
-        return 0
-    end
-    return self:GetAbility():GetSpecialValueFor("holy_locket_magic_resist")
 end
 function modifier_item_holy_locket_consumable.GetModifierHPRegenAmplify_Percentage(self)
     if (not self:GetAbility()) then
@@ -106,3 +112,16 @@ function modifier_item_holy_locket_consumable.GetModifierHPRegenAmplify_Percenta
         return self:GetAbility():GetSpecialValueFor("holy_locket_heal_increase")
     end
 end
+--function modifier_item_holy_locket_consumable:OnAbilityFullyCast(keys)
+--    if (not self:GetAbility()) then
+--        return
+--    end
+--    local ability = self:GetAbility()
+--    local parent = self:GetParent()
+--    local caster = keys:GetTeamNumber()
+--    if caster ~= self:GetParent() and ((parent:GetAbsOrigin() - caster:GetAbsOrigin()):Length2D() <= ability:GetSpecialValueFor("holy_locket_charge_radius")) then
+--        if ability:GetCurrentCharges() < ability:GetSpecialValueFor("holy_locket_max_charges") then
+--            ability:SetCurrentCharges(ability:GetCurrentCharges()+1)
+--        end
+--    end
+--end

@@ -53,12 +53,12 @@ end
 
 function modifier_rune_arcane_mutated_redux:DeclareFunctions()
     return {
-        MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE_STACKING,
+        MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE,
         MODIFIER_PROPERTY_MANACOST_PERCENTAGE_STACKING,   
     }
 end
 
-function modifier_rune_arcane_mutated_redux:GetModifierPercentageCooldownStacking()
+function modifier_rune_arcane_mutated_redux:GetModifierPercentageCooldown()
     return 60
 end
 

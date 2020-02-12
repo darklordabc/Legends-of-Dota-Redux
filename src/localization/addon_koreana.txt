@@ -232,7 +232,7 @@
     "lodMutatorAllRandom"                           "전체 무작위"
     "lodMutatorSingleDraft"                         "개별 선발"
 
-    "lodMutatorMaxLevel1"                           "최대 레벨 28"
+    "lodMutatorMaxLevel1"                           "최대 레벨 30"
     "lodMutatorMaxLevel2"                           "최대 레벨 50"
     "lodMutatorMaxLevel3"                           "최대 레벨 100"
 

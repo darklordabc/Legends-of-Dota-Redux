@@ -54,14 +54,14 @@ end
           target.chenAbilityCount = target.chenAbilityCount +1
           
           while boolMana == false or boolAllowActive == false do
-            ::LoopAgain::
-            boolMana = false
+            --::LoopAgain::
+            --boolMana = false
             boolAllowActive = false
             --print("ChenPerkIFWhile")
             local randomability = GetRandomAbilityFromListForPerk("chen_creep_abilities")
 
             if target:HasAbility(randomability) then
-              goto LoopAgain
+              --goto LoopAgain
             end 
             target.chenAbilityTable[target.chenAbilityCount] = target:AddAbility(randomability)
             target.chenAbilityTable[target.chenAbilityCount]:UpgradeAbility(true)
@@ -72,7 +72,7 @@ end
               boolMana = true
             else
               target:RemoveAbility(target.chenAbilityTable[target.chenAbilityCount]:GetAbilityName())
-              goto LoopAgain
+              --goto LoopAgain
             end
 
             if target.chenAbilityTable[target.chenAbilityCount]:IsPassive() or target:GetPlayerOwnerID() ~= -1 then 
