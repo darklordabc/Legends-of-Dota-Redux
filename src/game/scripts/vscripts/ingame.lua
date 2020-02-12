@@ -371,7 +371,7 @@ function Ingame:FilterExecuteOrder(filterTable)
      end
 
     if order_type == DOTA_UNIT_ORDER_ATTACK_TARGET then
-        if target:GetName() == "npc_dota_watch_tower" then
+        if target:GetName() == "npc_dota_watch_tower" and unit:IsRealHero() then
             if not unit:HasAbility("ability_capture") then
                 local hAbility = unit:AddAbility("ability_capture")
                 hAbility:SetStolen(true)
