@@ -80,11 +80,6 @@ LinkLuaModifier("modifier_resurrection_mutator","abilities/mutators/modifier_res
 LinkLuaModifier("modifier_rune_doubledamage_mutated_redux","abilities/mutators/super_runes.lua",LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_rune_arcane_mutated_redux","abilities/mutators/super_runes.lua",LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_bat_manager","abilities/modifiers/modifier_bat_manager.lua",LUA_MODIFIER_MOTION_NONE)
-
--- Courier's modifiers
-LinkLuaModifier("modifier_core_courier", 'abilities/courier/modifier_core_courier',LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_core_courier_flying", 'abilities/courier/modifier_core_courier_flying',LUA_MODIFIER_MOTION_NONE)
-
 --[[
     Main pregame, selection related handler
 ]]
@@ -610,7 +605,7 @@ function Pregame:init()
         self:setOption('lodOptionGameSpeedSharedEXP', 1, true)
         self:setOption('lodOptionBanningUseBanList', 1, true)
         self:setOption('lodOptionAdvancedOPAbilities', 1, true)
-        self:setOption('lodOptionGameSpeedMaxLevel', 30, true)
+        self:setOption('lodOptionGameSpeedMaxLevel', 100, true)
         self:setOption('lodOptionGamemode', 1)
         self:setOption('lodOptionBattleThirst', 0)
         self:setOption('lodOptionGameSpeedStartingLevel', 1, true)
@@ -798,8 +793,8 @@ function Pregame:loadDefaultSettings()
     -- Starting level is lvl 1
     self:setOption('lodOptionGameSpeedStartingLevel', 1, true)
 
-    -- Max level is 30
-    self:setOption('lodOptionGameSpeedMaxLevel', 30, true)
+    -- Max level is 28
+    self:setOption('lodOptionGameSpeedMaxLevel', 28, true)
 
     -- Don't mess with gold rate
     self:setOption('lodOptionGameSpeedStartingGold', 0, true)
@@ -1543,7 +1538,7 @@ function Pregame:onThink()
         if GameRules:State_Get() < DOTA_GAMERULES_STATE_PRE_GAME then
             return 0.1
         end
-        CustomGameEventManager:Send_ServerToAllClients("MakeNeutralItemsInShopColored", {})
+
         -- Do things after a small delay
         local this = self
 
@@ -2505,9 +2500,6 @@ end
 
 -- Tests a build to decide if it is a troll combo
 function Pregame:isTrollCombo(build)
-    local exceptions = {
-        ["kunkka_torrent_storm"] = "kunkka_torrent",
-    }
     local maxSlots = self.optionStore['lodOptionCommonMaxSlots']
 
     for i=1,maxSlots do
@@ -2515,12 +2507,9 @@ function Pregame:isTrollCombo(build)
         if ab1 ~= nil then
             for j=(i+1),maxSlots do
                 local ab2 = build[j]
-                if (exceptions[ab1] and exceptions[ab1] == ab2) or (exceptions[ab2] and exceptions[ab2] == ab1) then
-                    print(ab1.." "..ab2)
-                else
                 if self.banList[ab1] then
-
-
+            
+                
 
                     if ab2 ~= nil and self.banList[ab1][ab2] then
                         -- Ability should be banned
@@ -2534,7 +2523,7 @@ function Pregame:isTrollCombo(build)
                         return true, ab1, ab2
                     end
                 end
-                end
+            
             end
         end
     end
@@ -2913,17 +2902,6 @@ function Pregame:initOptionSelector()
 
         -- Game Speed -- Gold per interval
         lodOptionGameSpeedGoldTickRate = function(value)
-            -- It needs to be a whole number between a certain range
-            if type(value) ~= 'number' then return false end
-            if math.floor(value) ~= value then return false end
-            if value < 0 or value > 25 then return false end
-
-            -- Valid
-            return true
-        end,
-
-        -- Game Speed -- Gold per interval
-        lodOptionBuyingNeutralItems = function(value)
             -- It needs to be a whole number between a certain range
             if type(value) ~= 'number' then return false end
             if math.floor(value) ~= value then return false end
@@ -4275,7 +4253,6 @@ function Pregame:processOptions()
         OptionManager:SetOption('towerCount', this.optionStore['lodOptionGameSpeedTowersPerLane'])
         OptionManager:SetOption('creepPower', this.optionStore['lodOptionCreepPower'])
         OptionManager:SetOption('neutralCreepPower', this.optionStore['lodOptionNeutralCreepPower'])
-        OptionManager:SetOption('neutralItems', this.optionStore['lodOptionBuyingNeutralItems'])
         OptionManager:SetOption('neutralMultiply', this.optionStore['lodOptionNeutralMultiply'])
         OptionManager:SetOption('laneMultiply', this.optionStore['lodOptionLaneMultiply'])
         OptionManager:SetOption('laneCreepAbility', this.optionStore['lodOptionLaneCreepBonusAbility'])
@@ -4603,7 +4580,6 @@ function Pregame:processOptions()
                     ['Bans: Use LoD BanList'] = this.optionStore['lodOptionBanningUseBanList'],
                     ['Creeps: Increase Creep Power Over Time'] = this.optionStore['lodOptionCreepPower'],
                     ['Creeps: Increase Neutral Creep Power Over Time'] = this.optionStore['lodOptionNeutralCreepPower'],
-                    ['Other: You can buy neutral items in shop'] = this.optionStore['lodOptionBuyingNeutralItems'],
                     ['Creeps: Multiply Neutral Camps'] = this.optionStore['lodOptionNeutralMultiply'],
                     ['Creeps: Multiply Lane Creeps'] = this.optionStore['lodOptionLaneMultiply'],
                     ['Creeps: Creep Ability'] = this.optionStore['lodOptionLaneCreepBonusAbility'],
@@ -8470,22 +8446,11 @@ function Pregame:fixSpawnedHero( spawnedUnit )
                 if IsValidEntity(spawnedUnit) then
                     if not self.givenCouriers[team] then
                         self.givenCouriers[team] = true
+                        local item = spawnedUnit:AddItemByName('item_courier')
 
-                        local courierSpawn = spawnedUnit:GetAbsOrigin() + RandomVector(RandomFloat(100, 100))
-                        local cr = CreateUnitByName("npc_dota_courier", courierSpawn, true, nil, nil, spawnedUnit:GetTeamNumber())
-                        Timers:CreateTimer(.2, function()
-                            cr:AddNewModifier(cr, nil, "modifier_core_courier", nil)
-                            for i = 0, 30 do
-                                local tempPly = PlayerResource:GetPlayer(i)
-                                if (tempPly and IsValidEntity(tempPly)) then
-                                    Timers:CreateTimer(.1, function()
-                                        if (tempPly:GetTeamNumber() == cr:GetTeamNumber()) then
-                                            cr:SetControllableByPlayer(i, true)
-                                        end
-                                    end)
-                                end
-                            end
-                        end)
+                        if item then
+                            spawnedUnit:CastAbilityImmediately(item, spawnedUnit:GetPlayerID())
+                        end
                     end
                 end
             end, DoUniqueString('spawncourier'), 1)
@@ -8740,13 +8705,13 @@ function Pregame:fixSpawningIssues()
         end, DoUniqueString('silencerFix'), 2)
 
         -- Remove Gyro's innate scepter bonus
-        Timers:CreateTimer(function()
+        --[[Timers:CreateTimer(function()
             if IsValidEntity(spawnedUnit) then
                 if spawnedUnit:HasModifier('modifier_gyrocopter_flak_cannon_scepter') then
                     spawnedUnit:RemoveModifierByName('modifier_gyrocopter_flak_cannon_scepter')
                 end
             end
-        end, DoUniqueString('gyroFixInnate'), 1)
+        end, DoUniqueString('gyroFixInnate'), 1)]]--
 
             if Wearables:HasDefaultWearables( spawnedUnit:GetUnitName() ) then
                 Wearables:AttachWearableList( spawnedUnit, Wearables:GetDefaultWearablesList( spawnedUnit:GetUnitName() ) )
