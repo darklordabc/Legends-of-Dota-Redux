@@ -182,6 +182,8 @@
             "ReduxFlags"                                                           "attack_modifier"
             "ReduxPerks"                                                           "neutral | attack_modifier"
 
+            "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
             "AbilitySpecial"
             {
                 "01"
@@ -192,7 +194,7 @@
                 "02"
                 {
                     "var_type"              "FIELD_INTEGER"
-                    "bonus_building_damage"     "5 10 15 20"
+                    "bonus_building_damage"     "10 20 30 40"
                 }
             }
         }
