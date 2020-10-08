@@ -464,11 +464,11 @@ function modifier_imba_dark_seer_ion_shell_handler:OnCreated()
 	end
 end
 
-function imba_dark_seer_ion_shell:GetAbilityTextureName()
+--[[function imba_dark_seer_ion_shell:GetAbilityTextureName()
 	if not IsClient() then return end
 	if not self:GetCaster().ion_shell_icon then return "dark_seer_ion_shell" end
 	return "custom/imba_dark_seer_ion_shell_immortal_"..self:GetCaster().ion_shell_icon
-end
+end]]--
 
 function imba_dark_seer_ion_shell:GetIntrinsicModifierName()
 	return "modifier_imba_dark_seer_ion_shell_handler"
@@ -477,7 +477,7 @@ end
 function imba_dark_seer_ion_shell:OnSpellStart()
 	if not IsServer() then return end
 	
-	self:GetCursorTarget():EmitSound(self:GetCaster().ion_shell_sound)
+	self:GetCursorTarget():EmitSound("Hero_Dark_Seer.Ion_Shield_Start")
 	
 	if self:GetCaster():GetName() == "npc_dota_hero_dark_seer" and RollPercentage(50) then
 		self:GetCaster():EmitSound("dark_seer_dkseer_ability_surge_0"..math.random(1,2))
@@ -507,10 +507,10 @@ function modifier_imba_dark_seer_ion_shell:OnCreated()
 	
 	self:GetParent():EmitSound("Hero_Dark_Seer.Ion_Shield_lp")
 	
-	self.particle			= ParticleManager:CreateParticle(self:GetCaster().ion_shell_effect, PATTACH_POINT_FOLLOW, self:GetParent())
+	self.particle			= ParticleManager:CreateParticle("particles/units/heroes/hero_dark_seer/dark_seer_ion_shell.vpcf", PATTACH_POINT_FOLLOW, self:GetParent(), self:GetCaster())
 	ParticleManager:SetParticleControlEnt(self.particle, 0, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetParent():GetAbsOrigin(), true)
 	ParticleManager:SetParticleControl(self.particle, 1, Vector(50, 50, 50)) -- Arbitrary
-	self:AddParticle(self.particle, false, false, -1, false, false)
+	self:AddParticle(self.particle, false, false, -1, false, false)`
 	
 	self:SetStackCount(0)
 	

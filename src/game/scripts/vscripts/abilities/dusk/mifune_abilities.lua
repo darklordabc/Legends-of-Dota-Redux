@@ -32,7 +32,7 @@ function ouichi(keys)
 
 	if targethp > t then return end
 
-	if CheckClass(target,"npc_dota_building") then return end
+	--if CheckClass(target,"npc_dota_building") then return end
 
 	if caster:IsIllusion() then fd = fd * 0.25 end
 

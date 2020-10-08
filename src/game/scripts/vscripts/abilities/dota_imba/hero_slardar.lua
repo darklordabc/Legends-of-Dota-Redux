@@ -920,9 +920,9 @@ function modifier_imba_bash_of_the_deep_attack:GetModifierProcAttack_BonusDamage
 
 					-- Apply bash stun with duration depending on hero/creep
 					if target:IsHero() or target:IsBuilding() then
-						target:AddNewModifier(caster, ability, modifier_stun, {duration = hero_stun_duration})
+						target:AddNewModifier(caster, ability, modifier_stun, {duration = hero_stun_duration * (1 - target:GetStatusResistance())})
 					else
-						target:AddNewModifier(caster, ability, modifier_stun, {duration = (hero_stun_duration * creep_duration_mult)})
+						target:AddNewModifier(caster, ability, modifier_stun, {duration = (hero_stun_duration * creep_duration_mult) * (1 - target:GetStatusResistance())})
 					end
 
 					total_bonus_damage = total_bonus_damage + bash_damage

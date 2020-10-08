@@ -11344,7 +11344,6 @@
 
 	//=================================================================================================================
 	// Enigma's Malefice
-	//e
 	//=================================================================================================================
 	"imba_enigma_malefice"
 	{
@@ -11378,7 +11377,7 @@
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"110 150 170 190"
+		"AbilityManaCost"				"100 120 140 160"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -11387,33 +11386,29 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"tick_damage"				"30 70 100 120"
+				"tick_damage"				"40 60 80 100"
+				"LinkedSpecialBonus"		"special_bonus_imba_enigma_malefice_damage"
 			}
-
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
 				"tick_interval"				"2"
 			}
-
 			"03"
 			{
 				"var_type"					"FIELD_FLOAT"
 				"stun_duration"				"0.4 0.6 0.8 1"
 			}
-
 			"04"
 			{
 				"var_type"					"FIELD_FLOAT"
 				"total_duration"			"4"
-			}			
-
+			}
 			"05"
 			{
 				"var_type"					"FIELD_FLOAT"
 				"pull_delay"				"0.4"
 			}
-
 			"06"
 			{
 				"var_type"					"FIELD_INTEGER"
@@ -11430,12 +11425,10 @@
 				"health_bonus_duration"				"2"
 			}														
 		}
-
 	}
 
 	//=================================================================================================================
 	// Enigma's Demonic Conversion
-	//e
 	//=================================================================================================================
 	"imba_enigma_demonic_conversion"
 	{
@@ -11461,7 +11454,7 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"35 32 29 26"
+		"AbilityCooldown"				"35.0"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -11478,61 +11471,51 @@
 				"var_type"					"FIELD_INTEGER"
 				"eidolon_count"				"3"
 			}
-
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
 				"attacks_to_split"			"6"
 			}
-
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"duration"					"35 35 40 40"
+				"duration"					"35"
 			}
-
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
 				"child_duration"			"8"
 			}
-
 			"05"
 			{
 				"var_type"					"FIELD_INTEGER"
 				"base_health"				"180 200 220 240"
-			}			
-
+			}
 			"06"
 			{
 				"var_type"      			"FIELD_INTEGER"
 				"shard_percentage" 			"5 10 15 20"
 			}
-
 			"07"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"base_damage"				"20 28 36 44"
-			}			
-
+				"base_damage"				"20 28 38 47"
+			}
 			"08"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"base_ms"					"260 280 300 320"
+				"base_ms"					"280 310 340 370"
 			}
-
 			"09"
 			{
 				"var_type"     				"FIELD_FLOAT"
 				"increased_mass_duration" 	"2.5"
 			}
-
 			"10"
 			{
 				"var_type"     				"FIELD_INTEGER"
 				"increased_mass_pull_pct" 	"7"
-			}		
-
+			}
 			"11"
 			{
 				"var_type"     				"FIELD_INTEGER"
@@ -11543,7 +11526,6 @@
 
 	//=================================================================================================================
 	// Enigma's Midnight Pulse
-	//e
 	//=================================================================================================================
 	"imba_enigma_midnight_pulse"
 	{
@@ -11553,7 +11535,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"FightRecapLevel"				"1"
 		"AbilityTextureName"			"enigma_midnight_pulse"		
@@ -11571,10 +11553,10 @@
 		//-------------------------------------------------------------------------------------------------------------		
 		"AbilityCastAnimation"			"ACT_DOTA_MIDNIGHT_PULSE"
 		"AOERadius"						"550"
-		
+
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"35.0"
+		"AbilityCooldown"				"50.0 45.0 40.0 35.0"
 		"AbilityCastRange"				"700"
 		"AbilityCastPoint"				"0.0"
 
@@ -11594,12 +11576,12 @@
 			"02"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"damage_per_tick"			"3.75 4.25 4.75 5.25"
+				"damage_per_tick"			"4.75 5.5 6.25 7.0" // %
 			}
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"duration"					"10 11 12 13"
+				"duration"					"9 10 11 12"
 			}
 			"04"
 			{
@@ -11621,7 +11603,6 @@
 
 	//=================================================================================================================
 	// Enigma's Black Hole
-	//e
 	//=================================================================================================================
 	"imba_enigma_black_hole"
 	{
@@ -11662,11 +11643,11 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"					"180 155 130"
+		"AbilityCooldown"					"200.0 180.0 160.0"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"					"275 325 375"
+		"AbilityManaCost"					"300 400 500"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -11690,7 +11671,7 @@
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage_per_tick"			"50 125 200"
+				"damage_per_tick"			"100 150 200"
 			}
 			"05"
 			{
@@ -11736,7 +11717,7 @@
 			"13"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"interrupt_manual_loss_pct"		"40"			
+				"interrupt_manual_loss_pct"		"25"
 			}
 			"14"
 			{
@@ -11753,13 +11734,19 @@
 				"var_type"						"FIELD_INTEGER"
 				"min_cd_cap"					"15"
 			}
+			
+			"17"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"ms_reduction"					"30 40 50"
+			}
 		}
 	}
 
 	//=================================================================================================================
 	// Enigma Talents
 	//=================================================================================================================
-	"special_bonus_imba_enigma_1"	// Each Singularity stack consumed now decreases Black Hole's cooldown by 2 seconds.
+	"special_bonus_imba_enigma_1"	// Each Singularity stack consumed now decreases Black Hole's cooldown
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -11779,7 +11766,7 @@
 			"01"
 			{
 				"var_type"		"FIELD_FLOAT"
-				"value"			"10"
+				"value"			"6"
 			}
 		}
 	}
@@ -11804,7 +11791,7 @@
 			"01"
 			{
 				"var_type"		"FIELD_INTEGER"
-				"value"			"225"
+				"value"			"325"
 			}
 		}
 	}
@@ -11859,7 +11846,7 @@
 		}
 	}
 
-	"special_bonus_imba_enigma_5"	// True malefice, instead of stuns little black holes are created
+	"special_bonus_imba_enigma_5"	// +500 Black Hole cast range
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -11879,12 +11866,12 @@
 			"01"
 			{
 				"var_type"		"FIELD_INTEGER"
-				"value"			"150"
+				"value"			"500"
 			}
 		}
 	}
 
-	"special_bonus_imba_enigma_6"	// Enigma has a constant AoE Midnight pulse around him. Stacks with regular pulse.
+	"special_bonus_imba_enigma_6"	// +3 Eidolons
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -11955,6 +11942,51 @@
 			{
 				"var_type"		"FIELD_INTEGER"
 				"value"			"1"
+			}
+		}
+	}
+
+	"special_bonus_imba_enigma_malefice_damage"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"				"special_bonus_undefined"                                                        
+		"AbilityType"			"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"LinkedAbility"
+		{
+			"01"		"imba_enigma_malefice"
+		}
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"value"			"100"
+			}
+		}
+	}
+
+	"special_bonus_imba_enigma_demonic_conversion_attack_range"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"				"special_bonus_undefined"                                                        
+		"AbilityType"			"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"value"			"200"
 			}
 		}
 	}

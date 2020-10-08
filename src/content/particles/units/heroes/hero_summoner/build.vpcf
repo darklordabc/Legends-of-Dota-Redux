@@ -1,0 +1,123 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_ConstantColor =
+	[
+		80,
+		80,
+		80,
+		120,
+	]
+	m_flConstantRadius = 210.000000
+	m_nMaxParticles = 48
+	m_Children =
+	[
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_summoner/build_a.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_summoner/build_b.vpcf"
+		},
+	]
+	m_Operators =
+	[
+		{
+			_class = "C_OP_Decay"
+		},
+		{
+			_class = "C_OP_FadeInSimple"
+			m_flFadeInTime = 0.500000
+		},
+		{
+			_class = "C_OP_OscillateVector"
+			m_RateMin =
+			[
+				-13.000000,
+				-13.000000,
+				-13.000000,
+			]
+			m_RateMax =
+			[
+				13.000000,
+				13.000000,
+				13.000000,
+			]
+			m_FrequencyMax =
+			[
+				3.000000,
+				3.000000,
+				3.000000,
+			]
+		},
+		{
+			_class = "C_OP_FadeOutSimple"
+			m_flFadeOutTime = 0.500000
+		},
+		{
+			_class = "C_OP_BasicMovement"
+			m_Gravity =
+			[
+				0.000000,
+				0.000000,
+				50.000000,
+			]
+			m_fDrag = 0.050000
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flStartScale = 2.000000
+			m_flEndScale = 0.000000
+			m_flBias = 0.350000
+		},
+		{
+			_class = "C_OP_ColorInterpolate"
+			m_flFadeEndTime = 0.500000
+		},
+	]
+	m_Renderers =
+	[
+		{
+			_class = "C_OP_RenderSprites"
+			m_flStartFadeSize = 1.000000
+			m_flEndFadeSize = 1.400000
+			m_nSequenceCombineMode = "SEQUENCE_COMBINE_MODE_ALPHA_FROM0_RGB_FROM_1"
+			m_bMaxLuminanceBlendingSequence1 = true
+			m_bDisableZBuffering = true
+			m_hTexture = resource:"materials/particle/smoke3/smoke3b.vtex"
+		},
+	]
+	m_Initializers =
+	[
+		{
+			_class = "C_INIT_RandomLifeTime"
+			m_fLifetimeMin = 0.800000
+			m_fLifetimeMax = 1.000000
+		},
+		{
+			_class = "C_INIT_CreateWithinSphere"
+		},
+		{
+			_class = "C_INIT_RandomRotation"
+		},
+		{
+			_class = "C_INIT_RandomRadius"
+			m_flRadiusMin = 100.000000
+			m_flRadiusMax = 140.000000
+		},
+		{
+			_class = "C_INIT_RandomSequence"
+			m_nSequenceMax = 8
+		},
+	]
+	m_Emitters =
+	[
+		{
+			_class = "C_OP_ContinuousEmitter"
+			m_flEmitRate = 38.000000
+		},
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 2
+		},
+	]
+}

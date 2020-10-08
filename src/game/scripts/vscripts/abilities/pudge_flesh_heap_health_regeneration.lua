@@ -58,7 +58,7 @@ function modifier_flesh_heap_health_regeneration:OnCreated( kv )
   self.flesh_heap_value_buff_amount = self:GetAbility():GetSpecialValueFor( "flesh_heap_value_buff_amount" ) or 0
   if IsServer() then
     self:SetStackCount( self:GetFleshHeapKills() )
-    self:GetParent():CalculateStatBonus()
+    --self:GetParent():CalculateStatBonus()
   end
 end
 

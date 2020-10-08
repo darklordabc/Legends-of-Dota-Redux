@@ -3,7 +3,6 @@ zulf_gale_force = class({})
 LinkLuaModifier("modifier_gale_force", "abilities/zulf_gale_force.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_gale_force_disarm", "abilities/zulf_gale_force.lua", LUA_MODIFIER_MOTION_NONE)
 
-
 function zulf_gale_force:OnSpellStart()
 	if IsServer() then
 		local caster = self:GetCaster()
@@ -15,8 +14,10 @@ function zulf_gale_force:OnSpellStart()
 		local delay = ability:GetSpecialValueFor("delay")
 
 		EmitSoundOn(sound_cast, caster)
-
 		caster:AddNewModifier(caster, ability, modifier_aura, {duration = duration})
+
+		local particle = ParticleManager:CreateParticle("particles/zulf_gale_force.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
+		ParticleManager:SetParticleControl( duration, 4, caster:GetOrigin() )
 
 		Timers:CreateTimer(delay, function()
 			EmitSoundOn(sound_cast, caster)
@@ -141,4 +142,3 @@ end
 function modifier_gale_force_disarm:GetEffectAttachType()
 	return PATTACH_OVERHEAD_FOLLOW	
 end
-
