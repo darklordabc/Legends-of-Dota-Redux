@@ -30,7 +30,7 @@ require('network')
 require('commands')
 
 --Interaction with server (https://github.com/darklordabc/Legends-of-Dota-Server)
---require('stats_client')
+require('stats_client')
 
 -- Custom Shop
 require('lib/playertables')
@@ -258,7 +258,8 @@ function Activate()
     network:init()
     pregame:init()
     ingame:init()
-    --StatsClient:SubscribeToClientEvents()
+
+    StatsClient:SubscribeToClientEvents()
 
     -- Store references (mostly used for debugging)
     GameRules.util = require('util')
