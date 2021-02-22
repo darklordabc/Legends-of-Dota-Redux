@@ -523,7 +523,7 @@ function OnSelectedHeroesChanged(table_name, key, data) {
     // Shows which heroes have been taken
     showTakenHeroes();
     updateHeroPreviewFilters();
-    updateRecommendedBuildFilters();
+    //updateRecommendedBuildFilters();
 
     if(activePlayerPanels[playerID]) {
         activePlayerPanels[playerID].OnGetHeroData(heroName);
@@ -749,7 +749,7 @@ function updateTakenSkills() {
 
     // Rebuild the visible skills
     if (currentTab == "pickingPhaseMainTab") {
-        updateRecommendedBuildFilters();
+        //updateRecommendedBuildFilters();
     } else if (currentTab == "pickingPhaseSkillTab") {
         calculateFilters();
     } else {
@@ -772,7 +772,7 @@ function OnSkillBanned(table_name, key, data) {
         // Recalculate filters
         calculateHeroFilters();
         updateHeroPreviewFilters();
-        updateRecommendedBuildFilters();
+        //updateRecommendedBuildFilters();
     }
 
     if(abilityName != null) {
@@ -782,7 +782,7 @@ function OnSkillBanned(table_name, key, data) {
         // Recalculate filters
         calculateFilters();
         updateHeroPreviewFilters();
-        updateRecommendedBuildFilters();
+        //updateRecommendedBuildFilters();
     }
 
     if(data.playerID != null) {
@@ -1092,7 +1092,7 @@ function OnGetDraftArray(table_name, key, data) {
         calculateFilters();
         calculateHeroFilters();
         updateHeroPreviewFilters();
-        updateRecommendedBuildFilters();
+        //updateRecommendedBuildFilters();
 
         // Show the button to show non-draft abilities
         $('#toggleShowDraftAblilities').visible = true;
@@ -1175,7 +1175,8 @@ function setupBuilderTabs() {
     });
 
     if (currentPhase == PHASE_SELECTION) {
-        showBuilderTab("pickingPhaseMainTab");
+        //showBuilderTab("pickingPhaseMainTab");
+        showBuilderTab('pickingPhaseSkillsTab');
     }
 
     // Show the main tab only
@@ -1419,7 +1420,7 @@ function buildHeroList() {
     // Update which heroes are taken
     showTakenHeroes();
     updateHeroPreviewFilters();
-    updateRecommendedBuildFilters();
+    //updateRecommendedBuildFilters();
 }
 
 // Build the flags list
@@ -2155,20 +2156,20 @@ function onHeroFilterPressed(filterName) {
 var firstBuildTabCall = true;
 function OnMainSelectionTabShown() {
     if(firstBuildTabCall) {
-        LoadBuilds();
+        //LoadBuilds();
 
         // Only do this once
         firstBuildTabCall = false;
     }
 }
 
-function LoadMoreBuilds() {
+/*function LoadMoreBuilds() {
     var cont = $pickingPhaseRecommendedBuildContainer();
     var cc = cont[0].GetChildCount();
     if (cc > 0) LoadBuilds(cont, cc - 1);
-}
+}*/
 
-function $pickingPhaseRecommendedBuildContainer() {
+/*function $pickingPhaseRecommendedBuildContainer() {
     var panel;
     $.Each($('#recommendedBuildContainerScrollWrapper').Children(), function(_panel) {
         if (_panel.BHasClass('selected')) {
@@ -2177,9 +2178,9 @@ function $pickingPhaseRecommendedBuildContainer() {
         }
     });
     return [panel, panel.id.replace('pickingPhaseRecommendedBuildContainer', '').toLowerCase()];
-}
+}*/
 
-function SelectBuildSortingOrder(order) {
+/*function SelectBuildSortingOrder(order) {
     var uOrder = order.charAt(0).toUpperCase() + order.slice(1);
     $.Each($('#buildSortingProperties').Children(), function(panel) {
         panel.SetHasClass('selected', panel.id === 'buildSortingProperty' + uOrder);
@@ -2191,25 +2192,25 @@ function SelectBuildSortingOrder(order) {
             LoadBuilds();
         }
     });
-}
+}*/
 
 // Adds a build to the main selection tab
-var recBuildCounter = 0;
+/*var recBuildCounter = 0;
 function addRecommendedBuild(rootPanel, build) {
     var buildCon = $.CreatePanel('Panel', rootPanel, 'recBuild_' + (++recBuildCounter));
     buildCon.BLoadLayout('file://{resources}/layout/custom_game/game_setup/recommended_build.xml', false, false);
     buildCon.balanceMode = $.GetContextPanel().balanceMode;
     buildCon.setBuildData(makeHeroSelectable, hookSkillInfo, makeSkillSelectable, build, constantBalancePointsValue);
     buildCon.updateFilters(getSkillFilterInfo, getHeroFilterInfo);
-}
+}*/
 
 // Updates the filters applied to recommended builds
-function updateRecommendedBuildFilters() {
+/*function updateRecommendedBuildFilters() {
     // Loop over all recommended builds
     $.Each($pickingPhaseRecommendedBuildContainer()[0].Children(), function(con) {
         con.updateFilters(getSkillFilterInfo, getHeroFilterInfo);
     })
-}
+}*/
 
 // Updates the filters applied to the hero preview
 function updateHeroPreviewFilters() {
@@ -4695,7 +4696,7 @@ function OnPhaseChanged(table_name, key, data) {
 
                 // Set main tab activated
                 if (!isTabSwitched){
-                    showBuilderTab('pickingPhaseMainTab');
+                    showBuilderTab('pickingPhaseSkillTab');
                     isTabSwitched = true;
                 }
 
@@ -4933,7 +4934,7 @@ function OnOptionChanged(table_name, key, data) {
         case 'lodOptionAdvancedUniqueSkills':
             calculateFilters();
             updateHeroPreviewFilters();
-            updateRecommendedBuildFilters();
+            //updateRecommendedBuildFilters();
             $('#mainSelectionRoot').SetHasClass('unique_skills_mode', optionValueList['lodOptionAdvancedUniqueSkills'] > 0);
             break;
 
@@ -5141,7 +5142,7 @@ function onAllowedCategoriesChanged() {
     // Update the filters
     calculateFilters();
     updateHeroPreviewFilters();
-    updateRecommendedBuildFilters();
+    //updateRecommendedBuildFilters();
 }
 
 function onBalanceModeChanged() {
@@ -5786,7 +5787,7 @@ function getAbilityGlobalPickPopularity(ability) {
 
     // Update filters
     GameEvents.Subscribe('updateFilters', function(data) {
-        updateRecommendedBuildFilters();
+        //updateRecommendedBuildFilters();
         calculateFilters();
     });
 
@@ -5805,12 +5806,12 @@ function getAbilityGlobalPickPopularity(ability) {
        trollCombos[ab2][ab1] = true;
     });
 
-    GameEvents.Subscribe('lodReloadBuilds', function() {
+    /*GameEvents.Subscribe('lodReloadBuilds', function() {
         $.Each($('#recommendedBuildContainerScrollWrapper').Children(), function(p) {
             p.RemoveAndDeleteChildren();
         });
         LoadBuilds();
-    });
+    });*/
 
     GameEvents.Subscribe('lodConnectAbilityUsageData', function(data) {
         AbilityUsageData = data;

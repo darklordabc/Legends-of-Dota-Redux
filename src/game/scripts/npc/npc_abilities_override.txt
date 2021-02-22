@@ -316,7 +316,7 @@
             //-------------------------------------------------------------------------------------------------------------
             "ID"                            "5491"                                                      // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
             "MaxLevel"              "4"
-            "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"     
+            "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"     
             "ReduxFlags"    "mana"
             // Special
             //-------------------------------------------------------------------------------------------------------------
@@ -330,7 +330,7 @@
                 "02"
                 {
                     "var_type"              "FIELD_INTEGER"
-                    "radius"                "900"
+                    "radius"                "1200"
                 }
             }
         }
@@ -4010,6 +4010,25 @@
         {
             "ReduxFlags"                                                           ""
         }
+        
+        "hoodwink_acorn_shot"
+        {
+            "ReduxFlags"                                                           "stun"
+        }
+        "hoodwink_bushwhack"
+        {
+            "ReduxFlags"                                                           "stun"
+            "ReduxPerks"                                                           "enemyMoving"
+        }
+        "hoodwink_scurry"
+        {
+            "ReduxFlags"                                                           "mobility"
+            "ReduxPerks"                                                           "mobility"
+        }
+        "hoodwink_sharpshooter"
+        {
+            "ReduxPerks"                                                           "channeled | skillshot"
+        }
 
         "special_bonus_unique_undying"
         {
@@ -4042,6 +4061,7 @@
             "TalentRequiredAbility"                                                   "mars_gods_rebuke"
         }
 
+        // Axe
         "special_bonus_unique_axe"
         {
             "TalentRequiredAbility"                                                   "axe_battle_hunger"
@@ -4054,7 +4074,20 @@
         {
             "TalentRequiredAbility"                                                   "axe_counter_helix"
         }
- 
+        "special_bonus_unique_axe_4"
+        {
+            "TalentRequiredAbility"                                                   "axe_counter_helix"
+        }
+        "special_bonus_unique_axe_5"
+        {
+            "TalentRequiredAbility"                                                   "axe_culling_blade"
+        }
+        "special_bonus_unique_axe_6"
+        {
+            "TalentRequiredAbility"                                                   "axe_berserkers_call"
+        }
+        
+        // Beastmaster
         "special_bonus_unique_beastmaster"
         {
             "TalentRequiredAbility"                                                   "beastmaster_wild_axes"
@@ -4071,6 +4104,20 @@
         {
             "TalentRequiredAbility"                                                   "beastmaster_inner_beast"
         }
+        "special_bonus_unique_beastmaster_5"
+        {
+            "TalentRequiredAbility"                                                   "beastmaster_call_of_the_wild_hawk"
+        }
+        "special_bonus_unique_beastmaster_6"
+        {
+            "TalentRequiredAbility"                                                   "beastmaster_inner_beast"
+        }
+
+        // Brewmaster
+        "special_bonus_unique_brewmaster"
+        {
+            "TalentRequiredAbility"                                                   "brewmaster_primal_split"
+        }
         "special_bonus_unique_brewmaster_2"
         {
             "TalentRequiredAbility"                                                   "brewmaster_primal_split"
@@ -4083,10 +4130,16 @@
         {
             "TalentRequiredAbility"                                                   "brewmaster_drunken_brawler"
         }
-        "special_bonus_unique_brewmaster"
+        "special_bonus_unique_brewmaster_5"
+        {
+            "TalentRequiredAbility"                                                   "brewmaster_cinder_brew"
+        }
+        "special_bonus_unique_brewmaster_6"
         {
             "TalentRequiredAbility"                                                   "brewmaster_primal_split"
         }
+
+        // Bristleback
         "special_bonus_unique_bristleback"
         {
             "TalentRequiredAbility"                                                   "bristleback_viscous_nasal_goo"
@@ -4099,6 +4152,12 @@
         {
             "TalentRequiredAbility"                                                   "bristleback_warpath"
         }
+        "special_bonus_unique_bristleback_4"
+        {
+            "TalentRequiredAbility"                                                   "bristleback_viscous_nasal_goo"
+        }
+
+        // Centaur
         "special_bonus_unique_centaur_1"
         {
             "TalentRequiredAbility"                                                   "centaur_return"
@@ -4115,6 +4174,20 @@
         {
             "TalentRequiredAbility"                                                   "centaur_double_edge"
         }
+        "special_bonus_unique_centaur_5"
+        {
+            "TalentRequiredAbility"                                                   "centaur_stampede"
+        }
+        "special_bonus_unique_centaur_6"
+        {
+            "TalentRequiredAbility"                                                   "centaur_stampede"
+        }
+        "special_bonus_unique_centaur_7"
+        {
+            "TalentRequiredAbility"                                                   "centaur_stampede"
+        }
+
+        // Chaos Knight
         "special_bonus_unique_chaos_knight"
         {
             "TalentRequiredAbility"                                                   "chaos_knight_reality_rift"
@@ -4127,6 +4200,16 @@
         {
             "TalentRequiredAbility"                                                   "chaos_knight_chaos_bolt"
         }
+        "special_bonus_unique_chaos_knight_4"
+        {
+            "TalentRequiredAbility"                                                   "chaos_knight_phantasm"
+        }
+        "special_bonus_unique_chaos_knight_5"
+        {
+            "TalentRequiredAbility"                                                   "chaos_knight_chaos_strike"
+        }
+
+        // Dragon Knight
         "special_bonus_unique_dragon_knight"
         {
             "TalentRequiredAbility"                                                   "dragon_knight_dragon_blood"
@@ -4139,119 +4222,160 @@
         {
             "TalentRequiredAbility"                                                   "dragon_knight_breathe_fire"
         }
+        "special_bonus_unique_dragon_knight_4"
+        {
+            "TalentRequiredAbility"                                                   "dragon_knight_dragon_blood"
+        }
+        "special_bonus_unique_dragon_knight_5"
+        {
+            "TalentRequiredAbility"                                                   "dragon_knight_elder_dragon_form"
+        }
+        "special_bonus_unique_dragon_knight_6"
+        {
+            "TalentRequiredAbility"                                                   "dragon_knight_elder_dragon_form"
+        }
+
+        // Earth Spirit
         "special_bonus_unique_earth_spirit"
         {
             "TalentRequiredAbility"                                                   "earth_spirit_rolling_boulder"
         }
-        "special_bonus_unique_earth_spirit_2"
+        //"special_bonus_unique_earth_spirit_2"
+        //{
+        //    "TalentRequiredAbility"                                                   "earth_spirit_geomagnetic_grip"
+        //}
+        "special_bonus_unique_earth_spirit_3"
+        {
+            "TalentRequiredAbility"                                                   "earth_spirit_rolling_boulder"
+        }
+        "special_bonus_unique_earth_spirit_4"
+        {
+            "TalentRequiredAbility"                                                   "earth_spirit_rolling_boulder"
+        }
+        "special_bonus_unique_earth_spirit_5"
         {
             "TalentRequiredAbility"                                                   "earth_spirit_geomagnetic_grip"
         }
-        "special_bonus_unique_earth_spirit_3"
-        {
-            "TalentRequiredAbility"                                                   "earth_spirit_boulder_smash"
-        }
 
+        // Earthshaker
         "special_bonus_unique_earthshaker"
         {
             "TalentRequiredAbility"                                                   "earthshaker_enchant_totem"
         }
-
         "special_bonus_unique_earthshaker_2"
         {
             "TalentRequiredAbility"                                                   "earthshaker_echo_slam"
         }
-        
         "special_bonus_unique_earthshaker_3"
         {
             "TalentRequiredAbility"                                                   "earthshaker_fissure"
         }
         
+        // Elder Titan
         "special_bonus_unique_elder_titan"
         {
             "TalentRequiredAbility"                                                   "elder_titan_ancestral_spirit"
         }
-
         "special_bonus_unique_elder_titan_2"
         {
             "TalentRequiredAbility"                                                   "elder_titan_echo_stomp"
         }
-
         "special_bonus_unique_elder_titan_3"
         {
             "TalentRequiredAbility"                                                   "elder_titan_earth_splitter"
         }
-
         "special_bonus_unique_elder_titan_4"
         {
             "TalentRequiredAbility"                                                   "elder_titan_echo_stomp"
         }
 
+        // Ember Spirit
         "special_bonus_unique_ember_spirit_1"
         {
             "TalentRequiredAbility"                                                   "ember_spirit_flame_guard"
         }
-
         "special_bonus_unique_ember_spirit_2"
         {
             "TalentRequiredAbility"                                                   "ember_spirit_searing_chains"
         }
-
         "special_bonus_unique_ember_spirit_3"
         {
             "TalentRequiredAbility"                                                   "ember_spirit_flame_guard"
         }
-
         "special_bonus_unique_ember_spirit_4"
         {
             "TalentRequiredAbility"                                                   "ember_spirit_sleight_of_fist"
         }
-
         "special_bonus_unique_ember_spirit_5"
         {
             "TalentRequiredAbility"                                                   "ember_spirit_fire_remnant"
         }
-        
+        "special_bonus_unique_ember_spirit_6"
+        {
+            "TalentRequiredAbility"                                                   "ember_spirit_sleight_of_fist"
+        }
+
+        // Enchantress
         "special_bonus_unique_enchantress_1"
         {
             "TalentRequiredAbility"                                                   "enchantress_enchant"
         }
-
         "special_bonus_unique_enchantress_2"
         {
             "TalentRequiredAbility"                                                   "enchantress_natures_attendants"
         }
-
         "special_bonus_unique_enchantress_3"
         {
             "TalentRequiredAbility"                                                   "enchantress_untouchable"
         }
-
         "special_bonus_unique_enchantress_4"
         {
             "TalentRequiredAbility"                                                   "enchantress_impetus"
         }
-
         "special_bonus_unique_enchantress_5"
         {
             "TalentRequiredAbility"                                                   "enchantress_natures_attendants"
         }
 
+        // Enigma
         "special_bonus_unique_enigma"
         {
             "TalentRequiredAbility"                                                   "enigma_demonic_conversion"
         }
-
         "special_bonus_unique_enigma_2"
         {
             "TalentRequiredAbility"                                                   "enigma_malefice"
         }
-
         "special_bonus_unique_enigma_3"
         {
             "TalentRequiredAbility"                                                   "enigma_demonic_conversion"
         }
+        "special_bonus_unique_enigma_4"
+        {
+            "TalentRequiredAbility"                                                   "enigma_demonic_conversion"
+        }
+        "special_bonus_unique_enigma_5"
+        {
+            "TalentRequiredAbility"                                                   "enigma_malefice"
+        }
+        "special_bonus_unique_enigma_6"
+        {
+            "TalentRequiredAbility"                                                   "enigma_malefice"
+        }
+        "special_bonus_unique_enigma_7"
+        {
+            "TalentRequiredAbility"                                                   "enigma_demonic_conversion"
+        }
+        "special_bonus_unique_enigma_8"
+        {
+            "TalentRequiredAbility"                                                   "enigma_midnight_pulse"
+        }
+        "special_bonus_unique_enigma_9"
+        {
+            "TalentRequiredAbility"                                                   "enigma_midnight_pulse"
+        }
 
+        // Faceless Void
         "special_bonus_unique_faceless_void"
         {
             "TalentRequiredAbility"                                                   "faceless_void_time_walk"
@@ -4273,7 +4397,7 @@
 
         "special_bonus_unique_faceless_void_4"
         {
-            "TalentRequiredAbility"                                                   "faceless_void_backtrack"
+            "TalentRequiredAbility"                                                   "special_bonus_inherent"
         }
 
         "special_bonus_unique_faceless_void_5"
@@ -4281,46 +4405,55 @@
             "TalentRequiredAbility"                                                   "faceless_void_time_walk"
         }
 
+        // Furion
         "special_bonus_unique_furion"
         {
             "TalentRequiredAbility"                                                   "furion_force_of_nature"
         }
-
         "special_bonus_unique_furion_2"
         {
             "TalentRequiredAbility"                                                   "furion_force_of_nature"
         }
-
         "special_bonus_unique_furion_3"
         {
             "TalentRequiredAbility"                                                   "furion_teleportation"
         }
+        "special_bonus_unique_furion_4"
+        {
+            "TalentRequiredAbility"                                                   "furion_sprout"
+        }
+        "special_bonus_unique_furion_5"
+        {
+            "TalentRequiredAbility"                                                   "furion_wrath_of_nature"
+        }
 
+        // Gyrocopter
         "special_bonus_unique_gyrocopter_1"
         {
             "TalentRequiredAbility"                                                   "gyrocopter_homing_missile"
         }
-
+        "special_bonus_unique_gyrocopter_2"
+        {
+            "TalentRequiredAbility"                                                   "gyrocopter_flak_cannon"
+        }
         "special_bonus_unique_gyrocopter_3"
         {
             "TalentRequiredAbility"                                                   "gyrocopter_rocket_barrage"
         }
-
         "special_bonus_unique_gyrocopter_4"
         {
             "TalentRequiredAbility"                                                   "gyrocopter_call_down"
         }
-
         "special_bonus_unique_gyrocopter_5"
         {
             "TalentRequiredAbility"                                                   "gyrocopter_call_down"
         }
-
         "special_bonus_unique_gyrocopter_6"
         {
             "TalentRequiredAbility"                                                   "gyrocopter_homing_missile"
         }
 
+        // Huskar
         "special_bonus_unique_huskar"
         {
             "TalentRequiredAbility" 
@@ -4334,11 +4467,27 @@
         {
             "TalentRequiredAbility"                                                   "huskar_burning_spear"
         }
-
+        "special_bonus_unique_huskar_3"
+        {
+            "TalentRequiredAbility" 												  "huskar_inner_fire"
+        }
+        "special_bonus_unique_huskar_4"
+        {
+            "TalentRequiredAbility"                                                   "huskar_berserkers_blood"
+        }
         "special_bonus_unique_huskar_5"
         {
-            "TalentRequiredAbility" 												  "huskar_burning_spear"
+            "TalentRequiredAbility"                                                   "huskar_burning_spear"
         }
+        "special_bonus_unique_huskar_6"
+        {
+            "TalentRequiredAbility"                                                   "huskar_berserkers_blood"
+        }
+        "special_bonus_unique_huskar_5"
+        {
+            "TalentRequiredAbility"                                                   "huskar_life_break"
+        }
+
 
         "special_bonus_unique_invoker_1"
         {
@@ -4370,35 +4519,62 @@
             "TalentRequiredAbility"                                                   "invoker_chaos_meteor_lod"
         }
 
-        "special_bonus_unique_invoker_9"
+        "special_bonus_unique_invoker_7"
         {
             "TalentRequiredAbility"                                                   "invoker_cold_snap_lod"
         }
 
+        "special_bonus_unique_invoker_8"
+        {
+            "TalentRequiredAbility"                                                   "invoker_tornado_lod"
+        }
+        "special_bonus_unique_invoker_9"
+        {
+            "TalentRequiredAbility"                                                   "invoker_cold_snap_lod"
+        }
         "special_bonus_unique_invoker_10"
         {
             "TalentRequiredAbility"                                                   "invoker_ghost_walk_lod"
         }
+        "special_bonus_unique_invoker_11"
+        {
+            "TalentRequiredAbility"                                                   "invoker_forge_spirit_lod"
+        }
+        "special_bonus_unique_invoker_12"
+        {
+            "TalentRequiredAbility"                                                   "invoker_ice_wall_lod"
+        }
+
 
         "special_bonus_unique_jakiro"
         {
             "TalentRequiredAbility"                                                   "jakiro_ice_path"
         }
-
         "special_bonus_unique_jakiro_2"
         {
             "TalentRequiredAbility"                                                   "jakiro_dual_breath"
         }
-
         "special_bonus_unique_jakiro_3"
         {
             "TalentRequiredAbility"                                                   "jakiro_macropyre"
         }
-
         "special_bonus_unique_jakiro_4"
         {
             "TalentRequiredAbility"                                                   "jakiro_liquid_fire"
         }
+        "special_bonus_unique_jakiro_5"
+        {
+            "TalentRequiredAbility"                                                   "jakiro_dual_breath"
+        }
+        "special_bonus_unique_jakiro_6"
+        {
+            "TalentRequiredAbility"                                                   "jakiro_ice_path"
+        }
+        "special_bonus_unique_jakiro_7"
+        {
+            "TalentRequiredAbility"                                                   "jakiro_macropyre"
+        }
+
 
         "special_bonus_unique_juggernaut"
         {
@@ -4420,6 +4596,11 @@
             "TalentRequiredAbility"                                                   "juggernaut_blade_fury"
         }
 
+        "special_bonus_unique_juggernaut_5"
+        {
+            "TalentRequiredAbility"                                                   "juggernaut_healing_ward"
+        }
+
         "special_bonus_unique_keeper_of_the_light"
         {
             "TalentRequiredAbility"                                                   "keeper_of_the_light_illuminate"
@@ -4439,6 +4620,38 @@
         {
             "TalentRequiredAbility"                                                   "keeper_of_the_light_will_o_wisp"
         }
+        "special_bonus_unique_keeper_of_the_light_5"
+        {
+            "TalentRequiredAbility"                                                   "keeper_of_the_light_blinding_light"
+        }
+
+        "special_bonus_unique_keeper_of_the_light_6"
+        {
+            "TalentRequiredAbility"                                                   "keeper_of_the_light_will_o_wisp"
+        }
+
+        "special_bonus_unique_keeper_of_the_light_7"
+        {
+            "TalentRequiredAbility"                                                   "keeper_of_the_light_chakra_magic"
+        }
+        "special_bonus_unique_keeper_of_the_light_8"
+        {
+            "TalentRequiredAbility"                                                   "keeper_of_the_light_blinding_light"
+        }
+
+        "special_bonus_unique_keeper_of_the_light_9"
+        {
+            "TalentRequiredAbility"                                                   "keeper_of_the_light_illuminate"
+        }
+
+        "special_bonus_unique_keeper_of_the_light_10"
+        {
+            "TalentRequiredAbility"                                                   "keeper_of_the_light_blinding_light"
+        }
+        "special_bonus_unique_keeper_of_the_light_11"
+        {
+            "TalentRequiredAbility"                                                   "keeper_of_the_light_spirit_form"
+        }
 
         "special_bonus_unique_kunkka"
         {
@@ -4456,6 +4669,10 @@
         }
 
         "special_bonus_unique_kunkka_4"
+        {
+            "TalentRequiredAbility"                                                   "kunkka_tidebringer"
+        }
+        "special_bonus_unique_kunkka_5"
         {
             "TalentRequiredAbility"                                                   "kunkka_tidebringer"
         }
@@ -4484,6 +4701,10 @@
         {
             "TalentRequiredAbility"                                                   "legion_commander_press_the_attack"
         }
+        "special_bonus_unique_legion_commander_6"
+        {
+            "TalentRequiredAbility"                                                   "legion_commander_overwhelming_odds"
+        }
 
         "special_bonus_unique_leshrac_1"
         {
@@ -4500,25 +4721,51 @@
             "TalentRequiredAbility"                                                   "leshrac_pulse_nova_redux"
         }
 
+        "special_bonus_unique_leshrac_4"
+        {
+            "TalentRequiredAbility"                                                   "leshrac_diabolic_edict"
+        }
+
+        "special_bonus_unique_leshrac_5"
+        {
+            "TalentRequiredAbility"                                                   "leshrac_split_earth"
+        }
+
+        "special_bonus_unique_leshrac_6"
+        {
+            "TalentRequiredAbility"                                                   "leshrac_lightning_storm"
+        }
+
         "special_bonus_unique_lich_1"
         {
             "TalentRequiredAbility"                                                   "lich_frost_shield"
         }
-
         //"special_bonus_unique_lich_2"
         //{
         //    "TalentRequiredAbility"                                                   "lich_frost_armor"
         //}
-
         "special_bonus_unique_lich_3"
         {
             "TalentRequiredAbility"                                                   "lich_frost_nova"
         }
-
         "special_bonus_unique_lich_4"
         {
             "TalentRequiredAbility"                                                   "lich_frost_shield"
         }
+        "special_bonus_unique_lich_3"
+        {
+            "TalentRequiredAbility"                                                   "lich_chain_frost"
+        }
+        "special_bonus_unique_lich_4"
+        {
+            "TalentRequiredAbility"                                                   "lich_frost_nova"
+        }
+        "special_bonus_unique_lich_3"
+        {
+            "TalentRequiredAbility"                                                   "lich_chain_frost"
+        }
+
+
 
         "special_bonus_unique_lifestealer"
         {
@@ -4534,18 +4781,34 @@
         {
             "TalentRequiredAbility"                                                   "life_stealer_feast"
         }
+        "special_bonus_unique_lifestealer_4"
+        {
+            "TalentRequiredAbility"                                                   "life_stealer_rage"
+        }
+
+        "special_bonus_unique_lifestealer_5"
+        {
+            "TalentRequiredAbility"                                                   "life_stealer_open_wounds"
+        }
+
+        "special_bonus_unique_lifestealer_6"
+        {
+            "TalentRequiredAbility"                                                   "life_stealer_ghoul_frenzy"
+        }
 
         "special_bonus_unique_lina_1"
         {
             "TalentRequiredAbility"                                                   "lina_dragon_slave"
         }
-
         "special_bonus_unique_lina_2"
         {
             "TalentRequiredAbility"                                                   "lina_fiery_soul"
         }
-
         "special_bonus_unique_lina_3"
+        {
+            "TalentRequiredAbility"                                                   "lina_light_strike_array"
+        }
+        "special_bonus_unique_lina_4"
         {
             "TalentRequiredAbility"                                                   "lina_light_strike_array"
         }
@@ -4569,38 +4832,61 @@
         {
             "TalentRequiredAbility"                                                   "lion_voodoo"
         }
+        "special_bonus_unique_lion_5"
+        {
+            "TalentRequiredAbility"                                                   "lion_mana_drain"
+        }
 
+        "special_bonus_unique_lion_6"
+        {
+            "TalentRequiredAbility"                                                   "lion_mana_drain"
+        }
+
+        "special_bonus_unique_lion_7"
+        {
+            "TalentRequiredAbility"                                                   "lion_impale"
+        }
+
+        "special_bonus_unique_lion_8"
+        {
+            "TalentRequiredAbility"                                                   "lion_finger_of_death"
+        }
+
+        "special_bonus_unique_lone_druid_1"
+        {
+            "TalentRequiredAbility"                                                   "lone_druid_spirit_bear"
+        }
 
         "special_bonus_unique_lone_druid_2"
         {
             "TalentRequiredAbility"                                                   "lone_druid_spirit_bear"
         }
 
-        // These two entangle talents do not work, they are supposed to be on bear. 
         "special_bonus_unique_lone_druid_3"
         {
-           "TalentRequiredAbility"                                                   "do_not_give_talent"
+           "TalentRequiredAbility"                                                   "lone_druid_true_form"
         }
-
-        "special_bonus_unique_lone_druid_9"
-        {
-            "TalentRequiredAbility"                                                   "do_not_give_talent"
-        }
-        // end of broken entangle talents
 
         "special_bonus_unique_lone_druid_4"
         {
             "TalentRequiredAbility"                                                   "lone_druid_savage_roar"
         }
-
+        "special_bonus_unique_lone_druid_5"
+        {
+            "TalentRequiredAbility"                                                   "lone_druid_spirit_bear"
+        }
+        "special_bonus_unique_lone_druid_6"
+        {
+            "TalentRequiredAbility"                                                   "lone_druid_spirit_link"
+        }
         "special_bonus_unique_lone_druid_7"
         {
-            "TalentRequiredAbility"                                                   "lone_druid_true_form_battle_cry"
+            "TalentRequiredAbility"                                                   "lone_druid_true_form"
         }
 
         "special_bonus_unique_lone_druid_8"
         {
-            "TalentRequiredAbility"                                                   "lone_druid_true_form_battle_cry"
+            "TalentRequiredAbility"                                                   "lone_druid_true_form"
         }
 
         "special_bonus_unique_lone_druid_9"
@@ -4658,6 +4944,15 @@
             "TalentRequiredAbility"                                                   "lycan_shapeshift"
         }
 
+        "special_bonus_unique_lycan_6"
+        {
+            "TalentRequiredAbility"                                                   "lycan_shapeshift"
+        }
+
+        "special_bonus_unique_magnus"
+        {
+            "TalentRequiredAbility"                                                   "magnataur_shockwave"
+        }
 
         "special_bonus_unique_magnus_2"
         {
@@ -4678,12 +4973,23 @@
         {
             "TalentRequiredAbility"                                                   "magnataur_reverse_polarity"
         }
+        "special_bonus_unique_magnus_6"
+        {
+            "TalentRequiredAbility"                                                   "magnataur_shockwave"
+        }
 
+        "special_bonus_unique_magnus_7"
+        {
+            "TalentRequiredAbility"                                                   "magnataur_skewer"
+        }
         "special_bonus_unique_medusa"
         {
             "TalentRequiredAbility"                                                   "medusa_stone_gaze"
         }
-
+        "special_bonus_unique_medusa_2"
+        {
+            "TalentRequiredAbility"                                                   "medusa_split_shot"
+        }
         "special_bonus_unique_medusa_3"
         {
             "TalentRequiredAbility"                                                   "medusa_mystic_snake"
@@ -4712,7 +5018,19 @@
         {
             "TalentRequiredAbility"                                                   "meepo_earthbind"
         }
+        "special_bonus_unique_meepo_4"
+        {
+            "TalentRequiredAbility"                                                   "meepo_earthbind"
+        }
 
+        "special_bonus_unique_meepo_5"
+        {
+            "TalentRequiredAbility"                                                   "meepo_divided_we_stand"
+        }
+        "special_bonus_unique_meepo_6"
+        {
+            "TalentRequiredAbility"                                                   "meepo_ransack"
+        }
         "special_bonus_unique_mirana_1"
         {
             "TalentRequiredAbility"                                                   "mirana_leap"
@@ -4732,6 +5050,10 @@
         {
             "TalentRequiredAbility"                                                   "mirana_invis"
         }
+        "special_bonus_unique_mirana_5"
+        {
+            "TalentRequiredAbility"                                                   "mirana_invis"
+        }
 
         "special_bonus_unique_monkey_king"
         {
@@ -4745,7 +5067,7 @@
 
         "special_bonus_unique_monkey_king_3"
         {
-            "TalentRequiredAbility"                                                   "monkey_king_primal_spring"
+            "TalentRequiredAbility"                                                   "monkey_king_tree_dance"
         }
 
         "special_bonus_unique_monkey_king_4"
@@ -4772,7 +5094,10 @@
         {
             "TalentRequiredAbility"                                                   "morphling_waveform"
         }
-
+        "special_bonus_unique_morphling_2"
+        {
+            "TalentRequiredAbility"                                                   "morphling_replicate"
+        }
         "special_bonus_unique_morphling_3"
         {
             "TalentRequiredAbility"                                                   "morphling_adaptive_strike_agi"
@@ -4793,12 +5118,15 @@
         {
             "TalentRequiredAbility"                                                   "morphling_waveform"
         }
-
+        "special_bonus_unique_morphling_7"
+        {
+            "TalentRequiredAbility"                                                   "morphling_adaptive_strike_agi"
+        }
         "special_bonus_unique_morphling_8"
         {
             "TalentRequiredAbility"                                                   "morphling_replicate"
         }
-
+////////
         "special_bonus_unique_naga_siren"
         {
             "TalentRequiredAbility"                                                   "naga_siren_mirror_image"
@@ -4817,6 +5145,11 @@
         "special_bonus_unique_naga_siren_4"
         {
             "TalentRequiredAbility"                                                   "naga_siren_mirror_image"
+        }
+
+        "special_bonus_unique_naga_siren_5"
+        {
+            "TalentRequiredAbility"                                                   "naga_siren_song_of_the_siren"
         }
 
         "special_bonus_unique_necrophos"
@@ -4839,6 +5172,11 @@
             "TalentRequiredAbility"                                                   "necrolyte_death_pulse"
         }
 
+        "special_bonus_unique_necrophos_5"
+        {
+            "TalentRequiredAbility"                                                   "necrolyte_heartstopper_aura"
+        }
+
         "special_bonus_unique_nevermore_1"
         {
             "TalentRequiredAbility"                                                   "nevermore_necromastery"
@@ -4859,6 +5197,11 @@
             "TalentRequiredAbility"                                                   "nevermore_dark_lord"
         }
 
+        "special_bonus_unique_nevermore_4"
+        {
+            "TalentRequiredAbility"                                                   "nevermore_necromastery"
+        }
+
         "special_bonus_unique_nevermore_5"
         {
             "TalentRequiredAbility"                                                   "nevermore_dark_lord"
@@ -4866,7 +5209,7 @@
 
         "special_bonus_unique_night_stalker"
         {
-            "TalentRequiredAbility"                                                   "night_stalker_crippling_fear"
+            "TalentRequiredAbility"                                                   "night_stalker_darkness"
         }
 
         "special_bonus_unique_night_stalker_2"
@@ -4874,6 +5217,20 @@
             "TalentRequiredAbility"                                                   "night_stalker_hunter_in_the_night"
         }
 
+        "special_bonus_unique_night_stalker_3"
+        {
+            "TalentRequiredAbility"                                                   "night_stalker_void"
+        }
+
+        "special_bonus_unique_night_stalker_4"
+        {
+            "TalentRequiredAbility"                                                   "night_stalker_hunter_void"
+        }
+
+        "special_bonus_unique_night_stalker_5"
+        {
+            "TalentRequiredAbility"                                                   "night_stalker_hunter_in_the_night"
+        }
 
         "special_bonus_unique_nyx"
         {
@@ -4890,6 +5247,11 @@
             "TalentRequiredAbility"                                                   "nyx_assassin_vendetta"
         }
 
+        "special_bonus_unique_nyx_4"
+        {
+            "TalentRequiredAbility"                                                   "nyx_assassin_impale"
+        }
+
         "special_bonus_unique_ogre_magi"
         {
             "TalentRequiredAbility"                                                   "ogre_magi_bloodlust"
@@ -4899,7 +5261,15 @@
         {
             "TalentRequiredAbility"                                                   "ogre_magi_fireblast"
         }
+        "special_bonus_unique_ogre_magi_3"
+        {
+            "TalentRequiredAbility"                                                   "ogre_magi_multicast"
+        }
 
+        "special_bonus_unique_ogre_magi_4"
+        {
+            "TalentRequiredAbility"                                                   "ogre_magi_ignite"
+        }
 
         "special_bonus_unique_omniknight_1"
         {
@@ -4920,7 +5290,20 @@
         {
             "TalentRequiredAbility"                                                   "omniknight_purification"
         }
+        "special_bonus_unique_omniknight_5"
+        {
+            "TalentRequiredAbility"                                                   "omniknight_repel"
+        }
 
+        "special_bonus_unique_omniknight_6"
+        {
+            "TalentRequiredAbility"                                                   "omniknight_repel"
+        }
+
+        "special_bonus_unique_omniknight_7"
+        {
+            "TalentRequiredAbility"                                                   "omniknight_guardian_angel"
+        }
         "special_bonus_unique_oracle"
         {
             "TalentRequiredAbility"                                                   "oracle_false_promise"
@@ -4940,7 +5323,25 @@
         {
             "TalentRequiredAbility"                                                   "oracle_false_promise"
         }
+        "special_bonus_unique_oracle_5"
+        {
+            "TalentRequiredAbility"                                                   "oracle_purifying_flames"
+        }
 
+        "special_bonus_unique_oracle_6"
+        {
+            "TalentRequiredAbility"                                                   "oracle_false_promise"
+        }
+
+        "special_bonus_unique_oracle_7"
+        {
+            "TalentRequiredAbility"                                                   "oracle_fortunes_end"
+        }
+
+        "special_bonus_unique_oracle_8"
+        {
+            "TalentRequiredAbility"                                                   "oracle_purifying_flames"
+        }
         "special_bonus_unique_outworld_devourer"
         {
             "TalentRequiredAbility"                                                   "obsidian_destroyer_arcane_orb"
@@ -4948,12 +5349,12 @@
 
         "special_bonus_unique_outworld_devourer_2"
         {
-            "TalentRequiredAbility"                                                   "do_not_give_talent"
+            "TalentRequiredAbility"                                                   "obsidian_destroyer_essence_aura"
         }
 
         "special_bonus_unique_outworld_devourer_3"
         {
-            "TalentRequiredAbility"                                                   "do_not_give_talent"
+            "TalentRequiredAbility"                                                   "obsidian_destroyer_astral_imprisonment"
         }
 
         "special_bonus_unique_outworld_devourer_4"
@@ -4975,11 +5376,33 @@
         {
             "TalentRequiredAbility"                                                   "phantom_assassin_blur"
         }
+        "special_bonus_unique_phantom_assassin_4"
+        {
+            "TalentRequiredAbility"                                                   "phantom_assassin_coup_de_grace"
+        }
 
+        "special_bonus_unique_phantom_assassin_5"
+        {
+            "TalentRequiredAbility"                                                   "phantom_assassin_stifling_dagger"
+        }
+
+        "special_bonus_unique_phantom_assassin_6"
+        {
+            "TalentRequiredAbility"                                                   "phantom_assassin_phantom_strike"
+        }
+        "special_bonus_unique_phantom_assassin_7"
+        {
+            "TalentRequiredAbility"                                                   "phantom_assassin_stifling_dagger"
+        }
+
+        "special_bonus_unique_phantom_assassin_8"
+        {
+            "TalentRequiredAbility"                                                   "phantom_assassin_stifling_dagger"
+        }
 
         "special_bonus_unique_phantom_lancer"
         {
-            "TalentRequiredAbility"                                                   "phantom_lancer_doppelwalk"
+            "TalentRequiredAbility"                                                   "phantom_lancer_phantom_edge"
         }
 
         "special_bonus_unique_phantom_lancer_2"
@@ -4996,7 +5419,20 @@
         {
             "TalentRequiredAbility"                                                   "phantom_lancer_doppelwalk"
         }
+        "special_bonus_unique_phantom_lancer_5"
+        {
+            "TalentRequiredAbility"                                                   "phantom_lancer_spirit_lance"
+        }
 
+        "special_bonus_unique_phantom_lancer_6"
+        {
+            "TalentRequiredAbility"                                                   "phantom_lancer_juxtapose"
+        }
+
+        "special_bonus_unique_phantom_lancer_7"
+        {
+            "TalentRequiredAbility"                                                   "phantom_lancer_spirit_lance"
+        }
         "special_bonus_unique_phoenix_1"
         {
             "TalentRequiredAbility"                                                   "phoenix_supernova"
@@ -5021,7 +5457,19 @@
         {
             "TalentRequiredAbility"                                                   "phoenix_sun_ray"
         }
+        "special_bonus_unique_phoenix_6"
+        {
+            "TalentRequiredAbility"                                                   "phoenix_icarus_dive"
+        }
 
+        "special_bonus_unique_phoenix_7"
+        {
+            "TalentRequiredAbility" 
+            {
+                "1" "phoenix_sun_ray"
+                "2" "phoenix_supernova"
+            }
+        }
         "special_bonus_unique_puck"
         {
             "TalentRequiredAbility"                                                   "puck_illusory_orb"
@@ -5036,7 +5484,20 @@
         {
             "TalentRequiredAbility"                                                   "puck_dream_coil"
         }
+        "special_bonus_unique_puck_4"
+        {
+            "TalentRequiredAbility"                                                   "puck_waning_rift"
+        }
 
+        "special_bonus_unique_puck_5"
+        {
+            "TalentRequiredAbility"                                                   "puck_phase_shift"
+        }
+
+        "special_bonus_unique_puck_6"
+        {
+            "TalentRequiredAbility"                                                   "puck_waning_rift"
+        }
         "special_bonus_unique_pudge_1"
         {
             "TalentRequiredAbility"                                                   "pudge_flesh_heap"
@@ -5056,7 +5517,20 @@
         {
             "TalentRequiredAbility"                                                   "pudge_rot"
         }
+        "special_bonus_unique_pudge_5"
+        {
+            "TalentRequiredAbility"                                                   "pudge_meat_hook"
+        }
 
+        "special_bonus_unique_pudge_6"
+        {
+            "TalentRequiredAbility"                                                   "pudge_dismember"
+        }
+
+        "special_bonus_unique_pudge_7"
+        {
+            "TalentRequiredAbility"                                                   "pudge_meat_hook"
+        }
         "special_bonus_unique_pugna_1"
         {
             "TalentRequiredAbility"                                                   "pugna_life_drain"
@@ -5096,6 +5570,19 @@
         {
             "TalentRequiredAbility"                                                   "queenofpain_scream_of_pain"
         }
+        "special_bonus_unique_queen_of_pain_3"
+        {
+            "TalentRequiredAbility"                                                   "queenofpain_sonic_wave"
+        }
+
+        "special_bonus_unique_queen_of_pain_4"
+        {
+            "TalentRequiredAbility"                                                   "queenofpain_sonic_wave"
+        }
+        "special_bonus_unique_queen_of_pain_5"
+        {
+            "TalentRequiredAbility"                                                   "queenofpain_sonic_wave"
+        }
 
         "special_bonus_unique_razor"
         {
@@ -5114,9 +5601,17 @@
 
         "special_bonus_unique_razor_4"
         {
+            "TalentRequiredAbility"                                                   "razor_eye_of_the_storm"
+        }
+        "special_bonus_unique_razor_5"
+        {
             "TalentRequiredAbility"                                                   "razor_unstable_current"
         }
 
+        "special_bonus_unique_razor_6"
+        {
+            "TalentRequiredAbility"                                                   "razor_eye_of_the_storm"
+        }
 
         "special_bonus_unique_riki_1"
         {
@@ -5140,9 +5635,17 @@
 
         "special_bonus_unique_riki_5"
         {
-            "TalentRequiredAbility"                                                   "riki_permanent_invisibility"
+            "TalentRequiredAbility"                                                   "riki_backstab_lod"
+        }
+        "special_bonus_unique_riki_6"
+        {
+            "TalentRequiredAbility"                                                   "riki_tricks_of_the_trade"
         }
 
+        "special_bonus_unique_riki_7"
+        {
+            "TalentRequiredAbility"                                                   "riki_smoke_screen"
+        }
         "special_bonus_unique_rubick"
         {
             "TalentRequiredAbility"                                                   "rubick_telekinesis"
@@ -5168,6 +5671,10 @@
             "TalentRequiredAbility"                                                   "rubick_spell_steal"
         }
 
+        "special_bonus_unique_rubick_6"
+        {
+            "TalentRequiredAbility"                                                   "rubick_fade_bolt"
+        }
 
 
         "special_bonus_unique_sand_king"
@@ -5190,6 +5697,26 @@
             "TalentRequiredAbility"                                                   "sandking_sand_storm"
         }
 
+        "special_bonus_unique_sand_king_5"
+        {
+            "TalentRequiredAbility"                                                   "sandking_epicenter"
+        }
+
+        "special_bonus_unique_sand_king_6"
+        {
+            "TalentRequiredAbility"                                                   "sandking_caustic_finale"
+        }
+
+        "special_bonus_unique_sand_king_7"
+        {
+            "TalentRequiredAbility"                                                   "sandking_burrowstrike"
+        }
+
+        "special_bonus_unique_dark_willow_1"
+        {
+            "TalentRequiredAbility"                                                   "dark_willow_shadow_realm"
+        }
+
         "special_bonus_unique_dark_willow_2"
         {
             "TalentRequiredAbility"                                                   "dark_willow_terrorize"
@@ -5199,7 +5726,20 @@
         {
             "TalentRequiredAbility"                                                   "dark_willow_bramble_maze"
         }
+        "special_bonus_unique_dark_willow_4"
+        {
+            "TalentRequiredAbility"                                                   "dark_willow_bedlam"
+        }
 
+        "special_bonus_unique_dark_willow_5"
+        {
+            "TalentRequiredAbility"                                                   "dark_willow_shadow_realm"
+        }
+
+        "special_bonus_unique_dark_willow_6"
+        {
+            "TalentRequiredAbility"                                                   "dark_willow_cursed_crown"
+        }
         "special_bonus_unique_pangolier_2"
         {
             "TalentRequiredAbility"                                                   "pangolier_shield_crash"
@@ -5252,6 +5792,11 @@
             "TalentRequiredAbility"                                                   "shadow_demon_shadow_poison"
         }
 
+        "special_bonus_unique_shadow_demon_5"
+        {
+            "TalentRequiredAbility"                                                   "shadow_demon_disruption"
+        }
+
         "special_bonus_unique_shadow_demon_6"
         {
             "TalentRequiredAbility"                                                   "shadow_demon_soul_catcher"
@@ -5260,6 +5805,11 @@
         "special_bonus_unique_shadow_demon_7"
         {
             "TalentRequiredAbility"                                                   "shadow_demon_disruption"
+        }
+
+        "special_bonus_unique_shadow_demon_8"
+        {
+            "TalentRequiredAbility"                                                   "shadow_demon_soul_catcher"
         }
 
         "special_bonus_unique_shadow_shaman_1"
@@ -5287,6 +5837,11 @@
             "TalentRequiredAbility"                                                   "shadow_shaman_voodoo"
         }
 
+        "special_bonus_unique_shadow_shaman_6"
+        {
+            "TalentRequiredAbility"                                                   "shadow_shaman_shackles"
+        }
+
         "special_bonus_unique_silencer"
         {
             "TalentRequiredAbility"                                                   "silencer_curse_of_the_silent"
@@ -5294,7 +5849,7 @@
 
         "special_bonus_unique_silencer_2"
         {
-            "TalentRequiredAbility"                                                   "silencer_glaives_of_wisdom_steal"
+            "TalentRequiredAbility"                                                   "silencer_glaives_of_wisdom"
         }
 
         "special_bonus_unique_silencer_3"
@@ -5306,7 +5861,20 @@
         {
             "TalentRequiredAbility"                                                   "silencer_global_silence"
         }
+        "special_bonus_unique_silencer_5"
+        {
+            "TalentRequiredAbility"                                                   "silencer_glaives_of_wisdom"
+        }
 
+        "special_bonus_unique_silencer_6"
+        {
+            "TalentRequiredAbility"                                                   "silencer_curse_of_the_silent"
+        }
+
+        "special_bonus_unique_silencer_7"
+        {
+            "TalentRequiredAbility"                                                   "silencer_curse_of_the_silent"
+        }
         "special_bonus_unique_skywrath"
         {
             "TalentRequiredAbility"                                                   "skywrath_mage_ancient_seal"
@@ -5332,6 +5900,21 @@
             "TalentRequiredAbility"                                                   "skywrath_mage_mystic_flare"
         }
 
+        "special_bonus_unique_skywrath_6"
+        {
+            "TalentRequiredAbility"                                                   "skywrath_mage_arcane_bolt"
+        }
+
+        "special_bonus_unique_skywrath_7"
+        {
+            "TalentRequiredAbility"                                                   "skywrath_mage_ancient_seal"
+        }
+
+        "special_bonus_unique_slardar"
+        {
+            "TalentRequiredAbility"                                                   "slardar_slithereen_crush"
+        }
+
         "special_bonus_unique_slardar_2"
         {
             "TalentRequiredAbility"                                                   "slardar_bash"
@@ -5343,6 +5926,16 @@
         }
 
         "special_bonus_unique_slardar_4"
+        {
+            "TalentRequiredAbility"                                                   "slardar_slithereen_crush"
+        }
+
+        "special_bonus_unique_slardar_5"
+        {
+            "TalentRequiredAbility"                                                   "slardar_amplify_damage"
+        }
+
+        "special_bonus_unique_slardar_6"
         {
             "TalentRequiredAbility"                                                   "slardar_slithereen_crush"
         }
@@ -5390,6 +5983,11 @@
         "special_bonus_unique_sniper_5"
         {
             "TalentRequiredAbility"                                                   "sniper_shrapnel"
+        }
+
+        "special_bonus_unique_sniper_6"
+        {
+            "TalentRequiredAbility"                                                   "sniper_take_aim"
         }
 
         "special_bonus_unique_spectre"
@@ -5445,6 +6043,11 @@
             "TalentRequiredAbility"                                                   "storm_spirit_electric_vortex"
         }
 
+        "special_bonus_unique_storm_spirit_2"
+        {
+            "TalentRequiredAbility"                                                   "storm_spirit_ball_lightning"
+        }
+
         "special_bonus_unique_storm_spirit_3"
         {
             "TalentRequiredAbility"                                                   "storm_spirit_overload"
@@ -5452,7 +6055,11 @@
 
         "special_bonus_unique_storm_spirit_4"
         {
-            "TalentRequiredAbility"                                                   "storm_spirit_static_remnant"
+            "TalentRequiredAbility" 
+            {
+                "1" "storm_spirit_ball_lightning"
+                "2" "storm_spirit_static_remnant"
+            }  
         }
 
         "special_bonus_unique_storm_spirit_5"
@@ -5461,6 +6068,11 @@
         }
 
         "special_bonus_unique_storm_spirit_6"
+        {
+            "TalentRequiredAbility"                                                   "storm_spirit_overload"
+        }
+
+        "special_bonus_unique_storm_spirit_7"
         {
             "TalentRequiredAbility"                                                   "storm_spirit_overload"
         }
@@ -5485,10 +6097,24 @@
             "TalentRequiredAbility"                                                   "sven_storm_bolt"
         }
 
+        "special_bonus_unique_sven_5"
+        {
+            "TalentRequiredAbility"                                                   "sven_warcry"
+        }
+
+        "special_bonus_unique_sven_6"
+        {
+            "TalentRequiredAbility"                                                   "sven_warcry"
+        }
 
         "special_bonus_unique_techies"
         {
             "TalentRequiredAbility"                                                   "techies_suicide"
+        }
+
+        "special_bonus_unique_techies_2"
+        {
+            "TalentRequiredAbility"                                                   "techies_minefield_sign"
         }
 
         "special_bonus_unique_techies_3"
@@ -5498,9 +6124,18 @@
 
         "special_bonus_unique_techies_4"
         {
-            "TalentRequiredAbility"                                                   "techies_land_mines"
+            "TalentRequiredAbility" 
+            {
+                "1" "techies_land_mines"
+                "2" "techies_stasis_trap"
+                "3" "techies_remote_mines"
+            }  
         }
 
+        "special_bonus_unique_techies_5"
+        {
+            "TalentRequiredAbility"                                                   "techies_suicide"
+        }
 
         "special_bonus_unique_templar_assassin"
         {
@@ -5520,6 +6155,16 @@
         "special_bonus_unique_templar_assassin_4"
         {
             "TalentRequiredAbility"                                                   "templar_assassin_meld"
+        }
+
+        "special_bonus_unique_templar_assassin_5"
+        {
+            "TalentRequiredAbility"                                                   "templar_assassin_psi_blades"
+        }
+
+        "special_bonus_unique_templar_assassin_6"
+        {
+            "TalentRequiredAbility"                                                   "templar_assassin_psionic_trap"
         }
 
         "special_bonus_unique_templar_assassin_7"
@@ -5542,6 +6187,16 @@
             "TalentRequiredAbility"                                                   "terrorblade_metamorphosis"
         }
 
+        "special_bonus_unique_terrorblade_4"
+        {
+            "TalentRequiredAbility"                                                   "terrorblade_reflection"
+        }
+
+        "special_bonus_unique_terrorblade_5"
+        {
+            "TalentRequiredAbility"                                                   "terrorblade_conjure_image"
+        }
+
         "special_bonus_unique_tidehunter"
         {
             "TalentRequiredAbility"                                                   "tidehunter_gush"
@@ -5560,6 +6215,11 @@
         "special_bonus_unique_tidehunter_4"
         {
             "TalentRequiredAbility"                                                   "tidehunter_kraken_shell"
+        }
+
+        "special_bonus_unique_tidehunter_5"
+        {
+            "TalentRequiredAbility"                                                   "tidehunter_anchor_smash"
         }
 
         "special_bonus_unique_timbersaw"
@@ -5592,6 +6252,16 @@
             "TalentRequiredAbility"                                                   "tinker_heat_seeking_missile"
         }
 
+        "special_bonus_unique_tinker_4"
+        {
+            "TalentRequiredAbility"                                                   "tinker_laser"
+        }
+
+        "special_bonus_unique_tinker_5"
+        {
+            "TalentRequiredAbility"                                                   "tinker_march_of_the_machines"
+        }
+
         "special_bonus_unique_tiny"
         {
             "TalentRequiredAbility"                                                   "tiny_avalanche"
@@ -5609,7 +6279,7 @@
 
         "special_bonus_unique_tiny_4"
         {
-            "TalentRequiredAbility"                                                   "tiny_craggy_exterior"
+            "TalentRequiredAbility"                                                   "tiny_tree_grab"
         }
 
         "special_bonus_unique_tiny_5"
@@ -5617,6 +6287,10 @@
             "TalentRequiredAbility"                                                   "tiny_toss"
         }
 
+        "special_bonus_unique_tiny_6"
+        {
+            "TalentRequiredAbility"                                                   "tiny_tree_grab"
+        }
 
         "special_bonus_unique_treant"
         {
@@ -5628,16 +6302,10 @@
             "TalentRequiredAbility"                                                   "treant_leech_seed"
         }
 		
-		"special_bonus_unique_treant_9"
+        "special_bonus_unique_treant_3"
         {
-            "TalentRequiredAbility"                                                   "treant_natures_grasp"
+           "TalentRequiredAbility"                                                   "special_bonus_inherent"
         }
-
-
-        //"special_bonus_unique_treant_3"
-        //{
-        //   "TalentRequiredAbility"                                                   ""
-        //}
 
         "special_bonus_unique_treant_4"
         {
@@ -5649,9 +6317,34 @@
             "TalentRequiredAbility"                                                   "treant_overgrowth"
         }
 
+        "special_bonus_unique_treant_6"
+        {
+            "TalentRequiredAbility"                                                   "treant_living_armor"
+        }
+
         "special_bonus_unique_treant_7"
         {
             "TalentRequiredAbility"                                                   "treant_living_armor"
+        }
+
+        "special_bonus_unique_treant_8"
+        {
+            "TalentRequiredAbility"                                                   "treant_living_armor"
+        }
+
+        "special_bonus_unique_treant_9"
+        {
+            "TalentRequiredAbility"                                                   "treant_natures_grasp"
+        }
+
+        "special_bonus_unique_treant_10"
+        {
+            "TalentRequiredAbility"                                                   "treant_bonus_inherent"
+        }
+
+        "special_bonus_unique_treant_11"
+        {
+            "TalentRequiredAbility"                                                   "treant_overgrowth"
         }
 
         "special_bonus_unique_troll_warlord"
@@ -5674,10 +6367,24 @@
             "TalentRequiredAbility"                                                   "troll_warlord_battle_trance"
         }
 
+        "special_bonus_unique_troll_warlord_5"
+        {
+            "TalentRequiredAbility"                                                   "troll_warlord_fervor"
+        }
+
+        "special_bonus_unique_troll_warlord_7"
+        {
+            "TalentRequiredAbility"                                                   "troll_warlord_battle_trance"
+        }
 
         "special_bonus_unique_tusk"
         {
             "TalentRequiredAbility"                                                   "tusk_walrus_punch"
+        }
+
+        "special_bonus_unique_tusk_2"
+        {
+            "TalentRequiredAbility"                                                   "tusk_snowball"
         }
 
         "special_bonus_unique_tusk_3"
@@ -5687,7 +6394,7 @@
 
         "special_bonus_unique_tusk_4"
         {
-            "TalentRequiredAbility"                                                   "do_not_give_talent"
+            "TalentRequiredAbility"                                                   "tusk_walrus_punch"
         }
 
         "special_bonus_unique_tusk_5"
@@ -5698,6 +6405,11 @@
         "special_bonus_unique_tusk_6"
         {
             "TalentRequiredAbility"                                                   "tusk_snowball"
+        }
+
+        "special_bonus_unique_tusk_7"
+        {
+            "TalentRequiredAbility"                                                   "tusk_walrus_punch"
         }
 
         "special_bonus_unique_underlord"
@@ -5716,6 +6428,21 @@
         }
 
         "special_bonus_unique_underlord_4"
+        {
+            "TalentRequiredAbility"                                                   "abyssal_underlord_firestorm"
+        }
+
+        "special_bonus_unique_underlord_5"
+        {
+            "TalentRequiredAbility"                                                   "abyssal_underlord_firestorm"
+        }
+
+        "special_bonus_unique_underlord_6"
+        {
+            "TalentRequiredAbility"                                                   "abyssal_underlord_pit_of_malice"
+        }
+
+        "special_bonus_unique_underlord_7"
         {
             "TalentRequiredAbility"                                                   "abyssal_underlord_firestorm"
         }
@@ -5745,9 +6472,19 @@
             "TalentRequiredAbility"                                                   "undying_tombstone"
         }
 
+        "special_bonus_unique_undying_6"
+        {
+            "TalentRequiredAbility"                                                   "undying_soul_rip"
+        }
+
         "special_bonus_unique_ursa"
         {
             "TalentRequiredAbility"                                                   "ursa_fury_swipes"
+        }
+
+        "special_bonus_unique_ursa_2"
+        {
+            "TalentRequiredAbility"                                                   "ursa_earthshock"
         }
 
         "special_bonus_unique_ursa_3"
@@ -5768,6 +6505,11 @@
         "special_bonus_unique_ursa_6"
         {
             "TalentRequiredAbility"                                                   "ursa_enrage"
+        }
+
+        "special_bonus_unique_ursa_7"
+        {
+            "TalentRequiredAbility"                                                   "ursa_overpower"
         }
 
         "special_bonus_unique_vengeful_spirit_1"
@@ -5800,6 +6542,15 @@
             "TalentRequiredAbility"                                                   "vengefulspirit_wave_of_terror"
         }
 
+        "special_bonus_unique_vengeful_spirit_7"
+        {
+            "TalentRequiredAbility"                                                   "vengefulspirit_command_aura"
+        }
+
+        "special_bonus_unique_vengeful_spirit_8"
+        {
+            "TalentRequiredAbility"                                                   "vengefulspirit_command_aura"
+        }
 
         "special_bonus_unique_venomancer"
         {
@@ -5821,7 +6572,6 @@
             "TalentRequiredAbility"                                                   "venomancer_poison_nova"
         }
 
-
         "special_bonus_unique_venomancer_5"
         {
             "TalentRequiredAbility"                                                   "venomancer_venomous_gale"
@@ -5830,6 +6580,11 @@
         "special_bonus_unique_venomancer_6"
         {
             "TalentRequiredAbility"                                                   "venomancer_poison_nova"
+        }
+
+        "special_bonus_unique_venomancer_7"
+        {
+            "TalentRequiredAbility"                                                   "venomancer_plague_ward"
         }
 
         "special_bonus_unique_viper_1"
@@ -5850,6 +6605,16 @@
         "special_bonus_unique_viper_4"
         {
             "TalentRequiredAbility"                                                   "viper_poison_attack"
+        }
+
+        "special_bonus_unique_viper_5"
+        {
+            "TalentRequiredAbility"                                                   "viper_nethertoxin"
+        }
+
+        "special_bonus_unique_visage_1"
+        {
+            "TalentRequiredAbility"                                                   "visage_summon_familiars"
         }
 
         "special_bonus_unique_visage_2"
@@ -5875,6 +6640,11 @@
         "special_bonus_unique_visage_6"
         {
             "TalentRequiredAbility"                                                   "visage_summon_familiars"
+        }
+
+        "special_bonus_unique_visage_7"
+        {
+            "TalentRequiredAbility"                                                   "visage_grave_chill"
         }
 
         "special_bonus_unique_warlock_1"
@@ -5932,8 +6702,12 @@
             "TalentRequiredAbility"                                                   "weaver_geminate_attack"
         }
 
-
         "special_bonus_unique_windranger"
+        {
+            "TalentRequiredAbility"                                                   "windrunner_windrun"
+        }
+
+        "special_bonus_unique_windranger_2"
         {
             "TalentRequiredAbility"                                                   "windrunner_windrun"
         }
@@ -5948,9 +6722,19 @@
             "TalentRequiredAbility"                                                   "windrunner_focusfire"
         }
 
+        "special_bonus_unique_windranger_5"
+        {
+            "TalentRequiredAbility"                                                   "windrunner_shackleshot"
+        }
+
         "special_bonus_unique_windranger_6"
         {
             "TalentRequiredAbility"                                                   "windrunner_shackleshot"
+        }
+
+        "special_bonus_unique_windranger_7"
+        {
+            "TalentRequiredAbility"                                                   "windrunner_focusfire"
         }
 
         "special_bonus_unique_windranger_8"
@@ -5961,6 +6745,11 @@
         "special_bonus_unique_windranger_9"
         {
             "TalentRequiredAbility"                                                   "windrunner_shackleshot"
+        }
+
+        "special_bonus_unique_windranger_10"
+        {
+            "TalentRequiredAbility"                                                   "windrunner_windrun"
         }
 
         "special_bonus_unique_winter_wyvern_1"
@@ -5983,7 +6772,27 @@
             "TalentRequiredAbility"                                                   "winter_wyvern_splinter_blast"
         }
 
+        "special_bonus_unique_winter_wyvern_5"
+        {
+            "TalentRequiredAbility"                                                   "winter_wyvern_cold_embrace"
+        }
+
+        "special_bonus_unique_winter_wyvern_6"
+        {
+            "TalentRequiredAbility"                                                   "winter_wyvern_arctic_burn"
+        }
+
         "special_bonus_unique_wisp"
+        {
+            "TalentRequiredAbility"                                                   "wisp_spirits"
+        }
+
+        "special_bonus_unique_wisp_2"
+        {
+            "TalentRequiredAbility"                                                   "wisp_tether"
+        }
+
+        "special_bonus_unique_wisp_3"
         {
             "TalentRequiredAbility"                                                   "wisp_spirits"
         }
@@ -6033,6 +6842,16 @@
             "TalentRequiredAbility"                                                   "witch_doctor_death_ward"
         }
 
+        "special_bonus_unique_witch_doctor_6"
+        {
+            "TalentRequiredAbility"                                                   "witch_doctor_maledict"
+        }
+
+        "special_bonus_unique_witch_doctor_7"
+        {
+            "TalentRequiredAbility"                                                   "witch_doctor_maledict"
+        }
+
         "special_bonus_unique_wraith_king_1"
         {
             "TalentRequiredAbility" 
@@ -6058,7 +6877,13 @@
             {
                 "1" "skeleton_king_reincarnation"
                 "2" "skeleton_king_reincarnation_redux"
+                "3" "skeleton_king_hellfire_blast"
             }
+        }
+
+        "special_bonus_unique_wraith_king_5"
+        {
+            "TalentRequiredAbility"                                                   "skeleton_king_mortal_strike"
         }
 
         "special_bonus_unique_wraith_king_6"
@@ -6072,6 +6897,16 @@
         }
 
         "special_bonus_unique_wraith_king_8"
+        {
+            "TalentRequiredAbility"                                                   "skeleton_king_mortal_strike"
+        }
+
+        "special_bonus_unique_wraith_king_9"
+        {
+            "TalentRequiredAbility"                                                   "skeleton_king_hellfire_blast"
+        }
+
+        "special_bonus_unique_wraith_king_10"
         {
             "TalentRequiredAbility"                                                   "skeleton_king_mortal_strike"
         }
@@ -6090,6 +6925,12 @@
         {
             "TalentRequiredAbility"                                                   "zuus_lightning_bolt"
         }
+
+        "special_bonus_unique_zeus_4"
+        {
+            "TalentRequiredAbility"                                                   "zuus_thundergods_wrath"
+        }
+
         "special_bonus_unique_drow_ranger_1"
         {
             "TalentRequiredAbility"                                                   "drow_ranger_multishot"
@@ -6100,14 +6941,34 @@
             "TalentRequiredAbility"                                                   "drow_ranger_wave_of_silence"
         }
 
+        "special_bonus_unique_drow_ranger_3"
+        {
+            "TalentRequiredAbility"                                                   "drow_ranger_marksmanship"
+        }
+
         "special_bonus_unique_drow_ranger_4"
+        {
+            "TalentRequiredAbility"                                                   "drow_ranger_wave_of_silence"
+        }
+
+        "special_bonus_unique_drow_ranger_5"
+        {
+            "TalentRequiredAbility"                                                   "drow_ranger_wave_of_silence"
+        }
+
+        "special_bonus_unique_drow_ranger_6"
+        {
+            "TalentRequiredAbility"                                                   "drow_ranger_multishot"
+        }
+
+        "special_bonus_unique_drow_ranger_7"
         {
             "TalentRequiredAbility"                                                   "drow_ranger_wave_of_silence"
         }
 
         "special_bonus_unique_doom_1"
         {
-            "TalentRequiredAbility"                                                   "infernal_blade_lua"
+            "TalentRequiredAbility"                                                   "doom_bringer_infernal_blade"
         }
 
         "special_bonus_unique_doom_2"
@@ -6131,6 +6992,16 @@
         }
 
         "special_bonus_unique_doom_6"
+        {
+            "TalentRequiredAbility"                                                   "doom_bringer_scorched_earth"
+        }
+
+        "special_bonus_unique_doom_7"
+        {
+            "TalentRequiredAbility"                                                   "doom_bringer_doom"
+        }
+
+        "special_bonus_unique_doom_8"
         {
             "TalentRequiredAbility"                                                   "doom_bringer_scorched_earth"
         }
@@ -6160,6 +7031,15 @@
             "TalentRequiredAbility"                                                   "disruptor_kinetic_field"
         }
 
+        "special_bonus_unique_disruptor_6"
+        {
+            "TalentRequiredAbility"                                                   "disruptor_kinetic_field"
+        }
+
+        "special_bonus_unique_disruptor_7"
+        {
+            "TalentRequiredAbility"                                                   "disruptor_static_storm"
+        }
 
         "special_bonus_unique_death_prophet"
         {
@@ -6181,7 +7061,10 @@
             "TalentRequiredAbility"                                                   "death_prophet_exorcism"
         }
 
-
+        "special_bonus_unique_death_prophet_5"
+        {
+            "TalentRequiredAbility"                                                   "death_prophet_spirit_siphon"
+        }
 
         "special_bonus_unique_dazzle_1"
         {
@@ -6227,6 +7110,46 @@
             "TalentRequiredAbility"                                                   "dark_seer_wall_of_replica"
         }
 
+        "special_bonus_unique_dark_seer_5"
+        {
+            "TalentRequiredAbility"                                                   "dark_seer_ion_shell"
+        }
+
+        "special_bonus_unique_dark_seer_6"
+        {
+            "TalentRequiredAbility"                                                   "dark_seer_ion_shell"
+        }
+
+        "special_bonus_unique_dark_seer_7"
+        {
+            "TalentRequiredAbility"                                                   "dark_seer_wall_of_replica"
+        }
+
+        "special_bonus_unique_dark_seer_8"
+        {
+            "TalentRequiredAbility"                                                   "dark_seer_vacuum"
+        }
+
+        "special_bonus_unique_dark_seer_9"
+        {
+            "TalentRequiredAbility"                                                   "dark_seer_surge"
+        }
+
+        "special_bonus_unique_dark_seer_10"
+        {
+            "TalentRequiredAbility"                                                   "dark_seer_wall_of_replica"
+        }
+
+        "special_bonus_unique_dark_seer_11"
+        {
+            "TalentRequiredAbility"                                                   "dark_seer_wall_of_replica"
+        }
+
+        "special_bonus_unique_dark_seer_12"
+        {
+            "TalentRequiredAbility"                                                   "dark_seer_wall_of_replica"
+        }
+
         "special_bonus_unique_crystal_maiden_1"
         {
             "TalentRequiredAbility"                                                   "crystal_maiden_frostbite"
@@ -6245,6 +7168,11 @@
         "special_bonus_unique_crystal_maiden_4"
         {
             "TalentRequiredAbility"                                                   "crystal_maiden_brilliance_aura"
+        }
+
+        "special_bonus_unique_crystal_maiden_5"
+        {
+            "TalentRequiredAbility"                                                   "crystal_maiden_crystal_nova"
         }
 
         "special_bonus_unique_clockwerk"
@@ -6267,6 +7195,15 @@
             "TalentRequiredAbility"                                                   "rattletrap_rocket_flare"
         }
 
+        "special_bonus_unique_clockwerk_5"
+        {
+            "TalentRequiredAbility"                                                   "rattletrap_power_cogs"
+        }
+
+        "special_bonus_unique_clockwerk_6"
+        {
+            "TalentRequiredAbility"                                                   "rattletrap_power_cogs"
+        }
 
         "special_bonus_unique_clinkz_1"
         {
@@ -6275,7 +7212,7 @@
 
         "special_bonus_unique_clinkz_2"
         {
-            "TalentRequiredAbility"                                                   "clinkz_strafe"
+            "TalentRequiredAbility"                                                   "clinkz_wind_walk"
         }
 
         "special_bonus_unique_clinkz_3"
@@ -6283,9 +7220,49 @@
             "TalentRequiredAbility"                                                   "clinkz_searing_arrows"
         }
 
+        "special_bonus_unique_clinkz_4"
+        {
+            "TalentRequiredAbility"                                                   "clinkz_burning_army"
+        }
+
         "special_bonus_unique_clinkz_5"
         {
             "TalentRequiredAbility"                                                   "clinkz_burning_army"
+        }
+
+        "special_bonus_unique_clinkz_6"
+        {
+            "TalentRequiredAbility"                                                   "clinkz_death_pact"
+        }
+
+        "special_bonus_unique_clinkz_7"
+        {
+            "TalentRequiredAbility"                                                   "clinkz_strafe"
+        }
+
+        "special_bonus_unique_clinkz_8"
+        {
+            "TalentRequiredAbility"                                                   "clinkz_death_pact"
+        }
+
+        "special_bonus_unique_clinkz_9"
+        {
+            "TalentRequiredAbility"                                                   "clinkz_wind_walk"
+        }
+
+        "special_bonus_unique_clinkz_10"
+        {
+            "TalentRequiredAbility"                                                   "clinkz_wind_walk"
+        }
+
+        "special_bonus_unique_clinkz_11"
+        {
+            "TalentRequiredAbility"                                                   "clinkz_death_pact"
+        }
+
+        "special_bonus_unique_clinkz_12"
+        {
+            "TalentRequiredAbility"                                                   "clinkz_strafe"
         }
 
         "special_bonus_unique_chen_1"
@@ -6296,6 +7273,11 @@
         "special_bonus_unique_chen_2"
         {
             "TalentRequiredAbility"                                                   "chen_hand_of_god"
+        }
+
+        "special_bonus_unique_chen_3"
+        {
+            "TalentRequiredAbility"                                                   "chen_divine_favor"
         }
 
         "special_bonus_unique_chen_4"
@@ -6313,6 +7295,20 @@
             "TalentRequiredAbility"                                                   "chen_divine_favor"
         }
 
+        "special_bonus_unique_chen_7"
+        {
+            "TalentRequiredAbility"                                                   "chen_holy_hand_of_god"
+        }
+
+        "special_bonus_unique_chen_8"
+        {
+            "TalentRequiredAbility"                                                   "chen_holy_penitence"
+        }
+
+        "special_bonus_unique_chen_9"
+        {
+            "TalentRequiredAbility"                                                   "chen_holy_persuasion"
+        }
 
         "special_bonus_unique_broodmother_1"
         {
@@ -6349,6 +7345,11 @@
             "TalentRequiredAbility"                                                   "bounty_hunter_track"
         }
 
+        "special_bonus_unique_bounty_hunter_4"
+        {
+            "TalentRequiredAbility"                                                   "bounty_jinada"
+        }
+
         "special_bonus_unique_bloodseeker"
         {
             "TalentRequiredAbility"                                                   "bloodseeker_blood_bath"
@@ -6369,6 +7370,10 @@
             "TalentRequiredAbility"                                                   "bloodseeker_thirst_lod"
         }
 
+        "special_bonus_unique_bloodseeker_5"
+        {
+            "TalentRequiredAbility"                                                   "bloodseeker_bloodrage"
+        }
 
         "special_bonus_unique_batrider_1"
         {
@@ -6383,6 +7388,21 @@
         "special_bonus_unique_batrider_3"
         {
             "TalentRequiredAbility"                                                   "batrider_flamebreak"
+        }
+
+        "special_bonus_unique_batrider_4"
+        {
+            "TalentRequiredAbility"                                                   "batrider_sticky_napalm"
+        }
+
+        "special_bonus_unique_batrider_5"
+        {
+            "TalentRequiredAbility"                                                   "batrider_flamebreak"
+        }
+
+        "special_bonus_unique_batrider_6"
+        {
+            "TalentRequiredAbility"                                                   "batrider_flaming_lasso"
         }
 
         "special_bonus_unique_bane_1"
@@ -6405,24 +7425,50 @@
             "TalentRequiredAbility"                                                   "bane_enfeeble"
         }
 
+        "special_bonus_unique_bane_5"
+        {
+            "TalentRequiredAbility"                                                   "bane_nightmare"
+        }
+
+        "special_bonus_unique_bane_6"
+        {
+            "TalentRequiredAbility"                                                   "bane_enfeeble"
+        }
+
+        "special_bonus_unique_bane_7"
+        {
+            "TalentRequiredAbility"                                                   "bane_brain_sap"
+        }
 
         "special_bonus_unique_arc_warden"
         {
             "TalentRequiredAbility"                                                   "arc_warden_spark_wraith"
         }
 
+        "special_bonus_unique_arc_warden_2"
+        {
+            "TalentRequiredAbility"                                                   "arc_warden_flux"
+        }
 
         "special_bonus_unique_arc_warden_3"
         {
             "TalentRequiredAbility"                                                   "arc_warden_spark_wraith"
         }
 
+        "special_bonus_unique_arc_warden_4"
+        {
+            "TalentRequiredAbility"                                                   "arc_warden_flux"
+        }
 
         "special_bonus_unique_arc_warden_5"
         {
             "TalentRequiredAbility"                                                   "arc_warden_flux"
         }
 
+        "special_bonus_unique_arc_warden_6"
+        {
+            "TalentRequiredAbility"                                                   "arc_warden_tempest_double"
+        }
 
         "special_bonus_unique_antimage"
         {
@@ -6461,6 +7507,20 @@
             }   
         }
 
+        "special_bonus_unique_antimage_6"
+        {
+            "TalentRequiredAbility"                                                   "antimage_mana_void"
+        }
+
+        "special_bonus_unique_antimage_7"
+        {
+            "TalentRequiredAbility"                                                   "antimage_mana_break"
+        }
+
+        "special_bonus_unique_ancient_apparition_1"
+        {
+            "TalentRequiredAbility"                                                   "ancient_apparition_cold_feet"
+        }
 
         "special_bonus_unique_ancient_apparition_2"
         {
@@ -6485,6 +7545,11 @@
         "special_bonus_unique_ancient_apparition_6"
         {
             "TalentRequiredAbility"                                                   "ancient_apparition_cold_feet"
+        }
+
+        "special_bonus_unique_ancient_apparition_7"
+        {
+            "TalentRequiredAbility"                                                   "ancient_apparition_chilling_touch"
         }
 
         "special_bonus_unique_alchemist"
@@ -6515,6 +7580,19 @@
             }
         }
 
+        "special_bonus_unique_alchemist_5"
+        {
+            "TalentRequiredAbility"                                                   "alchemist_acid_spray"
+        }
+
+        "special_bonus_unique_alchemist_6"
+        {
+            "TalentRequiredAbility"                                                 
+            {
+                "1" "alchemist_chemical_rage"
+                "2" "alchemist_chemical_rage_redux"             
+            }
+        }
 
         "special_bonus_unique_abaddon"
         {
@@ -6525,13 +7603,25 @@
         {
             "TalentRequiredAbility"                                                   "abaddon_death_coil"
         }
+
+        "special_bonus_unique_abaddon_3"
+        {
+            "TalentRequiredAbility"                                                   "abaddon_frostmourne"
+        }
+
         "special_bonus_unique_abaddon_4"
         {
             "TalentRequiredAbility"                                                   "abaddon_death_coil"
         }
+
+        "special_bonus_unique_abaddon_5"
+        {
+            "TalentRequiredAbility"                                                   "abaddon_frostmourne"
+        }
+
         "special_bonus_unique_grimstroke_1" 
         {
-            "TalentRequiredAbility" "grimstroke_spirit_walk"
+            "TalentRequiredAbility" "grimstroke_ink_creature"
         }
         "special_bonus_unique_grimstroke_2" 
         {
@@ -6545,8 +7635,23 @@
         {
             "TalentRequiredAbility" "grimstroke_ink_creature"
         }
-		
+        "special_bonus_unique_grimstroke_5" 
+        {
+            "TalentRequiredAbility" "grimstroke_spirit_walk"
+        }
+        "special_bonus_unique_grimstroke_6" 
+        {
+            "TalentRequiredAbility" "grimstroke_spirit_walk"
+        }
+        "special_bonus_unique_grimstroke_7"
+        {
+            "TalentRequiredAbility" "grimstroke_spirit_walk"
+        }		
 		"special_bonus_unique_void_spirit_1" 
+        {
+            "TalentRequiredAbility" "void_spirit_astral_step"
+        }
+        "special_bonus_unique_void_spirit_2" 
         {
             "TalentRequiredAbility" "void_spirit_astral_step"
         }
@@ -6558,6 +7663,14 @@
         {
             "TalentRequiredAbility" "void_spirit_resonant_pulse"
         }
+        "special_bonus_unique_void_spirit_5" 
+        {
+            "TalentRequiredAbility" "void_spirit_dissimilate"
+        }
+        "special_bonus_unique_void_spirit_6" 
+        {
+            "TalentRequiredAbility" "void_spirit_astral_step"
+        }
         "special_bonus_unique_void_spirit_7"
         {
             "TalentRequiredAbility" "void_spirit_aether_remnant"
@@ -6566,9 +7679,17 @@
         {
             "TalentRequiredAbility" "void_spirit_astral_step"
         }
+        "special_bonus_unique_void_spirit_9"
+        {
+            "TalentRequiredAbility" "void_spirit_astral_step"
+        }
 		"special_bonus_unique_snapfire_1" 
         {
             "TalentRequiredAbility" "snapfire_mortimer_kisses"
+        }
+        "special_bonus_unique_snapfire_2" 
+        {
+            "TalentRequiredAbility" "snapfire_lil_shredder"
         }
         "special_bonus_unique_snapfire_3" 
         {
@@ -6590,41 +7711,405 @@
         {
             "TalentRequiredAbility" "snapfire_scatterblast"
         }
+        "special_bonus_unique_snapfire_8"
+        {
+            "TalentRequiredAbility" "snapfire_lil_shredder"
+        }
+
+        "special_bonus_unique_hoodwink_bushwhack_cooldown"
+        {
+            "TalentRequiredAbility" "hoodwink_bushwhack"
+        }
+
+        "special_bonus_unique_hoodwink_acorn_shot_charges"
+        {
+            "TalentRequiredAbility" "hoodwink_acorn_shot"
+        }
+
+        "special_bonus_unique_hoodwink_camouflage"
+        {
+            "TalentRequiredAbility" "hoodwink_scurry"
+        }
+
+        "special_bonus_unique_hoodwink_sharpshooter_speed"
+        {
+            "TalentRequiredAbility" "hoodwink_sharpshooter"
+        }
+
+        "special_bonus_unique_hoodwink_sharpshooter_pure_damage"
+        {
+            "TalentRequiredAbility" "hoodwink_sharpshooter"
+        }
 		
     //=================================================================================================================
     //  Neutral items
     //=================================================================================================================
 
-    "item_elixer"                   
+    // Tier 1
+
+    "item_keen_optic"               
     {
-        "ItemCost"                      "300"
+        "ItemCost"                      "500"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_ironwood_tree"     
+    {
+        "ItemCost"                      "500"
         "ItemPurchasable"               "1"
         "ItemSellable"                  "1"
     }
     "item_ocean_heart"                
     {
-        "ItemCost"                      "300"
+        "ItemCost"                      "500"
         "ItemPurchasable"               "1"
         "ItemSellable"                  "1"
     }
-    "item_keen_optic"               
+    "item_elixer"                   
     {
-        "ItemCost"                      "400"
+        "ItemCost"                      "500"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_ocean_heart"                
+    {
+        "ItemCost"                      "500"
         "ItemPurchasable"               "1"
         "ItemSellable"                  "1"
     }
     "item_broom_handle"             
     {
-        "ItemCost"                      "400"
+        "ItemCost"                      "500"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_trusty_shovel"            
+    {
+        "ItemCost"                      "500"
         "ItemPurchasable"               "1"
         "ItemSellable"                  "1"
     }
     "item_faded_broach"              
     {
-        "ItemCost"                      "400"
+        "ItemCost"                      "500"
         "ItemPurchasable"               "1"
         "ItemSellable"                  "1"
-    }  
+    } 
+    "item_arcane_ring"              
+    {
+        "ItemCost"                      "500"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_royal_jelly"              
+    {
+        "ItemCost"                      "500"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_chipped_vest"              
+    {
+        "ItemCost"                      "500"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_possessed_mask"              
+    {
+        "ItemCost"                      "500"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_mysterious_hat"              
+    {
+        "ItemCost"                      "500"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+
+    // Tier 2
+
+    "item_ring_of_aquila"           
+    {
+        "ItemCost"                      "750"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_imp_claw"
+    {
+        "ItemCost"                      "750"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_nether_shawl"
+    {
+        "ItemCost"                      "750"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_dragon_scale"             
+    {
+        "ItemCost"                      "750"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_pupils_gift"              
+    {
+        "ItemCost"                      "750"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_vambrace"          
+    {
+        "ItemCost"                      "750"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_grove_bow"
+    {
+        "ItemCost"                      "750"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_philosophers_stone"       
+    {
+        "ItemCost"                      "750"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_essence_ring"             
+    {
+        "ItemCost"                      "750"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_bullwhip"            
+    {
+        "ItemCost"                      "750"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_quicksilver_amulet"              
+    {
+        "ItemCost"                      "750"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+
+    // Tier 3
+
+    "item_quickening_charm"         
+    {
+        "ItemCost"                      "1000"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_spider_legs"               
+    {
+        "ItemCost"                      "1000"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_paladin_sword"
+    {
+        "ItemCost"                      "1000"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_orb_of_destruction"        
+    {
+        "ItemCost"                      "1000"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_titan_sliver"
+    {
+        "ItemCost"                      "1000"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_mind_breaker"
+    {
+        "ItemCost"                      "1000"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_enchanted_quiver"
+    {
+        "ItemCost"                      "1000"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_elven_tunic"
+    {
+        "ItemCost"                      "1000"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_cloak_of_flames"
+    {
+        "ItemCost"                      "1000"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_ceremonial_robe"
+    {
+        "ItemCost"                      "1000"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_psychic_headband"
+    {
+        "ItemCost"                      "1000"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+
+    // Tier 4
+
+    "item_timeless_relic"
+    {
+        "ItemCost"                      "2000"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_spell_prism"
+    {
+        "ItemCost"                      "2000"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_flicker"
+    {
+        "ItemCost"                      "2000"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_ninja_gear"                
+    {
+        "ItemCost"                      "2000"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_illusionsts_cape"          
+    {
+        "ItemCost"                      "2000"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_the_leveller"               
+    {
+        "ItemCost"                      "2000"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_minotaur_horn"
+    {
+        "ItemCost"                      "2000"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_spy_gadget"                 
+    {
+        "ItemCost"                      "2000"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_trickster_cloak"         
+    {
+        "ItemCost"                      "2000"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_stormcrafter"         
+    {
+        "ItemCost"                      "2000"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_penta_edged_sword"         
+    {
+        "ItemCost"                      "2000"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+
+    // Tier 5
+
+    "item_force_boots"
+    {
+        "ItemCost"                      "5000"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_desolator_2"                
+    {
+        "ItemCost"                      "5000"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_seer_stone"                 
+    {
+        "ItemCost"                      "5000"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_mirror_shield"
+    {
+        "ItemCost"                      "5000"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_apex"                       
+    {
+        "ItemCost"                      "5000"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_ballista"                   
+    {
+        "ItemCost"                      "5000"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_demonicon"                  
+    {
+        "ItemCost"                      "5000"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_fallen_sky"          
+    {
+        "ItemCost"                      "5000"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_pirate_hat"
+    {
+        "ItemCost"                      "5000"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_ex_machina"                 
+    {
+        "ItemCost"                      "5000"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_giants_ring"         
+    {
+        "ItemCost"                      "5000"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    } 
+    "item_book_of_shadows"         
+    {
+        "ItemCost"                      "5000"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+
+    // Old
+
     "item_poor_mans_shield"         
     {
         "ItemCost"                      "500"
@@ -6637,45 +8122,9 @@
         "ItemPurchasable"               "1"
         "ItemSellable"                  "1"
     }
-    "item_royal_jelly"              
-    {
-        "ItemCost"                      "600"
-        "ItemPurchasable"               "1"
-        "ItemSellable"                  "1"
-    }
     "item_iron_talon"               
     {
         "ItemCost"                      "500"
-        "ItemPurchasable"               "1"
-        "ItemSellable"                  "1"
-    }
-    "item_arcane_ring"              
-    {
-        "ItemCost"                      "600"
-        "ItemPurchasable"               "1"
-        "ItemSellable"                  "1"
-    }
-    "item_recipe_ironwood_tree"     
-    {
-        "ItemCost"                      "700"
-        "ItemPurchasable"               "1"
-        "ItemSellable"                  "1"
-    }
-    "item_trusty_shovel"            
-    {
-        "ItemCost"                      "1000"
-        "ItemPurchasable"               "1"
-        "ItemSellable"                  "1"
-    }
-    "item_philosophers_stone"       
-    {
-        "ItemCost"                      "500"
-        "ItemPurchasable"               "1"
-        "ItemSellable"                  "1"
-    }
-    "item_essence_ring"             
-    {
-        "ItemCost"                      "800"
         "ItemPurchasable"               "1"
         "ItemSellable"                  "1"
     }
@@ -6685,39 +8134,9 @@
         "ItemPurchasable"               "1"
         "ItemSellable"                  "1"
     }
-    "item_pupils_gift"              
-    {
-        "ItemCost"                      "900"
-        "ItemPurchasable"               "1"
-        "ItemSellable"                  "1"
-    }
-    "item_dragon_scale"             
-    {
-        "ItemCost"                      "1000"
-        "ItemPurchasable"               "1"
-        "ItemSellable"                  "1"
-    }
-    "item_ring_of_aquila"           
-    {
-        "ItemCost"                      "1000"
-        "ItemPurchasable"               "1"
-        "ItemSellable"                  "1"
-    }
-    "item_recipe_vambrace"          
-    {
-        "ItemCost"                      "600"
-        "ItemPurchasable"               "1"
-        "ItemSellable"                  "1"
-    }
     "item_repair_kit"               
     {
         "ItemCost"                      "1000"
-        "ItemPurchasable"               "1"
-        "ItemSellable"                  "1"
-    }
-    "item_quickening_charm"         
-    {
-        "ItemCost"                      "2000"
         "ItemPurchasable"               "1"
         "ItemSellable"                  "1"
     }
@@ -6733,33 +8152,9 @@
         "ItemPurchasable"               "1"
         "ItemSellable"                  "1"
     }
-    "item_orb_of_destruction"        
-    {
-        "ItemCost"                      "1600"
-        "ItemPurchasable"               "1"
-        "ItemSellable"                  "1"
-    }
-    "item_spider_legs"               
-    {
-        "ItemCost"                      "2500"
-        "ItemPurchasable"               "1"
-        "ItemSellable"                  "1"
-    }
-    "item_ninja_gear"                
-    {
-        "ItemCost"                      "3250"
-        "ItemPurchasable"               "1"
-        "ItemSellable"                  "1"
-    }
     "item_panic_button"               
     {
         "ItemCost"                      "2500"
-        "ItemPurchasable"               "1"
-        "ItemSellable"                  "1"
-    }
-    "item_the_leveller"               
-    {
-        "ItemCost"                      "2750"
         "ItemPurchasable"               "1"
         "ItemSellable"                  "1"
     }
@@ -6775,169 +8170,33 @@
         "ItemPurchasable"               "1"
         "ItemSellable"                  "1"
     }
-    "item_recipe_trident"            
-    {
-        "ItemCost"                      "1000"
-        "ItemPurchasable"               "1"
-        "ItemSellable"                  "1"
-    }
-    "item_illusionsts_cape"          
-    {
-        "ItemCost"                      "3250"
-        "ItemPurchasable"               "1"
-        "ItemSellable"                  "1"
-    }
-    "item_spy_gadget"                 
-    {
-        "ItemCost"                      "3500"
-        "ItemPurchasable"               "1"
-        "ItemSellable"                  "1"
-    }
     "item_phoenix_ash"                
     {
         "ItemCost"                      "4000"
         "ItemPurchasable"               "1"
         "ItemSellable"                  "1"
     }
-    "item_seer_stone"                 
-    {
-        "ItemCost"                      "6500"
-        "ItemPurchasable"               "1"
-        "ItemSellable"                  "1"
-    }
-    "item_apex"                       
-    {
-        "ItemCost"                      "6500"
-        "ItemPurchasable"               "1"
-        "ItemSellable"                  "1"
-    }
-    "item_ballista"                   
-    {
-        "ItemCost"                      "7000"
-        "ItemPurchasable"               "1"
-        "ItemSellable"                  "1"
-    }
-    "item_desolator_2"                
-    {
-        "ItemCost"                      "7000"
-        "ItemPurchasable"               "1"
-        "ItemSellable"                  "1"
-    }
-    "item_demonicon"                  
-    {
-        "ItemCost"                      "7500"
-        "ItemPurchasable"               "1"
-        "ItemSellable"                  "1"
-    }
-    "item_recipe_fallen_sky"          
-    {
-        "ItemCost"                      "7500"
-        "ItemPurchasable"               "1"
-        "ItemSellable"                  "1"
-    }
-
     "item_ex_machina"                 
     {
         "ItemCost"                      "7500"
         "ItemPurchasable"               "1"
         "ItemSellable"                  "1"
     }
-
-
- "item_grove_bow"
-    {
-        "ItemCost"                      "600"
-        "ItemPurchasable"               "1"
-        "ItemSellable"                  "1"
-    }
-
-    "item_imp_claw"
-    {
-        "ItemCost"                      "800"
-        "ItemPurchasable"               "1"
-        "ItemSellable"                  "1"
-    }
-
-    "item_nether_shawl"
-    {
-        "ItemCost"                      "750"
-        "ItemPurchasable"               "1"
-        "ItemSellable"                  "1"
-    }
-
     "item_clumsy_net"
     {
         "ItemCost"                      "1000"
         "ItemPurchasable"               "1"
         "ItemSellable"                  "1"
     }
-
-    "item_enchanted_quiver"
-    {
-        "ItemCost"                      "1200"
-        "ItemPurchasable"               "1"
-        "ItemSellable"                  "1"
-    }
-
     "item_helm_of_the_undying"
     {
         "ItemCost"                      "2500"
         "ItemPurchasable"               "1"
         "ItemSellable"                  "1"
     }
-
-    "item_paladin_sword"
-    {
-        "ItemCost"                      "1500"
-        "ItemPurchasable"               "1"
-        "ItemSellable"                  "1"
-    }
-
-    "item_mind_breaker"
-    {
-        "ItemCost"                      "2500"
-        "ItemPurchasable"               "1"
-        "ItemSellable"                  "1"
-    }
-
-    "item_titan_sliver"
-    {
-        "ItemCost"                      "2250"
-        "ItemPurchasable"               "1"
-        "ItemSellable"                  "1"
-    }
-
-    "item_flicker"
-    {
-        "ItemCost"                      "3500"
-        "ItemPurchasable"               "1"
-        "ItemSellable"                  "1"
-    }
-
-    "item_minotaur_horn"
-    {
-        "ItemCost"                      "2500"
-        "ItemPurchasable"               "1"
-        "ItemSellable"                  "1"
-    }
-
     "item_princes_knife"
     {
         "ItemCost"                      "3250"
-        "ItemPurchasable"               "1"
-        "ItemSellable"                  "1"
-    }
-
-    "item_spell_prism"
-    {
-        "ItemCost"                      "3500"
-        "ItemPurchasable"               "1"
-        "ItemSellable"                  "1"
-    }
-
-    "item_timeless_relic"
-    {
-        "ItemCost"                      "3500"
         "ItemPurchasable"               "1"
         "ItemSellable"                  "1"
     }
@@ -6949,37 +8208,9 @@
         "ItemSellable"                  "1"
     }
 
-    "item_force_boots"
-    {
-        "ItemCost"                      "7500"
-        "ItemPurchasable"               "1"
-        "ItemSellable"                  "1"
-    }
-
     "item_trident"
     {
         "ItemCost"                      "7000"
-        "ItemPurchasable"               "1"
-        "ItemSellable"                  "1"
-    }
-
-    "item_fallen_sky"
-    {
-        "ItemCost"                      "7500"
-        "ItemPurchasable"               "1"
-        "ItemSellable"                  "1"
-    }
-
-    "item_mirror_shield"
-    {
-        "ItemCost"                      "8000"
-        "ItemPurchasable"               "1"
-        "ItemSellable"                  "1"
-    }
-
-    "item_pirate_hat"
-    {
-        "ItemCost"                      "7500"
         "ItemPurchasable"               "1"
         "ItemSellable"                  "1"
     }
@@ -6990,6 +8221,21 @@
         "ItemPurchasable"               "1"
         "ItemSellable"                  "1"
     }
-    
+
+    //=================================================================================================================
+    // Aghanim's Shard
+    //=================================================================================================================
+    "item_aghanims_shard"
+    {
+        "ItemPermanent"                 "0"
+        "ItemStockTime"                 "0"           
+        "ItemStockInitial"              "0"
+        "ItemStockMax"                  "0"
+        "ItemInitialStockTime"          "0"
+
+        "ItemPurchasable"               "0"
+        "ItemCost"                      "1"
+
+    }    
 
     }

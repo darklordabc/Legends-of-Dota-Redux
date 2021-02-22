@@ -34,7 +34,7 @@
       "04"
       {
         "var_type"              "FIELD_INTEGER"
-        "assault_aura_attack_speed"     "25"
+        "assault_aura_attack_speed"     "30"
       }
       "05"
       {
@@ -81,23 +81,23 @@
       "13"
       {
         "var_type"              "FIELD_INTEGER"
-        "desolator_bonus_damage"          "50"
+        "desolator_bonus_damage"          "60"
       }
       "14"
       {
         "var_type"              "FIELD_INTEGER"
-        "desolator_corruption_armor"      "-7"
+        "desolator_corruption_armor"      "-6"
       }
       "15"
       {
         "var_type"              "FIELD_FLOAT"
-        "desolator_corruption_duration"   "15.0"
+        "desolator_corruption_duration"   "7.0"
       }
       // Daedalous
       "21"
       {
         "var_type"              "FIELD_INTEGER"
-        "greater_crit_bonus_damage"          "80"
+        "greater_crit_bonus_damage"          "88"
       }
       "22"
       {
@@ -107,14 +107,9 @@
       "23"
       {
         "var_type"              "FIELD_INTEGER"
-        "greater_crit_crit_multiplier"       "235"
+        "greater_crit_crit_multiplier"       "225"
       }
       // Octarine Core
-      "24"
-      {
-        "var_type"              "FIELD_INTEGER"
-        "octarine_core_bonus_intelligence"    "25"
-      }
       "25"
       {
         "var_type"              "FIELD_INTEGER"
@@ -123,32 +118,27 @@
       "26"
       {
         "var_type"              "FIELD_INTEGER"
-        "octarine_core_bonus_mana"            "425"
+        "octarine_core_bonus_mana"            "725"
       }
       "27"
       {
         "var_type"              "FIELD_INTEGER"
-        "octarine_core_bonus_cooldown"        "25"
+        "octarine_core_cast_range_bonus"        "250"
       }
       "28"
       {
-        "var_type"              "FIELD_FLOAT"
-        "octarine_core_hero_lifesteal"        "25"
-      }           
+        "var_type"              "FIELD_INTEGER"
+        "octarine_core_bonus_mana_regen"        "3"
+      }
       "29"
       {
-        "var_type"              "FIELD_FLOAT"
-        "octarine_core_creep_lifesteal"       "5"
-      }   
-      "30"
-      {
         "var_type"              "FIELD_INTEGER"
-        "octarine_core_active_duration"       "7"
-      }
+        "octarine_core_bonus_cooldown"        "25"
+      }           
       "31"
       {
           "var_type"              "FIELD_INTEGER"
-          "monkey_king_bar_bonus_attack_speed"	"10"
+          "monkey_king_bar_bonus_attack_speed"	"35"
       }
       "32"
       {
@@ -158,12 +148,12 @@
       "33"
       {
           "var_type"              "FIELD_INTEGER"
-          "monkey_king_bar_bonus_chance_damage"           "100"
+          "monkey_king_bar_bonus_chance_damage"           "70"
       }
       "34" 
       {
           "var_type"              "FIELD_INTEGER"
-          "monkey_king_bar_bonus_damage"             "52"
+          "monkey_king_bar_bonus_damage"             "40"
       }
       // Aether Lens
       "35"
@@ -200,7 +190,7 @@
       "41"
       {
         "var_type"                "FIELD_INTEGER"
-        "aeon_disk_status_resistance"       "50"
+        "aeon_disk_status_resistance"       "75"
       }
       "42"
       {
@@ -268,17 +258,17 @@
 	  "301"
 	  {
 	  	"var_type"				"FIELD_FLOAT"
-	  	"vlads_mana_regen_aura"	"1.5"
+	  	"vlads_mana_regen_aura"	"2.0"
 	  }
 	  "302"
 	  {
 	  	"var_type"				"FIELD_INTEGER"
-	  	"vlads_armor_aura"		"3"
+	  	"vlads_armor_aura"		"0"
 	  }
 	  "303"
 	  {
 	  	"var_type"				"FIELD_INTEGER"
-	  	"vlads_vampiric_aura"	"25"
+	  	"vlads_vampiric_aura"	"15"
 	  }
 	  "304"
 	  {
@@ -288,7 +278,7 @@
 	  "305"
 	  {
 	  	"var_type"				"FIELD_INTEGER"
-	  	"vlads_bonus_all_stats"		"6"
+	  	"vlads_damage_aura"		"18"
 	  }
       "70"
       {
@@ -314,33 +304,14 @@
       "81"
       {
         "var_type"              "FIELD_INTEGER"
-        "heart_bonus_health"          "500"
+        "heart_bonus_health"          "250"
       }
       "82"
       {
-        "var_type"              "FIELD_FLOAT"
-        "heart_health_regen_rate"     "7"
-      }
-      "83"
-      {
         "var_type"              "FIELD_INTEGER"
-        "heart_cooldown_melee"        "5"
+        "heart_health_regen_pct"     "1.6"
       }
-      "84"
-      {
-        "var_type"              "FIELD_INTEGER"
-        "heart_cooldown_ranged_tooltip"       "7"
-      }
-      "85"
-      {
-        "var_type"              "FIELD_INTEGER"
-        "heart_hp_regen_amp"       "50"
-      }
-	  "200"
-	  {
-	    "var_type"              "FIELD_INTEGER"
-	    "heart_fixed_health_regen"       "10"
-	  }
+
 	  // Butterfly
       "90"
       {
@@ -355,7 +326,7 @@
       "92"
       {
           "var_type"              "FIELD_INTEGER"
-          "butterfly_bonus_agility"   "35"
+          "butterfly_bonus_agility"   "30"
       }
       "93"
       {
@@ -375,7 +346,7 @@
 	  "203"
 	  {
 	  	"var_type"				"FIELD_FLOAT"
-	  	"holy_locket_health_regen"	"4"
+	  	"holy_locket_health_regen"	"4.5"
 	  }
 	  "204"
 	  {

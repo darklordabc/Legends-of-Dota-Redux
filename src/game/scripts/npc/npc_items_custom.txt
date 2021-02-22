@@ -1103,7 +1103,7 @@
         "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
         "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
         "AbilityGoldCost"               "0"
-        "ItemPurchasable"              "0"
+        "ItemPurchasable"               "0"
 
         
     }
@@ -1124,7 +1124,7 @@
         "ItemCost"                      "5250"
         "AbilityGoldCost"               "5250"
         "ItemShopTags"                  "attack_speed;armor;hard_to_tag"
-        "ItemPurchasable"              "0"
+        "ItemPurchasable"               "0"
         "ItemQuality"                   "epic"
         "ItemAliases"                   "ac;assault cuirass"
         "ItemDeclarations"              "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
@@ -1136,34 +1136,34 @@
         "AbilitySpecial"
         {
             "01"
-          {
-            "var_type"              "FIELD_INTEGER"
-            "assault_bonus_attack_speed"    "30"
-          }
-          "02"
-          {
-            "var_type"              "FIELD_INTEGER"
-            "assault_bonus_armor"           "10"
-          }
-          "03"
-          {
-            "var_type"              "FIELD_INTEGER"
-            "assault_aura_radius"           "1200"
-          }
-          "04"
-          {
-            "var_type"              "FIELD_INTEGER"
-            "assault_aura_attack_speed"     "25"
-          }
-          "05"
-          {
-            "var_type"              "FIELD_INTEGER"
-            "assault_aura_armor"   "5"
-          }
-		  "05"
-          {
-            "var_type"              "FIELD_INTEGER"
-            "assault_bonus_all_stats"   "5"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "assault_bonus_attack_speed"    "30"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "assault_bonus_armor"           "10"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "assault_aura_radius"           "1200"
+            }
+            "04"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "assault_aura_attack_speed"     "30"
+            }
+            "05"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "assault_aura_positive_armor"   "5"
+            }
+            "06"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "assault_aura_negative_armor"   "-5"
           }
         }
     }
@@ -1180,8 +1180,8 @@
 
         // Item Info
         //-------------------------------------------------------------------------------------------------------------
-        "ItemCost"                      "5500"
-        "AbilityGoldCost"               "5500"
+        "ItemCost"                      "5075"
+        "AbilityGoldCost"               "5075"
         "ItemPurchasable"              "0"
         "ItemShopTags"                  "agi;str;int;hard_to_tag;mana_pool;health_pool;unique"
         "ItemPurchasable"              "0"
@@ -1195,36 +1195,41 @@
         // THESE VALUES ARE PURELY FOR THE TOOLTIPS, REAL VALUES ARE IN ABILITY "ability_consumable_item_container"
         "AbilitySpecial"
         {
-			  "01"
-			  {
-				"var_type"        "FIELD_INTEGER"
-				"skadi_bonus_all_stats"   "25"
-			  }
-			  "02"
-			  {
-				"var_type"        "FIELD_INTEGER"
-				"skadi_bonus_health"      "225"
-			  }
-			  "03"
-			  {
-				"var_type"        "FIELD_INTEGER"
-				"skadi_bonus_mana"      "250"
-			  }
-			  "04"
-			  {
-				"var_type"        "FIELD_INTEGER"
-				"skadi_cold_slow_melee" "-20"
-			  }
-			  "05"
-			  {
-				"var_type"        "FIELD_INTEGER"
-				"skadi_cold_slow_ranged"   "-45"
-			  }
-			  "06"
-			  {
-				"var_type"        "FIELD_FLOAT"
-				"skadi_cold_duration" "3.0"
-			  }
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "skadi_bonus_all_stats"       "25"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "skadi_bonus_health"          "225"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "skadi_bonus_mana"            "250"
+            }
+            "04"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "skadi_cold_slow_melee"   "-25"
+            }
+            "05"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "skadi_cold_slow_ranged"  "-50"
+            }
+            "06"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "skadi_cold_duration" "3.0"
+            }
+            "07"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "skadi_heal_reduction"    "40"
+            }
         }
     }
 
@@ -1257,17 +1262,17 @@
             "01"
             {
                 "var_type"              "FIELD_INTEGER"
-                "desolator_bonus_damage"          "50"
+                "desolator_bonus_damage"          "60"
             }
             "02"
             {
                 "var_type"              "FIELD_INTEGER"
-                "desolator_corruption_armor"      "-7"
+                "desolator_corruption_armor"      "-6"
             }
             "03"
             {
                 "var_type"              "FIELD_FLOAT"
-                "desolator_corruption_duration"   "15.0"
+                "desolator_corruption_duration"   "7.0"
             }
         }
     }
@@ -1431,8 +1436,8 @@
         // General
         //-------------------------------------------------------------------------------------------------------------
         "ID"                            "2114"                                                       
-        "ItemCost"                      "5200"
-        "AbilityGoldCost"               "5200"
+        "ItemCost"                      "4800"
+        "AbilityGoldCost"               "4800"
         "ItemPurchasable"              "0"
         "AbilityCooldown"               "7.0"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
@@ -1457,33 +1462,13 @@
             "02"
             {
                 "var_type"              "FIELD_INTEGER"
-                "heart_bonus_health"          "400"
+                "heart_bonus_health"          "250"
             }
             "03"
             {
-                "var_type"              "FIELD_FLOAT"
-                "heart_health_regen_rate"     "7"
-            }
-            "04"
-            {
                 "var_type"              "FIELD_INTEGER"
-                "heart_cooldown_melee"        "5"
+                "heart_health_regen_pct"      "1.6"
             }
-            "05"
-            {
-                "var_type"              "FIELD_INTEGER"
-                "heart_cooldown_ranged_tooltip"       "7"
-            }
-            "06"
-            {
-                "var_type"              "FIELD_INTEGER"
-                "heart_hp_regen_amp"       "50"
-            }
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"heart_fixed_health_regen"		"10"
-			}
         }
     }
     "item_greater_crit_consumable"
@@ -1500,8 +1485,8 @@
 
         // Item Info
         //-------------------------------------------------------------------------------------------------------------
-        "ItemCost"                      "5320"
-        "AbilityGoldCost"               "5320"
+        "ItemCost"                      "5150"
+        "AbilityGoldCost"               "5150"
         "ItemPurchasable"              "0"
         
         // Special  
@@ -1514,7 +1499,7 @@
             "01"
             {
                 "var_type"              "FIELD_INTEGER"
-                "greater_crit_bonus_damage"          "80"
+                "greater_crit_bonus_damage"          "88"
             }
             "02"
             {
@@ -1524,12 +1509,7 @@
             "03"
             {
                 "var_type"              "FIELD_INTEGER"
-                "greater_crit_crit_multiplier"       "235"
-            }
-            "04"
-            {
-                "var_type"              "FIELD_INTEGER"
-                "greater_crit_crit_multiplier_tooltip"       "135"
+                "greater_crit_crit_multiplier"       "225"
             }
         }
     }
@@ -1549,8 +1529,8 @@
 
         // Item Info
         //-------------------------------------------------------------------------------------------------------------
-        "ItemCost"                      "5900"
-        "AbilityGoldCost"               "5900"
+        "ItemCost"                      "5475"
+        "AbilityGoldCost"               "5475"
         "ItemPurchasable"              "0"
 
         "precache"
@@ -1568,37 +1548,27 @@
             "01"
             {
                 "var_type"              "FIELD_INTEGER"
-                "octarine_core_bonus_intelligence"    "25"
+                "octarine_core_bonus_health"          "425"
             }
             "02"
             {
                 "var_type"              "FIELD_INTEGER"
-                "octarine_core_bonus_health"          "425"
+                "octarine_core_bonus_mana"            "725"
             }
             "03"
             {
                 "var_type"              "FIELD_INTEGER"
-                "octarine_core_bonus_mana"            "425"
+                "octarine_core_cast_range_bonus"   "250"
             }
             "04"
             {
                 "var_type"              "FIELD_INTEGER"
-                "octarine_core_bonus_cooldown"        "25"
+                "octarine_core_bonus_mana_regen"        "3"
             }
             "05"
             {
-                "var_type"              "FIELD_FLOAT"
-                "octarine_core_hero_lifesteal"        "25"
-            }           
-            "06"
-            {
-                "var_type"              "FIELD_FLOAT"
-                "octarine_core_creep_lifesteal"       "5"
-            }   
-            "07"
-            {
                 "var_type"              "FIELD_INTEGER"
-                "octarine_core_active_duration"       "7"
+                "octarine_core_bonus_cooldown"        "25"
             }
         }
     }
@@ -1617,30 +1587,30 @@
 
         // Item Info
         //-------------------------------------------------------------------------------------------------------------
-        "ItemCost"                      "4175"
-        "AbilityGoldCost"               "4175"
+        "ItemCost"                      "4975"
+        "AbilityGoldCost"               "4975"
         "ItemPurchasable"              "0"
         "AbilitySpecial"
         {
             "01"
             {
                 "var_type"              "FIELD_INTEGER"
-                "monkey_king_bar_bonus_attack_speed"          "10"
+                "monkey_king_bar_bonus_damage"          "40"
             }
             "02"
             {
                 "var_type"              "FIELD_INTEGER"
-                "monkey_king_bar_bonus_chance"           "75"
+                "monkey_king_bar_bonus_attack_speed"    "35"
             }
             "03"
             {
                 "var_type"              "FIELD_INTEGER"
-                "monkey_king_bar_bonus_chance_damage"           "100"
+                "monkey_king_bar_bonus_chance"          "75"
             }
             "04"
             {
                 "var_type"              "FIELD_INTEGER"
-                "monkey_king_bar_bonus_damage"           "52"
+                "monkey_king_bar_bonus_chance_damage"           "70"
             }
             
         }
@@ -1660,8 +1630,8 @@
 
         // Item Info
         //-------------------------------------------------------------------------------------------------------------
-        "ItemCost"                      "2350"
-        "AbilityGoldCost"               "2350"
+        "ItemCost"                      "2275"
+        "AbilityGoldCost"               "2275"
         "ItemPurchasable"              "0"
 
         "AbilitySpecial"
@@ -1698,8 +1668,8 @@
 
         // Item Info
         //-------------------------------------------------------------------------------------------------------------
-        "ItemCost"                      "5475"
-        "AbilityGoldCost"               "5475"
+        "ItemCost"                      "5075"
+        "AbilityGoldCost"               "5075"
         "ItemPurchasable"              "0"
         
         
@@ -1713,22 +1683,22 @@
             "01"
             {
                 "var_type"              "FIELD_INTEGER"
-                "butterfly_bonus_damage"          "25"
+                "butterfly_bonus_agility"         "30"
             }
             "02"
             {
                 "var_type"              "FIELD_INTEGER"
-                "butterfly_bonus_attack_speed"      "30"
+                "butterfly_bonus_evasion"         "35"
             }
             "03"
             {
                 "var_type"              "FIELD_INTEGER"
-                "butterfly_bonus_agility"   "35"
+                "butterfly_bonus_attack_speed"    "30"
             }
             "04"
             {
                 "var_type"              "FIELD_INTEGER"
-                "butterfly_bonus_evasion"   "35"
+                "butterfly_bonus_damage"  "25"
             }
         }
     }
@@ -2189,41 +2159,36 @@
         "BaseClass"                     "item_lua"
         "AbilityTextureName"            "item_vladmir"
         "AbilityCastRange"              "900"
-        "ItemCost"                      "2250"
+        "ItemCost"                      "2375"
 
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
         "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
         "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
-        "AbilityGoldCost"               "2250"
+        "AbilityGoldCost"               "2375"
         "ItemPurchasable"              "0"
 
         "AbilitySpecial"
         {
-			"01"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"vlads_mana_regen_aura"		"1.5"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"vlads_armor_aura"			"3"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"vlads_vampiric_aura"			"25"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"vlads_aura_radius"	"1200"
-			}			
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"vlads_bonus_all_stats"		"6"
-			}        
+            "01"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "vladimir_mana_regen_aura"       "2.0"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "vladimir_lifesteal_aura"            "15"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "vladimir_damage_aura"           "18"
+            }
+            "04"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "vladimir_aura_radius"   "1200"
+            }       
         }
     }
 
@@ -2236,12 +2201,12 @@
         "FightRecapLevel"               "1"
         "SpellDispellableType"          "SPELL_DISPELLABLE_YES"
         "AbilityCooldown"               "5.0"
-        "ItemCost"                      "2650"
+        "ItemCost"                      "2500"
 
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
         "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
         "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
-        "AbilityGoldCost"               "2650"
+        "AbilityGoldCost"               "2500"
         "ItemPurchasable"              "0"
 
         "AbilitySpecial"
@@ -2249,7 +2214,7 @@
             "01"
             {
                 "var_type"              "FIELD_INTEGER"
-                "echo_sabre_bonus_intellect"       "10"
+                "echo_sabre_bonus_damage"          "15"
             }
             "02"
             {
@@ -2259,12 +2224,12 @@
             "03"
             {
                 "var_type"              "FIELD_INTEGER"
-                "echo_sabre_bonus_attack_speed"    "10"
+                "echo_sabre_bonus_intellect"           "10"
             }
             "04"
             {
                 "var_type"              "FIELD_INTEGER"
-                "echo_sabre_bonus_damage"          "15"
+                "echo_sabre_bonus_attack_speed"            "10"
             }
             "05"
             {
@@ -2274,19 +2239,14 @@
             "06"
             {
                 "var_type"              "FIELD_INTEGER"
-                "echo_sabre_proc_damage"           "0"
+                "echo_sabre_movement_slow"         "100"
             }
             "07"
             {
                 "var_type"              "FIELD_INTEGER"
-                "echo_sabre_movement_slow"         "100"
-            }
-            "08"
-            {
-                "var_type"              "FIELD_INTEGER"
                 "echo_sabre_attack_speed_slow"         "0"
             }
-            "09"
+            "08"
             {
                 "var_type"              "FIELD_FLOAT"
                 "echo_sabre_slow_duration"         "0.8"
@@ -2301,13 +2261,13 @@
         "BaseClass"                     "item_lua"
         "AbilityTextureName"            "item_aeon_disk"
         "SpellDispellableType"          "SPELL_DISPELLABLE_NO"
-        "AbilityCooldown"               "115"
-        "ItemCost"                      "3350"
+        "AbilityCooldown"               "105"
+        "ItemCost"                      "3100"
 
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
         "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
         "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
-        "AbilityGoldCost"               "3350"
+        "AbilityGoldCost"               "3100"
         "ItemPurchasable"              "0"
 
         "AbilitySpecial"
@@ -2325,17 +2285,17 @@
             "03"
             {
                 "var_type"              "FIELD_INTEGER"
-                "aeon_disk_health_threshold_pct"  "70"
+                "aeon_disk_health_threshold_pct"          "70"
             }
             "04"
             {
                 "var_type"              "FIELD_INTEGER"
-                "aeon_disk_status_resistance"     "50"
+                "aeon_disk_status_resistance"         "75"
             }
             "05"
             {
                 "var_type"              "FIELD_FLOAT"
-                "aeon_disk_buff_duration"         "2.5"
+                "aeon_disk_buff_duration"     "2.5"
             }
         }
     }
@@ -2464,56 +2424,56 @@
         "ScriptFile"                    "abilities/items/holy_locket.lua"
         "AbilityTextureName"            "item_holy_locket"
         "BaseClass"                     "item_lua"
-        "ItemCost"                      "2650"
+        "ItemCost"                      "2500"
 
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
         "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
         "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
-        "AbilityGoldCost"               "2650"
+        "AbilityGoldCost"               "2500"
         "ItemPurchasable"              "0"
 
         "AbilitySpecial"
         {
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"holy_locket_bonus_health"			"250"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"holy_locket_bonus_mana"			"325"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"holy_locket_health_regen"	"4"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"holy_locket_heal_increase"		"35"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"holy_locket_max_charges"			"20"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"holy_locket_charge_radius"			"1200"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"holy_locket_bonus_all_stats"		"3"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"holy_locket_restore_per_charge"	"15"
-			}
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_health"          "250"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_mana"            "325"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "health_regen"  "4.5"
+            }
+            "04"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "heal_increase"     "35"
+            }
+            "05"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "max_charges"           "20"
+            }
+            "06"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "charge_radius"         "1200"
+            }
+            "07"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_all_stats"       "3"
+            }
+            "08"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "restore_per_charge"    "15"
+            }
         }
     }
 }

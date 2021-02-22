@@ -82,31 +82,21 @@ function modifier_item_octarine_core_consumable:GetAttributes()
   return MODIFIER_ATTRIBUTE_MULTIPLE
 end
 function modifier_item_octarine_core_consumable:IsHidden()
-  if not self:GetAbility() then
-    self:Destroy()
-    return
-  end
-  return self:GetAbility().IsItem
+    if (not self:GetAbility()) then
+        return false
+    end
+    return self:GetAbility():GetName()~="ability_consumable_item_container"
 end
-
 
 function modifier_item_octarine_core_consumable:DeclareFunctions()
   local funcs = {
-    MODIFIER_EVENT_ON_TAKEDAMAGE,
-    MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
     MODIFIER_PROPERTY_HEALTH_BONUS,
     MODIFIER_PROPERTY_MANA_BONUS,
+    MODIFIER_PROPERTY_CAST_RANGE_BONUS,
+    MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
     MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE,
   }
   return funcs
-end
-
-function modifier_item_octarine_core_consumable:GetModifierBonusStats_Intellect()
-  if not self:GetAbility() then
-    self:Destroy()
-    return
-  end
-  return self:GetAbility():GetSpecialValueFor("octarine_core_bonus_intelligence")
 end
 
 function modifier_item_octarine_core_consumable:GetModifierHealthBonus()
@@ -123,6 +113,22 @@ function modifier_item_octarine_core_consumable:GetModifierManaBonus()
     return
   end
   return self:GetAbility():GetSpecialValueFor("octarine_core_bonus_mana")
+end
+
+function modifier_item_octarine_core_consumable:GetModifierCastRangeBonus()
+  if not self:GetAbility() then
+    self:Destroy()
+    return
+  end
+  return self:GetAbility():GetSpecialValueFor("octarine_core_cast_range_bonus")
+end
+
+function modifier_item_octarine_core_consumable:GetModifierConstantManaRegen()
+  if not self:GetAbility() then
+    self:Destroy()
+    return
+  end
+  return self:GetAbility():GetSpecialValueFor("octarine_core_bonus_mana_regen")
 end
 
 function modifier_item_octarine_core_consumable:GetModifierPercentageCooldown()

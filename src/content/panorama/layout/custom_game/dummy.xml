@@ -748,6 +748,7 @@
 <Image src="file://{images}/spellicons/firelord_summon_lava_spawn.png" />
 <Image src="file://{images}/spellicons/flesh_heap_agi.png" />
 <Image src="file://{images}/spellicons/flesh_heap_attack_range.png" />
+<Image src="file://{images}/spellicons/flesh_heap_attack_speed.png" />
 <Image src="file://{images}/spellicons/flesh_heap_bonus_vision.png" />
 <Image src="file://{images}/spellicons/flesh_heap_int.png" />
 <Image src="file://{images}/spellicons/flesh_heap_move_speed.png" />

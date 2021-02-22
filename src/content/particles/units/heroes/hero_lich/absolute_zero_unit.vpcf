@@ -1,0 +1,106 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 0.0, 0.0, 0.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_FadeAndKill"
+			m_flEndFadeInTime = 0.7
+			m_flStartAlpha = 0.0
+			m_flStartFadeOutTime = 0.8
+		},
+		{
+			_class = "C_OP_BasicMovement"
+			m_Gravity = [ 0.0, 0.0, -100.0 ]
+			m_fDrag = 0.1
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flStartScale = 3.0
+		},
+		{
+			_class = "C_OP_LockToBone"
+		},
+		{
+			_class = "C_OP_LerpEndCapScalar"
+			m_flOutput = 0.0
+			m_flLerpTime = 0.25
+		},
+	]
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderSprites"
+			m_bAdditive = true
+			m_bDisableZBuffering = true
+			m_flOverbrightFactor = 0.4
+			m_hTexture = resource:"materials/particle/basic_smoke.vtex"
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_VelocityRandom"
+			m_LocalCoordinateSystemSpeedMin = [ -400.0, -400.0, 1000.0 ]
+			m_LocalCoordinateSystemSpeedMax = [ 400.0, 400.0, 0.0 ]
+			m_bDisableOperator = true
+		},
+		{
+			_class = "C_INIT_RandomLifeTime"
+			m_fLifetimeMin = 1.0
+			m_fLifetimeMax = 2.0
+		},
+		{
+			_class = "C_INIT_InitialVelocityNoise"
+			m_vecOutputMin = [ -20.0, -20.0, -20.0 ]
+			m_vecOutputMax = [ 20.0, 20.0, 20.0 ]
+		},
+		{
+			_class = "C_INIT_RandomRotation"
+		},
+		{
+			_class = "C_INIT_RandomSequence"
+			m_nSequenceMax = 12
+		},
+		{
+			_class = "C_INIT_RandomColor"
+			m_ColorMax = [ 70, 130, 180, 255 ]
+		},
+		{
+			_class = "C_INIT_RandomRadius"
+			m_flRadiusMin = 15.0
+			m_flRadiusMax = 25.0
+		},
+		{
+			_class = "C_INIT_CreateOnModel"
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_ContinuousEmitter"
+			m_flEmitRate = 25.0
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_lich/absolute_zero_unit_sparkle.vpcf"
+		},
+	]
+}

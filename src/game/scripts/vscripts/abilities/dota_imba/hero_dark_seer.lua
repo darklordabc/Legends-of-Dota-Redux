@@ -510,7 +510,7 @@ function modifier_imba_dark_seer_ion_shell:OnCreated()
 	self.particle			= ParticleManager:CreateParticle("particles/units/heroes/hero_dark_seer/dark_seer_ion_shell.vpcf", PATTACH_POINT_FOLLOW, self:GetParent(), self:GetCaster())
 	ParticleManager:SetParticleControlEnt(self.particle, 0, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetParent():GetAbsOrigin(), true)
 	ParticleManager:SetParticleControl(self.particle, 1, Vector(50, 50, 50)) -- Arbitrary
-	self:AddParticle(self.particle, false, false, -1, false, false)`
+	self:AddParticle(self.particle, false, false, -1, false, false)
 	
 	self:SetStackCount(0)
 	

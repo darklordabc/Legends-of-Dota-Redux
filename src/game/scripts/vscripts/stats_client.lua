@@ -256,7 +256,7 @@ function StatsClient:Send(path, data, callback, retryCount, protocol, _currentRe
             print("error, status == " .. response.StatusCode)
             local currentRetry = (_currentRetry or 0) + 1
             if currentRetry < (retryCount or 0) then
-                Timers:CreateTimer(1, function()
+                Timers:CreateTimer(30, function()
                     print("Retry (" .. currentRetry .. ")")
                     StatsClient:Send(path, data, callback, retryCount, protocol, currentRetry)
                 end)

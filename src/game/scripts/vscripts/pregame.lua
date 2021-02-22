@@ -1,28 +1,3 @@
-
---[[for k,v in pairs(_G) do
-  print('key ', k, 'value ', v)
-end
-old_print = print
-print = function(...)
-    local calling_script = debug.getinfo(2).short_src
-    old_print('Print called by: '..calling_script)
-    old_print(...)
-end
-
-
-
---[   VScript ]: key    ScriptDebugTextTrace    value   function: 0x0333db48
---[   VScript ]: key    SendToServerConsole value   function: 0x032bbfd0
---key   PrintLinkedConsoleMessage   value   function: 0x032bc058
-old_error = PrintLinkedConsoleMessage
-PrintLinkedConsoleMessage = function(...)
-    --local calling_script = debug.getinfo(2).short_src
-    print('Print called by: ') --..calling_script)
-    old_error(...)
-end
-]]
---error('asfasdf')
-
 -- Libraries
 local constants = require('constants')
 local SkillManager = require('skillmanager')
@@ -84,6 +59,9 @@ LinkLuaModifier("modifier_bat_manager","abilities/modifiers/modifier_bat_manager
 -- Courier's modifiers
 LinkLuaModifier("modifier_core_courier", 'abilities/courier/modifier_core_courier',LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_core_courier_flying", 'abilities/courier/modifier_core_courier_flying',LUA_MODIFIER_MOTION_NONE)
+
+-- Valve's updated courerier spawn
+GameRules:GetGameModeEntity():SetFreeCourierModeEnabled(true)
 
 --[[
     Main pregame, selection related handler
@@ -595,7 +573,7 @@ function Pregame:init()
         OptionManager:SetOption('banningTime', 50)
         self:setOption('lodOptionBalanceMode', 0, true)
         self:setOption('lodOptionGameSpeedGoldModifier', 200, true)
-        self:setOption('lodOptionGameSpeedGoldTickRate', 2, true)
+        --self:setOption('lodOptionGameSpeedGoldTickRate', 2, true)
         self:setOption('lodOptionGameSpeedEXPModifier', 200, true)
         self:setOption('lodOptionAdvancedHidePicks', 0, true)
         self:setOption('lodOptionCommonMaxUlts', 2, true)
@@ -622,7 +600,7 @@ function Pregame:init()
         OptionManager:SetOption('banningTime', 50)
         self:setOption('lodOptionBalanceMode', 0, true)
         self:setOption('lodOptionGameSpeedGoldModifier', 100, true)
-        self:setOption('lodOptionGameSpeedGoldTickRate', 1, true)
+        --self:setOption('lodOptionGameSpeedGoldTickRate', 1, true)
         self:setOption('lodOptionGameSpeedEXPModifier', 100, true)
         self:setOption('lodOptionAdvancedHidePicks', 0, true)
         self:setOption('lodOptionCommonMaxUlts', 2, true)
@@ -803,7 +781,7 @@ function Pregame:loadDefaultSettings()
 
     -- Don't mess with gold rate
     self:setOption('lodOptionGameSpeedStartingGold', 0, true)
-    self:setOption('lodOptionGameSpeedGoldTickRate', 1, true)
+    --self:setOption('lodOptionGameSpeedGoldTickRate', 1, true)
     self:setOption('lodOptionGameSpeedGoldModifier', 100, true)
     self:setOption('lodOptionGameSpeedEXPModifier', 100, true)
     self:setOption('lodOptionGameSpeedSharedEXP', 0, true)
@@ -1214,7 +1192,7 @@ function Pregame:onThink()
 
             Chat:Say( {channel = "all", msg = "chatChannelsAnnouncement", PlayerID = -1, localize = true})
 
-            StatsClient:Fetch()
+            --StatsClient:Fetch()
 
             -- Are we using option selection, or option voting?
             if self.useOptionVoting then
@@ -1603,7 +1581,7 @@ function Pregame:onThink()
 
         Timers:CreateTimer(function()
             -- Load messages
-            SU:LoadPlayersMessages()
+            --SU:LoadPlayersMessages()
 
             ingame:onStart()
         end, DoUniqueString('preventcamping'), 1)
@@ -1626,14 +1604,14 @@ end
 -- Called to prepare to get player data when someone connects
 function Pregame:preparePlayerDataFetch()
     -- Listen for someone who is connecting
-    --ListenToGameEvent('player_connect_full', function(keys)
-    --    util:fetchPlayerData()
-    --end, nil)
+    ListenToGameEvent('player_connect_full', function(keys)
+        util:fetchPlayerData()
+    end, nil)
 
     -- Attempt to pull after a minor delay
-    --Timers:CreateTimer(function()
-        --util:fetchPlayerData()
-    --end, DoUniqueString('fetchPlayerData'), 0.1)
+    Timers:CreateTimer(function()
+        util:fetchPlayerData()
+    end, DoUniqueString('fetchPlayerData'), 0.1)
 end
 
 -- Called automatically when we get player data
@@ -2912,7 +2890,7 @@ function Pregame:initOptionSelector()
         end,
 
         -- Game Speed -- Gold per interval
-        lodOptionGameSpeedGoldTickRate = function(value)
+        --[[lodOptionGameSpeedGoldTickRate = function(value)
             -- It needs to be a whole number between a certain range
             if type(value) ~= 'number' then return false end
             if math.floor(value) ~= value then return false end
@@ -2920,9 +2898,9 @@ function Pregame:initOptionSelector()
 
             -- Valid
             return true
-        end,
+        end,]]--
 
-        -- Game Speed -- Gold per interval
+        -- Game Speed -- Buying Neutral Items
         lodOptionBuyingNeutralItems = function(value)
             -- It needs to be a whole number between a certain range
             if type(value) ~= 'number' then return false end
@@ -3663,145 +3641,6 @@ function Pregame:MultiplyNeutralUnit( unit, killer, mult, lastHits )
         clone = CreateUnitByName( unitName, loc, true, nil, nil, DOTA_TEAM_NEUTRALS )
         clone:AddNewModifier(clone, nil, "modifier_kill", {duration = 120})
         clone:AddAbility("clone_token_ability")
-
-        -- SPECIAL BONUSES IF PLAYERS LAST HIT TOO MUCH
-        -- Double Damage Bonus
-        --if RollPercentage(5) then
-        --    clone:AddNewModifier(clone, nil, "modifier_rune_doubledamage", {duration = duration})
-        --end
-
-        -- Healing Aura Bonus
-        --if lastHits > 25 and RollPercentage(15) then
-        --    level = math.min(10, (math.floor(lastHits / 25)) )
-        --
-        --    clone:AddAbility("neutral_regen_aura")
-        --    local healingWard = clone:FindAbilityByName("neutral_regen_aura")
-        --    healingWard:SetLevel(level)
-        --end
-
-        -- Extra Health Bonus
-        --if lastHits > 25 and RollPercentage(15) then
-        --    level = math.min(10, (math.floor(lastHits / 25)) )
-        --   modelSize = level/14 + 1
-         --   clone:SetModelScale(modelSize)
-
-         --   clone:AddAbility("neutral_extra_health")
-        --    local extraHealth = clone:FindAbilityByName("neutral_extra_health")
-        --    extraHealth:SetLevel(level)
-        --end
-
-        -- Lucifier Attack
-        --if not alreadySpawned and lastHits >= 100 then
-        --    if killer.hadLucifier ~= true or RollPercentage(5) then
-        --        killer.hadLucifier = true
-
-        --        alreadySpawned = true
-        --        local lucifier = CreateUnitByName( "npc_dota_lucifers_claw_doomling", loc, true, nil, nil, DOTA_TEAM_NEUTRALS )
-
-        --        lucifier:AddAbility("spawnlord_master_freeze_creep")
-        --        local bash = lucifier:FindAbilityByName("spawnlord_master_freeze_creep")
-        --        local bashlevel = math.min(4, (math.floor((lastHits-100) / 20)) )
-        --        bash:SetLevel(bashlevel)
-
-        --        lucifier:AddNewModifier(lucifier, nil, "modifier_phased", {Duration = 2})
-        --        lucifier:AddNewModifier(lucifier, nil, "modifier_kill", {duration = 45})
-
-        --        Timers:CreateTimer(function()
-        --            lucifier:MoveToTargetToAttack(killer)
-         --       end, DoUniqueString('attackPlayer'), 0.5)
-        --    end
-        --end
-
-        -- Araknarok Tank
-        --if not alreadySpawned and lastHits >= 200 then
-        --    if killer.hadAraknarok ~= true or RollPercentage(5) then
-        --        killer.hadAraknarok = true
-
-        --        alreadySpawned = true
-        --        local araknarok = CreateUnitByName( "npc_dota_araknarok_spiderling", loc, true, nil, nil, DOTA_TEAM_NEUTRALS )
-
-        --        araknarok:AddAbility("broodmother_incapacitating_bite")
-        --        local poison = araknarok:FindAbilityByName("broodmother_incapacitating_bite")
-        --        local poisonlevel = math.min(4, (math.floor((lastHits-200) / 20)) )
-        --        poison:SetLevel(poisonlevel)
-
-        --        araknarok:AddAbility("imba_tower_essence_drain")
-        --        local lifedrain = araknarok:FindAbilityByName("imba_tower_essence_drain")
-        --        local drainlevel = math.min(3, (math.floor((lastHits-200) / 26)) )
-        --        lifedrain:SetLevel(drainlevel)
-
-        --        araknarok:SetHullRadius(55)
-
-         --       araknarok:AddNewModifier(araknarok, nil, "modifier_phased", {Duration = 2})
-         --       araknarok:AddNewModifier(araknarok, nil, "modifier_kill", {duration = 45})
-
-        --        Timers:CreateTimer(function()
-        --            araknarok:MoveToTargetToAttack(killer)
-        --        end, DoUniqueString('attackPlayer'), 0.5)
-        --    end
-        --end
-
-        -- Small Bear Boss
-        --if not alreadySpawned and lastHits >= 50 then
-        --    if killer.hadSmallBear ~= true or RollPercentage(1) then
-        --        killer.hadSmallBear = true
-
-        --        alreadySpawned = true
-
-         --       local smallBear = CreateUnitByName( "npc_dota_creature_small_spirit_bear", loc, true, nil, nil, DOTA_TEAM_NEUTRALS )
-
-        --        smallBear:AddNewModifier(araknarok, nil, "modifier_phased", {Duration = 2})
-        --        smallBear:AddNewModifier(araknarok, nil, "modifier_kill", {duration = 200})
-
-        --        Timers:CreateTimer(function()
-        --            smallBear:MoveToTargetToAttack(killer)
-        --        end, DoUniqueString('attackPlayer'), 0.5)
-        --    end
-        --end
-
-        -- Large Bear Boss
-        --if not alreadySpawned and lastHits > 150 then
-        --    if killer.hadLargeBear ~= true then
-        --        killer.hadLargeBear = true
-
-        --        alreadySpawned = true
-
-        --        local largeBear = CreateUnitByName( "npc_dota_creature_large_spirit_bear", loc, true, nil, nil, DOTA_TEAM_NEUTRALS )
-
-        --        largeBear:AddNewModifier(araknarok, nil, "modifier_phased", {Duration = 2})
-        --        largeBear:AddNewModifier(araknarok, nil, "modifier_kill", {duration = 200})
-
-        --        Timers:CreateTimer(function()
-        --            largeBear:MoveToTargetToAttack(killer)
-        --        end, DoUniqueString('attackPlayer'), 0.5)
-        --    end
-        --end
-
-        -- Daddy Bear Boss
-        --if not alreadySpawned and lastHits >= 300 then
-        --    if killer.hadDaddyBear ~= true then
-        --        killer.hadDaddyBear = true
-
-        --        alreadySpawned = true
-
-        --        team = DOTA_TEAM_NEUTRALS
-        --        if killer:GetTeam() == DOTA_TEAM_BADGUYS then
-        --           team = DOTA_TEAM_GOODGUYS
-        --       elseif killer:GetTeam() == DOTA_TEAM_GOODGUYS then
-        --            team = DOTA_TEAM_BADGUYS
-        --        end
-
-        --        local daddyBear = CreateUnitByName( "npc_dota_creature_big_bear", loc, true, nil, nil, team )
-
-        --        daddyBear:AddNewModifier(araknarok, nil, "modifier_phased", {Duration = 2})
-        --        daddyBear:AddNewModifier(araknarok, nil, "modifier_kill", {duration = 200})
-
-        --        Timers:CreateTimer(function()
-        --            daddyBear:MoveToTargetToAttack(killer)
-        --        end, DoUniqueString('attackPlayer'), 0.5)
-         --   end
-        --end
-
     end
 end
 
@@ -4139,7 +3978,7 @@ end
     end
 
     continueCaching()
-end]]
+end]]--
 
 
 
@@ -4336,8 +4175,8 @@ function Pregame:processOptions()
         end]]
 
         -- Gold per interval
-        GameRules:SetGoldPerTick(this.optionStore['lodOptionGameSpeedGoldTickRate'])
-        OptionManager:SetOption('goldPerTick', this.optionStore['lodOptionGameSpeedGoldTickRate'])
+        --GameRules:SetGoldPerTick(this.optionStore['lodOptionGameSpeedGoldTickRate'])
+       -- OptionManager:SetOption('goldPerTick', this.optionStore['lodOptionGameSpeedGoldTickRate'])
         OptionManager:SetOption('goldModifier', this.optionStore['lodOptionGameSpeedGoldModifier'])
         OptionManager:SetOption('expModifier', this.optionStore['lodOptionGameSpeedEXPModifier'])
         OptionManager:SetOption('sharedXP', this.optionStore['lodOptionGameSpeedSharedEXP'])
@@ -4571,7 +4410,7 @@ function Pregame:processOptions()
         if this.useOptionVoting then
             -- We are using option voting
 
-            -- Did anyone actually post to the banning bote?
+            -- Did anyone actually post to the banning vote?
             if this.optionVotingBanning ~= nil then
                 -- Someone actually voted
                 statCollection:setFlags(self.votingStatFlags)
@@ -4611,7 +4450,7 @@ function Pregame:processOptions()
                     ['Game Speed: Bonus Starting Gold'] = this.optionStore['lodOptionGameSpeedStartingGold'],
                     ['Game Speed: Buyback Cooldown Constant'] = this.optionStore['lodOptionBuybackCooldownTimeConstant'],
                     ['Game Speed: Gold Modifier'] = math.floor(this.optionStore['lodOptionGameSpeedGoldModifier']),
-                    ['Game Speed: Gold Per Tick'] = this.optionStore['lodOptionGameSpeedGoldTickRate'],
+                    --['Game Speed: Gold Per Tick'] = this.optionStore['lodOptionGameSpeedGoldTickRate'],
                     ['Game Speed: Max Hero Level'] = this.optionStore['lodOptionGameSpeedMaxLevel'],
                     ['Game Speed: Respawn Modifier Constant'] = this.optionStore['lodOptionGameSpeedRespawnTimeConstant'],
                     ['Game Speed: Respawn Modifier Percentage'] = math.floor(this.optionStore['lodOptionGameSpeedRespawnTimePercentage']),
@@ -7889,10 +7728,10 @@ function Pregame:hookBotStuff()
     end, nil)
 end
 
-function Pregame:giveAbilityUsageBonuses(playerID)
+--[[function Pregame:giveAbilityUsageBonuses(playerID)
     local pregame = GameRules.pregame
-    local threshold = pregame.optionStore["lodOptionNewAbilitiesThreshold"]
-    local global = StatsClient.GlobalAbilityUsageData
+    --local threshold = pregame.optionStore["lodOptionNewAbilitiesThreshold"]
+    --local global = StatsClient.GlobalAbilityUsageData
     local globalThreshold = pregame.optionStore["lodOptionGlobalNewAbilitiesThreshold"]
 
     function isGlobalBelowThreshold(ability)
@@ -7945,7 +7784,7 @@ function Pregame:giveAbilityUsageBonuses(playerID)
             end
         end
     end
-end
+end]]--
 
 function Pregame:applyExtraAbility( spawnedUnit )
     -- Timers:CreateTimer(function()
@@ -8084,7 +7923,7 @@ function Pregame:applyExtraAbility( spawnedUnit )
     -- end, DoUniqueString('addExtra'), RandomInt(1,3) )
 end
 
--- This function gets runned when heros are recreated with there proper abilities, below is a function that runs at every npc spawn
+-- This function gets run when heros are recreated with there proper abilities, below is a function that runs at every npc spawn
 function Pregame:fixSpawnedHero( spawnedUnit )
     self.givenBonuses = self.givenBonuses or {}
     self.handled = self.handled or {}
@@ -8147,13 +7986,13 @@ function Pregame:fixSpawnedHero( spawnedUnit )
     Timers:CreateTimer(function()
         if IsValidEntity(spawnedUnit) then
             -- Silencer Fix NEEDS TO BE RUN EVERY SPAWN (below), AND ON FIXEDHERO FUNCTION
-                if spawnedUnit:HasAbility('silencer_glaives_of_wisdom_steal') then
+                --[[if spawnedUnit:HasAbility('silencer_glaives_of_wisdom_steal') then
                     if not spawnedUnit:HasModifier('modifier_silencer_int_steal') then
                         spawnedUnit:AddNewModifier(spawnedUnit, spawnedUnit:FindAbilityByName("silencer_glaives_of_wisdom_steal"), 'modifier_silencer_int_steal', {})
                     end
                 else
                     spawnedUnit:RemoveModifierByName('modifier_silencer_int_steal')
-                end
+                end]]--
 
             -- Apply Bot Difficulty 
             if util:isPlayerBot(playerID) then
@@ -8296,7 +8135,7 @@ function Pregame:fixSpawnedHero( spawnedUnit )
             
 
             -- Custom Flesh Heap fixes
-            for abilitySlot=0,6 do
+            --[[for abilitySlot=0,6 do
                 local abilityTemp = spawnedUnit:GetAbilityByIndex(abilitySlot)
                 if abilityTemp then
                     if string.find(abilityTemp:GetAbilityName(),"flesh_heap_") then
@@ -8306,7 +8145,7 @@ function Pregame:fixSpawnedHero( spawnedUnit )
 
                     end
                 end
-            end
+            end]]--
             -- Add mutator modifiers
             if OptionManager:GetOption('vampirism') == 1 then
                 if RollPercentage(50) then
@@ -8370,6 +8209,11 @@ function Pregame:fixSpawnedHero( spawnedUnit )
                     ab:SetHidden(false)
                 end
             end
+
+            -- Give bots a free neutral item
+            local item = CreateItem("item_vambrace", spawnedUnit, nil)
+            spawnedUnit:AddItem(item)
+
         end
     end, DoUniqueString('addBotAI'), 1.0)
 
@@ -8403,9 +8247,10 @@ function Pregame:fixSpawnedHero( spawnedUnit )
                 bonus_health = 0,
                 bonus_mana = 0
             })
-         end
+        end
     end
 
+    -- Give out the spawn zombie ability
     if this.optionStore['lodOptionZombie'] == 1 then
         spawnedUnit:AddAbility("summon_zombie")
         local givenAbility = spawnedUnit:FindAbilityByName("summon_zombie")
@@ -8444,13 +8289,13 @@ function Pregame:fixSpawnedHero( spawnedUnit )
         Timers:CreateTimer(function()
                 if IsValidEntity(spawnedUnit) then
                     -- If hero is not earthshaker or pudge, give ability, or if the hero is not a bot, give the ability.
-                    if util:isPlayerBot(playerID) == false then
+                    --if util:isPlayerBot(playerID) == false then
                         local globalCastRangeAbility = spawnedUnit:AddAbility("aether_range_lod_global")
                         globalCastRangeAbility:UpgradeAbility(true)
-                    elseif spawnedUnit:GetUnitName() ~= "npc_dota_hero_earthshaker" and spawnedUnit:GetUnitName() ~= "npc_dota_hero_pudge" then
-                        local globalCastRangeAbility = spawnedUnit:AddAbility("aether_range_lod_global")
-                        globalCastRangeAbility:UpgradeAbility(true)
-                    end
+                    --elseif spawnedUnit:GetUnitName() ~= "npc_dota_hero_earthshaker" and spawnedUnit:GetUnitName() ~= "npc_dota_hero_pudge" then
+                    --    local globalCastRangeAbility = spawnedUnit:AddAbility("aether_range_lod_global")
+                    --    globalCastRangeAbility:UpgradeAbility(true)
+                    --end
                 end
             end, DoUniqueString('giveGlobalCastRange'), 1)
     end
@@ -8462,7 +8307,7 @@ function Pregame:fixSpawnedHero( spawnedUnit )
         end, DoUniqueString('giveExtraAbility'), 0.1)
     end
 
-    if OptionManager:GetOption('freeCourier') then
+    --[[if OptionManager:GetOption('freeCourier') then
         local team = spawnedUnit:GetTeam()
 
         if not self.givenCouriers[team] then
@@ -8490,7 +8335,7 @@ function Pregame:fixSpawnedHero( spawnedUnit )
                 end
             end, DoUniqueString('spawncourier'), 1)
         end
-    end
+    end]]--
 
     Timers:CreateTimer(function()
         if IsValidEntity(spawnedUnit) then
@@ -8507,7 +8352,7 @@ function Pregame:fixSpawnedHero( spawnedUnit )
         -- We have given bonuses
         self.givenBonuses[playerID] = true
 
-        self:giveAbilityUsageBonuses(playerID)
+        --self:giveAbilityUsageBonuses(playerID)
 
         local startingLevel = OptionManager:GetOption('startingLevel')
         -- Do we need to level up?
@@ -8566,12 +8411,6 @@ function Pregame:fixSpawningIssues()
             local a = periodicDummyCastingUnit:AddAbility("dummy_unit_state")
             a:SetLevel(1)
         end
-
-
-
-        
-
-
 
         if self.wispSpawning then
             if not self.selectedHeroes[spawnedUnit:GetPlayerOwnerID()] and spawnedUnit:IsRealHero() then
@@ -8725,28 +8564,14 @@ function Pregame:fixSpawningIssues()
                 end, DoUniqueString('eyesFix'), 0.5)
         end
 
-        -- Silencer Fix NEEDS TO BE RUN EVERY SPAWN, AND ON FIXEDHERO FUNCTION
-        Timers:CreateTimer(function()
-            if IsValidEntity(spawnedUnit) then
-                -- Silencer Fix
-                if spawnedUnit:HasAbility('silencer_glaives_of_wisdom_steal') then
-                    if not spawnedUnit:HasModifier('modifier_silencer_int_steal') then
-                        spawnedUnit:AddNewModifier(spawnedUnit, spawnedUnit:FindAbilityByName("silencer_glaives_of_wisdom_steal"), 'modifier_silencer_int_steal', {})
-                    end
-                else
-                    spawnedUnit:RemoveModifierByName('modifier_silencer_int_steal')
-                end
-            end
-        end, DoUniqueString('silencerFix'), 2)
-
         -- Remove Gyro's innate scepter bonus
-        Timers:CreateTimer(function()
+        --[[Timers:CreateTimer(function()
             if IsValidEntity(spawnedUnit) then
                 if spawnedUnit:HasModifier('modifier_gyrocopter_flak_cannon_scepter') then
                     spawnedUnit:RemoveModifierByName('modifier_gyrocopter_flak_cannon_scepter')
                 end
             end
-        end, DoUniqueString('gyroFixInnate'), 1)
+        end, DoUniqueString('gyroFixInnate'), 1)]]--
 
             if Wearables:HasDefaultWearables( spawnedUnit:GetUnitName() ) then
                 Wearables:AttachWearableList( spawnedUnit, Wearables:GetDefaultWearablesList( spawnedUnit:GetUnitName() ) )
@@ -8964,56 +8789,6 @@ ListenToGameEvent('game_rules_state_change', function(keys)
             -- GameRules:SendCustomMessage("#tempDuelBlock", 0, 0)
             _G.duel()
         end
-
-        -- if OptionManager:GetOption('duels') == 1 then
-        --     local duel
-        --     duel = (function ()
-        --         Timers:CreateTimer(function()
-        --             customAttension("#duel_10_sec_to_begin", 5)
-
-        --             Timers:CreateTimer(function()
-        --                 initDuel(duel)
-        --             end, 'start_duel', 10)
-
-        --             Timers:CreateTimer(function()
-        --                 if duel_active then
-        --                     customAttension("#duel_10_sec_to_end", 5)
-        --                 end
-        --             end, 'waves', DUEL_NOBODY_WINS)
-
-        --             local next_tick = 10
-
-        --             Timers:CreateTimer(function()
-        --                 if duel_active == true then
-        --                     CustomGameEventManager:Send_ServerToAllClients( "duel_text_hide", {} )
-        --                     return
-        --                 else
-        --                     sendEventTimer( "#duel_next_duel", next_tick)
-        --                 end
-
-        --                 next_tick = next_tick - 1
-        --                 return 1.0
-        --             end, 'duel_countdown_next', 0)
-
-        --             local draw_tick = 10
-
-        --             Timers:CreateTimer(function()
-        --                 if duel_active ~= true then
-        --                     CustomGameEventManager:Send_ServerToAllClients( "duel_text_hide", {} )
-        --                     return
-        --                 else
-        --                     sendEventTimer( "#duel_nobody_wins", draw_tick)
-        --                 end
-
-        --                 draw_tick = draw_tick - 1
-        --                 return 1.0
-        --             end, 'duel_countdown_draw', DUEL_NOBODY_WINS)
-
-        --             return DUEL_INTERVAL - 10
-        --         end, 'main_duel_timer', DUEL_INTERVAL - 10)
-        --     end)
-        --     duel()
-        -- end
     end
 end, nil)
 

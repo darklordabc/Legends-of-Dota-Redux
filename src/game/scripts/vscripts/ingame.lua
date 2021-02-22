@@ -6,7 +6,7 @@ require('abilities/epic_boss_fight/ebf_mana_fiend_essence_amp')
 require('abilities/global_mutators/global_mutator')
 require('abilities/global_mutators/memes_redux')
 require('abilities/nextgeneration/orderfilter')
-require('lib/gpm')
+--require('lib/gpm')
 
 -- Create the class for it
 local Ingame = class({})
@@ -350,6 +350,7 @@ function Ingame:FilterExecuteOrder(filterTable)
     local unit = EntIndexToHScript(units["0"])
     local ability = EntIndexToHScript(filterTable.entindex_ability)
     local target = EntIndexToHScript(filterTable.entindex_target)
+
     if order_type == DOTA_UNIT_ORDER_GLYPH  then     
         if RADIANTFORTIFIED and PlayerResource:GetSelectedHeroEntity(issuer):GetTeamNumber() == DOTA_TEAM_GOODGUYS then
             Notifications:Top(PlayerResource:GetPlayer(issuer),{text="Glyph already active",duration = 2})
@@ -369,30 +370,7 @@ function Ingame:FilterExecuteOrder(filterTable)
              end
          end
      end
-
-    if order_type == DOTA_UNIT_ORDER_ATTACK_TARGET then
-        if target:GetName() == "npc_dota_watch_tower" and unit:IsRealHero() then
-            if not unit:HasAbility("ability_capture") then
-                local hAbility = unit:AddAbility("ability_capture")
-                hAbility:SetStolen(true)
-                hAbility:SetHidden(true)
-                hAbility:SetLevel(1)
-            end
-            local captureAbility
-            for x = 0, 30 do
-                local focusAbility = unit:GetAbilityByIndex(x)
-                if focusAbility and focusAbility:GetName() == "ability_capture" then
-                    captureAbility = focusAbility
-                end
-            end
-            ExecuteOrderFromTable({
-                UnitIndex = unit:entindex(),
-                OrderType = DOTA_UNIT_ORDER_CAST_TARGET,
-                AbilityIndex = captureAbility,
-                TargetIndex = target
-            })
-        end
-    end
+		
     -- if units[1] and order_type == DOTA_UNIT_ORDER_SELL_ITEM and ability and not units[1]:IsIllusion() and not units[1]:IsTempestDouble() then		
     --     PanoramaShop:SellItem(units[1], ability)		
     --     return false		
@@ -530,6 +508,13 @@ function Ingame:onStart()
         end, 'check_consumable_items', 1)
     end
 
+--[[
+    -- Thinker to check for bot upgrades
+    Timers:CreateTimer(function ()
+        this:botNeutralUpgrader()
+            return 10
+    end, 'check_bot_upgrades', 10)]]
+
     if OptionManager:GetOption('stacking') == 1 then
         for k,Ent in pairs(Entities:FindAllByClassname("trigger_multiple")) do
             if Ent:GetName():find("neutralcamp")~=nil then
@@ -666,7 +651,7 @@ function Ingame:onStart()
     end
 
     GameRules:GetGameModeEntity():SetExecuteOrderFilter(Dynamic_Wrap(Ingame, 'FilterExecuteOrder'), self)
-    GameRules:GetGameModeEntity():SetTrackingProjectileFilter(Dynamic_Wrap(Ingame, 'FilterProjectiles'), self)
+    --GameRules:GetGameModeEntity():SetTrackingProjectileFilter(Dynamic_Wrap(Ingame, 'FilterProjectiles'), self)
     GameRules:GetGameModeEntity():SetModifierGainedFilter(Dynamic_Wrap(Ingame, 'FilterModifiers'),self)
     GameRules:GetGameModeEntity():SetDamageFilter(Dynamic_Wrap(Ingame, 'FilterDamage'),self)
     --GameRules:GetGameModeEntity():SetAbilityTuningValueFilter(Dynamic_Wrap(Ingame,"FilterValueTuning"),self)
@@ -763,18 +748,50 @@ function Ingame:fixRuneBug()
         local newState = GameRules:State_Get()
 
         if newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
-            GpmInit()
+            --GpmInit()
             Timers:CreateTimer(function()
                 for playerID=0,DOTA_MAX_TEAM_PLAYERS-1 do
                     local hero = PlayerResource:GetSelectedHeroEntity(playerID)
                     if hero and util:isPlayerBot(playerID) then
                         hero:MoveToPositionAggressive(Vector(0, 0, 0))
+                        
+                        --local item = hero:FindItemInInventory("item_vambrace")
+                        --item:Destroy()
+                        --hero:AddItemByName("item_giants_ring")
                     end
                 end
             end, "botRune", 6)
         end
     end, nil)
 end
+--[[
+-- Upgrades bot neutral items over time
+function Ingame:botNeutralUpgrader()
+    for i=0,24 do    
+        if PlayerResource:IsValidTeamPlayerID(i) and util:isPlayerBot(i) then
+            local hero = PlayerResource:GetSelectedHeroEntity(i)
+            if hero and IsValidEntity(hero) then
+                local item1 = hero:FindItemByNameEverywhere("item_vambrace")    
+                        Destroy(item1)
+                        hero:AddItemByName("item_giants_ring")
+            end
+        end
+    end
+end]]--        
+
+-- Upgrades bot neutral items over time
+--[[function Ingame:botNeutralUpgrader()
+    for playerID=0,DOTA_MAX_TEAM_PLAYERS-1 do    
+        local hero = PlayerResource:GetSelectedHeroEntity(playerID)
+            if hero and util:isPlayerBot(playerID) then
+                         
+                FindItemInInventory("item_vambrace")
+                self:Destroy()
+                hero:AddItemByName("item_giants_ring")
+                
+            end
+    end
+end]]--
 
 -- Called every 0.1 second to check and convert consumable items into actual consumable items
 function Ingame:CheckConsumableItems()
@@ -1167,7 +1184,7 @@ function Ingame:balanceGold()
 			multiplier = RadiantPlayers - DirePlayers
 		end
 
-		local moneyToGive = (180 * multiplier) * OptionManager:GetOption('goldPerTick')
+		--local moneyToGive = (180 * multiplier) * OptionManager:GetOption('goldPerTick')
 
 		if losingTeam == "goodGuys" then
 			self.radiantBalanceMoney = self.radiantBalanceMoney + moneyToGive
@@ -1240,7 +1257,7 @@ function Ingame:checkIfRespawnRate()
         if newRespawnRate > 50 then
             newRespawnRate = 50
         end
-        GameRules:SendCustomMessage("Games has been going for too long, respawn rates have increased by 10%. New respawn rate is " .. newRespawnRate .. "%. Use -enablerespawn (-er) to disable this safeguard.", 0, 0)
+        GameRules:SendCustomMessage("Game has been going for too long, respawn rates have increased by 10%. New respawn rate is " .. newRespawnRate .. "%. Use -enablerespawn (-er) to disable this safeguard.", 0, 0)
         OptionManager:SetOption('respawnModifierPercentage', newRespawnRate)
 
         self.timeToIncreaseRespawnRate = self.timeToIncreaseRespawnRate + self.timeToIncreaseRepawnInterval
@@ -1919,6 +1936,14 @@ function Ingame:addStrongTowers()
                 local handledTowers = {}
 
                 for _, tower in pairs(towers) do
+
+                        tower:SetBaseDamageMin((tower:GetBaseDamageMin() * 1.5))
+                        tower:SetBaseDamageMax((tower:GetBaseDamageMax() * 1.5))
+                        tower:SetBaseMaxHealth((tower:GetBaseMaxHealth() * 1.5))
+                        tower:SetMaxHealth((tower:GetMaxHealth() * 1.5))
+                        tower:SetHealth((tower:GetHealth() * 1.5))
+                        tower:SetPhysicalArmorBaseValue((tower:GetPhysicalArmorBaseValue() * 1.5))
+
                     if not handledTowers[tower] then
                         -- Main ability handling
                         local difference = 0 -- will always be 0 anyway
@@ -2069,11 +2094,11 @@ function Ingame:initGlobalMutator()
     end, nil)
 end
 
-targetPerks_projectile = {
+--[[targetPerks_projectile = {
     npc_dota_hero_puck_perk = true,
-}
+}]]--
 
-function Ingame:FilterProjectiles(filterTable)
+--[[function Ingame:FilterProjectiles(filterTable)
     --DeepPrintTable(projectile)
     local targetIndex = filterTable["entindex_target_const"]
     local target = EntIndexToHScript(targetIndex)
@@ -2086,7 +2111,7 @@ function Ingame:FilterProjectiles(filterTable)
         filterTable = heroPerksProjectileFilter(filterTable) --Sending all the data to the heroPerksDamageFilter
     end
     return true
-  end
+  end]]--
 
 function Ingame:FilterValueTuning(filterTable)
     local caster = EntIndexToHScript(filterTable["entindex_caster_const"]) 
@@ -2238,11 +2263,11 @@ function Ingame:FilterModifiers( filterTable )
 
     -- Lazy fix for glaives of wisdom, Think of a better idea later.
 
-    if ability:GetAbilityName() == "silencer_glaives_of_wisdom" then
+    --[[if ability:GetAbilityName() == "silencer_glaives_of_wisdom" then
         if RollPercentage(75) then
             return false
         end
-    end
+    end]]--
 
      -- Hero perks
     if not OptionManager:GetOption('disablePerks') then
@@ -2334,6 +2359,40 @@ function Ingame:SetPlayerColors( )
         end
     end
 end
+
+--[[
+-- Upgrades bot neutral items over time
+function Ingame:botNeutralUpgrader()
+    --if GameRules:GetDOTATime(false, false) > 0 then
+    ListenToGameEvent('game_rules_state_change', function(keys)
+        local newState = GameRules:State_Get()
+
+        if newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
+
+
+
+    GameRules:SendCustomMessage("NeutralUpgrader code starting", 0, 0)
+    --Timers:CreateTimer({
+    --endTime = 20, -- when this timer should first execute, you can omit this if you want it to run first on the next frame
+    --callback = function()
+      --print ("Hello. I'm running 20 seconds after when I was started.")
+        for i=0,23 do
+            if util:isPlayerBot(keys.PlayerID) then
+                local vamb = hero:FindItemByName("item_vambrace")
+                    if vamb then 
+                        vamb:RemoveSelf()    
+                        CreateItem("item_giants_ring", nil, nil)
+                    end
+
+                --RemoveItem("item_vambrace", nil, nil)
+                --CreateItem("item_giants_ring", nil, nil)
+
+            end
+            GameRules:SendCustomMessage("Bot Neutral Items are being upgraded!", 0, 0)
+        end
+    end
+end)
+end]]--
 
 ingame = Ingame()
 
