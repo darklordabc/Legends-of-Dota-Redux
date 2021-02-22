@@ -131,7 +131,7 @@
 
 .lodNotificationLoading {
     transform: translateX(0%);
-    opacity: 0.5;
+    opacity: 1.0;
 }
 
 .lodNotificationRemoving {
@@ -614,7 +614,7 @@ Button:enabled:hover {
 }
 
 .lodPlayerReadyText {
-    vertical-align: bottom;
+    vertical-align: middle;
     color: gradient(linear, 0% 0%, 0% 100%, from(#00FF00FF), to(#000000FF));
     font-size: 16px;
     horizontal-align: center;

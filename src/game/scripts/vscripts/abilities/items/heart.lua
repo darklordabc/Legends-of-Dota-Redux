@@ -84,11 +84,10 @@ function modifier_item_heart_consumable:IsPermanent()
   return true
 end
 function modifier_item_heart_consumable:IsHidden()
-  if not self:GetAbility() then
-    self:Destroy()
-    return
-  end
-  return self:GetAbility().IsItem
+    if (not self:GetAbility()) then
+        return false
+    end
+    return self:GetAbility():GetName()~="ability_consumable_item_container"
 end
 function modifier_item_heart_consumable:GetAttributes()
   return MODIFIER_ATTRIBUTE_MULTIPLE
@@ -98,28 +97,9 @@ function modifier_item_heart_consumable:DeclareFunctions()
   local funcs = {
     MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
     MODIFIER_PROPERTY_HEALTH_BONUS,
-    MODIFIER_EVENT_ON_TAKEDAMAGE,
     MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE,
-    MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE_SOURCE,
-    MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
-  }
+    }
   return funcs
-end
-
-function modifier_item_heart_consumable:GetModifierConstantHealthRegen()
-  if not self:GetAbility() then
-    self:Destroy()
-    return
-  end
-  return self:GetAbility():GetSpecialValueFor("heart_fixed_health_regen")
-end
-
-function modifier_item_heart_consumable:GetModifierHPRegenAmplify_PercentageSource()
-  if not self:GetAbility() then
-    self:Destroy()
-    return
-  end
-  return self:GetAbility():GetSpecialValueFor("heart_hp_regen_amp")
 end
 
 function modifier_item_heart_consumable:GetModifierBonusStats_Strength()
@@ -138,45 +118,13 @@ function modifier_item_heart_consumable:GetModifierHealthBonus()
 end
 
 function modifier_item_heart_consumable:GetModifierHealthRegenPercentage()
-  --if IsServer() then
-    if not self:GetAbility() then
-      self:Destroy()
-      return
-    end
-    if self:GetParent():IsIllusion() then
-      return 0
-    end
-    
-    if self:GetRemainingTime() <= 0 or self:GetRemainingTime() >= 20 then
-      return self:GetAbility():GetSpecialValueFor("heart_health_regen_rate")
-    end
-    return 0
-  --end
+  if not self:GetAbility() then
+    self:Destroy()
+    return
+  end
+  return self:GetAbility():GetSpecialValueFor("heart_health_regen_pct")
 end
-
 
 function modifier_item_heart_consumable:DestroyOnExpire()
   return false
 end
-
-function modifier_item_heart_consumable:OnTakeDamage(keys)
-  if keys.attacker and keys.unit == self:GetCaster() and (keys.attacker:IsHero() or keys.attacker:GetUnitName() == "npc_dota_roshan" )and self:GetCaster():IsRealHero() then
-    if not self:GetAbility() then
-      self:Destroy()
-      return
-    end
-    local cooldown = self:GetAbility():GetSpecialValueFor("heart_cooldown_melee")
-    if self:GetCaster():IsRangedAttacker() then
-      local cooldown = self:GetAbility():GetSpecialValueFor("heart_cooldown_ranged_tooltip")
-    end
-    if IsServer() then
-      local cdr = 1 - self:GetParent():GetCooldownReduction()
-      if self:GetAbility():IsItem() then
-        self:GetAbility():StartCooldown(cooldown * cdr)
-      end
-      self:SetDuration(cooldown * cdr, true)
-    end
-  end
-end
-
-

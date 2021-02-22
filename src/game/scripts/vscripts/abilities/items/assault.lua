@@ -81,11 +81,10 @@ function modifier_item_assault_consumable:IsPermanent()
   return true
 end
 function modifier_item_assault_consumable:IsHidden()
-  if not self:GetAbility() then
-    self:Destroy()
-    return
-  end
-  return self:GetAbility().IsItem
+    if (not self:GetAbility()) then
+        return false
+    end
+    return self:GetAbility():GetName()~="ability_consumable_item_container"
 end
 
 function modifier_item_assault_consumable:GetAttributes()

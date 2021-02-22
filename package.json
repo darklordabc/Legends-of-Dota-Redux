@@ -1,0 +1,24 @@
+{
+	"private": true,
+	"name": "legends_of_dota_redux",
+	"scripts": {
+		"postinstall": "node scripts/install.js",
+		"launch": "node scripts/launch.js",
+		"check": "run-p check:*",
+		"check:prettier": "prettier --check ."
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "pretty-quick --staged"
+		}
+	},
+	"devDependencies": {
+		"find-steam-app": "^1.0.2",
+		"fs-extra": "^9.0.0",
+		"husky": "^4.2.5",
+		"npm-run-all": "^4.1.5",
+		"panorama-types": "^1.4.0",
+		"prettier": "^2.0.5",
+		"pretty-quick": "^2.0.1"
+	}
+}

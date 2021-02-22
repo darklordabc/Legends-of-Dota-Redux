@@ -5,7 +5,7 @@
 		"BaseClass"				"ability_lua"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityUnitDamageType" "DAMAGE_TYPE_PHYSICAL"
-		"AbilityTextureName" "custom/zulf_gale_force"
+		"AbilityTextureName" "zulf_gale_force"
 		"AbilityProcsMagicStick" "1"
 		"AbilityCastPoint" "0.1"
 		"AOERadius" "350"
@@ -15,7 +15,8 @@
 
 		"precache" 
 		{
-			"particle" "particles/generic_gameplay/generic_disarm.vpcf"
+			"particle"	"particles/zulf_gale_force.vpcf"
+			"particle" 	"particles/generic_gameplay/generic_disarm.vpcf"
 			"soundfile" "soundevents/game_sounds_heroes/game_sounds_invoker.vsndevts"
 		}
 

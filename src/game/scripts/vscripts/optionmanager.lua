@@ -23,7 +23,7 @@ if not OptionManager.initialSettings then
 	OptionManager.initialSettings = true
 	
 	-- Max time for picking options
-	OptionManager:SetOption('maxOptionSelectionTime', 60 * 3)
+	OptionManager:SetOption('maxOptionSelectionTime', 60 * 5)
 
 	-- Max time for voting for options
 	OptionManager:SetOption('maxOptionVotingTime', 30)
@@ -34,8 +34,8 @@ if not OptionManager.initialSettings then
 	-- Hero picking time
 	OptionManager:SetOption('heroBanningTime', 60)
 
-	-- Picking Time (2 minutes)
-	OptionManager:SetOption('pickingTime', 60 * 2)
+	-- Picking Time (3 minutes)
+	OptionManager:SetOption('pickingTime', 60 * 3)
 
 	-- Time to review random builds (120 seconds)
 	OptionManager:SetOption('randomSelectionTime', 120)

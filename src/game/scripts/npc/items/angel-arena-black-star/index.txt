@@ -1,8 +1,0 @@
-#base "steam_footgear.txt"
-#base "book_of_the_keeper.txt"
-#base "book_of_the_guardian.txt"
-#base "aether_lens.txt"
-#base "lucifers_claw.txt"
-#base "lotus_sphere.txt"
-
-""{}

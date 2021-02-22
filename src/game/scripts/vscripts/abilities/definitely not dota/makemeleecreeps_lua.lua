@@ -15,10 +15,10 @@ function makemeleecreeps_lua:OnSpellStart()
 		phaseAbility:UpgradeAbility(true)
 	end
 		
-	if self:GetCaster():GetModelName() ~= "models/props_structures/tower_bad.vmdl" then
+	--[[if self:GetCaster():GetModelName() ~= "models/props_structures/tower_bad.vmdl" then
 		self:GetCaster():SetModel("models/props_structures/tower_bad.vmdl")
 		self:GetCaster():SetOriginalModel("models/props_structures/tower_bad.vmdl")
-	end
+	end]]--
 
 	self.meleecreeps = self.meleecreeps + 1
 
@@ -88,7 +88,7 @@ function makemeleecreeps_lua:Makemeleecreeps()
 end
 
 function makemeleecreeps_lua:WatchmeleecreepDeaths( event )
-	if not self:GetCaster():IsRealHero() then return end
+	--if not self:GetCaster():IsRealHero() then return end
 	local ent = EntIndexToHScript(event.entindex_killed)
 
 	if ent.Ismeleecreep and ent.Owner and ent.Owner == self:GetCaster() then

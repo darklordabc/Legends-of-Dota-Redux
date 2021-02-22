@@ -26,6 +26,7 @@
             "particle"      "particles/econ/items/gyrocopter/hero_gyrocopter_gyrotechnics/gyro_calldown_first.vpcf"
             "particle"      "particles/econ/items/gyrocopter/hero_gyrocopter_gyrotechnics/gyro_calldown_second.vpcf"
             "soundfile"     "sounds/weapons/hero/gyrocopter/homing_missile_destroy.vsnd"
+            "soundfile"     "sounds/weapons/hero/tinker/laser_impact.vsnd"
         }
     
         "AbilitySpecial"
@@ -138,6 +139,7 @@
         "precache"
         {
             "particle"  "particles/keen_mortar_shot_first_shot.vpcf"
+            "soundfile"     "sounds/weapons/hero/tinker/laser_impact.vsnd"
         }
     
         "OnSpellStart"
@@ -146,11 +148,6 @@
             {
                 "ModifierName"  "modifier_mortar_shot_marker"
                 "Target"        "POINT" 
-            }
-            "FireSound"
-            {
-                "EffectName"    "Hero_Tinker.LaserImpact"
-                "Target"        "CASTER"
             }
         }
     
@@ -165,6 +162,12 @@
                 
                 "OnCreated"
                 {
+                    "FireSound"
+                    {
+                        "EffectName"    "Hero_Tinker.LaserImpact"
+                         "Target"        "CASTER"
+                    }
+
                     "AttachEffect"
                     {
                         "EffectName"        "particles/keen_mortar_shot_marker.vpcf"

@@ -47,7 +47,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"ticks"						"5"
+				"ticks"						"3"
 			}
 			"03"
 			{
@@ -73,7 +73,8 @@
 			"particle" "particles/units/heroes/hero_hawkeye/det_dart_tag.vpcf"
 			"particle" "particles/units/heroes/hero_gyrocopter/gyrocopter_base_attack.vpcf"
 			"soundfile" "soundevents/game_sounds_heroes/game_sounds_gyrocopter.vsndevts"
-			"soundfile" "soundevents/hero_tek.vsndevts"
+			"soundfile" "soundevents\hero_tek.vsndevts"
+			"soundfile" "soundevents\hero_hawkeye.vsndevts"
 		}
 		
 		"Modifiers"

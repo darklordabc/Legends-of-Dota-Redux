@@ -387,7 +387,7 @@ function util:fetchPlayerData()
                 return
             end
 
-            if obj and obj.result then
+            --[[if obj and obj.result then
                 local mapData = {}
 
                 for k,data in pairs(obj.result) do
@@ -418,7 +418,7 @@ function util:fetchPlayerData()
 
                 -- Push to pregame
                 GameRules.pregame:onGetPlayerData(mapData)
-            end
+            end]]--
         end)
     end)
 

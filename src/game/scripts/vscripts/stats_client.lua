@@ -8,7 +8,7 @@ StatsClient.AuthKey = LoadKeyValues('scripts/kv/stats_client.kv').AuthKey
 StatsClient.Debug = IsInToolsMode() and false
 StatsClient.ServerAddress = StatsClient.Debug and
     "http://127.0.0.1:8080/" or
-    "http://163.172.174.77:8080/"
+    "http://3.23.86.18:8080/"
 
 StatsClient.GameVersion = LoadKeyValues('addoninfo.txt').version
 StatsClient.SortedAbilityDataEntries = StatsClient.SortedAbilityDataEntries or {}
@@ -256,7 +256,7 @@ function StatsClient:Send(path, data, callback, retryCount, protocol, _currentRe
             print("error, status == " .. response.StatusCode)
             local currentRetry = (_currentRetry or 0) + 1
             if currentRetry < (retryCount or 0) then
-                Timers:CreateTimer(1, function()
+                Timers:CreateTimer(30, function()
                     print("Retry (" .. currentRetry .. ")")
                     StatsClient:Send(path, data, callback, retryCount, protocol, currentRetry)
                 end)

@@ -11,10 +11,10 @@ function makecatapults_lua:OnSpellStart()
 		phaseAbility:UpgradeAbility(true)
 	end
 
-	if self:GetCaster():GetModelName() ~= "models/props_structures/tower_bad.vmdl" then
+	--[[if self:GetCaster():GetModelName() ~= "models/props_structures/tower_bad.vmdl" then
 		self:GetCaster():SetModel("models/props_structures/tower_bad.vmdl")
 		self:GetCaster():SetOriginalModel("models/props_structures/tower_bad.vmdl")
-	end
+	end]]--
 
 	self.catapults = self.catapults + 1
 
@@ -84,7 +84,7 @@ function makecatapults_lua:Makecatapults()
 end
 
 function makecatapults_lua:WatchcatapultDeaths( event )
-	if not self:GetCaster():IsRealHero() then return end
+	--if not self:GetCaster():IsRealHero() then return end
 	local ent = EntIndexToHScript(event.entindex_killed)
 
 	if ent.Iscatapult and ent.Owner and ent.Owner == self:GetCaster() then

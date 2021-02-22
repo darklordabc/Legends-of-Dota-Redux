@@ -43,7 +43,10 @@ function modifier_item_butterfly_consumable.GetAttributes(self)
     return MODIFIER_ATTRIBUTE_MULTIPLE
 end
 function modifier_item_butterfly_consumable.DeclareFunctions(self)
-    return {MODIFIER_PROPERTY_STATS_AGILITY_BONUS,MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,MODIFIER_PROPERTY_EVASION_CONSTANT}
+    return {MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
+        MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
+        MODIFIER_PROPERTY_EVASION_CONSTANT,
+        MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT}
 end
 function modifier_item_butterfly_consumable.GetModifierBonusStats_Agility(self)
     if (not self:GetAbility()) then

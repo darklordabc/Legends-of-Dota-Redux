@@ -684,98 +684,102 @@ local dire_levels = 0
 	end
 end
 --]]
-hero_particles = {}
-hero_particles[0] = 0
-hero_particles[1] = 0
-hero_particles[2] = 0
-hero_particles[3] = 0
-hero_particles[4] = 0
-hero_particles[5] = 0
-hero_particles[6] = 0
-hero_particles[7] = 0
-hero_particles[8] = 0
-hero_particles[9] = 0
-hero_particles[10] = 0
-hero_particles[11] = 0
-hero_particles[12] = 0
-hero_particles[13] = 0
-hero_particles[14] = 0
-hero_particles[15] = 0
-hero_particles[16] = 0
-hero_particles[17] = 0
-hero_particles[18] = 0
-hero_particles[19] = 0
 
-total_hero_particles = {}
-total_hero_particles[0] = 0
-total_hero_particles[1] = 0
-total_hero_particles[2] = 0
-total_hero_particles[3] = 0
-total_hero_particles[4] = 0
-total_hero_particles[5] = 0
-total_hero_particles[6] = 0
-total_hero_particles[7] = 0
-total_hero_particles[8] = 0
-total_hero_particles[9] = 0
-total_hero_particles[10] = 0
-total_hero_particles[11] = 0
-total_hero_particles[12] = 0
-total_hero_particles[13] = 0
-total_hero_particles[14] = 0
-total_hero_particles[15] = 0
-total_hero_particles[16] = 0
-total_hero_particles[17] = 0
-total_hero_particles[18] = 0
+local ignored_pfx_list = {}
+ignored_pfx_list["particles/ambient/fountain_danger_circle.vpcf"] = true
+ignored_pfx_list["particles/range_indicator.vpcf"] = true
+ignored_pfx_list["particles/units/heroes/hero_skeletonking/wraith_king_ambient_custom.vpcf"] = true
+ignored_pfx_list["particles/generic_gameplay/radiant_fountain_regen.vpcf"] = true
+ignored_pfx_list["particles/econ/courier/courier_wyvern_hatchling/courier_wyvern_hatchling_fire.vpcf"] = true
+ignored_pfx_list["particles/units/heroes/hero_wisp/wisp_tether.vpcf"] = true
+ignored_pfx_list["particles/units/heroes/hero_templar_assassin/templar_assassin_trap.vpcf"] = true
+ignored_pfx_list["particles/econ/courier/courier_donkey_ti7/courier_donkey_ti7_ambient.vpcf"] = true
+ignored_pfx_list["particles/econ/courier/courier_golden_roshan/golden_roshan_ambient.vpcf"] = true
+ignored_pfx_list["particles/econ/courier/courier_platinum_roshan/platinum_roshan_ambient.vpcf"] = true
+ignored_pfx_list["particles/econ/courier/courier_roshan_darkmoon/courier_roshan_darkmoon.vpcf"] = true
+ignored_pfx_list["particles/econ/courier/courier_roshan_desert_sands/baby_roshan_desert_sands_ambient.vpcf"] = true
+ignored_pfx_list["particles/econ/courier/courier_roshan_ti8/courier_roshan_ti8.vpcf"] = true
+ignored_pfx_list["particles/econ/courier/courier_roshan_lava/courier_roshan_lava.vpcf"] = true
+ignored_pfx_list["particles/econ/courier/courier_roshan_frost/courier_roshan_frost_ambient.vpcf"] = true
+ignored_pfx_list["particles/econ/courier/courier_babyroshan_winter18/courier_babyroshan_winter18_ambient.vpcf"] = true
+ignored_pfx_list["particles/econ/courier/courier_babyroshan_ti9/courier_babyroshan_ti9_ambient.vpcf"] = true
+ignored_pfx_list["particles/units/heroes/hero_witchdoctor/witchdoctor_voodoo_restoration.vpcf"] = true
+ignored_pfx_list["particles/hero/slardar/slardar_rain_cloud.vpcf"] = true
+ignored_pfx_list["particles/units/heroes/hero_earth_spirit/espirit_stoneremnant.vpcf"] = true
+ignored_pfx_list["particles/econ/items/tiny/tiny_prestige/tiny_prestige_tree_ambient.vpcf"] = true
+ignored_pfx_list["particles/item/rapier/item_rapier_trinity.vpcf"] = true
+ignored_pfx_list["particles/item/rapier/item_rapier_archmage.vpcf"] = true
+ignored_pfx_list["particles/item/rapier/item_rapier_cursed.vpcf"] = true
 
-total_particles = 0
-total_particles_created = 0
-function OverrideCreateParticle()
-	local CreateParticleFunc = ParticleManager.CreateParticle
+-- Call custom functions whenever CreateParticle is being called anywhere
+local original_CreateParticle = CScriptParticleManager.CreateParticle
+CScriptParticleManager.CreateParticle = function(self, sParticleName, iAttachType, hParent, hCaster)
+	local override = nil
 
-	ParticleManager.CreateParticle = 
-	function(manager, path, int, handle) 		 
-		local particle = CreateParticleFunc(manager, path, int, handle)
-		local time = GameRules:GetGameTime()
-
-		manager.lifetime = time
-		manager.name = path
-
---		print("Manager:", manager)
---		print("Manager Time:", manager.lifetime)
---		print("Path:", path)
---		print("Int:", int)
---		print("Handle:", handle)
---		print("------------------------")
-
-		-- Index in a big, fat table. Only works in tools mode!
---		if IsInToolsMode() then
-			PARTICLE_TABLE = PARTICLE_TABLE or {}
-			table.insert(PARTICLE_TABLE, manager)
---		end
-
---		if path == "particles/units/heroes/hero_pudge/pudge_meathook.vpcf" then
---			print("HOOK!")
---			print("Manager:", manager)
---			print("Int:", int)
---			print("Handle:", handle)
---			return particle
---		end
-
-		if handle and handle:IsRealHero() then
-			if handle.pID then
---				print("Valid pID")
---				hero_particles[handle.pID] = hero_particles[handle.pID] +1 -- Need to filter ReleaseParticleIndex for hero to get only active particles
-				total_hero_particles[handle.pID] = total_hero_particles[handle.pID] +1
-			end
-		else
---			print("non-Hero Handle:", handle)
-		end
-
-		total_particles = total_particles +1
-		total_particles_created = total_particles_created +1
-
-		return particle
+	if hCaster then
+		--override = CustomNetTables:GetTableValue("battlepass_player", sParticleName..'_'..hCaster:GetPlayerOwnerID()) 
 	end
+
+	if override then
+		sParticleName = override["1"]
+	end
+
+	-- call the original function
+	local response = original_CreateParticle(self, sParticleName, iAttachType, hParent)
+
+--	print("CreateParticle response:", sParticleName)
+
+	if not ignored_pfx_list[sParticleName] then
+		if hCaster and not hCaster:IsHero() then
+			--table.insert(CScriptParticleManager.ACTIVE_PARTICLES, {response, 0})
+		else
+			--table.insert(CScriptParticleManager.ACTIVE_PARTICLES, {response, 0})
+		end
+	end
+
+	return response
+end
+
+-- Call custom functions whenever CreateParticleForTeam is being called anywhere
+local original_CreateParticleForTeam = CScriptParticleManager.CreateParticleForTeam
+CScriptParticleManager.CreateParticleForTeam = function(self, sParticleName, iAttachType, hParent, iTeamNumber, hCaster)
+--	print("Create Particle (override):", sParticleName, iAttachType, hParent, iTeamNumber, hCaster)
+
+	local override = nil
+
+	if hCaster then
+		--override = CustomNetTables:GetTableValue("battlepass_player", sParticleName..'_'..hCaster:GetPlayerOwnerID()) 
+	end
+
+	if override then
+		sParticleName = override["1"]
+	end
+
+	-- call the original function
+	local response = original_CreateParticleForTeam(self, sParticleName, iAttachType, hParent, iTeamNumber)
+
+	return response
+end
+
+-- Call custom functions whenever CreateParticleForPlayer is being called anywhere
+local original_CreateParticleForPlayer = CScriptParticleManager.CreateParticleForPlayer
+CScriptParticleManager.CreateParticleForPlayer = function(self, sParticleName, iAttachType, hParent, hPlayer, hCaster)
+--	print("Create Particle (override):", sParticleName, iAttachType, hParent, hPlayer, hCaster)
+
+	local override = nil
+
+	if hCaster then
+		--override = CustomNetTables:GetTableValue("battlepass_player", sParticleName..'_'..hCaster:GetPlayerOwnerID()) 
+	end
+
+	if override then
+		sParticleName = override["1"]
+	end
+
+	-- call the original function
+	local response = original_CreateParticleForPlayer(self, sParticleName, iAttachType, hParent, hPlayer)
+
+	return response
 end
 
 function OverrideCreateLinearProjectile()
@@ -1771,8 +1775,8 @@ function SwapToItem(caster, removed_item, added_item)
 end
 
 -- Checks if a given unit is Roshan
-function IsRoshan(unit)
-	if unit:GetName() == "npc_imba_roshan" or unit:GetName() == "npc_dota_roshan" then
+function CDOTA_BaseNPC:IsRoshan()
+	if self:GetName() == "npc_imba_roshan" or self:GetName() == "npc_dota_roshan" or self:GetUnitLabel() == "npc_diretide_roshan" then
 		return true
 	else
 		return false

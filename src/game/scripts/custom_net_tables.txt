@@ -13,6 +13,6 @@
         "ready",
         "random_builds",
         "draft_array",
-        "phase_ingame"
+        "phase_ingame",
     ]
 }

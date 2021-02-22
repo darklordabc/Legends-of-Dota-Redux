@@ -100,6 +100,7 @@ modifier_item_vladimir_consumable = class({
       MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
       MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
       MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
+      MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE,
     }
   end,
 
@@ -124,6 +125,14 @@ modifier_item_vladimir_consumable = class({
     end
     return self:GetAbility():GetSpecialValueFor("vlads_bonus_all_stats")
   end,
+
+  GetModifierBaseDamageOutgoing_Percentage = function(self)   
+    if not self:GetAbility() then
+      self:Destroy()
+      return
+    end
+    return self:GetAbility():GetSpecialValueFor("vlads_damage_aura")
+ end,
 })
 
 modifier_item_vladimir_consumable_aura = class({
@@ -134,7 +143,7 @@ modifier_item_vladimir_consumable_aura = class({
   DeclareFunctions = function() 
     return {
       MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
-      MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
+      MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE,
       MODIFIER_EVENT_ON_ATTACK_LANDED,
       MODIFIER_PROPERTY_TOOLTIP,
     }
@@ -156,12 +165,12 @@ modifier_item_vladimir_consumable_aura = class({
     return self:GetAbility():GetSpecialValueFor("vlads_mana_regen_aura")
   end,
 
-  GetModifierPhysicalArmorBonus = function(self)
+  GetModifierBaseDamageOutgoing_Percentage = function(self)   
     if not self:GetAbility() then
       self:Destroy()
       return
     end
-    return self:GetAbility():GetSpecialValueFor("vlads_armor_aura")
+    return self:GetAbility():GetSpecialValueFor("vlads_damage_aura")
   end,
 
   OnAttackLanded = function(self, keys)

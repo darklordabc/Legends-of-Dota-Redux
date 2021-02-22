@@ -1,5 +1,5 @@
 --require('abilities/hero_perks/npc_dota_hero_shadow_demon_perk')
-require('abilities/hero_perks/npc_dota_hero_puck_perk')
+--require('abilities/hero_perks/npc_dota_hero_puck_perk')
 require('abilities/hero_perks/npc_dota_hero_bane_perk')
 require('abilities/hero_perks/npc_dota_hero_pudge_perk')
 require('abilities/hero_perks/npc_dota_hero_troll_warlord_perk')
@@ -15,7 +15,7 @@ require('abilities/hero_perks/npc_dota_hero_death_prophet_perk')
 require('abilities/hero_perks/npc_dota_hero_drow_ranger_perk')
 require('abilities/hero_perks/npc_dota_hero_abaddon_perk')
 
-function heroPerksProjectileFilter(filterTable)
+--[[function heroPerksProjectileFilter(filterTable)
   local targetIndex = filterTable["entindex_target_const"]
   local target = EntIndexToHScript(targetIndex)
   local casterIndex = filterTable["entindex_source_const"]
@@ -33,7 +33,7 @@ function heroPerksProjectileFilter(filterTable)
   end
   -- Returning the filterTable
   return filterTable
-end
+end]]--
 
 function heroPerksOrderFilter(filterTable)
   local units = filterTable["units"]

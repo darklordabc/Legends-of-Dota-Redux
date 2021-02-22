@@ -87,25 +87,19 @@ function modifier_item_monkey_king_bar_consumable:IsHidden()
   return self:GetAbility().IsItem
 end
 
-
-function modifier_item_monkey_king_bar_consumable:CheckState()
-  if IsServer() then
-    local funcs = {
-      [MODIFIER_STATE_CANNOT_MISS] = self.bAccuracyProcced or false,
-    }
-    return funcs
-   end
-end
-
 function modifier_item_monkey_king_bar_consumable:DeclareFunctions()
   local funcs = {
+    MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
     MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
-    MODIFIER_EVENT_ON_ATTACK_START,
-    --MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
-    MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE_POST_CRIT,
-    MODIFIER_EVENT_ON_ATTACK_LANDED,
+    MODIFIER_PROPERTY_PROCATTACK_BONUS_DAMAGE_MAGICAL,
+    MODIFIER_EVENT_ON_ATTACK_RECORD
   }
-  return funcs
+  
+  -- Tracking when to give the true strike + bonus magical damage
+  self.pierce_proc      = true
+  self.pierce_records     = {}
+
+  return funcs`
 end
 
 function modifier_item_monkey_king_bar_consumable:GetModifierAttackSpeedBonus_Constant()
@@ -115,60 +109,40 @@ function modifier_item_monkey_king_bar_consumable:GetModifierAttackSpeedBonus_Co
   return self:GetAbility():GetSpecialValueFor("monkey_king_bar_bonus_attack_speed")
 end
 
--- Removed in 7.07
---[[function modifier_item_monkey_king_bar_consumable:GetModifierPreAttack_BonusDamage()
+function modifier_item_monkey_king_bar_consumable:GetModifierPreAttack_BonusDamage()
   if not self:GetAbility() then
     self:Destroy()
   end
   return self:GetAbility():GetSpecialValueFor("monkey_king_bar_bonus_damage")
-end]]
-
-function modifier_item_monkey_king_bar_consumable:GetModifierPreAttack_BonusDamagePostCrit()
-  if IsServer() then
-    if not self.bonus_chance_damage then 
-      self.bonus_chance_damage = 0 
-    end
-    return self.bonus_chance_damage
-
-  end
 end
 
-function modifier_item_monkey_king_bar_consumable:OnAttackStart(keys)
-  if IsServer() and keys.attacker == self:GetParent() then
-    if not self:GetAbility() then
-      self:Destroy()
-    end
-    self.bAccuracyProcced = false
-    self.bonus_chance_damage = nil
-    local random = RandomInt(0,100)
-    if random <= self:GetAbility():GetSpecialValueFor("monkey_king_bar_bonus_chance") then
-       -- Checks
-      if not keys.target:IsBuilding() then
-        if self:GetParent():IsRealHero() then
-          self.bonus_chance_damage = self:GetAbility():GetSpecialValueFor("monkey_king_bar_bonus_chance_damage")
-        end
-        -- 7.07 no longer ministuns
-        self.bAccuracyProcced = true
+-- MKB Pierces do not stack
+function modifier_item_monkey_king_bar_consumable:GetModifierProcAttack_BonusDamage_Magical(keys)
+  if not IsServer() then return end
+
+  for _, record in pairs(self.pierce_records) do  
+    if record == keys.record then
+      table.remove(self.pierce_records, _)
+
+      if not self.parent:IsIllusion() and self:GetAbility():GetSecondaryCharges() == 1 and not keys.target:IsBuilding() then
+        -- self.parent:EmitSound("DOTA_Item.MKB.proc")
+        SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE, keys.target, self.bonus_chance_damage, nil)
+        
+        return self.bonus_chance_damage
       end
     end
   end
 end
 
-function modifier_item_monkey_king_bar_consumable:OnAttackLanded(keys)
-  if IsServer() and keys.attacker == self:GetParent() then
-    if not self:GetAbility() then
-      self:Destroy()
+function modifier_item_monkey_king_bar_consumable:OnAttackRecord(keys)
+  if keys.attacker == self.parent then
+    if self.pierce_proc then
+      table.insert(self.pierce_records, keys.record)
+      self.pierce_proc = false
     end
-    if self.bAccuracyProcced then
-      local target = keys.victim or keys.unit
-      if target then
-        target:EmitSound("DOTA_Item.MKB.proc")
-      end
+  
+    if RollPseudoRandom(self.bonus_chance, self) then
+      self.pierce_proc = true
     end
   end
 end
-
-
-
-
-

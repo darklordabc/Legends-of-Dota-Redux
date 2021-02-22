@@ -130,7 +130,7 @@ function modifier_one_punch_air:OnCreated(kv)
 end
 
 function modifier_one_punch_air:OnDestroy()
-	self:GetParent():RemoveNoDraw()
+	self:GetParent():RemoveNoDraw()	--attempt to call method 'RemoveNoDraw' (a nil value)
 end
 
 function modifier_one_punch_air:CheckState()

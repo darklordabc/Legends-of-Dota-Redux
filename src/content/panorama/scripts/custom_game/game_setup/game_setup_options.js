@@ -258,16 +258,16 @@ var basicOptions = {
                             }
                         }
                     },
-                    {
-                        name: 'lodOptionGameSpeedGoldTickRate',
-                        default: {
-                            'lodMutatorGoldTickRate1': 1
-                        },
-                        states: {
-                            'lodMutatorGoldTickRate2': 2,
-                         //   'lodMutatorGoldTickRate3': 3
-                        }
-                    },
+                    //{
+                    //    name: 'lodOptionGameSpeedGoldTickRate',
+                    //    default: {
+                    //       'lodMutatorGoldTickRate1': 1
+                    //    },
+                    //    states: {
+                    //       'lodMutatorGoldTickRate2': 2,
+                    //     //   'lodMutatorGoldTickRate3': 3
+                    //    }
+                    //},
                     {
                         name: 'lodOptionGameSpeedGoldModifier',
                         default: {
@@ -1404,26 +1404,26 @@ var advancedOptions = {
                 step: 1,
                 default: 0
             },
-            {
-                name: 'lodOptionGameSpeedGoldTickRate',
-                des: 'lodOptionDesGameSpeedGoldTickRate',
-                about: 'lodOptionAboutGameSpeedGoldTickRate',
-                sort: 'range',
-                min: 0,
-                max: 25,
-                step: 1,
-                default: 0
-            },
-            {
-                name: 'lodOptionGameSpeedGoldModifier',
-                des: 'lodOptionDesGameSpeedGoldModifier',
-                about: 'lodOptionAboutGameSpeedGoldModifier',
-                sort: 'range',
-                min: 0,
-                max: 1000,
-                step: 10,
-                default: 0
-            },
+            //{
+            //    name: 'lodOptionGameSpeedGoldTickRate',
+            //    des: 'lodOptionDesGameSpeedGoldTickRate',
+            //    about: 'lodOptionAboutGameSpeedGoldTickRate',
+            //    sort: 'range',
+            //    min: 0,
+            //    max: 25,
+            //    step: 1,
+            //    default: 0
+            //},
+            //{
+            //    name: 'lodOptionGameSpeedGoldModifier',
+            //    des: 'lodOptionDesGameSpeedGoldModifier',
+            //    about: 'lodOptionAboutGameSpeedGoldModifier',
+            //    sort: 'range',
+            //    min: 0,
+            //    max: 1000,
+            //    step: 10,
+            //    default: 0
+            //},
             {
                 name: 'lodOptionGameSpeedEXPModifier',
                 des: 'lodOptionDesGameSpeedEXPModifier',

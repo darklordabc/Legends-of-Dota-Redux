@@ -9,6 +9,7 @@ function storeTalents(data) {
 
 	talentsTable= data
 }
+
 function showTalentChanger(){
 	//define columns and rows count
 	
@@ -18,46 +19,6 @@ function showTalentChanger(){
 		tal_cols=4
 		tal_rows= Math.max(2,talentsTable["count1"],talentsTable["count2"],talentsTable["count3"],talentsTable["count4"])
 	
-	
-	//example data
-	/*talent_icons=["dark_willow_terrorize",
-				"pangolier_shield_crash",
-				"warlock_rain_of_chaos",
-				"leshrac_split_earth",
-				"invoker_sun_strike",
-				"kunkka_torrent",
-				"kunkka_tidebringer",
-				"special_bonus_unique_warlock_1",
-				"roshan_slam",
-				"lina_light_strike_array"]
-	talent_names=["#special_bonus_unique_warlock_1",
-				"special_bonus_unique_antimage_5",
-				"#special_bonus_unique_warlock_1",
-				"#special_bonus_unique_warlock_1",
-				"#special_bonus_unique_warlock_1",
-				"#special_bonus_unique_warlock_1",
-				"#special_bonus_unique_warlock_1",
-				"special_bonus_unique_warlock_1",
-				"special_bonus_unique_antimage_5",
-				"special_bonus_unique_antimage_5",
-				"special_bonus_unique_antimage_5",
-				"special_bonus_unique_antimage_5",
-				"special_bonus_unique_antimage_5",
-				"special_bonus_unique_antimage_5",
-				"special_bonus_unique_antimage_5",
-				"special_bonus_unique_antimage_5",
-				"special_bonus_unique_antimage_5",
-				"special_bonus_unique_warlock_1",
-				"special_bonus_unique_antimage_5",
-				"special_bonus_unique_antimage_5",
-				"special_bonus_unique_warlock_1",
-				"special_bonus_unique_antimage_5",
-				"special_bonus_unique_warlock_1",
-				"special_bonus_unique_warlock_1",
-
-				]*/
-
-
 		var parentPanel=$.GetContextPanel()
 		if (talent_popup) {
 			talent_popup.DeleteAsync(0)
@@ -80,6 +41,7 @@ function showTalentChanger(){
 			talentIcon.AddClass('TalentImg')
 			var talentText = $.CreatePanel('Label', talentButton, 'talent_text_' + id)
 			talentText.AddClass("TalentLabel")
+
 			if (bHeader === true) {
 				talentText.style.fontSize = 30
 				talentText.text=$.Localize(text)
