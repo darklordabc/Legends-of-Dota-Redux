@@ -755,10 +755,10 @@
 
                         <Panel id="pickingPhase" class="workingPanel">
                             <Panel id="tabsSelector">
-                                <!--<Panel id="pickingPhaseMainTabRoot" link="pickingPhaseMainTab" class="SettingsNavBarButton">
+                                <Panel id="pickingPhaseMainTabRoot" link="pickingPhaseMainTab" class="SettingsNavBarButton">
                                     <Label text="#builds_lod" />
                                 </Panel>
-                                <Label class="SettingsTabSeparator" text="/" />-->
+                                <Label class="SettingsTabSeparator" text="/" />
                                 <Panel id="pickingPhaseHeroTabRoot" link="pickingPhaseHeroTab" class="SettingsNavBarButton">
                                     <Label text="#heroes_lod" />
                                 </Panel>
@@ -775,7 +775,7 @@
 
                             <Panel id="pickingPhaseContent">
                                 <Panel id="pickingPhaseTabsContent">
-                                    <!--<Panel id="pickingPhaseMainTabContent" class="pickingPhaseTabContent">
+                                    <Panel id="pickingPhaseMainTabContent" class="pickingPhaseTabContent">
                                         <Panel id="buildSortingProperties">
                                             <Label id="buildSortingPropertyVotes" class="buildSortingProperty SettingsNavBarButton selected" text="txtBuildsSortVotes" onactivate="SelectBuildSortingOrder('votes')" />
                                             <Label class="SettingsTabSeparator" text="/" />
@@ -795,7 +795,7 @@
                                             <Panel class="pickingPhaseRecommendedBuildContainer" id="pickingPhaseRecommendedBuildContainerNewest" />
                                             <Panel class="pickingPhaseRecommendedBuildContainer" id="pickingPhaseRecommendedBuildContainerFavorite" />
                                         </Panel>
-                                    </Panel>-->
+                                    </Panel>
 
                                     <Panel id="pickingPhaseHeroTabContent" class="pickingPhaseTabContent">
                                         <Panel class="pickingHeroList">
@@ -819,9 +819,9 @@
                                         <Panel id="pickingPhaseSkillTabContentSkills" />
                                     </Panel>
 
-                                    <!--<Panel id="pickingPhaseRecommendedBuildsTabContent" class="pickingPhaseTabContent">
+                                    <Panel id="pickingPhaseRecommendedBuildsTabContent" class="pickingPhaseTabContent">
                                         <Label text="rec content"/>
-                                    </Panel>-->
+                                    </Panel>
                                 </Panel>
                             </Panel>
 
@@ -921,8 +921,7 @@
                                 <Panel id="pickingPhaseTabs">
                                     <Panel id="pickingPhaseMainTab" class="pickingPhaseTab">
                                         <Label id="balanceModePointsPreset" text="#balance_mode_points" />
-                                        <!-- <Panel id="pickingPhaseMainTabHeroPreview" class="buildingHelperHeroPreviewContainer" />
-                                        -->
+                                        <Panel id="pickingPhaseMainTabHeroPreview" class="buildingHelperHeroPreviewContainer" />
                                     </Panel>
 
                                     <Panel id="pickingPhaseHeroTab" class="pickingPhaseTab">
