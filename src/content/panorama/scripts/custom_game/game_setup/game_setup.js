@@ -1187,10 +1187,6 @@ function setupBuilderTabs() {
 		showBuilderTab("pickingPhaseMainTab");
 	}
 
-	// Show the main tab only
-	// #warning
-	// showBuilderTab('pickingPhaseSkillsTab');
-
 	// Default to no selected preview hero
 	setSelectedHelperHero();
 
@@ -4836,10 +4832,7 @@ function OnPhaseChanged(table_name, key, data) {
 				setSelectedHelperHero(undefined, false);
 
 				// Set main tab activated
-				if (!isTabSwitched) {
-					showBuilderTab("pickingPhaseMainTab");
-					isTabSwitched = true;
-				}
+				showBuilderTab("pickingPhaseSkillTab");
 
 				// Should we show the host message popup?
 				if (!seenPopupMessages.skillBanningInfo) {
