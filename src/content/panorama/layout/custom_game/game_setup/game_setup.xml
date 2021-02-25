@@ -830,38 +830,33 @@
                                     <Label id="boosterDraftPileDragLabel" text="Drag and Drop some ability" />
                                 </Panel>
                                 <Panel id="pickingPhaseBuild">
-                                    <Panel id="pickingPhaseSelectedHero">
-                                        <Panel id="pickingPhaseSelectedAttr">
-                                            <Button class="pickingPhaseAttr" id="pickingPhaseSelectHeroStr" onactivate="setPrimaryAttr('str');">
-                                                <Image text="Str" src="file://{images}/primary_attribute_icons/primary_attribute_icon_strength.psd" />
-                                            </Button>
+									<Panel id="pickingPhaseSelectedHeroRoot">
+                                        <Button class="TalentButton" id="talentChange" onactivate="ShowTalentChanger()"/>
+										<Panel id="pickingPhaseSelectedHero">
+											<Panel id="pickingPhaseSelectedAttr">
+												<Button class="pickingPhaseAttr" id="pickingPhaseSelectHeroStr" onactivate="setPrimaryAttr('str');">
+													<Image text="Str" src="file://{images}/primary_attribute_icons/primary_attribute_icon_strength.psd" />
+												</Button>
+												<Button class="pickingPhaseAttr" id="pickingPhaseSelectHeroAgi" onactivate="setPrimaryAttr('agi');">
+													<Image text="Str" src="file://{images}/primary_attribute_icons/primary_attribute_icon_agility.psd" />
+												</Button>
+												<Button class="pickingPhaseAttr" id="pickingPhaseSelectHeroInt" onactivate="setPrimaryAttr('int');">
+													<Image text="Str" src="file://{images}/primary_attribute_icons/primary_attribute_icon_intelligence.psd" />
+												</Button>
+											</Panel>
+											<Panel id="pickingPhaseSelectedHeroImageCon" class="no_hero_selected">
+												<DOTAHeroImage id="pickingPhaseSelectedHeroImage" class="pickingPhaseSelectedHeroImage" heroname="" heroimagestyle="landscape"/>
+												<Image id="pickingPhaseSelectedHeroImageNone" class="pickingPhaseSelectedHeroImage" src="file://{images}/heroes/npc_dota_hero_default.png" />
+												<Label id="pickingPhaseSelectedHeroText" text="Random" />
 
-                                             <Button class="pickingPhaseAttr" id="pickingPhaseSelectHeroAgi" onactivate="setPrimaryAttr('agi');">
-                                                <Image text="Str" src="file://{images}/primary_attribute_icons/primary_attribute_icon_agility.psd" />
-                                            </Button>
-
-                                             <Button class="pickingPhaseAttr" id="pickingPhaseSelectHeroInt" onactivate="setPrimaryAttr('int');">
-                                                <Image text="Str" src="file://{images}/primary_attribute_icons/primary_attribute_icon_intelligence.psd" />
-                                            </Button>
-
-                                        </Panel>
-                                        <Panel id="pickingPhaseSelectedHeroImageCon" class="no_hero_selected">
-                                            <DOTAHeroImage id="pickingPhaseSelectedHeroImage" class="pickingPhaseSelectedHeroImage" heroname="" heroimagestyle="landscape"/>
-                                            <Image id="pickingPhaseSelectedHeroImageNone" class="pickingPhaseSelectedHeroImage" src="file://{images}/heroes/npc_dota_hero_default.png" />
-                                            <Label id="pickingPhaseSelectedHeroText" text="Random" />
-
-                                        </Panel>
-
-                                        <Button id="pickingPhaseSaveSelectedBuild" onactivate="saveCurrentBuildToggleWindow()" />
-                                        <Button class="TalentButton" id="talentChange" onactivate="showTalentChanger()"/>
-                                        <Button id="heroBuilderLockButton" class="makeThePlayerNoticeThisButton" onactivate="onLockBuildButtonPressed()">
-                                            <Image src="s2r://panorama/images/control_icons/lock_medium_png.vtex" />
-                                        </Button>
-                                        
-                                        <Panel id="cooldownOverlay" hittest="false"/>
-
-                                    </Panel>
-
+											</Panel>
+											<Button id="pickingPhaseSaveSelectedBuild" onactivate="saveCurrentBuildToggleWindow()" />
+											<Button id="heroBuilderLockButton" class="makeThePlayerNoticeThisButton" onactivate="onLockBuildButtonPressed()">
+												<Image src="s2r://panorama/images/control_icons/lock_medium_png.vtex" />
+											</Button>
+											<Panel id="cooldownOverlay" hittest="false"/>
+										</Panel>
+									</Panel>
                                     <Panel id="pickingPhaseBuildSkills">
                                         <DOTAAbilityImage id="lodYourAbility1" abilityname="life_stealer_empty_1" onactivate="onYourAbilityIconPressed(1)" oncontextmenu="onYourAbilityIconRandomed(1)">
                                             <Label id="lodYourAbilityCost1" class="skillCostLarge" text="" />

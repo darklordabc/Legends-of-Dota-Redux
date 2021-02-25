@@ -24,8 +24,6 @@ require('abilities/angel_arena_reborn/duels')
 
 require('abilities/mutators/convertable_tower_mutator')
 
-ALLHEROES = LoadKeyValues('scripts/npc/npc_heroes.txt')
-
 -- Custom AI script modifiers
 LinkLuaModifier( "modifier_slark_shadow_dance_ai", "abilities/botAI/modifier_slark_shadow_dance_ai.lua" ,LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_alchemist_chemical_rage_ai", "abilities/botAI/modifier_alchemist_chemical_rage_ai.lua" ,LUA_MODIFIER_MOTION_NONE )
@@ -72,6 +70,14 @@ local buildBackups = {}
 
 -- Init pregame stuff
 function Pregame:init()
+	-- Load KVs
+	GameRules.KVs = {}
+	GameRules.KVs["npc_abilities"] = LoadKeyValues('scripts/npc/npc_abilities.txt')
+	GameRules.KVs["npc_abilities_custom"] = LoadKeyValues('scripts/npc/npc_abilities_custom.txt')
+	GameRules.KVs["npc_abilities_override"] = LoadKeyValues('scripts/npc/npc_abilities_override.txt')
+	GameRules.KVs["npc_heroes"] = LoadKeyValues('scripts/npc/npc_heroes.txt')
+	GameRules.KVs["npc_heroes_custom"] = LoadKeyValues('scripts/npc/npc_heroes_custom.txt')
+
     -- Store for options
     self.optionStore = {}
 
@@ -462,12 +468,10 @@ function Pregame:init()
             end
         end
     end
-    local npc_abilities = LoadKeyValues('scripts/npc/npc_abilities.txt')
-    local absCustom = LoadKeyValues('scripts/npc/npc_abilities_custom.txt')
-    for k,v in pairs(absCustom) do
-        npc_abilities[k] = v
+    for k,v in pairs(GameRules.KVs["npc_abilities_custom"]) do
+        GameRules.KVs["npc_abilities"][k] = v
     end
-    for abilityName,data in pairs(npc_abilities) do
+    for abilityName,data in pairs(GameRules.KVs["npc_abilities"]) do
         if type(data) == 'table' and data.AbilityBehavior and string.match(data.AbilityBehavior, 'DOTA_ABILITY_BEHAVIOR_TOGGLE') then
             AddPerkToAbility(abilityName, 'toggle_ability')
         end
@@ -1777,11 +1781,7 @@ end
 
 -- Setup the selectable heroes
 function Pregame:networkHeroes()
-    ALLHEROES = LoadKeyValues('scripts/npc/npc_heroes.txt')
     local heroList = LoadKeyValues('scripts/npc/herolist.txt')
-    local allHeroes = ALLHEROES
-    local allHeroesCustom = LoadKeyValues('scripts/npc/npc_heroes_custom.txt')
-    local npc_abilities_override = LoadKeyValues('scripts/npc/npc_abilities_override.txt')
 
     local oldAbList = LoadKeyValues('scripts/kv/abilities.kv')
     local hashCollisions = LoadKeyValues('scripts/kv/hashes.kv')
@@ -1871,9 +1871,9 @@ function Pregame:networkHeroes()
     end
 
     -- Merge custom heroes
-    for heroName,heroValues in pairs(allHeroesCustom) do
-        if not allHeroes[heroValues["override_hero"]] or heroValues["ForceOverride"] == 1 then
-            allHeroes[heroValues["override_hero"]] = heroValues
+    for heroName,heroValues in pairs(GameRules.KVs["npc_heroes_custom"]) do
+        if not GameRules.KVs["npc_heroes"][heroValues["override_hero"]] or heroValues["ForceOverride"] == 1 then
+            GameRules.KVs["npc_heroes"][heroValues["override_hero"]] = heroValues
         end
     end
 
@@ -1937,9 +1937,9 @@ function Pregame:networkHeroes()
     self.botHeroes = {}
 
     -- Contains base stats
-    local baseHero = allHeroes.npc_dota_hero_base
+    local baseHero = GameRules.KVs["npc_heroes"].npc_dota_hero_base
 
-    for heroName,heroValues in pairs(allHeroes) do
+    for heroName,heroValues in pairs(GameRules.KVs["npc_heroes"]) do
         -- Ensure it is enabled
         if heroName ~= 'Version' and heroName ~= 'npc_dota_hero_base' and heroValues.Enabled == 1 then
             -- Store if we can select it as a bot
@@ -1955,7 +1955,7 @@ function Pregame:networkHeroes()
             end
 
             -- Grab custom hero data
-            local customHero = allHeroesCustom[heroName] or {}
+            local customHero = GameRules.KVs["npc_heroes_custom"][heroName] or {}
 
             -- Store all the useful information
             local theData = {
@@ -7928,8 +7928,6 @@ function Pregame:fixSpawnedHero( spawnedUnit )
     self.givenBonuses = self.givenBonuses or {}
     self.handled = self.handled or {}
     self.givenCouriers = self.givenCouriers or {}
-    local allHeroes = LoadKeyValues('scripts/npc/npc_heroes.txt')
-    local npc_abilities_override = LoadKeyValues('scripts/npc/npc_abilities_override.txt')
 
     -- Don't touch this hero more than once :O
     if self.handled[spawnedUnit] then return end
@@ -8381,7 +8379,6 @@ end
 function Pregame:fixSpawningIssues()
     self.givenBonuses = self.givenBonuses or {}
     self.handled = self.handled or {}
-    local allHeroes = LoadKeyValues('scripts/npc/npc_heroes.txt')
 
     -- Grab a reference to self
     local this = self
@@ -8722,7 +8719,6 @@ local _instance = Pregame()
 ListenToGameEvent('game_rules_state_change', function(keys)
     local newState = GameRules:State_Get()
     if newState == DOTA_GAMERULES_STATE_PRE_GAME then
-        local allHeroes = LoadKeyValues('scripts/npc/npc_heroes.txt')
     elseif newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
         if IsDedicatedServer() then
             local mapName = OptionManager:GetOption('mapname')

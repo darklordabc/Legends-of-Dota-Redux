@@ -251,7 +251,9 @@ function GetViableTalents(build)
             else
                 for K,V in pairs(build) do
                     if K ~= "hero" and v == V then
-                        ViableTalents[i][k] = v
+                        ViableTalents[i][k] = {}
+						ViableTalents[i][k]["AbilityName"] = v
+						ViableTalents[i][k]["TalentValue"] = GameRules.KVs["npc_abilities"][k]["AbilitySpecial"]["01"]["value"]
                         ViableTalents["count"..i] = ViableTalents["count"..i] + 1
                         break
                     end
@@ -268,12 +270,7 @@ function SendTalentsToClient(PID,data)
     local build = selectedSkills[PID]
     local talents = GetViableTalents(build)
 
-
-
-
-    --CustomGameEventManager:Send_ServerToAllClients("send_viable_talents",talents)
     CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer(PID), "send_viable_talents", talents )
-
 end
 
 function RegisterTalents(x,data)

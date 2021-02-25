@@ -1,32 +1,32 @@
 #mainSelectionRoot {
-    width: 100%;
-    height: 93%;
-    flow-children: down;
+	width: 100%;
+	height: 93%;
+	flow-children: down;
 
-    opacity: 0;
+	opacity: 0;
 
-    transition-property: opacity;
-    transition-delay: 1s;
-    transition-duration: 2s;
-    transition-timing-function: ease-in-out;
+	transition-property: opacity;
+	transition-delay: 1s;
+	transition-duration: 2s;
+	transition-timing-function: ease-in-out;
 }
 
 #mainSelectionRoot.show {
-    opacity: 1.0;
+	opacity: 1;
 }
 
 .lodOptionsInterface {
-    width: 100%;
-    height: 100%;
+	width: 100%;
+	height: 100%;
 }
 
 #lodOptionsRoot {
-    transition: brightness 0.4s ease-in-out 0.0s, blur 0.4s ease-in-out 0.0s;
+	transition: brightness 0.4s ease-in-out 0s, blur 0.4s ease-in-out 0s;
 }
 
 #lodOptionsRoot.darkened {
-    brightness: 0.2;
-    blur: gaussian( 2.5 );
+	brightness: 0.2;
+	blur: gaussian(2.5);
 }
 
 #chat {
@@ -39,139 +39,138 @@
 */
 
 #lodPopupQuestion {
-    width: 400px;
-    height: 200px;
+	width: 400px;
+	height: 200px;
 
-    padding: 16px;
+	padding: 16px;
 
-    align: center center;
+	align: center center;
 
-    border: 2px solid #32383677;
+	border: 2px solid #32383677;
 
-    background-color: gradient( linear, 0% 0%, 0% 25%, from( #232326 ), to( #1c1d20 ) );
-    box-shadow: #00000099 -4px -4px 8px 8px;
+	background-color: gradient(linear, 0% 0%, 0% 25%, from(#232326), to(#1c1d20));
+	box-shadow: #00000099 -4px -4px 8px 8px;
 
-    flow-children: down;
+	flow-children: down;
 
-    visibility: collapse;
+	visibility: collapse;
 
-    z-index: 10000;
+	z-index: 10000;
 }
 
 #questionYes {
-    position: -25% 0% 0%;
-
+	position: -25% 0% 0%;
 }
 
 #questionNo {
-    position: 25% 0% 0%;
+	position: 25% 0% 0%;
 }
 
 #lodPopupMessage {
-    width: 600px;
-    min-height: 250px;
+	width: 600px;
+	min-height: 250px;
 
-    padding: 16px;
+	padding: 16px;
 
-    flow-children: down;
-    align: center center;
+	flow-children: down;
+	align: center center;
 
-    border: 2px solid #32383677;
+	border: 2px solid #32383677;
 
-    background-color: gradient( linear, 0% 0%, 0% 25%, from( #232326 ), to( #1c1d20 ) );
-    box-shadow: #00000099 -4px -4px 8px 8px;
+	background-color: gradient(linear, 0% 0%, 0% 25%, from(#232326), to(#1c1d20));
+	box-shadow: #00000099 -4px -4px 8px 8px;
 
-    visibility: collapse;
-    z-index: 10000;
+	visibility: collapse;
+	z-index: 10000;
 }
 
 #lodPopupMessageImage {
-    horizontal-align: center;
+	horizontal-align: center;
 }
 
 .lodPopupMessageAcceptContainer {
-    vertical-align: bottom;
-    width: 100%;
+	vertical-align: bottom;
+	width: 100%;
 }
 
 .lodPopupMessageAcceptContainer Button {
-    width: 120px;
-    horizontal-align: center;
+	width: 120px;
+	horizontal-align: center;
 }
 
 .lodPopupMessageAcceptContainer Label {
-    white-space: nowrap;
+	white-space: nowrap;
 }
 
 #lodNotificationArea {
-    z-index: 9999;
-    horizontal-align: right;
-    margin-right: 8px;
-    margin-top: 8px;
-    flow-children: down;
+	z-index: 9999;
+	horizontal-align: right;
+	margin-right: 8px;
+	margin-top: 8px;
+	flow-children: down;
 }
 
 .lodNotification {
-    width: 320px;
-    border: 1px solid #000000;
-    border-radius: 8px;
-    padding: 8px;
+	width: 320px;
+	border: 1px solid #000000;
+	border-radius: 8px;
+	padding: 8px;
 
-    margin-bottom: 8px;
+	margin-bottom: 8px;
 
-    opacity: 0.0;
-    transform: translateX(100%);
+	opacity: 0;
+	transform: translateX(100%);
 
-    transition-property: transform,opacity;
-    transition-duration: 0.5s;
-    transition-timing-function: ease-in-out;
+	transition-property: transform, opacity;
+	transition-duration: 0.5s;
+	transition-timing-function: ease-in-out;
 
-    z-index: 4;
+	z-index: 4;
 }
 
 .lodNotificationLoading {
-    transform: translateX(0%);
-    opacity: 1.0;
+	transform: translateX(0%);
+	opacity: 1;
 }
 
 .lodNotificationRemoving {
-    opacity: 0.0;
+	opacity: 0;
 }
 
 .lodSuccess {
-    background-color: #dff0d8;
-    border-color: #d6e9c6;
+	background-color: #dff0d8;
+	border-color: #d6e9c6;
 }
 
 .lodSuccess Label {
-    color: #3c763d;
+	color: #3c763d;
 }
 
 .lodInfo {
-    background-color: #d9edf7;
-    border-color: #bce8f1;
+	background-color: #d9edf7;
+	border-color: #bce8f1;
 }
 
 .lodInfo Label {
-    color: #31708f;
+	color: #31708f;
 }
 
 .lodWarning {
-    background-color: #fcf8e3;
-    border-color: #faebcc;
+	background-color: #fcf8e3;
+	border-color: #faebcc;
 }
 
 .lodWarning Label {
-    color: #8a6d3b;
+	color: #8a6d3b;
 }
 
 .lodDanger {
-    background-color: #f2dede;
-    border-color: #EBCCD1;
+	background-color: #f2dede;
+	border-color: #ebccd1;
 }
 
 .lodDanger Label {
-    color: #a94442;
+	color: #a94442;
 }
 
 /*
@@ -181,11 +180,11 @@
 /* During option selection */
 
 #mainContainer {
-    width: 100%;
-    height: 100%;
+	width: 100%;
+	height: 100%;
 
-    flow-children: right;
-    /*visibility: collapse;*/
+	flow-children: right;
+	/*visibility: collapse;*/
 }
 
 /*.phase_option_selection #mainTeamContainer {
@@ -193,10 +192,10 @@
 }*/
 
 #unassignedTeamContainer {
-    horizontal-align: center;
-    text-align: center;
-    flow-children: right;
-    visibility: collapse;
+	horizontal-align: center;
+	text-align: center;
+	flow-children: right;
+	visibility: collapse;
 }
 
 #unassignedTeamLabel {
@@ -204,31 +203,31 @@
 }
 
 .phase_option_selection.phase_option_selection_selected #unassignedTeamContainer {
-    visibility: visible;
+	visibility: visible;
 }
 
 .phase_option_voting.phase_option_voting_selected #unassignedTeamContainer {
-    visibility: visible;
+	visibility: visible;
 }
 
 #unassignedPlayersContainer {
-    horizontal-align: center;
-    flow-children: right;
+	horizontal-align: center;
+	flow-children: right;
 }
 
 .unassignedPlayerContainer {
-    color: #FFFFFF;
-    padding: 4px;
+	color: #ffffff;
+	padding: 4px;
 }
 
 /* Rest of the time */
 #heroTeamContainer {
-    width: 100%;
-    visibility: visible;
+	width: 100%;
+	visibility: visible;
 }
 
 .phase_option_selection #heroTeamContainer {
-    visibility: collapse;
+	visibility: collapse;
 }
 
 /*
@@ -236,44 +235,44 @@
 */
 
 #unassignedTeamLabel {
-    horizontal-align: center;
-    vertical-align: bottom;
-    font-size: 24px;
-    color: #FFFFFF;
+	horizontal-align: center;
+	vertical-align: bottom;
+	font-size: 24px;
+	color: #ffffff;
 }
 
 .unassignedPlayerContainer {
-    flow-children: right;
+	flow-children: right;
 }
 
 .unassignedPlayerContainer #playerAvatar {
-    width: 24px;
-    height: 24px;
-    vertical-align: middle;
-    margin-right: 4px;
-    border-radius: 4px;
+	width: 24px;
+	height: 24px;
+	vertical-align: middle;
+	margin-right: 4px;
+	border-radius: 4px;
 }
 
 .unassignedPlayerContainer #playerName {
-    font-size: 20px;
-    vertical-align: middle;
-    max-width: 80px;
-    height: 24px;
+	font-size: 20px;
+	vertical-align: middle;
+	max-width: 80px;
+	height: 24px;
 }
 
 .unassignedPlayerContainer #playerIsHostPanel {
-    background-image: url( "file://{images}/custom_game/hostIcon.png");
-    background-repeat: no-repeat;
-    background-size: contain;
-    overflow: noclip;
-    width: 20px;
-    height: 20px;
-    visibility: collapse;
-    vertical-align: middle;
+	background-image: url("file://{images}/custom_game/hostIcon.png");
+	background-repeat: no-repeat;
+	background-size: contain;
+	overflow: noclip;
+	width: 20px;
+	height: 20px;
+	visibility: collapse;
+	vertical-align: middle;
 }
 
 .unassignedPlayerContainer.player_has_host_privileges #playerIsHostPanel {
-    visibility: visible;
+	visibility: visible;
 }
 
 /*
@@ -281,132 +280,132 @@
 */
 
 .teamPlayerContainer {
-    flow-children: down;
-    width: 128px;
+	flow-children: down;
+	width: 128px;
 
-    margin: 1px 0 1px 0;
+	margin: 1px 0 1px 0;
 }
 
 .teamPlayerContainer #playerAvatar {
-    horizontal-align: center;
-    width: 64px;
-    height: 64px;
-    vertical-align: middle;
+	horizontal-align: center;
+	width: 64px;
+	height: 64px;
+	vertical-align: middle;
 
-    border-radius: 4px;
+	border-radius: 4px;
 }
 
 .playerNameContainer {
-    align: center bottom;
-    flow-children: right;
-    height: 24px;
-    color: #FFFFFF;
+	align: center bottom;
+	flow-children: right;
+	height: 24px;
+	color: #ffffff;
 }
 
 .playerNameContainer #playerIsHostPanel {
-    background-image: url( "file://{images}/custom_game/hostIcon.png");
-    background-repeat: no-repeat;
-    background-size: contain;
-    overflow: noclip;
-    width: 20px;
-    height: 20px;
-    visibility: collapse;
-    vertical-align: middle;
+	background-image: url("file://{images}/custom_game/hostIcon.png");
+	background-repeat: no-repeat;
+	background-size: contain;
+	overflow: noclip;
+	width: 20px;
+	height: 20px;
+	visibility: collapse;
+	vertical-align: middle;
 }
 
 .playerNameContainer #playerName {
-    font-size: 20px;
-    vertical-align: middle;
+	font-size: 20px;
+	vertical-align: middle;
 }
 
 .tooManyPlayers .playerNameContainer #playerName {
-    font-size: 16px;
+	font-size: 16px;
 }
 
 .teamPlayerContainer.player_has_host_privileges #playerIsHostPanel {
-    visibility: visible;
+	visibility: visible;
 }
 
 #theRadiant {
-    /*horizontal-align: left;*/
+	/*horizontal-align: left;*/
 }
 
 #theDire {
-    /*horizontal-align: right;*/
+	/*horizontal-align: right;*/
 }
 
 #theDireContainer {
-    horizontal-align: right;
+	horizontal-align: right;
 }
 
 .theTeamTopLevel {
-    flow-children: down;
-    font-size: 24px;
-    width: 130px;
-    min-height: 50px;
+	flow-children: down;
+	font-size: 24px;
+	width: 130px;
+	min-height: 50px;
 
-    margin-top: 85px;
+	margin-top: 85px;
 
-    border: 2px solid #32383677;
+	border: 2px solid #32383677;
 
-    background-color: gradient( linear, 0% 0%, 0% 25%, from( #232326 ), to( #1c1d20 ) );
-    box-shadow: #00000099 -4px -4px 8px 8px;
+	background-color: gradient(linear, 0% 0%, 0% 25%, from(#232326), to(#1c1d20));
+	box-shadow: #00000099 -4px -4px 8px 8px;
 }
 
 .theTeamName {
-    width: 100%;
-    text-align: center;
+	width: 100%;
+	text-align: center;
 
-    font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
-    font-size: 18px;
-    font-weight: bold;
-    horizontal-align: center;
+	font-family: Radiance, FZLanTingHei-R-GBK, TH Sarabun New, YDYGO 540, Gulim, MingLiU;
+	font-size: 18px;
+	font-weight: bold;
+	horizontal-align: center;
 
-    border: 2px solid #32383677;
+	border: 2px solid #32383677;
 
-    color: white;
-    /*box-shadow: #00000099 -4px -4px 8px 8px;*/
+	color: white;
+	/*box-shadow: #00000099 -4px -4px 8px 8px;*/
 }
 
 .theTeamName:hover {
-    brightness: 1.2;
+	brightness: 1.2;
 }
 
 .theTeamContainer {
-    flow-children: down;
+	flow-children: down;
 }
 
 .tooManyPlayers.theTeamContainer {
-    flow-children: down;
+	flow-children: down;
 }
 
 .theTeamContainerSub {
-    flow-children: right;
+	flow-children: right;
 }
 
 #theDireContainerBot {
-    horizontal-align: right;
+	horizontal-align: right;
 }
 
 .radiantGlow {
-    /*horizontal-align: left;*/
-    background-color: gradient( linear, 0% 0%, 0% 100%, from( #a9db80), to( #96c56f ) );
+	/*horizontal-align: left;*/
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#a9db80), to(#96c56f));
 }
 
 .direGlow {
-    /*horizontal-align: right;*/
-    background-color: gradient( linear, 0% 0%, 0% 100%, from( #f62b2b), to( #d20202 ) );
+	/*horizontal-align: right;*/
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#f62b2b), to(#d20202));
 }
 
 /*
     Main workspace
 */
 .mainWorkspace {
-    width: fill-parent-flow(1);
-    height: 100%;
+	width: fill-parent-flow(1);
+	height: 100%;
 
-    flow-children: down;
-    padding: 8px;
+	flow-children: down;
+	padding: 8px;
 }
 
 /*
@@ -414,227 +413,224 @@
 */
 
 #theRadiantHeroes {
-    horizontal-align: left;
+	horizontal-align: left;
 }
 
 #theDireHeroes {
-    horizontal-align: right;
+	horizontal-align: right;
 }
 
 /*
     The Buttons
 */
 Button {
-    margin: 4px;
-    padding: 4px;
-    background-color: gradient( linear, 0% 0%, 0% 100%, from( #393939), to( #555555 ) );
+	margin: 4px;
+	padding: 4px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#393939), to(#555555));
 
-    flow-children: right;
+	flow-children: right;
 }
 
-
 Button:active {
-    transform: translateY(1px);
+	transform: translateY(1px);
 }
 
 Button:enabled:hover {
-    background-color: gradient( linear, 0% 0%, 0% 100%, from( #4c5561 ), to( #6c7d88 ) );
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#4c5561), to(#6c7d88));
 }
 
-
 #middleButtons {
-    max-width: 750px;
+	max-width: 750px;
 
-    padding: 4px;
-    flow-children: right;
-    horizontal-align: center;
-    vertical-align: middle;
-    font-size: 24px;
-    font-weight: bold;
-    color: #FFFFFF;
-    visibility: collapse;
+	padding: 4px;
+	flow-children: right;
+	horizontal-align: center;
+	vertical-align: middle;
+	font-size: 24px;
+	font-weight: bold;
+	color: #ffffff;
+	visibility: collapse;
 }
 
 #middleButtons Button {
-    width: fill-parent-flow( 1 );
+	width: fill-parent-flow(1);
 
-    horizontal-align: center;
+	horizontal-align: center;
 }
 
-
 #middleButtons Button Image {
-    width: 40px;
-    height: 100%;
+	width: 40px;
+	height: 100%;
 }
 
 .player_has_host_privileges.phase_option_selection.phase_option_selection_selected #middleButtons {
-    visibility: visible;
+	visibility: visible;
 }
 
 .player_has_host_privileges.phase_option_voting.phase_option_voting_selected #middleButtons {
-    visibility: visible;
+	visibility: visible;
 }
 
 .lodTopAvatarPanel {
-    width: 96px;
-    height: 96px;
+	width: 96px;
+	height: 96px;
 
-    horizontal-align: center;
-    visibility: collapse;
+	horizontal-align: center;
+	visibility: collapse;
 }
 
 .phase_option_selection.phase_option_selection_selected .lodTopAvatarPanel {
-    visibility: visible;
+	visibility: visible;
 }
 
 .phase_option_voting.phase_option_voting_selected .lodTopAvatarPanel {
-    visibility: visible;
+	visibility: visible;
 }
 
 .hide_picks .lodTopAvatarPanel {
-    visibility: visible;
+	visibility: visible;
 }
 
 .teams_locked #lodLockButton {
-    visibility: collapse;
+	visibility: collapse;
 }
 
 .teams_unlocked #lodUnlockButton {
-    visibility: collapse;
+	visibility: collapse;
 }
 
 #playerSkillContainer {
-    flow-children: right;
-    horizontal-align: center;
+	flow-children: right;
+	horizontal-align: center;
 }
 
 #playerSkillContainer DOTAAbilityImage {
-    border: 1px solid #444444;
-    border-radius: 2px;
-    width: 20px;
-    height: 20px;
-    margin: 0.5px;
+	border: 1px solid #444444;
+	border-radius: 2px;
+	width: 20px;
+	height: 20px;
+	margin: 0.5px;
 }
 
 .phase_option_selection.phase_option_selection_selected #playerHeroImage {
-    visibility: collapse;
+	visibility: collapse;
 }
 
 .phase_option_selection.phase_option_selection_selected #playerSkillContainer {
-    visibility: collapse;
+	visibility: collapse;
 }
 
 .phase_option_voting.phase_option_voting_selected #playerHeroImage {
-    visibility: collapse;
+	visibility: collapse;
 }
 
 .phase_option_voting.phase_option_voting_selected #playerSkillContainer {
-    visibility: collapse;
+	visibility: collapse;
 }
 
 .hide_picks #playerSkillContainer {
-    visibility: collapse;
+	visibility: collapse;
 }
 
 .no_hero_selected #playerHeroImage {
-    visibility: collapse;
+	visibility: collapse;
 }
 
 #playerNoHeroSelected {
-    visibility: collapse;
+	visibility: collapse;
 }
 
 .no_hero_selected #playerNoHeroSelected {
-    visibility: visible;
+	visibility: visible;
 }
 
 .playerAvatarImagePanel {
-    width: 100%;
+	width: 100%;
 }
 
 #playerHeroImageContainer {
-    horizontal-align: center;
+	horizontal-align: center;
 }
 
 .phase_option_selection.phase_option_selection_selected #playerHeroImageContainer {
-    visibility: collapse;
+	visibility: collapse;
 }
 
 .phase_option_voting.phase_option_voting_selected #playerHeroImageContainer {
-    visibility: collapse;
+	visibility: collapse;
 }
 
 .hide_picks #playerHeroImageContainer {
-    visibility: collapse;
+	visibility: collapse;
 }
 
 #playerHeroImageContainer #playerAttribute {
-    width: 24px;
-    height: 24px;
-    margin: 4px;
-    horizontal-align: right;
-    background-color: #000000;
-    border-radius: 12px;
-    border: 1px solid #000000;
+	width: 24px;
+	height: 24px;
+	margin: 4px;
+	horizontal-align: right;
+	background-color: #000000;
+	border-radius: 12px;
+	border: 1px solid #000000;
 }
 
 .playerHeroImageTop {
-    border: 1px solid #444444;
-    border-radius: 4px;
-    width: 128px;
-    height: 74px;
+	border: 1px solid #444444;
+	border-radius: 4px;
+	width: 128px;
+	height: 74px;
 }
 
 .tooManyPlayers.theTeamContainer {
-    flow-children: right-wrap;
+	flow-children: right-wrap;
 }
 
 .tooManyPlayers .playerHeroImageTop {
-    width: 52px;
-    height: 30px;
-    horizontal-align: center;
+	width: 52px;
+	height: 30px;
+	horizontal-align: center;
 }
 
 .tooManyPlayers .teamPlayerContainer {
-    width: 124px;
-    border: 1px solid #222222;
-    border-radius: 4px;
+	width: 124px;
+	border: 1px solid #222222;
+	border-radius: 4px;
 }
 
 .tooManyPlayers .teamPlayerContainer #playerAvatar {
-    width: 48px;
-    height: 48px;
+	width: 48px;
+	height: 48px;
 }
 
 .tooManyPlayers #playerHeroImageContainer #playerAttribute {
-    width: 20px;
-    height: 20px;
-    margin-left: 86px;
-    vertical-align: middle;
+	width: 20px;
+	height: 20px;
+	margin-left: 86px;
+	vertical-align: middle;
 }
 
 .lodPlayerReadyText {
-    vertical-align: middle;
-    color: gradient(linear, 0% 0%, 0% 100%, from(#00FF00FF), to(#000000FF));
-    font-size: 16px;
-    horizontal-align: center;
-    padding: 4px;
-    text-shadow: 0px 0px 2px 4.0 #000000FF;
-    visibility: collapse;
+	vertical-align: middle;
+	color: gradient(linear, 0% 0%, 0% 100%, from(#00ff00ff), to(#000000ff));
+	font-size: 16px;
+	horizontal-align: center;
+	padding: 4px;
+	text-shadow: 0px 0px 2px 4 #000000ff;
+	visibility: collapse;
 }
 
 .hide_picks #playerHeroImageContainer .lodPlayerReadyText {
-    margin-left: 64px;
-    margin-bottom: 4px;
+	margin-left: 64px;
+	margin-bottom: 4px;
 }
 
 .hide_picks.reviewPhaseTeam .lodPlayerReadyText {
-    margin-left: 64px;
-    margin-bottom: 4px;
+	margin-left: 64px;
+	margin-bottom: 4px;
 }
 
 .lodPlayerIsReady .lodPlayerReadyText {
-    visibility: visible;
+	visibility: visible;
 }
 
 /*
@@ -642,71 +638,71 @@ Button:enabled:hover {
 */
 
 #stageInfo {
-    width: 100%;
-    height: fit-children;
+	width: 100%;
+	height: fit-children;
 
-    flow-children: right;
+	flow-children: right;
 
-    margin-bottom: 8px;
+	margin-bottom: 8px;
 }
 
 #lodTimeRemaining {
-    width: 70px;
-    vertical-align: center;
+	width: 70px;
+	vertical-align: center;
 
-    margin-right: 16px;
-    font-size: 25px;
+	margin-right: 16px;
+	font-size: 25px;
 
-    transition-property: opacity;
-    transition-duration: 0.25s;
-    transition-timing-function: ease-in-out;
+	transition-property: opacity;
+	transition-duration: 0.25s;
+	transition-timing-function: ease-in-out;
 }
 
 @keyframes 'lodTimerWarningLoop' {
-    0% {
-        opacity: 0.9;
-        color: #FF0000;
-    }
-    50% {
-        opacity: 0.7;
-        color: #FFFF00;
-    }
-    100% {
-        opacity: 0.9;
-        color: #FF0000;
-    }
+	0% {
+		opacity: 0.9;
+		color: #ff0000;
+	}
+	50% {
+		opacity: 0.7;
+		color: #ffff00;
+	}
+	100% {
+		opacity: 0.9;
+		color: #ff0000;
+	}
 }
 
 #lodTimeRemaining.showLodWarningTimer {
-    animation-name: lodTimerWarningLoop;
-    animation-duration: 1s;
-    animation-timing-function: ease-in-out;
-    animation-iteration-count: infinite;
+	animation-name: lodTimerWarningLoop;
+	animation-duration: 1s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
 
-    opacity: 0.9;
+	opacity: 0.9;
 
-    transition-property: opacity;
-    transition-duration: 0.25s;
-    transition-timing-function: ease-in-out;
+	transition-property: opacity;
+	transition-duration: 0.25s;
+	transition-timing-function: ease-in-out;
 }
 
 .stageNameDesc {
-    width: 100%;
-    height: 70px;
+	width: 100%;
+	height: 70px;
 
-    border: 2px solid #32383677;
+	border: 2px solid #32383677;
 
-    background-color: gradient( linear, 0% 0%, 0% 25%, from( #232326 ), to( #1c1d20 ) );
-    box-shadow: #00000099 -4px -4px 8px 8px;
+	background-color: gradient(linear, 0% 0%, 0% 25%, from(#232326), to(#1c1d20));
+	box-shadow: #00000099 -4px -4px 8px 8px;
 
-    flow-children: right;
+	flow-children: right;
 }
 
 .stageNameDesc Image {
-    width: 25px;
+	width: 25px;
 
-    margin: 0 8px 0 8px;
-    vertical-align: center;
+	margin: 0 8px 0 8px;
+	vertical-align: center;
 }
 
 .stageNameDesc Button {
@@ -717,7 +713,7 @@ Button:enabled:hover {
 	vertical-align: center;
 }
 
-#backtrackBtn  Label {
+#backtrackBtn Label {
 	horizontal-align: center;
 	vertical-align: center;
 
@@ -729,193 +725,192 @@ Button:enabled:hover {
 }
 
 #lodStageName {
-    vertical-align: center;
-    font-size: 25px;
+	vertical-align: center;
+	font-size: 25px;
 }
 
 #tipPanel {
-    transform: translatex( 5000px );
-    transition-property: transform;
-    transition-duration: 5.00s;
+	transform: translatex(5000px);
+	transition-property: transform;
+	transition-duration: 5s;
 
-    width: 42.5%;
-    height: 113px;
+	width: 42.5%;
+	height: 113px;
 	margin-bottom: 20px;
-    margin-right: 138px;
-    horizontal-align: right;
+	margin-right: 138px;
+	horizontal-align: right;
 	vertical-align: bottom;
-    flow-children: right;
+	flow-children: right;
 }
 
 #tipPanel.darkened {
-    brightness: 0.2;
-    blur: gaussian( 2.5 );
+	brightness: 0.2;
+	blur: gaussian(2.5);
 }
 
 #tipPanel.hidden {
-	visibility:collapse;
+	visibility: collapse;
 }
 
 #tipPanel.show {
-    transform: translatex( 0px );
-    transition-property: transform;
-    transition-duration: 5.00s;
+	transform: translatex(0px);
+	transition-property: transform;
+	transition-duration: 5s;
 }
 
 #tipPanel Label {
 	height: 100%;
-    margin: 6px;
-    color: #FFFFFF;
+	margin: 6px;
+	color: #ffffff;
 
-    vertical-align: center;
+	vertical-align: center;
 
-    font-size: 21px;
-    line-height: 21px;
+	font-size: 21px;
+	line-height: 21px;
 }
 
 #tipPanel Image {
-    width: height-percentage(100%);
-    height: 100%;
+	width: height-percentage(100%);
+	height: 100%;
 
-    margin: 4px;
+	margin: 4px;
 
-    border:1px solid #000000;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
+	border: 1px solid #000000;
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
 }
 
 #stageButtonOptionSelection {
-    flow-children: right;
+	flow-children: right;
 }
 
 #stageSelection {
-    flow-children: right;
-    horizontal-align: center;
+	flow-children: right;
+	horizontal-align: center;
 }
 
 .phase_option_voting #stageSelection {
-    visibility: collapse;
+	visibility: collapse;
 }
 
 .lodStageArrow {
-    margin-left: 8px;
-    margin-right: 8px;
-    padding: 2px;
+	margin-left: 8px;
+	margin-right: 8px;
+	padding: 2px;
 }
 
 .lodStageButton {
-    border: 1px solid #000000;
-    border-radius: 4px;
-    padding: 2px;
+	border: 1px solid #000000;
+	border-radius: 4px;
+	padding: 2px;
 }
 
 .phase_option_selection #stageButtonOptionSelection {
-    background-color: gradient(linear, 0% 0%, 0% 100%, from(#3AFF7377), to(#33DD3311));
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#3aff7377), to(#33dd3311));
 }
 
 .phase_option_selection_selected #stageButtonOptionSelection {
-    border: 1px solid #AAFFAA;
+	border: 1px solid #aaffaa;
 }
 
 .option_voting_enabled #stageButtonOptionSelection {
-    visibility: collapse;
+	visibility: collapse;
 }
 
 #stageButtonOptionVoting {
-    flow-children: right;
-    visibility: collapse;
+	flow-children: right;
+	visibility: collapse;
 }
 
 .phase_option_voting #stageButtonOptionVoting {
-    background-color: gradient(linear, 0% 0%, 0% 100%, from(#3AFF7377), to(#33DD3311));
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#3aff7377), to(#33dd3311));
 }
 
 .phase_option_voting_selected #stageButtonOptionVoting {
-    border: 1px solid #AAFFAA;
+	border: 1px solid #aaffaa;
 }
 
 .option_voting_enabled #stageButtonOptionVoting {
-    visibility: visible;
+	visibility: visible;
 }
 
 #gamemodesPanel {
-    width: 100%;
-    margin: 10px 0 10px 0;
+	width: 100%;
+	margin: 10px 0 10px 0;
 
-    flow-children: right;
+	flow-children: right;
 }
 
 .gamemodesScrollLeft {
-    width: 30px;
-    height: 100%;
+	width: 30px;
+	height: 100%;
 }
 
 .gamemodesScrollLeft Image {
-    width: 40px;
-    height: 40px;
+	width: 40px;
+	height: 40px;
 
-    align: center center;
+	align: center center;
 
-    transform: rotateZ(90deg);
+	transform: rotateZ(90deg);
 }
 
 .gamemodesScrollRight {
-    width: 30px;
-    height: 100%;
+	width: 30px;
+	height: 100%;
 }
 
 .gamemodesScrollRight Image {
-    width: 40px;
-    height: 40px;
+	width: 40px;
+	height: 40px;
 
-    align: center center;
+	align: center center;
 
-    transform: rotateZ(-90deg);
+	transform: rotateZ(-90deg);
 }
 
 .gamemodesScrollLeft,
-.gamemodesScrollRight
-{
-    z-index: 1;
-    wash-color: #66aadd;
+.gamemodesScrollRight {
+	z-index: 1;
+	wash-color: #66aadd;
 
-    transition-property: wash-color;
-    transition-duration: 0.4s;
-    transition-delay: 0.0s;
-    transition-timing-function: ease-in-out;
+	transition-property: wash-color;
+	transition-duration: 0.4s;
+	transition-delay: 0s;
+	transition-timing-function: ease-in-out;
 }
 
 .gamemodesScrollLeft:hover,
 .gamemodesScrollRight:hover {
-    wash-color: white;
+	wash-color: white;
 }
 
 #gamemodesContainer {
-    width: fill-parent-flow(1);
-    horizontal-align: center;
+	width: fill-parent-flow(1);
+	horizontal-align: center;
 
-    overflow: clip clip;
+	overflow: clip clip;
 }
 
 #scroller {
-    flow-children: right;
+	flow-children: right;
 
-    transition-property: transform;
-    transition-duration: 0.4s;
-    transition-delay: 0.0s;
-    transition-timing-function: ease-in-out;
+	transition-property: transform;
+	transition-duration: 0.4s;
+	transition-delay: 0s;
+	transition-timing-function: ease-in-out;
 }
 
 #option_default_info {
-    visibility: visible;
+	visibility: visible;
 }
 
 .allow_custom_settings #option_default_info {
-    visibility: collapse;
+	visibility: collapse;
 }
 
 .review_selection #option_default_info {
-    visibility: collapse;
+	visibility: collapse;
 }
 
 .ignore_custom_message #option_default_info {
@@ -923,344 +918,344 @@ Button:enabled:hover {
 }
 
 #option_default_info Label {
-    height: 200px;
-    padding: 30px;
+	height: 200px;
+	padding: 30px;
 
-    align: center center;
-    text-align: center;
+	align: center center;
+	text-align: center;
 
-    font-size: 30px;
+	font-size: 30px;
 }
 
 #option_panel_main_lodOptionMirrorHeroes {
-    visibility: collapse;
+	visibility: collapse;
 }
 
 #option_panel_main_lodOptionMirrorHeroes.showThis {
-    visibility: visible;
+	visibility: visible;
 }
 
 .allow_custom_settings #option_panel_main_lodOptionMirrorHeroes.showThis {
-    visibility: collapse;
+	visibility: collapse;
 }
 
 .showThis #option_panel_main_lodOptionMirrorHeroes {
-    visibility: visible;
+	visibility: visible;
 }
 
 .allow_custom_settings .showThis #option_panel_main_lodOptionMirrorHeroes {
-    visibility: collapse;
+	visibility: collapse;
 }
 
 /* Banning */
 
 #stageButtonBanning {
-    flow-children: right;
+	flow-children: right;
 }
 
 .no_banning_phase #stageButtonBanning {
-    visibility: collapse;
+	visibility: collapse;
 }
 
 .no_banning_phase #lodArrowBanningPhase {
-    visibility: collapse;
+	visibility: collapse;
 }
 
 .phase_banning #stageButtonBanning {
-    background-color: gradient(linear, 0% 0%, 0% 100%, from(#3AFF7377), to(#33DD3311));
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#3aff7377), to(#33dd3311));
 }
 
 .phase_banning_selected #stageButtonBanning {
-    border: 1px solid #AAFFAA;
+	border: 1px solid #aaffaa;
 }
 
 #heroPreviewTest {
-    width: 320px;
-    height: 320px;
+	width: 320px;
+	height: 320px;
 }
 
 #heroBuilderLockButtonBans {
-    visibility: collapse;
-    vertical-align: bottom;
-    margin-bottom: 4px;
+	visibility: collapse;
+	vertical-align: bottom;
+	margin-bottom: 4px;
 }
 
 .phase_banning #heroBuilderLockButtonBans {
-    visibility: visible;
+	visibility: visible;
 }
 
 #heroBuilderLockButtonBans.hideThisButton {
-    visibility: collapse;
+	visibility: collapse;
 }
 
 /* Selection */
 
 #stageButtonSelection {
-    flow-children: right;
+	flow-children: right;
 }
 
 .no_hero_selection #stageButtonSelection {
-    visibility: collapse;
+	visibility: collapse;
 }
 
 .no_hero_selection #lodArrowSelectionPhase {
-    visibility: collapse;
+	visibility: collapse;
 }
 
 .phase_selection #stageButtonSelection {
-    background-color: gradient(linear, 0% 0%, 0% 100%, from(#3AFF7377), to(#33DD3311));
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#3aff7377), to(#33dd3311));
 }
 
 .phase_selection_selected #stageButtonSelection {
-    border: 1px solid #AAFFAA;
+	border: 1px solid #aaffaa;
 }
 
 #heroBuilderLockButton {
-    width: 48px;
-    height: 48px;
+	width: 48px;
+	height: 48px;
 
-    align: right center;
-    margin-right: 20px;
+	align: right center;
+	margin-right: 20px;
 
-    border-radius: 50%;
-    padding: 7px;
+	border-radius: 50%;
+	padding: 7px;
 
-    wash-color: #5b6a6b;
-    transition-property: wash-color;
-    transition-duration: 0.2s;
+	wash-color: #5b6a6b;
+	transition-property: wash-color;
+	transition-duration: 0.2s;
 
-    visibility: collapse;
+	visibility: collapse;
 }
 
 #heroBuilderLockButton:hover,
 #heroBuilderLockButton.pressed {
-    wash-color: white;
+	wash-color: white;
 }
 
 #heroBuilderLockButton Image {
-    width: 100%;
-    height: 100%;
+	width: 100%;
+	height: 100%;
 }
 
 #cooldownOverlay {
-    width: 48px;
-    height: 48px;
+	width: 48px;
+	height: 48px;
 
-    align: right center;
-    margin-right: 20px;
+	align: right center;
+	margin-right: 20px;
 
-    border-radius: 50%;
-    padding: 7px;
+	border-radius: 50%;
+	padding: 7px;
 
-    background-color: #000000bb;
-    clip: radial(50% 50%, 0deg, -360deg);
+	background-color: #000000bb;
+	clip: radial(50% 50%, 0deg, -360deg);
 
-    transition-property: clip;
-    transition-duration: 30s;
-    transition-timing-function: linear;
+	transition-property: clip;
+	transition-duration: 30s;
+	transition-timing-function: linear;
 
-    visibility: collapse;
+	visibility: collapse;
 }
 
 #cooldownOverlay.ready {
-    visibility: visible;
-    clip: radial(50% 50%, 0deg, 0deg);
+	visibility: visible;
+	clip: radial(50% 50%, 0deg, 0deg);
 }
 
 .phase_selection #heroBuilderLockButton {
-    visibility: visible;
+	visibility: visible;
 }
 
 @keyframes 'lodButtonHighlightPerks' {
-    0% {
-        box-shadow: #ffd966 0px 0px 1px 0px;
-    }
-    50% {
-        box-shadow: #ffd966 0px 0px 8px 0px;
-    }
-    100% {
-        box-shadow: #ffd966 0px 0px 1px 0px;
-    }
+	0% {
+		box-shadow: #ffd966 0px 0px 1px 0px;
+	}
+	50% {
+		box-shadow: #ffd966 0px 0px 8px 0px;
+	}
+	100% {
+		box-shadow: #ffd966 0px 0px 1px 0px;
+	}
 }
 /* All Random */
 
 #lodArrowRandomPhase {
-    visibility: collapse;
+	visibility: collapse;
 }
 
 .all_random_mode #lodArrowRandomPhase {
-    visibility: visible;
+	visibility: visible;
 }
 
 #stageButtonRandom {
-    visibility: collapse;
-    flow-children: right;
+	visibility: collapse;
+	flow-children: right;
 }
 
 .all_random_mode #stageButtonRandom {
-    visibility: visible;
+	visibility: visible;
 }
 
 .phase_all_random #stageButtonRandom {
-    background-color: gradient(linear, 0% 0%, 0% 100%, from(#3AFF7377), to(#33DD3311));
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#3aff7377), to(#33dd3311));
 }
 
 .phase_all_random_selected #stageButtonRandom {
-    border: 1px solid #AAFFAA;
+	border: 1px solid #aaffaa;
 }
 
 #allRandomPhase {
-    max-height: 700px;
+	max-height: 700px;
 
-    visibility: collapse;
-    flow-children: down;
-    horizontal-align: middle;
+	visibility: collapse;
+	flow-children: down;
+	horizontal-align: middle;
 }
 
 .phase_all_random_selected #allRandomPhase {
-    visibility: visible;
+	visibility: visible;
 }
 
 .allRandomBuildContainer {
-    flow-children: right;
+	flow-children: right;
 
-    margin: 4px;
+	margin: 4px;
 }
 
 .allRandomBuildInnerContainer {
-    flow-children: right;
-    border: 1px solid #444444;
-    border-radius: 4px;
-    padding: 4px;
-    padding-right: 0px;
+	flow-children: right;
+	border: 1px solid #444444;
+	border-radius: 4px;
+	padding: 4px;
+	padding-right: 0px;
 }
 
 #allRandomSkillContainer {
-    flow-children: right;
+	flow-children: right;
 }
 
 #allRandomBuildsContainer {
-    flow-children: down;
-    horizontal-align: middle;
+	flow-children: down;
+	horizontal-align: middle;
 }
 
 #allRandomHeroImage {
-    width: 114px;
-    height: 64px;
+	width: 114px;
+	height: 64px;
 
-    border: 1px solid #444444;
-    border-radius: 4px;
-    margin-right: 4px;
+	border: 1px solid #444444;
+	border-radius: 4px;
+	margin-right: 4px;
 }
 
 #allRandomSkillContainer DOTAAbilityImage {
-    width: 64px;
-    height: 64px;
+	width: 64px;
+	height: 64px;
 
-    border: 1px solid #444444;
-    border-radius: 4px;
-    margin-right: 4px;
+	border: 1px solid #444444;
+	border-radius: 4px;
+	margin-right: 4px;
 }
 
 .allRandomSelectBuildButton {
-    color: #FFFFFF;
-    visibility: collapse;
-    margin-bottom: 4px;
+	color: #ffffff;
+	visibility: collapse;
+	margin-bottom: 4px;
 }
 
 .phase_all_random .allRandomSelectBuildButton {
-    visibility: visible;
+	visibility: visible;
 }
 
 .allRandomHeroName {
-    vertical-align: bottom;
-    horizontal-align: middle;
-    color: #FFFFFF;
-    margin: 4px;
-    text-shadow: 0px 0px 2px 4.0 #000000FF;
+	vertical-align: bottom;
+	horizontal-align: middle;
+	color: #ffffff;
+	margin: 4px;
+	text-shadow: 0px 0px 2px 4 #000000ff;
 }
 
 .allRandomButtonContainer {
-    flow-children: down;
-    vertical-align: middle;
+	flow-children: down;
+	vertical-align: middle;
 }
 
 #allRandomLockButton {
-    width: 320px;
-    margin: 8px;
-    margin-top: 8px;
-    horizontal-align: middle;
-    visibility: collapse;
+	width: 320px;
+	margin: 8px;
+	margin-top: 8px;
+	horizontal-align: middle;
+	visibility: collapse;
 }
 
 .phase_all_random #allRandomLockButton {
-    visibility: visible;
+	visibility: visible;
 }
 
 .allRandomBuildSpacing {
-    width: 8px;
+	width: 8px;
 }
 
 /* Review */
 
 #reviewPhase {
-    height: fit-children;
-    vertical-align: center;
+	height: fit-children;
+	vertical-align: center;
 
-    visibility: collapse;
-    flow-children: down;
+	visibility: collapse;
+	flow-children: down;
 }
 
 .phase_review_selected #reviewPhase {
-    visibility: visible;
+	visibility: visible;
 }
 
 #stageButtonReview {
-    flow-children: right;
+	flow-children: right;
 }
 
 .phase_review_selected #stageInfo {
-    visibility: collapse;
+	visibility: collapse;
 }
 
 .phase_review #stageButtonReview {
-    background-color: gradient(linear, 0% 0%, 0% 100%, from(#3AFF7377), to(#33DD3311));
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#3aff7377), to(#33dd3311));
 }
 
 .phase_review_selected #stageButtonReview {
-    border: 1px solid #AAFFAA;
+	border: 1px solid #aaffaa;
 }
 
 .phase_review #mainContainer .theTeamTopLevel {
-    visibility: collapse;
+	visibility: collapse;
 }
 
 .phase_review #mainSelectionRoot {
-    vertical-align: middle;
+	vertical-align: middle;
 }
 
 .reviewPhaseTeam {
-    flow-children: right;
+	flow-children: right;
 
-    width: 47%;
-    min-height: 324px;
+	width: 47%;
+	min-height: 324px;
 }
 
 .tooManyPlayers.reviewPhaseTeam {
-    flow-children: down;
+	flow-children: down;
 }
 
 .tooManyPlayers.reviewPhaseTeam .subReviewContainer {
-    flow-children: right;
+	flow-children: right;
 }
 
 .subReviewContainer {
-    horizontal-align: center;
-    width: 100%;
+	horizontal-align: center;
+	width: 100%;
 }
 
 .reviewTeamsOverlay {
-    width: 100%;
+	width: 100%;
 }
 
 .filler {
@@ -1268,8 +1263,8 @@ Button:enabled:hover {
 }
 
 #reviewTeams {
-    width: 100%;
-    flow-children: right;
+	width: 100%;
+	flow-children: right;
 }
 
 #reviewRadiantTeam {
@@ -1281,216 +1276,213 @@ Button:enabled:hover {
 }
 
 .reviewPlayerContainer {
-    padding: 0px 4px 0px 4px;
+	padding: 0px 4px 0px 4px;
 
-    width: 20%;
-    height: 680px;
+	width: 20%;
+	height: 680px;
 
-    vertical-align: center;
+	vertical-align: center;
 }
 
 .playerBackground {
-    width: 100%;
-    height: 100%;
-    opacity: 0.2;
+	width: 100%;
+	height: 100%;
+	opacity: 0.2;
 }
 
-#reviewRadiantTeam .playerBackground
-{
-    background-color: gradient( linear, 0% 0%, 0% 100%, from( #70A87A00 ), color-stop( 0.4, #B4FAB6ee ), to( #70A87A99 ) );
+#reviewRadiantTeam .playerBackground {
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#70a87a00), color-stop(0.4, #b4fab6ee), to(#70a87a99));
 }
 
-#reviewDireTeam .playerBackground
-{
-    background-color: gradient( linear, 0% 0%, 0% 100%, from( #9B513600 ), color-stop( 0.4, #C66756ee), to( #9B513699 ) );
+#reviewDireTeam .playerBackground {
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#9b513600), color-stop(0.4, #c66756ee), to(#9b513699));
 }
 
 .tooManyPlayers.reviewPlayerContainer {
-    height: 340px;
+	height: 340px;
 }
 
 #reviewPhaseVS {
-    visibility: collapse;
+	visibility: collapse;
 
-    horizontal-align: middle;
-    vertical-align: middle;
+	horizontal-align: middle;
+	vertical-align: middle;
 
-    width: 300px;
-    z-index: 2;
+	width: 300px;
+	z-index: 2;
 }
 
 #reviewPhaseVS.show {
-    visibility: visible;
+	visibility: visible;
 
-    animation-name: vsShow;
-    animation-duration: 1.0s;
-    animation-timing-function: ease-in-out;
+	animation-name: vsShow;
+	animation-duration: 1s;
+	animation-timing-function: ease-in-out;
 }
 
 @keyframes 'vsShow' {
-    0% {
-        transform: scale3d( 0.5, 0.5, 1);
-    }
-    70% {
-        transform: scale3d( 1.3, 1.3, 1);
-    }
-    100% {
-        transform: scale3d( 1, 1, 1);
-    }
+	0% {
+		transform: scale3d(0.5, 0.5, 1);
+	}
+	70% {
+		transform: scale3d(1.3, 1.3, 1);
+	}
+	100% {
+		transform: scale3d(1, 1, 1);
+	}
 }
 
 #reviewPhaseVS Image {
-    width: 100px;
-    height: 100px;
+	width: 100px;
+	height: 100px;
 
-    horizontal-align: middle;
-    vertical-align: middle;
-    z-index: 1;
+	horizontal-align: middle;
+	vertical-align: middle;
+	z-index: 1;
 }
 
 #reviewPhaseVS DOTAScenePanel {
-    z-index: 0;
+	z-index: 0;
 
-    width: 200px;
-    height: 200px;
+	width: 200px;
+	height: 200px;
 
-    horizontal-align: middle;
-    vertical-align: middle;
-    opacity: 0.8;
+	horizontal-align: middle;
+	vertical-align: middle;
+	opacity: 0.8;
 }
 
 .reviewPhasePlayerAttribute {
-    width: 24px;
-    height: 24px;
-    margin: 4px;
-    align: center bottom;
-    margin: 8px;
-    margin-bottom: 25px;
-    background-color: #000000;
-    border-radius: 12px;
-    border: 1px solid #000000;
+	width: 24px;
+	height: 24px;
+	margin: 4px;
+	align: center bottom;
+	margin: 8px;
+	margin-bottom: 25px;
+	background-color: #000000;
+	border-radius: 12px;
+	border: 1px solid #000000;
 }
 
 .tooManyPlayers .reviewPhasePlayerAttribute {
-    horizontal-align: right;
-    margin-left: 164px;
+	horizontal-align: right;
+	margin-left: 164px;
 }
 
 #reviewPhasePlayerSkillContainer {
-    visibility: collapse;
+	visibility: collapse;
 
-    flow-children: down;
-    vertical-align: bottom;
-    margin-top: 4px;
+	flow-children: down;
+	vertical-align: bottom;
+	margin-top: 4px;
 
-    z-index: 5;
+	z-index: 5;
 }
 
-#reviewPhasePlayerSkillContainer.show{
-    visibility: visible;
-    animation-name: skillContainerShow;
-    animation-duration: 0.5s;
-    animation-timing-function: ease-in-out;
+#reviewPhasePlayerSkillContainer.show {
+	visibility: visible;
+	animation-name: skillContainerShow;
+	animation-duration: 0.5s;
+	animation-timing-function: ease-in-out;
 }
 
 @keyframes 'skillContainerShow' {
-    0% {
-        opacity: 0.1;
-    }
-    100% {
-        opacity: 1;
-    }
+	0% {
+		opacity: 0.1;
+	}
+	100% {
+		opacity: 1;
+	}
 }
 
-#reviewRadiantTeam #reviewPhasePlayerSkillContainer{
-    margin-right: -20px;
-    horizontal-align: right;
- }
+#reviewRadiantTeam #reviewPhasePlayerSkillContainer {
+	margin-right: -20px;
+	horizontal-align: right;
+}
 
-
-#reviewDireTeam #reviewPhasePlayerSkillContainer{
-    horizontal-align: left;
-    margin-left: -20px;
- }
+#reviewDireTeam #reviewPhasePlayerSkillContainer {
+	horizontal-align: left;
+	margin-left: -20px;
+}
 
 #reviewPhasePlayerSkillContainer DOTAAbilityImage {
-    border: 1px solid #444444;
-    border-radius: 2px;
-    width: 40px;
-    height: 40px;
-    margin: 0.5px;
+	border: 1px solid #444444;
+	border-radius: 2px;
+	width: 40px;
+	height: 40px;
+	margin: 0.5px;
 }
 
 #reviewPhasePlayerAvatar {
-    width: 20px;
-    height: 20px;
-    margin-right: 4px;
-    margin-bottom: 4px;
-    margin-top: 4px;
-    border-radius: 4px;
-    vertical-align: middle;
+	width: 20px;
+	height: 20px;
+	margin-right: 4px;
+	margin-bottom: 4px;
+	margin-top: 4px;
+	border-radius: 4px;
+	vertical-align: middle;
 }
 
 .reviewButtons {
-    align: center bottom;
-    margin-top: 8px;
-    margin-bottom: 8px;
+	align: center bottom;
+	margin-top: 8px;
+	margin-bottom: 8px;
 }
 
 #reviewReadyButton {
-    width: 240px;
-    visibility: collapse;
+	width: 240px;
+	visibility: collapse;
 }
 
 .phase_review #reviewReadyButton {
-    visibility: visible;
+	visibility: visible;
 }
 
 .allRandomSelectedItem {
-    border: 1px solid #00FF00;
+	border: 1px solid #00ff00;
 }
 
 .hide_picks #reviewPhaseHeroImageContainer {
-    visibility: collapse;
+	visibility: collapse;
 }
 
 .avatarScene {
-    width: 158px;
-    height: 700px;
+	width: 158px;
+	height: 700px;
 }
 
 .hide_picks #playerAttribute {
-    visibility: collapse;
+	visibility: collapse;
 }
 
 .hide_picks #reviewPhasePlayerSkillContainer {
-    visibility: collapse;
+	visibility: collapse;
 }
 
 .reviewPlayerAvatarContainer {
-    width: 100%;
-    height: 100%;
+	width: 100%;
+	height: 100%;
 }
 
 #reviewPhasePlayerAvatarBig {
-    visibility: collapse;
-    width: 128px;
-    height: 128px;
-    horizontal-align: center;
-    vertical-align: center;
+	visibility: collapse;
+	width: 128px;
+	height: 128px;
+	horizontal-align: center;
+	vertical-align: center;
 }
 
 .tooManyPlayers #reviewPhasePlayerAvatarBig {
-    width: 64px;
-    height: 64px;
+	width: 64px;
+	height: 64px;
 }
 
 #reviewRadiantTeam #reviewPhasePlayerAvatarBig {
-    margin-top: 104px;
+	margin-top: 104px;
 }
 
 .hide_picks #reviewPhasePlayerAvatarBig {
-    visibility: visible;
+	visibility: visible;
 }
 
 /*
@@ -1498,305 +1490,310 @@ Button:enabled:hover {
 */
 
 .workingPanel {
-    width: 100%;
-    height: 100%;
+	width: 100%;
+	height: 100%;
 
-    border: 2px solid #32383677;
+	border: 2px solid #32383677;
 
-    background-color: gradient( linear, 0% 0%, 0% 25%, from( #232326 ), to( #1c1d20 ) );
-    box-shadow: #00000099 -4px -4px 8px 8px;
+	background-color: gradient(linear, 0% 0%, 0% 25%, from(#232326), to(#1c1d20));
+	box-shadow: #00000099 -4px -4px 8px 8px;
 }
 
 #pickingPhase {
-    visibility: collapse;
-    flow-children: down;
+	visibility: collapse;
+	flow-children: down;
 	height: 850px;
 }
 
 .phase_selection_selected #pickingPhase {
-    visibility: visible;
+	visibility: visible;
 }
 
 .phase_banning_selected #pickingPhase {
-    visibility: visible;
+	visibility: visible;
 }
 
 #pickingPhaseFilters {
-    width: 100%;
-    padding: 8px;
-    flow-children: right;
+	width: 100%;
+	padding: 8px;
+	flow-children: right;
 }
 
 .filtersButton {
-    wash-color: #5b6a6b;
+	wash-color: #5b6a6b;
 
-    font-size: 20px;
-    text-transform: uppercase;
+	font-size: 20px;
+	text-transform: uppercase;
 
-    padding: 4px;
-    padding-left: 8px;
-    horizontal-align: left;
-    margin-left: 8px;
-    margin-right: 8px;
+	padding: 4px;
+	padding-left: 8px;
+	horizontal-align: left;
+	margin-left: 8px;
+	margin-right: 8px;
 
-    transition-property: wash-color;
-    transition-duration: 0.2s;
+	transition-property: wash-color;
+	transition-duration: 0.2s;
 }
 
 .filtersButton:hover,
 .filtersButton.lod_hero_filter_selected {
-    wash-color: white;
+	wash-color: white;
 }
 
 .filtersGroup {
-    padding: 8px;
-    flow-children: down;
+	padding: 8px;
+	flow-children: down;
 }
 
 .filtersRow {
-    flow-children: right;
+	flow-children: right;
 }
 
 #heroTypeFilter {
-    width: 450px;
-    horizontal-align: right;
+	width: 450px;
+	horizontal-align: right;
 }
 
 #pickingPhaseBuild {
-    align: left bottom;
-    flow-children: down;
+	align: left bottom;
+	flow-children: down;
 }
 
 .phase_selection_selected #pickingPhaseBuild {
-    visibility: visible;
+	visibility: visible;
 }
 
 #pickingPhaseBans {
-    flow-children: down;
-    visibility: collapse;
-    vertical-align: bottom;
+	flow-children: down;
+	visibility: collapse;
+	vertical-align: bottom;
 }
 
 .phase_banning_selected #pickingPhaseBans {
-    visibility: visible;
+	visibility: visible;
 }
 
 #banningButtonContainer {
-    padding: 8px;
-    transition-property: opacity;
-    transition-duration: 0.25s;
+	padding: 8px;
+	transition-property: opacity;
+	transition-duration: 0.25s;
 }
 
 .lodBanningHeader {
-    font-size: 24px;
-    padding-left: 8px;
+	font-size: 24px;
+	padding-left: 8px;
 }
 
 .lodBanningInstructions {
-    padding-left: 12px;
+	padding-left: 12px;
 }
 
 #banningAbilityContainer,
 #banningHeroContainer {
-    flow-children: right;
+	flow-children: right;
 }
 
 #banningHeroContainer DOTAHeroImage {
-    height: 48px;
-    width: 84px;
+	height: 48px;
+	width: 84px;
 
-    margin: 0px;
+	margin: 0px;
 }
 
 #lodBanLimits {
-    padding-left: 12px;
+	padding-left: 12px;
 }
 
 #lodBanThisSkill {
-    width: 48px;
-    height: 48px;
-    border: 1px solid #000000;
-    border-radius: 4px;
+	width: 48px;
+	height: 48px;
+	border: 1px solid #000000;
+	border-radius: 4px;
 }
 
 #lodBanSkillButton {
-    vertical-align: middle;
+	vertical-align: middle;
+}
+
+#pickingPhaseSelectedHeroRoot {
+	width: 100%;
+	horizontal-align: center;
+	height: 175px;
 }
 
 #pickingPhaseSelectedHero {
-    width: 100%;
-    horizontal-align: center;
-    margin: 4px;
-    //width: 100%;
-
+	width: 100%;
+	horizontal-align: center;
+	vertical-align: bottom;
+	margin: 4px;
 }
 
 #pickingPhaseSelectedHeroImageCon {
-    //align: left center;
-    //margin-left: 35px;
-    margin-top: 20px;
-    horizontal-align:center;
+	//align: left center;
+	//margin-left: 35px;
+	margin-top: 20px;
+	horizontal-align: center;
 }
 
 .notDraftable {
-    opacity: .1;
-    saturation: 0.0;
-    wash-color: #FFFF00FF;
-    border: 0px;
+	opacity: 0.1;
+	saturation: 0;
+	wash-color: #ffff00ff;
+	border: 0px;
 }
 
 .bannedSkill {
-    opacity: .1;
-    saturation: 0.0;
-    wash-color: #FF5555FF;
-    border: 0px;
+	opacity: 0.1;
+	saturation: 0;
+	wash-color: #ff5555ff;
+	border: 0px;
 }
 
 .disallowedSkill {
-    opacity: .1;
-    saturation: 0.0;
-    wash-color: #777777aa;
-    border: 0px;
+	opacity: 0.1;
+	saturation: 0;
+	wash-color: #777777aa;
+	border: 0px;
 }
 
 .takenSkill {
-    opacity: .1;
-    saturation: 0.0;
-    wash-color: #FFAA00FF;
-    border: 0px;
+	opacity: 0.1;
+	saturation: 0;
+	wash-color: #ffaa00ff;
+	border: 0px;
 }
 
 .trollCombo {
-    opacity: .5;
-    saturation: 0.0;
-    wash-color: #FFA500FF;
-    border: 0px;
+	opacity: 0.5;
+	saturation: 0;
+	wash-color: #ffa500ff;
+	border: 0px;
 }
 
 .balanceModeDisabled {
-    visibility: collapse;
+	visibility: collapse;
 }
 
 #balanceModePointsPreset {
-    margin-left: 15px;
-    margin-top: 10px;
-    font-size: 25px;
-    color: #70EA72;
+	margin-left: 15px;
+	margin-top: 10px;
+	font-size: 25px;
+	color: #70ea72;
 }
 
 #balanceModePointsHeroes {
-    margin-left: 15px;
-    margin-top: 10px;
-    font-size: 25px;
-    color: #70EA72;
+	margin-left: 15px;
+	margin-top: 10px;
+	font-size: 25px;
+	color: #70ea72;
 }
 
 #balanceModePointsSkills {
-    margin-bottom: 10px;
-    margin-right: 5px;
-    margin-top: -30px;
-    font-size: 16px;
-    horizontal-align: right;
-    color: #70EA72;
+	margin-bottom: 10px;
+	margin-right: 5px;
+	margin-top: -30px;
+	font-size: 16px;
+	horizontal-align: right;
+	color: #70ea72;
 }
 
 #balanceModeFilter {
-    margin-top: 10px;
-    margin-bottom: 10px;
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 
 .balanceModeFilterLeft {
-    width: 160px;
+	width: 160px;
 }
 
 .balanceModeFilterRight {
-    margin-left: 160px;
-    width: 160px;
+	margin-left: 160px;
+	width: 160px;
 }
 
 .balanceModeColumnSwitch {
-    margin-top: -160px;
+	margin-top: -160px;
 }
 
 .skillCostLarge {
-    font-size: 20px;
-    font-weight: bold;
+	font-size: 20px;
+	font-weight: bold;
 	margin-right: 0px;
 	margin-bottom: -6px;
-    vertical-align: bottom;
-    horizontal-align: right;
+	vertical-align: bottom;
+	horizontal-align: right;
 }
 
 .skillCostRecommended {
-    font-size: 15px;
-    font-weight: bold;
+	font-size: 15px;
+	font-weight: bold;
 	margin-right: 3px;
 	margin-bottom: 3px;
-    vertical-align: bottom;
-    horizontal-align: right;
+	vertical-align: bottom;
+	horizontal-align: right;
 }
 
 .skillCostSmall {
-    font-size: 14px;
-    font-weight: bold;
+	font-size: 14px;
+	font-weight: bold;
 	margin-right: -2px;
 	margin-bottom: -4px;
-    vertical-align: bottom;
-    horizontal-align: right;
+	vertical-align: bottom;
+	horizontal-align: right;
 }
 
 .tier1 {
-    color: #bbbbbb;
+	color: #bbbbbb;
 	text-shadow: 0px 0px 6px 8 #000000ff;
 }
 
 .tier2 {
-    color: #ffbbbb;
+	color: #ffbbbb;
 	text-shadow: 0px 0px 6px 8 #550000ff;
 }
 
 .tier3 {
-    color: #ffeeff;
+	color: #ffeeff;
 	text-shadow: 0px 0px 6px 8 #993399ff;
 }
 
 .tier4 {
-    color: #ffeeaa;
+	color: #ffeeaa;
 	text-shadow: 0px 0px 6px 8 #773311ff;
 }
 
 .tier5 {
-    color: #ffffcc;
+	color: #ffffcc;
 	text-shadow: 0px 0px 6px 8 #777700ff;
 }
 
 .tier6 {
-    color: #ccffcc;
+	color: #ccffcc;
 	text-shadow: 0px 0px 6px 8 #007700ff;
 }
 
 .tier7 {
-    color: #cceecc;
+	color: #cceecc;
 	text-shadow: 0px 0px 6px 8 #004400ff;
 }
 
 .tier8 {
-    color: #ccffff;
+	color: #ccffff;
 	text-shadow: 0px 0px 6px 8 #117777ff;
 }
 
 .tier9 {
-    color: #ccccff;
+	color: #ccccff;
 	text-shadow: 0px 0px 6px 8 #003377ff;
 }
 
 .tier10 {
-    color: #ffccff;
+	color: #ffccff;
 	text-shadow: 0px 0px 6px 8 #770077;
 }
 
 .tier11 {
-    color: #ffdddd;
+	color: #ffdddd;
 	text-shadow: 0px 0px 6px 8 #663333ff;
 }
 
@@ -1805,875 +1802,866 @@ Button:enabled:hover {
 }
 
 #toggleShowDraftAblilities {
-    visibility: collapse;
+	visibility: collapse;
 }
 
 #lodToggleButton {
-    visibility: collapse;
+	visibility: collapse;
 }
 
 .unique_skills_mode #lodToggleButton {
-    visibility: visible;
+	visibility: visible;
 }
 
 .pickingPhaseAttr {
-    width: 24px;
-    height: 24px;
+	width: 24px;
+	height: 24px;
 
-    padding: 0px;
+	padding: 0px;
 
-    background-color: #000000;
-    border-radius: 12px;
-    border: 1px solid #000000;
-    margin-bottom: 4px;
-    box-shadow: fill #00000000 0px 0px 0px 0px;
+	background-color: #000000;
+	border-radius: 12px;
+	border: 1px solid #000000;
+	margin-bottom: 4px;
+	box-shadow: fill #00000000 0px 0px 0px 0px;
 
-    transition-property: box-shadow;
-    transition-duration: 0.2s;
+	transition-property: box-shadow;
+	transition-duration: 0.2s;
 }
 
 .pickingPhaseAttr.selectedAttribute {
-    box-shadow: fill #FFFFFFFF 0px 0px 4px 0px;
+	box-shadow: fill #ffffffff 0px 0px 4px 0px;
 }
 
 .pickingPhaseAttr Label {
-    color: #000000;
+	color: #000000;
 }
 
 #pickingPhaseSelectedHeroImage {
-    width: 128px;
-    height: 72px;
+	width: 128px;
+	height: 72px;
 }
 
 .no_hero_selected #pickingPhaseSelectedHeroImage {
-    visibility: collapse;
+	visibility: collapse;
 }
 
 .pickingPhaseSelectedHeroImage {
-    border: 1px solid #000000;
-    border-radius: 4px;
+	border: 1px solid #000000;
+	border-radius: 4px;
 }
 
 #pickingPhaseSelectedHeroImageNone {
-    visibility: collapse;
-    width: 128px;
-    height: 72px;
+	visibility: collapse;
+	width: 128px;
+	height: 72px;
 }
 
 .no_hero_selected #pickingPhaseSelectedHeroImageNone {
-    visibility: visible;
+	visibility: visible;
 }
 
 #pickingPhaseSelectedHeroText {
-    horizontal-align: middle;
-    vertical-align: bottom;
-    text-shadow: 0px 0px 2px 4.0 #000000FF;
-    margin-bottom: 4px;
+	horizontal-align: middle;
+	vertical-align: bottom;
+	text-shadow: 0px 0px 2px 4 #000000ff;
+	margin-bottom: 4px;
 }
 
 #pickingPhaseSelectedAttr {
-    flow-children: down;
+	flow-children: down;
 }
 
 #pickingPhaseBuildSkills {
-    flow-children: right;
-    horizontal-align: middle;
+	flow-children: right;
+	horizontal-align: middle;
 }
 
 #pickingPhaseBuildSkills DOTAAbilityImage {
-    width: 48px;
-    height: 48px;
-    margin: 2px;
+	width: 48px;
+	height: 48px;
+	margin: 2px;
 
-    border: 1px solid #000000;
-    border-radius: 4px;
+	border: 1px solid #000000;
+	border-radius: 4px;
 }
 
 #pickingPhaseContent {
-    width: 100%;
-    height: fill-parent-flow(1);
+	width: 100%;
+	height: fill-parent-flow(1);
 }
 
 #pickingPhaseTabs {
-    flow-children: down;
+	flow-children: down;
 }
 
 #pickingPhaseTabsContent {
-    width: 100%;
-    height: 100%;
+	width: 100%;
+	height: 100%;
 }
 
 #pickingPhaseHeroTabContent {
-    padding: 8px;
-    flow-children: down;
+	padding: 8px;
+	flow-children: down;
 }
 
 .pickingPhaseTabContent {
-    width: 100%;
-    height: 100%;
+	width: 100%;
+	height: 100%;
 }
 
 .pickingHeroList {
-    padding-left: 16px;
-    width: 100%;
-    /*height: fit-children;*/
-    /*background-color: #111111;*/
+	padding-left: 16px;
+	width: 100%;
+	/*height: fit-children;*/
+	/*background-color: #111111;*/
 	padding-top: 5px;
-    margin: 10px 0 10px 0;
+	margin: 10px 0 10px 0;
 }
 
 .pickingHeroListHeroes {
-    width: fill-parent-flow(1);
-    margin-left: 30px;
-    margin-right: 10px;
+	width: fill-parent-flow(1);
+	margin-left: 30px;
+	margin-right: 10px;
 
-    padding-bottom: 20px;
+	padding-bottom: 20px;
 
-    flow-children: right-wrap;
+	flow-children: right-wrap;
 }
 
 .pickingHeroListHeroes DOTAHeroImage {
-    width: 46px;
-    height: 61px;
+	width: 46px;
+	height: 61px;
 
-    margin: 2px;
+	margin: 2px;
 
-    border: 1px solid #111111;
-    border-radius: 4px;
+	border: 1px solid #111111;
+	border-radius: 4px;
 }
 
 .pickingHeroListCategory {
-    width: 230px;
-    font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
-    font-size: 14px;
-    font-weight: thin;
-    color: white;
-    wash-color: #6f829cee;
-    text-transform: uppercase;
-    text-align: center;
-    letter-spacing: 2px;
+	width: 230px;
+	font-family: Radiance, FZLanTingHei-R-GBK, TH Sarabun New, YDYGO 540, Gulim, MingLiU;
+	font-size: 14px;
+	font-weight: thin;
+	color: white;
+	wash-color: #6f829cee;
+	text-transform: uppercase;
+	text-align: center;
+	letter-spacing: 2px;
 
-    transform: rotateZ(-90deg) translateY(200px);
-    transform-origin: 0% 0%;
+	transform: rotateZ(-90deg) translateY(200px);
+	transform-origin: 0% 0%;
 
-    border-bottom: 2px solid #6f829cee;
+	border-bottom: 2px solid #6f829cee;
 }
 
 #heroPickingFiltersClear {
-    visibility: collapse;
+	visibility: collapse;
 }
 
 #pickingPhaseSkillTabContent {
-    width: 100%;
-    height: 100%;
-    flow-children: down;
+	width: 100%;
+	height: 100%;
+	flow-children: down;
 
-    horizontal-align: center;
+	horizontal-align: center;
 }
 
 #pickingPhaseTabFilterThingo {
-    width: 100%;
-    background-color: #00000077;
+	width: 100%;
+	background-color: #00000077;
 
-    padding: 0 16px 0 16px;
-    flow-children: right;
+	padding: 0 16px 0 16px;
+	flow-children: right;
 }
 
 #pickingPhaseSkillTabContentSkills {
-    width: 100%;
-    height: 100%;
+	width: 100%;
+	height: 100%;
 
-    flow-children: right-wrap;
-    overflow: squish scroll;
+	flow-children: right-wrap;
+	overflow: squish scroll;
 
-    padding: 8px;
+	padding: 8px;
 }
 
 .lodSkillTabButton {
-    padding: 4px;
-    margin-right: 8px;
-    opacity: 0.25;
-    wash-color: #cccccccc;
+	padding: 4px;
+	margin-right: 8px;
+	opacity: 0.25;
+	wash-color: #cccccccc;
 }
 
 .lodSkillTabButton:hover {
-    wash-color: #FFFFFFFF;
+	wash-color: #ffffffff;
 }
 
 .lodSkillTabButton Label {
-    color: #FFFFFF;
-    horizontal-align: center;
+	color: #ffffff;
+	horizontal-align: center;
 }
 
 .lodMiniAbility {
-    width: 32px;
-    height: 32px;
+	width: 32px;
+	height: 32px;
 
-    margin-right: 4px;
-    margin-bottom: 4px;
+	margin-right: 4px;
+	margin-bottom: 4px;
 
-    border: 1px solid #444444;
+	border: 1px solid #444444;
 }
 
 .lodDraftAbility {
-    width: 88px;
-    height: 88px;
+	width: 88px;
+	height: 88px;
 
-    transition: opacity 0.3s ease-in-out 0.0s, transform 0.3s ease-in-out 0.0s;
+	transition: opacity 0.3s ease-in-out 0s, transform 0.3s ease-in-out 0s;
 }
 
 .lodDraftAbility.hide {
-    opacity: 0.0;
-    transform: rotateY( -45deg );
+	opacity: 0;
+	transform: rotateY(-45deg);
 }
 
 .lodDraftAbility.ultimateAbility {
-    border-color: #b29600;
+	border-color: #b29600;
 }
 
 .grouped_skills {
-    flow-children: down-wrap;
+	flow-children: down-wrap;
 
-    background-color: #181a1e;
-    border: 2px solid #4B634C;
-    border-radius: 8px;
+	background-color: #181a1e;
+	border: 2px solid #4b634c;
+	border-radius: 8px;
 
-    padding: 4px;
-    padding-right: 1px;
-    padding-bottom: 0px;
-    margin-right: 8px;
-    margin-bottom: 8px;
-    height: 44px;
-    margin-top: 16px;
+	padding: 4px;
+	padding-right: 1px;
+	padding-bottom: 0px;
+	margin-right: 8px;
+	margin-bottom: 8px;
+	height: 44px;
+	margin-top: 16px;
 }
 
 .grouped_skills.manySkills {
-    margin-top: 0px;
-    height: 78px;
+	margin-top: 0px;
+	height: 78px;
 }
 
 .grouped_skills.draftSkills.manySkills {
-    margin-top: 16px;
-    height: 100px;
+	margin-top: 16px;
+	height: 100px;
 }
 
 .grouped_skills .lodMiniAbility {
-    margin: 0px;
-    margin-right: 2px;
-    margin-bottom: 2px;
-    margin-top: 0px;
+	margin: 0px;
+	margin-right: 2px;
+	margin-bottom: 2px;
+	margin-top: 0px;
 }
 
 .grouped_skills.draftSkills {
-    height: 100px;
+	height: 100px;
 }
 
 .grouped_skills .lodMiniAbility.ultimateAbility {
-    border-color: #b29600;
+	border-color: #b29600;
 }
 
 .lodSearchPanel {
-    width: 250px;
-    flow-children: right;
-    border: 2px solid #55666315;
+	width: 250px;
+	flow-children: right;
+	border: 2px solid #55666315;
 
-    transition-property: border;
-    transition-duration: .2s;
-    transition-timing-function: ease-in-out;
+	transition-property: border;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in-out;
 }
 
 .lodSearchPanel:hover {
-    border: 2px solid #55666388;
+	border: 2px solid #55666388;
 }
 
 .lodSearchText {
-    width: fill-parent-flow(1.0);
-    border: 0px solid transparent;
-    background-color: #00000000;
+	width: fill-parent-flow(1);
+	border: 0px solid transparent;
+	background-color: #00000000;
 }
 
 .lodSearchButton {
-    position: 302.400024px 0.0px 0.0px;
-    background-image: url("s2r://panorama/images/control_icons/icon_search_png.vtex");
-    background-repeat: no-repeat;
-    background-size: contain;
-    width: 27px;
-    height: 27px;
-    vertical-align: middle;
-    margin: 0px 8px;
-    wash-color: #667774dd;
+	position: 302.400024px 0px 0px;
+	background-image: url("s2r://panorama/images/control_icons/icon_search_png.vtex");
+	background-repeat: no-repeat;
+	background-size: contain;
+	width: 27px;
+	height: 27px;
+	vertical-align: middle;
+	margin: 0px 8px;
+	wash-color: #667774dd;
 }
 
 .buildingHelperHeroPreviewContainer {
-    /*width: 100%;
+	/*width: 100%;
     height: 100%;*/
-    vertical-align: bottom;
-    padding: 0px;
-    margin: 0 0 8px 8px;
+	vertical-align: bottom;
+	padding: 0px;
+	margin: 0 0 8px 8px;
 }
 
 #buildingHelperHeroPreviewHero.should_hide_this_hero {
-    opacity: 0.2;
-    saturation: 0.0;
-    wash-color: #777777aa;
+	opacity: 0.2;
+	saturation: 0;
+	wash-color: #777777aa;
 }
 
 #buildingHelperHeroPreviewHero.banned {
-    opacity: 0.2;
-    saturation: 0.0;
-    wash-color: #ff0000ff;
+	opacity: 0.2;
+	saturation: 0;
+	wash-color: #ff0000ff;
 }
 
 #buildingHelperHeroPreview {
-    flow-children: down;
-    vertical-align: bottom;
-    margin: 0px;
+	flow-children: down;
+	vertical-align: bottom;
+	margin: 0px;
 }
 
 #buildingHelperHeroPreviewHeroContainer {
-    horizontal-align: center;
+	horizontal-align: center;
 }
 
 #buildingHelperHeroPreviewHero {
-    margin-top: 8px;
-    border: 1px solid #000000;
+	margin-top: 8px;
+	border: 1px solid #000000;
 }
 
 #buildingHelperHeroPreviewHeroName {
-    horizontal-align: center;
-    vertical-align: bottom;
-    text-shadow: 0px 0px 2px 4.0 #000000FF;
-    margin-bottom: 4px;
+	horizontal-align: center;
+	vertical-align: bottom;
+	text-shadow: 0px 0px 2px 4 #000000ff;
+	margin-bottom: 4px;
 }
 
 #buildingHelperHeroPreviewHeroSelect {
-    horizontal-align: center;
-    visibility: collapse;
+	horizontal-align: center;
+	visibility: collapse;
 }
 
 .phase_selection_selected #buildingHelperHeroPreviewHeroSelect {
-    visibility: visible;
+	visibility: visible;
 }
 
 #buildingHelperHeroPreviewHeroBan {
-    horizontal-align: center;
-    visibility: collapse;
+	horizontal-align: center;
+	visibility: collapse;
 }
 
 .phase_banning_selected #buildingHelperHeroPreviewHeroBan {
-    visibility: visible;
+	visibility: visible;
 }
 
 #buildingHelperHeroPreviewHeroContainer DOTAHeroImage {
-    width: 128px;
-    height: 72px;
+	width: 128px;
+	height: 72px;
 }
 
 #buildingHelperHeroPreviewSkillsContainer {
-    flow-children: right-wrap;
-    horizontal-align: center;
+	flow-children: right-wrap;
+	horizontal-align: center;
 }
 
 #buildingHelperHeroPreviewSkillsContainer DOTAAbilityImage {
-    border: 1px solid #000000;
-    margin-right: 4px;
-    width: 32px;
-    height: 32px;
+	border: 1px solid #000000;
+	margin-right: 4px;
+	width: 32px;
+	height: 32px;
 }
 
 #boosterDraftPile {
-    width: 305px;
-    height: 100%;
+	width: 305px;
+	height: 100%;
 
-    margin-right: 20px;
+	margin-right: 20px;
 
-    border-radius: 10px;
-    border: 2px solid #5e686966;
+	border-radius: 10px;
+	border: 2px solid #5e686966;
 
-    visibility: collapse;
+	visibility: collapse;
 
-    flow-children: right-wrap;
+	flow-children: right-wrap;
 }
 
 #boosterDraftPile DOTAAbilityImage {
-    width: 54px;
-    height: 54px;
+	width: 54px;
+	height: 54px;
 
-    border-radius: 3px;
-    border: 1px solid #5e686966;
+	border-radius: 3px;
+	border: 1px solid #5e686966;
 
-    margin-left: 5px;
-    margin-top: 5px;
+	margin-left: 5px;
+	margin-top: 5px;
 }
 
 #boosterDraftPileDragLabel {
-    align: center center;
-    font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
-    font-size: 16px;
-    font-weight: thin;
-    text-transform: uppercase;
-    color: #5e6869ff;
+	align: center center;
+	font-family: Radiance, FZLanTingHei-R-GBK, TH Sarabun New, YDYGO 540, Gulim, MingLiU;
+	font-size: 16px;
+	font-weight: thin;
+	text-transform: uppercase;
+	color: #5e6869ff;
 }
 
 #boosterDraftBoosters {
-    height: 100%;
-    width: 500px;
+	height: 100%;
+	width: 500px;
 
-    flow-children: right-wrap;
+	flow-children: right-wrap;
 
-    visibility: collapse;
+	visibility: collapse;
 
-    tooltip-position: top;
+	tooltip-position: top;
 }
 
 .lodBooster {
-    height: 70px;
-    width: 65px;
+	height: 70px;
+	width: 65px;
 
-    padding-bottom: -5px;
+	padding-bottom: -5px;
 }
 
 .lodBoosterRoot {
-    height: 90px;
-    width: 65px;
-    flow-children: down;
+	height: 90px;
+	width: 65px;
+	flow-children: down;
 }
 
 #lodBoosterPackLabel {
-    align: center bottom;
-    margin-right: 17px;
-    margin-left: 19px;
-    margin-bottom: 5px;
-    font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
-    visibility: collapse;
+	align: center bottom;
+	margin-right: 17px;
+	margin-left: 19px;
+	margin-bottom: 5px;
+	font-family: Radiance, FZLanTingHei-R-GBK, TH Sarabun New, YDYGO 540, Gulim, MingLiU;
+	visibility: collapse;
 }
 
 .lodBoosterRoot.current #lodBoosterPackLabel {
-    visibility: visible;
+	visibility: visible;
 }
 
 .lodBoosterRoot.current {
-    animation-name: lodHighlightLoopDrop;
-    animation-duration: 0.5s;
-    animation-timing-function: ease-in-out;
-    animation-iteration-count: infinite;
+	animation-name: lodHighlightLoopDrop;
+	animation-duration: 0.5s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
 }
 
 .lodSelected {
-    animation-name: lodHighlightLoop;
-    animation-duration: 0.5s;
-    animation-timing-function: ease-in-out;
-    animation-iteration-count: infinite;
+	animation-name: lodHighlightLoop;
+	animation-duration: 0.5s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
 }
 
 @keyframes 'lodHighlightLoop' {
-    0% {
-        border: 1px solid #FF0000;
-        border-radius: 4px;
-    }
-    50% {
-        border: 4px solid #FF0000;
-        border-radius: 4px;
-    }
-    100% {
-        border: 1px solid #FF0000;
-        border-radius: 4px;
-    }
+	0% {
+		border: 1px solid #ff0000;
+		border-radius: 4px;
+	}
+	50% {
+		border: 4px solid #ff0000;
+		border-radius: 4px;
+	}
+	100% {
+		border: 1px solid #ff0000;
+		border-radius: 4px;
+	}
 }
 
 .lodSelectedDrop {
-    animation-name: lodHighlightLoopDrop;
-    animation-duration: 0.5s;
-    animation-timing-function: ease-in-out;
-    animation-iteration-count: infinite;
+	animation-name: lodHighlightLoopDrop;
+	animation-duration: 0.5s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
 }
 
 @keyframes 'lodHighlightLoopDrop' {
-    0% {
-        border: 1px solid #00FF00;
-        border-radius: 4px;
-    }
-    50% {
-        border: 4px solid #00FF00;
-        border-radius: 4px;
-    }
-    100% {
-        border: 1px solid #00FF00;
-        border-radius: 4px;
-    }
+	0% {
+		border: 1px solid #00ff00;
+		border-radius: 4px;
+	}
+	50% {
+		border: 4px solid #00ff00;
+		border-radius: 4px;
+	}
+	100% {
+		border: 1px solid #00ff00;
+		border-radius: 4px;
+	}
 }
 
 .lodSelectedDrop:hover {
-    opacity: 0.1;
+	opacity: 0.1;
 }
 
 .disableButtonHalf {
-    opacity: 0.5;
-    transition-property: opacity;
-    transition-duration: 0.25s;
+	opacity: 0.5;
+	transition-property: opacity;
+	transition-duration: 0.25s;
 }
 
 .disableButton {
-    opacity: 0.0;
-    transition-property: opacity;
-    transition-duration: 0.25s;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.25s;
 }
 
 .lockBuildButton Label {
-    horizontal-align: center;
+	horizontal-align: center;
 }
 
 .quickHighlight {
-    animation-name: lodQuickHighlight;
-    animation-duration: 0.25s;
-    animation-timing-function: ease-in-out;
-    animation-iteration-count: 4;
+	animation-name: lodQuickHighlight;
+	animation-duration: 0.25s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 4;
 }
 
 @keyframes 'lodQuickHighlight' {
-    0% {
-        box-shadow: #00bbFFFF 0px 0px 1px 0px;
-    }
-    50% {
-        box-shadow: #00bbFFFF 0px 0px 8px 0px;
-    }
-    100% {
-        box-shadow: #00bbFFFF 0px 0px 1px 0px;
-    }
+	0% {
+		box-shadow: #00bbffff 0px 0px 1px 0px;
+	}
+	50% {
+		box-shadow: #00bbffff 0px 0px 8px 0px;
+	}
+	100% {
+		box-shadow: #00bbffff 0px 0px 1px 0px;
+	}
 }
 
 .makeThePlayerNoticeThisButton {
-    animation-name: lodButtonHighlight;
-    animation-duration: 1.51s;
-    animation-timing-function: ease-in-out;
-    animation-iteration-count: infinite;
+	animation-name: lodButtonHighlight;
+	animation-duration: 1.51s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
 }
 
 @keyframes 'lodButtonHighlight' {
-    0% {
-        box-shadow: #00FF00FF 0px 0px 1px 0px;
-    }
-    50% {
-        box-shadow: #00FF00FF 0px 0px 8px 0px;
-    }
-    100% {
-        box-shadow: #00FF00FF 0px 0px 1px 0px;
-    }
+	0% {
+		box-shadow: #00ff00ff 0px 0px 1px 0px;
+	}
+	50% {
+		box-shadow: #00ff00ff 0px 0px 8px 0px;
+	}
+	100% {
+		box-shadow: #00ff00ff 0px 0px 1px 0px;
+	}
 }
 
 .buildingHelperInfoText {
-    //margin-left: 8px;
+	//margin-left: 8px;
 }
 
 .addMarginBelow {
-    margin-bottom: 8px;
+	margin-bottom: 8px;
 }
 
 #pickingPhaseMainTabContent {
-    padding: 8px;
-    //flow-children: down;
+	padding: 8px;
+	//flow-children: down;
 }
 
-#buildSortingProperties
-{
-    flow-children: right;
+#buildSortingProperties {
+	flow-children: right;
 }
 
 .buildSortingProperty {
-    font-size: 20px;
-    margin: 10px;
-    color: #939da044;
-    text-transform: uppercase;
+	font-size: 20px;
+	margin: 10px;
+	color: #939da044;
+	text-transform: uppercase;
 }
 .buildSortingProperty.selected {
-    /*text-decoration: underline;*/
-    color: #ffffff;
+	/*text-decoration: underline;*/
+	color: #ffffff;
 }
 
-#buildLoadMoreBuilds
-{
-/*    width: 50px;
+#buildLoadMoreBuilds {
+	/*    width: 50px;
     height: 25px;*/
-/*    font-size: 24px;*/
+	/*    font-size: 24px;*/
 
-    horizontal-align: right;
-    vertical-align: top;
-/*    color: lightblue;*/
+	horizontal-align: right;
+	vertical-align: top;
+	/*    color: lightblue;*/
 }
 
-#buildLoadMoreBuilds Label
-{
-    margin-left: 10px;
-    margin-right: 10px;
+#buildLoadMoreBuilds Label {
+	margin-left: 10px;
+	margin-right: 10px;
 }
 
-#buildLoadMoreBuilds:hover
-{
-    /*text-decoration: underline;*/
+#buildLoadMoreBuilds:hover {
+	/*text-decoration: underline;*/
 }
 
-#buildLoadMoreBuilds:active
-{
-    /*color: blue;*/
+#buildLoadMoreBuilds:active {
+	/*color: blue;*/
 }
 
-#recommendedBuildContainerScrollWrapper{
-    width: 100%;
-    height: 90%;
+#recommendedBuildContainerScrollWrapper {
+	width: 100%;
+	height: 90%;
 
-    margin-top: 50px;
-    visibility: collapse;
+	margin-top: 50px;
+	visibility: collapse;
 }
 
 .pickingPhaseRecommendedBuildContainer {
-    width: 100%;
-    padding-left: 140px;
-    height: 90%;
+	width: 100%;
+	padding-left: 140px;
+	height: 90%;
 
-    overflow: squish scroll;
+	overflow: squish scroll;
 
-    horizontal-align: center;
-    flow-children: right-wrap;
-    opacity: 0;
+	horizontal-align: center;
+	flow-children: right-wrap;
+	opacity: 0;
 }
 .pickingPhaseRecommendedBuildContainer.selected {
-    opacity: 1;
+	opacity: 1;
 }
 
 .AspectRatio4x3 .pickingPhaseRecommendedBuildContainer,
 .AspectRatio5x4 .pickingPhaseRecommendedBuildContainer {
-    padding-left: 115px;
+	padding-left: 115px;
 }
 
 .AspectRatio16x10 .pickingPhaseRecommendedBuildContainer {
-    padding-left: 50px;
+	padding-left: 50px;
 }
 
 #buildLoadingIndicator {
-    align: center center;
-    flow-children: down;
+	align: center center;
+	flow-children: down;
 }
 
 #buildLoadingIndicator .Spinner {
-    width: 50px;
-    height: 50px;
+	width: 50px;
+	height: 50px;
 }
 
 #buildLoadingIndicatorText {
-    margin-top: 10px;
+	margin-top: 10px;
 
-    font-size: 25px;
+	font-size: 25px;
 }
 
 .recommendedBuild {
-    border: 2px solid #32383677;
+	border: 2px solid #32383677;
 
-    background-color: gradient( linear, 0% 0%, 0% 25%, from( #232326 ), to( #1c1d20 ) );
-    box-shadow: #00000099 -4px -4px 8px 8px;
+	background-color: gradient(linear, 0% 0%, 0% 25%, from(#232326), to(#1c1d20));
+	box-shadow: #00000099 -4px -4px 8px 8px;
 
-    margin: 4px;
-    flow-children: down;
+	margin: 4px;
+	flow-children: down;
 }
 
 .recommendedBuild.disabled {
-    visibility: collapse;
+	visibility: collapse;
 }
 
 .recommendedBuild.searchFilterHide {
-    visibility: collapse;
+	visibility: collapse;
 }
 
 .recommendedBuildContainer {
-    flow-children: right;
+	flow-children: right;
 }
 
 .recommendedBuildLeftSide {
-    flow-children: down;
-    width: 44px;
+	flow-children: down;
+	width: 44px;
 }
 
 .recommendedBuildRightSide {
-    flow-children: down;
+	flow-children: down;
 }
 
 .recommendedHeroImageCon {
-    border-radius: 5px;
-    box-shadow: 0 0 5px 0 #000000;
-    border: 1px solid #303030;
-    width: 80px;
-    height: 46px;
+	border-radius: 5px;
+	box-shadow: 0 0 5px 0 #000000;
+	border: 1px solid #303030;
+	width: 80px;
+	height: 46px;
 }
 
 #recommendedSkillContainer {
-    flow-children: right;
+	flow-children: right;
 }
 
 #recommendedSkillContainer DOTAAbilityImage {
-    width: 46px;
-    height: 46px;
-    margin-left: 2px;
-    border-radius: 5px;
-    box-shadow: 0 0 5px 0 #000000;
-    border: 1px solid #303030;
+	width: 46px;
+	height: 46px;
+	margin-left: 2px;
+	border-radius: 5px;
+	box-shadow: 0 0 5px 0 #000000;
+	border: 1px solid #303030;
 }
 
 #recommendedSelectButton {
-    width: 100%;
-    height: 30px;
+	width: 100%;
+	height: 30px;
 }
 
 #recommendedSelectButton Label {
-    color: #FFFFFF30;
-    font-size: 15px;
-    horizontal-align: center;
+	color: #ffffff30;
+	font-size: 15px;
+	horizontal-align: center;
 }
 
 #recommendedSelectButton:hover Label {
-    color: #FFFFFF;
+	color: #ffffff;
 }
 
 .recommendedBuildRating #buildRating {
-    horizontal-align: center;
-    text-align: center;
+	horizontal-align: center;
+	text-align: center;
 }
 
 .recommendedBuildRating {
-    flow-children: down;
-    color: #d9d9d9;
-    font-size: 14px;
-    horizontal-align: center;
+	flow-children: down;
+	color: #d9d9d9;
+	font-size: 14px;
+	horizontal-align: center;
 }
 
 .recommendedBuildVote {
-    background-image: url("file://{images}/custom_game/build.png");
-    background-repeat: no-repeat;
-    width: 17px;
-    height: 11px;
-    margin: 2px 0;
+	background-image: url("file://{images}/custom_game/build.png");
+	background-repeat: no-repeat;
+	width: 17px;
+	height: 11px;
+	margin: 2px 0;
 }
 
 .recommendedBuildVote.up {
-    background-position: -5px 0;
+	background-position: -5px 0;
 }
 
 .recommendedBuildVote.up:hover,
 .votedUp .recommendedBuildVote.up {
-    background-position: -27px 0;
+	background-position: -27px 0;
 }
 
 .recommendedBuildVote.down {
-    background-position: -49px 0;
+	background-position: -49px 0;
 }
 
 .recommendedBuildVote.down:hover,
 .votedDown .recommendedBuildVote.down {
-    background-position: -71px 0;
+	background-position: -71px 0;
 }
 
 .recommendedBuildActions {
-    flow-children: down;
-    horizontal-align: center;
+	flow-children: down;
+	horizontal-align: center;
 }
 
 #recommendedBuildFavourite {
-    background-image: url("file://{images}/custom_game/build.png");
-    background-position: -93px 0;
-    width: 17px;
-    height: 17px;
-    margin: 7px 0 11px;
+	background-image: url("file://{images}/custom_game/build.png");
+	background-position: -93px 0;
+	width: 17px;
+	height: 17px;
+	margin: 7px 0 11px;
 }
 
 #recommendedBuildFavourite:hover {
-    brightness: 0.2;
-    background-position: -115px 0;
+	brightness: 0.2;
+	background-position: -115px 0;
 }
 
 #recommendedBuildFavourite.active:hover {
-	brightness: 1.0;
-    background-position: -115px 0;
+	brightness: 1;
+	background-position: -115px 0;
 }
 
 #recommendedBuildFavourite.active {
-	brightness: 1.0;
-    background-position: -115px 0;
+	brightness: 1;
+	background-position: -115px 0;
 }
-
 
 #recommendedBuildRemove {
-    width: 17px;
-    height: 17px;
-    visibility: collapse;
+	width: 17px;
+	height: 17px;
+	visibility: collapse;
 
-    wash-color: #888;
+	wash-color: #888;
 
-    background-image: url("s2r://panorama/images/control_icons/x_close_png.vtex");
-    background-size: 24px 24px;
-    background-repeat: no-repeat;
-    background-position: 50% 50%;
+	background-image: url("s2r://panorama/images/control_icons/x_close_png.vtex");
+	background-size: 24px 24px;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
 
-    transition-property: wash-color, pre-transform-scale2d, background-color;
-    transition-duration: 0.1s;
-    transition-timing-function: ease-in;
+	transition-property: wash-color, pre-transform-scale2d, background-color;
+	transition-duration: 0.1s;
+	transition-timing-function: ease-in;
 }
-#recommendedBuildRemove:hover
-{
-    wash-color: #bbb;
+#recommendedBuildRemove:hover {
+	wash-color: #bbb;
 }
-#recommendedBuildRemove:active
-{
-    wash-color: white;
-    background-size: 20px 20px;
-    sound: "ui_friends_slide_in";
+#recommendedBuildRemove:active {
+	wash-color: white;
+	background-size: 20px 20px;
+	sound: "ui_friends_slide_in";
 }
 
-.isLocalAuthor #recommendedBuildRemove
-{
-    visibility: visible;
+.isLocalAuthor #recommendedBuildRemove {
+	visibility: visible;
 }
 
 .recommendedBuildHolder {
-    flow-children: right;
-    padding-right: 10px;
+	flow-children: right;
+	padding-right: 10px;
 }
 
 #recommendedAttribute {
-    width: 20px;
-    height: 20px;
-    margin: 5px 5px 0;
-    background-color: #000000;
-    border-radius: 50%;
-    horizontal-align: right;
+	width: 20px;
+	height: 20px;
+	margin: 5px 5px 0;
+	background-color: #000000;
+	border-radius: 50%;
+	horizontal-align: right;
 }
 
 .recommendedBuildBottomRow {
-    flow-children: down;
-    width: 100%;
-    padding: 8px 10px 10px 0;
+	flow-children: down;
+	width: 100%;
+	padding: 8px 10px 10px 0;
 }
 
 .recommendedBuildTitle {
-    flow-children: right;
-    padding-bottom: 3px;
+	flow-children: right;
+	padding-bottom: 3px;
 }
 
 #buildName {
-    color: #d9d9d9;
-    font-size: 16px;
-    vertical-align: middle;
+	color: #d9d9d9;
+	font-size: 16px;
+	vertical-align: middle;
 }
 
 #buildAuthor {
-    color: #767676;
-    font-size: 16px;
-    text-decoration: underline;
-    padding-left: 5px;
+	color: #767676;
+	font-size: 16px;
+	text-decoration: underline;
+	padding-left: 5px;
 }
 
 #buildDesc {
-    color: #9c9c9c;
-    font-size: 15px;
-    line-height: 18px;
-    height: 36px;
+	color: #9c9c9c;
+	font-size: 15px;
+	line-height: 18px;
+	height: 36px;
 }
 
 /*
@@ -2681,24 +2669,24 @@ Button:enabled:hover {
 */
 
 #banningPhase {
-    width: 98%;
-    height: 700px;
-    margin-top: 4px;
-    border-radius: 8px;
-    background-color: gradient( linear, 100% 0%, 100% 100%, from( #272b30 ), color-stop( 0.6, #181a1e ), to( #181a1e ) );
-    box-shadow: black -4px -4px 8px 8px;
-    visibility: collapse;
+	width: 98%;
+	height: 700px;
+	margin-top: 4px;
+	border-radius: 8px;
+	background-color: gradient(linear, 100% 0%, 100% 100%, from(#272b30), color-stop(0.6, #181a1e), to(#181a1e));
+	box-shadow: black -4px -4px 8px 8px;
+	visibility: collapse;
 }
 
 .phase_banning_selected #banningPhase {
-    visibility: visible;
+	visibility: visible;
 }
 
 #bs {
-    tooltip-position: right top;
-    border: 1px solid #FF0000;
-    width: 100px;
-    height: 100px;
+	tooltip-position: right top;
+	border: 1px solid #ff0000;
+	width: 100px;
+	height: 100px;
 }
 
 /*
@@ -2706,108 +2694,107 @@ Button:enabled:hover {
 */
 
 .veryBasicVoting #maxSlotsVotingContainer {
-    visibility: collapse;
+	visibility: collapse;
 }
 
 .votingBackground {
-    background-color: gradient( linear, 100% 0%, 100% 100%, from( #272b30 ), color-stop( 0.6, #181a1e ), to( #181a1e ) );
-    box-shadow: black -4px -4px 8px 8px;
+	background-color: gradient(linear, 100% 0%, 100% 100%, from(#272b30), color-stop(0.6, #181a1e), to(#181a1e));
+	box-shadow: black -4px -4px 8px 8px;
 }
 
 #optionVoting {
-    width: fit-children;
-    height: fit-children;
-    visibility: collapse;
-    align: center center;
+	width: fit-children;
+	height: fit-children;
+	visibility: collapse;
+	align: center center;
 
-    margin-top: 100px;
-    padding: 8px;
-    flow-children: down;
+	margin-top: 100px;
+	padding: 8px;
+	flow-children: down;
 }
 
 .veryBasicVoting #optionVoting {
 }
 
 .phase_option_voting_selected #optionVoting {
-    visibility: visible;
+	visibility: visible;
 }
 
 .optionVoteMainHeader {
-    horizontal-align: middle;
-    font-size: 24px;
-    margin-bottom: 16px;
+	horizontal-align: middle;
+	font-size: 24px;
+	margin-bottom: 16px;
 }
 
 .optionVoteMaxSlots {
-    flow-children: down;
-    horizontal-align: middle;
+	flow-children: down;
+	horizontal-align: middle;
 
-    padding: 8px;
-    border: 1px solid #444444;
-    border-radius: 4px;
+	padding: 8px;
+	border: 1px solid #444444;
+	border-radius: 4px;
 }
 
 .optionVoteHeader {
-    margin-left: 18px;
-    horizontal-align: middle;
+	margin-left: 18px;
+	horizontal-align: middle;
 }
 
 .maxSlotsVote {
-    flow-children: right;
-    horizontal-align: middle;
+	flow-children: right;
+	horizontal-align: middle;
 }
 
 .maxSlotsVote DOTAAbilityImage {
-    width: 64px;
-    height: 64px;
-    border: 1px solid #444444;
-    border-radius: 4px;
+	width: 64px;
+	height: 64px;
+	border: 1px solid #444444;
+	border-radius: 4px;
 }
 
 .maxSlotsVoteOption {
-    flow-children: down;
-    margin: 4px;
+	flow-children: down;
+	margin: 4px;
 }
 
 .votingButtonSlots {
 	min-width: 30px;
-    margin-top: 4px;
-    padding-left: 4px;
-    horizontal-align: middle;
+	margin-top: 4px;
+	padding-left: 4px;
+	horizontal-align: middle;
 }
 
 .votingButtonSlots Label {
-    max-width: 32px;
-    font-size: 12px;
+	max-width: 32px;
+	font-size: 12px;
 
-    text-align: center;
-    margin: 0px;
+	text-align: center;
+	margin: 0px;
 }
 
 .optionVotePhase {
-    flow-children: down;
-    horizontal-align: middle;
+	flow-children: down;
+	horizontal-align: middle;
 
 	width: 250px;
-    margin-top: 16px;
-    padding: 8px;
-    border: 1px solid #444444;
-    border-radius: 4px;
+	margin-top: 16px;
+	padding: 8px;
+	border: 1px solid #444444;
+	border-radius: 4px;
 }
 
 .optionVoteOptions {
-    flow-children: right;
-    horizontal-align: middle;
+	flow-children: right;
+	horizontal-align: middle;
 }
 
 .optionVoteInfoHeader {
-    flow-children: right;
-    align: center center;
-
+	flow-children: right;
+	align: center center;
 }
 
 .VotingOptionInfo {
-    horizontal-align: right;
+	horizontal-align: right;
 
 	margin-left: 5px;
 	width: 18px;
@@ -2815,69 +2802,67 @@ Button:enabled:hover {
 }
 
 .InfoTooltip {
-    text-align: center;
-    text-overflow: clip;
-    font-weight: thin;
-    font-size: 18px;
-    color: #FFFFFF;
-    padding: 8px;
-    position: 57% 67% 0px;
-    background-image: url("file://{images}/custom_game/tooltipBG.png");
-    background-size: 100% 100%;
-    border: 1px solid #444444;
-    border-radius: 8px;
-
+	text-align: center;
+	text-overflow: clip;
+	font-weight: thin;
+	font-size: 18px;
+	color: #ffffff;
+	padding: 8px;
+	position: 57% 67% 0px;
+	background-image: url("file://{images}/custom_game/tooltipBG.png");
+	background-size: 100% 100%;
+	border: 1px solid #444444;
+	border-radius: 8px;
 }
 
-.tooltipContents
-{
-    min-width: 80px;
-    max-width: 600px;
-    max-height: 600px;
-    flow-children: down;
+.tooltipContents {
+	min-width: 80px;
+	max-width: 600px;
+	max-height: 600px;
+	flow-children: down;
 }
 
 #Contents {
-    background-color: none;
-    border-width: 0px;
-    padding: 0px;
-    border-radius: 7px;
+	background-color: none;
+	border-width: 0px;
+	padding: 0px;
+	border-radius: 7px;
 }
 
 .optionVoteRoot {
 	width: 50px;
-    flow-children: down;
+	flow-children: down;
 }
 
 .voteCountPercentage {
-    horizontal-align: middle;
-    margin-left: 5px;
+	horizontal-align: middle;
+	margin-left: 5px;
 }
 
 .optionCurrentlySelected {
-    border-color: #00FF00;
+	border-color: #00ff00;
 }
 
 .optionSlotsCurrentlySelected DOTAAbilityImage {
-    border-color: #00FF00;
+	border-color: #00ff00;
 }
 
 .votingButton {
-    flow-children: right;
+	flow-children: right;
 }
 
 .voteCountSlots {
-    vertical-align: middle;
-    horizontal-align: middle;
-    text-shadow: 0px 0px 2px 4.0 #000000FF;
+	vertical-align: middle;
+	horizontal-align: middle;
+	text-shadow: 0px 0px 2px 4 #000000ff;
 }
 
 .premiumFeature {
-    visibility: collapse;
+	visibility: collapse;
 }
 
 .premiumUser .premiumFeature {
-    visibility: visible;
+	visibility: visible;
 }
 
 /*
@@ -2885,107 +2870,115 @@ Button:enabled:hover {
 */
 
 #optionSelection {
-    width: 100%;
-    height: 775px;
+	width: 100%;
+	height: 775px;
 
-    visibility: collapse;
-    horizontal-align: middle;
-    flow-children: down;
+	visibility: collapse;
+	horizontal-align: middle;
+	flow-children: down;
 }
 
 .phase_option_selection_selected #optionSelection {
-    visibility: visible;
+	visibility: visible;
 }
 
-
-.review_selection #optionSelection{
+.review_selection #optionSelection {
 	height: 850px;
 	margin-bottom: -200px;
 }
 
 #optionCategories {
-    width: 300px;
-    padding: 0 8px 0 8px;
+	width: 300px;
+	padding: 0 8px 0 8px;
 
-    flow-children: down;
+	flow-children: down;
 }
 
 #optionsPanel {
-    width: 100%;
-    height: fill-parent-flow(1.0);
+	width: 100%;
+	height: fill-parent-flow(1);
 }
 
 #optionBasic {
-    width: 100%;
-    height: fill-parent-flow(1.0);
+	width: 100%;
+	height: fill-parent-flow(1);
 
-    padding: 8px;
+	padding: 8px;
 
-    flow-children: down;
+	flow-children: down;
 
-    //visibility: collapse;
+	//visibility: collapse;
 
-    transition-property: opacity, transform;
-    transition-duration: 0.4s;
-    transition-delay: 0.0s;
-    transition-timing-function: ease-in-out;
+	transition-property: opacity, transform;
+	transition-duration: 0.4s;
+	transition-delay: 0s;
+	transition-timing-function: ease-in-out;
 }
 
 #optionBasic.hide {
-    transform: translateY(-30px);
-    opacity: 0;
+	transform: translateY(-30px);
+	opacity: 0;
 }
 
 #mutatorPanel {
-    height: fill-parent-flow(1);
+	height: fill-parent-flow(1);
 
-    padding: 8px;
+	padding: 8px;
 
-    horizontal-align: center;
+	horizontal-align: center;
 
-    overflow: clip scroll;
-    flow-children: right-wrap;
+	overflow: clip scroll;
+	flow-children: right-wrap;
 }
 
 #optionAdvanced {
-    width: 100%;
-    height: fill-parent-flow(1.0);
+	width: 100%;
+	height: fill-parent-flow(1);
 
-    background-color: gradient( linear, 0% 0%, 0% 25%, from( #66AADD33 ), color-stop( 0.02, #3C408A33 ), color-stop( 0.2, #2F325A33 ), color-stop( 0.8, #1c1d2000 ), to( #1c1d2000 ) );
+	background-color: gradient(
+		linear,
+		0% 0%,
+		0% 25%,
+		from(#66aadd33),
+		color-stop(0.02, #3c408a33),
+		color-stop(0.2, #2f325a33),
+		color-stop(0.8, #1c1d2000),
+		to(#1c1d2000)
+	);
 
-    padding: 8px;
+	padding: 8px;
 
-    flow-children: right;
+	flow-children: right;
 
-    opacity: 0;
+	opacity: 0;
 
-    position: 0px 30px 0px;
+	position: 0px 30px 0px;
 
-    transition-property: opacity, transform;
-    transition-duration: 0.4s;
-    transition-delay: 0.0s;
-    transition-timing-function: ease-in-out;
+	transition-property: opacity, transform;
+	transition-duration: 0.4s;
+	transition-delay: 0s;
+	transition-timing-function: ease-in-out;
 }
 
 #optionAdvanced.show {
-    transform: translateY(-30px);
-    opacity: 1;
+	transform: translateY(-30px);
+	opacity: 1;
 }
 
 #optionSidebar {
-    height: 100%;
-    flow-children: down;
+	height: 100%;
+	flow-children: down;
 }
 
 #gamemodesPanel .option {
-    background-color: #000000;
-    border-radius: 5px;
-    border: 5px solid #626262;
-    width: 230px;
-    height: width-percentage(74%);
-    margin: 3px;
-    text-align: center;
-    opacity: .5;
+	background-color: #000000;
+	border-radius: 5px;
+	border: 5px solid #626262;
+	width: 230px;
+	height: width-percentage(74%);
+	margin: 3px;
+	text-align: center;
+	opacity: 0.5;
 }
 
 .AspectRatio4x3 #gamemodesPanel .option {
@@ -2993,7 +2986,7 @@ Button:enabled:hover {
 }
 
 .AspectRatio5x4 #gamemodesPanel .option {
-    width: 192px;
+	width: 192px;
 }
 
 .AspectRatio16x10 #gamemodesPanel .option,
@@ -3003,165 +2996,165 @@ Button:enabled:hover {
 
 #gamemodesPanel .option.active,
 #mutatorPanel .mutator.active {
-    opacity: 1;
-    border-color: #FFFFFF;
+	opacity: 1;
+	border-color: #ffffff;
 }
 
 #gamemodesPanel .optionDescription {
-    text-shadow: 0 1px 5px 5.0 #00000040;
-    opacity: 0;
-    transition: opacity .3s ease-in-out 0.0s;
-    font-size: 20px;
-    padding: 15px 20px;
+	text-shadow: 0 1px 5px 5 #00000040;
+	opacity: 0;
+	transition: opacity 0.3s ease-in-out 0s;
+	font-size: 20px;
+	padding: 15px 20px;
 }
 
 .Language_russian #gamemodesPanel .optionDescription {
-    text-overflow: shrink;
+	text-overflow: shrink;
 }
 
 #gamemodesPanel .option:hover .optionDescription {
-    opacity: 1;
-    z-index: 1;
+	opacity: 1;
+	z-index: 1;
 }
 
 #gamemodesPanel .optionLabel {
-    margin-top: 10px;
-    font-size: 20px;
-    z-index: 2;
-    opacity: 1;
-    text-shadow: 0 1px 5px 5.0 #00000040;
-    padding: 0 15px;
-    transition: opacity .2s ease-in-out 0.0s;
+	margin-top: 10px;
+	font-size: 20px;
+	z-index: 2;
+	opacity: 1;
+	text-shadow: 0 1px 5px 5 #00000040;
+	padding: 0 15px;
+	transition: opacity 0.2s ease-in-out 0s;
 }
 
 #gamemodesPanel .option:hover .optionLabel {
-    opacity: 0;
+	opacity: 0;
 }
 
-#gamemodesPanel  .optionImage {
+#gamemodesPanel .optionImage {
 	width: 100%;
 	height: 100%;
-    transition: opacity .2s ease-in-out 0.0s, blur .2s ease-in-out 0.0s;
+	transition: opacity 0.2s ease-in-out 0s, blur 0.2s ease-in-out 0s;
 }
 
 #gamemodesPanel .option:hover .optionImage {
-    opacity: .1;
-    blur: gaussian(5);
+	opacity: 0.1;
+	blur: gaussian(5);
 }
 
 .optionImageCached {
-    visibility: collapse;
+	visibility: collapse;
 }
 
 #mutatorPanel .mutator {
-    width: 110px;
-    height: width-percentage(73%);
-    margin: 1px;
-    border-radius: 5px;
-    border: 2px solid #626262;
-    opacity: .5;
+	width: 110px;
+	height: width-percentage(73%);
+	margin: 1px;
+	border-radius: 5px;
+	border: 2px solid #626262;
+	opacity: 0.5;
 }
 
 #mutatorPanel .mutator.patreonMutator:hover {
-    border: 2px solid #FF661A;
+	border: 2px solid #ff661a;
 }
 
 .patreonExtra {
-    width: 24px;
-    height: 24px;
+	width: 24px;
+	height: 24px;
 
-    margin: 0px 0px 0px 0px;
-    align: left bottom;
+	margin: 0px 0px 0px 0px;
+	align: left bottom;
 
-    opacity: 0.0;
+	opacity: 0;
 }
 
 #mutatorPanel .mutator.patreonMutator:hover .patreonExtra {
-    opacity: 1.0;
+	opacity: 1;
 }
 
 .mutatorExtra {
-    width: 18px;
-    height: 18px;
+	width: 18px;
+	height: 18px;
 
-    margin: 0 5px 5px 0;
-    align: right bottom;
+	margin: 0 5px 5px 0;
+	align: right bottom;
 }
 
 .mutatorImage {
-    width: 100%;
-    height: 100%;
-    background-size: 100% 100%;
+	width: 100%;
+	height: 100%;
+	background-size: 100% 100%;
 }
 
 .AspectRatio4x3 #mutatorPanel .mutator {
-    width: 99px;
+	width: 99px;
 }
 
 .AspectRatio16x10 #mutatorPanel .mutator {
-    width: 112px;
+	width: 112px;
 }
 
 #gamemodesPanel #mutator_lodMutatorMirrorDraft {
-    opacity: 1;
-    border-color: #FFFFFF;
+	opacity: 1;
+	border-color: #ffffff;
 }
 
 #mutatorPanel .mutator:hover {
-    opacity: .7;
+	opacity: 0.7;
 }
 
 #mutatorPanel .mutator.active:hover {
-    opacity: 1;
+	opacity: 1;
 }
 
 #optionMutatorTitle {
-    width: 223px;
-    font-size: 26px;
-    text-align: center;
-    horizontal-align: center;
+	width: 223px;
+	font-size: 26px;
+	text-align: center;
+	horizontal-align: center;
 }
 
 #mutatorPanel .mutatorLabel {
-    text-shadow: 0 0 3px 4.5 #000000;
-    padding: 5px 7px 0 7px;
-    line-height: 15px;
+	text-shadow: 0 0 3px 4.5 #000000;
+	padding: 5px 7px 0 7px;
+	line-height: 15px;
 }
 
 .Language_russian #mutatorPanel .mutatorLabel {
-    padding: 5px 0px 0 7px;
-    text-overflow: shrink;
+	padding: 5px 0px 0 7px;
+	text-overflow: shrink;
 }
 
 #mutatorPanel .mutator .circleWrapper {
-    flow-children: right;
-    z-index: 10;
-    margin: 5px;
-    horizontal-align: right;
+	flow-children: right;
+	z-index: 10;
+	margin: 5px;
+	horizontal-align: right;
 }
 
 #mutatorPanel .mutator .circle {
-    width: 11px;
-    height: 11px;
-    border-radius: 5px;
-    border: 1px solid #ffffff;
-    margin: 3px;
+	width: 11px;
+	height: 11px;
+	border-radius: 5px;
+	border: 1px solid #ffffff;
+	margin: 3px;
 }
 
 #mutatorPanel .mutator .circle.active {
-    background-color: #ffffff;
+	background-color: #ffffff;
 }
 
 #importAndExportRoot {
-    height: 100%;
+	height: 100%;
 
-    vertical-align: bottom;
-    horizontal-align: left;
-    margin: 4px;
-    margin-left: 12px;
-    max-width: 600px;
+	vertical-align: bottom;
+	horizontal-align: left;
+	margin: 4px;
+	margin-left: 12px;
+	max-width: 600px;
 
-    flow-children: down;
+	flow-children: down;
 }
 
 .review_selection #importAndExportRoot {
@@ -3169,239 +3162,245 @@ Button:enabled:hover {
 }
 
 #bansImportAndExportEntryRoot {
-    flow-children: right;
+	flow-children: right;
 }
 
 #bansImportAndExportEntryRoot .importAndExportButton {
-    height: 27px;
+	height: 27px;
 }
 
 #importAndExportCaption {
-    flow-children: right;
+	flow-children: right;
 }
 
 .importAndExportButton {
-    height: 35px;
+	height: 35px;
 }
 
 .importAndExportButton Label {
 	text-align: center;
-    align: center center;
-    font-size: 16px;
+	align: center center;
+	font-size: 16px;
 }
 
 #importAndExportEntryRoot {
-    flow-children: right;
-    margin-left: -10px;
+	flow-children: right;
+	margin-left: -10px;
 }
 
 #optionButtons {
-    width: 100%;
-    height: 80px;
+	width: 100%;
+	height: 80px;
 
-    padding: 8px;
-    vertical-align: bottom;
+	padding: 8px;
+	vertical-align: bottom;
 
-    visibility: collapse;
+	visibility: collapse;
 }
 
 #lockOptionPanel {
-    align: right center;
-    flow-children: down;
+	align: right center;
+	flow-children: down;
 }
 
-.review_selection  #lockOptionPanel {
+.review_selection #lockOptionPanel {
 	visibility: collapse;
 }
 
 .optionSwitch {
-    height: 100%;
+	height: 100%;
 
-    wash-color: #66aadd;
-    padding: 0 8px 0 8px;
+	wash-color: #66aadd;
+	padding: 0 8px 0 8px;
 
-    align: center center;
+	align: center center;
 
-    margin-top: 20px;
+	margin-top: 20px;
 
-    transition-property: opacity;
-    transition-duration: 0.1s;
-    transition-delay: 0.0s;
-    transition-timing-function: ease-in-out;
+	transition-property: opacity;
+	transition-duration: 0.1s;
+	transition-delay: 0s;
+	transition-timing-function: ease-in-out;
 }
 
 .optionSwitch Label,
 .optionSwitch .ExpandDownArrow {
-    letter-spacing: 2px;
-    vertical-align: center;
+	letter-spacing: 2px;
+	vertical-align: center;
 }
 
 #optionAdvancedSwitcherPanel.optionSwitch:hover,
 #optionBasicSwitcherPanel.optionSwitch:hover {
-    wash-color: white;
+	wash-color: white;
 }
 
-#optionAdvancedSwitcherPanel:hover .ExpandDownArrow
-{
-    transform: translateY(5px);
+#optionAdvancedSwitcherPanel:hover .ExpandDownArrow {
+	transform: translateY(5px);
 }
 
 #optionBasicSwitcherPanel {
-    opacity: 0;
+	opacity: 0;
 }
 
 #optionAdvancedSwitcherPanel.hide {
-    opacity: 0;
+	opacity: 0;
 }
 
 #optionBasicSwitcherPanel.show {
-    opacity: 1;
+	opacity: 1;
 }
 
 #optionBasicSwitcherPanel .ExpandDownArrow {
-    transform: rotateZ(180deg);
+	transform: rotateZ(180deg);
 }
 
 #optionBasicSwitcherPanel:hover .ExpandDownArrow {
-    transform: rotateZ(180deg) translateY(-5px);
+	transform: rotateZ(180deg) translateY(-5px);
 }
 
 .phase_option_selection #optionButtons {
-    visibility: visible;
+	visibility: visible;
 }
 
 .review_selection #optionButtons {
-    visibility: visible;
+	visibility: visible;
 }
 
 #optionButtons Button {
-    color: #FFFFFF;
-    font-size: 24px;
+	color: #ffffff;
+	font-size: 24px;
 }
 
 #lockOptionsButton {
 	margin: 0px;
 
-    background-color: gradient( linear, 0% 0%, 0% 100%, from( #2d4881cc ), to( #486ca9cc ) );
-    box-shadow: fill #486ca922 -4px -4px 8px 8px;
-    border-top: 1px solid #ffffff03;
-    border-left: 1px solid #ffffff03;
-    visibility: collapse;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#2d4881cc), to(#486ca9cc));
+	box-shadow: fill #486ca922 -4px -4px 8px 8px;
+	border-top: 1px solid #ffffff03;
+	border-left: 1px solid #ffffff03;
+	visibility: collapse;
 }
 
 #lockTeamsFirst {
 	horizontal-align: center;
-    visibility: collapse;
+	visibility: collapse;
 }
 
 .player_has_host_privileges #lockTeamsFirst {
-    visibility: visible;
+	visibility: visible;
 }
 
 .teams_locked #lockTeamsFirst {
-    visibility: collapse;
+	visibility: collapse;
 }
 
 .teams_unlocked #lockOptionsButton {
-    background-color: gradient( linear, 0% 0%, 0% 100%, from( #14161a ), to( #23262b ) );
-    box-shadow: fill #00000000 0px 0px 0px 0px;
-    border-top: 1px solid #ffffff03;
-    border-left: 1px solid #ffffff03;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#14161a), to(#23262b));
+	box-shadow: fill #00000000 0px 0px 0px 0px;
+	border-top: 1px solid #ffffff03;
+	border-left: 1px solid #ffffff03;
 }
 
 #lockOptionsButton Label {
-    transition-property: opacity;
-    transition-duration: 0.2s;
+	transition-property: opacity;
+	transition-duration: 0.2s;
 }
 
 .player_has_host_privileges #lockOptionsButton {
-    visibility: visible;
+	visibility: visible;
 }
 
 .teams_locked #lockOptionsButton:hover {
-    background-color: gradient( linear, 0% 0%, 0% 100%, from( #2d4881cc ), to( #84acff ) );
-    box-shadow: fill #486ca966 -4px -4px 18px 8px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#2d4881cc), to(#84acff));
+	box-shadow: fill #486ca966 -4px -4px 18px 8px;
 }
 
 .teams_locked #lockOptionsButton:active {
-    sound: "ui_team_select_lock_and_start";
+	sound: "ui_team_select_lock_and_start";
 }
 
 .OptionButton {
+	background-color: transparent;
+	padding: 0px;
 
-    background-color: transparent;
-    padding: 0px;
+	transition-property: background-color, box-shadow, color, brightness;
+	transition-duration: 0.25s;
+	transition-timing-function: ease-in-out;
 
-    transition-property: background-color, box-shadow, color, brightness;
-    transition-duration: 0.25s;
-    transition-timing-function: ease-in-out;
-
-    flow-children: none;
+	flow-children: none;
 }
 
 .OptionButtonFancy {
-    margin-top: 12px;
-    width: 300px;
-    height: 48px;
-    background-color: gradient( linear, 0% 0%, 100% 0%, from( #12181acc ), to( #222f37cc ) );
-    box-shadow: fill #00000044 -3px -3px 6px 6px;
+	margin-top: 12px;
+	width: 300px;
+	height: 48px;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#12181acc), to(#222f37cc));
+	box-shadow: fill #00000044 -3px -3px 6px 6px;
 
-    border-left: 2px solid transparent;
-    transition-property: background-color, border;
-    transition-duration: 0.25s;
-    transition-timing-function: ease-in-out;
+	border-left: 2px solid transparent;
+	transition-property: background-color, border;
+	transition-duration: 0.25s;
+	transition-timing-function: ease-in-out;
 }
 
 .activeMenu .OptionButtonFancy {
-    background-color: gradient( linear, 0% 0%, 100% 0%, from( #12181acc ), color-stop( 0.98, #2e4f76cc ), color-stop( 0.98, white ), to( #ffffff ) );
-    border-top: 2px solid #33496388;
-    border-right: 2px solid white;
-    border-bottom: 2px solid #33496388;
+	background-color: gradient(
+		linear,
+		0% 0%,
+		100% 0%,
+		from(#12181acc),
+		color-stop(0.98, #2e4f76cc),
+		color-stop(0.98, white),
+		to(#ffffff)
+	);
+	border-top: 2px solid #33496388;
+	border-right: 2px solid white;
+	border-bottom: 2px solid #33496388;
 }
 
 .OptionButton.activeHostMenu {
-    background-image: url("s2r://panorama/images/custom_game/hosticon_png.vtex");
-    background-size: 24px 24px;
-    background-repeat: no-repeat;
-    background-position: 8px 22px;
+	background-image: url("s2r://panorama/images/custom_game/hosticon_png.vtex");
+	background-size: 24px 24px;
+	background-repeat: no-repeat;
+	background-position: 8px 22px;
 }
 
 .OptionButtonGlow {
-    margin-top: -14px;
-    horizontal-align: right;
-    margin-right: -14px;
+	margin-top: -14px;
+	horizontal-align: right;
+	margin-right: -14px;
 
-    width: 300px;
-    height: 96px;
-    background-image: url("s2r://panorama/images/glows/herogridnavglow_psd.vtex");
-    background-repeat: no-repeat;
-    background-position: center 10px;
-    background-size: 100% 85%;
-    opacity: 0.0;
-    transition-property: opacity, transform, wash-color;
-    transition-timing-function: ease-in-out;
-    z-index: -1;
+	width: 300px;
+	height: 96px;
+	background-image: url("s2r://panorama/images/glows/herogridnavglow_psd.vtex");
+	background-repeat: no-repeat;
+	background-position: center 10px;
+	background-size: 100% 85%;
+	opacity: 0;
+	transition-property: opacity, transform, wash-color;
+	transition-timing-function: ease-in-out;
+	z-index: -1;
 }
 
 .OptionButtonLabel {
-    margin-top: 12px;
-    font-size: 24px;
-    padding: 8px;
-    horizontal-align: right;
+	margin-top: 12px;
+	font-size: 24px;
+	padding: 8px;
+	horizontal-align: right;
 }
 
 .activeMenu .OptionButtonGlow {
-    opacity: 0.4;
-    transition-duration: 0.25s;
-    transform: translateX( 0px );
+	opacity: 0.4;
+	transition-duration: 0.25s;
+	transform: translateX(0px);
 }
 
 .disallow_custom_settings .optionButtonCustomRequired .OptionButtonLabel {
-    color: #333333;
+	color: #333333;
 }
 
 .ignore_custom_message .optionButtonCustomRequired .OptionButtonLabel {
-    color: #999999;
+	color: #999999;
 }
 
 .ignore_custom_message .optionButtonCustomRequired .optionSlotPanelLabel {
@@ -3417,7 +3416,7 @@ Button:enabled:hover {
 }
 
 .review_selection .optionButtonCustomRequired .OptionButtonLabel {
-    color: #ffffff;
+	color: #ffffff;
 }
 
 .review_selection .optionButtonCustomRequired .optionSlotPanelLabel {
@@ -3425,168 +3424,172 @@ Button:enabled:hover {
 }
 
 .disallow_bots .optionButtonBotRequired .OptionButtonLabel {
-    color: #333333;
+	color: #333333;
 }
 
 .OptionPanel {
-    width: 100%;
-    height: 600px;
-    flow-children: down;
-    visibility: collapse;
-    overflow: squish scroll;
+	width: 100%;
+	height: 600px;
+	flow-children: down;
+	visibility: collapse;
+	overflow: squish scroll;
 
-    padding: 0 8px 0 8px;
+	padding: 0 8px 0 8px;
 }
 
 .OptionPanel.activeMenu {
-    visibility: visible;
+	visibility: visible;
 }
 
 .optionSlotPanel {
-    width: 100%;
-    height: 48px;
-    flow-children: right;
+	width: 100%;
+	height: 48px;
+	flow-children: right;
 }
 
 .optionSlotPanel.patreon {
-    //border: 1px solid #FF661A;
-    //border-radius: 4px;
+	//border: 1px solid #FF661A;
+	//border-radius: 4px;
 }
 
 .optionSlotPanelLabel {
-    font-size: 20px;
-    vertical-align: middle;
+	font-size: 20px;
+	vertical-align: middle;
 }
 
 .optionsSlotPanelContainer {
-    horizontal-align: right;
-    flow-children: right;
-    height: 100%;
+	horizontal-align: right;
+	flow-children: right;
+	height: 100%;
 }
 
 .optionsHostToggleSelector {
-    vertical-align: middle;
+	vertical-align: middle;
 }
 
 .optionsHostToggleSelector Label {
-    text-transform: none;
+	text-transform: none;
 }
 
 .optionsSlotPanelHost {
-    visibility: collapse;
+	visibility: collapse;
 }
 
 .player_has_host_privileges.phase_option_selection .optionsSlotPanelSlave {
-    visibility: collapse;
+	visibility: collapse;
 }
 
 .disallow_custom_settings .optionsSlotPanelSlave {
-    visibility: visible;
+	visibility: visible;
 }
 
 .player_has_host_privileges.phase_option_selection .optionsSlotPanelHost {
-    visibility: visible;
+	visibility: visible;
 }
 
-.player_has_host_privileges.phase_option_selection.disallow_custom_settings .optionButtonCustomRequired .optionsSlotPanelHost {
-    visibility: collapse;
+.player_has_host_privileges.phase_option_selection.disallow_custom_settings
+	.optionButtonCustomRequired
+	.optionsSlotPanelHost {
+	visibility: collapse;
 }
 
 .player_has_host_privileges.phase_option_selection.disallow_bots .optionButtonBotRequired .optionsSlotPanelHost {
-    visibility: collapse;
+	visibility: collapse;
 }
 
-.player_has_host_privileges.phase_option_selection.disallow_custom_settings .optionButtonCustomRequired .optionsSlotPanelSlave {
-    visibility: visible;
+.player_has_host_privileges.phase_option_selection.disallow_custom_settings
+	.optionButtonCustomRequired
+	.optionsSlotPanelSlave {
+	visibility: visible;
 }
 
 .player_has_host_privileges.phase_option_selection.disallow_bots .optionButtonBotRequired .optionsSlotPanelSlave {
-    visibility: visible;
+	visibility: visible;
 }
 
 .optionsSlotPanelSlider {
-    flow-children: right;
+	flow-children: right;
 }
 
 .optionsSlotPanelSlider TextEntry {
-    margin-left: 8px;
-    width: 88px;
-    text-align: right;
+	margin-left: 8px;
+	width: 88px;
+	text-align: right;
 }
 
 .optionsSlotPanelSlider Slider {
-    width:  226px;
-    margin-top: 8px;
+	width: 226px;
+	margin-top: 8px;
 }
 
 .optionsSlotPanelSlave {
-    visibility: visible;
+	visibility: visible;
 }
 
 .allow_custom_settings .optionSlotPanelNoCustom {
-    visibility: collapse;
+	visibility: collapse;
 }
 
 .doNotShow {
-    visibility: collapse;
+	visibility: collapse;
 }
 
 .potential_drop_target {
-    opacity: 0.1;
+	opacity: 0.1;
 }
 
 /* A comment (aka, invisible) */
 .comment {
-    visibility: collapse;
+	visibility: collapse;
 }
 
 /* Adds a glow to the author's name */
 .contributor {
-    color: #000000;
-    text-shadow: 0px 0px 2px 2.0 #FFFF00FF;
-    font-weight: bold;
+	color: #000000;
+	text-shadow: 0px 0px 2px 2 #ffff00ff;
+	font-weight: bold;
 }
 
 #tabsSelector {
-    width: 100%;
-    background-color: #00000077;
+	width: 100%;
+	background-color: #00000077;
 
-    padding: 0 16px 0 16px;
+	padding: 0 16px 0 16px;
 
-    flow-children: right;
+	flow-children: right;
 
-    visibility: collapse;
+	visibility: collapse;
 }
 
 #tabsSearch {
-    //padding: 4px;
-    //height: 100%;
-    margin: 4px;
-    horizontal-align: right;
+	//padding: 4px;
+	//height: 100%;
+	margin: 4px;
+	horizontal-align: right;
 }
 
 .pickingPhaseTab {
-    width: fill-parent-flow(1);
+	width: fill-parent-flow(1);
 
-    flow-children: right;
+	flow-children: right;
 }
 
 #pickingPhaseHeroTab {
-    flow-children: right;
-    /*overflow: squish scroll;*/
+	flow-children: right;
+	/*overflow: squish scroll;*/
 }
 
 .SettingsNavBarButton {
-    vertical-align: center;
+	vertical-align: center;
 }
 
 #pickingPhaseTabFilterThingo .SettingsNavBarButton Label {
-    font-size: 16px;
+	font-size: 16px;
 }
 
 .SettingsNavBarButton.lodSkillTabActivated Label,
 .SettingsNavBarButton.tabHighlight Label {
-    color: #ffffff;
+	color: #ffffff;
 }
 
 /*#pickingPhaseTabBar {
@@ -3595,29 +3598,30 @@ Button:enabled:hover {
 }*/
 
 .heroBuildMenuButtonChoose {
-    width: 100%;
-    height: 30px;
-    background-color: gradient( linear, 100% 0%, 100% 100%, from( #282d2f ), to( #191e21 ) );
-    border-radius: 0px 0px 5px 5px;
-    padding-top: 7px;
+	width: 100%;
+	height: 30px;
+	background-color: gradient(linear, 100% 0%, 100% 100%, from(#282d2f), to(#191e21));
+	border-radius: 0px 0px 5px 5px;
+	padding-top: 7px;
 
-    transition-property: opacity;
-    transition-duration: 0.25s;
+	transition-property: opacity;
+	transition-duration: 0.25s;
 }
 
 #pickingPhaseTabBar .heroBuildMenuButton {
-    height: 50px;
-    //width: fill-parent-flow(1);
-    padding-left: 0px;
+	height: 50px;
+	//width: fill-parent-flow(1);
+	padding-left: 0px;
 }
 
 #pickingPhaseTabBar .heroBuildMenuButton Label {
-    horizontal-align: center;
-    vertical-align: middle;
+	horizontal-align: center;
+	vertical-align: middle;
 }
 
-.ingame_menu #theRadiant, .ingame_menu #theDire {
-    visibility: collapse;
+.ingame_menu #theRadiant,
+.ingame_menu #theDire {
+	visibility: collapse;
 }
 
 .ingame_menu #mainSelectionRoot {
@@ -3633,315 +3637,284 @@ Button:enabled:hover {
 	visibility: visible;
 }
 
-.ingame_menu #optionSelection, .ingame_menu #pickingPhase{
+.ingame_menu #optionSelection,
+.ingame_menu #pickingPhase {
 	height: 825px;
 }
 
-#optionVotePhasesList
-{
-    flow-children: down;
+#optionVotePhasesList {
+	flow-children: down;
 }
 
-
 #pickingPhaseSaveSelectedBuild {
-    width: 24px;
-    height: 24px;
+	width: 24px;
+	height: 24px;
 
-    align: left center;
-    margin-left: 43px;
+	align: left center;
+	margin-left: 43px;
 
-    transition-property: opacity;
-    transition-duration: 0.2s;
-    opacity: 0.6;
-    background-color : transparent;
+	transition-property: opacity;
+	transition-duration: 0.2s;
+	opacity: 0.6;
+	background-color: transparent;
 
-    background-image: url("file://{images}/custom_game/savebuild.png");
-    background-size: 100%;
+	background-image: url("file://{images}/custom_game/savebuild.png");
+	background-size: 100%;
 
-    //visibility: collapse;
+	//visibility: collapse;
 }
 #pickingPhaseSaveSelectedBuild:hover,
 #pickingPhaseSaveSelectedBuild:active {
-    opacity: 1;
+	opacity: 1;
 }
 
-
-#pickingPhaseSaveCurrentBuild
-{
-    flow-children: down;
+#pickingPhaseSaveCurrentBuild {
+	flow-children: down;
 }
 
 #pickingPhaseSaveCurrentBuildTitle,
-#pickingPhaseSaveCurrentBuildDescription
-{
-    width: 100%;
-    margin: 0 25px;
+#pickingPhaseSaveCurrentBuildDescription {
+	width: 100%;
+	margin: 0 25px;
 }
 
-#pickingPhaseSaveCurrentBuildDescription
-{
-    margin-top: 4px;
-    height: 72px;
+#pickingPhaseSaveCurrentBuildDescription {
+	margin-top: 4px;
+	height: 72px;
 }
 
-#pickingPhaseSaveCurrentBuildSubmit
-{
-    margin-top: 12px;
-    horizontal-align: center;
-    width: 40%;
+#pickingPhaseSaveCurrentBuildSubmit {
+	margin-top: 12px;
+	horizontal-align: center;
+	width: 40%;
 }
 
-#abilityBonusesPanel
-{
-    width: 100%;
-    height: 60px;
-    flow-children: right;
+#abilityBonusesPanel {
+	width: 100%;
+	height: 60px;
+	flow-children: right;
 }
 
-#newAbilitiesPanel
-{
-    z-index: -999;
-    width: 290px;
-    height: 100%;
-    margin-left: 18px;
-    transform: translateY(-60px);
-    background-color: #202124;
-    box-shadow: #00000099 -4px -4px 8px 8px;
-    border: 2px solid #2b2e2e;
-    transition-duration: .3s;
-    transition-property: transform, background-color, border;
-    visibility: collapse;
-    flow-children: down;
+#newAbilitiesPanel {
+	z-index: -999;
+	width: 290px;
+	height: 100%;
+	margin-left: 18px;
+	transform: translateY(-60px);
+	background-color: #202124;
+	box-shadow: #00000099 -4px -4px 8px 8px;
+	border: 2px solid #2b2e2e;
+	transition-duration: 0.3s;
+	transition-property: transform, background-color, border;
+	visibility: collapse;
+	flow-children: down;
 }
 
-#newAbilitiesPanel.OneOrMore
-{
-    transform: translateY(3px);
+#newAbilitiesPanel.OneOrMore {
+	transform: translateY(3px);
 }
 
-.phase_selection_selected #newAbilitiesPanel.GoldBonusEnabled
-{
-    visibility: visible;
+.phase_selection_selected #newAbilitiesPanel.GoldBonusEnabled {
+	visibility: visible;
 }
 
-#newAbilitiesPanel > Label
-{
-    width: 100%;
-    text-align: center;
-    font-size: 19px;
-    margin-bottom: -8px;
-    color: white;
-    text-transform: uppercase;
+#newAbilitiesPanel > Label {
+	width: 100%;
+	text-align: center;
+	font-size: 19px;
+	margin-bottom: -8px;
+	color: white;
+	text-transform: uppercase;
 }
 
-#newAbilitiesPanel > Label > Panel
-{
-    horizontal-align: right;
-    margin-right: 5px;
-    width: height-percentage(100%);
-    height: 75%;
-    tooltip-position: top;
-    tooltip-body-position: 50%;
+#newAbilitiesPanel > Label > Panel {
+	horizontal-align: right;
+	margin-right: 5px;
+	width: height-percentage(100%);
+	height: 75%;
+	tooltip-position: top;
+	tooltip-body-position: 50%;
 }
 
-#newAbilitiesTicks
-{
-    width: 100%;
-    height: fill-parent-flow(1);
-    flow-children: right;
+#newAbilitiesTicks {
+	width: 100%;
+	height: fill-parent-flow(1);
+	flow-children: right;
 }
 
-#newAbilitiesTicks > Panel
-{
-    vertical-align: center;
-    width: 16.6666667%;
+#newAbilitiesTicks > Panel {
+	vertical-align: center;
+	width: 16.6666667%;
 }
 
-#newAbilitiesTicks > Panel > Panel
-{
-    horizontal-align: center;
-    height: 25px;
-    width: 16px;
-    background-image: url('file://{images}/custom_game/newAbilityTick.png');
-    background-size: 100% 100%;
-    saturation: .1;
-    brightness: .2;
-    transition-duration: .1s;
-    transition-property: saturation, brightness;
+#newAbilitiesTicks > Panel > Panel {
+	horizontal-align: center;
+	height: 25px;
+	width: 16px;
+	background-image: url("file://{images}/custom_game/newAbilityTick.png");
+	background-size: 100% 100%;
+	saturation: 0.1;
+	brightness: 0.2;
+	transition-duration: 0.1s;
+	transition-property: saturation, brightness;
 }
 
-#newAbilitiesTicks > Panel.GlobalBonus > Panel
-{
-    background-image: url('file://{images}/custom_game/newGlobalAbilityTick.png');
-    saturation: 1;
-    brightness: 1;
+#newAbilitiesTicks > Panel.GlobalBonus > Panel {
+	background-image: url("file://{images}/custom_game/newGlobalAbilityTick.png");
+	saturation: 1;
+	brightness: 1;
 }
 
-#newAbilitiesTicks > Panel.OwnBonus > Panel
-{
-    saturation: 1;
-    brightness: 1;
+#newAbilitiesTicks > Panel.OwnBonus > Panel {
+	saturation: 1;
+	brightness: 1;
 }
 
-#balancedBuildPanel
-{
-    z-index: -999;
-    width: 200px;
-    height: 100%;
-    margin-left: 10px;
-    background-color: #202124;
-    box-shadow: #00000099 -4px -4px 8px 8px;
-    border: 2px solid #2b2e2e;
-    transition-duration: .3s;
-    transition-property: transform, background-color, border;
-    visibility: collapse;
-    transform: translateY(3px);
-    flow-children: down;
+#balancedBuildPanel {
+	z-index: -999;
+	width: 200px;
+	height: 100%;
+	margin-left: 10px;
+	background-color: #202124;
+	box-shadow: #00000099 -4px -4px 8px 8px;
+	border: 2px solid #2b2e2e;
+	transition-duration: 0.3s;
+	transition-property: transform, background-color, border;
+	visibility: collapse;
+	transform: translateY(3px);
+	flow-children: down;
 }
 
-.phase_selection_selected #balancedBuildPanel
-{
-    visibility: visible;
+.phase_selection_selected #balancedBuildPanel {
+	visibility: visible;
 }
 
-#balancedBuildPanel > Label
-{
-    width: 100%;
-    text-align: center;
-    font-size: 19px;
-    margin-bottom: -8px;
-    color: white;
-    text-transform: uppercase;
+#balancedBuildPanel > Label {
+	width: 100%;
+	text-align: center;
+	font-size: 19px;
+	margin-bottom: -8px;
+	color: white;
+	text-transform: uppercase;
 }
 
-#balancedBuildPanel > Label > Panel
-{
-    horizontal-align: right;
-    margin-right: 5px;
-    width: height-percentage(100%);
-    height: 75%;
-    tooltip-position: top;
-    tooltip-body-position: 50%;
+#balancedBuildPanel > Label > Panel {
+	horizontal-align: right;
+	margin-right: 5px;
+	width: height-percentage(100%);
+	height: 75%;
+	tooltip-position: top;
+	tooltip-body-position: 50%;
 }
 
-#balancedBuildTick
-{
-    align: center center;
-    height: 25px;
-    width: 16px;
-    background-image: url('file://{images}/custom_game/newAbilityTick.png');
-    background-size: 100% 100%;
-    saturation: .1;
-    brightness: .2;
-    transition-duration: .1s;
-    transition-property: saturation, brightness, wash-color;
+#balancedBuildTick {
+	align: center center;
+	height: 25px;
+	width: 16px;
+	background-image: url("file://{images}/custom_game/newAbilityTick.png");
+	background-size: 100% 100%;
+	saturation: 0.1;
+	brightness: 0.2;
+	transition-duration: 0.1s;
+	transition-property: saturation, brightness, wash-color;
 }
 
-#balancedBuildTick.Enabled
-{
-    saturation: 1;
-    brightness: 1;
-    wash-color: lime;
+#balancedBuildTick.Enabled {
+	saturation: 1;
+	brightness: 1;
+	wash-color: lime;
 }
 
-#popularityFilterGroup
-{
-    width: 30%;
-    min-width: 400px;
-    vertical-align: bottom;
-    horizontal-align: right;
-    margin-left: 4px;
+#popularityFilterGroup {
+	width: 30%;
+	min-width: 400px;
+	vertical-align: bottom;
+	horizontal-align: right;
+	margin-left: 4px;
 }
 
-
-#popularityFilterDropDown
-{
-    width: 100%;
+#popularityFilterDropDown {
+	width: 100%;
 }
 
-#popularityFilterSlider
-{
-    width: 100%;
+#popularityFilterSlider {
+	width: 100%;
 }
 
-#popularityFilterValue
-{
-    margin-top: -20px;
-    width: 100px;
-    horizontal-align: right;
+#popularityFilterValue {
+	margin-top: -20px;
+	width: 100px;
+	horizontal-align: right;
 }
 
-#lodPopupMessageLabel.large
-{
-    font-size: 26px;
+#lodPopupMessageLabel.large {
+	font-size: 26px;
 }
 
 #patreonButton,
 #discordButton,
 #thankyouButton {
-    align: left bottom;
-    height: 39px;
-    width: 155px;
-    margin-left: 525px;
-    margin-bottom: 16px;
-    background-color: none;
+	align: left bottom;
+	height: 39px;
+	width: 155px;
+	margin-left: 525px;
+	margin-bottom: 16px;
+	background-color: none;
 }
-
 
 #discordButton {
-    margin-left: 675px;
+	margin-left: 675px;
 }
-
 
 #patreonButton Image,
 #discordButton Image {
-    transition-property: transform;
-    transition-duration: 0.05s;
-    transition-timing-function: ease-in;
+	transition-property: transform;
+	transition-duration: 0.05s;
+	transition-timing-function: ease-in;
 }
 
 #patreonButton:hover Image,
 #discordButton:hover Image {
-    transform: scaleX(1.02) scaleY(1.02);
+	transform: scaleX(1.02) scaleY(1.02);
 }
 
 #patreonButton:active Image,
 #discordButton:active Image {
-    transform: scaleX(0.96) scaleY(0.96);
+	transform: scaleX(0.96) scaleY(0.96);
 }
 
 #patreonButtonClose,
 #discordButtonClose {
-    align: right center;
-    margin-top: 2px;
-    margin-right: 8px;
-    width: 15px;
-    height: 15px;
-    opacity: 0;
+	align: right center;
+	margin-top: 2px;
+	margin-right: 8px;
+	width: 15px;
+	height: 15px;
+	opacity: 0;
 
-    wash-color: #EEEEEE;
-    background-image: url("s2r://panorama/images/control_icons/x_close_png.vtex");
-    background-size: 15px 15px;
-    background-repeat: no-repeat;
-    background-position: 50% 50%;
+	wash-color: #eeeeee;
+	background-image: url("s2r://panorama/images/control_icons/x_close_png.vtex");
+	background-size: 15px 15px;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
 
-    transition-property: transform, opacity;
-    transition-duration: 0.1s;
-    transition-timing-function: ease-in;
+	transition-property: transform, opacity;
+	transition-duration: 0.1s;
+	transition-timing-function: ease-in;
 }
 
 #patreonButton:hover #patreonButtonClose,
-#discordButton:hover #discordButtonClose, {
-    opacity: 0.7;
+#discordButton:hover #discordButtonClose {
+	opacity: 0.7;
 }
 
 #patreonButtonClose:hover,
-#discordButtonClose:hover, {
-    opacity: 0.9;
-    transform: scaleX(1.1) scaleY(1.1);
+#discordButtonClose:hover {
+	opacity: 0.9;
+	transform: scaleX(1.1) scaleY(1.1);
 }
 
 #patreonButtonClose:active,
 #discordButtonClose:active {
-    transform: scaleX(0.9) scaleY(0.9);
+	transform: scaleX(0.9) scaleY(0.9);
 }
