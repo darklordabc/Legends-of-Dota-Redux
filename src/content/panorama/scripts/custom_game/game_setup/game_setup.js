@@ -225,7 +225,7 @@ var tabsSearchFilter = {};
 var inBuildSaveMode = false;
 
 // Is ingame builder
-$.GetContextPanel().isIngameBuilder = false;
+// $.GetContextPanel().isIngameBuilder = false;
 
 var popularityFilterSlider = $("#popularityFilterSlider");
 var popularityFilterDropDown = $("#popularityFilterDropDown");
@@ -689,9 +689,11 @@ function OnSelectedSkillsChanged(table_name, key, data) {
 				}
 			}
 
-			$("#newAbilitiesTick" + key).SetHasClass("OwnBonus", isNewAbility);
-			if (!isNewAbility && isGlobalNewAbility) {
-				$("#newAbilitiesTick" + key).AddClass("GlobalBonus");
+			if ($("#newAbilitiesTick" + key)) {
+				$("#newAbilitiesTick" + key).SetHasClass("OwnBonus", isNewAbility);
+				if (!isNewAbility && isGlobalNewAbility) {
+					$("#newAbilitiesTick" + key).AddClass("GlobalBonus");
+				}
 			}
 		}
 		$("#newAbilitiesPanel").SetHasClass("OneOrMore", tickedAbilitiesCount > 0);
@@ -2613,7 +2615,6 @@ function OnSkillTabShown(tabName) {
 							}
 						} else {
 							var groupKey = AbilityUsageData.data[abilityName];
-							$.Msg(groupKey, " ", abilityName);
 							abilityStore[abilityName].uses = groupKey;
 							if (activeTabs["mostused"] && groupKey) {
 								if (subSorting[groupKey] == null) {
@@ -3151,7 +3152,6 @@ function buildBasicOptionsCategories() {
 			if (item.about) {
 				name = item.about;
 			} else {
-				//$.Msg(item.states);
 				name = Object.keys(item.states)[0];
 			}
 
@@ -4913,7 +4913,6 @@ function OnPhaseChanged(table_name, key, data) {
 							isDraftGamemode() && currentPhase == PHASE_SELECTION,
 						);
 					}
-					$.Msg($("#pickingPhaseSkillTabContentSkills").Children().length);
 					for (var k in $("#pickingPhaseSkillTabContentSkills").Children()) {
 						var panel = $("#pickingPhaseSkillTabContentSkills").Children()[k];
 						if (panel.BHasClass("lodMiniAbility")) {
@@ -5523,10 +5522,6 @@ function UpdateTimer() {
 		}
 	}
 
-	if ($.GetContextPanel().isIngameBuilder) {
-		placeInto.text = "∞";
-	}
-
 	if ($.GetContextPanel().isInitialIngameBuilder) {
 		placeInto.text = parent.FindChildTraverse("GameTime").text;
 	}
@@ -5683,7 +5678,6 @@ function LoadOptionsHandler(data) {
 
 	var changed = false;
 	for (var key in content) {
-		$.Msg(key, content[key]);
 		if (key === "lodOptionGamemode" || key === "lodDisabledItems") continue;
 		setOption(key, content[key]);
 
@@ -5865,9 +5859,6 @@ function getAbilityGlobalPickPopularity(ability) {
 	// Automatically assign players to teams.
 	Game.AutoAssignPlayersToTeams();
 
-	// Start updating the timer, this function will schedule itself to be called periodically
-	UpdateTimer();
-
 	// Build the basic options categories
 	var mutatorList = buildBasicOptionsCategories();
 
@@ -5881,7 +5872,11 @@ function getAbilityGlobalPickPopularity(ability) {
 	$.RegisterForUnhandledEvent("DOTAGame_PlayerSelectedCustomTeam", OnPlayerSelectedTeam);
 
 	// Hook stuff
-	hookAndFire("phase_pregame", OnPhaseChanged);
+	if (!$.GetContextPanel().isIngameBuilder) {
+		hookAndFire("phase_pregame", OnPhaseChanged);
+	} else {
+		OnPhaseChanged(null, "phase", { v: PHASE_SELECTION });
+	}
 	hookAndFire("options", OnOptionChanged);
 	hookAndFire("heroes", OnHeroDataChanged);
 	hookAndFire("flags", OnFlagDataChanged);
@@ -5900,6 +5895,15 @@ function getAbilityGlobalPickPopularity(ability) {
 	});
 
 	GameUI.CustomUIConfig().hookSkillInfo = hookSkillInfo;
+
+	// Start updating the timer, this function will schedule itself to be called periodically
+	if (!$.GetContextPanel().isIngameBuilder) {
+		UpdateTimer();
+	} else {
+		$("#lodTimeRemaining").text = "∞";
+		$("#lodTimeRemaining").SetHasClass("showLodWarningTimer", false);
+		$("#lodStageName").text = "";
+	}
 
 	// Listen for notifications
 	GameEvents.Subscribe("lodNotification", function (data) {

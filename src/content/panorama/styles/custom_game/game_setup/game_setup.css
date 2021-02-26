@@ -1516,6 +1516,7 @@ Button:enabled:hover {
 #pickingPhaseFilters {
 	width: 100%;
 	padding: 8px;
+	padding-top: 0px;
 	flow-children: right;
 }
 
@@ -1618,7 +1619,6 @@ Button:enabled:hover {
 #pickingPhaseSelectedHeroRoot {
 	width: 100%;
 	horizontal-align: center;
-	height: 175px;
 }
 
 #pickingPhaseSelectedHero {
@@ -1631,7 +1631,7 @@ Button:enabled:hover {
 #pickingPhaseSelectedHeroImageCon {
 	//align: left center;
 	//margin-left: 35px;
-	margin-top: 20px;
+	//margin-top: 20px;
 	horizontal-align: center;
 }
 
@@ -1838,8 +1838,8 @@ Button:enabled:hover {
 }
 
 #pickingPhaseSelectedHeroImage {
-	width: 128px;
-	height: 72px;
+	width: 160px;
+	height: 90px;
 }
 
 .no_hero_selected #pickingPhaseSelectedHeroImage {
@@ -1853,8 +1853,8 @@ Button:enabled:hover {
 
 #pickingPhaseSelectedHeroImageNone {
 	visibility: collapse;
-	width: 128px;
-	height: 72px;
+	width: 160px;
+	height: 90px;
 }
 
 .no_hero_selected #pickingPhaseSelectedHeroImageNone {

@@ -831,7 +831,6 @@
                                 </Panel>
                                 <Panel id="pickingPhaseBuild">
 									<Panel id="pickingPhaseSelectedHeroRoot">
-                                        <Button class="TalentButton" id="talentChange" onactivate="ShowTalentChanger()"/>
 										<Panel id="pickingPhaseSelectedHero">
 											<Panel id="pickingPhaseSelectedAttr">
 												<Button class="pickingPhaseAttr" id="pickingPhaseSelectHeroStr" onactivate="setPrimaryAttr('str');">
@@ -876,6 +875,7 @@
                                         <DOTAAbilityImage id="lodYourAbility6" abilityname="life_stealer_empty_1" onactivate="onYourAbilityIconPressed(6)" oncontextmenu="onYourAbilityIconRandomed(6)">
                                             <Label id="lodYourAbilityCost6" class="skillCostLarge" text="" />
                                         </DOTAAbilityImage>
+                                        <Button class="TalentButton" id="talentChange" onactivate="ShowTalentChanger()"/>
                                     </Panel>
                                 </Panel>
 

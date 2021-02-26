@@ -15,7 +15,6 @@
 	padding-bottom: 20px;
 	padding-right: 20px;
 	padding-left: 20px;
-	min-width: 450px;
 	vertical-align: center;
 	horizontal-align: center;
 	opacity: 1;
@@ -81,12 +80,12 @@
 
 #talentChange {
 	background-color: none;
-	width: 76px;
-	height: 76px;
+	width: 48px;
+	height: 48px;
 	margin: 0%;
 	margin: 0%;
 	brightness: 1.7;
-	vertical-align: top;
+	vertical-align: center;
 	horizontal-align: center;
 	transition: brightness 0.15s ease-in-out 0s;
 }
