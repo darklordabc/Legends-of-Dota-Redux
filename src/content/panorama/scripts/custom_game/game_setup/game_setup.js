@@ -4694,9 +4694,9 @@ function generateFormattedHeroStatsString(heroName, info) {
 		var specialGroup = info["SpecialBonus" + i];
 		heroStats += heroStatsLine(
 			$.Localize("heroStats_SpecialBonus" + i),
-			$.Localize("DOTA_Tooltip_ability_" + specialGroup["1"]) +
+			$.Localize(specialGroup["1"]) + // "DOTA_Tooltip_ability_" +
 				$.Localize("heroStats_or") +
-				$.Localize("DOTA_Tooltip_ability_" + specialGroup["2"]),
+				$.Localize(specialGroup["2"]), // "DOTA_Tooltip_ability_" +
 			"7FABF1",
 			"FFFFFF",
 		);
