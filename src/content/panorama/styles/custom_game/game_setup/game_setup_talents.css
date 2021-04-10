@@ -1,6 +1,6 @@
-.TalentButton{
+.TalentButton {
 	vertical-align: top;
-	horizontal-align:center;
+	horizontal-align: center;
 	width: 48px;
 	height: 48px;
 	margin-top: -45%;
@@ -8,71 +8,112 @@
 	background-image: url("s2r://panorama/images/hud/reborn/statbranch_button_bg_psd.vtex");
 }
 
-.PopupTaletsPanel{
-	background-color: gradient( linear, 0% 0%, 0% 100%, from( #272d2eee ), to( #131617ee ) );
+.PopupTaletsPanel {
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#272d2ef6), to(#131617fb));
 	border: 1px solid #5e6869;
 	padding-top: 20px;
 	padding-bottom: 20px;
 	padding-right: 20px;
 	padding-left: 20px;
-	min-width: 450px;
 	vertical-align: center;
 	horizontal-align: center;
-	opacity: 1.0;
+	opacity: 1;
 	box-shadow: black -4px -4px 8px 8px;
 	flow-children: right;
 }
 
-.TalentCol{
+.TalentCol {
 	flow-children: down;
 	margin-left: 10px;
 	max-width: 48%;
 }
 
-.TalentEntry{
+.TalentEntry {
 	margin-top: 10px;
 	flow-children: right;
 	height: 55px;
-
 }
 
-.TalentLabel{
+.TalentLabel {
 	margin-left: 4px;
-	text-align:center;
-	height: 100%;
-	margin-top: 30%;
+	text-align: center;
+	vertical-align: center;
+	// height: 100%;
+	// margin-top: 30%;
 	min-width: 100px;
 	max-width: 100%;
 	font-size: 16px;
 	color: white;
 }
-.TalentImg{
+.TalentImg {
 	vertical-align: center;
 	height: 53px;
 	width: 53px;
 }
 
-.TalentCloseButton{
+.TalentCloseButton {
 	width: 64px;
 	height: 64px;
-	wash-color:lime;
+	wash-color: lime;
 	background-image: url("s2r://panorama/images/cavern/icon_set_claimed_png.vtex");
+	background-position: 40% -15%;
+	vertical-align: bottom;
 }
-.TalentCloseButton:Hover{
+.TalentCloseButton:hover {
 	width: 64px;
 	height: 64px;
-	wash-color:limegreen;
+	wash-color: limegreen;
 	background-image: url("s2r://panorama/images/cavern/icon_set_claimed_png.vtex");
 }
-.TalentButtonSelected1{
+.TalentButtonSelected1 {
 	/*border: 2px solid #111111FF;*/
 	box-shadow: #80f44188 0px 0px 5px 0px;
 	/*background-color: #ffffff00;
 	*/
 }
-.TalentButtonSelected2{
+.TalentButtonSelected2 {
 	/*border: 2px solid #111111FF;*/
 	box-shadow: #80f44188 0px 0px 5px 0px;
 	/*background-color: #ffffff00;
 	*/
+}
+
+#talentChange {
+	background-color: none;
+	width: 48px;
+	height: 48px;
+	margin: 0%;
+	margin: 0%;
+	brightness: 1.7;
+	vertical-align: center;
+	horizontal-align: center;
+	transition: brightness 0.15s ease-in-out 0s;
+}
+
+#talentChange:hover {
+	brightness: 1;
+}
+
+.LevelBG {
+	width: 54px;
+	height: 54px;
+	background-image: url("s2r://panorama/images/hud/reborn/statbranch_levelbg_psd.vtex");
+	background-size: 80% 80%;
+	background-position: center;
+	background-repeat: no-repeat;
+	margin-top: 1px;
+}
+
+.ReqLabel {
+	font-weight: normal;
+	text-shadow: 0px 0px 3px 3.7 #ec780e24;
+	color: #e7d291;
+	vertical-align: middle;
+	horizontal-align: center;
+	text-align: center;
+	font-size: 20px;
+	letter-spacing: 2px;
+	color: #e7d291;
+	margin-top: 4px;
+	margin-right: 1px;
 }
