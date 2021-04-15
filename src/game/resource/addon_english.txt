@@ -13145,5 +13145,10 @@ Wouterz90</font>"
 		"DOTA_Tooltip_ability_abaddon_frostmourne_curse_slow"		"%CURSE SLOW:"
 		"DOTA_Tooltip_ability_abaddon_frostmourne_curse_attack_speed"		"CURSE ATTACK SPEED:"
 
+"dota_tooltip_ability_pudge_flesh_heap_fiery_soul" "Fiery Soul"
+"dota_tooltip_ability_pudge_flesh_heap_fiery_soul_as" "ATTACK SPEED:"
+"dota_tooltip_ability_pudge_flesh_heap_fiery_soul_ms_pct" "%MOVEMENT SPEED:"
+"dota_tooltip_ability_pudge_flesh_heap_fiery_soul_description" "Flesh Heap version of Fiery Soul"
+
 }
 }
