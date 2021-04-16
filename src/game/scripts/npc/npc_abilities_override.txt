@@ -1370,7 +1370,7 @@
         "winter_wyvern_cold_embrace"
         {
             "ReduxFlags"                                                           "support"
-            "ReduxPerks"                                                           "support"
+            "ReduxPerks"                                                           "support | ice"
         }
         "legion_commander_press_the_attack"
         {
@@ -2614,6 +2614,7 @@
         "winter_wyvern_winters_curse"
         {
             "ReduxFlags"                                                           "stun"
+            "ReduxPerks"                                                           "ice"
         }
         "earthshaker_aftershock"
         {
@@ -2701,7 +2702,7 @@
         "invoker_forge_spirit"
         {
             "ReduxFlags"                                                           "physical | summon | doNotRandom"
-            "ReduxPerks"                                                           "physical | summon_non_ult"
+            "ReduxPerks"                                                           "physical | summon_non_ult | fire"
         }
          "pangolier_swashbuckle"
         {
@@ -3262,7 +3263,7 @@
         }
         "rattletrap_battery_assault"
         {
-            "ReduxPerks"                                                           "scientific"
+            "ReduxPerks"                                                           "scientific | explosive"
         }
         "rattletrap_rocket_flare"
         {
@@ -4029,6 +4030,97 @@
         {
             "ReduxPerks"                                                           "channeled | skillshot"
         }
+        "lich_frost_shield"
+        {
+            "ReduxFlags"                                                           "support"
+            "ReduxPerks"                                                           "ice | support"
+        }
+        "lich_ice_spire"
+        {
+            "ReduxPerks"                                                           "ice"
+        }       
+        "omniknight_hammer_of_purity"
+        {
+            "ReduxPerks"                                                           "light"
+        }
+        "mercy_heroes_never_die"
+        {
+            "ReduxPerks"                                                           "light"
+        }
+        "mercy_caduceus_healing"
+        {
+            "ReduxPerks"                                                           "light"
+        }
+        "dragon_knight_fireball"
+        {
+            "ReduxPerks"                                                           "fire"
+        }
+        "shredder_flamethrower"
+        {
+            "ReduxPerks"                                                           "fire"
+        }
+        "snapfire_mortimer_kisses"
+        {
+            "ReduxPerks"                                                           "fire"
+        }
+        "sniper_shrapnel"
+        {
+            "ReduxPerks"                                                           "explosive"
+        }
+        "sniper_concussive_grenade"
+        {
+            "ReduxPerks"                                                           "explosive"
+        }
+        "rattletrap_battery_assault"
+        {
+            "ReduxPerks"                                                           "explosive"
+        }
+        "snapfire_scatterblast"
+        {
+            "ReduxPerks"                                                           "explosive"
+        }
+        "snapfire_lil_shredder"
+        {
+            "ReduxPerks"                                                           "explosive"
+        }
+        "snapfire_firesnap_cookie"
+        {
+            "ReduxPerks"                                                           "support"
+            "ReduxFlags"                                                           "support"
+        }
+        "ogre_magi_smash"
+        {
+            "ReduxPerks"                                                           "support | fire"
+            "ReduxFlags"                                                           "support"
+        }
+        "tinker_defense_matrix"
+        {
+            "ReduxPerks"                                                           "support"
+            "ReduxFlags"                                                           "support"
+        }
+        "tenebris_blood_ward"
+        {
+            "ReduxPerks"                                                           "support"
+            "ReduxFlags"                                                           "support"
+        }
+        "phantom_assassin_fan_of_knives"
+        {
+            "ReduxPerks"                                                           "dagger"
+        }
+        "antimage_mana_overload"
+        {
+            "ReduxPerks"                                                           "blink | illusion"
+        }
+
+
+
+
+
+
+
+
+
+
 
         "special_bonus_unique_undying"
         {
