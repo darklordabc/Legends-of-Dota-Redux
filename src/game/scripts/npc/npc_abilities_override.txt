@@ -1057,7 +1057,7 @@
         "queenofpain_sonic_wave"
         {
             "ReduxFlags"                                                           "upgradeable"
-            "ReduxPerks"                                                           "skillshot"
+            "ReduxPerks"                                                           "skillshot | enemyMoving"
         }
         "razor_eye_of_the_storm"
         {
@@ -1133,7 +1133,7 @@
         "tinker_laser"
         {
             "ReduxFlags"                                                           "upgradeable"
-            "ReduxPerks"                                                           "scientific"
+            "ReduxPerks"                                                           "scientific | light"
         }
         "tinker_heat_seeking_missile"
         {
@@ -1198,7 +1198,7 @@
         "witch_doctor_death_ward"
         {
             "ReduxFlags"                                                           "upgradeable"
-            "ReduxPerks"                                                           "channeled"
+            "ReduxPerks"                                                           "channeled | physical"
         }
         "skeleton_king_reincarnation"
         {
@@ -1660,7 +1660,7 @@
         "nyx_assassin_vendetta"
         {
             "ReduxFlags"                                                           "mobility | invis | physical"
-            "ReduxPerks"                                                           "mobility | physical"
+            "ReduxPerks"                                                           "mobility"
             "ReduxCost"                                                            "10"
         }
         "nyx_assassin_burrow"
@@ -2380,7 +2380,7 @@
         "kunkka_torrent"
         {
             "ReduxFlags"                                                           "stun"
-            "ReduxPerks"                                                           "water"
+            "ReduxPerks"                                                           "water | skillshot"
             "ReduxBans"                                                            "batrider_sticky_napalm"
         }
 		"kunkka_torrent_storm"
@@ -2730,6 +2730,7 @@
          "dark_willow_bramble_maze"
         {
             "ReduxFlags"                                                           "stun"
+            "ReduxPerks"                                                           "nature"
         }
          "dark_willow_bedlam"
         {
@@ -2740,6 +2741,7 @@
          "dark_willow_terrorize"
         {
             "ReduxFlags"                                                           "stun"
+            "ReduxPerks"                                                           "skillshot"
         }
          "dark_willow_shadow_realm"
         {
@@ -2773,8 +2775,8 @@
         }
         "dazzle_shadow_wave"
         {
-            "ReduxFlags"                                                           "physical"
-            "ReduxPerks"                                                           "physical"
+            "ReduxFlags"                                                           "physical | support"
+            "ReduxPerks"                                                           "physical | support"
         }
         "elder_titan_echo_stomp"
         {
@@ -2815,7 +2817,7 @@
         "night_stalker_crippling_fear"
         {
             "ReduxFlags"                                                           "silence"
-            "ReduxPerks"                                                           "silence"
+            "ReduxPerks"                                                           "silence | demon"
         }
         "drow_ranger_wave_of_silence"
         {
@@ -2930,7 +2932,7 @@
         "terrorblade_reflection"
         {
             "ReduxFlags"                                                           "illusion"
-            "ReduxPerks"                                                           "illusion"
+            "ReduxPerks"                                                           "illusion | demon"
         }
         "terrorblade_conjure_image"
         {
@@ -3040,7 +3042,7 @@
         }
         "ember_spirit_fire_remnant"
         {
-            "ReduxPerks"                                                           "fire"
+            "ReduxPerks"                                                           "fire | skillshot"
             "ReduxFlags"                                                           "doNotRandom"
         }
         "ember_spirit_flame_guard"
@@ -3054,7 +3056,7 @@
         }
         "phoenix_fire_spirits"
         {
-            "ReduxPerks"                                                           "fire | self_damage"
+            "ReduxPerks"                                                           "fire | self_damage | skillshot"
         }
         "doom_bringer_scorched_earth"
         {
@@ -3542,7 +3544,8 @@
         }
         "oracle_fortunes_end"
         {
-            "ReduxPerks"                                                           "channeled"
+            "ReduxFlags"                                                           "support"
+            "ReduxPerks"                                                           "channeled  | support"
         }
         "riki_tricks_of_the_trade"
         {
@@ -3571,7 +3574,7 @@
         }
         "magnataur_shockwave"
         {
-            "ReduxPerks"                                                           "skillshot"
+            "ReduxPerks"                                                           "skillshot | enemyMoving"
         }
         "nevermore_shadowraze1"
         {
@@ -3756,8 +3759,8 @@
 					"lifesteal_range"		"1200"		
 				}
 			}
-			"ReduxFlags"                                                           "mobility | crit | attack_modifier"
-            "ReduxPerks"                                                           "mobility | attack_modifier"
+			"ReduxFlags"                                                           "mobility | crit | attack_modifier | support"
+            "ReduxPerks"                                                           "mobility | attack_modifier | support"
 		}
         "lone_druid_rabid"
         {
@@ -3809,6 +3812,7 @@
         "terrorblade_metamorphosis"
         {
             "ReduxCost"                                                            "30"
+            "ReduxPerks"                                                           "demon"
         }
         "earth_spirit_petrify"
         {
@@ -3819,6 +3823,7 @@
         {
             "ReduxCost"                                                            "20"
             "ReduxBans"                                                            "holdout_multishot | death_prophet_witchcraft"
+            "ReduxPerks"                                                           "physical"
         }
         "templar_assassin_refraction"
         {
@@ -4077,7 +4082,7 @@
         }
         "snapfire_scatterblast"
         {
-            "ReduxPerks"                                                           "explosive"
+            "ReduxPerks"                                                           "explosive  | skillshot"
         }
         "snapfire_lil_shredder"
         {
@@ -4111,6 +4116,224 @@
         {
             "ReduxPerks"                                                           "blink | illusion"
         }
+        "dark_seer_normal_punch"
+        {
+            "ReduxPerks"                                                           "enemyMoving"
+            "ReduxFlags"                                                           ""
+        }
+        "huskar_inner_fire"
+        {
+            "ReduxPerks"                                                           "enemyMoving"
+            "ReduxFlags"                                                           ""
+        }
+        "invoker_retro_deafening_blast"
+        {
+            "ReduxPerks"                                                           "enemyMoving"
+            "ReduxFlags"                                                           ""
+        }
+        "invoker_deafening_blast_lod"
+        {
+            "ReduxPerks"                                                           "enemyMoving"
+            "ReduxFlags"                                                           ""
+        }
+        "kunkka_tidal_wave"
+        {
+            "ReduxPerks"                                                           "enemyMoving | water"
+            "ReduxFlags"                                                           ""
+        }
+        "lich_sinister_gaze"
+        {
+            "ReduxPerks"                                                           "enemyMoving"
+            "ReduxFlags"                                                           ""
+        }
+        "magnataur_horn_toss"
+        {
+            "ReduxPerks"                                                           "enemyMoving"
+            "ReduxFlags"                                                           ""
+        }
+        "mars_spear"
+        {
+            "ReduxPerks"                                                           "enemyMoving | skillshot"
+            "ReduxFlags"                                                           ""
+        }
+        "mars_gods_rebuke"
+        {
+            "ReduxPerks"                                                           "enemyMoving | physical"
+            "ReduxFlags"                                                           ""
+        }
+        "mars_arena_of_blood"
+        {
+            "ReduxPerks"                                                           "enemyMoving"
+            "ReduxFlags"                                                           ""
+        }
+        "sniper_concussive_grenade"
+        {
+            "ReduxPerks"                                                           "enemyMoving"
+            "ReduxFlags"                                                           ""
+        }
+        "spirit_breaker_greater_bash"
+        {
+            "ReduxPerks"                                                           "enemyMoving"
+            "ReduxFlags"                                                           ""
+        }
+        "dawnbreaker_celestial_hammer"
+        {
+            "ReduxPerks"                                                           "skillshot"
+            "ReduxFlags"                                                           ""
+        }
+        "hoodwink_bushwhack"
+        {
+            "ReduxPerks"                                                           "skillshot"
+            "ReduxFlags"                                                           ""
+        }
+        "undying_decay_agi"
+        {
+            "ReduxPerks"                                                           "skillshot"
+            "ReduxFlags"                                                           ""
+        }
+        "undying_decay_int"
+        {
+            "ReduxPerks"                                                           "skillshot"
+            "ReduxFlags"                                                           ""
+        }
+        "berserker_fire_spear"
+        {
+            "ReduxPerks"                                                           "skillshot"
+            "ReduxFlags"                                                           ""
+        }
+        "mifune_raigeki"
+        {
+            "ReduxPerks"                                                           "skillshot"
+            "ReduxFlags"                                                           ""
+        }
+        "hylonome_eldritch_pull"
+        {
+            "ReduxPerks"                                                           "enemyMoving"
+            "ReduxFlags"                                                           ""
+        }
+        "meepo_petrify"
+        {
+            "ReduxPerks"                                                           "earth"
+            "ReduxFlags"                                                           ""
+        }
+        "sirocco_shifting_sands"
+        {
+            "ReduxPerks"                                                           "earth"
+            "ReduxFlags"                                                           ""
+        }
+        "keeper_of_the_light_will_o_wisp"
+        {
+            "ReduxPerks"                                                           "light"
+            "ReduxFlags"                                                           ""
+        }
+        "luna_lucent_beam"
+        {
+            "ReduxPerks"                                                           "light"
+            "ReduxFlags"                                                           ""
+        }
+        "hoodwink_acorn_shot"
+        {
+            "ReduxPerks"                                                           "nature | physical"
+            "ReduxFlags"                                                           ""
+        }
+        "cherub_explosive_spore"
+        {
+            "ReduxPerks"                                                           "nature"
+            "ReduxFlags"                                                           ""
+        }
+        "eat_tree_eldri"
+        {
+            "ReduxPerks"                                                           "nature"
+            "ReduxFlags"                                                           ""
+        }
+        "eldri_anti_magic"
+        {
+            "ReduxPerks"                                                           "nature"
+            "ReduxFlags"                                                           ""
+        }
+        "tiny_tree_grab"
+        {
+            "ReduxPerks"                                                           "physical"
+            "ReduxFlags"                                                           ""
+        }
+        "tusk_tag_team"
+        {
+            "ReduxPerks"                                                           "physical"
+            "ReduxFlags"                                                           ""
+        }
+        "dawnbreaker_celestial_hammer"
+        {
+            "ReduxPerks"                                                           "light | skillshot"
+            "ReduxFlags"                                                           ""
+        }
+        "riki_poison_dart"
+        {
+            "ReduxPerks"                                                           "sleep"
+            "ReduxFlags"                                                           ""
+        }
+        "alchemist_berserk_potion"
+        {
+            "ReduxPerks"                                                           "support"
+            "ReduxFlags"                                                           ""
+        }
+        "dawnbreaker_solar_guardian"
+        {
+            "ReduxPerks"                                                           "support"
+            "ReduxFlags"                                                           ""
+        }
+        "life_stealer_open_wounds"
+        {
+            "ReduxPerks"                                                           "support"
+            "ReduxFlags"                                                           ""
+        }
+        "shadow_demon_soul_catcher"
+        {
+            "ReduxPerks"                                                           "demon"
+            "ReduxFlags"                                                           ""
+        }
+        "night_stalker_void"
+        {
+            "ReduxPerks"                                                           "demon"
+            "ReduxFlags"                                                           ""
+        }
+        "terrorblade_demon_zeal"
+        {
+            "ReduxPerks"                                                           "demon"
+            "ReduxFlags"                                                           ""
+        }
+        "terrorblade_sunder"
+        {
+            "ReduxPerks"                                                           "demon"
+            "ReduxFlags"                                                           ""
+        }
+        "angel_arena_demonic"
+        {
+            "ReduxPerks"                                                           "demon"
+            "ReduxFlags"                                                           ""
+        }
+        "dawnbreaker_fire_wreath"
+        {
+            "ReduxPerks"                                                           "physical"
+            "ReduxFlags"                                                           ""
+        }
+        "grimstroke_spirit_walk"
+        {
+            "ReduxPerks"                                                           "support"
+            "ReduxFlags"                                                           ""
+        }
+        "grimstroke_dark_artistry"
+        {
+            "ReduxPerks"                                                           "skillshot"
+            "ReduxFlags"                                                           ""
+        }
+        "night_stalker_darkness"
+        {
+            "ReduxPerks"                                                           "demon"
+            "ReduxFlags"                                                           ""
+        }
+
+
+
 
 
 
