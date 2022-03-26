@@ -33,13 +33,13 @@ function enableIngameBuilder() {
 	$('#heroBuilder').visible = true;
 }
 
-function openPatreon() {
-    $.DispatchEvent('ExternalBrowserGoToURL', 'https://www.patreon.com/darklordabc');
-}
+//function openPatreon() {
+//    $.DispatchEvent('ExternalBrowserGoToURL', 'https://www.patreon.com/darklordabc');
+//}
 
-function hidePatreonButton() {
-    $('#patreonButton').visible = false;
-}
+//function hidePatreonButton() {
+//    $('#patreonButton').visible = false;
+//}
 
 (function() {
     var isPremium = GameUI.CustomUIConfig().isPremiumPlayer;

@@ -12,6 +12,8 @@ n    lone_druid_true_form = {getSpellIcon('lone_druid_true_form'), tranAbility('
     phoenix_supernova = {getSpellIcon('phoenix_supernova'), tranAbility('phoenix_supernova')},
 }]]
 
+
+
 require('lib/StatUploaderFunctions')
 
 -- Precache obstacles
@@ -79,6 +81,18 @@ function Precache(context)
     -- Problem units (ball lightning, ether shock and shackles sounds dont work)
     PrecacheUnitByNameSync("npc_shadow_shaman", context)
     PrecacheUnitByNameSync("npc_storm_spirit", context)
+
+    -- Spell icons for these units dont always work pre game
+
+    -- doesnt fix spell icon issue
+    --PrecacheUnitByNameSync("npc_dawnbreaker", context)
+    --PrecacheUnitByNameSync("npc_void_spirit", context)
+    --PrecacheUnitByNameSync("npc_hoodwink", context)
+
+    -- doesnt fix spell icon issue
+    --PrecacheResource("resource","panorama/images/spellicons/dawnbreaker_celestial_hammer_png.vtex_c",context)
+    --PrecacheResource("resource","panorama/images/spellicons/dawnbreaker_luminosity_png.vtex_c",context)
+    --PrecacheResource("resource","panorama/images/spellicons/dawnbreaker_solar_guardian_png.vtex_c",context)
 
     -- Precache all heroes here as some sounds end up not working
 
@@ -202,6 +216,9 @@ function Precache(context)
     PrecacheResource("soundfile","soundevents/game_sounds_heroes/game_sounds_wisp.vsndevts", context)
     PrecacheResource("soundfile","soundevents/game_sounds_heroes/game_sounds_witch_doctor.vsndevts", context)
     PrecacheResource("soundfile","soundevents/game_sounds_heroes/game_sounds_zuus.vsndevts", context)
+    PrecacheResource("soundfile","soundevents/game_sounds_heroes/game_sounds_dawnbreaker.vsndevts", context)
+    PrecacheResource("soundfile","soundevents/game_sounds_heroes/game_sounds_marci.vsndevts", context)
+    PrecacheResource("soundfile","soundevents/game_sounds_heroes/game_sounds_primal_beast.vsndevts", context)
     precacheObstacles(context)
 end
 

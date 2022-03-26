@@ -1,0 +1,948 @@
+.base
+{
+	vertical-align: top;
+	horizontal-align: center;
+	height: 100%;
+	width: 100%;
+
+	transform: translateY(0px);
+	transition-property: transform;
+	transition-duration: 1s;
+	transition-delay: 2s;
+	transition-timing-function: ease-in-out;
+}
+
+DOTAHud.IsBeforeGameplay .base
+{
+	transform: translateY(-78px);
+}
+
+#HeroImage
+{
+	transition-property: wash-color, saturation, brightness, contrast;
+	transition-duration: 0.4s;
+	z-index: 3;
+}
+
+#TeamsPanel
+{
+	height: 100%;
+	flow-children: right;
+	horizontal-align: center;
+}
+
+#TopBarLeftTeams,
+#TopBarRightTeams
+{
+	width: 772px;
+	height: 100%;
+}
+#TopBarLeftTeams
+{
+	margin-right: 76px;
+}
+.AspectRatio4x3 #TopBarLeftTeams,
+.AspectRatio5x4 #TopBarLeftTeams
+{
+	margin-left: -91px;
+}
+
+#TopBarRightTeams .TopBarBackground
+{
+	transform: scaleX(-1);
+}
+
+#TopBarRightPlayers
+{
+	horizontal-align: right;
+	flow-children: right;
+}
+
+#TopBarLeftPlayers
+{
+	flow-children: left;
+}
+
+.PlayerContainer
+{
+	width: 100%;
+	height: 100%;
+}
+
+
+#HeroImage
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #333  ), color-stop( 0.2, #444 ), color-stop( .5, #333), to( #111 ) );
+	width: 66px;
+	height: width-percentage(55%);
+	margin-top: 4px;
+	vertical-align: top;
+	transition-duration: 0.1s;
+	saturation: 1;
+	brightness: 1;
+	contrast: 1;
+}
+
+.AspectRatio4x3 #HeroImage,
+.AspectRatio5x4 #HeroImage
+{
+	width: 50px;
+}
+
+#BuybackIcon
+{
+	background-image: url("s2r://panorama/images/hud/reborn/buyback_topbar_alive_psd.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+
+	width: 100%;
+	height: 11px;
+	opacity: 0;
+	horizontal-align: left;
+	vertical-align: bottom;
+	z-index: 3;
+	margin-bottom: 10px;
+	margin-left: 6px;
+	transform: translateY(-13px);
+
+	transition-property: opacity, pre-transform-scale2d, transform;
+	transition-duration: .12s;
+	transition-timing-function: ease-out;	
+}
+
+.AspectRatio4x3 #BuybackIcon,
+.AspectRatio5x4 #BuybackIcon
+{
+	margin-bottom: 18px;
+}
+
+#TopBarRightPlayers #BuybackIcon
+{
+	margin-left: 0px;
+	margin-right:6px;
+}
+
+.AltPressed .TeamScorePlayers:not(.EnemyTeam) .BuybackReady #BuybackIcon
+{
+	transform: translateY(0px);
+	opacity: 1;
+}
+
+.AltPressed .Dead.BuybackReady #BuybackIcon
+{
+	opacity: 0;
+}
+
+.LeftAlignedTeam #TopBarPlayersContainer .SlantedContainer
+{
+	opacity-mask: url("s2r://panorama/images/masks/topbar_heroslant_left_psd.vtex");
+}
+
+
+.RightAlignedTeam #TopBarPlayersContainer .SlantedContainer
+{
+	opacity-mask: url("s2r://panorama/images/masks/topbar_heroslant_right_psd.vtex");
+}
+
+#TopBarPlayersContainer
+{
+	height: 100%;
+	z-index: 2;
+	min-width: 200px;
+}
+
+.TopBarBackground
+{
+	background-image: url("s2r://panorama/images/hud/reborn/top_bar_team_bg_psd.vtex");
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	width: 98%;
+	height: 40px;
+}
+
+.AspectRatio4x3 .TopBarBackground,
+.AspectRatio5x4 .TopBarBackground
+{
+	background-size: 100% 80%;
+}
+
+#TopBarLeftTeams .TopBarBackground
+{
+	horizontal-align: right;
+}
+
+.TopBarPlayerSlot
+{
+	//height: 500px;
+}
+
+.LeftAlignedTeam #TopBarPlayersContainer .TopBarPlayerSlot
+{
+	margin-left: -4px;
+}
+
+.RightAlignedTeam #TopBarPlayersContainer .TopBarPlayerSlot
+{
+	margin-right: -4px;
+}
+
+
+#TopBarScore
+{
+	color: white;
+	font-size: 22px;
+	font-weight: bold;
+	font-family: RadianceM;
+	height: 38px;
+	width: 50px;
+	text-align: center;
+	margin-top: 7px;
+	z-index: 5;
+}
+.AspectRatio4x3 #TopBarScore,
+.AspectRatio5x4 #TopBarScore
+{
+	margin-top: 3px;
+}
+.LeftAlignedTeam #TopBarScore
+{
+	horizontal-align: left;
+	margin-left: 4px;
+}
+.RightAlignedTeam #TopBarScore
+{
+	horizontal-align: right;
+	margin-right: 8px;
+}
+.TeamScorePlayers
+{
+	height: 600px;
+}
+#TeamScorePlayersMainFlow
+{
+	height: 100%;
+}
+.RightAlignedTeam #TeamScorePlayersMainFlow
+{
+	flow-children: left;
+}
+.LeftAlignedTeam #TeamScorePlayersMainFlow
+{
+	flow-children: right;
+	overflow: noclip;
+}
+.LeftAlignedTeam #TopBarPlayersContainer
+{
+	flow-children: left;
+}
+
+.TopBarHealthBar .ProgressBarLeft
+{
+	background-color: #339933;
+	background-image: url("s2r://panorama/images/hud/reborn/topbar_health_psd.vtex");
+	background-size: cover;
+	border-radius: 0px;
+}
+
+.ColorBlindModeEnabled .TopBarHealthBar .ProgressBarLeft
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #658fdf  ), color-stop( 0.2, #a4caff ), color-stop( .5, #3f6fcb), to( #2c56ab ) );
+	// This should be a proper image matching the non-color-blind one but
+	// that doesn't exist at the moment.  Turn off the green image to
+	// let the blue background show.
+	background-image: none;
+}
+
+.TopBarHealthBar .ProgressBarRight
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #17200d  ), color-stop( 0.2, #222e13 ), color-stop( .5, #1e2911), to( #17200d) );
+}
+
+#TopBarUltIndicator
+{
+	vertical-align: top;
+	horizontal-align: center;
+
+	width: 38px;
+	height: 20px;
+	
+	background-size: 18px;
+	background-position: 50% 100%;
+	background-repeat: no-repeat;
+	
+	z-index: 500;
+
+	opacity: 0;
+	margin-top: 28px;
+	tooltip-position: bottom;
+	tooltip-body-position: 50% 50%;
+}
+
+.AspectRatio4x3 #TopBarUltIndicator,
+.AspectRatio5x4 #TopBarUltIndicator
+{
+	margin-top: 21px;
+}
+
+#AbilityDraftHitBox
+{
+	visibility: collapse;
+	width: 58px;
+	height: 30px;
+	
+	vertical-align: top;
+	horizontal-align: center;
+	
+	tooltip-position: bottom;
+	tooltip-body-position: 50% 50%;
+	
+	opacity: 1;
+}
+
+.IsAbilityDraft #AbilityDraftHitBox
+{
+	visibility: visible;
+}
+
+.UltLearned #TopBarUltIndicator
+{
+	opacity: 1;
+}
+
+.UltReady #TopBarUltIndicator
+{
+	background-image: url("s2r://panorama/images/hud/reborn/ult_ready_psd.vtex");
+}
+
+.UltReadyNoMana #TopBarUltIndicator
+{
+	background-image: url("s2r://panorama/images/hud/reborn/ult_no_mana_psd.vtex");
+}
+
+.UltOnCooldown #TopBarUltIndicator
+{
+	background-image: url("s2r://panorama/images/hud/reborn/ult_cooldown_psd.vtex");
+}
+
+#TimeOfDay
+{
+	width: 80px;
+	height: 82px; //46+36
+	horizontal-align: center;
+	vertical-align: top;
+	z-index: 2;
+	background-size: cover;
+}
+
+#TimeOfDayContent
+{
+	height: 100%;
+	width: 100%;
+}
+
+#DayGlow
+{
+	height: 46px;
+	width: 90px;
+	horizontal-align: center;
+	vertical-align: top;
+	z-index: 2;
+	background-size: cover;
+	background-image: url("s2r://panorama/images/hud/reborn/glow_day_psd.vtex");
+	background-repeat: no-repeat;
+
+	animation-name: DayNightPulse;
+	animation-duration: 2.94s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+
+	visibility: collapse;
+}
+
+#NightGlow
+{
+	height: 46px;
+	width: 90px;
+	horizontal-align: center;
+	vertical-align: top;
+	z-index: 2;
+	background-size: cover;
+	background-image: url("s2r://panorama/images/hud/reborn/glow_night_psd.vtex");
+	background-repeat: no-repeat;
+
+	animation-name: DayNightPulse;
+	animation-duration: 2.94s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+
+	visibility: collapse;
+}
+
+.NightTime #NightGlow
+{
+	visibility: visible;
+}
+
+.DayTime #DayGlow
+{
+	visibility: visible;
+}
+
+@keyframes 'DayNightPulse'
+{
+	0%
+	{
+		opacity: 0.1;
+	}
+
+	50%
+	{
+		opacity: 0.3;
+	}
+
+	100%
+	{
+		opacity: 0.1;
+	}
+}
+
+#GameTime
+{
+	color: white;
+	vertical-align: top;
+	horizontal-align: center;
+	margin-top: 23px;
+	letter-spacing: 1px;
+	font-family: RadianceM;
+	font-size: 14px;
+	font-weight: bold;
+	width: 200px;
+	text-align: center;
+}
+
+.LowVisualQuality #GameTime
+{
+	text-shadow: 1px 1px 0px 2.0 #00000011;
+}
+
+.TimeOfDayIcon
+{
+	width: 23px;
+	height: 23px;
+	horizontal-align: center;
+	background-size: cover;
+	z-index: 50;
+	margin-top: 2px;
+	margin-right: 1px;
+}
+
+.DayIcon
+{
+	background-image: url("s2r://panorama/images/hud/reborn/icon_sun_psd.vtex");
+}
+
+.NightIcon
+{
+	transform: scaleX(-1);
+	background-image: url("s2r://panorama/images/hud/reborn/icon_moon_psd.vtex");
+}
+
+#RespawnTimer
+{
+	margin-top: 40px;
+	width: 100%;
+	height: 26px;
+	z-index: -1;
+	vertical-align: bottom;
+	horizontal-align: center;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from ( #181b1d), to ( #22292f ) );
+	opacity: 0;
+	transform: translateY(-28px) translateX(4px);
+	border-bottom-right-radius: 4px;
+	border-bottom-left-radius: 4px;
+	
+	transition-property: transform, opacity;
+	transition-duration: .2s;
+	transition-timing-function: ease-out;
+}
+
+#RespawnTimer.AbilityListHack
+{
+	visibility: collapse;
+}
+
+.AspectRatio4x3 #RespawnTimer,
+.AspectRatio5x4 #RespawnTimer
+{
+	margin-bottom: 8px;
+}
+
+.TeamScorePlayers.LeftAlignedTeam #RespawnTimer
+{
+	transform: translateY(-28px) translateX(-4px);
+}
+
+#RespawnTimerLabel
+{
+	color: white;
+	font-size: 16px;
+	text-align: center;
+	opacity: 1;
+	horizontal-align: center;
+	vertical-align: center;
+	margin-top: 4px;
+	width: 100%;
+	height: 100%;
+	font-family: RadianceM;
+	font-weight: bold;
+}
+
+.LowVisualQuality #RespawnTimerLabel
+{
+	text-shadow: 0px 0px 0px 2.0 #000000;
+}
+
+.BuybackReady #RespawnTimer
+{
+	background-image: url("s2r://panorama/images/hud/reborn/top_bar_buyback_bg_psd.vtex");
+	width: 100%;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.BuybackReady #RespawnTimerLabel
+{
+	//color: #ffd825;
+}
+
+
+#AliveBuybackStatus,
+#TopBarBuybackStatus
+{
+	background-image: url("s2r://panorama/images/hud/reborn/topbar_buyback_psd.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	height: 100%;
+	width: 100%;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: .18s;
+	transition-timing-function: ease-in-out;	
+}
+
+.BuybackReady.Dead #TopBarBuybackStatus
+{
+	opacity: 1;
+}
+
+.TeamScorePlayers .Dead #RespawnTimer
+{
+	z-index: 5;
+	opacity: 1;
+	transform: translateY(0px);
+}
+
+
+
+.Dead #HeroImage
+{
+	wash-color: #898989;
+	saturation: 0.0;
+}
+
+#DeadLayer
+{
+	width: 100%;
+	height: 100%;
+	z-index: 5;
+	opacity: 0;
+}
+
+.LeftAlignedTeam #TopBarPlayersContainer #DeadLayer
+{
+	transform: scaleX(-1);
+} 
+
+.Dead #DeadLayer
+{
+	//opacity: 1;
+}
+
+.EnemyHeroMissing #HeroImage
+{
+	opacity: 1.0;
+}
+
+.HideElement
+{
+	opacity: 0;
+}
+
+.EnemyTeam #TopBarUltIndicator,
+.EnemyTeam #HealthBar,
+{
+	opacity: 0;
+}
+
+.AltPressed .EnemyTeam #ManaBar
+{
+	opacity: 0;
+}
+
+.Spectating #ManaBar
+{
+	opacity: 1;
+	transform: translateY(11px);
+}
+
+#GoldIcon
+{
+	background-image: url("s2r://panorama/images/hud/icon_gold_psd.vtex");
+	background-size: 100% 100%;
+	width: 30px;
+	height: 30px;
+	horizontal-align: center;
+	vertical-align: bottom;
+	opacity: 0;
+	margin-top: 4px;
+}
+
+.AspectRatio4x3 #GoldIcon,
+.AspectRatio5x4 #GoldIcon
+{
+	margin-bottom: 8px;
+}
+
+.BuybackUsed #GoldIcon
+{
+	z-index: 500;
+	opacity: 1;
+}
+
+#PlayerColor
+{
+	width: 100%;
+	height: 4px;
+	z-index: 5;
+	background-image: url("s2r://panorama/images/hud/reborn/topbar_playerslot_vignette_psd.vtex");
+	background-size: 92% 100%;
+	background-repeat: no-repeat;
+}
+
+#PlayerColorShadow
+{
+	width: 100%;
+	height: 100%;
+	margin-top: 4px;
+	z-index: 4;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #000 ), color-stop( 0.03, #000a ), color-stop( 0.1, #0000 ), color-stop( 0.91, #0000 ), color-stop( 0.95, #0006 ),  to( #000a ) );
+}
+
+.RightAlignedTeam #TopBarPlayersContainer #PlayerColor
+{
+	background-size: 93% 100%;
+	background-position: 5px 0px;
+}
+
+.Disconnected #HeroImage
+{
+	opacity: 0.5;
+}
+
+#DisconnectIcon
+{
+	width: 67px;
+	height: 20px;
+	margin-top: 12px;
+	vertical-align: top;
+	background-image: url("s2r://panorama/images/hud/reborn/icon_disconnect_png.vtex");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	z-index: 20;
+	opacity: 0;
+}
+
+
+.AspectRatio4x3 #DisconnectIcon,
+.AspectRatio5x4 #DisconnectIcon
+{
+	width: 50px;
+}
+
+.Disconnected #DisconnectIcon
+{
+	opacity: 1;
+}
+
+.TopBarHealthBar
+{
+	width: 60px;
+	height: 8px;
+	border: 0px;
+	z-index: 2;
+	margin-bottom: 30px;
+	vertical-align: bottom;
+	border-radius: 0px;
+	opacity: 0;
+	z-index: -500;
+
+	transition-property: transform, opacity;
+	transition-duration: 0.12s;
+	transition-timing-function: ease-in-out;
+}
+
+.AltPressed .TopBarHealthBar, .IsLocalPlayerSpectating .TopBarHealthBar
+{
+	opacity: 1;
+	transform: translateY( 11px );
+}
+
+#ManaBar
+{
+	width: 60px;
+	height: 8px;
+	border: 0px;
+	z-index: 1;
+	margin-bottom: 22px;
+	vertical-align: bottom;
+	box-shadow: none;
+	border-radius: 0px;
+	opacity: 0;
+
+	transition-property: transform, opacity;
+	transition-duration: 0.12s;
+	transition-timing-function: ease-in-out;
+}
+
+.AspectRatio4x3 .TopBarHealthBar,
+.AspectRatio5x4 .TopBarHealthBar,
+.AspectRatio4x3 #ManaBar,
+.AspectRatio5x4 #ManaBar
+{
+	width: 40px;
+}
+.AspectRatio4x3 .TopBarHealthBar,
+.AspectRatio5x4 .TopBarHealthBar
+{
+	margin-bottom: 38px;
+}
+.AspectRatio4x3 #ManaBar,
+.AspectRatio5x4 #ManaBar
+{
+	margin-bottom: 30px;
+}
+
+.AltPressed #ManaBar
+{
+	opacity: 1;
+	transform: translateY(11px);
+}
+
+.Dead #HealthBar,
+.Dead #ManaBar
+{
+	opacity: 0;
+}
+
+#ManaBar .ProgressBarLeft
+{
+	border-radius: 0px;
+	background-image: url("s2r://panorama/images/hud/reborn/topbar_mana_psd.vtex");
+	background-size: cover;
+}
+
+#ManaBar .ProgressBarRight
+{
+	border-radius: 0px;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #101932 ), color-stop( 0.2, #172447 ), color-stop( .5, #162244), to( #101932 ) );
+}
+
+.LeftAlignedTeam #TopBarPlayersContainer .TopBarHealthBar,
+.LeftAlignedTeam #TopBarPlayersContainer #TopBarUltIndicator,
+.LeftAlignedTeam #TopBarPlayersContainer #ManaBar,
+.LeftAlignedTeam #TopBarPlayersContainer #GoldIcon,
+.LeftAlignedTeam #TopBarPlayersContainer #RespawnTimer
+{
+	margin-left: 6px;
+}
+
+.RightAlignedTeam #TopBarPlayersContainer .TopBarHealthBar,
+.RightAlignedTeam #TopBarPlayersContainer #TopBarUltIndicator,
+.RightAlignedTeam #TopBarPlayersContainer #ManaBar,
+.RightAlignedTeam #TopBarPlayersContainer #GoldIcon,
+.RightAlignedTeam #TopBarPlayersContainer #RespawnTimer
+{
+	margin-right: 6px;
+}
+
+#TimeOfDayBG
+{
+	horizontal-align: center;
+	visibility: visible;
+	z-index: 2;
+	background-image: url("s2r://panorama/images/hud/reborn/bg_timer_psd.vtex");
+	background-size: 100%;
+	height: 46px;
+	width: 90px;
+}
+
+#TimeUntil
+{
+	color: white;
+	align: center top;
+	margin-top: 84px;
+	letter-spacing: 1px;
+	font-family: RadianceM, Radiance;
+	font-size: 14px;
+	font-weight: bold;
+	opacity: 0;
+	text-shadow: 1px 1px 0px 2.0 #00000044;
+
+	transition-property: transform, opacity;
+	transition-duration: 0.18s;
+	transition-timing-function: ease-in-out;
+	transform: translateY(-4px);
+}
+
+.LowVisualQuality #TimeUntil
+{
+	text-shadow: 1px 1px 0px 2.0 #00000044;
+}
+
+
+.ShowTimeUntil #TimeUntil,
+.AltPressed #TimeUntil
+{
+	opacity: 1;
+	transform: translateY(0px);
+}
+
+
+#GamemodeVariablePanel
+{
+	background-image: url("s2r://panorama/images/hud/reborn/bg_timer_psd.vtex");
+	background-size: 100%;
+	height: 30px;
+	width: height-percentage(195.7%);
+	margin-top: 44px;
+	align: center top;
+	flow-children: down;
+	transition-property: height;
+	transition-duration: 0.18s;
+	transition-timing-function: ease-in-out;
+}
+
+#KillGoal
+{
+	color: rgb(255, 65, 65);
+	align: center top;
+	letter-spacing: 1px;
+	font-family: RadianceM;
+	font-size: 15px;
+	font-weight: bold;
+	text-align: center;
+	opacity: 0;
+	transition-property: transform, opacity;
+	transition-duration: 0.18s;
+	transition-timing-function: ease-in-out;
+	transform: translateY(-4px);
+}
+
+.ShowTimeUntil #KillGoal,
+.AltPressed #KillGoal
+{
+	opacity: 1;
+	transform: translateY(0px);
+}
+
+.ShowTimeUntil #GamemodeVariablePanel,
+.AltPressed #GamemodeVariablePanel
+{
+	height: 36px;
+}
+
+#DuelTimer
+{
+	color: white;
+	align: center top;
+	letter-spacing: 0.8px;
+	font-family: RadianceM;
+	font-size: 16px;
+	text-align: center;
+	font-weight: bold;
+	margin-top: -4px;
+	transform: translateY(-10px);
+	transition-property: transform;
+	transition-duration: 0.18s;
+	transition-timing-function: ease-in-out;
+}
+
+.ShowTimeUntil #DuelTimer,
+.AltPressed #DuelTimer
+{
+	transform: translateY(0px);
+}
+
+#TimeOfDay
+{
+	height: 46px;
+}
+#TimeUntil
+{
+	margin-top: 46px;
+}
+
+#AbilityListSlot
+{
+	//margin-top: 45px;
+	padding-top: 40px;
+	//height: 100%;
+}
+
+#AbilityList
+{
+	//margin-top: 146px;
+	width: 64px;
+	//height: 900px;
+	//clip: none;
+	//align: center bottom;
+	flow-children: down;
+
+	background-color: #000000bb;
+
+	opacity: 0.0;
+	transform: translateY(-300px);
+
+	transition: opacity 0.25s linear 0.0s, transform 0.25s linear 0.0s;
+	//transition-property: all;
+	//transition-duration: 0.3s;
+	z-index: -99;
+}
+
+#AbilityList.show
+{
+	opacity: 1.0;
+	transform: translateY(0px);
+}
+
+.HeroAbility
+{
+	width: 25px;
+	height: width-percentage(100%);
+	//padding: 1px;
+}
+
+.FlyoutAbilityRoot
+{
+	horizontal-align: center;
+	width: 60px;
+	height: 60px;
+	margin-top: 2px;
+	border: 1px solid #000000b4;
+}
+
+#HeroAbilityImage
+{
+	width: 100%;
+	height: 100%;
+}

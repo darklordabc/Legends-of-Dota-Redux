@@ -1,13 +1,19 @@
-<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf27:version{36c3961f-02a4-4c52-bf8f-6e3147d7d142} -->
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
 {
 	_class = "CParticleSystemDefinition"
 	m_bShouldHitboxesFallbackToRenderBounds = false
 	m_nMaxParticles = 32
-	m_flConstantRadius = 32.0
-	m_flConstantLifespan = 3.0
-	m_ConstantColor = [ 255, 170, 255, 128 ]
+	m_flConstantRadius = 32.000000
+	m_flConstantLifespan = 3.000000
+	m_ConstantColor =
+	[
+		255,
+		170,
+		255,
+		128,
+	]
 	m_bShouldSort = false
-	m_Renderers = 
+	m_Renderers =
 	[
 		{
 			_class = "C_OP_RenderSprites"
@@ -15,76 +21,97 @@
 			m_hTexture = resource:"materials/particle/sleeping_z.vtex"
 		},
 	]
-	m_Operators = 
+	m_Operators =
 	[
 		{
 			_class = "C_OP_BasicMovement"
-			m_Gravity = [ 0.0, 50.0, 50.0 ]
-			m_fDrag = 0.1
+			m_Gravity =
+			[
+				0.000000,
+				50.000000,
+				50.000000,
+			]
+			m_fDrag = 0.100000
 		},
 		{
 			_class = "C_OP_InterpolateRadius"
-			m_flStartScale = 0.1
-			m_flBias = 0.25
+			m_flStartScale = 0.100000
+			m_flBias = 0.250000
 		},
 		{
 			_class = "C_OP_ColorInterpolate"
-			m_ColorFade = [ 232, 190, 255, 255 ]
+			m_ColorFade =
+			[
+				232,
+				190,
+				255,
+				255,
+			]
 		},
 		{
 			_class = "C_OP_OscillateVector"
 			m_bOffset = true
-			m_RateMin = [ 16.0, 16.0, 0.0 ]
-			m_RateMax = [ 16.0, 16.0, 0.0 ]
-			m_FrequencyMin = [ 2.5, 2.5, 2.5 ]
-			m_FrequencyMax = [ 2.5, 2.5, 2.5 ]
-			m_flEndTime_min = 0.75
-			m_flEndTime_max = 0.75
+			m_RateMin =
+			[
+				16.000000,
+				16.000000,
+				0.000000,
+			]
+			m_RateMax =
+			[
+				16.000000,
+				16.000000,
+				0.000000,
+			]
+			m_FrequencyMin =
+			[
+				2.500000,
+				2.500000,
+				2.500000,
+			]
+			m_FrequencyMax =
+			[
+				2.500000,
+				2.500000,
+				2.500000,
+			]
+			m_flEndTime_min = 0.750000
+			m_flEndTime_max = 0.750000
 		},
 		{
 			_class = "C_OP_FadeOutSimple"
-			m_flFadeOutTime = 1.0
+			m_flFadeOutTime = 1.000000
 		},
 		{
 			_class = "C_OP_Decay"
 		},
 	]
-	m_Initializers = 
+	m_Initializers =
 	[
 		{
 			_class = "C_INIT_CreateWithinSphere"
-			m_LocalCoordinateSystemSpeedMin = [ 77.0, 77.0, 120.0 ]
-			m_LocalCoordinateSystemSpeedMax = [ 77.0, 77.0, 120.0 ]
+			m_LocalCoordinateSystemSpeedMin =
+			[
+				77.000000,
+				77.000000,
+				120.000000,
+			]
+			m_LocalCoordinateSystemSpeedMax =
+			[
+				77.000000,
+				77.000000,
+				120.000000,
+			]
 		},
 	]
-	m_Emitters = 
+	m_Emitters =
 	[
 		{
 			_class = "C_OP_ContinuousEmitter"
-			m_flOpStartFadeOutTime = 0.25
-			m_flOpEndFadeOutTime = 0.25
-			m_flOpFadeOscillatePeriod = 0.5
-			m_flEmitRate = 
-			{
-				m_nType = "PF_TYPE_LITERAL"
-				m_flLiteralValue = 20.0
-			}
-		},
-	]
-	m_nBehaviorVersion = 10
-	m_controlPointConfigurations = 
-	[
-		{
-			m_name = "preview"
-			m_drivers = 
-			[
-				{
-					m_iAttachType = "PATTACH_WORLDORIGIN"
-					m_vecOffset = [ 0.0, 0.0, 0.0 ]
-					m_angOffset = [ null, null, null ]
-					m_entityName = "self"
-				},
-			]
+			m_flEmitRate = 20.000000
+			m_flOpStartFadeOutTime = 0.250000
+			m_flOpEndFadeOutTime = 0.250000
+			m_flOpFadeOscillatePeriod = 0.500000
 		},
 	]
 }

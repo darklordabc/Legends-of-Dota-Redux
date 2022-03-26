@@ -8,8 +8,12 @@
 "override_hero""npc_dota_hero_drow_ranger""AbilityLayout""6""Enabled" "1""Ability10""""Ability11""""Ability12""""Ability13""""Ability14""""Ability15""""Ability16""""Ability17"""}"npc_dota_hero_earthshaker_lod"{
 "override_hero""npc_dota_hero_earthshaker""AbilityLayout""6""Enabled" "1""Ability10""""Ability11""""Ability12""""Ability13""""Ability14""""Ability15""""Ability16""""Ability17""""ProjectileSpeed""1000""ProjectileModel""luna_base_attack"}"npc_dota_hero_juggernaut_lod"{
 "override_hero""npc_dota_hero_juggernaut""AbilityLayout""6""Enabled" "1""Ability10""""Ability11""""Ability12""""Ability13""""Ability14""""Ability15""""Ability16""""Ability17""""ProjectileSpeed""1000""ProjectileModel""luna_base_attack"}"npc_dota_hero_mirana_lod"{
-"override_hero""npc_dota_hero_mirana""AbilityLayout""6""Enabled" "1""Ability10""""Ability11""""Ability12""""Ability13""""Ability14""""Ability15""""Ability16""""Ability17"""}"npc_dota_hero_nevermore_lod"{
-"override_hero""npc_dota_hero_nevermore""AbilityLayout""6""Enabled" "1""Ability10""""Ability11""""Ability12""""Ability13""""Ability14""""Ability15""""Ability16""""Ability17"""}"npc_dota_hero_morphling_lod"{
+"override_hero""npc_dota_hero_mirana""AbilityLayout""6""Enabled" "1""Ability10""""Ability11""""Ability12""""Ability13""""Ability14""""Ability15""""Ability16""""Ability17"""}
+
+"npc_dota_hero_nevermore_lod"{
+"override_hero""npc_dota_hero_nevermore""AbilityLayout""6""Enabled" "1""Ability10""""Ability11""""Ability12""""Ability13""""Ability14""""Ability15""""Ability16""""Ability17"""}
+
+"npc_dota_hero_morphling_lod"{
 "override_hero""npc_dota_hero_morphling""AbilityLayout""6""Enabled" "1""Ability15""""Ability16""""Ability17"""}"npc_dota_hero_phantom_lancer_lod"{
 "override_hero""npc_dota_hero_phantom_lancer""AbilityLayout""6""Enabled" "1""Ability10""""Ability11""""Ability12""""Ability13""""Ability14""""Ability15""""Ability16""""Ability17""""ProjectileSpeed""1000""ProjectileModel""luna_base_attack"}"npc_dota_hero_puck_lod"{
 "override_hero""npc_dota_hero_puck""AbilityLayout""6""Enabled" "1""Ability10""""Ability11""""Ability12""""Ability13""""Ability14""""Ability15""""Ability16""""Ability17"""}"npc_dota_hero_pudge_lod"{
@@ -141,4 +145,21 @@
 "override_hero""npc_dota_hero_monkey_king""AbilityLayout""6""Enabled" "1""Ability10""""Ability11""""Ability12""""Ability13""""Ability14""""Ability15""""Ability16""""Ability17""""ProjectileSpeed""1000""ProjectileModel""luna_base_attack"}"npc_dota_hero_pangolier_lod"{
 "override_hero""npc_dota_hero_pangolier""AbilityLayout""6""Enabled" "1""Ability10""""Ability11""""Ability12""""Ability13""""Ability14""""Ability15""""Ability16""""Ability17""""ProjectileSpeed""1000""ProjectileModel""luna_base_attack"}"npc_dota_hero_dark_willow_lod"{
 "override_hero""npc_dota_hero_dark_willow""AbilityLayout""6""Enabled" "1""Ability10""""Ability11""""Ability12""""Ability13""""Ability14""""Ability15""""Ability16""""Ability17"""}"npc_dota_hero_grimstroke_lod"{
-"override_hero""npc_dota_hero_grimstroke""AbilityLayout""6""Enabled" "1""Ability10""""Ability11""""Ability12""""Ability13""""Ability14""""Ability15""""Ability16""""Ability17"""}}
+"override_hero""npc_dota_hero_grimstroke""AbilityLayout""6""Enabled" "1""Ability10""""Ability11""""Ability12""""Ability13""""Ability14""""Ability15""""Ability16""""Ability17"""}
+
+"npc_dota_hero_dawnbreaker_lod"{
+"override_hero""npc_dota_hero_dawnbreaker""AbilityLayout""6""Enabled" "1""Ability10""""Ability11""""Ability12""""Ability13""""Ability14""""Ability15""""Ability16""""Ability17"""}
+
+"npc_dota_hero_void_spirit_lod"{
+"override_hero""npc_dota_hero_void_spirit""AbilityLayout""6""Enabled" "1""Ability10""""Ability11""""Ability12""""Ability13""""Ability14""""Ability15""""Ability16""""Ability17"""}
+
+"npc_dota_hero_hoodwink_lod"{
+"override_hero""npc_dota_hero_hoodwink""AbilityLayout""6""Enabled" "1""Ability10""""Ability11""""Ability12""""Ability13""""Ability14""""Ability15""""Ability16""""Ability17"""}
+
+"npc_dota_hero_marci_lod"{
+"override_hero""npc_dota_hero_marci""AbilityLayout""6""Enabled" "1""Ability10""""Ability11""""Ability12""""Ability13""""Ability14""""Ability15""""Ability16""""Ability17"""}
+
+"npc_dota_hero_primal_beast_lod"{
+"override_hero""npc_dota_hero_primal_beast""AbilityLayout""6""Enabled" "1""Ability10""""Ability11""""Ability12""""Ability13""""Ability14""""Ability15""""Ability16""""Ability17"""}
+
+}
