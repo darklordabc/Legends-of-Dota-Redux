@@ -231,6 +231,8 @@ dota/content/
 *.vagrp_c
 *.vsnd_c
 *.vseq_c
+game/tools_asset_info.bin
+game/tools_thumbnail_cache.bin
 
 #Script generator (your settings file)
 script_generator/settings.json
@@ -247,3 +249,4 @@ content steam.lnk
 game steam.lnk
 
 node_modules
+**/.vscode
