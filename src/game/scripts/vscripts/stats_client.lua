@@ -1,5 +1,6 @@
 StatsClient = StatsClient or class({})
 JSON = JSON or require("lib/json")
+inspect = require("lib/inspect")
 StatsClient.AbilityData = StatsClient.AbilityData or {}
 StatsClient.PlayerBans = StatsClient.PlayerBans or {}
 
@@ -7,8 +8,8 @@ StatsClient.AuthKey = LoadKeyValues('scripts/kv/stats_client.kv').AuthKey
 -- Change to true if you have local server running, so contributors without local server can see some things
 StatsClient.Debug = IsInToolsMode() and false
 StatsClient.ServerAddress = StatsClient.Debug and
-    "http://127.0.0.1:8080/" or
-    "http://3.23.86.18:8080/"
+    "http://localhost:5218/" or
+    "http://arxae.loseyourip.com/"
 
 StatsClient.GameVersion = LoadKeyValues('addoninfo.txt').version
 StatsClient.SortedAbilityDataEntries = StatsClient.SortedAbilityDataEntries or {}
@@ -21,6 +22,8 @@ function StatsClient:SubscribeToClientEvents()
     CustomGameEventManager:RegisterListener("stats_client_save_fav_builds", Dynamic_Wrap(StatsClient, "SaveFavoriteBuilds"))
     CustomGameEventManager:RegisterListener("stats_client_options_save", Dynamic_Wrap(StatsClient, "SaveOptions"))
     CustomGameEventManager:RegisterListener("stats_client_options_load", Dynamic_Wrap(StatsClient, "LoadOptions"))
+	CustomGameEventManager:RegisterListener("stats_client_get_skill_builds", Dynamic_Wrap(StatsClient, "GetSkillBuilds"))
+	CustomGameEventManager:RegisterListener("stats_client_get_favorite_skill_builds", Dynamic_Wrap(StatsClient, "GetFavoriteSkillBuilds"))
 
     CustomGameEventManager:RegisterListener("lodConnectAbilityUsageData", function(_, args)
         Timers:CreateTimer(function()
@@ -43,6 +46,24 @@ end
 function StatsClient:Fetch()
     StatsClient:FetchAbilityUsageData()
     StatsClient:FetchBans()
+end
+
+function StatsClient:GetSkillBuilds(args)
+	StatsClient:Send("getSkillBuilds", nil, function(response)
+		local playerID = args.PlayerID
+        local player = PlayerResource:GetPlayer(playerID)
+		CustomGameEventManager:Send_ServerToPlayer(player, "lodReceiveBuilds", response)
+    end, math.huge, "GET")
+end
+
+function StatsClient:GetFavoriteSkillBuilds(args)
+	-- Not the most ideal, but it will do for now. Should use the data parameter correctly in the future
+	-- but data doesn't show up server side for some reason
+	StatsClient:Send("getFavoriteSkillBuilds?playerId=" .. args.PlayerID .. "&steamId=" .. args.SteamID, nil, function(response)
+		local playerId = args.PlayerID
+		local player = PlayerResource:GetPlayer(playerId)
+		CustomGameEventManager:Send_ServerToPlayer(player, "lodReceiveFavoriteBuilds", response)
+	end, math.huge, "GET")
 end
 
 function StatsClient:CreateSkillBuild(args)
@@ -100,31 +121,21 @@ function StatsClient:CreateSkillBuild(args)
 end
 
 function StatsClient:RemoveSkillBuild(args)
-    local playerID = args.PlayerID
-    local steamID = PlayerResource:GetRealSteamID(playerID)
-    local id = args.id
-    if type(id) ~= "string" then
-        return
-    end
-    StatsClient:Send("removeSkillBuild", {
-        steamID = steamID,
-        id = id,
-    }, function(response)
-        local player = PlayerResource:GetPlayer(playerID)
-        if response.success then
-            network:sendNotification(player, {
-                sort = 'lodSuccess',
-                text = 'lodServerSuccessRemoveSkillBuild'
-            })
-            CustomGameEventManager:Send_ServerToPlayer(player, "lodReloadBuilds", {})
-        else
-            network:sendNotification(player, {
-                sort = 'lodDanger',
-                text = response.error or ''
-            })
-            GameRules.pregame:PlayAlert(playerID)
-        end
-    end)
+	local playerId = args.PlayerID
+    local _steamId = PlayerResource:GetRealSteamID(args.PlayerID)
+	local _buildId = args.id
+	
+	StatsClient:Send("removeSkillBuild", {
+		steamId = _steamId,
+		buildId = _buildId
+	}, function(response)
+		local player = PlayerResource:GetPlayer(playerId)
+		network:sendNotification(player, {
+			sort = 'lodSuccess',
+			text = 'lodServerSuccessRemoveSkillBuild'
+		})
+		CustomGameEventManager:Send_ServerToPlayer(player, "lodReloadBuilds", {})
+	end)
 end
 
 function StatsClient:VoteSkillBuild(args)
@@ -250,8 +261,7 @@ function StatsClient:Send(path, data, callback, retryCount, protocol, _currentRe
     local request = CreateHTTPRequestScriptVM(protocol or "POST", self.ServerAddress .. path)
     request:SetHTTPRequestHeaderValue("Auth-Key", StatsClient.AuthKey)
     request:SetHTTPRequestGetOrPostParameter("data", JSON:encode(data))
-
-    request:Send(function(response)
+	 request:Send(function(response)
         if response.StatusCode ~= 200 or not response.Body then
             print("error, status == " .. response.StatusCode)
             local currentRetry = (_currentRetry or 0) + 1

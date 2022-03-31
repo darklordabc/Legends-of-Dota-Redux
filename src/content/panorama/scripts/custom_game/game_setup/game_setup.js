@@ -5989,6 +5989,31 @@ function getAbilityGlobalPickPopularity(ability) {
 		LoadBuilds();
 	});
 
+	GameEvents.Subscribe("lodReceiveBuilds", function(data) {
+		var builds = Object.values(data);
+
+		var cont = $pickingPhaseRecommendedBuildContainer();
+		
+		if(builds && builds.length > 0) {
+			for(var i = 0; i < builds.length; i++) {
+				addRecommendedBuild(cont[0], builds[i]);
+			}
+			
+			LoadFavBuilds(cont[0]);
+		}
+
+		$("#buildLoadingIndicator").visible = false;
+ 		cont[0].GetParent().visible = true;
+	});
+
+	GameEvents.Subscribe("lodReceiveFavoriteBuilds", function(data) {
+		var con = $pickingPhaseRecommendedBuildContainer()[0];
+		var favs = Object.values(data);
+		$.Each(con.Children(), function(child) {
+			child.setFavorite(favs.indexOf(child.buildID) !== -1);
+		});
+	})
+
 	GameEvents.Subscribe("lodConnectAbilityUsageData", function (data) {
 		AbilityUsageData = data;
 	});
