@@ -35,10 +35,15 @@ function CreateSkillBuild(title, description) {
 function LoadBuilds(cont, skip) {
 	cont = cont || $pickingPhaseRecommendedBuildContainer();
 	var req = { steamID: Game.GetLocalPlayerInfo().player_steamid };
+	
+	/*
 	if (skip) req.skip = skip;
 	if (cont) req.sorting = cont[1];
+	*/
+
+	if(skip == undefined) skip = 0;
 	
-	GameEvents.SendCustomGameEventToServer("stats_client_get_skill_builds", {});
+	GameEvents.SendCustomGameEventToServer("stats_client_get_skill_builds", { Skip: skip });
 }
 
 function LoadFavBuilds(rootPanel) {

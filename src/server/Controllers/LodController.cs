@@ -123,9 +123,11 @@ public class LodController : ControllerBase
 
 	[Route("getSkillBuilds")]
 	[HttpGet()]
-	public IActionResult GetSkillBuilds()
+	public IActionResult GetSkillBuilds(int skip)
 	{
-		var builds = _db.SkillBuilds.ToList();
+		var builds = _db.SkillBuilds
+			.Skip(skip)
+			.ToList();
 		
 		for(int i = 0; i < builds.Count; i++)
 		{

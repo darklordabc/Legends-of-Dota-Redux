@@ -49,7 +49,7 @@ function StatsClient:Fetch()
 end
 
 function StatsClient:GetSkillBuilds(args)
-	StatsClient:Send("getSkillBuilds", nil, function(response)
+	StatsClient:Send("getSkillBuilds?skip=" .. args.Skip, nil, function(response)
 		local playerID = args.PlayerID
         local player = PlayerResource:GetPlayer(playerID)
 		CustomGameEventManager:Send_ServerToPlayer(player, "lodReceiveBuilds", response)
