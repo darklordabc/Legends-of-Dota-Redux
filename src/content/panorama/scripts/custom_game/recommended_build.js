@@ -40,9 +40,12 @@ function setBuildData(makeHeroSelectable, hookSkillInfo, makeSkillSelectable, bu
     searchTags.push(build.description.toLowerCase());
 
     // Add tags
+	// TODO: Find out what exact tags they need
+	/*
     for (var v of build.tags) {
         searchTags.push($.Localize(v).toLowerCase());
     }
+	*/
 
     // Set the title
     var titleLabel = $('#buildName');
@@ -61,11 +64,6 @@ function setBuildData(makeHeroSelectable, hookSkillInfo, makeSkillSelectable, bu
 
     $('#recommendedAttribute').SetImage(attrImage);
 
-    // Renum items from 0-5 to 1-6 for server functions
-    var buildForSend = {};
-    for(var slotID = 0; slotID < 6; ++slotID)
-        buildForSend[slotID + 1] = curBuild[slotID];
-
     //author
     var authorSteamID = build.steamID;
     var localSteamID = Game.GetLocalPlayerInfo().player_steamid
@@ -76,19 +74,20 @@ function setBuildData(makeHeroSelectable, hookSkillInfo, makeSkillSelectable, bu
         $("#buildAuthor").text = "";
     }
 
-    //Votes
+	// Votes
     $("#buildRating").text = build.votes;
-    $.GetContextPanel().SetHasClass("votedUp", build.votes_up.indexOf(localSteamID) !== -1)
-    $.GetContextPanel().SetHasClass("votedDown", build.votes_down.indexOf(localSteamID) !== -1)
+
+    $.GetContextPanel().SetHasClass("votedUp", Object.values(build.upVoteIds).indexOf(localSteamID) !== -1)
+    $.GetContextPanel().SetHasClass("votedDown", Object.values(build.downVoteIds).indexOf(localSteamID) !== -1)
 
     // Store the build data
     buildData = {
         hero: build.heroName,
         attr: build.attribute,
-        build: buildForSend,
-        id: build._id
+        build: curBuild,
+        id: build.id
     };
-    $.GetContextPanel().buildID = build._id;
+    $.GetContextPanel().buildID = build.id;
 }
 
 // When the build is selected
