@@ -834,13 +834,13 @@
 										<Panel id="pickingPhaseSelectedHero">
 											<Panel id="pickingPhaseSelectedAttr">
 												<Button class="pickingPhaseAttr" id="pickingPhaseSelectHeroStr" onactivate="setPrimaryAttr('str');">
-													<Image text="Str" src="s2r://panorama/primary_attribute_icons/primary_attribute_icon_strength_psd.vtex" />
+													<Image text="Str" src="s2r://panorama/images/primary_attribute_icons/primary_attribute_icon_strength_psd.vtex" />
 												</Button>
 												<Button class="pickingPhaseAttr" id="pickingPhaseSelectHeroAgi" onactivate="setPrimaryAttr('agi');">
-													<Image text="Str" src="file://{images}/primary_attribute_icons/primary_attribute_icon_agility.psd" />
+													<Image text="Str" src="s2r://panorama/images/primary_attribute_icons/primary_attribute_icon_agility_psd.vtex" />
 												</Button>
 												<Button class="pickingPhaseAttr" id="pickingPhaseSelectHeroInt" onactivate="setPrimaryAttr('int');">
-													<Image text="Str" src="file://{images}/primary_attribute_icons/primary_attribute_icon_intelligence.psd" />
+													<Image text="Str" src="s2r://panorama/images/primary_attribute_icons/primary_attribute_icon_intelligence_psd.vtex" />
 												</Button>
 
 											</Panel>

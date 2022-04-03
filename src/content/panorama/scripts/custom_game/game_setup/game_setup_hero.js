@@ -4,11 +4,11 @@ var heroName = '';
 function setHeroName( name, tooltipFunct, info ) {
     $.GetContextPanel().SetAttributeString('heroName', name);
     $('#heroImage').heroname = name;
-    $('#heroName').text = $.Localize(name);
+    $('#heroName').text = $.Localize("#" + name);
 
 	$.GetContextPanel().SetPanelEvent('onmouseover', function() {
 		// Tooltip
-        var displayNameTitle = $.Localize(name);
+        var displayNameTitle = $.Localize("#" + name);
         var heroStats = tooltipFunct(name, info);		// Fix this shit!!!!
 
         // Show the tip

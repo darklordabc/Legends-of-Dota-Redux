@@ -387,9 +387,9 @@ function showChatMessage(args) {
 
 	if (args.player == -1) {
 		if (args.localize) {
-			msg = $.Localize(msg);
+			msg = $.Localize("#" + msg);
 		}
-		label.text = "(" + $.Localize("announcement") + ") : " + msg;
+		label.text = "(" + $.Localize("#" + "announcement") + ") : " + msg;
 	} else {
 		label.text =
 			"(" +
@@ -490,11 +490,11 @@ function showVotings() {
 function createCommandPanel(data, root) {
 	var panel = $.CreatePanel("Panel", root, "");
 	panel.BLoadLayoutSnippet("command");
-	panel.SetDialogVariable("command_title", $.Localize("command_menu_command_" + data.title));
+	panel.SetDialogVariable("command_title", $.Localize("#" + "command_menu_command_" + data.title));
 	panel.SetPanelEvent("onmouseover", function () {
 		$.Schedule(3.0, function () {
 			if (panel.BHasHoverStyle()) {
-				var description = $.Localize("command_menu_command_descr_" + data.title);
+				var description = $.Localize("#" + "command_menu_command_descr_" + data.title);
 				if (description != "command_menu_command_descr_" + data.title) {
 					$.DispatchEvent(
 						"UIShowCustomLayoutParametersTooltip",
@@ -550,7 +550,7 @@ function createCommandGroup(data) {
 	panel.BLoadLayoutSnippet("commandGroup");
 	var isCheat = data.isCheat == true;
 	panel.SetHasClass("cheatOnly", isCheat);
-	panel.SetDialogVariable("group_title", $.Localize("command_menu_group_" + data.title));
+	panel.SetDialogVariable("group_title", $.Localize("#" + "command_menu_group_" + data.title));
 	/*if (data.image != null) {
 		panel.FindChildrenWithClassTraverse("TickBox")[0].SetImage(data.image);
 		panel.AddClass("groupCustomImage")
