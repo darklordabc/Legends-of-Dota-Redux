@@ -89,7 +89,7 @@ public class LodController : ControllerBase
 
 		_db.SaveChanges();
 
-		return Ok();
+		return Ok(new LodReqResponse(true));
 	}
 
 	[Route("removeSkillBuild")]
@@ -232,4 +232,6 @@ public class LodController : ControllerBase
 		[property: JsonPropertyName("id")] int SkillBuildId,
 		[property: JsonPropertyName("steamID")] string SteamId,
 		[property: JsonPropertyName("vote")] int Vote);
+
+	record LodReqResponse([property: JsonPropertyName("success")] bool Success);
 }
