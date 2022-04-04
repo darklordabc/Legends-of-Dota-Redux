@@ -73,8 +73,8 @@ public class LodController : ControllerBase
 	public IActionResult SaveSkillBuild()
 	{
 		Request.Headers.TryGetValue("Auth-Key", out var authKey);
-		if(authKey.ToString() == "") return Unauthorized();
-		if(authKey.ToString() != _cfg["LodAuthKey"]) return Unauthorized();
+		if(authKey.ToString() == "") return Ok(new LodReqResponse(false, "unauthorized"));
+		if(authKey.ToString() != _cfg["LodAuthKey"]) new LodReqResponse(false, "unauthorized");
 
 		string content = Request.Form["data"].ToString();
 		var data = JsonSerializer.Deserialize<Dictionary<string, object>>(content);
@@ -89,7 +89,7 @@ public class LodController : ControllerBase
 
 		_db.SaveChanges();
 
-		return Ok(new LodReqResponse(true));
+		return Ok(new LodReqResponse(true, string.Empty));
 	}
 
 	[Route("removeSkillBuild")]
@@ -126,6 +126,7 @@ public class LodController : ControllerBase
 	public IActionResult GetSkillBuilds(int skip)
 	{
 		var builds = _db.SkillBuilds
+			.OrderBy(s => s.Created)
 			.Skip(skip)
 			.ToList();
 		
@@ -233,5 +234,7 @@ public class LodController : ControllerBase
 		[property: JsonPropertyName("steamID")] string SteamId,
 		[property: JsonPropertyName("vote")] int Vote);
 
-	record LodReqResponse([property: JsonPropertyName("success")] bool Success);
+	record LodReqResponse(
+		[property: JsonPropertyName("success")] bool Success,
+		[property: JsonPropertyName("error")] string Error);
 }
