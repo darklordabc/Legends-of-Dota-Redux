@@ -246,7 +246,6 @@ end
 
 function GetViableTalents(build)
     --for K,V in pairs(build) do print(K,V) end
-    local OldTalents = LoadKeyValues('scripts/npc/npc_abilities_oldversion.txt')
     local ViableTalents = {}
     for i =1,4 do
         ViableTalents[i] = {}
@@ -267,10 +266,26 @@ function GetViableTalents(build)
             else
                 for K,V in pairs(build) do
                     if K ~= "hero" and v == V then
-                        ViableTalents[i][k] = {}
-						ViableTalents[i][k]["AbilityName"] = v
-						ViableTalents[i][k]["TalentValue"] = OldTalents[k]["AbilitySpecial"]["01"]["value"]
-                        ViableTalents["count"..i] = ViableTalents["count"..i] + 1
+						if GameRules.KVs["npc_abilities"][k]["AbilitySpecial"] ~= nil then
+							-- Old Format
+							ViableTalents[i][k] = {}
+							ViableTalents[i][k]["AbilityName"] = v
+							ViableTalents[i][k]["TalentValue"] = GameRules.KVs["npc_abilities"][k]["AbilitySpecial"]["01"]["value"]
+							ViableTalents["count"..i] = ViableTalents["count"..i] + 1
+						else
+							-- New Format
+							local abilityValues = GameRules.KVs["npc_abilities"][v]["AbilityValues"]
+							for _k, _v in pairs(abilityValues) do
+								if type(_v) == "table" and _v[k] ~= nil then -- Seems talent values are always in a table
+									local val = _v[k]
+									print(v .. " " .. k .. " " .. val)
+									ViableTalents[i][k] = {}
+									ViableTalents[i][k]["AbilityName"] = v
+									ViableTalents[i][k]["TalentValue"] = _v[k]
+									ViableTalents["count"..i] = ViableTalents["count"..i] + 1
+								end
+							end
+						end
                         break
                     end
                 end
