@@ -4797,7 +4797,7 @@
         }
         "special_bonus_unique_faceless_void_3"
         {
-            "TalentRequiredAbility"                                                   "faceless_void_chronosphere"
+            "TalentRequiredAbility"                                                   "faceless_void_time_lock"
         }
         "special_bonus_unique_faceless_void_4"
         {
@@ -5081,11 +5081,10 @@
         {
             "TalentRequiredAbility"                                                   "kunkka_torrent"
         }
-        //"special_bonus_unique_kunkka_3"
-        //{
-        //    "TalentRequiredAbility"                                                   "kunkka_ghostship"
-        //}
-        // crashes the game when opening talent picker window
+        "special_bonus_unique_kunkka_3"
+        {
+            "TalentRequiredAbility"                                                   "kunkka_ghostship"
+        }
         "special_bonus_unique_kunkka_4"
         {
             "TalentRequiredAbility"                                                   "kunkka_tidebringer"
@@ -5557,11 +5556,10 @@
         {
             "TalentRequiredAbility"                                                   "monkey_king_tree_dance"
         }
-        //"special_bonus_unique_monkey_king_6"
-        //{
-        //    "TalentRequiredAbility"                                                   "monkey_king_wukongs_command"
-        //}
-        // crashes the game when opening talent picker window
+        "special_bonus_unique_monkey_king_6"
+        {
+            "TalentRequiredAbility"                                                   "monkey_king_wukongs_command"
+        }
         "special_bonus_unique_monkey_king_7"
         {
             "TalentRequiredAbility"                                                   "monkey_king_tree_dance"
@@ -6010,10 +6008,10 @@
         {
             "TalentRequiredAbility"                                                   "puck_waning_rift"
         }
-        //"special_bonus_unique_puck_3"
-        //{
-        //    "TalentRequiredAbility"                                                   "puck_dream_coil" // crashes when picking talent
-        //}
+        "special_bonus_unique_puck_3"
+        {
+            "TalentRequiredAbility"                                                   "puck_dream_coil"
+        }
         "special_bonus_unique_puck_4"
         {
             "TalentRequiredAbility"                                                   "puck_waning_rift"
@@ -6626,8 +6624,8 @@
         //{
         //    "TalentRequiredAbility" 
         //    {
-                //"1" "storm_spirit_ball_lightning" // crashes the game when opening talent picker window
-                //"2" "storm_spirit_static_remnant" // crashes the game when opening talent picker window
+        //        "1" "storm_spirit_ball_lightning"
+        //        "2" "storm_spirit_static_remnant"
         //    }  
         //}
         "special_bonus_unique_storm_spirit_5"
@@ -7711,7 +7709,7 @@
         }
         "special_bonus_unique_dark_seer_4"
         {
-            "TalentRequiredAbility"                                                   "dark_seer_wall_of_replica_CRASH" // crashes talent picker
+            "TalentRequiredAbility"                                                   "dark_seer_wall_of_replica"
         }
         "special_bonus_unique_dark_seer_5"
         {
@@ -8245,7 +8243,7 @@
 
         "special_bonus_unique_grimstroke_1" 
         {
-            "TalentRequiredAbility" "grimstroke_ink_creature"
+            "TalentRequiredAbility" "grimstroke_spirit_walk"
         }
         "special_bonus_unique_grimstroke_2" 
         {
@@ -8353,11 +8351,10 @@
         {
             "TalentRequiredAbility" "hoodwink_acorn_shot"
         }
-        //"special_bonus_unique_hoodwink_camouflage"
-        //{
-        //    "TalentRequiredAbility" "hoodwink_scurry"
-        //}
-                // crashes the game when opening talent picker window
+        "special_bonus_unique_hoodwink_camouflage"
+        {
+            "TalentRequiredAbility" "hoodwink_scurry"
+        }
         "special_bonus_unique_hoodwink_sharpshooter_speed"
         {
             "TalentRequiredAbility" "hoodwink_sharpshooter"

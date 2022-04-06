@@ -114,7 +114,7 @@
 
             <Panel id="mainSelectionRoot" hittest="false">
                 <Panel id="unassignedTeamContainer" onactivate="onJoinUnassignedPressed()">
-                    <Label id="unassignedTeamLabel" text="theUnassigned" />
+                    <Label id="unassignedTeamLabel" text="Game Setup" />
                     <Panel id="unassignedPlayersContainer" class="theTeamContainer" />
                 </Panel>
 
@@ -485,7 +485,7 @@
                                 <Panel id="lockOptionPanel">
                                     <Label id="lockTeamsFirst" text="lockTeamsFirst" />
                                     <Button id="lockOptionsButton" class="PlayButton" onactivate="onLockOptionsPressed()">
-                                        <Label text="lockOptions" />
+                                        <Label text="Lock Options" />
                                     </Button>
                                 </Panel>
                             </Panel>
@@ -1093,13 +1093,13 @@
                     </Panel>
                 </Panel>
             </Panel>
-            <Button id="thankyouButton" hittest="true">
-                <Image src="file://{images}/custom_game/thank_you.png" />
-            </Button>
-            <Button id="patreonButton" onactivate="openPatreon()" hittest="true">
-                <Image src="file://{images}/custom_game/patreon.png" />
-                <Panel id="patreonButtonClose" onactivate="hidePatreonButton()" />
-            </Button>
+            <!-- <Button id="thankyouButton" hittest="true"> -->
+                <!-- <Image src="file://{images}/custom_game/thank_you.png" /> -->
+            <!-- </Button> -->
+            <!-- <Button id="patreonButton" onactivate="openPatreon()" hittest="true"> -->
+                <!-- <Image src="file://{images}/custom_game/patreon.png" /> -->
+                <!-- <Panel id="patreonButtonClose" onactivate="hidePatreonButton()" /> -->
+            <!-- </Button> -->
             <Button id="discordButton" onactivate="openDiscord()" hittest="true">
                 <Image src="file://{images}/custom_game/discord.png" />
                 <Panel id="discordButtonClose" onactivate="hideDiscordButton()" />

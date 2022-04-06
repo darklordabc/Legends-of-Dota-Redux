@@ -275,9 +275,9 @@ function isPatron(mutator_name) {
 	return false;
 }
 
-function openPatreon() {
+/*function openPatreon() {
 	$.DispatchEvent("ExternalBrowserGoToURL", "https://www.patreon.com/darklordabc");
-}
+}*/
 
 function openDiscord() {
 	$.DispatchEvent("ExternalBrowserGoToURL", "https://discord.gg/ZFSjzWV");
@@ -3629,19 +3629,19 @@ function buildBasicOptionsCategories() {
 				}
 
 				if (found_ == false) {
-					var extraPanel = $.CreatePanel("Image", optionMutator, "");
-					extraPanel.SetImage("s2r://panorama/images/custom_game/patreon_small_png.vtex");
-					extraPanel.AddClass("patreonExtra");
+					// var extraPanel = $.CreatePanel("Image", optionMutator, "");
+					// extraPanel.SetImage("s2r://panorama/images/custom_game/patreon_small_png.vtex");
+					// extraPanel.AddClass("patreonExtra");
 
-					extraPanel.SetPanelEvent("onmouseover", function () {
-						$.DispatchEvent(
-							"UIShowCustomLayoutParametersTooltip",
-							extraPanel,
-							"MutatorTooltip",
-							"file://{resources}/layout/custom_game/custom_tooltip.xml",
-							"text=" + "lodPatreonFeature",
-						);
-					});
+					// extraPanel.SetPanelEvent("onmouseover", function () {
+					// 	$.DispatchEvent(
+					// 		"UIShowCustomLayoutParametersTooltip",
+					// 		extraPanel,
+					// 		"MutatorTooltip",
+					// 		"file://{resources}/layout/custom_game/custom_tooltip.xml",
+					// 		"text=" + "lodPatreonFeature",
+					// 	);
+					// });
 					extraPanel.SetPanelEvent("onmouseout", function () {
 						$.DispatchEvent("UIHideCustomLayoutTooltip", extraPanel, "MutatorTooltip");
 					});
@@ -5005,11 +5005,11 @@ function OnPhaseChanged(table_name, key, data) {
 			GameUI.CustomUIConfig().premiumData = data;
 			break;
 
-		case "patrons":
-			GameUI.CustomUIConfig().patrons = data;
-			$("#thankyouButton").visible = isPatron();
-			$("#patreonButton").visible = isPatron() == false;
-			break;
+		//case "patrons":
+			//GameUI.CustomUIConfig().patrons = data;
+			//$("#thankyouButton").visible = isPatron();
+			//$("#patreonButton").visible = isPatron() == false;
+			//break;
 
 		// case 'patreon_features':
 		//     GameUI.CustomUIConfig().patreon_features = data;

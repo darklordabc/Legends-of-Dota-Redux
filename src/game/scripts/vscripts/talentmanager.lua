@@ -20,7 +20,7 @@ function StoreTalents()
     -- Get and order default talents
     local allHeroes = LoadKeyValues('scripts/npc/npc_heroes.txt')
     local abilitiesOverride = LoadKeyValues('scripts/npc/npc_abilities_override.txt')
-    local oldabilities = LoadKeyValues('scripts/npc/npc_abilities_oldversion.txt')
+    -- local oldabilities = LoadKeyValues('scripts/npc/npc_abilities_oldversion.txt')
     for hero,params in pairs(allHeroes) do
         -- Find first talent
         if type(params) == "table" then
@@ -50,7 +50,7 @@ function StoreTalents()
                     local n = talentIndex + i -1
                     local t = math.ceil(i/2)
                     if params["Ability"..n] then
-                        local talentName = oldabilities[params["Ability"..n]]
+                        --local talentName = oldabilities[params["Ability"..n]]
                         if talentName and talentName.TalentRequiredAbility and not TalentList[t][params["Ability"..n]] then
                             TalentList[t][params["Ability"..n]] = talentName.TalentRequiredAbility
                             TalentList["count"..t] = TalentList["count"..t] + 1
