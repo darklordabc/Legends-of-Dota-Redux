@@ -5095,7 +5095,7 @@
         }
         "special_bonus_unique_kunkka_6"
         {
-            "TalentRequiredAbility"                                                   "kunkka_tidebringer"
+            "TalentRequiredAbility"                                                   "kunkka_x_marks_the_spot"
         }
         "special_bonus_unique_kunkka_7"
         {
@@ -5527,7 +5527,7 @@
         }
         "special_bonus_unique_mirana_6"
         {
-            "TalentRequiredAbility"                                                   "mirana_arrow"
+            "TalentRequiredAbility"                                                   "mirana_leap"
         }
         "special_bonus_unique_mirana_7"
         {
@@ -6875,7 +6875,7 @@
         }
         "special_bonus_unique_tiny_7"
         {
-            "TalentRequiredAbility"                                                   "tiny_tree_grab"
+            "TalentRequiredAbility"                                                   "tiny_grow"
         }
 
 
