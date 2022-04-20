@@ -94,13 +94,13 @@ end
 function modifier_flesh_heap_cooldown_reduction:OnCreated( kv )
   if not self:GetAbility() then
     self:GetParent():RemoveModifierByName("modifier_flesh_heap_cooldown_reduction")
-    self:GetParent():CalculateStatBonus()
+    self:GetParent():CalculateStatBonus(true)
     return
   end
   self.flesh_heap_value_buff_amount = self:GetAbility():GetSpecialValueFor( "flesh_heap_value_buff_amount" ) or 0
   if IsServer() then
     self:SetStackCount( self:GetFleshHeapKills() )
-    self:GetParent():CalculateStatBonus()
+    self:GetParent():CalculateStatBonus(true)
   end
 end
 
@@ -109,13 +109,13 @@ end
 function modifier_flesh_heap_cooldown_reduction:OnRefresh( kv )
   if not self:GetAbility() then
     self:GetParent():RemoveModifierByName("modifier_flesh_heap_cooldown_reduction")
-    self:GetParent():CalculateStatBonus()
+    self:GetParent():CalculateStatBonus(true)
     return
   end
   self.flesh_heap_value_buff_amount = self:GetAbility():GetSpecialValueFor( "flesh_heap_value_buff_amount" ) or 0
   if IsServer() then
     self:SetStackCount( self:GetFleshHeapKills() )
-    self:GetParent():CalculateStatBonus()
+    self:GetParent():CalculateStatBonus(true)
   end
 end
 
@@ -169,7 +169,7 @@ function modifier_flesh_heap_cooldown_reduction:OnDeath(keys)
       local hBuff = self:GetCaster():FindModifierByName( "modifier_flesh_heap_cooldown_reduction" )
       if hBuff ~= nil then
         hBuff:SetStackCount( self.nKills )
-        self:GetCaster():CalculateStatBonus()
+        self:GetCaster():CalculateStatBonus(true)
       else
         self:GetCaster():AddNewModifier( self:GetCaster(), self,  "modifier_flesh_heap_cooldown_reduction" , {} )
       end

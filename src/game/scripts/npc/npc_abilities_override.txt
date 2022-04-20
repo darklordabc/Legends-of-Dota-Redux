@@ -311,16 +311,6 @@
 
         "forest_troll_high_priest_heal"
         {
-            "MaxLevel"                                                             "4"
-            "AbilityManaCost"                                                      "5 10 15 20"
-            "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"                                             "FIELD_INTEGER"
-                    "health"                                               "15 30 60 100"
-                }
-            }
             "ReduxFlags"                                                           "support"
             "ReduxPerks"                                                           "support | neutral"
         }
@@ -447,20 +437,6 @@
         }
         "tusk_walrus_kick"
         {
-            "MaxLevel"                                                             "4"
-            "AbilitySpecial"
-            {
-                "03"
-                {
-                    "var_type"                                             "FIELD_INTEGER"
-                    "push_length"                                          "300 500 700 900"
-                }
-                "07"
-                {
-                    "var_type"                                             "FIELD_INTEGER"
-                    "damage"                                               "100 200 300 400"
-                }
-            }
             "ReduxPerks"                                                           "enemyMoving"
             "ReduxCost"                                                            "20"
         }
@@ -5011,7 +4987,10 @@
         {
             "TalentRequiredAbility"                                                   "juggernaut_healing_ward"
         }
-
+        "special_bonus_unique_juggernaut_blade_dance_lifesteal"
+        {
+            "TalentRequiredAbility"                                                   "juggernaut_blade_dance"
+        }
 
 
         "special_bonus_unique_keeper_of_the_light"
@@ -5132,7 +5111,10 @@
         {
             "TalentRequiredAbility"                                                   "legion_commander_duel"
         }
-
+        "special_bonus_unique_legion_commander_8"
+        {
+            "TalentRequiredAbility"                                                   "legion_commander_press_the_attack"
+        }
 
 
         "special_bonus_unique_leshrac_1"
@@ -5475,7 +5457,10 @@
         {
             "TalentRequiredAbility"                                                   "medusa_mystic_snake"
         }
-
+        "special_bonus_unique_medusa_6"
+        {
+            "TalentRequiredAbility"                                                   "medusa_mana_shield"
+        }
 
 
         "special_bonus_unique_meepo"
@@ -5766,7 +5751,7 @@
         }
         "special_bonus_unique_nyx_5"
         {
-            "TalentRequiredAbility"                                                   "nyx_assassin_spiked_carapace"
+            "TalentRequiredAbility"                                                   "nyx_assassin_mana_burn"
         }
         "special_bonus_unique_nyx_6"
         {
@@ -5786,7 +5771,7 @@
         }
         "special_bonus_unique_ogre_magi_3"
         {
-            "TalentRequiredAbility"                                                   "ogre_magi_multicast"
+            "TalentRequiredAbility"                                                   "ogre_magi_fireblast"
         }
         "special_bonus_unique_ogre_magi_4"
         {
@@ -5805,11 +5790,11 @@
         }
         "special_bonus_unique_omniknight_2"
         {
-            "TalentRequiredAbility"                                                   "omniknight_degen_aura"
+            "TalentRequiredAbility"                                                   "omniknight_martyr"
         }
         "special_bonus_unique_omniknight_3"
         {
-            "TalentRequiredAbility"                                                   "omniknight_repel"
+            "TalentRequiredAbility"                                                   "omniknight_hammer_of_purity"
         }
         "special_bonus_unique_omniknight_4"
         {
@@ -5817,7 +5802,7 @@
         }
         "special_bonus_unique_omniknight_5"
         {
-            "TalentRequiredAbility"                                                   "omniknight_repel"
+            "TalentRequiredAbility"                                                   "omniknight_martyr"
         }
         "special_bonus_unique_omniknight_6"
         {
@@ -6156,7 +6141,7 @@
         }
         "special_bonus_unique_riki_2"
         {
-            "TalentRequiredAbility"                                                   "riki_smoke_screen"
+            "TalentRequiredAbility"                                                   "riki_blink_strike"
         }
         "special_bonus_unique_riki_3"
         {
@@ -6168,7 +6153,7 @@
         }
         "special_bonus_unique_riki_5"
         {
-            "TalentRequiredAbility"                                                   "riki_backstab"
+            "TalentRequiredAbility"                                                   "riki_tricks_of_the_trade"
         }
         "special_bonus_unique_riki_6"
         {
@@ -6421,7 +6406,7 @@
         }
         "special_bonus_unique_silencer_7"
         {
-            "TalentRequiredAbility"                                                   "silencer_curse_of_the_silent"
+            "TalentRequiredAbility"                                                   "silencer_global_silence"
         }
 
 
@@ -6520,7 +6505,10 @@
         {
             "TalentRequiredAbility"                                                   "slark_shadow_dance"
         }
-
+        "special_bonus_unique_slark_8"
+        {
+            "TalentRequiredAbility"                                                   "slark_shadow_dance"
+        }
 
 
 
@@ -6658,7 +6646,7 @@
         }
         "special_bonus_unique_sven_3"
         {
-            "TalentRequiredAbility"                                                   "sven_storm_bolt"
+            "TalentRequiredAbility"                                                   "sven_gods_strength"
         }
         "special_bonus_unique_sven_4"
         {
@@ -6755,13 +6743,16 @@
         }
         "special_bonus_unique_terrorblade_4"
         {
-            "TalentRequiredAbility"                                                   "terrorblade_reflection"
+            "TalentRequiredAbility"                                                   "terrorblade_conjure_image"
         }
         "special_bonus_unique_terrorblade_5"
         {
             "TalentRequiredAbility"                                                   "terrorblade_conjure_image"
         }
-
+        "special_bonus_unique_terrorblade_6"
+        {
+            "TalentRequiredAbility"                                                   "terrorblade_reflection"
+        }
 
 
         "special_bonus_unique_tidehunter"
@@ -6954,6 +6945,10 @@
         "special_bonus_unique_troll_warlord_5"
         {
             "TalentRequiredAbility"                                                   "troll_warlord_fervor"
+        }
+        "special_bonus_unique_troll_warlord_6"
+        {
+            "TalentRequiredAbility"                                                   "troll_warlord_whirling_axes"
         }
         "special_bonus_unique_troll_warlord_7"
         {
@@ -7325,7 +7320,7 @@
         }
         "special_bonus_unique_windranger_4"
         {
-            "TalentRequiredAbility"                                                   "windrunner_focusfire"
+            "TalentRequiredAbility"                                                   "windrunner_windrun"
         }
         "special_bonus_unique_windranger_5"
         {
@@ -7337,7 +7332,7 @@
         }
         "special_bonus_unique_windranger_7"
         {
-            "TalentRequiredAbility"                                                   "windrunner_powershot"
+            "TalentRequiredAbility"                                                   "windrunner_windrun"
         }
         "special_bonus_unique_windranger_8"
         {
@@ -7784,7 +7779,7 @@
         }
         "special_bonus_unique_clockwerk_2"
         {
-            "TalentRequiredAbility"                                                   "rattletrap_rocket_flare"
+            "TalentRequiredAbility"                                                   "rattletrap_power_cogs"
         }
         "special_bonus_unique_clockwerk_3"
         {
@@ -7827,7 +7822,7 @@
         }
         "special_bonus_unique_clinkz_4"
         {
-            "TalentRequiredAbility"                                                   "clinkz_burning_army"
+            "TalentRequiredAbility"                                                   "clinkz_strafe"
         }
         "special_bonus_unique_clinkz_5"
         {
@@ -8000,6 +7995,11 @@
         {
             "TalentRequiredAbility"                                                   "bloodseeker_rupture"
         }
+        "special_bonus_unique_bloodseeker_rupture_charges"
+        {
+            "TalentRequiredAbility"                                                   "bloodseeker_rupture"
+        }
+
 
 
         "special_bonus_unique_batrider_1"
@@ -8323,7 +8323,7 @@
         }
         "special_bonus_unique_snapfire_3" 
         {
-            "TalentRequiredAbility" "snapfire_scatterblast"
+            "TalentRequiredAbility" "snapfire_firesnap_cookie"
         }
         "special_bonus_unique_snapfire_4" 
         {
