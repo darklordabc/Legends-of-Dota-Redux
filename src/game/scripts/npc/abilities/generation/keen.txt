@@ -49,17 +49,17 @@
             "04"
             {
                 "var_type"          "FIELD_INTEGER"
-                "mortar_damage"     "60"
+                "mortar_damage"     "90"
             }
             "05"
             {
                 "var_type"          "FIELD_FLOAT"
-                "shot_interval"         "0.6 0.5 0.4 0.3"
+                "shot_interval"         "0.5 0.4 0.3 0.2"
             }
             "06"
             {
                 "var_type"          "FIELD_FLOAT"
-                "duration"          "3.6 4.0 4.0 3.6"
+                "duration"          "3.0 3.2 3.0 2.4"
             }
         }
         "OnUpgrade"
@@ -132,7 +132,7 @@
             "03"
             {
                 "var_type"          "FIELD_INTEGER"
-                "mortar_damage"         "60"
+                "mortar_damage"         "90"
             }
         }
     
@@ -237,7 +237,7 @@
         "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
         "AbilityCooldown"               "60 45 30 15"
         "AbilityManaCost"               "100 110 120 130"
-        "AbilityCastRange"              "160"
+        "AbilityCastRange"              "350"
         "AbilityCastPoint"              "0.3"
         "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_1"
         "AbilityProcsMagicStick"    "1"
@@ -270,7 +270,7 @@
             "04"
             {
                 "var_type"          "FIELD_INTEGER"
-                "shock_null_duration"   "5"
+                "shock_null_duration"   "4"
             }
             "05"
             {
@@ -280,7 +280,7 @@
             "06"
             {
                 "var_type"          "FIELD_INTEGER"
-                "movespeed_slow_percentage" "100" 
+                "movespeed_slow_percentage" "300" 
             }   
         }
     }
@@ -325,7 +325,7 @@
             "04"
             {
                 "var_type"          "FIELD_FLOAT"
-                "transform_time"    "3.0 2.5 2.0"
+                "transform_time"    "2.0 1.5 1.0"
             }
             "05"
             {
@@ -360,7 +360,7 @@
             "11"
             {
                 "var_type"          "FIELD_FLOAT"
-                "seconds_per_attack"    "5.0 4.0 3.0"
+                "seconds_per_attack"    "3.0"
             }
         }
         "OnToggleOn"
@@ -491,8 +491,8 @@
     
         "AbilityCastRange"              "600"
         "AbilityCastPoint"              "0.0"
-        "AbilityCooldown"               "6 5 4 3"
-        "AbilityManaCost"               "40"
+        "AbilityCooldown"               "6 4 2 0"
+        "AbilityManaCost"               "20"
         "HasScepterUpgrade"             "1"
     
         "AbilityModifierSupportBonus"       "35"
@@ -509,7 +509,7 @@
             "01"
             {
                 "var_type"          "FIELD_INTEGER"
-                "damage_per_second" "7 12 17 22"
+                "damage_per_second" "13 17 21 25"
             }
             "02"
             {
@@ -524,7 +524,7 @@
             "04"
             {
                 "var_type"          "FIELD_INTEGER"
-                "slow_duration"     "1"
+                "slow_duration"     "2"
             }
             "05"
             {
@@ -539,7 +539,7 @@
             "07"
             {
                 "var_type"          "FIELD_INTEGER"
-                "cooldown"          "6 5 4 3"
+                "cooldown"          "6 4 2 0"
             }
         }
         "Modifiers"
