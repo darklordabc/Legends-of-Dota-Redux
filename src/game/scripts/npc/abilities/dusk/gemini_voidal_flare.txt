@@ -28,15 +28,15 @@
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"750"
-		"AbilityCastPoint"				"0.3 0.3 0.3 0.3"
+		"AbilityCastPoint"				"0.1 0.1 0.1 0.1"
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"8"
+		"AbilityCooldown"				"4"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"125"
+		"AbilityManaCost"				"60 75 90 105"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -45,7 +45,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage"				"50 100 150 200"
+				"damage"				"50 75 100 125"
 			}
 			"02"
 			{
@@ -55,12 +55,12 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"max_mult"				"4" // the number of times it can apply
+				"max_mult"				"6" // the number of times it can apply
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_bonus"			"40"
+				"damage_bonus"			"34 36 38 40"
 			}
 			"05"
 			{
@@ -70,7 +70,7 @@
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"duration"				"20"
+				"duration"				"60"
 			}
 		}
 
