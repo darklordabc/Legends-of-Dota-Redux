@@ -7,7 +7,7 @@
         "AbilityTextureName"                                                   "custom/angel_arena_summon_hawk"
         "AbilityCooldown"                                                      "60.0"
         "AbilityCastPoint"                                                     "0.0"
-        "AbilityManaCost"                                                      "200 250 280 300"
+        "AbilityManaCost"                                                      "100 120 140 160"
         "MaxLevel"                                                             "4"
         "AbilitySpecial"
         {
