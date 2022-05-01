@@ -13,12 +13,12 @@
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "chance"                                               "10 12 13 14"
+                "chance"                                               "14 18 22 26"
             }
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "lifesteal"                                            "6 8 10 12"
+                "lifesteal"                                            "15 20 25 30"
             }
             "03"
             {
