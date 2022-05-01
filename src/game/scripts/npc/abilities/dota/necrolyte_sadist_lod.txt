@@ -11,12 +11,12 @@
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "mana_regen"                                           "2 4 6 12"
+                "mana_regen"                                           "4 8 12 16"
             }
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "health_regen"                                         "1 2 3 6"
+                "health_regen"                                         "4 6 8 10"
             }
             "03"
             {
@@ -26,7 +26,7 @@
             "04"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "regen_duration"                                       "6"
+                "regen_duration"                                       "8"
             }
         }
         "Modifiers"
