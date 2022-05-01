@@ -310,7 +310,7 @@
             "05"
             {
                 "var_type"              "FIELD_INTEGER"
-                "damage"                "24 42 60 78"
+                "damage"                "25 45 65 85"
                 "LinkedSpecialBonus"    "special_bonus_unique_pangolier_3"
                 "CalculateSpellDamageTooltip"   "0"
             }
@@ -322,7 +322,7 @@
             "04"
             {
                 "var_type"              "FIELD_FLOAT"
-                "attack_interval"       "0.05 0.05 0.05 0.05"
+                "attack_interval"       "0.02 0.02 0.02 0.02"
             }
             "06"
             {
@@ -396,12 +396,12 @@
             "02"
             {
                 "var_type"              "FIELD_FLOAT"
-                "duration"              "10 15 20"
+                "duration"              "7 8 9"
             }
             "03"
             {
                 "var_type"              "FIELD_FLOAT"
-                "duration_scepter"      "15 20 25"
+                "duration_scepter"      "11 12 13"
             }
             "04"
             {
@@ -450,7 +450,7 @@
 
         // Cost
         //-------------------------------------------------------------------------------------------------------------
-        "AbilityManaCost"               "200 350 600"
+        "AbilityManaCost"               "200 350 550"
 
         // Special
         //-------------------------------------------------------------------------------------------------------------
