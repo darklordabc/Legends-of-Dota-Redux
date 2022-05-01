@@ -25,9 +25,9 @@
         "AbilityTextureName"            "custom/veera_evasive_roll2"
         "AbilityProcsMagicStick"        "1"
     
-        "AbilityCastPoint"          "0.2"
-        "AbilityCooldown"           "20 16 12 8"
-        "AbilityManaCost"           "60"
+        "AbilityCastPoint"          "0.0"
+        "AbilityCooldown"           "10 8 6 4"
+        "AbilityManaCost"           "30"
     
         "AbilitySpecial"
         {
@@ -191,7 +191,7 @@
         "AbilityProcsMagicStick"        "1"
     
         "AbilityCastRange"          "150"
-        "AbilityCooldown"           "17 14 11 8"
+        "AbilityCooldown"           "9 8 7 6"
         "AbilityManaCost"           "90"
     
         "AbilitySpecial"
@@ -209,7 +209,7 @@
             "03"
             {
                 "var_type"          "FIELD_INTEGER"
-                "movement_damage"       "5 10 15 20"
+                "movement_damage"       "10 15 20 25"
             }
             "04"
             {
@@ -224,7 +224,7 @@
             "06"
             {
                 "var_type"          "FIELD_FLOAT"
-                "creep_duration"    "10.0"
+                "creep_duration"    "15.0"
             }
         }
         "precache"
@@ -370,9 +370,9 @@
         "AbilityType"               "DOTA_ABILITY_TYPE_ULTIMATE"
         "AbilityTextureName"            "custom/veera_thrill_of_the_hunt"
     
-        "AbilityManaCost"           "120 150 180"
+        "AbilityManaCost"           "120"
         "AbilityCastPoint"          "0.0"
-        "AbilityCooldown"           "140 110 80"
+        "AbilityCooldown"           "120 100 80"
         "AbilityProcsMagicStick"        "1"
         //"HasScepterUpgrade"             "1"
         "ReduxFlags"    "cooldown"
@@ -387,7 +387,7 @@
             "02"
             {
                 "var_type"          "FIELD_INTEGER"
-                "bonus_camera_view"     "600"
+                "bonus_camera_view"     "0"
             }
             "03"
             {
@@ -529,7 +529,7 @@
         "AbilityTextureName"            "custom/veera_toxic_darts"
         "AbilityProcsMagicStick"        "1"
     
-        "AbilityCooldown"       "7.0 6.0 5.0 4.0"
+        "AbilityCooldown"       "5.0 4.0 3.0 2.0"
         "AbilityManaCost"       "20"
     
         "AbilityCastPoint"              "0.15"
@@ -550,7 +550,7 @@
             "03"
             {
                 "var_type"          "FIELD_INTEGER"
-                "speed"             "1200 1300 1400 1500"
+                "speed"             "3000"
             }
             "04"
             {
@@ -560,12 +560,12 @@
             "05"
             {
                 "var_type"          "FIELD_INTEGER"
-                "width"             "100"
+                "width"             "150"
             }
             "06"
             {
                 "var_type"          "FIELD_FLOAT"
-                "charge_replenish_time"     "7.0 6.0 5.0 4.0"
+                "charge_replenish_time"     "5.0 4.0 3.0 2.0"
             }
             "07"
             {
@@ -580,22 +580,22 @@
             "09"
             {
                 "var_type"          "FIELD_INTEGER"
-                "toxic_damage"      "6 8 10 12"
+                "toxic_damage"      "8 10 12 14"
             }
             "09"
             {
                 "var_type"          "FIELD_FLOAT"
-                "armor_reduction_tt"    "1.5"
+                "armor_reduction_tt"    "2.5"
             }
             "10"
             {
                 "var_type"          "FIELD_FLOAT"
-                "stun_duration"     "0.4"
+                "stun_duration"     "0.8"
             }
             "11"
             {
                 "var_type"          "FIELD_FLOAT"
-                "armor_reduction"   "-1.5"
+                "armor_reduction"   "-2.5"
             }
         }
         "precache"
