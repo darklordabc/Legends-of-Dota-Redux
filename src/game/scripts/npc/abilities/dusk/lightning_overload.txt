@@ -16,7 +16,7 @@
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"250"
+		"AbilityCastRange"				"275"
 		"AbilityCastPoint"				"0"
 		
 		// Time		
@@ -43,7 +43,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"radius"					"250"
+				"radius"					"275"
 			}
 			"03"
 			{
@@ -58,7 +58,7 @@
 			"05"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"duration"					"0.75"
+				"duration"					"1.00"
 			}
 		}
 		
