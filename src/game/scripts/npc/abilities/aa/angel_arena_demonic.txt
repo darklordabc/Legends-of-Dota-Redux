@@ -6,8 +6,8 @@
 		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
 		"MaxLevel" "3"
 		"AbilityCastPoint" "0.0"
-		"AbilityCooldown" "140.0"
-		"AbilityManaCost" "200 250 300"
+		"AbilityCooldown" "140.0 125.0 110.0"
+		"AbilityManaCost" "150 175 200"
 		"ReduxPerks"                                                           "demon"
 
 		"AbilitySpecial" {
