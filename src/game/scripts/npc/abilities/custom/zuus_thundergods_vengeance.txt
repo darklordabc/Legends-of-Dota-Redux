@@ -34,17 +34,17 @@
             "05"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "damage"                                               "200 300 400"
+                "damage"                                               "300 420 550"
             }
             "06"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "damage_scepter"                                       "400 500 600"
+                "damage_scepter"                                       "550 650 750"
             }
             "07"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "num_targets"                                          "10"
+                "num_targets"                                          "10 14 18"
             }
             "08"
             {
