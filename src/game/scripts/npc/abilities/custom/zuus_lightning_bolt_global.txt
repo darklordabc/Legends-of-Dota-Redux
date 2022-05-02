@@ -11,9 +11,9 @@
         "FightRecapLevel"                                                      "1"
         "AbilityCastRange"                                                     "0"
         "AbilityCastPoint"                                                     "0.4 0.4 0.4 0.4"
-        "AbilityDamage"                                                        "100 175 275 350"
-        "AbilityCooldown"                                                      "12.0 12.0 12.0 12.0"
-        "AbilityManaCost"                                                      "150 190 230 270"
+        "AbilityDamage"                                                        "125 200 275 350"
+        "AbilityCooldown"                                                      "6.0 6.0 6.0 6.0"
+        "AbilityManaCost"                                                      "120 125 130 135"
         "AbilityModifierSupportValue"                                          "0.1"
         "AbilitySpecial"
         {

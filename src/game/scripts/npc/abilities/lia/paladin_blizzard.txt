@@ -14,8 +14,8 @@
         "LevelsBetweenUpgrades"                                                "2"
         "AbilityCastRange"                                                     "800"
         "AbilityCastPoint"                                                     "0.5"
-        "AbilityCooldown"                                                      "20"
-        "AbilityManaCost"                                                      "150"
+        "AbilityCooldown"                                                      "18 17 16 15"
+        "AbilityManaCost"                                                      "120 130 140 150"
         "AOERadius"                                                            "%radius"
         "AbilitySpecial"
         {
@@ -27,7 +27,7 @@
             "02"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "stun"                                                 "0.10"
+                "stun"                                                 "0.25"
             }
             "03"
             {
@@ -42,7 +42,7 @@
             "05"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "radius"                                               "150 175 200 225"
+                "radius"                                               "275"
             }
             "06"
             {

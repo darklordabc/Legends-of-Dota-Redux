@@ -23,12 +23,12 @@
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "bonus_all_stats"                                      "30 60 90"
+                "bonus_all_stats"                                      "25 45 65"
             }
             "02"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "duration"                                             "8.0 9.0 10.0"
+                "duration"                                             "20"
             }
         }
         "OnSpellStart"

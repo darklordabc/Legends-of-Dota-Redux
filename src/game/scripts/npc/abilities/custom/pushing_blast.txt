@@ -20,7 +20,7 @@
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "damage"                                          "100 150 200 250"
+                "damage"                                          "90 160 230 300"
             }
             "03"
             {
@@ -30,7 +30,7 @@
             "04"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "ms_slow"                                                   "30"
+                "ms_slow"                                                   "30 40 50 60"
             }
            
         }

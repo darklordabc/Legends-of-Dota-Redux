@@ -7,8 +7,8 @@
 		"ScriptFile"					"abilities/overflow/chi_strike_sp/ability.lua"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"				"custom/chi_strike_sp"
-		"AbilityCooldown"               "2.0"
-		"AbilityCastRange"				"1250 1500 1750 2000"
+		"AbilityCooldown"               "1.5"
+		"AbilityCastRange"				"800 900 1000 1100"
 		//"MaxLevel"	"7"
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -22,7 +22,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"range"			"1250 1500 1750 2000"
+				"range"			"800 900 1000 1100"
 			}
 			"02"
 			{

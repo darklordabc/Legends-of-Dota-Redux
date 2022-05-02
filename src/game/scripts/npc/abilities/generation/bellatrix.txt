@@ -38,12 +38,12 @@
         "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_2"
     
         //Time
-        "AbilityCooldown"               "35 30 25 20"
+        "AbilityCooldown"               "20 18 16 14"
         "AbilityDuration"               "1.5"
         "AbilityDamage"                 "120 180 240 300"
     
         //Cost
-        "AbilityManaCost"               "135 150 165 180"
+        "AbilityManaCost"               "120 130 140 150"
     
     
         "AbilitySpecial"
@@ -312,14 +312,14 @@
         "FightRecapLevel"               "1"
     
         // Casting
-        "AbilityCastPoint"              "0.5"
-        "AbilityCastRange"              "450 550 650 750"
+        "AbilityCastPoint"              "0.1"
+        "AbilityCastRange"              "750"
         "AnimationPlaybackRate"         "0.7"
         "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_4"
     
         //Time
         "AbilityCooldown"               "14 13 12 11"
-        "AbilityDuration"               "1.0"
+        "AbilityDuration"               "2.5"
         //Damage
         "AbilityDamage"                 "80 130 180 230"
         //Cost
@@ -341,7 +341,7 @@
             "01"
             {
                 "var_type"          "FIELD_INTEGER"
-                "cast_range"        "450 550 650 750"
+                "cast_range"        "750"
             }
             "02"
             {
@@ -351,7 +351,7 @@
             "03"
             {
                 "var_type"          "FIELD_INTEGER"
-                "end_radius"        "225"
+                "end_radius"        "300"
             }
             "04"
             {
@@ -361,27 +361,27 @@
             "05"
             {
                 "var_type"          "FIELD_FLOAT"
-                "pullback_time"     "0.3"
+                "pullback_time"     "0.5"
             }
             "06"
             {
                 "var_type"          "FIELD_FLOAT"
-                "returned_time"     "0.45"
+                "returned_time"     "0.5"
             }
             "07"
             {
                 "var_type"          "FIELD_FLOAT"
-                "buff_duration"     "1.0"
+                "buff_duration"     "2.5"
             }
             "08"
             {
                 "var_type"          "FIELD_INTEGER"
-                "blood_range"       "450 550 650 750"
+                "blood_range"       "750"
             }
             "09"
             {
                 "var_type"          "FIELD_INTEGER"
-                "vision_radius"     "200"
+                "vision_radius"     "400"
             }
             "10"
             {
@@ -391,7 +391,7 @@
             "11"
             {
                 "var_type"          "FIELD_INTEGER"
-                "animation"         "425 525 625 725"
+                "animation"         "725"
             }
         }
     
@@ -513,7 +513,7 @@
     
         // Casting
         "AbilityCastRange"              "1000 1500 2000"
-        "AbilityCastPoint"              "0.5"
+        "AbilityCastPoint"              "0.3"
         "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_1"
         "AnimationPlaybackRate"         "0.6"
     
@@ -523,7 +523,7 @@
         //Damage
         "AbilityDamage"                 "120 160 200"
         //Cost
-        "AbilityManaCost"               "200"
+        "AbilityManaCost"               "150 175 200"
     
         "Precache"
         {
@@ -577,7 +577,7 @@
             "09"
             {
                 "var_type"          "FIELD_INTEGER"
-                "slow_ms"           "-5 -10 -15"
+                "slow_ms"           "-10 -15 -20"
             }
             "10"
             {
@@ -782,7 +782,7 @@
         "AbilityProcsMagicStick"        "1"
     
         // Casting
-        "AbilityCastPoint"              "0.5"
+        "AbilityCastPoint"              "0.1"
         "AnimationPlaybackRate"         "1.4"
         "AbilityCastRange"              "600"
         "AbilityDamage"                 "10"
@@ -790,7 +790,7 @@
     
             
         //Time
-        "AbilityCooldown"               "16"
+        "AbilityCooldown"               "15 14 13 12"
         "AbilityDuration"               "4"
     
         "Precache"
@@ -807,7 +807,7 @@
             "01"
             {
                 "var_type"          "FIELD_INTEGER"
-                "damage_reduction"  "-25 -30 -35 -40"
+                "damage_reduction"  "-30 -40 -50 -60"
             }
             "02"
             {

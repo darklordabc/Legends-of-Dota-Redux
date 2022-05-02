@@ -177,7 +177,7 @@
         "AbilityCastRange"              "650"
         "AbilityCastPoint"              "0.3"
     
-        "AbilityCooldown"               "20"
+        "AbilityCooldown"               "12"
         "AbilityManaCost"               "80 90 100 110"
         "AbilityProcsMagicStick"        "1"
     
@@ -186,12 +186,12 @@
             "01"
             {
                 "var_type"          "FIELD_INTEGER"
-                "gold_loss_pct"     "10"
+                "gold_loss_pct"     "20"
             }
             "02"
             {
                 "var_type"          "FIELD_INTEGER"
-                "damage_per_gold"   "8 12 16 20"
+                "damage_per_gold"   "4 6 8 10"
             }
             "03"
             {
@@ -356,7 +356,7 @@
         "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
         "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
     
-        "AbilityCooldown"               "65 60 55 50"
+        "AbilityCooldown"               "60 50 40 30"
         "AbilityManaCost"               "150"
     
         "AbilityCastRange"              "500"
@@ -389,12 +389,12 @@
             "05"
             {
                 "var_type"          "FIELD_INTEGER"
-                "radius"            "900"
+                "radius"            "1200"
             }
             "06"
             {
                 "var_type"          "FIELD_INTEGER"
-                "damage_reduction"      "-6 -9 -12 -15"
+                "damage_reduction"      "-5 -10 -15 -20"
             }
             "06"
             {
@@ -595,7 +595,7 @@
             "01"
             {
                 "var_type"          "FIELD_INTEGER"
-                "proc_chance"       "15"
+                "proc_chance"       "16 19 22 25"
             }
             "02"
             {
@@ -807,7 +807,7 @@
         "AbilityCastPoint"              "0.3"
     
         "AbilityCooldown"               "70"
-        "AbilityManaCost"               "150 200 250"
+        "AbilityManaCost"               "150 175 200"
         "AbilityProcsMagicStick"        "1"
     
         "AbilitySpecial"
@@ -830,27 +830,27 @@
             "04"
             {
                 "var_type"          "FIELD_INTEGER"
-                "day_vision"            "350"
+                "day_vision"            "600"
             }
             "05"
             {
                 "var_type"          "FIELD_INTEGER"
-                "night_vision"      "175"
+                "night_vision"      "600"
             }
             "06"
             {
                 "var_type"          "FIELD_INTEGER"
-                "break_radius"              "1800"
+                "break_radius"              "1000"
             }
             "07"
             {
                 "var_type"          "FIELD_INTEGER"
-                "day_vision_penalty"        "-1450"
+                "day_vision_penalty"        "-1200"
             }
             "08"
             {
                 "var_type"          "FIELD_INTEGER"
-                "night_vision_penalty"      "-625"
+                "night_vision_penalty"      "-200"
             }
         }
         "precache"

@@ -5,7 +5,7 @@
 		"ScriptFile"					"abilities/angel_arena_blackstar/nightshadow.lua"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"            "custom/nightshadow"
-		"AbilityCooldown"				"1.5"
+		"AbilityCooldown"				"0.5"
 		"ReduxCost"                                                            "10"
 		"ReduxFlags"														    "cooldown"
 		"ReduxBans"                                                            "aabs_nightshadow_op"
@@ -20,12 +20,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"proc_chance"			"25"
+				"proc_chance"			"10 15 20 25"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown_reduction"			"0.25 0.5 0.75 1"
+				"cooldown_reduction"			"1"
 			}
 		}
 	}
@@ -51,12 +51,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"proc_chance"			"25"
+				"proc_chance"			"20 25 30 35"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown_reduction"			"0.25 0.5 0.75 1"
+				"cooldown_reduction"			"1"
 			}
 		}
 	}
@@ -81,12 +81,12 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"thunderstruck_bonus_attack_range"		"120 220 320 420"
+				"thunderstruck_bonus_attack_range"		"300"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"thunderstruck_magical_damage"		"50 75 100 125"
+				"thunderstruck_magical_damage"		"100 125 150 175"
 			}
 		}
 	}

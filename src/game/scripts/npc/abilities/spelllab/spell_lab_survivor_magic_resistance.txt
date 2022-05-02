@@ -13,7 +13,7 @@
             "01"
             {
                 "var_type"                                             "FIELD_FLOAT"
-        				"bonus"						"1.0 1.5 2.0 2.5"
+        				"bonus"						"1.0 1.75 2.5 3.25"
             }
         }
         "ReduxFlags"                                                           "tank"

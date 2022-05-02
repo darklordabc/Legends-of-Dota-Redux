@@ -14,11 +14,11 @@
 			"particle" "particles/econ/items/faceless_void/faceless_void_mace_of_aeons/fv_chronosphere_aeons.vpcf"
 			"soundfile" "soundevents/game_sounds_heroes/game_sounds_warlock.vsndevts"
 		}
-		"AbilityCastRange" "900"
+		"AbilityCastRange" "1200"
 		"AOERadius" "450"
-		"AbilityCastPoint" "0.3"
-		"AbilityCooldown" "60"
-		"AbilityManaCost" "250"
+		"AbilityCastPoint" "0.1"
+		"AbilityCooldown" "60 50 40"
+		"AbilityManaCost" "150 175 200"
 		"ReduxBans"              "furion_wrath_of_nature"
 
 		"AbilitySpecial" {

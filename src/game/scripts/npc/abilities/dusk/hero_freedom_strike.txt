@@ -51,12 +51,12 @@
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"slow"						"-10 -12 -14 -16"
+				"slow"						"-16 -19 -22 -25"
 			}
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"duration"					"3"
+				"duration"					"4"
 			}
 			"05"
 			{

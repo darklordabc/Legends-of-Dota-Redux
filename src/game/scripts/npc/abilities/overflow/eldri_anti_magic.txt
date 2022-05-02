@@ -7,10 +7,10 @@
 		"ScriptFile"					"abilities/overflow/eldri_anti_magic/ability.lua"
 		"AbilityTextureName"			"custom/eldri_anti_magic"
 		"AbilityCastPoint"              "0.1"
-		"AbilityCooldown"               "80.0"
+		"AbilityCooldown"               "80.0 70.0 60.0 50.0"
 		"AbilityManaCost"               "150"
 		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		 "AbilityCastRange"              "150"
+		 "AbilityCastRange"              "300"
 		"AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_CUSTOM"
 		"AbilityUnitTargetType"         "DOTA_UNIT_TARGET_TREE"
 		"AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
@@ -34,7 +34,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"			"600 800 1000 1200"
+				"radius"			"1200"
 			}
 			"03"
 			{
@@ -44,7 +44,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"stun_duration"				"0.1 0.5 1.0 1.5"
+				"stun_duration"				"0.25 0.50 0.75 1.0"
 			}
 		}
 	}

@@ -11,9 +11,9 @@
 		"ScriptFile"                    "abilities/overflow/channel_earthquake/ability.lua"
 		"AbilityCastRange"              "1000"
 		"AbilityCastPoint"              "0.2"
-		"AbilityCooldown"               "40"
+		"AbilityCooldown"               "40 35 30 25"
 		"AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
-		"AbilityManaCost"               "150"
+		"AbilityManaCost"               "120"
 		"AbilityChannelTime"      "15"
 		"ReduxPerks"                                                           "earth"
 		"AbilitySpecial"
@@ -31,7 +31,7 @@
 			"03"
 			{
 				"var_type"                  "FIELD_INTEGER"
-				"damage"             "50"
+				"damage"             "75"
 			}
 			"04"
 			{
@@ -41,7 +41,7 @@
 			"05"
 			{
 				"var_type"                  "FIELD_FLOAT"
-				"think_interval"             "0.6 0.5 0.4 0.3"
+				"think_interval"             "0.40 0.35 0.30 0.25"
 			}
 			"06"
 			{

@@ -5,10 +5,10 @@
         "BaseClass"                                                            "ability_lua"
         "ScriptFile"                                                           "abilities/spell_lab/storm/missile_storm.lua"
         "AbilityTextureName"                                                   "custom/spell_lab_missile_storm"
-        "AbilityCooldown"                                                      "16"
-        "AbilityManaCost"                                                      "100 120 140 160"
+        "AbilityCooldown"                                                      "16 15 14 13"
+        "AbilityManaCost"                                                      "100 115 130 145"
         "AbilityCastRange"                                                     "750"
-        "AbilityCastPoint"                                                     "0.21"
+        "AbilityCastPoint"                                                     "0.1"
         "AbilityType"                                                          "DOTA_ABILITY_TYPE_BASIC"
         "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
         "HasScepterUpgrade"                                                    "0"
@@ -17,12 +17,12 @@
             "01"
             {
       				"var_type"				"FIELD_INTEGER"
-      				"damage"	"50 125 200 275"
+      				"damage"	"100 150 200 250"
             }
             "02"
             {
                 "var_type"                                             "FIELD_FLOAT"
-        				"duration"						"0.75"
+        				"duration"						"1.0"
             }
         }
         "precache"

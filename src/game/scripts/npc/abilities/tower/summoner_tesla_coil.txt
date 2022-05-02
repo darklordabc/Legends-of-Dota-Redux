@@ -17,7 +17,7 @@
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "slow"                                                 "-20 -40 -60"
+                "slow"                                                 "-30 -45 -60"
             }
             "02"
             {
@@ -27,7 +27,7 @@
             "03"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "interval"                                             "0.60"
+                "interval"                                             "0.4"
             }
         }
         "precache"

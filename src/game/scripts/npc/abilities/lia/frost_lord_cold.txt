@@ -16,11 +16,11 @@
         "MaxLevel"                                                             "3"
         "RequiredLevel"                                                        "1"
         "LevelsBetweenUpgrades"                                                "2"
-        "AoERadius"                                                            "300"
+        "AoERadius"                                                            "400"
         "AbilityCastRange"                                                     "700"
         "AbilityCastPoint"                                                     "0.0"
-        "AbilityCooldown"                                                      "18"
-        "AbilityManaCost"                                                      "100 140 180"
+        "AbilityCooldown"                                                      "14 13 12"
+        "AbilityManaCost"                                                      "100 110 120"
         "AbilitySpecial"
         {
             "01"
@@ -31,7 +31,7 @@
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "add_damage"                                           "10 20 30"
+                "add_damage"                                           "20 30 40"
             }
             "03"
             {
@@ -41,7 +41,7 @@
             "04"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "attack_speed_slow"                                    "-10 -20 -30"
+                "attack_speed_slow"                                    "-20 -30 -40"
             }
             "05"
             {
@@ -51,7 +51,7 @@
             "06"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "radius"                                               "300"
+                "radius"                                               "400"
             }
         }
         "OnSpellStart"

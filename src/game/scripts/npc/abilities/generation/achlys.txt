@@ -25,7 +25,7 @@
 
         // Cost
         //-------------------------------------------------------------------------------------------------------------
-        "AbilityManaCost"               "15"
+        "AbilityManaCost"               "12"
 
         // Special
         //-------------------------------------------------------------------------------------------------------------
@@ -39,7 +39,7 @@
             "02"
             {
                 "var_type"          "FIELD_INTEGER"
-                "slow_per_stack"    "-3 -4 -5 -6"
+                "slow_per_stack"    "-5 -6 -7 -8"
             }
             "03"
             {
@@ -547,12 +547,12 @@
             "01"
             {
                 "var_type"                  "FIELD_INTEGER"
-                "self_damage"               "50 40 30"
+                "self_damage"               "50"
             }
             "02"
             {
                 "var_type"                  "FIELD_INTEGER"
-                "damage_per_health"         "30 45 60"
+                "damage_per_health"         "45 60 75"
             }
             "03"
             {
@@ -562,7 +562,7 @@
             "04"
             {
                 "var_type"                  "FIELD_INTEGER"
-                "burn_per_mana"             "40 60 80"
+                "burn_per_mana"             "60 80 100"
             }
             "05"
             {

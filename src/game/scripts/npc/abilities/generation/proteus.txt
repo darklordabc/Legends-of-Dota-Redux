@@ -53,7 +53,7 @@
             "01"
             {
                 "var_type"              "FIELD_INTEGER"
-                "damage_heal"           "50 100 150 200"
+                "damage_heal"           "100 150 200 250"
             }
             "02"
             {
@@ -283,7 +283,7 @@
 
         // Cost
         //-------------------------------------------------------------------------------------------------------------
-        "AbilityManaCost"               "30 40 45 50"
+        "AbilityManaCost"               "20 25 30 35"
 
         "precache"
         {
@@ -422,12 +422,12 @@
             "01"
             {
                 "var_type"              "FIELD_FLOAT"
-                "cooldown_reduction"        "5"
+                "cooldown_reduction"        "6 8 10"
             }
             "02"
             {
                 "var_type"              "FIELD_INTEGER"
-                "self_bonus_damage"         "17 25 33"
+                "self_bonus_damage"         "10 15 20"
             }
             "03"
             {
@@ -437,7 +437,7 @@
             "04"
             {
                 "var_type"              "FIELD_INTEGER"
-                "duration"              "30 20 15"
+                "duration"              "10"
             }
         }
         "OnUpgrade"

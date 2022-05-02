@@ -5,9 +5,9 @@
         "BaseClass"                                                            "ability_lua"
         "ScriptFile"                                                           "abilities/spell_lab/symbiotic/ability.lua"
         "AbilityTextureName"                                                   "custom/spell_lab_symbiotic"
-        "AbilityCooldown"                                                      "120.0 60.0 35.0"
-        "AbilityManaCost"                                                      "200"
-        "AbilityCastRange"                                                     "150"
+        "AbilityCooldown"                                                      "30.0 20.0 10.0"
+        "AbilityManaCost"                                                      "100"
+        "AbilityCastRange"                                                     "200"
         "AbilityCastPoint"                                                     "0.2"
         "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
         "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
@@ -25,22 +25,22 @@
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "mana_regen"                                           "50 100 150"
+                "mana_regen"                                           "100 200 300"
             }
             "03"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "vis_duration"                                         "3.0 2.5 2.0"
+                "vis_duration"                                         "3.0 2.0 1.0"
             }
             "04"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "magic_armor"                                          "-12"
+                "magic_armor"                                          "-5"
             }
             "05"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "physical_armor"                                       "-6.0"
+                "physical_armor"                                       "-2.0"
             }
             "06"
             {
@@ -50,12 +50,12 @@
             "07"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "range_scepter"                                          "900"
+                "range_scepter"                                          "1200"
             }
             "08"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "stat_scepter"                                          "1"
+                "stat_scepter"                                          "2"
             }
         }
         "precache"

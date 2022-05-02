@@ -9,9 +9,9 @@
 		"FightRecapLevel" "1"
 		"AbilityTextureName" "custom/angel_arena_magic_fire"
 		"AbilityCastRange" "600 600 600 600"
-		"AbilityCastPoint" "0.4 0.4 0.4 0.4"
-		"AbilityCooldown" "30.0 25.0 20.0 15.0"
-		"AbilityManaCost" "150 170 190 210"
+		"AbilityCastPoint" "0.3 0.3 0.3 0.3"
+		"AbilityCooldown" "15.0"
+		"AbilityManaCost" "120 140 160 180"
 		"MaxLevel" "4"
 
 		"AbilitySpecial" {

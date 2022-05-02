@@ -9,16 +9,16 @@
         "AbilityUnitTargetTeam"                                                 "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
         "AbilityUnitTargetType"                                                 "DOTA_UNIT_TARGET_HERO"
         "AbilityCastRange"                                                      "10000"
-        "AbilityCastPoint"                                                      "0.3"
-        "AbilityCooldown"                                                       "5"
-        "AbilityManaCost"                                                       "120 130 140 150"
+        "AbilityCastPoint"                                                      "0.1"
+        "AbilityCooldown"                                                       "8 7 6 5"
+        "AbilityManaCost"                                                       "100 110 120 130"
 
         "AbilitySpecial"
         {
             "01"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "projectile_speed"                                              "1000"
+                "projectile_speed"                                              "2000"
             }
             "02"
             {
@@ -28,7 +28,7 @@
             "03"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "crater_damage"                                              "75 125 175 225"
+                "crater_damage"                                              "75 150 225 300"
             }
             "04"
             {

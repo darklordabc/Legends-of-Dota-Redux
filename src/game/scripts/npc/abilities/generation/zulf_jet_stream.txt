@@ -8,10 +8,10 @@
         "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
         "AbilityTextureName"                                                   "custom/zulf_jet_stream"
         "AbilityProcsMagicStick"                                               "1"
-        "AbilityCastPoint"                                                     "0.4 0.4 0.4 0.4"
+        "AbilityCastPoint"                                                     "0.2 0.2 0.2 0.2"
         "AbilityCastRange"                                                     "1500 1750 2000 2250"
-        "AbilityCooldown"                                                      "55 50 45 40"
-        "AbilityManaCost"                                                      "140 150 160 170"
+        "AbilityCooldown"                                                      "35 30 25 20"
+        "AbilityManaCost"                                                      "140"
         "AbilitySpecial"
         {
             "01"
@@ -32,27 +32,27 @@
             "04"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "speed_buff"                                           "10"
+                "speed_buff"                                           "15"
             }
             "05"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "speed_debuff"                                         "-10"
+                "speed_debuff"                                         "-15"
             }
             "06"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "speed_increase"                                       "2 3 4 5"
+                "speed_increase"                                       "3 4 5 6"
             }
             "07"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "speed_decrease"                                       "-2 -3 -4 -5"
+                "speed_decrease"                                       "-3 -4 -5 -6"
             }
             "08"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "max_speed"                                            "10"
+                "max_speed"                                            "60"
             }
         }
         "precache"

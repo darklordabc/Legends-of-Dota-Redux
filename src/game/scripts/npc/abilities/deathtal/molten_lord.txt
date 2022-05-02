@@ -30,8 +30,8 @@
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
-		"AbilityCastRange"				"200"
-		"AbilityCooldown"				"5.0 5.0 5.0 5.0"
+		"AbilityCastRange"				"400"
+		"AbilityCooldown"				"5.0 4.5 4.0 3.5"
 		"AbilityManaCost"				"30 45 50 65"
 		
 		// Special
@@ -56,7 +56,7 @@
 			"04"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"ablaze_duration"				"6"
+				"ablaze_duration"				"8"
 			}
 		}
 
@@ -151,7 +151,7 @@
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"				"0.3 0.3 0.3 0.3"
-		"AbilityCooldown"				"20.0 18.0 16.0 14.0"
+		"AbilityCooldown"				"20.0 17.0 14.0 11.0"
 		"AbilityManaCost"				"80.0 90.0 100.0 110.0"
 		"AbilityCastRange"				"700"
 
@@ -177,7 +177,7 @@
 			"04"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"mini_stun"					"0.2"
+				"mini_stun"					"0.7"
 			}
 			"05"
 			{
@@ -187,7 +187,7 @@
 			"06"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"ablaze_duration"			"6"
+				"ablaze_duration"			"8"
 			}
 		}
 
@@ -291,7 +291,7 @@
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
-		"AbilityCooldown"				"30.0 28.0 26.0 24.0"
+		"AbilityCooldown"				"30.0 26.0 22.0 18.0"
 		"AbilityManaCost"				"0.0"
 
 		// Special
@@ -306,7 +306,7 @@
 			"02"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"ablaze_duration"	"6"
+				"ablaze_duration"	"8"
 			}
 		}
 
@@ -444,8 +444,8 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"				"0.2"
 		"AbilityCastRange"				"1500 2000 2500"
-		"AbilityCooldown"				"160.0 130.0 100.0"
-		"AbilityManaCost"				"200.0 250.0 300.0"
+		"AbilityCooldown"				"120.0 110.0 100.0"
+		"AbilityManaCost"				"150.0 175.0 200.0"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -474,7 +474,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"width"					"100"
+				"width"					"150"
 			}
 			"06"
 			{
@@ -519,12 +519,12 @@
 			"14"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"stack_duration"		"20"
+				"stack_duration"		"30"
 			}
 			"15"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"ablaze_duration"		"6"
+				"ablaze_duration"		"8"
 			}
 		}
 

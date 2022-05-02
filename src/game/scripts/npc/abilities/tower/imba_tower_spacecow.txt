@@ -19,12 +19,12 @@
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "knockback_distance"                                   "450 600 750"
+                "knockback_distance"                                   "450"
             }
             "03"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "knockback_duration"                                   "0.6"
+                "knockback_duration"                                   "1.0"
             }
         }
         "Modifiers"

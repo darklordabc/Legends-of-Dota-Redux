@@ -26,7 +26,7 @@
         "AbilityTextureName"        "custom/tenebris_blood_ward"
  
         //Casting
-        "AbilityCastPoint"      "0.5"
+        "AbilityCastPoint"      "0.3"
         "AbilityCastRange"      "250"
         "AbilityCooldown"       "35.0"
         "AbilityManaCost"       "100"
@@ -38,7 +38,7 @@
             "01"
             {
                 "var_type"      "FIELD_FLOAT"
-                "dps"           "10 20 30 40"
+                "dps"           "20 30 40 50"
             }
             "02"
             {
@@ -48,12 +48,12 @@
             "03"
             {
                 "var_type"      "FIELD_INTEGER"
-                "radius"        "1000 1200 1400 1600"
+                "radius"        "1600"
             }
             "04"
             {
                 "var_type"      "FIELD_INTEGER"
-                "duration"      "30"
+                "duration"      "40"
             }
             "05" //Must be double attacks to destroy
             {
@@ -372,7 +372,7 @@
         "AbilityTextureName"        "custom/tenebris_fade_strike"
  
         //Casting
-        "AbilityCastRange"      "128"
+        "AbilityCastRange"      "150"
         "AbilityCooldown"       "3"
         "AbilityManaCost"       "25 30 35 40"
  
@@ -382,7 +382,7 @@
             "01"
             {
                 "var_type"      "FIELD_INTEGER"
-                "bonus_damage"      "25 40 55 70"
+                "bonus_damage"      "45 60 75 90"
             }
             "02"
             {
@@ -392,7 +392,7 @@
             "03"
             {
                 "var_type"      "FIELD_FLOAT"
-                "duration_debuff"   "3.0"
+                "duration_debuff"   "1.5"
             }
         }
  
@@ -504,7 +504,7 @@
             "01"
             {
                 "var_type"      "FIELD_FLOAT"
-                "ias"           "0.75 1.0 1.25 1.5"
+                "ias"           "1.0 1.2 1.4 1.6"
             }
             "02"
             {
@@ -514,7 +514,7 @@
             "03"
             {
                 "var_type"      "FIELD_FLOAT"
-                "duration_max"      "1.0 1.4 1.8 2.2"
+                "duration_max"      "2.0 2.4 2.8 3.2"
             }
         }
  

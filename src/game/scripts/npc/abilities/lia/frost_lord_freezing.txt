@@ -6,7 +6,7 @@
         "AbilityTextureName"                                                   "custom/frost_lord_freezing"
         "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
         "AbilityUnitDamageType"                                                "DAMAGE_TYPE_MAGICAL"
-        "AbilityDamage"                                                        "25 50 100 150"
+        "AbilityDamage"                                                        "75 100 125 150"
         "MaxLevel"                                                             "4"
         "RequiredLevel"                                                        "1"
         "LevelsBetweenUpgrades"                                                "2"
@@ -20,12 +20,12 @@
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "freezing_chance"                                      "9 10 11 12"
+                "freezing_chance"                                      "12 18 24 30"
             }
             "02"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "stun_hero_duration"                                   "0.25 0.5 1.0 1.5"
+                "stun_hero_duration"                                   "0.45 0.50 0.55 0.60"
             }
         }
         "Modifiers"
