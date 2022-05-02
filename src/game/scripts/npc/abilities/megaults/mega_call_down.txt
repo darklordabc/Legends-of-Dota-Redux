@@ -25,7 +25,7 @@
         
         // Cost
         //-------------------------------------------------------------------------------------------------------------
-        "AbilityManaCost"               "500"
+        "AbilityManaCost"               "300"
         
         // Special
         //-------------------------------------------------------------------------------------------------------------
@@ -49,17 +49,17 @@
             "04"
             {
                 "var_type"                  "FIELD_INTEGER"
-                "damage_second"             "300"
+                "damage_second"             "600"
             }
             "05"
             {
                 "var_type"                  "FIELD_FLOAT"
-                "slow_first"                "30"
+                "slow_first"                "60"
             }
             "06"
             {
                 "var_type"                  "FIELD_FLOAT"
-                "slow_second"               "60"
+                "slow_second"               "100"
             }
             "07"
             {
@@ -74,7 +74,7 @@
             "09"
             {
                 "var_type"                  "FIELD_INTEGER"
-                "damage_second_scepter"     "300"
+                "damage_second_scepter"     "600"
             }
         }
     }
