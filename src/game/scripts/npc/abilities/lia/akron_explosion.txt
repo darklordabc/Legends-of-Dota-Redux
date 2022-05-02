@@ -6,10 +6,10 @@
         "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
         "AbilityUnitDamageType"                                                "DAMAGE_TYPE_MAGICAL"
         "AbilityTextureName"                                                   "custom/golem_explosion"
-        "AbilityCooldown"                                                      "25 22 20 18"
+        "AbilityCooldown"                                                      "20 18 16 14"
         "AbilityCastRange"                                                     "0"
         "AbilityManaCost"                                                      "70 80 90 100"
-        "AoERadius"                                                            "225"
+        "AoERadius"                                                            "275"
         "MaxLevel"                                                             "4"
         "AbilityCastPoint"                                                     "0.2"
         "precache"
@@ -22,12 +22,12 @@
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "radius"                                               "225"
+                "radius"                                               "275"
             }
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "hp_prc_dmg"                                           "5 10 15 20"
+                "hp_prc_dmg"                                           "10 14 18 22"
             }
             "03"
             {
