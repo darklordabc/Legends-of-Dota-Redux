@@ -15,9 +15,9 @@
         "MaxLevel"                                                             "4"
         "AbilityProcsMagicStick"                                               "1"
         "CastFilterRejectCaster"                                               "1"
-        "AbilityCooldown"                                                      "30 28 26 24"
+        "AbilityCooldown"                                                      "24 21 18 15"
         "AbilityManaCost"                                                      "100"
-        "AbilityCastRange"                                                     "800 1000 1300 1600"
+        "AbilityCastRange"                                                     "800 1200 1600 2000"
         "AbilityCastPoint"                                                     ".75"
         "precache"
         {
@@ -34,7 +34,7 @@
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "cast_range"                                           "800 1000 1300 1600"
+                "cast_range"                                           "800 1200 1600 2000"
             }
             "03"
             {
