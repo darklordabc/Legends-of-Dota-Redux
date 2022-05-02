@@ -15,7 +15,7 @@
         "MaxLevel"                                                             "4"
         "AbilityProcsMagicStick"                                               "1"
         "CastFilterRejectCaster"                                               "1"
-        "AbilityCooldown"                                                      "24 21 18 15"
+        "AbilityCooldown"                                                      "16 14 12 10"
         "AbilityManaCost"                                                      "100"
         "AbilityCastRange"                                                     "800 1200 1600 2000"
         "AbilityCastPoint"                                                     ".75"
