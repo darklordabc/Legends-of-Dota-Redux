@@ -14,7 +14,7 @@
 		
 			// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.2 0.2 0.2 0.2"
+		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
 		"AbilityCastRange"				"875"
 		"AbilityCooldown"				"1"
 		
@@ -33,7 +33,7 @@
 			"01"
 			{
 				"var_type"								"FIELD_FLOAT"
-				"duration"								"0.15 0.30 0.45 0.60"
+				"duration"								"0.4 0.6 0.8 1.00"
 			}
 			"02"
 			{
@@ -48,7 +48,7 @@
 			"04"
 			{
 				"var_type"								"FIELD_FLOAT"
-				"mark_slow_duration"					"0.75"
+				"mark_slow_duration"					"1.75"
 			}
 			"05"
 			{

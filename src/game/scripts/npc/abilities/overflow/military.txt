@@ -19,12 +19,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"attack_speed"			"10 25 40 55 70 85 100"
+				"attack_speed"			"10 30 50 70 90 110 130"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"gold"		"100 100 200 200 400 400 500"
+				"gold"		"150 200 250 300 350 400 450"
 			}
 		}
 	}

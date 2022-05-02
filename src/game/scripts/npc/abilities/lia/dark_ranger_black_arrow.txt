@@ -10,9 +10,9 @@
         "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
         "AbilityUnitDamageType"                                                "DAMAGE_TYPE_MAGICAL"
         "AbilityUnitTargetFlags"                                               "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-        "AbilityCastRange"                                                     "550"
+        "AbilityCastRange"                                                     "600"
         "AbilityManaCost"                                                      "8"
-        "AbilityDamage"                                                        "10 20 30 40"
+        "AbilityDamage"                                                        "15 25 35 45"
         "precache"
         {
             "particle"                                                     "particles/status_fx/status_effect_gods_strength.vpcf"
@@ -38,7 +38,7 @@
             "04"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "outgoing_damage"                                      "50"
+                "outgoing_damage"                                      "140"
             }
             "05"
             {

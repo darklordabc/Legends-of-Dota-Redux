@@ -7,7 +7,7 @@
         "AbilityTextureName"                                                   "custom/angel_arena_darkrage"
         "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
         "AbilityCooldown"                                                      "120.0 110.0 100.0"
-        "AbilityManaCost"                                                      "200 250 300"
+        "AbilityManaCost"                                                      "200"
         "MaxLevel"                                                             "3"
         "precache"
         {
@@ -29,7 +29,7 @@
             "03"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "duration"                                             "3 4 5"
+                "duration"                                             "10 12 14"
             }
         }
         "OnSpellStart"

@@ -14,7 +14,7 @@
         "LevelsBetweenUpgrades"                                                "2"
         "AbilityCastRange"                                                     "4000"
         "AbilityCastPoint"                                                     "0.3"
-        "AbilityCooldown"                                                      "20.0"
+        "AbilityCooldown"                                                      "10.0"
         "AbilityManaCost"                                                      "50 75 100 125"
         "AOERadius"                                                            "%radius"
         "AbilityChannelTime"                                                   "1.01"
@@ -48,12 +48,12 @@
             "05"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "projectile_speed"                                     "550 650 750 950"
+                "projectile_speed"                                     "950"
             }
             "06"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "projectile_radius"                                    "100"
+                "projectile_radius"                                    "125"
             }
             "07"
             {

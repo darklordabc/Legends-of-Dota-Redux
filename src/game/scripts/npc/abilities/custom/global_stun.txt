@@ -9,8 +9,8 @@
         "AbilityTextureName"                                                   "custom/global_stun"
         "MaxLevel"                                                             "3"
         "AbilityCastPoint"                                                     "1"
-        "AbilityCooldown"                                                      "100.0 80.0 60.0 40.0"
-        "AbilityDamage"                                                        "25"
+        "AbilityCooldown"                                                      "80.0 60.0 40.0"
+        "AbilityDamage"                                                        "100 150 200"
         "AbilityManaCost"                                                      "100"
         "AbilitySpecial"
         {
@@ -22,12 +22,12 @@
             "02"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "non_hero_stun_duration"                               "3.0"
+                "non_hero_stun_duration"                               "5.0"
             }
             "03"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "hero_stun_duration"                                   "2.0"
+                "hero_stun_duration"                                   "2.0 3.0 4.0"
             }
         }
         "ReduxFlags"                                                           "stun"

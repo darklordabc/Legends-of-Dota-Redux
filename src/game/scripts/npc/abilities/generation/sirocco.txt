@@ -35,7 +35,7 @@
         }
 
         "AbilityCastPoint"              "0.12 0.12 0.12 0.12"
-        "AbilityCooldown"               "24.0"
+        "AbilityCooldown"               "24.0 21.0 18.0 15.0"
         "AbilityManaCost"               "125"
         "AbilityCastRange"              "750"
 
@@ -58,7 +58,7 @@
             "03"
             {
                 "var_type"              "FIELD_FLOAT"
-                "ministun_duration"     "0.25"
+                "ministun_duration"     "0.6"
             }
             "04"
             {
@@ -68,7 +68,7 @@
             "05"
             {
                 "var_type"              "FIELD_INTEGER"
-                "radius"                "425 450 475 500"
+                "radius"                "450 500 550 600"
             }
             "06"
             {
@@ -222,10 +222,10 @@
         "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_4"
         "AbilityTextureName"            "custom/mirage"
 
-        "AbilityCastRange"              "350"
+        "AbilityCastRange"              "600"
         "AbilityCastPoint"              "0.35 0.35 0.35 0.35"
 
-        "AbilityCooldown"               "19.0 14.0 9.0 4.0"
+        "AbilityCooldown"               "13.0 10.0 7.0 4.0"
         "AbilityProcsMagicStick"        "1"
         "ReduxFlags"                                                           "invis"
 
@@ -251,7 +251,7 @@
             "02"
             {
                 "var_type"                  "FIELD_INTEGER"
-                "illusion_taken"            "475"
+                "illusion_taken"            "200"
             }
             "03"
             {
@@ -261,7 +261,7 @@
             "04"
             {
                 "var_type"                  "FIELD_INTEGER"
-                "illusion_taken_tt"         "575"
+                "illusion_taken_tt"         "300"
             }
             "05"
             {
@@ -393,12 +393,12 @@
             "01"
             {
                 "var_type"          "FIELD_INTEGER"
-                "aoe"               "750"
+                "aoe"               "1200"
             }
             "02"
             {
                 "var_type"          "FIELD_INTEGER"
-                "resistance_loss"   "-3 -4 -5 -6"
+                "resistance_loss"   "-4 -5 -6 -7"
             }  
         }
         "Modifiers"
@@ -467,10 +467,10 @@
 
         "AbilityTextureName"            "custom/desert_curse"
 
-        "AbilityCastRange"              "600"
+        "AbilityCastRange"              "900"
         "AbilityCastPoint"              "0.12 0.12 0.12 0.12"
 
-        "AbilityCooldown"               "130.0 100.0 70.0"
+        "AbilityCooldown"               "80.0 70.0 60.0"
         "AbilityProcsMagicStick"        "1"
         "HasScepterUpgrade"             "1"
 
@@ -484,7 +484,7 @@
             "soundfile"     "soundevents/game_sounds_heroes/game_sounds_sirocco.vsndevts"
         }
 
-        "AbilityManaCost"               "150 325 500"
+        "AbilityManaCost"               "150 200 250"
         "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
         "MaxLevel"                      "3"
 
@@ -493,17 +493,17 @@
             "01"
             {
                 "var_type"                  "FIELD_INTEGER"
-                "projectle_speed"           "600"
+                "projectle_speed"           "900"
             }
             "02"
             {
                 "var_type"                  "FIELD_INTEGER"
-                "mana_damage_lost"          "20 30 40"
+                "mana_damage_lost"          "30 45 60"
             }
             "03"
             {
                 "var_type"                  "FIELD_INTEGER"
-                "attack_lost"           "-10 -15 -20"
+                "attack_lost"           "-15 -20 -25"
             }
             "04"
             {
@@ -513,7 +513,7 @@
             "05"
             {
                 "var_type"                  "FIELD_INTEGER"
-                "blast_radius"              "225"
+                "blast_radius"              "300"
             }
             "06"
             {

@@ -47,12 +47,12 @@
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"radius"					"700 800 900"
+				"radius"					"700"
 			}
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"speed"						"200"  // 1.2 second to reach radius
+				"speed"						"350"  // 1.2 second to reach radius
 			}
 		}
 	}

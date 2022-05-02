@@ -14,7 +14,7 @@
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "hp_regen"                                             "3 6 12"
+                "hp_regen"                                             "8 14 20"
             }
             "02"
             {

@@ -15,17 +15,17 @@
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "heal_radius"                                          "325"
+                "heal_radius"                                          "600"
             }
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "hero_max_hp_heal"                                     "10 20 30 40"
+                "hero_max_hp_heal"                                     "20 40 60 80"
             }
             "03"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "non_hero_max_hp_heal"                                 "10 15 20 25"
+                "non_hero_max_hp_heal"                                 "15 20 25 30"
             }
         }
         "ReduxFlags"                                                           "dota_custom"

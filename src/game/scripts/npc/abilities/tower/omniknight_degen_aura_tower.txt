@@ -30,7 +30,7 @@
             "04"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "stack_reduction_pct"                                  "1 2 3"
+                "stack_reduction_pct"                                  "2 4 6"
             }
         }
         "precache"

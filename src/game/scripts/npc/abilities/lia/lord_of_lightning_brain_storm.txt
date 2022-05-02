@@ -14,24 +14,24 @@
         "RequiredLevel"                                                        "6"
         "AbilityCastRange"                                                     "800"
         "AbilityCastPoint"                                                     "0"
-        "AbilityCooldown"                                                      "80 70 60"
-        "AbilityManaCost"                                                      "150 200 250"
+        "AbilityCooldown"                                                      "50 45 40"
+        "AbilityManaCost"                                                      "150 175 200"
         "AbilitySpecial"
         {
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "reduce_spell_damage_pct"                              "-40"
+                "reduce_spell_damage_pct"                              "-40 -55 -70"
             }
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "reduce_movement_speed"                                "-20"
+                "reduce_movement_speed"                                "-25 -30 -35"
             }
             "03"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "duration"                                             "6 8 10"
+                "duration"                                             "8"
             }
             "04"
             {

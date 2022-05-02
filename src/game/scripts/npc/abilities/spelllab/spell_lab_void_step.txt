@@ -5,7 +5,7 @@
         "BaseClass"                                                            "ability_lua"
         "ScriptFile"                                                           "abilities/spell_lab/void_step/void_step.lua"
         "AbilityTextureName"                                                   "custom/spell_lab_void_step"
-        "AbilityCooldown"                                                      "45 30 15"
+        "AbilityCooldown"                                                      "24 18 12"
         "AbilityManaCost"                                                      "0"
         "AbilityCastRange"                                                     "0"
         "AbilityCastPoint"                                                     "0.0"
@@ -17,7 +17,7 @@
             "01"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "duration"						"0.5"
+                "duration"						"1.0"
             }
             "02"
             {

@@ -13,7 +13,7 @@
             "01"
             {
                 "var_type"                                             "FIELD_FLOAT"
-        				"bonus"						"0.025 0.05 0.075 0.1"
+        				"bonus"						"0.5 1.0 1.5 2.0"
             }
         }
         "ReduxFlags"                                                           "mana"

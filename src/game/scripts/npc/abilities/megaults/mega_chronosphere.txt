@@ -17,16 +17,16 @@
         
         // Casting
         //-------------------------------------------------------------------------------------------------------------
-        "AbilityCastRange"              "600"
-        "AbilityCastPoint"              "0.35"
+        "AbilityCastRange"              "1500"
+        "AbilityCastPoint"              "0.1"
 
         // Time     
         //-------------------------------------------------------------------------------------------------------------
-        "AbilityCooldown"               "300"
+        "AbilityCooldown"               "150"
 
         // Cost
         //-------------------------------------------------------------------------------------------------------------
-        "AbilityManaCost"               "450"
+        "AbilityManaCost"               "350"
 
         // Stats
         //-------------------------------------------------------------------------------------------------------------
@@ -39,22 +39,22 @@
             "01"
             {
                 "var_type"              "FIELD_INTEGER"
-                "radius"                "1500"
+                "radius"                "800"
             }
             "02"
             {
                 "var_type"              "FIELD_FLOAT"
-                "duration"              "5.0"
+                "duration"              "10.0"
             }
             "03"
             {
                 "var_type"              "FIELD_FLOAT"
-                "duration_scepter"      "5.0"
+                "duration_scepter"      "10.0"
             }
             "04"
             {
                 "var_type"              "FIELD_FLOAT"
-                "cooldown_scepter"      "200"
+                "cooldown_scepter"      "100"
             }
             "05"
             {

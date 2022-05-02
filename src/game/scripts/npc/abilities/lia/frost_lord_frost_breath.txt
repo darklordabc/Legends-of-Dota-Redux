@@ -18,7 +18,7 @@
         }
         "AbilityCastRange"                                                     "%range"
         "AbilityCastPoint"                                                     "0.0 0.0 0.0 0.0"
-        "AbilityCooldown"                                                      "14"
+        "AbilityCooldown"                                                      "14 13 12"
         "AbilityManaCost"                                                      "90 110 130"
         "AbilitySpecial"
         {
@@ -30,7 +30,7 @@
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "damage_per_second"                                    "9 18 36"
+                "damage_per_second"                                    "18 27 36"
             }
             "03"
             {
@@ -40,7 +40,7 @@
             "04"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "end_radius"                                           "150"
+                "end_radius"                                           "250"
             }
             "05"
             {

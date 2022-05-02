@@ -66,7 +66,7 @@
             "10"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "burn_dps"                                             "32.5"
+                "burn_dps"                                             "50"
             }
             "01"
             {
@@ -106,12 +106,12 @@
             "08"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "main_damage"                                          "162.5"
+                "main_damage"                                          "200"
             }
             "09"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "burn_duration"                                        "3.0"
+                "burn_duration"                                        "4.0"
             }
         }
     }

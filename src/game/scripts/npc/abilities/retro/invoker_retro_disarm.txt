@@ -12,9 +12,9 @@
         "FightRecapLevel"                                                      "1"
         "MaxLevel"                                                             "4"
         "AbilityProcsMagicStick"                                               "1"
-        "AbilityCooldown"                                                      "25"
-        "AbilityManaCost"                                                      "100 75 100 125"
-        "AbilityCastRange"                                                     "500"
+        "AbilityCooldown"                                                      "20 17 14 11"
+        "AbilityManaCost"                                                      "100"
+        "AbilityCastRange"                                                     "800"
         "precache"
         {
             "particle"                                                     "particles/units/heroes/hero_invoker/invoker_retro_disarm_impact.vpcf"
@@ -24,12 +24,12 @@
             "01"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "duration"                                             "2 3 4 5"
+                "duration"                                             "3 4 5 6"
             }
             "02"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "cast_range"                                           "600"
+                "cast_range"                                           "800"
             }
             "03"
             {

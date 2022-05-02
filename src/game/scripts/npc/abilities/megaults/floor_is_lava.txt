@@ -9,8 +9,8 @@
         "AbilityTextureName"                                                   "jakiro_macropyre"
         "RequiredLevel"                                                        "24"
         "AbilityCastPoint"                                                     "0"
-        "AbilityCooldown"                                                      "300"
-        "AbilityManaCost"                                                      "1000"
+        "AbilityCooldown"                                                      "150"
+        "AbilityManaCost"                                                      "500"
         "AbilityModifierSupportValue"                                          "0.0"
         "ReduxCost"                                                            "120"
 
@@ -35,7 +35,7 @@
             "02"
             {
                 "var_type"                  "FIELD_INTEGER"
-                "damage"                    "50"
+                "damage"                    "125"
             }
             "03"
             {
@@ -94,7 +94,7 @@
             "01"
             {
                 "var_type"                  "FIELD_INTEGER"
-                "damage"                    "50"
+                "damage"                    "125"
             }
             "02"
             {
@@ -104,7 +104,7 @@
             "03"
             {
                 "var_type"                  "FIELD_INTEGER"
-                "path_radius"               "270"
+                "path_radius"               "400"
             }
             "04"
             {
@@ -124,7 +124,7 @@
             "07"
             {
                 "var_type"                  "FIELD_INTEGER"
-                "damage_scepter"            "75"
+                "damage_scepter"            "200"
             }
             "08"
             {

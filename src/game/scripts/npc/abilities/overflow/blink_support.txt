@@ -7,9 +7,9 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityCastRange"				"0"
-		"AbilityCastPoint"				"0.3"
+		"AbilityCastPoint"				"0.0"
 		"AbilityCooldown"				"10.0"
-		"AbilityManaCost"				"140"
+		"AbilityManaCost"				"100"
 		"HasScepterUpgrade" "1"
 		"ReduxPerks"                                                           "mobility | blink"
         //

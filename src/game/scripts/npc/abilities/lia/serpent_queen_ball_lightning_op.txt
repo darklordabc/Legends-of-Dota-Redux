@@ -13,8 +13,8 @@
         "AbilityCastAnimation"                                                 "ACT_DOTA_CAST_ABILITY_3"
         "AbilityCastRange"                                                     "800"
         "AbilityCastPoint"                                                     "0.3"
-        "AbilityCooldown"                                                      "42"
-        "AbilityManaCost"                                                      "100 125 150 200"
+        "AbilityCooldown"                                                      "20"
+        "AbilityManaCost"                                                      "100 125 150 175"
         "precache"
         {
             "particle"                                                     "particles/units/heroes/hero_stormspirit/stormspirit_base_attack_explosion.vpcf"
@@ -25,7 +25,7 @@
             "10"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "max_locusts_on_target"                                "7"
+                "max_locusts_on_target"                                "18"
             }
             "01"
             {
@@ -45,7 +45,7 @@
             "04"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "locusts_speed"                                        "500"
+                "locusts_speed"                                        "700"
             }
             "05"
             {
@@ -60,7 +60,7 @@
             "07"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "delay_between_locusts"                                "0.2"
+                "delay_between_locusts"                                "0.1"
             }
             "08"
             {

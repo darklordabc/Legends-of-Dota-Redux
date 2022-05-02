@@ -12,21 +12,21 @@
             "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_leshrac.vsndevts"
             "particle"                                                     "particles/units/heroes/hero_leshrac/leshrac_pulse_nova_ambient.vpcf"
         }
-        "AbilityCooldown"                                                      "30.0"
+        "AbilityCooldown"                                                      "30.0 28.0 26.0 24.0"
         "AbilityCastPoint"                                                     "0.0 0.0 0.0 0.0"
-        "AbilityManaCost"                                                      "110 130 150 190"
+        "AbilityManaCost"                                                      "110 120 130 140"
         "MaxLevel"                                                             "4"
         "AbilitySpecial"
         {
             "01"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "duration"                                             "2.0 3.0 3.0 4.0"
+                "duration"                                             "4.0"
             }
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "damage"                                               "120 180 250 310"
+                "damage"                                               "90 160 230 300"
             }
             "03"
             {

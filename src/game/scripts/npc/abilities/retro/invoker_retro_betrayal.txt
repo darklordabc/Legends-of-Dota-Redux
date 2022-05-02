@@ -13,8 +13,8 @@
         "FightRecapLevel"                                                      "1"
         "MaxLevel"                                                             "3"
         "AbilityProcsMagicStick"                                               "1"
-        "AbilityCooldown"                                                      "60"
-        "AbilityManaCost"                                                      "200"
+        "AbilityCooldown"                                                      "30 25 20 15"
+        "AbilityManaCost"                                                      "100"
         "AbilityCastRange"                                                     "600"
         "precache"
         {
