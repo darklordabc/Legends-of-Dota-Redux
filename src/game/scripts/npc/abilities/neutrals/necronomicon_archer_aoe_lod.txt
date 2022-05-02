@@ -10,7 +10,7 @@
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "radius"                                               "900"
+                "radius"                                               "1200"
             }
             "02"
             {
@@ -20,7 +20,7 @@
             "03"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "as_bonus"                                             "5 7 9 12"
+                "as_bonus"                                             "12 14 16 18"
             }
         }
         "ReduxFlags"                                                           "support"
