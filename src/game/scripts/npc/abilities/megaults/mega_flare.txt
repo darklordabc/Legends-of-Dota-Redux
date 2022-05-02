@@ -41,12 +41,12 @@
             "02"
             {
                 "var_type"              "FIELD_FLOAT"
-                "duration"              "12"
+                "duration"              "14"
             }
             "03"
             {
                 "var_type"              "FIELD_INTEGER"
-                "damage"                "10000"
+                "damage"                "14000"
             }
             "04"
             {
