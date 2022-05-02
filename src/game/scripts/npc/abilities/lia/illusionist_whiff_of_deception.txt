@@ -7,7 +7,7 @@
         "AbilityUnitDamageType"                                                "DAMAGE_TYPE_PHYSICAL"
         "AbilityTextureName"                                                   "custom/illusionist_whiff_of_deception"
         "AbilityCooldown"                                                      "8"
-        "AbilityCastRange"                                                     "300"
+        "AbilityCastRange"                                                     "500"
         "AbilityManaCost"                                                      "50"
         "MaxLevel"                                                             "3"
         "RequiredLevel"                                                        "1"
@@ -50,12 +50,12 @@
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "radius"                                               "300"
+                "radius"                                               "500"
             }
             "02"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "value_p"                                              "0.8 0.9 1.0"
+                "value_p"                                              "0.8 1.1 1.3"
             }
         }
         "Modifiers"
