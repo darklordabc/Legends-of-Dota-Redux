@@ -5,27 +5,27 @@
         "BaseClass"                                                            "ability_lua"
         "ScriptFile"                                                           "abilities/spell_lab/bfg/bfg.lua"
         "AbilityTextureName"                                                   "custom/spell_lab_bfg"
-        "AbilityCooldown"                                                      "120"
-        "AbilityManaCost"                                                      "150"
+        "AbilityCooldown"                                                      "100"
+        "AbilityManaCost"                                                      "100"
         "AbilityCastRange"                                                     "1400 1600 1800"
-        "AbilityCastPoint"                                                     "0.5"
+        "AbilityCastPoint"                                                     "0.1"
         "AbilityUnitDamageType"                                                "DAMAGE_TYPE_MAGICAL"
         "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
         "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
         "HasScepterUpgrade"                                                    "1"
     		"AbilityChannelTime"      "60.0"
-        "AoERadius"               "225"
+        "AoERadius"               "250"
         "AbilitySpecial"
         {
             "01"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "mana_pct"						"1.0 1.5 2.0"
+                "mana_pct"						"1.5 2.25 3.0"
             }
             "02"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "mana_pct_scepter"						"1.5 2.0 2.5"
+                "mana_pct_scepter"						"2.5 3.25 4.0"
             }
         }
         "precache"
