@@ -12,10 +12,10 @@
         "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
         "AbilityUnitDamageType"                                                "DAMAGE_TYPE_MAGICAL"
         "AbilityCastAnimation"                                                 "ACT_DOTA_CAST_ABILITY_3"
-        "AbilityCastRange"                                                     "600"
+        "AbilityCastRange"                                                     "800"
         "AbilityCastPoint"                                                     "0"
-        "AbilityCooldown"                                                      "16 14 12 10"
-        "AbilityManaCost"                                                      "120"
+        "AbilityCooldown"                                                      "14 12 10 8"
+        "AbilityManaCost"                                                      "100 110 120 130"
         "AOERadius"                                                            "300"
         "precache"
         {
@@ -32,7 +32,7 @@
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "damage_per_second"                                    "20 40 60 80"
+                "damage_per_second"                                    "40 80 120 160"
             }
             "03"
             {
