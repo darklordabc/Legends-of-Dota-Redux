@@ -31,7 +31,7 @@ end
       local hBuff = self:GetCaster():FindModifierByName( "modifier_flesh_heap_bonus_vision" )
       if hBuff ~= nil then
         hBuff:SetStackCount( self.nKills )
-        self:GetCaster():CalculateStatBonus()
+        self:GetCaster():CalculateStatBonus(true)
       else
         self:GetCaster():AddNewModifier( self:GetCaster(), self,  "modifier_flesh_heap_bonus_vision" , {} )
       end
@@ -96,13 +96,13 @@ end
 function modifier_flesh_heap_bonus_vision:OnCreated( kv )
   if not self:GetAbility() then
     self:GetParent():RemoveModifierByName("modifier_flesh_heap_bonus_vision")
-    self:GetParent():CalculateStatBonus()
+    self:GetParent():CalculateStatBonus(true)
     return
   end
   self.flesh_heap_bonus_vision_buff_amount = self:GetAbility():GetSpecialValueFor( "flesh_heap_bonus_vision_buff_amount" ) or 0
   if IsServer() then
     self:SetStackCount( self:GetFleshHeapKills() )
-    self:GetParent():CalculateStatBonus()
+    self:GetParent():CalculateStatBonus(true)
   end
 end
 
@@ -111,13 +111,13 @@ end
 function modifier_flesh_heap_bonus_vision:OnRefresh( kv )
   if not self:GetAbility() then
     self:GetParent():RemoveModifierByName("modifier_flesh_heap_bonus_vision")
-    self:GetParent():CalculateStatBonus()
+    self:GetParent():CalculateStatBonus(true)
     return
   end
   self.flesh_heap_bonus_vision_buff_amount = self:GetAbility():GetSpecialValueFor( "flesh_heap_bonus_vision_buff_amount" ) or 0
   if IsServer() then
     self:SetStackCount( self:GetFleshHeapKills() )
-    self:GetParent():CalculateStatBonus()
+    self:GetParent():CalculateStatBonus(true)
   end
 end
 
@@ -172,7 +172,7 @@ function modifier_flesh_heap_bonus_vision:OnDeath(keys)
       local hBuff = self:GetCaster():FindModifierByName( "modifier_flesh_heap_bonus_vision" )
       if hBuff ~= nil then
         hBuff:SetStackCount( self.nKills )
-        self:GetCaster():CalculateStatBonus()
+        self:GetCaster():CalculateStatBonus(true)
       else
         self:GetCaster():AddNewModifier( self:GetCaster(), self,  "modifier_flesh_heap_bonus_vision" , {} )
       end

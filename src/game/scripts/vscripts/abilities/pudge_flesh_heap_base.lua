@@ -36,7 +36,7 @@ function modifier_flesh_heap_base.OnCreated(self)
         self:Destroy()
         local hero = self:GetParent()
 
-        hero:CalculateStatBonus()
+        hero:CalculateStatBonus(true)
         return
     end
     self.flesh_heap_value_buff_amount=self:GetAbility():GetSpecialValueFor("flesh_heap_value_buff_amount")
@@ -44,7 +44,7 @@ function modifier_flesh_heap_base.OnCreated(self)
         self:SetStackCount(0)
         local hero = self:GetParent()
 
-        hero:CalculateStatBonus()
+        hero:CalculateStatBonus(true)
     end
 end
 function modifier_flesh_heap_base.OnRefresh(self)
@@ -52,7 +52,7 @@ function modifier_flesh_heap_base.OnRefresh(self)
         self:Destroy()
         local hero = self:GetParent()
 
-        hero:CalculateStatBonus()
+        hero:CalculateStatBonus(true)
         return
     end
     self.flesh_heap_value_buff_amount=self:GetAbility():GetSpecialValueFor("flesh_heap_value_buff_amount")
@@ -60,7 +60,7 @@ function modifier_flesh_heap_base.OnRefresh(self)
         self:SetStackCount(0)
         local hero = self:GetParent()
 
-        hero:CalculateStatBonus()
+        hero:CalculateStatBonus(true)
     end
 end
 function modifier_flesh_heap_base.DeclareFunctions(self)
@@ -90,7 +90,7 @@ function modifier_flesh_heap_base.OnDeath(self,keys)
         if self.fleshHeapRange>=distance then
             print("OD5")
             self:IncrementStackCount()
-            caster:CalculateStatBonus()
+            caster:CalculateStatBonus(true)
         end
         local nFXIndex = ParticleManager:CreateParticle("particles/units/heroes/hero_pudge/pudge_fleshheap_count.vpcf",PATTACH_OVERHEAD_FOLLOW,caster)
 

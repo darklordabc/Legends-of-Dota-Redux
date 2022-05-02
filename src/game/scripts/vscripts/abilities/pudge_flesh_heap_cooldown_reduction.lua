@@ -31,7 +31,7 @@ end
       local hBuff = self:GetCaster():FindModifierByName( "modifier_flesh_heap_cooldown_reduction" )
       if hBuff ~= nil then
         hBuff:SetStackCount( self.nKills )
-        self:GetCaster():CalculateStatBonus()
+        self:GetCaster():CalculateStatBonus(true)
       else
         self:GetCaster():AddNewModifier( self:GetCaster(), self,  "modifier_flesh_heap_cooldown_reduction" , {} )
       end

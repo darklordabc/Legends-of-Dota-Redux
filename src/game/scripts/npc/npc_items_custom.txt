@@ -194,7 +194,7 @@
         "AbilityCooldown"               "0.0"
         "AbilityManaCost"               "0"
         "AbilitySharedCooldown"         "blink"
-                
+
         // Item Info
         //-------------------------------------------------------------------------------------------------------------
         "ItemCost"                      "1"
@@ -217,12 +217,12 @@
             "02"
             {
                 "var_type"              "FIELD_FLOAT"
-                "blink_damage_cooldown" "0.0"
+                "blink_damage_cooldown" "3.0"
             }
             "03"
             {
                 "var_type"              "FIELD_INTEGER"
-                "blink_range_clamp"     "960"
+                "blink_range_clamp"     "20000"
             }
         }
     }
@@ -2477,4 +2477,7 @@
             }
         }
     }
+
+
+
 }

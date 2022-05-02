@@ -85,7 +85,7 @@ function spell_lab_survivor_base_modifier:OnIntervalThink()
       local stacks = (GameRules:GetGameTime()-self.lastdeath)*self:GetAbility():GetSpecialValueFor("bonus")*0.0166667
   		self:SetStackCount(stacks)
 			if (old ~= self:GetStackCount()) then
-				self:GetParent():CalculateStatBonus()
+				self:GetParent():CalculateStatBonus(true)
 			end
   	end
 	end
