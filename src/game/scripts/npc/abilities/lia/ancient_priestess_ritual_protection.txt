@@ -9,8 +9,8 @@
         "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
         "MaxLevel"                                                             "3"
         "AbilityCastPoint"                                                     "0"
-        "AbilityCooldown"                                                      "60"
-        "AbilityManaCost"                                                      "150 200 250"
+        "AbilityCooldown"                                                      "60 50 40"
+        "AbilityManaCost"                                                      "100 150 200"
         "precache"
         {
             "particle"                                                     "particles/lotus_orb_shell_custom.vpcf"
@@ -21,17 +21,17 @@
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "damage_absorb"                                        "200 300 400"
+                "damage_absorb"                                        "250 450 650"
             }
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "radius"                                               "600"
+                "radius"                                               "900"
             }
             "03"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "duration"                                             "10"
+                "duration"                                             "15"
             }
         }
         "ReduxFlags"                                                           "support"
