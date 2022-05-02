@@ -22,12 +22,12 @@
         
         // Time     
         //-------------------------------------------------------------------------------------------------------------
-        "AbilityCooldown"               "300"
+        "AbilityCooldown"               "120"
         "AbilityDuration"               "10.0"
 
         // Cost
         //-------------------------------------------------------------------------------------------------------------
-        "AbilityManaCost"               "900"
+        "AbilityManaCost"               "700"
 
         // Stats
         //-------------------------------------------------------------------------------------------------------------
@@ -45,7 +45,7 @@
             "02"
             {
                 "var_type"          "FIELD_INTEGER"
-                "explosion_radius"  "300"
+                "explosion_radius"  "450"
             }
             "04"
             {
@@ -55,17 +55,17 @@
             "05"
             {
                 "var_type"          "FIELD_INTEGER"
-                "movespeed_slow"    "-30"
+                "movespeed_slow"    "-80"
             }
             "06"
             {
                 "var_type"          "FIELD_INTEGER"
-                "attack_slow"   "-30"
+                "attack_slow"   "-80"
             }
             "07"
             {
                 "var_type"          "FIELD_FLOAT"
-                "slow_duration"     "1.0"
+                "slow_duration"     "2.0"
             }
             "08"
             {
