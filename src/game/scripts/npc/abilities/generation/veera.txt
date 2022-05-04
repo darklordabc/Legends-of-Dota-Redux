@@ -91,7 +91,7 @@
             "04"
             {
                 "var_type"          "FIELD_INTEGER"
-                "movespeed_limit"       "550"
+                "movespeed_limit"       "1000"
             }
             "05"
             {
@@ -192,7 +192,7 @@
     
         "AbilityCastRange"          "150"
         "AbilityCooldown"           "9 8 7 6"
-        "AbilityManaCost"           "90"
+        "AbilityManaCost"           "70"
     
         "AbilitySpecial"
         {
@@ -209,7 +209,7 @@
             "03"
             {
                 "var_type"          "FIELD_INTEGER"
-                "movement_damage"       "10 15 20 25"
+                "movement_damage"       "12 18 24 30"
             }
             "04"
             {
