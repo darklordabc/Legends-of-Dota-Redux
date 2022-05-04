@@ -10,7 +10,7 @@
 		"HotKeyOverride"	"F"
 		"AbilityCastPoint"	"0"
 		"AbilityCooldown"	"60"
-		"AbilityManaCost"	"200"
+		"AbilityManaCost"	"150"
 		"AbilityCastRange"	"1200"
 		"ReduxPerks"                                                           "nature"
 		"OnSpellStart"
@@ -66,12 +66,12 @@
 			"01"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"radius_d"	"1200"
+				"radius_d"	"1200 1400 1600"
 			}
 			"02"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"radius_n"	"800"
+				"radius_n"	"800 900 1000"
 			}
 			"03"
 			{
