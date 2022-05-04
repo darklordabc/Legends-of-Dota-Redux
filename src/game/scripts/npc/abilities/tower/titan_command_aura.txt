@@ -8,7 +8,7 @@
         "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_NO"
         "AbilityCastAnimation"                                                 "ACT_DOTA_CAST_ABILITY_2"
         "AbilityTextureName"                                                   "custom/titan_command_aura"
-        "AbilityCastRange"                                                     "1100"
+        "AbilityCastRange"                                                     "1200"
         "AbilityCastPoint"                                                     "0"
         "AbilityCooldown"                                                      "0"
         "AbilityManaCost"                                                      "0"
@@ -18,12 +18,12 @@
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "radius"                                               "1100"
+                "radius"                                               "1200"
             }
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "bonus_armor"                                          "3 6 9"
+                "bonus_armor"                                          "6 9 12"
             }
             "03"
             {
@@ -33,7 +33,7 @@
             "04"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "bonus_damage"                                         "0"
+                "bonus_damage"                                         "5 8 11 14"
             }
         }
         "precache"
