@@ -52,7 +52,7 @@
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"speed"						"350"  // 1.2 second to reach radius
+				"speed"						"500"  // 1.2 second to reach radius
 			}
 		}
 	}
