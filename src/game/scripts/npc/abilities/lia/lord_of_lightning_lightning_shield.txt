@@ -12,11 +12,11 @@
         "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
         "AbilityUnitDamageType"                                                "DAMAGE_TYPE_MAGICAL"
         "AbilityCastAnimation"                                                 "ACT_DOTA_CAST_ABILITY_3"
-        "AbilityCastRange"                                                     "800"
+        "AbilityCastRange"                                                     "1000"
         "AbilityCastPoint"                                                     "0"
         "AbilityCooldown"                                                      "14 12 10 8"
-        "AbilityManaCost"                                                      "100 110 120 130"
-        "AOERadius"                                                            "300"
+        "AbilityManaCost"                                                      "100"
+        "AOERadius"                                                            "350"
         "precache"
         {
             "particle"                                                     "particles/lightning_shield_hit.vpcf"
@@ -27,12 +27,12 @@
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "radius"                                               "300"
+                "radius"                                               "350"
             }
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "damage_per_second"                                    "40 80 120 160"
+                "damage_per_second"                                    "50 90 130 170"
             }
             "03"
             {
