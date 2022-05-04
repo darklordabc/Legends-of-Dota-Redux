@@ -21,7 +21,7 @@
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "duration"                                             "20"
+                "duration"                                             "20 22 24"
             }
             "02"
             {
@@ -31,7 +31,7 @@
             "03"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "manaRegen"                                            "1 2 3"
+                "manaRegen"                                            "2 4 6"
             }
             "04"
             {
@@ -41,7 +41,7 @@
             "05"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "bonusMoveSpeed"                                       "40"
+                "bonusMoveSpeed"                                       "40 45 50"
             }
         }
         "OnAbilityPhaseStart"
