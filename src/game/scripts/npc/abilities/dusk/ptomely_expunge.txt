@@ -20,7 +20,7 @@
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"1000"
-		"AbilityCastPoint"				"0.40"
+		"AbilityCastPoint"				"0.30"
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -47,7 +47,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"mana_drain"				"30 45 60"
+				"mana_drain"				"35 50 65"
 			}
 			"03"
 			{
@@ -62,12 +62,12 @@
 			"05"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"scepter_mana_drain"		"25"
+				"scepter_mana_drain"		"40"
 			}
 			"06"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"base_drain"				"150 200 250"
+				"base_drain"				"200 250 300"
 			}
 		}
 		
