@@ -6,7 +6,7 @@
         "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
         "AbilityUnitDamageType"                                                "DAMAGE_TYPE_PHYSICAL"
         "AbilityTextureName"                                                   "custom/illusionist_whiff_of_deception"
-        "AbilityCooldown"                                                      "8"
+        "AbilityCooldown"                                                      "6"
         "AbilityCastRange"                                                     "500"
         "AbilityManaCost"                                                      "50"
         "MaxLevel"                                                             "3"
