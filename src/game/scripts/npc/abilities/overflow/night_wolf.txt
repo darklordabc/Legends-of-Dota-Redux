@@ -31,17 +31,17 @@
             "03"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "attack_speed"                                         "25 50 75"
+                "attack_speed"                                         "60 100 140"
             }
             "04"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "max"                                                  "550"
+                "max"                                                  "550 600 650"
             }
             "05"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "bonus_vision_scepter"                                 "500 700 900"
+                "bonus_vision_scepter"                                 "600 800 1000"
             }
         }
         "ReduxCost"                                                            "20"
