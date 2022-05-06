@@ -222,12 +222,14 @@
             "ReduxCost"                                                            "120"
             "ReduxFlags"                                                           ""
         }
+		
         "brewmaster_storm_wind_walk"
         {
             "MaxLevel"                                                             "3"
             "ReduxFlags"                                                           "mobility | invis | doNotRandom"
             "ReduxPerks"                                                           "mobility"
         }
+		
         "mudgolem_cloak_aura"
         {
             // General
@@ -503,7 +505,7 @@
 			"01"
 				{
 				"var_type"			"FIELD_INTEGER"
-				"gpm_aura"	"20 40 60 80"
+				"gpm_aura"	"20 45 70 95"
 				}
 			"02"
 				{
@@ -594,6 +596,7 @@
 			"ReduxFlags"                                                           "neutral"
             "ReduxPerks"                                                           "neutral"
 		}
+		
 		"ogre_bruiser_ogre_smash"
 		{
 		"MaxLevel"						"4"
@@ -606,23 +609,24 @@
 		"AbilityValues"
 			{
 				"radius"						"200"
-				"damage"						"200 225 250 275"
-				"damage_pct"					"8 9 10 11"
+				"damage"						"200 230 260 290"
+				"damage_pct"					"8 10 12 14"
 				"hero_stun_duration"			"3.0"
 			}
 			"ReduxFlags"                                                           "neutral"
             "ReduxPerks"                                                           "neutral"
 		}
+		
 		"warpine_raider_seed_shot"
 		{
 		"MaxLevel"						"4"	
 		"AbilityCooldown"				"15 14 13 12"
-		"AbilityCastRange"				"575"
+		"AbilityCastRange"				"575 625 675 725"
 		"AbilityCastPoint"				"0.2"
 		"AbilityManaCost"				"100"
 		"AbilityValues"
 			{		
-			"damage"		"100 150 200 250"
+			"damage"		"100 140 180 220"
 			"bounces"			"4 5 6 7"
 			"bounce_range"			"500"
 			"duration"				"1"
@@ -672,6 +676,26 @@
             "ReduxFlags"                                                           "support | tank"
             "ReduxPerks"                                                           "earth | support | neutral | aura"
         }
+		
+		"ice_shaman_incendiary_bomb"
+		{
+			"AbilityCooldown"				"30 25 20 15"
+
+			// Cost
+			//-------------------------------------------------------------------------------------------------------------
+			"AbilityManaCost"				"100"
+
+			// Special
+			//-------------------------------------------------------------------------------------------------------------
+			"AbilityValues"
+			{
+					"duration"				"8"
+					"burn_damage"			"50 75 100 125"
+					"building_damage_pct"	"25"
+			}
+			"ReduxPerks"                                                           "ice | fire"
+		}
+		
         "enraged_wildkin_toughness_aura"
         {
             "MaxLevel"                                                             "4"
@@ -777,7 +801,17 @@
         {
             "MaxLevel"                                                             "4"
             "AbilitySpecial"
-            {
+				{
+				"01"
+				{
+					"var_type"					"FIELD_INTEGER"
+					"maim_chance"				"20 25 30 35"
+				}
+				"03"
+				{
+					"var_type"					"FIELD_INTEGER"
+					"maim_movement_speed"				"15 18 21 24"
+				}
                 "05"
                 {
                     "var_type"                                             "FIELD_INTEGER"
@@ -898,6 +932,9 @@
 			"ReduxPerks"                                                           "lightning"
             "ReduxBans"                                                            "tinker_rearm"
             "ReduxFlags"                                                           "doNotRandom"
+			"AbilityCooldown"				"45 40 35 30"
+			"MaxLevel"						"4"
+			"cloud_bolt_interval"	"2.5 2.3 2.1 1.9"
 		}
 
         "sniper_assassinate"
@@ -982,16 +1019,21 @@
             "ReduxPerks"                                                           "illusion"
             "ReduxBans"                                                            "tinker_rearm | arc_warden_tempest_double | arc_warden_tempest_double_redux"
         }
+		
         "dazzle_weave"
         {
             "ReduxFlags"                                                           "upgradeable | support"
             "ReduxPerks"                                                           "support"
+			"duration"					"24.0 28.0 32.0"
+			"radius"					"575 675 775"
         }
+		
         "disruptor_static_storm"
         {
             "ReduxFlags"                                                           "upgradeable | silence"
             "ReduxPerks"                                                           "lightning | silence"
         }
+		
         "doom_bringer_doom"
         {
             "ReduxFlags"                                                           "upgradeable | silence | disarm_break"
@@ -1676,7 +1718,7 @@
                 "01"
                 {
                     "var_type"              "FIELD_INTEGER"
-                    "attackspeed_bonus"     "75 85 95 105"
+                    "attackspeed_bonus"     "75 90 105 120"
                 }
                 "02"
                 {
@@ -2498,12 +2540,13 @@
 			"AbilityCastPoint"				"0.2"
             "ReduxFlags"                                                           "stun"
             "ReduxPerks"                                                           "neutral"
+			"AbilityCooldown"				"12.0 11.0 10.0 9.0"
             "AbilitySpecial"
             {
                 "01"
                 {
                     "var_type"                      "FIELD_INTEGER"
-                    "radius"                        "300"
+                    "radius"                        "350"
                 }
                 "02"
                 {
@@ -2518,7 +2561,7 @@
                 "04"
                 {
                     "var_type"                      "FIELD_INTEGER"
-                    "armor_reduction_pct"           "60 80 100 120"
+                    "armor_reduction_pct"           "70 80 90 100"
                 }
             }
         }
@@ -3025,9 +3068,11 @@
             "ReduxPerks"                                                           "illusion"
             "ReduxBans"                                                            "tinker_rearm | arc_warden_tempest_double | arc_warden_tempest_double_redux"
         }
+		
 		"spectre_haunt_single"
 		{
-
+			"ReduxFlags"                                                           "illusion"
+            "ReduxPerks"                                                           "illusion"
 		}
         "terrorblade_reflection"
         {
@@ -3042,6 +3087,10 @@
         "big_thunder_lizard_slam"
         {
             "ReduxPerks"                                                           "neutral"
+			"MaxLevel"						"4"
+			"movespeed_slow"		"-60 -65 -70 -75"
+			"attack_slow_tooltip"	"-60 -65 -70 -75"
+			"hero_duration"			"2.0 2.5 3.0 3.5"
         }
         "blue_dragonspawn_overseer_evasion"
         {
@@ -3152,6 +3201,30 @@
         "tusk_frozen_sigil"
         {
             "ReduxPerks"                                                           "ice"
+			"MaxLevel"						"4"
+			"AbilitySpecial"
+				{
+					"01"
+					{
+						"var_type"					"FIELD_INTEGER"
+						"sigil_radius"				"650"
+					}
+					"02"
+					{
+						"var_type"					"FIELD_FLOAT"
+						"sigil_duration"			"25.0"
+					}
+					"03"
+					{
+						"var_type"					"FIELD_INTEGER"
+						"move_slow"					"40 45 50 55"
+					}
+					"04"
+					{
+						"var_type"					"FIELD_INTEGER"
+						"attack_slow"				"20 25 30 35"
+					}
+				}
         }
         "visage_grave_chill"
         {
@@ -5632,7 +5705,7 @@
 				"01"
 				{
 					"var_type"				"FIELD_INTEGER"
-					"scale_reduction"		"15 20 25 30"
+					"scale_reduction"		"15 17 19 21"
 				}
 				"02"
 				{
