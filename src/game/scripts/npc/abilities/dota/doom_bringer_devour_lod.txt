@@ -21,7 +21,7 @@
 		"AbilitySpecial" {
 			"01" {
 				"var_type" "FIELD_INTEGER"
-				"devour_gold" "25 50 75 100"
+				"devour_gold" "50 100 150 200"
 			}
 		}
 
