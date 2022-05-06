@@ -4147,6 +4147,16 @@
         "lich_ice_spire"
         {
             "ReduxPerks"                                                           "ice"
+			"MaxLevel"						"4"
+			"AbilityCooldown"				"25 22 19 16"
+			"AbilityValues"
+			{
+				"bonus_movespeed"			"-30 -35 -40 -45"
+				"aura_radius"				"750"
+				"max_hero_attacks"			"2"
+				"duration"					"15.0 17.0 19.0 21.0"
+				"slow_duration"				"0.5"				
+			}
         }       
         "omniknight_hammer_of_purity"
         {
@@ -4544,7 +4554,7 @@
 			"AbilityCooldown"				"15 14 13 12"
 			"damage_threshold"		"500 400 300 200"
 			"spread_radius"			"700 750 800 850"
-			
+			"heal_percent"			"50 55 60 65"
         }
         "shadow_demon_soul_catcher"
         {
