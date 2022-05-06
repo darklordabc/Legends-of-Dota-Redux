@@ -16,7 +16,7 @@
         "AbilityCooldown"                                                      "13 12 11 10"
         "AbilityManaCost"                                                      "100 110 120 130"
         "AbilityChannelTime"                                                   "0.5"
-        "AoERadius"                                                            "200 225 250 275"
+        "AoERadius"                                                            "225 250 275 300"
 
         "precache"
         {
@@ -32,12 +32,12 @@
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "radius"                                               "200 225 250 275"
+                "radius"                                               "225 250 275 300"
             }
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "damage"                                               "25 50 75 100"
+                "damage"                                               "30 60 90 120"
             }
             "03"
             {
@@ -47,7 +47,7 @@
             "04"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "delay"                                                "0.8"
+                "delay"                                                "0.5"
             }
             "05"
             {
