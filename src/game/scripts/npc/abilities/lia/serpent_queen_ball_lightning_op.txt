@@ -45,7 +45,7 @@
             "04"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "locusts_speed"                                        "700"
+                "locusts_speed"                                        "600"
             }
             "05"
             {
@@ -65,7 +65,7 @@
             "08"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "locust_damage"                                        "30"
+                "locust_damage"                                        "60"
             }
             "09"
             {
