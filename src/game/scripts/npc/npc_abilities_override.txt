@@ -488,7 +488,7 @@
 			"02"
 				{
 				"var_type"			"FIELD_FLOAT"
-				"cost_per_second"	"2.5 2.25 2.0 1.75"
+				"cost_per_second"	"4.0 3.5 3.0 2.5"
 				}
 			}
 			"ReduxFlags"                                                           "neutral"
@@ -711,14 +711,14 @@
         {
             "MaxLevel"                                                             "4"
             "AbilityCastPoint"                                                     "0.5"
-            "AbilityCooldown"                                                      "18.0 17.0 16.0 15.0"
+            "AbilityCooldown"                                                      "20.0 18.0 16.0 14.0"
             "AbilityManaCost"                                                      "50"
             "AbilitySpecial"
             {
                 "01"
                 {
                     "var_type"                                             "FIELD_FLOAT"
-                    "duration"                                             "40.0 55.0 70.0 85.0"
+                    "duration"                                             "35.0 40.0 50.0 60.0"
                 }
             }
             "ReduxFlags"                                                           "summon"
@@ -3258,6 +3258,16 @@
             "ReduxBans"                                                            "obsidian_destroyer_arcane_orb | death_prophet_witchcraft | storm_spirit_ball_lightning | storm_spirit_static_remnant | earthshaker_enchant_totem | spectre_haunt | shadow_demon_shadow_poison"
             "ReduxBanCategory"                                                     "SpammableSpells"
             "ReduxFlags"                                                           "wtfAutoBan"
+			"MaxLevel"						"4"
+
+			"AbilityValues"
+			{
+					"damage_health_pct"			
+					{
+						"value"	"9 10 11 12"
+						"CalculateSpellDamageTooltip"	"0"
+					}
+			}
         }
         "morphling_morph_agi"
         {
@@ -3369,6 +3379,59 @@
         "tinker_march_of_the_machines"
         {
             "ReduxPerks"                                                           "scientific"
+			"MaxLevel"						"4"
+			"AbilityCooldown"				"35.0 30.0 25.0 20.0"
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"				"FIELD_INTEGER"
+					"radius"				"900"
+				}
+				"02"
+				{
+					"var_type"				"FIELD_INTEGER"
+					"collision_radius"		"50"
+				}
+				"03"
+				{
+					"var_type"				"FIELD_INTEGER"
+					"splash_radius"			"150"
+				}
+				"04"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"duration"				"6.0 7.0 8.0 9.0"
+					"LinkedSpecialBonus"	"special_bonus_unique_tinker_5"
+				}
+				"05"
+				{
+					"var_type"				"FIELD_INTEGER"
+					"speed"					"400"
+				}
+				"06"
+				{
+					"var_type"				"FIELD_INTEGER"
+					"machines_per_sec"		"24 28 32 36"
+				}
+				"07"
+				{
+					"var_type"				"FIELD_INTEGER"
+					"distance"				"1800"
+				}
+				"08"
+				{
+					"var_type"				"FIELD_INTEGER"
+					"distance_scepter"		"1800"
+				}
+				"09"
+				{
+					"var_type"				"FIELD_INTEGER"
+					"damage"				"30 34 38 42"
+					"LinkedSpecialBonus"	"special_bonus_unique_tinker_2"
+				}
+				
+			}
         }
         "tinker_rearm"
         {
@@ -3397,7 +3460,7 @@
 				"01"
 				{
 					"var_type"				"FIELD_INTEGER"
-					"miss_rate"				"40 55 60 65"
+					"miss_rate"				"40 50 60 70"
 					"LinkedSpecialBonus"		"special_bonus_unique_keeper_of_the_light_8"
 				}
 				"02"
@@ -5290,56 +5353,56 @@
     }
         
         "windrunner_gale_force"
-    {
-        "MaxLevel"                      "4"
-        "AbilityCastRange"              "1500 2000 2500 3000"
-        
-        // Time     
-        //-------------------------------------------------------------------------------------------------------------
-        "AbilityCooldown"               "30 26 22 18"
-        
-        // Cost
-        //-------------------------------------------------------------------------------------------------------------
-        "AbilityManaCost"               "150"
-        
-        // Special
-        //-------------------------------------------------------------------------------------------------------------
-        "AbilityValues"
-        {
-            "duration"          "3 4 5 6"
-            "wind_strength"     "250 270 290 310"
-            "radius"            "1000"
-        }
-		"ReduxPerks"                                                           "enemyMoving"
-    }
+		{
+			"MaxLevel"                      "4"
+			"AbilityCastRange"              "1500 2000 2500 3000"
+			
+			// Time     
+			//-------------------------------------------------------------------------------------------------------------
+			"AbilityCooldown"               "30 25 20 15"
+			
+			// Cost
+			//-------------------------------------------------------------------------------------------------------------
+			"AbilityManaCost"               "150"
+			
+			// Special
+			//-------------------------------------------------------------------------------------------------------------
+			"AbilityValues"
+			{
+				"duration"          "3 4 5 6"
+				"wind_strength"     "250 300 350 400"
+				"radius"            "1000"
+			}
+			"ReduxPerks"                                                           "enemyMoving"
+		}
         
         "witch_doctor_voodoo_switcheroo"
-    {
-        "MaxLevel"                      "4"
-        "AbilityCooldown"               "40 35 30 25"
+		{
+			"MaxLevel"                      "4"
+			"AbilityCooldown"               "40 35 30 25"
 
 
-        // Cost
-        //-------------------------------------------------------------------------------------------------------------
-        "AbilityManaCost"               "150"
+			// Cost
+			//-------------------------------------------------------------------------------------------------------------
+			"AbilityManaCost"               "150"
 
 
-        // Special
-        //-------------------------------------------------------------------------------------------------------------
-        "AbilitySpecial"
-        {
-            "01"
-            {
-                "var_type"              "FIELD_FLOAT"
-                "duration"      "2"
-            }
-            "02"
-            {
-                "var_type"              "FIELD_INTEGER"
-                "attack_speed_reduction"        "30 25 20 15"
-            }
-        }
-    }
+			// Special
+			//-------------------------------------------------------------------------------------------------------------
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"              "FIELD_FLOAT"
+					"duration"      "2"
+				}
+				"02"
+				{
+					"var_type"              "FIELD_INTEGER"
+					"attack_speed_reduction"        "30 25 20 15"
+				}
+			}
+		}
 
         "bloodseeker_blood_mist"
 		{
@@ -5354,8 +5417,8 @@
 			//-------------------------------------------------------------------------------------------------------------
 			"AbilityValues"
 			{
-				"hp_cost_per_second"    "5"
-				"radius"                "450 475 500 525"
+				"hp_cost_per_second"    "7"
+				"radius"                "450"
 				"movement_slow"         "25 30 35 40"
 				"thirst_bonus_pct"      "50 60 70 80"
 			}
