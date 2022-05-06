@@ -20,7 +20,7 @@
             "01"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "modelscale"                                           "-20 -40 -60 -80"
+                "modelscale"                                           "-20 -30 -40 -50"
             }
             "02"
             {
