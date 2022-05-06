@@ -177,7 +177,7 @@
         "AbilityTextureName"            "custom/uther_hail_back"
         "MaxLevel"                      "1"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_HIDDEN"    
-        "AbilityCooldown"        "0.5"
+        "AbilityCooldown"        "0.2"
 
         "OnSpellStart"
         {
@@ -616,7 +616,7 @@
         "AbilityCooldown"               "7"
         "AbilityDuration"               "5"
         "AbilityCastRange"              "2000"
-        "AbilityCastPoint"              "0.3"
+        "AbilityCastPoint"              "0.1"
         "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_1"
         "AbilityManaCost"               "70 80 90 100"
         "AbilityProcsMagicStick"        "1"
@@ -638,7 +638,7 @@
             "01"
             {
                 "var_type"          "FIELD_INTEGER"
-                "bolt_speed"            "500"
+                "bolt_speed"            "700"
             }
             "02"
             {
@@ -653,7 +653,7 @@
             "04"
             {
                 "var_type"          "FIELD_INTEGER"
-                "explosion_radius"  "250"
+                "explosion_radius"  "350"
             }
         }
     
