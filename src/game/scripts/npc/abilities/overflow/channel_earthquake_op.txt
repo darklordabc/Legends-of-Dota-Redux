@@ -27,17 +27,17 @@
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "spot_radius"                                          "150"
+                "spot_radius"                                          "200"
             }
             "03"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "damage"                                               "40 80 120 160"
+                "damage"                                               "65 80 95 110"
             }
             "04"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "stun_duration"                                        "0.75"
+                "stun_duration"                                        "1.0"
             }
             "05"
             {

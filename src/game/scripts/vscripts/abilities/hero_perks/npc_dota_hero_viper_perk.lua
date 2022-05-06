@@ -83,7 +83,7 @@ end
 
 modifier_npc_dota_hero_viper_armor_debuff = class({
   IsHidden = function() return false end,
-  IsPurgable = function() return false end,
+  IsPurgable = function() return true end,
   GetTexture = function() return "custom/npc_dota_hero_viper_perk" end,
   GetAttributes = function() return MODIFIER_ATTRIBUTE_MULTIPLE end,
 

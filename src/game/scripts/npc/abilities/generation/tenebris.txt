@@ -373,7 +373,7 @@
  
         //Casting
         "AbilityCastRange"      "150"
-        "AbilityCooldown"       "3"
+        "AbilityCooldown"       "0.2"
         "AbilityManaCost"       "25 30 35 40"
  
         // Special
@@ -474,6 +474,7 @@
             "tenebris_fade_strike_modifier_debuff"
             {
                 "IsDebuff"      "1"
+				"IsPurgable"        "1"
                 "Duration"      "%duration_debuff"
                 "EffectName"        "particles/units/heroes/hero_invoker/invoker_deafening_blast_disarm_debuff.vpcf"
                 "EffectAttachType"  "follow_overhead"

@@ -15,7 +15,7 @@
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "magic_resistance_aura"                                "15 25 35"
+                "magic_resistance_aura"                                "30 45 60"
             }
             "02"
             {

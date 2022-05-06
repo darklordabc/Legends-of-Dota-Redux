@@ -14,7 +14,7 @@
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "damage_per_second"                                    "30 40 50"
+                "damage_per_second"                                    "30 50 70"
             }
             "02"
             {
@@ -29,7 +29,7 @@
             "04"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "damage_per_tick"                                      "15 20 25"
+                "damage_per_tick"                                      "15 25 35"
             }
             "05"
             {

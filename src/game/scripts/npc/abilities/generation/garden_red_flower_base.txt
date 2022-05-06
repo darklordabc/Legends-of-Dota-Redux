@@ -6,7 +6,7 @@
         "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_POINT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELED | DOTA_ABILITY_BEHAVIOR_AOE"
         "AbilityCastRange"                                                     "300"
         "AbilityCooldown"                                                      "5.0"
-        "AbilityChannelTime"                                                   "2.0"
+        "AbilityChannelTime"                                                   "1.0"
         "AbilityTextureName"                                                   "custom/cherub_flower_red"
         "MaxLevel"                                                             "4"
         "AnimationPlaybackRate"                                                "0.2"
@@ -21,7 +21,7 @@
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "red_flower_damage"                                    "40 60 80 100"
+                "red_flower_damage"                                    "40 65 90 115"
             }
             "03"
             {
@@ -68,7 +68,7 @@
         {
             "modifier_garden_channel"
             {
-                "Duration"                                             "2.0"
+                "Duration"                                             "1.0"
                 "ThinkInterval"                                        "0.1"
                 "OnIntervalThink"
                 {

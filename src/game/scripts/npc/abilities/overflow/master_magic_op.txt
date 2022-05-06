@@ -6,7 +6,7 @@
         "ScriptFile"                                                           "abilities/overflow/master_magic/ability_op.lua"
         "AbilityTextureName"                                                   "custom/master_magic_op"
         "AbilityCooldown"                                                      "20"
-        "AbilityManaCost"                                                      "150"
+        "AbilityManaCost"                                                      "50"
         "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_DONT_CANCEL_MOVEMENT"
         "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
         "FightRecapLevel"                                                      "1"
@@ -16,17 +16,17 @@
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "stacks"                                               "1 2 3"
+                "stacks"                                               "2 3 4"
             }
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "chance_scepter"                                       "25"
+                "chance_scepter"                                       "40"
             }
             "03"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "duration"                                             "20.0"
+                "duration"                                             "60.0"
             }
         }
         "precache"

@@ -14,7 +14,7 @@
 		}
 		"AbilityCastPoint" "0.3 0.3 0.3"
 		"AbilityCooldown" "20.0"
-		"AbilityManaCost" "400 500 600"
+		"AbilityManaCost" "200 300 400"
 
 		"AbilitySpecial" {
 			"01" {

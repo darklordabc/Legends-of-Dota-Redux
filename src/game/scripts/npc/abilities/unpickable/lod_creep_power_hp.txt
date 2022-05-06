@@ -2,14 +2,14 @@
 	"lod_creep_power_hp" {
 		"BaseClass" "granite_golem_hp_aura"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"MaxLevel" "20"
+		"MaxLevel" "25"
 		"AbilityCastRange" "1"
 		"AbilityTextureName" "custom/creep_health_buff"
 
 		"AbilitySpecial" {
 			"01" {
 				"var_type" "FIELD_FLOAT"
-				"bonus_hp" "20 50 80 110 140 170 200 230 260 290 320 350 380 410 440 470 500 530 560 590"
+				"bonus_hp" "10 30 50 70 90 110 130 150 170 190 210 230 250 270 290 310 330 350 370 390 410 430 450 470 490"
 			}
 
 			"02" {

@@ -28,7 +28,7 @@
             "02"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "lifetime"                                             "4 5 6 7"
+                "lifetime"                                             "4 6 8 10"
             }
             "03"
             {
@@ -38,7 +38,7 @@
             "04"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "outgoing_damage"                                      "140"
+                "outgoing_damage"                                      "100"
             }
             "05"
             {

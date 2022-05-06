@@ -39,12 +39,12 @@
             "01"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "time"                                                 "4 6 7"
+                "time"                                                 "8 10 12"
             }
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "bchance"                                              "25"
+                "bchance"                                              "25 30 35 40"
             }
             "03"
             {

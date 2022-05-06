@@ -81,7 +81,7 @@
     // Stats        
     //-------------------------------------------------------------------------------------------------------------
     "AbilityCastPoint"              "0"
-    "AbilityCooldown"               "60"
+    "AbilityCooldown"               "20"
     "AbilityManaCost"               "0"
     
     // Item Info
@@ -107,17 +107,17 @@
         "02"
         {
             "var_type"                  "FIELD_INTEGER"
-            "phase_movement_speed"      "15"
+            "phase_movement_speed"      "30"
         }
         "03"
         {
             "var_type"                  "FIELD_INTEGER"
-            "bonus_movement_speed"      "0"
+            "bonus_movement_speed"      "100"
         }
         "04"
         {
             "var_type"                  "FIELD_INTEGER"
-            "bonus_damage"              "0"
+            "bonus_damage"              "20"
         }
     }
     
@@ -217,7 +217,7 @@
             "02"
             {
                 "var_type"              "FIELD_FLOAT"
-                "blink_damage_cooldown" "3.0"
+                "blink_damage_cooldown" "0.0"
             }
             "03"
             {
@@ -1331,7 +1331,7 @@
         // Stats
         //-------------------------------------------------------------------------------------------------------------
         "AbilityCastPoint"              "0.0"
-        "AbilityCooldown"               "90.0"
+        "AbilityCooldown"               "70.0"
         "AbilitySharedCooldown"         "necronomicon"
         "FightRecapLevel"               "1"
         "ItemPurchasable"              "0"
@@ -1362,7 +1362,7 @@
             "02"
             {
                 "var_type"              "FIELD_INTEGER"
-                "bonus_strength"        "8"
+                "bonus_strength"        "10"
             }
             "03"
             {
@@ -1382,12 +1382,12 @@
             "06"
             {
                 "var_type"              "FIELD_INTEGER"
-                "warrior_mana_feedback" "20"
+                "warrior_mana_feedback" "35"
             }
             "07"
             {
                 "var_type"              "FIELD_INTEGER"
-                "warrior_mana_break_tooltip"    "20"
+                "warrior_mana_break_tooltip"    "35"
             }
             "08"
             {
@@ -1412,7 +1412,7 @@
             "12"
             {
                 "var_type"              "FIELD_INTEGER"
-                "archer_mana_burn"      "125"
+                "archer_mana_burn"      "200"
             }
             "13"
             {
@@ -1427,7 +1427,7 @@
             "15"
             {
                 "var_type"              "FIELD_INTEGER"
-                "archer_attack_speed"   "5"
+                "archer_attack_speed"   "15"
             }   
         }
     }
@@ -1815,8 +1815,8 @@
         //-------------------------------------------------------------------------------------------------------------
         "AbilityCastRange"              "800"
         "AbilityCastPoint"              "0.0"
-        "AbilityCooldown"               "24.0"
-        "AbilityManaCost"               "75"
+        "AbilityCooldown"               "17.0"
+        "AbilityManaCost"               "50"
         
         "AbilitySharedCooldown"         ""
         "MaxUpgradeLevel"               "1"
@@ -1845,7 +1845,7 @@
             "02"
             {
                 "var_type"              "FIELD_INTEGER"
-                "break_duration"        "5"
+                "break_duration"        "6"
             }
             "03"
             {
@@ -1947,8 +1947,8 @@
         //-------------------------------------------------------------------------------------------------------------
         "AbilityCastRange"              "800"
         "AbilityCastPoint"              "0.0"
-        "AbilityCooldown"               "24.0"
-        "AbilityManaCost"               "75"
+        "AbilityCooldown"               "17.0"
+        "AbilityManaCost"               "50"
         
         "AbilitySharedCooldown"         ""
         "MaxUpgradeLevel"               "1"
@@ -1981,7 +1981,7 @@
             "02"
             {
                 "var_type"              "FIELD_INTEGER"
-                "break_duration"        "5"
+                "break_duration"        "6"
             }
             "03"
             {

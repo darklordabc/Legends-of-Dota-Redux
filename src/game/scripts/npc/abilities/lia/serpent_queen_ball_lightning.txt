@@ -25,7 +25,7 @@
             "10"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "max_locusts_on_target"                                "10"
+                "max_locusts_on_target"                                "18"
             }
             "01"
             {
@@ -55,7 +55,7 @@
             "06"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "give_up_distance"                                     "900"
+                "give_up_distance"                                     "1200"
             }
             "07"
             {
@@ -65,7 +65,7 @@
             "08"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "locust_damage"                                        "8"
+                "locust_damage"                                        "16"
             }
             "09"
             {

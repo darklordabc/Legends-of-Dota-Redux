@@ -13,12 +13,12 @@
 
 			"02" {
 				"var_type" "FIELD_INTEGER"
-				"damage_per_level" "5"
+				"damage_per_level" "3"
 			}
 
 			"03" {
 				"var_type" "FIELD_FLOAT"
-				"resist_per_level" "0.7"
+				"resist_per_level" "0.5"
 			}
 		}
 	}

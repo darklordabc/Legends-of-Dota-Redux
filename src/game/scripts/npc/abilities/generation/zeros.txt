@@ -30,7 +30,7 @@
             "01"
             {
                 "var_type"          "FIELD_FLOAT"
-                "gold_cost"     "100 125 150"
+                "gold_cost"     "75 100 125"
             }
             "02"
             {
@@ -177,7 +177,7 @@
         "AbilityCastRange"              "650"
         "AbilityCastPoint"              "0.3"
     
-        "AbilityCooldown"               "12"
+        "AbilityCooldown"               "10"
         "AbilityManaCost"               "80 90 100 110"
         "AbilityProcsMagicStick"        "1"
     
@@ -605,7 +605,7 @@
             "03"
             {
                 "var_type"          "FIELD_FLOAT"
-                "stun_duration"     "1.75 2.0 2.25 2.5"
+                "stun_duration"     "1.5"
             }
             "04"
             {

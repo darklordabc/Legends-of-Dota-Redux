@@ -8,7 +8,7 @@
 		"AbilitySpecial" {
 			"01" {
 				"var_type" "FIELD_FLOAT"
-				"bonus_hp" "50 70 90 110 130 150 170 190 210 240"
+				"bonus_hp" "10 30 50 70 90 110 130 150 170 190"
 			}
 
 			"02" {

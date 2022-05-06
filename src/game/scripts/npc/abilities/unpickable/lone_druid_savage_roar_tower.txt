@@ -16,12 +16,12 @@
 
 			"02" {
 				"var_type" "FIELD_INTEGER"
-				"bonus_speed" "20"
+				"bonus_speed" "0"
 			}
 
 			"03" {
 				"var_type" "FIELD_FLOAT"
-				"duration" "4"
+				"duration" "2"
 			}
 		}
 	}

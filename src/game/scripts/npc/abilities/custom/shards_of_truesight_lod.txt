@@ -23,12 +23,12 @@
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "duration"                                             "6"
+                "duration"                                             "6 7 8 9"
             }
             "03"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "radius"                                               "600 700 800 900"
+                "radius"                                               "600 800 1000 1200"
             }
         }
         "OnSpellStart"

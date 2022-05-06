@@ -6,19 +6,19 @@
         "AbilityTextureName"                                                   "custom/lord_of_lightning_holy_wrath_OP"
         "MaxLevel"                                                             "4"
         "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-        "AbilityCastRange"                                                     "800"
+        "AbilityCastRange"                                                     "1200"
         "AbilityCooldown"                                                      "0.0"
         "AbilitySpecial"
         {
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "chance_dmg"                                           "25"
+                "chance_dmg"                                           "25 27 29 31"
             }
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "radius"                                               "800"
+                "radius"                                               "1200"
             }
             "03"
             {

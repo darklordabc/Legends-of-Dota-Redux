@@ -22,12 +22,12 @@
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "damage"                                               "30 45 60"
+                "damage"                                               "40 60 80"
             }
             "03"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "interval"                                             "0.4"
+                "interval"                                             "0.35"
             }
         }
         "precache"
@@ -58,7 +58,7 @@
             }
             "modifier_tesla_coil_slow"
             {
-                "Duration"                                             "0.75"
+                "Duration"                                             "0.8"
                 "IsPurgable"                                           "1"
                 "IsBuff"                                               "0"
                 "IsDebuff"                                             "1"

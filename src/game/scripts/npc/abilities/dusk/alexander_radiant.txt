@@ -36,22 +36,22 @@
 			"01"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"duration"						"10"
+				"duration"						"8"
 			}
 			"02"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"regen"							"10 20 30 40"
+				"regen"							"5 8 11 13"
 			}
 			"03"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"miss"							"40"
+				"miss"							"40 45 50 55"
 			}
 			"04"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"radius"						"400"
+				"radius"						"400 425 450 475"
 			}
 		}
 		

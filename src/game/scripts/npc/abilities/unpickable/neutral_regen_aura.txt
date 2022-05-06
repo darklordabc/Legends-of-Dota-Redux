@@ -22,12 +22,12 @@
 
 			"02" {
 				"var_type" "FIELD_FLOAT"
-				"heal_per_sec" "3 4 5 6 7 8 9 10 11 12"
+				"heal_per_sec" "1 2 3 4 5 6 7 8 9 10"
 			}
 
 			"03" {
 				"var_type" "FIELD_FLOAT"
-				"health" "3 4 5 6 7 8 9 10 11 12"
+				"health" "1 2 3 4 5 6 7 8 9 10"
 			}
 		}
 
