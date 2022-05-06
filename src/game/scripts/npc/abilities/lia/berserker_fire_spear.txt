@@ -28,7 +28,7 @@
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "spear_width"                                          "110"
+                "spear_width"                                          "140"
             }
             "03"
             {
