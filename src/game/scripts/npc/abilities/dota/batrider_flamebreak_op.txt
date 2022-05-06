@@ -11,8 +11,8 @@
         "AbilityTextureName"                                                   "custom/batrider_flamebreak_op"
         "AbilityCastRange"                                                     "3000"
         "AbilityCastPoint"                                                     "0.2 0.2 0.2 0.2"
-        "AbilityCooldown"                                                      "17.0"
-        "AbilityManaCost"                                                      "110 120 130 140"
+        "AbilityCooldown"                                                      "18.0 17.0 16.0 15.0"
+        "AbilityManaCost"                                                      "110 115 120 125"
         "AbilityModifierSupportValue"                                          "1.0"
         "AbilitySpecial"
         {
@@ -61,7 +61,7 @@
             "08"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "knockback_max_distance"                               "1200"
+                "knockback_max_distance"                               "800"
                 "LinkedSpecialBonus"                                   "special_bonus_unique_batrider_2"
             }
             "09"
