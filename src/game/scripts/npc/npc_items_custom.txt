@@ -81,7 +81,7 @@
     // Stats        
     //-------------------------------------------------------------------------------------------------------------
     "AbilityCastPoint"              "0"
-    "AbilityCooldown"               "60"
+    "AbilityCooldown"               "20"
     "AbilityManaCost"               "0"
     
     // Item Info
@@ -107,17 +107,17 @@
         "02"
         {
             "var_type"                  "FIELD_INTEGER"
-            "phase_movement_speed"      "15"
+            "phase_movement_speed"      "30"
         }
         "03"
         {
             "var_type"                  "FIELD_INTEGER"
-            "bonus_movement_speed"      "0"
+            "bonus_movement_speed"      "100"
         }
         "04"
         {
             "var_type"                  "FIELD_INTEGER"
-            "bonus_damage"              "0"
+            "bonus_damage"              "20"
         }
     }
     
@@ -217,7 +217,7 @@
             "02"
             {
                 "var_type"              "FIELD_FLOAT"
-                "blink_damage_cooldown" "3.0"
+                "blink_damage_cooldown" "0.0"
             }
             "03"
             {
