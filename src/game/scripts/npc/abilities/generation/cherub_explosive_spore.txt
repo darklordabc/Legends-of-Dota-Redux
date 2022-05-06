@@ -11,7 +11,7 @@
         "AbilityTextureName"                                                   "custom/cherub_explosive_spore"
         "AbilityProcsMagicStick"                                               "1"
         "AbilityCooldown"                                                      "5.0"
-        "AbilityManaCost"                                                      "90 105 130 155"
+        "AbilityManaCost"                                                      "90 100 110 120"
         "AbilityCastPoint"                                                     "0.3"
         "AbilitySpecial"
         {
@@ -33,7 +33,7 @@
             "03"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "damage"                                               "100 175 250 325"
+                "damage"                                               "125 200 275 350"
             }
             "04"
             {
