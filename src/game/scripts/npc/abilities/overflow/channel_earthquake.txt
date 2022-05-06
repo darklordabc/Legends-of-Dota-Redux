@@ -36,7 +36,7 @@
 			"04"
 			{
 				"var_type"                  "FIELD_FLOAT"
-				"stun_duration"             "1.0"
+				"stun_duration"             "0.8"
 			}
 			"05"
 			{
