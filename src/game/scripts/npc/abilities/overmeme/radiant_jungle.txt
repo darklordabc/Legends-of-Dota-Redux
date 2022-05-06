@@ -19,8 +19,8 @@
 
         // Time     
         //-------------------------------------------------------------------------------------------------------------
-        "AbilityChannelTime"            "15 10 5 1"
-        "AbilityCooldown"               "90 70 50 30"
+        "AbilityChannelTime"            "1"
+        "AbilityCooldown"               "75 60 45 30"
         
         "AbilityManaCost"               "100 70 40 0"
 
@@ -41,7 +41,7 @@
             "03"
             {
                 "var_type"                      "FIELD_INTEGER"
-                "channel_time"                  "15 10 5 1"
+                "channel_time"                  "1"
             }
         }
     }
@@ -65,8 +65,8 @@
 
         // Time     
         //-------------------------------------------------------------------------------------------------------------
-        "AbilityChannelTime"            "20 15 10 5"
-        "AbilityCooldown"               "105 85 65 45"
+        "AbilityChannelTime"            "2"
+        "AbilityCooldown"               "75 60 45 30"
         "AbilityManaCost"               "200 170 140 100"
 
         // Special
@@ -86,7 +86,7 @@
             "03"
             {
                 "var_type"                      "FIELD_INTEGER"
-                "channel_time"                  "20 15 10 5"
+                "channel_time"                  "2"
             }
         }
     }
@@ -110,8 +110,8 @@
 
         // Time     
         //-------------------------------------------------------------------------------------------------------------
-        "AbilityChannelTime"            "30 25 15 5"
-        "AbilityCooldown"               "120 100 80 60"
+        "AbilityChannelTime"            "3"
+        "AbilityCooldown"               "75 60 45 30"
         "AbilityManaCost"               "300 270 240 200"
 
         // Special
@@ -131,7 +131,7 @@
             "03"
             {
                 "var_type"                      "FIELD_INTEGER"
-                "channel_time"                  "30 25 15 5"
+                "channel_time"                  "3"
             }
         }
     }
@@ -156,8 +156,8 @@
 
         // Time     
         //-------------------------------------------------------------------------------------------------------------
-        "AbilityChannelTime"            "30 15 5"
-        "AbilityCooldown"               "140 100 80"
+        "AbilityChannelTime"            "3"
+        "AbilityCooldown"               "100 80 60"
         "AbilityManaCost"               "400 300 200"
 
         // Special
@@ -177,7 +177,7 @@
             "03"
             {
                 "var_type"                      "FIELD_INTEGER"
-                "channel_time"                  "30 15 5"
+                "channel_time"                  "3"
             }
         }
     }
@@ -202,8 +202,8 @@
 
         // Time     
         //-------------------------------------------------------------------------------------------------------------
-        "AbilityChannelTime"            "5"
-        "AbilityCooldown"               "60.0 50 40 20"
+        "AbilityChannelTime"            "1"
+        "AbilityCooldown"               "50 40 30 20"
         
         "AbilityManaCost"               "200 150 100 50"
 
@@ -224,7 +224,7 @@
             "03"
             {
                 "var_type"                      "FIELD_INTEGER"
-                "channel_time"                  "5"
+                "channel_time"                  "1"
             }
         }
     }
@@ -250,8 +250,8 @@
 
         // Time     
         //-------------------------------------------------------------------------------------------------------------
-        "AbilityChannelTime"            "5"
-        "AbilityCooldown"               "60.0 50 40 20"
+        "AbilityChannelTime"            "1"
+        "AbilityCooldown"               "50 40 30 20"
         
         "AbilityManaCost"               "200 150 100 50"
 
@@ -272,7 +272,7 @@
             "03"
             {
                 "var_type"                      "FIELD_INTEGER"
-                "channel_time"                  "5"
+                "channel_time"                  "1"
             }
         }
     }
@@ -297,8 +297,8 @@
 
         // Time     
         //-------------------------------------------------------------------------------------------------------------
-        "AbilityChannelTime"            "5"
-        "AbilityCooldown"               "60.0 50 40 20"
+        "AbilityChannelTime"            "1"
+        "AbilityCooldown"               "50 40 30 20"
         
         "AbilityManaCost"               "200 150 100 50"
 
@@ -319,7 +319,7 @@
             "03"
             {
                 "var_type"                      "FIELD_INTEGER"
-                "channel_time"                  "5"
+                "channel_time"                  "1"
             }
         }
     }
@@ -345,8 +345,8 @@
 
         // Time     
         //-------------------------------------------------------------------------------------------------------------
-        "AbilityChannelTime"            "5"
-        "AbilityCooldown"               "60.0 50 40 20"
+        "AbilityChannelTime"            "1"
+        "AbilityCooldown"               "50 40 30 20"
         
         "AbilityManaCost"               "200 150 100 50"
 
@@ -367,7 +367,7 @@
             "03"
             {
                 "var_type"                      "FIELD_INTEGER"
-                "channel_time"                  "5"
+                "channel_time"                  "1"
             }
         }
     }
