@@ -8517,7 +8517,7 @@
         }
         "special_bonus_unique_troll_warlord_3"
         {
-            "TalentRequiredAbility"                                                   "troll_warlord_whirling_axes"
+            "TalentRequiredAbility"                                                   "troll_warlord_whirling_axes_ranged"
         }
         "special_bonus_unique_troll_warlord_4"
         {
@@ -8529,7 +8529,7 @@
         }
         "special_bonus_unique_troll_warlord_6"
         {
-            "TalentRequiredAbility"                                                   "troll_warlord_whirling_axes"
+            "TalentRequiredAbility"                                                   "troll_warlord_whirling_axes_ranged"
         }
         "special_bonus_unique_troll_warlord_7"
         {
