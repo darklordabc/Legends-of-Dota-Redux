@@ -199,7 +199,7 @@
             "01"
             {
                 "var_type"          "FIELD_INTEGER"
-                "movement_bonus"        "50"
+                "movement_bonus"        "40"
             }
             "02"
             {
@@ -209,12 +209,12 @@
             "03"
             {
                 "var_type"          "FIELD_INTEGER"
-                "movement_damage"       "12 18 24 30"
+                "movement_damage"       "20 30 40 50"
             }
             "04"
             {
                 "var_type"          "FIELD_INTEGER"
-                "movement_slow"         "-25 -30 -35 -40"
+                "movement_slow"         "-25 -28 -31 -34"
             }
             "05"
             {
@@ -529,10 +529,10 @@
         "AbilityTextureName"            "custom/veera_toxic_darts"
         "AbilityProcsMagicStick"        "1"
     
-        "AbilityCooldown"       "5.0 4.0 3.0 2.0"
+        "AbilityCooldown"       "4.0 3.0 2.0 1.0"
         "AbilityManaCost"       "20"
     
-        "AbilityCastPoint"              "0.15"
+        "AbilityCastPoint"              "0.1"
         "AbilityCastRange"              "1200"
     
         "AbilitySpecial"
@@ -565,12 +565,12 @@
             "06"
             {
                 "var_type"          "FIELD_FLOAT"
-                "charge_replenish_time"     "5.0 4.0 3.0 2.0"
+                "charge_replenish_time"     "4.0 3.0 2.0 1.0"
             }
             "07"
             {
                 "var_type"          "FIELD_INTEGER"
-                "duration"          "10"
+                "duration"          "12"
             }
             "08"
             {
