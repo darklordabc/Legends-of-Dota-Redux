@@ -42,12 +42,12 @@
             "05"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "radius"                                               "275"
+                "radius"                                               "300"
             }
             "06"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "max_targets"                                          "16 16 12 10"
+                "max_targets"                                          "16"
             }
         }
         "precache"
