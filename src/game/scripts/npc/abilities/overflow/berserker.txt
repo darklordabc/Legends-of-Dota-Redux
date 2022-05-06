@@ -15,12 +15,12 @@
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "damage"                                               "2"
+                "damage"                                               "1 2 3 4"
             }
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "speed"                                                "5"
+                "speed"                                                "3 4 5 6"
             }
             "03"
             {
@@ -30,7 +30,7 @@
             "04"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "max"                                                  "5 10 15 20"
+                "max"                                                  "20"
             }
         }
         "ReduxBans"                                                            "pudge_rot"
