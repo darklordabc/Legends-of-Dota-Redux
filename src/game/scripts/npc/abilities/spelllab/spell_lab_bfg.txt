@@ -14,18 +14,18 @@
         "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
         "HasScepterUpgrade"                                                    "1"
     		"AbilityChannelTime"      "60.0"
-        "AoERadius"               "250"
+        "AoERadius"               "350"
         "AbilitySpecial"
         {
             "01"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "mana_pct"						"1.5 2.25 3.0"
+                "mana_pct"						"2.0 3.0 4.0"
             }
             "02"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "mana_pct_scepter"						"2.5 3.25 4.0"
+                "mana_pct_scepter"						"3.0 4.5 6.0"
             }
         }
         "precache"
@@ -37,7 +37,7 @@
         }
         "ReduxFlags"                                                           ""
         //"ReduxBans"                                                            ""
-        //"ReduxPerks"                                                           ""
+        "ReduxPerks"                                                           "channeled"
         "ReduxCost"                                                            "80"
 		     "AbilityCastAnimation"		"ACT_DOTA_CHANNEL_ABILITY_1"
     }
