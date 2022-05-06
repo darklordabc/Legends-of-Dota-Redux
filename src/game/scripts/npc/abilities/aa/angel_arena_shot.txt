@@ -18,12 +18,12 @@
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "lifesteal"                                            "15 20 25 30"
+                "lifesteal"                                            "20 30 40 50"
             }
             "03"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "damage"                                               "35 60 90 140"
+                "damage"                                               "35 70 105 140"
             }
             "04"
             {
