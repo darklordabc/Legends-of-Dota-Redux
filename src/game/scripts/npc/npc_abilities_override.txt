@@ -5985,7 +5985,7 @@
         }
         "special_bonus_unique_axe_6"
         {
-            "TalentRequiredAbility"                                                   "axe_berserkers_call"
+            "TalentRequiredAbility"                                                   "axe_battle_hunger"
         }
         
         // Beastmaster
@@ -9504,10 +9504,6 @@
         "special_bonus_unique_broodmother_4"
         {
             "TalentRequiredAbility"                                                   "broodmother_silken_bola"
-        }
-        "special_bonus_unique_broodmother_4"
-        {
-            "TalentRequiredAbility"                                                   "broodmother_pin_web"
         }
 
 
