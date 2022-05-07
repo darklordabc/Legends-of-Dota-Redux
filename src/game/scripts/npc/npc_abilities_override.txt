@@ -281,23 +281,23 @@
         {
             "MaxLevel"                                                             "4"
             "AbilitySpecial"
-            {           
-                "01"
-                {
-                    "var_type"              "FIELD_INTEGER"
-                    "speed_bonus"           "15 20 25 30"
-                }
-                "02"
-                {
-                    "var_type"              "FIELD_INTEGER"
-                    "damage_bonus"          "13 17 21 25"
-                }
-                "03"
-                {
-                    "var_type"              "FIELD_INTEGER"
-                    "radius"                "1200"
-                }
-            }
+			{			
+				"01"
+				{
+					"var_type"				"FIELD_INTEGER"
+					"speed_bonus"			"25 28 31 34"
+				}
+				"02"
+				{
+					"var_type"				"FIELD_INTEGER"
+					"accuracy"			"40 50 60 70"
+				}
+				"03"
+				{
+					"var_type"				"FIELD_INTEGER"
+					"radius"				"1200"
+				}
+			}
 			"ReduxFlags"    "neutral | support"
         }
 
@@ -3930,7 +3930,6 @@
 		"lycan_wolf_bite"
 		{
             "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-
 			"ReduxFlags"                                                           "mobility | crit | attack_modifier | support"
             "ReduxPerks"                                                           "mobility | attack_modifier | support"
 		}
@@ -4678,6 +4677,7 @@
 
         "hoodwink_decoy"
         {
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
 			"MaxLevel"						"4"
 			"AbilityCooldown"				"25 22 18 15"
 			"AbilitySpecial"
@@ -4718,6 +4718,7 @@
 
         "hoodwink_hunters_boomerang"
         {
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 			"MaxLevel"						"4"
 			"AbilityCooldown"				"18 17 16 15"
 			"AbilityManaCost"				"125"
@@ -5014,7 +5015,7 @@
         //-------------------------------------------------------------------------------------------------------------
         "AbilityValues"
         {
-                "damage"                    "50 100 200 250"
+                "damage"                    "50 150 250 350"
                 "knockback_distance"        "600"
                 "range_reduction"       "40 50 60 70"
                 "debuff_duration"       "3 4 5 6"
@@ -6011,7 +6012,7 @@
         }
         "special_bonus_unique_beastmaster_6"
         {
-            "TalentRequiredAbility"                                                   "beastmaster_call_of_the_wild_boar"
+            "TalentRequiredAbility"                                                   "beastmaster_inner_beast"
         }
         "special_bonus_unique_beastmaster_7"
         {
@@ -6238,7 +6239,7 @@
         }
         "special_bonus_unique_elder_titan_2"
         {
-            "TalentRequiredAbility"                                                   "elder_titan_echo_stomp"
+            "TalentRequiredAbility"                                                   "elder_titan_echo_stomp_spirit"
         }
         "special_bonus_unique_elder_titan_3"
         {
@@ -6246,7 +6247,7 @@
         }
         "special_bonus_unique_elder_titan_4"
         {
-            "TalentRequiredAbility"                                                   "elder_titan_echo_stomp"
+            "TalentRequiredAbility"                                                   "elder_titan_echo_stomp_spirit"
         }
 
 
@@ -7379,7 +7380,7 @@
         }
         "special_bonus_unique_omniknight_4"
         {
-            "TalentRequiredAbility"                                                   "omniknight_purification"
+            "TalentRequiredAbility"                                                   "omniknight_hammer_of_purity"
         }
         "special_bonus_unique_omniknight_5"
         {
@@ -9673,6 +9674,10 @@
         {
             "TalentRequiredAbility"                                                   "arc_warden_tempest_double"
         }
+		"special_bonus_unique_arc_warden_7"
+        {
+            "TalentRequiredAbility"                                                   "arc_warden_tempest_double"
+        }
 
 
 
@@ -9956,7 +9961,10 @@
         {
             "TalentRequiredAbility" "hoodwink_acorn_shot"
         }
-
+		"special_bonus_unique_hoodwink_bushwhack_radius"
+		{
+			"TalentRequiredAbility" "hoodwink_bushwhack"
+		}
 
 
         "special_bonus_unique_dawnbreaker_solar_guardian_radius"
@@ -10583,14 +10591,14 @@
     //=================================================================================================================
     "item_aghanims_shard"
     {
-        "ItemPermanent"                 "0"
-        "ItemStockTime"                 "1"           
-        "ItemStockInitial"              "0"
-        "ItemStockMax"                  "0"
-        "ItemInitialStockTime"          "1"
+        "ItemPermanent"					"0"
+		"ItemStockTime"					"1"			  
+		"ItemStockInitial"				"0"
+		"ItemStockMax"					"1"
 
         "ItemPurchasable"               "1"
         "ItemCost"                      "1400"
+		"ItemInitialStockTime"			"600.0"
 
     }    
 
