@@ -38,12 +38,12 @@ end
 function modifier_npc_dota_hero_wisp_perk:OnCreated(keys)
     if IsServer() then
         local caster = self:GetCaster()
-        local essense = caster:FindAbilityByName("obsidian_destroyer_essence_aura_redux")
+        local essense = caster:FindAbilityByName("obsidian_destroyer_essence_aura")
 
         if essense then
             essense:UpgradeAbility(false)
         else 
-            essense = caster:AddAbility("obsidian_destroyer_essence_aura_redux")
+            essense = caster:AddAbility("obsidian_destroyer_essence_aura")
             essense:SetStolen(true)
             essense:SetActivated(true)
             essense:SetLevel(1)
