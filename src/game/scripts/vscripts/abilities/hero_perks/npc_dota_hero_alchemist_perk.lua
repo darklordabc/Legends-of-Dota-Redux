@@ -45,7 +45,7 @@ function modifier_npc_dota_hero_alchemist_perk:OnAbilityFullyCast(params)
     if params.unit == self:GetParent() then
         local item = params.ability
         if item:GetAbilityName() == "item_ultimate_scepter" or item:GetAbilityName() == "item_moon_shard" or string.find(item:GetAbilityName(),"consumable") then
-            self:GetParent():ModifyGold( item:GetGoldCost(-1) * 0.25, true, 0 ) 
+            self:GetParent():ModifyGold( item:GetGoldCost(-1) * 0.4, true, 0 ) 
         end
     end
 end
