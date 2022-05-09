@@ -39,7 +39,7 @@ end
 
 
 function modifier_npc_dota_hero_tiny_perk:OnAbilityFullyCast(params)
-	self.tenacity = 5
+	self.tenacity = 10
 	local tenacityDuration = 45
 	if params.unit == self:GetParent() then
 		if params.target and params.target.IsStanding then
