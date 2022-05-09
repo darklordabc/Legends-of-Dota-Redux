@@ -29,11 +29,11 @@ end
 function modifier_npc_dota_hero_void_spirit_perk:OnCreated()
 	if IsServer() then
 		local caster = self:GetCaster()
-		local ab = caster:FindAbilityByName("faceless_void_backtrack")
+		local ab = caster:FindAbilityByName("black_drake_magic_amplification_aura")
 		if ab then
 			ab:SetLevel(1)
 		else
-			ab = caster:AddAbility("faceless_void_backtrack")
+			ab = caster:AddAbility("black_drake_magic_amplification_aura")
             ab:SetStolen(true)
 			ab:SetLevel(1)
 			ab:SetHidden(false)
