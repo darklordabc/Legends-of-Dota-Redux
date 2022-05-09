@@ -42,7 +42,7 @@ function modifier_npc_dota_hero_monkey_king_perk:OnCreated(keys)
             Mischief:UpgradeAbility(false)
             Mischief:SetHidden(false)
         else 
-            Mischief = caster:AddAbility("monkey_king_jingu_mastery_lod")
+            Mischief = caster:AddAbility("monkey_king_jingu_mastery")
             Mischief:SetStolen(true)
             Mischief:SetActivated(true)
             Mischief:SetLevel(1)
