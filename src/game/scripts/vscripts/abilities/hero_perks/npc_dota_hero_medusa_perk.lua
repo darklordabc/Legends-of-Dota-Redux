@@ -29,12 +29,12 @@ function modifier_npc_dota_hero_medusa_perk:RemoveOnDeath()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_medusa_perk:DeclareFunctions()
-    return { MODIFIER_EVENT_ON_ATTACK_LANDED  }
+    return { MODIFIER_EVENT_ON_ATTACK_LANDED }
 end
 --------------------------------------------------------------------------------------------------------
 
 function modifier_npc_dota_hero_medusa_perk:OnAttackLanded(params)
     if self:GetParent() == params.attacker then
-        self:GetParent():GiveMana(params.damage * 0.03)
+       self:GetParent():GiveMana(params.damage * 0.075)
     end
 end
