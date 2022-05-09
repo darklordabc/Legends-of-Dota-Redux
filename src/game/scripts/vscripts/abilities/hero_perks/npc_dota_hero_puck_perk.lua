@@ -6,7 +6,7 @@
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_puck_perk", "abilities/hero_perks/npc_dota_hero_rubick_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
 --------------------------------------------------------------------------------------------------------
-if modifier_npc_dota_hero_puck_perk ~= "" then modifier_npc_dota_hero_puck_perk = class({}) end
+if npc_dota_hero_puck_perk ~= "" then npc_dota_hero_puck_perk = class({}) end
 --------------------------------------------------------------------------------------------------------
 --		Modifier: modifier_npc_dota_hero_puck_perk			
 --------------------------------------------------------------------------------------------------------
