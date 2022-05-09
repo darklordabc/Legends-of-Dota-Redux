@@ -30,7 +30,7 @@ end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_broodmother_perk:OnCreated()
   if IsServer() then
-    local cooldownReductionPercent = 20
+    local cooldownReductionPercent = 25
     self.cooldownReduction = 1 - (cooldownReductionPercent / 100)
   end
   return true
@@ -53,7 +53,7 @@ function modifier_npc_dota_hero_broodmother_perk:OnAbilityFullyCast(keys)
 
     if hero == unit and ability:HasAbilityFlag("summon_non_ult") then
       local cooldown = ability:GetCooldownTimeRemaining() * self.cooldownReduction
-      hero:GiveMana(ability:GetManaCost(ability:GetLevel()-1) * 0.2)
+      hero:GiveMana(ability:GetManaCost(ability:GetLevel()-1) * 0.25)
       ability:EndCooldown()
       ability:StartCooldown(cooldown)
     end
