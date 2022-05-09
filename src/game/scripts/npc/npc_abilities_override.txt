@@ -3508,7 +3508,7 @@
         }
         "tinker_rearm"
         {
-            "ReduxPerks"                                                           "scientific | channeled"
+            "ReduxPerks"                                                           "scientific | channeled | refresh"
             "ReduxCost"                                                            "400"
             "ReduxBans"                                                            "dazzle_shallow_grave | lich_absolute_zero | arc_warden_tempest_double | arc_warden_tempest_double_redux"
             "ReduxFlags"                                                           "cooldown"
