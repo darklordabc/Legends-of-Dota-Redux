@@ -29,7 +29,7 @@ function modifier_npc_dota_hero_pugna_perk:RemoveOnDeath()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_pugna_perk:OnCreated()
-	self.cooldownPercentReduction = 20
+	self.cooldownPercentReduction = 25
 	self.manaPercentReduction = 50
 
 	self.cooldownReduction = 1-(self.cooldownPercentReduction / 100)
