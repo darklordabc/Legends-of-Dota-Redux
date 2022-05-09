@@ -93,6 +93,54 @@
                 }
             }
         }
+		
+		"tiny_tree_channel"
+		{
+			"MaxLevel"						"4"
+			"AbilityChannelTime"			"2.4"
+			"AbilityCastRange"				"1200"
+			"AbilityCastPoint"				"0.2"
+			"AbilityCooldown"				"15 14 13 12"
+			"AbilityManaCost"				"200"
+
+			// Special
+			//-------------------------------------------------------------------------------------------------------------
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"			"FIELD_INTEGER"
+					"speed"		"1000.0"
+				}
+				"02"
+				{
+					"var_type"			"FIELD_INTEGER"
+					"range"		"1200"
+				}
+				"03"
+				{
+					"var_type"					"FIELD_INTEGER"
+					"splash_radius"				"400"
+				}
+				"04"
+				{
+					"var_type"			"FIELD_INTEGER"
+					"tree_grab_radius"		"700"
+				}
+				"05"
+				{
+					"var_type"			"FIELD_FLOAT"
+					"interval"		"0.4 0.35 0.3 0.25"
+				}
+				"06"
+				{
+					"var_type"					"FIELD_INTEGER"
+					"bonus_damage"				"0"
+					"CalculateSpellDamageTooltip"	"0"
+				}
+			}
+		}
+		
         "satyr_soulstealer_mana_burn"
         {
             "MaxLevel"                                                             "4"
@@ -449,14 +497,15 @@
 		"frostbitten_golem_time_warp_aura"
 		{
 		"MaxLevel"						"4"
-
+		"ReduxFlags"					"support"
+		"ReduxPerks"					"support | aura"
 		"AbilityValues"
 			{
 				"bonus_cdr"			"10 13 19 21"
 				"radius"			"1200"
 			}
 			"ReduxFlags"                                                           "support"
-            "ReduxPerks"                                                           "aura | neutral"
+            "ReduxPerks"                                                           "support | aura | neutral"
 		}
 		"kobold_disarm"
 		{
@@ -499,7 +548,8 @@
 		"kobold_tunneler_prospecting"
 		{
 		"MaxLevel"						"4"
-
+		"ReduxFlags"					"support"
+		"ReduxPerks"					"support | aura"
 		"AbilitySpecial"
 			{
 			"01"
@@ -514,10 +564,12 @@
 				}
 			}
 			"ReduxFlags"                                                           "support"
-            "ReduxPerks"                                                           "aura | neutral"
+            "ReduxPerks"                                                           "support | aura | neutral"
 		}
 		"forest_troll_high_priest_heal_amp_aura"
 		{
+		"ReduxFlags"					"support"
+		"ReduxPerks"					"support | aura"
 		"MaxLevel"				"4"	
 		"AbilitySpecial"
 			{	
@@ -533,7 +585,7 @@
 				}
 			}
 			"ReduxFlags"                                                           "support"
-            "ReduxPerks"                                                           "aura | neutral"
+            "ReduxPerks"                                                           "support | aura | neutral"
 		}
 		"fel_beast_haunt"
 		{
@@ -2024,6 +2076,10 @@
         {
             "ReduxFlags"                                                           "mobility"
             "ReduxPerks"                                                           "mobility | light | teleport"
+			"MaxLevel"						"4"
+			"AbilityCooldown"				"15 14 13 12"
+			"AbilityManaCost"				"150 125 100 75"
+			"teleport_delay"		"3 2.5 2 1.5"
         }
         "slark_pounce"
         {
@@ -4183,6 +4239,12 @@
             "ReduxCost"                                                            "200"
             "ReduxFlags"                                                           ""
         }
+		
+		"brewmaster_earth_spell_immunity"
+		{
+            "ReduxCost"                                                            "200"
+            "ReduxFlags"                                                           ""
+        }
 
         "winter_wyvern_splinter_blast"
         {
@@ -4752,7 +4814,7 @@
 				"06"
 				{
 					"var_type"				"FIELD_INTEGER"
-					"spell_amp"				"25 30 35 40"
+					"spell_amp"				"25"
 				}
 				"07"
 				{
@@ -4779,8 +4841,7 @@
 
         "skywrath_mage_shield_of_the_scion"
         {
-            "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-
+            "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
         }
 
         "forged_spirit_melting_strike"
@@ -5614,12 +5675,12 @@
 				"01"
 				{
 					"var_type"							"FIELD_FLOAT"
-					"bonus_duration"						"4"
+					"bonus_duration"						"4 5 6 7"
 				}
 				"02"
 				{
 					"var_type"							"FIELD_INTEGER"
-					"bonus_damage"						"30 35 40 45"
+					"bonus_damage"						"30"
 				}
 				"03"
 				{
@@ -5919,6 +5980,9 @@
 			"AbilityManaCost"				"150 200 250 300"
         }
 
+
+		// Neutral skills
+		
 
 
 
