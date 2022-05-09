@@ -79,6 +79,6 @@ function modifier_npc_dota_hero_elder_titan_perk:OnIntervalThink()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_elder_titan_perk:GetModifierMoveSpeedBonus_Percentage()
-    return self:GetStackCount() * 3
+    return self:GetStackCount() * 4
 end
 --------------------------------------------------------------------------------------------------------
