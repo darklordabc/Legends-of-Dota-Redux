@@ -38,7 +38,7 @@ end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_riki_perk:GetModifierConstantHealthRegen()
 	if self:GetCaster():IsInvisible() then
- 		return 4
+ 		return 8
 	else 
 		return 0
 	end
