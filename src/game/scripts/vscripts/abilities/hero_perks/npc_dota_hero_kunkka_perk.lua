@@ -31,7 +31,7 @@ end
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_kunkka_perk:OnCreated()
-	self.chance = 50
+	self.chance = 75
 	self.increase = 1
 end
 
