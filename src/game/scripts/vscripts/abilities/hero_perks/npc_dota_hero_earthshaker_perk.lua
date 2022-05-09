@@ -38,7 +38,7 @@ function modifier_npc_dota_hero_earthshaker_perk:DeclareFunctions()
 end
 
 function modifier_npc_dota_hero_earthshaker_perk:OnAbilityFullyCast(keys)
-  local healPercent = 2
+  local healPercent = 3
   healPercent = 0.01 * healPercent
 
   if IsServer() then
