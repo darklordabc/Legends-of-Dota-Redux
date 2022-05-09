@@ -39,7 +39,7 @@ end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_bounty_hunter_perk:GetModifierTotalDamageOutgoing_Percentage(keys)
     if keys.target and keys.target:HasModifier("modifier_bounty_hunter_track") then
-        return 10
+        return 17
     else 
         return 0
     end
