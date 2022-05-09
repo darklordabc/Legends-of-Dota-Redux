@@ -26,17 +26,17 @@ end
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------
 
-function modifier_npc_dota_hero_mars_perk:OnCreated()
-	if IsServer() then
-		local caster = self:GetCaster()
-		local ab = caster:FindAbilityByName("faceless_void_backtrack")
-		if ab then
-			ab:SetLevel(1)
-		else
-			ab = caster:AddAbility("faceless_void_backtrack")
-            ab:SetStolen(true)
-			ab:SetLevel(1)
-			ab:SetHidden(false)
-		end
-	end
+function modifier_npc_dota_hero_mars_perk:OnCreated(keys)
+	
+    if IsServer() then
+        local caster = self:GetCaster()
+        local mars = caster:FindAbilityByName("mars_bulwark")
+
+        if mars then
+            mars:UpgradeAbility(false)
+        else 
+            mars = caster:AddAbility("mars_bulwark")
+            --nullField:SetLevel(1)	
+        end
+    end
 end
