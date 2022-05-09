@@ -26,7 +26,7 @@ end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_venomancer_perk:OnCreated()
 	if IsServer() then
-		local poisonDurationBonusPct = 25
+		local poisonDurationBonusPct = 40
 		self:GetCaster().poisonDurationBonus = (poisonDurationBonusPct / 100)
 		self:GetCaster().lastPoisonAbility = nil
 	end
