@@ -34,7 +34,7 @@ LinkLuaModifier( "modifier_npc_dota_hero_death_prophet_perk_mute", "abilities/he
 --------------------------------------------------------------------------------------------------------
 --    Modifier: modifier_npc_dota_hero_death_prophet_perk_mute       
 --------------------------------------------------------------------------------------------------------
-if modifier_npc_dota_hero_death_prophet_perk_mute ~= "" then modifier_npc_dota_hero_death_prophet_perk_mute = class({IsPurgable = function() return true end}) end
+if modifier_npc_dota_hero_death_prophet_perk_mute ~= "" then modifier_npc_dota_hero_death_prophet_perk_mute = class({}) end
 --------------------------------------------------------------------------------------------------------
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------
@@ -67,7 +67,7 @@ function perkDeathProphet(filterTable)  --ModifierGainedFilter
     if caster:HasModifier("modifier_npc_dota_hero_death_prophet_perk") and caster ~= parent then
       if ability:HasAbilityFlag("silence") then
         local modifierDuration = filterTable["duration"]
-        parent:AddNewModifier(caster,ability,"modifier_npc_dota_hero_death_prophet_perk_mute",{duration = modifierDuration})
+        parent:AddNewModifier(caster,ability,"modifier_npc_dota_hero_death_prophet_perk_mute",{duration = modifierDuration},{IsPurgable = true})
       end
     end
   -- Exception for silencer glaives
