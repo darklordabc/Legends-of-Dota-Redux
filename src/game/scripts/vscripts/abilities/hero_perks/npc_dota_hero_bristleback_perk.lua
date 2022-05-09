@@ -30,7 +30,7 @@ end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_bristleback_perk:OnCreated(keys)
     self.manaThreshold = 50
-    self.cooldownPercentReduction = 15
+    self.cooldownPercentReduction = 25
     self.cooldownReduction = 1 - (self.cooldownPercentReduction / 100)
     return true
 end
