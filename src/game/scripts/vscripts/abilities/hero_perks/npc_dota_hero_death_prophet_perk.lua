@@ -34,7 +34,7 @@ LinkLuaModifier( "modifier_npc_dota_hero_death_prophet_perk_mute", "abilities/he
 --------------------------------------------------------------------------------------------------------
 --    Modifier: modifier_npc_dota_hero_death_prophet_perk_mute       
 --------------------------------------------------------------------------------------------------------
-if modifier_npc_dota_hero_death_prophet_perk_mute ~= "" then modifier_npc_dota_hero_death_prophet_perk_mute = class({}) end
+if modifier_npc_dota_hero_death_prophet_perk_mute ~= "" then modifier_npc_dota_hero_death_prophet_perk_mute = class({IsPurgable = function() return true end}) end
 --------------------------------------------------------------------------------------------------------
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------
