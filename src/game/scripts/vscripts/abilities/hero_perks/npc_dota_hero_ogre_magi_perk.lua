@@ -55,7 +55,7 @@ function modifier_npc_dota_hero_ogre_magi_perk:OnAbilityFullyCast(keys)
 	local target = keys.target
 	--local ability = keys.ability
 	if hero == keys.unit then
-		hero:AddNewModifier(hero,self.bloodlust,"modifier_ogre_magi_bloodlust",{duration=10})
+		hero:AddNewModifier(hero,self.bloodlust,"modifier_ogre_magi_bloodlust",{duration=20})
 	end
   end
 end
