@@ -12,7 +12,7 @@
         "AbilityProcsMagicStick"                                               "1"
         "AbilityCooldown"                                                      "15 14 13 12"
         "AbilityManaCost"                                                      "100"
-        "AbilityCastRange"                                                     "1000 1500 2000 2500"
+        "AbilityCastRange"                                                     "1500 2000 2500 3000"
         "precache"
         {
             "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_terrorblade.vsndevts"
@@ -22,17 +22,17 @@
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "duration"                                             "8 11 14 17"
+                "duration"                                             "10 12 14 16"
             }
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "cast_range"                                           "1000 1500 2000 2500"
+                "cast_range"                                           "1500 2000 2500 3000"
             }
             "03"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "incoming_damage_percent"                              "150 140 130 120"
+                "incoming_damage_percent"                              "160 140 120 100"
             }
             "04"
             {

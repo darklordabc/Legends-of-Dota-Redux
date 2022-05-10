@@ -29,7 +29,7 @@ function modifier_npc_dota_hero_sand_king_perk:RemoveOnDeath()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_sand_king_perk:OnCreated(keys)
-	self.manaPercentReduction = 30
+	self.manaPercentReduction = 50
 	self.manaReduction = self.manaPercentReduction / 100
 	return true
 end

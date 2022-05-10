@@ -27,3 +27,18 @@ end
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------
 
+function modifier_npc_dota_hero_night_stalker_perk:OnCreated(keys)
+    if IsServer() then
+        local caster = self:GetCaster()
+        local night = caster:FindAbilityByName("night_stalker_hunter_in_the_night")
+
+        if night then
+            night:UpgradeAbility(false)
+        else 
+            night = caster:AddAbility("night_stalker_hunter_in_the_night")
+            night:SetStolen(true)
+            night:SetActivated(true)
+            night:SetLevel(1)
+        end
+    end
+end

@@ -51,9 +51,9 @@ if IsServer() then
         local checkLevel = self:GetParent():GetLevel()
         local lapseLevel = 1
 
-        if checkLevel >= 16 then 
+        if checkLevel >= 18 then 
             lapseLevel = 3
-        elseif checkLevel >= 11 then
+        elseif checkLevel >= 12 then
             lapseLevel = 2
         elseif checkLevel >= 6 then
             lapseLevel = 1

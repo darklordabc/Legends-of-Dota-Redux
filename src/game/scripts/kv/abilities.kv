@@ -215,7 +215,7 @@
             "invoker_sun_strike_ad"            "1"
             "invoker_tornado_ad"            "1"
             "invoker_deafening_blast_ad" "1"
-            "forged_spirit_melting_strike" "1"      // doesnt work
+          //  "forged_spirit_melting_strike" "1"      // doesnt work
             "jakiro_dual_breath"            "1"
             "jakiro_ice_path"            "1"
             "jakiro_liquid_fire"            "1"
@@ -230,7 +230,7 @@
             "keeper_of_the_light_chakra_magic_cooldown"     "1"
             "keeper_of_the_light_illuminate"            "1"
             "keeper_of_the_light_mana_leak"            "1"
-            "keeper_of_the_light_recall_lod"            "1"
+            "keeper_of_the_light_recall"            "1"
             "keeper_of_the_light_spirit_form"            "1"
             "keeper_of_the_light_will_o_wisp"   "1"
             "kunkka_ghostship"            "1"
@@ -305,8 +305,8 @@
             "monkey_king_tree_dance"  "1"
             "monkey_king_primal_spring"  "1"
             "monkey_king_jingu_mastery"  "1"
-            "monkey_king_jingu_mastery_lod"  "1"
-            "monkey_king_jingu_mastery_lod_melee"  "1"
+            //"monkey_king_jingu_mastery_lod"  "1"
+            //"monkey_king_jingu_mastery_lod_melee"  "1"
             "monkey_king_wukongs_command"   "1"
             //"monkey_king_mischief"  "1"
             "morphling_adaptive_strike_agi"            "1"
@@ -503,7 +503,7 @@
             "tiny_grow_lod"            "1"
             "tiny_grow_lod_redux"            "1"
             "tiny_toss"            "1"
-            //"tiny_tree_channel"     "1"
+            "tiny_tree_channel"     "1"
             "tiny_tree_grab"     "1"
             "treant_eyes_in_the_forest"            "1"
             "treant_leech_seed"            "1"
@@ -515,6 +515,8 @@
             "troll_warlord_berserkers_rage"            "1"
             "troll_warlord_fervor"            "1"
             "troll_warlord_whirling_axes_ranged"            "1"
+			"troll_warlord_whirling_axes_melee"				"1"
+			"troll_warlord_rampage"			"1"
             "tusk_frozen_sigil"            "1"
             "tusk_ice_shards"            "1"
             "tusk_snowball"            "1"
@@ -605,13 +607,16 @@
             "lone_druid_true_form_battle_cry"            "1"
             // Brewmaster
             "brewmaster_earth_hurl_boulder"            "1"
-            //"brewmaster_earth_pulverize"            "1"
-            "brewmaster_earth_pulverize_redux"        "1"
-            //"brewmaster_storm_wind_walk"            "1"
-            "brewmaster_storm_wind_walk_redux"            "1"
+            "brewmaster_earth_pulverize"            "1"
+			"brewmaster_earth_spell_immunity"
+            //"brewmaster_earth_pulverize_redux"        "1"
+			"brewmaster_void_astral_pulse"
+            "brewmaster_storm_wind_walk"            "1"
+            //"brewmaster_storm_wind_walk_redux"            "1"
             "brewmaster_storm_dispel_magic"            "1"
             "brewmaster_fire_permanent_immolation"            "1"
             "brewmaster_storm_cyclone"            "1"
+			"brewmaster_void_astral_pulse"			"1"
             // Ogre magi ulty
             "ogre_magi_unrefined_fireblast"            "1"
             // Meepo Ulty
@@ -619,7 +624,7 @@
             // Rearm
             "tinker_rearm"            "1"
             // Riki
-            //"riki_permanent_invisibility"            "1"
+            "riki_permanent_invisibility"            "1"
             // Multicast
             "ogre_magi_multicast"            "1"
             // Aftershock
@@ -677,6 +682,7 @@
             // "ogre_magi_frost_armor"             "1"   // cant find?
             "omniknight_hammer_of_purity"       "1"   // ok
             //"pangolier_gyroshell"               "1"   // cant find?
+			"pangolier_rollup"					"1"
             "phantom_assassin_fan_of_knives"    "1"   // ok
             "riki_poison_dart"                  "1"   // ok
             "slark_fish_bait"                   "1"   // ok
@@ -734,6 +740,7 @@
             "fel_beast_haunt"                   "1"
             "harpy_scout_take_off"              "1"
             "enraged_wildkin_hurricane"         "1"
+			"black_dragon_fireball"				"1"
 
             //"skywrath_mage_shield_of_the_scion" "1"   // doesnt work
             "bloodseeker_blood_mist"            "1"
@@ -763,7 +770,7 @@
 				"lycan_summon_wolves_critical_strike"	"1"
 				"berserker_troll_break"					"1"
 				"kobold_disarm"							"1"
-				"forged_spirit_melting_strike"			"1"
+				// "forged_spirit_melting_strike"			"1"
             }
 
             "big_thunder_lizard_group" {
@@ -789,7 +796,7 @@
 			
             "black_dragon_group" {
 				"blue_dragonspawn_sorcerer_evasion"		"1"
-                "neutral_spell_immunity"				"1"
+                "brewmaster_earth_spell_immunity"		"1"
 				"furbolg_enrage_attack_speed"			"1"
 				"furbolg_enrage_damage"					"1"
 				//"neutral_evasion"                "1"
@@ -822,7 +829,7 @@
                 "dark_troll_warlord_raise_dead"          "1"
 				"satyr_hellcaller_shockwave"             "1"
 				"spawnlord_master_freeze"                "1"
-				"black_dragon_fireball_lod"              "1"
+				"black_dragon_fireball"                  "1"
 				"giant_wolf_intimidate"					 "1"
 				"ogre_bruiser_ogre_smash"				 "1"
 				"harpy_scout_take_off"					 "1"
@@ -2345,6 +2352,16 @@
             "Ability9"            "tiny_grow_lod_redux" 
         }
 
+		"npc_dota_hero_troll_warlord"
+			"Ability1"		"troll_warlord_berserkers_rage"
+			"Ability2"		"troll_warlord_whirling_axes_ranged"
+			"Ability3"		"troll_warlord_whirling_axes_melee"
+			"Ability4"		"troll_warlord_fervor"
+			"Ability5"		"troll_warlord_rampage"
+			"Ability6"		"troll_warlord_battle_trance"
+			"Ability7"		"troll_warlord_rampage"
+        }
+
         "npc_dota_hero_tusk" {
             "Ability1"        "tusk_ice_shards"
             "Ability2"        "tusk_snowball"
@@ -2427,12 +2444,13 @@
             "Ability3"            "brewmaster_drunken_brawler"
             "Ability4"            "brewmaster_primal_split"
             "Ability5"            "brewmaster_earth_hurl_boulder"
-            "Ability6"            "brewmaster_earth_pulverize_redux"
-            "Ability7"            "brewmaster_storm_wind_walk_redux"
+            "Ability6"            "brewmaster_earth_pulverize"
+            "Ability7"            "brewmaster_storm_wind_walk"
             "Ability8"            "brewmaster_storm_dispel_magic"
             "Ability9"            "brewmaster_fire_permanent_immolation"
             "Ability10"           "brewmaster_storm_cyclone"
             "Ability11"           "brewmaster_cinder_brew"
+			"Ability12"			  "brewmaster_void_astral_pulse"
         }
 		
         "npc_dota_hero_crystal_maiden" {
@@ -2520,6 +2538,7 @@
             "Ability4"                          "pangolier_lucky_shot_ranged"
             "Ability5"                          "pangolier_heartpiercer"
             "Ability6"                          "pangolier_gyroshell"
+			"Ability7"							"pangolier_rollup"
       }
         "npc_dota_hero_earthshaker" {
             "Ability1"            "earthshaker_fissure"
@@ -2689,9 +2708,9 @@
             "Ability2"  "monkey_king_tree_dance"
             "Ability3"  "monkey_king_primal_spring"
             "Ability4"  "monkey_king_jingu_mastery"
-            "Ability5" "monkey_king_jingu_mastery_lod_melee"
+            //"Ability5" "monkey_king_jingu_mastery_lod_melee"
             //"Ability6" "monkey_king_mischief"
-            "Ability6"  "monkey_king_wukongs_command"
+            "Ability5"  "monkey_king_wukongs_command"
         }
         "npc_dota_hero_mars"
         {
@@ -2793,7 +2812,7 @@
             "Ability3"  "keeper_of_the_light_chakra_magic_cooldown"
             "Ability4"  "keeper_of_the_light_illuminate"
             "Ability5"  "keeper_of_the_light_mana_leak"
-            "Ability6"  "keeper_of_the_light_recall_lod"
+            "Ability6"  "keeper_of_the_light_recall"
             "Ability7"  "keeper_of_the_light_spirit_form"
             "Ability8"  "keeper_of_the_light_innate_redux"
             "Ability9"  "keeper_of_the_light_will_o_wisp"

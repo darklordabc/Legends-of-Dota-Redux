@@ -28,8 +28,8 @@ end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_invoker_perk:OnCreated()
 	self.abilityTable = {}
-	self.intPerAbility = 5
-	self.maxStacks = 30
+	self.intPerAbility = 10
+	self.maxStacks = 60
 end
 
 function modifier_npc_dota_hero_invoker_perk:RemoveOnDeath()

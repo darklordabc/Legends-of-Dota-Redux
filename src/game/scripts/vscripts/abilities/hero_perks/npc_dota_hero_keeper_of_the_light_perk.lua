@@ -27,3 +27,17 @@ end
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------
 
+function modifier_npc_dota_hero_keeper_of_the_light_perk:OnCreated(keys)
+	
+    if IsServer() then
+        local caster = self:GetCaster()
+        local kotl = caster:FindAbilityByName("aether_range_lod")
+
+        if kotl then
+            kotl:UpgradeAbility(false)
+        else 
+            kotl = caster:AddAbility("aether_range_lod")
+            --nullField:SetLevel(1)	
+        end
+    end
+end

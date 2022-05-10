@@ -251,6 +251,6 @@ CAST_RANGE_TALENTS["special_bonus_cast_range_200"] = 200
 CAST_RANGE_TALENTS["special_bonus_cast_range_250"] = 250
 CAST_RANGE_TALENTS["special_bonus_cast_range_300"] = 300
 
-MAXIMUM_ATTACK_SPEED = 600					-- What should we use for the maximum attack speed?
+MAXIMUM_ATTACK_SPEED = 700					-- What should we use for the maximum attack speed?
 
 return Constants

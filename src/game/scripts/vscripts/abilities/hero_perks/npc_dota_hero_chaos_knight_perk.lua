@@ -33,11 +33,11 @@ end
 function modifier_npc_dota_hero_chaos_knight_perk:OnCreated()
 	if IsServer() then
 		local caster = self:GetCaster()
-		local ab = caster:FindAbilityByName("faceless_void_backtrack")
+		local ab = caster:FindAbilityByName("lycan_summon_wolves_critical_strike")
 		if ab then
 			ab:SetLevel(1)
 		else
-			ab = caster:AddAbility("faceless_void_backtrack")
+			ab = caster:AddAbility("lycan_summon_wolves_critical_strike")
             ab:SetStolen(true)
 			ab:SetLevel(1)
 			ab:SetHidden(true)

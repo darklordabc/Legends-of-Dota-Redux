@@ -30,7 +30,7 @@ end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_oracle_perk:OnCreated()
   if IsServer() then
-    local cooldownPercentReduction = 20
+    local cooldownPercentReduction = 25
     self.cooldownReduction = 1 - (cooldownPercentReduction / 100)
 	-- Hard-coded due to being used in a listener for items purchased. 
     self.limitedItems = {
@@ -42,7 +42,20 @@ function modifier_npc_dota_hero_oracle_perk:OnCreated()
       item_ancient_janggo = true,
       item_mekansm = true,
       item_pipe = true,
-      item_guardian_greaves = true
+      item_guardian_greaves = true,
+	  item_boots_of_bearing = true,
+	  item_spirit_vessel = true,
+	  item_solar_crest = true,
+	  item_smoke_of_deceit = true,
+	  item_veil_of_discord = true,
+	  item_glimmer_cape = true,
+	  item_mechanical_arm = true,
+	  item_seer_stone = true,
+	  item_force_staff = true,
+	  item_holy_locket = true,
+	  item_pipe = true,
+	  item_crimson_guard = true,
+	  item_book_of_shadows = true
     }
   end
   return true
