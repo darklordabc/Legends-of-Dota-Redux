@@ -1198,9 +1198,9 @@ function Ingame:balanceGold()
 		--print(self.direBalanceMoney)
 	end
 
-	local moneySize = 10
+	local moneySize = 0 --10
 	if self.direBalanceMoney >= 200 or self.radiantBalanceMoney >= 200 then
-		moneySize = 20
+		moneySize = 0  --20
 	end
 
 	if self.radiantBalanceMoney >= moneySize * 10 or self.direBalanceMoney >= moneySize * 10 then
