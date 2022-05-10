@@ -12,7 +12,7 @@
         "FightRecapLevel"                                                      "1"
         "MaxLevel"                                                             "4"
         "AbilityProcsMagicStick"                                               "1"
-        "AbilityCooldown"                                                      "18 16 14 12"
+        "AbilityCooldown"                                                      "16 14 12 10"
         "AbilityManaCost"                                                      "100 110 120 130"
         "AbilityCastRange"                                                     "700"
         "precache"
@@ -29,7 +29,7 @@
             "02"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "damage"                                               "80 160 240 320"
+                "damage"                                               "100 180 260 340"
             }
             "03"
             {
