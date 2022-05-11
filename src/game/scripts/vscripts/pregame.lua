@@ -8210,8 +8210,8 @@ function Pregame:fixSpawnedHero( spawnedUnit )
             end
 
             -- Give bots a free neutral item
-            local item = CreateItem("item_vambrace", spawnedUnit, nil)
-            spawnedUnit:AddItem(item)
+            -- local item = CreateItem("item_vambrace", spawnedUnit, nil)
+            -- spawnedUnit:AddItem(item)
 
         end
     end, DoUniqueString('addBotAI'), 1.0)
