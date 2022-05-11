@@ -564,14 +564,11 @@
 			{
 				"item_tango"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
 				"item_flask"		"ITEM_CONSUMABLE | ITEM_SELLABLE"	
-				"item_branches"		"ITEM_CORE | ITEM_SELLABLE"
-				"item_branches"		"ITEM_CORE | ITEM_SELLABLE"
 				
-				"item_boots"					"ITEM_CORE"
-				"item_wind_lace" 		"ITEM_CORE"
-				"item_ring_of_regen" 			"ITEM_CORE"
-				"item_recipe_tranquil_boots" 	"ITEM_DERIVED"
-				"item_tranquil_boots"			"ITEM_DERIVED"
+				"item_boots"			"ITEM_CORE"
+				"item_chainmail"		"ITEM_EXTENSION"
+				"item_blades_of_attack"	"ITEM_EXTENSION"
+				"item_phase_boots"		"ITEM_DERIVED"
 
 				"item_blink"	"ITEM_CORE"
 
@@ -595,6 +592,7 @@
 				"item_mystic_staff"		"ITEM_LUXURY"
 				"item_recipe_shivas_guard"		"ITEM_LUXURY"
 				"item_shivas_guard"		"ITEM_LUXURY | ITEM_DERIVED"
+				
 			}
 			"Build"
 			{
@@ -801,10 +799,37 @@
 				"item_blades_of_attack"	"ITEM_EXTENSION"
 				"item_phase_boots"		"ITEM_DERIVED"
 
+				"item_energy_booster"		"ITEM_EXTENSION"
+				"item_void_stone"		"ITEM_EXTENSION"
+				"item_recipe_aether_lens"	"ITEM_EXTENSION"
+				"item_aether_lens"			"ITEM_DERIVED"
+
 				"item_void_stone"		"ITEM_LUXURY"
 				"item_mystic_staff"		"ITEM_LUXURY"
 				"item_ultimate_orb"		"ITEM_LUXURY"
 				"item_sheepstick"		"ITEM_DERIVED"
+				
+				"item_platemail"		"ITEM_LUXURY"
+				"item_mystic_staff"		"ITEM_LUXURY"
+				"item_recipe_shivas_guard"		"ITEM_LUXURY"
+				"item_shivas_guard"		"ITEM_DERIVED"
+				
+				"item_vitality_booster" "ITEM_EXTENSION"
+				"item_energy_booster" 	"ITEM_EXTENSION"
+				"item_point_booster" 	"ITEM_EXTENSION"
+				"item_soul_booster"		"ITEM_EXTENSION"
+				"item_octarine_core"	"ITEM_DERIVED"
+				
+				"item_point_booster"		"ITEM_LUXURY"
+				"item_ogre_axe"		"ITEM_LUXURY"
+				"item_blade_of_alacrity"		"ITEM_LUXURY"
+				"item_staff_of_wizardry"		"ITEM_LUXURY"
+				"item_ultimate_scepter"		"ITEM_DERIVED"
+				
+				"item_vitality_booster"		"ITEM_EXTENSION"
+				"item_energy_booster"		"ITEM_EXTENSION"
+				"item_recipe_aeon_disk"		"ITEM_EXTENSION"
+				"item_aeon_disk"			"ITEM_LUXURY"
 
 			}
 			"Build"
@@ -1015,11 +1040,6 @@
 				"item_tango"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
 				"item_quelling_blade"		"ITEM_CORE | ITEM_SELLABLE"
 				"item_boots"		"ITEM_CORE"
-				"item_magic_stick"		"ITEM_CORE"
-				"item_branches"		"ITEM_CORE"
-				"item_branches"		"ITEM_CORE"
-				"item_recipe_magic_wand"		"ITEM_CORE"
-				"item_magic_wand"		"ITEM_DERIVED | ITEM_SELLABLE"
 				"item_gloves"		"ITEM_EXTENSION"
 				"item_boots_of_elves"		"ITEM_EXTENSION"
 				"item_power_treads"		"ITEM_DERIVED"
@@ -1027,6 +1047,12 @@
 				"item_boots_of_elves"		"ITEM_EXTENSION"
 				"item_recipe_yasha"		"ITEM_EXTENSION"
 				"item_yasha"		"ITEM_DERIVED"
+				"item_mithril_hammer"	"ITEM_CORE"
+				"item_javelin"		"ITEM_CORE"
+				"item_maelstrom"			 "ITEM_DERIVED"
+				"item_hyperstone"		"ITEM_CORE"
+				"item_recipe_mjollnir"	 "ITEM_CORE"
+				"item_mjollnir"			"ITEM_DERIVED"
 				"item_ogre_axe"		"ITEM_EXTENSION"
 				"item_belt_of_strength"		"ITEM_EXTENSION"
 				"item_recipe_sange"		"ITEM_EXTENSION"
@@ -1046,7 +1072,6 @@
 				"item_vanguard"		"ITEM_DERIVED"
 				"item_recipe_abyssal_blade"	"ITEM_LUXURY"
 				"item_abyssal_blade"		"ITEM_DERIVED"
-				"item_relic"		"ITEM_LUXURY"
 				"item_eagle"		"ITEM_LUXURY"
 				"item_quarterstaff"		"ITEM_LUXURY"
 				"item_talisman_of_evasion"		"ITEM_LUXURY"
@@ -1260,13 +1285,19 @@
 				"item_flask"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
 				"item_clarity"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
 				"item_clarity"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
-				"item_magic_stick"		"ITEM_CORE | ITEM_SELLABLE"
 
 				"item_boots"			"ITEM_CORE"
 				"item_chainmail"		"ITEM_EXTENSION"
 				"item_blades_of_attack"	"ITEM_EXTENSION"
 				"item_phase_boots"		"ITEM_DERIVED"
-
+				
+				"item_fluffy_hat"		"ITEM_EXTENSION"
+				"item_staff_of_wizardry"	"ITEM_EXTENSION"
+				"item_recipe_force_staff"	"ITEM_EXTENSION"
+				"item_force_staff"			"ITEM_DERIVED"
+				
+				"item_blink"				"ITEM_CORE"
+				
 				"item_point_booster"		"ITEM_EXTENSION"
 				"item_staff_of_wizardry"		"ITEM_EXTENSION"
 				"item_ogre_axe"		"ITEM_EXTENSION"
@@ -1276,6 +1307,11 @@
 				"item_mithril_hammer"		"ITEM_LUXURY"
 				"item_recipe_black_king_bar"		"ITEM_LUXURY"
 				"item_black_king_bar"		"ITEM_DERIVED"
+				
+				"item_vitality_booster"		"ITEM_EXTENSION"
+				"item_energy_booster"		"ITEM_EXTENSION"
+				"item_recipe_aeon_disk"		"ITEM_EXTENSION"
+				"item_aeon_disk"			"ITEM_LUXURY"
 			}
 			"Build"
 			{
@@ -1426,7 +1462,6 @@
 			{
 				"item_tango"				"ITEM_CONSUMABLE | ITEM_SELLABLE"
 				"item_flask"				"ITEM_CONSUMABLE | ITEM_SELLABLE"	
-				"item_branches"				"ITEM_CORE"
 				
 				"item_slippers"				"ITEM_CORE"
 				"item_circlet"				"ITEM_CORE"
@@ -1439,10 +1474,15 @@
 				"item_boots_of_elves"		"ITEM_CORE"
 				"item_power_treads"			"ITEM_CORE | ITEM_DERIVED"
 
-				"item_lifesteal"			"ITEM_EXTENSION"
+				//"item_lifesteal"			"ITEM_EXTENSION"
 				//"item_quarterstaff"			"ITEM_EXTENSION"
 				//"item_mask_of_madness"		"ITEM_DERIVED | ITEM_SELLABLE"
 
+				"item_boots_of_elves"	"ITEM_CORE"
+				"item_boots_of_elves"	"ITEM_CORE"
+				"item_ogre_axe"			"ITEM_CORE"
+				"item_dragon_lance"		"ITEM_DERIVED"
+				
 				"item_blade_of_alacrity"	"ITEM_CORE"
 				"item_boots_of_elves"		"ITEM_EXTENSION"
 				"item_recipe_yasha"			"ITEM_EXTENSION"
@@ -1456,11 +1496,30 @@
 				"item_ogre_axe"					"ITEM_LUXURY"
 				"item_recipe_black_king_bar"	"ITEM_LUXURY"
 				"item_black_king_bar"			"ITEM_LUXURY | ITEM_DERIVED"
-
+				
+				"item_broadsword"		"ITEM_LUXURY"
+				"item_blades_of_attack"		"ITEM_LUXURY"
+				"item_recipe_lesser_crit"		"ITEM_LUXURY"
+				"item_lesser_crit"		"ITEM_DERIVED"
+				"item_demon_edge"		"ITEM_LUXURY"
+				"item_recipe_greater_crit"		"ITEM_LUXURY"
+				
+				"item_fluffy_hat"		"ITEM_EXTENSION"
+				"item_staff_of_wizardry"	"ITEM_EXTENSION"
+				"item_recipe_force_staff"	"ITEM_EXTENSION"
+				"item_force_staff"			"ITEM_DERIVED"
+				"item_recipe_hurricane_pike"	"ITEM_EXTENSION"
+				"item_hurricane_pike"	"ITEM_DERIVED"
+				
 				"item_quarterstaff"			"ITEM_CORE"
 				"item_eagle"				"ITEM_EXTENSION"
 				"item_talisman_of_evasion"	"ITEM_EXTENSION"
 				"item_butterfly"			"ITEM_DERIVED"
+				
+				"item_ultimate_orb"			"ITEM_EXTENSION"
+				"item_ultimate_orb"			"ITEM_EXTENSION"
+				"item_point_booster"		"ITEM_EXTENSION"
+				"item_skadi"				"ITEM_LUXURY"
 			}
 			"Build"
 			{
@@ -1742,11 +1801,10 @@
 
 				"item_blink"			"ITEM_CORE"
 
-				"item_point_booster"		"ITEM_CORE"
-				"item_ogre_axe"				"ITEM_CORE"
-				"item_blade_of_alacrity"	"ITEM_CORE"
-				"item_staff_of_wizardry"	"ITEM_CORE"
-				"item_ultimate_scepter"		"ITEM_DERIVED"
+				"item_staff_of_wizardry"	"ITEM_EXTENSION"
+				"item_fluffy_hat"		"ITEM_EXTENSION"
+				"item_recipe_force_staff"	"ITEM_EXTENSION"
+				"item_force_staff"			"ITEM_DERIVED"
 
 				"item_staff_of_wizardry" 	"ITEM_EXTENSION"
 				"item_void_stone" 			"ITEM_EXTENSION"
@@ -1763,6 +1821,12 @@
 				"item_ultimate_orb"		"ITEM_LUXURY"
 				"item_mystic_staff"		"ITEM_LUXURY"
 				"item_sheepstick"		"ITEM_DERIVED"
+				
+				"item_mystic_staff"		"ITEM_LUXURY"
+				"item_recipe_wind_waker"	"ITEM_LUXURY"
+				"item_wind_waker"			"ITEM_DERIVED"
+				
+				
 			}
 			"Build"
 			{
@@ -1996,10 +2060,6 @@
 			{
 				"item_tango"			"ITEM_CONSUMABLE | ITEM_SELLABLE"
 				"item_flask"			"ITEM_CONSUMABLE | ITEM_SELLABLE"
-				"item_recipe_magic_wand"	"ITEM_CONSUMABLE | ITEM_SELLABLE"
-				"item_branches"			"ITEM_CORE | ITEM_SELLABLE"
-
-				"item_quelling_blade"	"ITEM_CORE"
 
 				"item_boots"			"ITEM_CORE"
 				"item_chainmail"		"ITEM_EXTENSION"
@@ -2021,7 +2081,6 @@
 				"item_recipe_manta"			"ITEM_EXTENSION"
 				"item_manta"				"ITEM_DERIVED"
 
-
 				"item_quarterstaff"			"ITEM_LUXURY"
 				"item_eagle"				"ITEM_LUXURY"
 				"item_talisman_of_evasion"	"ITEM_LUXURY"
@@ -2032,6 +2091,11 @@
 				"item_claymore"					"ITEM_LUXURY"
 				"item_recipe_satanic"	"ITEM_LUXURY"
 				"item_satanic"					"ITEM_DERIVED"
+				
+				"item_ultimate_orb"			"ITEM_EXTENSION"
+				"item_ultimate_orb"			"ITEM_EXTENSION"
+				"item_point_booster"		"ITEM_EXTENSION"
+				"item_skadi"				"ITEM_LUXURY"
 			}
 			"Build"
 			{
@@ -2561,38 +2625,39 @@
 			{
 				"item_tango"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
 				"item_flask"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
-				"item_branches"		"ITEM_CORE"
-				"item_branches"		"ITEM_CORE"
-				"item_bottle"		"ITEM_CORE | ITEM_SELLABLE"
 				"item_boots"		"ITEM_CORE"
-				"item_magic_stick"		"ITEM_CORE"
-				"item_recipe_magic_wand"		"ITEM_CORE"
-				"item_magic_wand"		"ITEM_DERIVED | ITEM_SELLABLE"
+				
 				"item_gloves"			"ITEM_CORE"
 				"item_boots_of_elves"	"ITEM_CORE"
 				"item_power_treads"		"ITEM_DERIVED"
+				
 				"item_blade_of_alacrity"		"ITEM_EXTENSION"
 				"item_boots_of_elves"		"ITEM_EXTENSION"
 				"item_recipe_yasha"		"ITEM_EXTENSION"
 				"item_yasha"		"ITEM_DERIVED"
+				
 				"item_ogre_axe"		"ITEM_EXTENSION"
 				"item_mithril_hammer"		"ITEM_EXTENSION"
 				"item_recipe_black_king_bar"		"ITEM_EXTENSION"
 				"item_black_king_bar"		"ITEM_DERIVED"
+				
 				"item_blight_stone"		"ITEM_EXTENSION"
 				"item_mithril_hammer"		"ITEM_EXTENSION"
 				"item_mithril_hammer"		"ITEM_EXTENSION"
 				"item_desolator"		"ITEM_DERIVED"
+				
 				"item_broadsword"		"ITEM_LUXURY"
 				"item_blades_of_attack"		"ITEM_LUXURY"
 				"item_recipe_lesser_crit"		"ITEM_LUXURY"
 				"item_lesser_crit"		"ITEM_DERIVED"
 				"item_demon_edge"		"ITEM_LUXURY"
 				"item_recipe_greater_crit"		"ITEM_LUXURY"
+				
 				"item_greater_crit"		"ITEM_DERIVED"
 				"item_ultimate_orb"		"ITEM_LUXURY"
 				"item_recipe_manta"		"ITEM_LUXURY"
 				"item_manta"		"ITEM_DERIVED"
+				
 				"item_talisman_of_evasion"		"ITEM_LUXURY"
 				"item_quarterstaff"		"ITEM_LUXURY"
 				"item_eagle"		"ITEM_LUXURY"
@@ -3355,43 +3420,48 @@
 				"item_gauntlets"		"ITEM_CORE"
 				"item_circlet"		"ITEM_CORE"
 				"item_flask"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
-				"item_bottle"		"ITEM_CORE | ITEM_SELLABLE"
 				"item_boots"		"ITEM_CORE"
 				"item_recipe_bracer"		"ITEM_CORE"
 				"item_bracer"		"ITEM_DERIVED | ITEM_SELLABLE"
-				"item_magic_stick"		"ITEM_CORE"
-				"item_branches"		"ITEM_EXTENSION"
-				"item_branches"		"ITEM_EXTENSION"
-				"item_recipe_magic_wand"		"ITEM_EXTENSION"
-				"item_magic_wand"		"ITEM_DERIVED | ITEM_SELLABLE"
+				
 				"item_ring_of_regen"		"ITEM_EXTENSION"
 				"item_wind_lace"		"ITEM_EXTENSION"
 				"item_tranquil_boots"		"ITEM_DERIVED"
+				
 				"item_cloak"		"ITEM_EXTENSION"
 				"item_ring_of_health"		"ITEM_EXTENSION"
 				"item_ring_of_regen"		"ITEM_EXTENSION"
 				"item_recipe_hood_of_defiance"		"ITEM_EXTENSION"
 				"item_hood_of_defiance"		"ITEM_DERIVED"
+				
 				"item_blink"		"ITEM_EXTENSION"
+				
 				"item_ring_of_regen"		"ITEM_EXTENSION"
 				"item_recipe_headdress"		"ITEM_EXTENSION"
 				"item_headdress"		"ITEM_DERIVED"
 				"item_recipe_pipe"		"ITEM_EXTENSION"
 				"item_pipe"		"ITEM_DERIVED"
+				
 				//"item_ring_of_tarrasque"		"ITEM_LUXURY"
 				"item_reaver"		"ITEM_LUXURY"
 				"item_vitality_booster"		"ITEM_LUXURY"
 				"item_recipe_heart" "ITEM_LUXURY"
 				"item_heart"		"ITEM_DERIVED"
+				
 				"item_platemail"		"ITEM_LUXURY"
 				"item_mystic_staff"		"ITEM_LUXURY"
 				"item_recipe_shivas_guard"		"ITEM_LUXURY"
 				"item_shivas_guard"		"ITEM_DERIVED"
-				"item_point_booster"		"ITEM_LUXURY"
-				"item_ogre_axe"		"ITEM_LUXURY"
-				"item_blade_of_alacrity"		"ITEM_LUXURY"
-				"item_staff_of_wizardry"		"ITEM_LUXURY"
-				"item_ultimate_scepter"		"ITEM_DERIVED"
+				
+				"item_energy_booster"		"ITEM_LUXURY"
+				"item_void_stone"		"ITEM_LUXURY"
+				"item_recipe_aether_lens"	"ITEM_LUXURY"
+				"item_aether_lens"			"ITEM_DERIVED"
+				"item_vitality_booster" "ITEM_LUXURY"
+				"item_energy_booster" 	"ITEM_LUXURY"
+				"item_point_booster" 	"ITEM_LUXURY"
+				"item_soul_booster"		"ITEM_LUXURY"
+				"item_octarine_core"	"ITEM_DERIVED"
 			}
 			"Build"
 			{
@@ -3839,13 +3909,12 @@
 				"item_clarity"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
 				"item_clarity"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
 				"item_clarity"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
-				"item_branches"		"ITEM_CORE | ITEM_SELLABLE"
-				"item_branches"		"ITEM_CORE"
 
 				"item_boots"					"ITEM_CORE"
-				"item_blink"					"ITEM_CORE"
 				"item_energy_booster"			"ITEM_CORE"
 				"item_arcane_boots"				"ITEM_DERIVED"
+				
+				"item_blink"					"ITEM_CORE"
 
 				"item_sobi_mask"				"ITEM_EXTENSION"
 				"item_recipe_ring_of_basilius"  "ITEM_EXTENSION"
@@ -3853,14 +3922,21 @@
 				"item_crown"					"ITEM_EXTENSION"
 				"item_recipe_veil_of_discord"	"ITEM_EXTENSION"
 				"item_veil_of_discord"		"ITEM_DERIVED"
+				
 				"item_ogre_axe"		"ITEM_LUXURY"
 				"item_mithril_hammer"		"ITEM_LUXURY"
 				"item_recipe_black_king_bar"		"ITEM_LUXURY"
 				"item_black_king_bar"		"ITEM_DERIVED"
+				
 				"item_platemail"		"ITEM_LUXURY"
 				"item_mystic_staff"		"ITEM_LUXURY"
 				"item_recipe_shivas_guard"		"ITEM_LUXURY"
 				"item_shivas_guard"		"ITEM_DERIVED"
+				
+				"item_reaver"			"ITEM_LUXURY"
+				"item_vitality_booster"		"ITEM_LUXURY"
+				"item_recipe_heart"	 "ITEM_LUXURY"
+				"item_heart"			"ITEM_DERIVED"
 			}
 			"Build"
 			{
@@ -4202,12 +4278,6 @@
 			{
 				"item_tango"			"ITEM_CONSUMABLE | ITEM_SELLABLE"
 				"item_flask"			"ITEM_CONSUMABLE | ITEM_SELLABLE"
-				"item_branches"			"ITEM_CORE | ITEM_SELLABLE"
-				"item_branches"			"ITEM_CORE | ITEM_SELLABLE"
-
-				"item_magic_stick"		"ITEM_CORE"
-				"item_recipe_magic_wand"			"ITEM_CORE"
-				"item_magic_wand"		"ITEM_DERIVED | ITEM_SELLABLE"
 
 				"item_boots"			"ITEM_CORE"
 				"item_quelling_blade"	"ITEM_CORE | ITEM_SELLABLE"
@@ -4221,7 +4291,7 @@
 				"item_sobi_mask"		"ITEM_CORE"
 				"item_robe"				"ITEM_CORE"
 				"item_oblivion_staff"	"ITEM_CORE | ITEM_DERIVED"
-				"item_echo_sabre"		"ITEM_DERIVED"
+				"item_echo_sabre"		"ITEM_DERIVED | ITEM_SELLABLE"
 
 				"item_blink"		"ITEM_CORE"
 
@@ -4235,6 +4305,19 @@
 				"item_lifesteal"	"ITEM_LUXURY"
 				"item_recipe_satanic"	"ITEM_LUXURY"
 				"item_satanic"		"ITEM_DERIVED"
+				
+				"item_broadsword"			"ITEM_EXTENSION"
+				"item_blades_of_attack"		"ITEM_EXTENSION"
+				"item_recipe_lesser_crit"	"ITEM_EXTENSION"
+				"item_lesser_crit"			"ITEM_DERIVED"
+				"item_demon_edge"			"ITEM_EXTENSION"
+				"item_recipe_greater_crit"	"ITEM_EXTENSION"
+				"item_greater_crit"			"ITEM_DERIVED"
+				
+				"item_reaver"		"ITEM_LUXURY"
+				"item_vitality_booster"		"ITEM_LUXURY"
+				"item_recipe_heart" "ITEM_LUXURY"
+				"item_heart"		"ITEM_DERIVED"
 			}
 			"Build"
 			{
@@ -4434,32 +4517,43 @@
 				"item_tango"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
 				"item_clarity"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
 				"item_clarity"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
-				"item_branches"		"ITEM_CORE"
-				"item_branches"		"ITEM_CORE"
+
 				"item_boots"		"ITEM_CORE"
-				"item_magic_stick"		"ITEM_CORE"
-				"item_recipe_magic_wand"		"ITEM_CORE"
-				"item_magic_wand"		"ITEM_DERIVED | ITEM_SELLABLE"
-				"item_bottle"		"ITEM_CORE | ITEM_SELLABLE"
-				"item_energy_booster"		"ITEM_CORE"
-				"item_arcane_boots"		"ITEM_DERIVED"
+				"item_belt_of_strength"	"ITEM_EXTENSION"
+				"item_gloves"			"ITEM_EXTENSION"
+				"item_power_treads"		"ITEM_DERIVED"
+				
 				"item_blink"			"ITEM_CORE"
+				
 				"item_ogre_axe"			"ITEM_EXTENSION"
 				"item_quarterstaff"		"ITEM_EXTENSION"
 				"item_sobi_mask"		"ITEM_EXTENSION"
 				"item_robe"				"ITEM_EXTENSION"
 				"item_oblivion_staff"	"ITEM_EXTENSION | ITEM_DERIVED"
 				"item_echo_sabre"		"ITEM_DERIVED"
-				"item_mystic_staff"		"ITEM_LUXURY"
-				"item_void_stone"		"ITEM_LUXURY"
-				"item_ultimate_orb"		"ITEM_LUXURY"
-				"item_sheepstick"		"ITEM_DERIVED"
+				
+				"item_broadsword"		"ITEM_LUXURY"
+				"item_blades_of_attack"		"ITEM_LUXURY"
+				"item_recipe_lesser_crit"		"ITEM_LUXURY"
+				"item_lesser_crit"		"ITEM_DERIVED"
+				"item_demon_edge"		"ITEM_LUXURY"
+				"item_recipe_greater_crit"		"ITEM_LUXURY"
+
+				"item_ring_of_protection"   "ITEM_LUXURY"
+				"item_recipe_buckler"	"ITEM_LUXURY"
+				"item_buckler"			"ITEM_DERIVED"
+				"item_platemail"		"ITEM_LUXURY"
+				"item_hyperstone"		"ITEM_LUXURY"
+				"item_recipe_assault"	"ITEM_LUXURY"
+				"item_assault"			"ITEM_DERIVED"
 
 				//"item_ring_of_tarrasque"		"ITEM_LUXURY"
 				"item_reaver"			"ITEM_LUXURY"
 				"item_vitality_booster"	"ITEM_LUXURY"
 				"item_recipe_heart"	 "ITEM_LUXURY"
 				"item_heart"			"ITEM_DERIVED"
+				
+				
 			}
 			"Build"
 			{
@@ -4888,7 +4982,14 @@
 
 				"item_hyperstone"		   "ITEM_LUXURY"
 				"item_recipe_mjollnir"	  "ITEM_LUXURY"
-				"item_mjollnir"			 "ITEM_DERIVED"   
+				"item_mjollnir"			 "ITEM_DERIVED"
+
+				"item_broadsword"		"ITEM_LUXURY"
+				"item_blades_of_attack"		"ITEM_LUXURY"
+				"item_recipe_lesser_crit"		"ITEM_LUXURY"
+				"item_lesser_crit"		"ITEM_DERIVED"
+				"item_demon_edge"		"ITEM_LUXURY"
+				"item_recipe_greater_crit"		"ITEM_LUXURY"
 			}
 			"Build"
 			{
@@ -5096,19 +5197,21 @@
 				"item_robe"				 "ITEM_CORE"
 				"item_recipe_kaya"		  "ITEM_CORE"
 				"item_kaya"				 "ITEM_DERIVED"
-
-				"item_voodoo_mask" "ITEM_CORE"
-				"item_vitality_booster" "ITEM_CORE"
-				"item_energy_booster" 	"ITEM_CORE"
-				"item_point_booster" 	"ITEM_CORE"
-				"item_soul_booster"		"ITEM_DERIVED"
-				"item_recipe_bloodstone" "ITEM_CORE"
-				"item_bloodstone" 	"ITEM_DERIVED"
+				"item_belt_of_strength"		"ITEM_LUXURY"
+				"item_ogre_axe"				"ITEM_LUXURY"
+				"item_recipe_sange"			"ITEM_LUXURY"
+				"item_sange"				"ITEM_DERIVED"
+				"item_kaya_and_sange"		"ITEM_DERIVED"
 				
 				"item_energy_booster"		"ITEM_EXTENSION"
 				"item_void_stone"		"ITEM_EXTENSION"
 				"item_recipe_aether_lens"	"ITEM_EXTENSION"
 				"item_aether_lens"			"ITEM_DERIVED"
+				"item_vitality_booster" "ITEM_CORE"
+				"item_energy_booster" 	"ITEM_CORE"
+				"item_point_booster" 	"ITEM_CORE"
+				"item_soul_booster"		"ITEM_EXTENSION"
+				"item_octarine_core"	"ITEM_DERIVED"
 
 				"item_void_stone"		"ITEM_EXTENSION"
 				"item_ring_of_health"	"ITEM_EXTENSION"
@@ -5118,6 +5221,11 @@
 				"item_pers"				"ITEM_DERIVED"
 				"item_recipe_refresher"	"ITEM_EXTENSION"
 				"item_refresher"		"ITEM_DERIVED"
+				
+				"item_mystic_staff"		"ITEM_LUXURY"
+				"item_void_stone"		"ITEM_LUXURY"
+				"item_ultimate_orb"		"ITEM_LUXURY"
+				"item_sheepstick"		"ITEM_DERIVED"
 			}
 			"Build"
 			{
@@ -5329,23 +5437,17 @@
 				"item_flask"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
 				"item_clarity"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
 
-				"item_branches"		"ITEM_CORE"
-				"item_branches"		"ITEM_CORE"
-				"item_magic_stick"	"ITEM_CORE"
-				"item_recipe_magic_wand"		"ITEM_CORE"
-				"item_magic_wand"	"ITEM_DERIVED | ITEM_SELLABLE"
-
-				"item_wind_lace"					"ITEM_EXTENSION"
-				"item_robe"						"ITEM_EXTENSION"
-				"item_belt_of_strength"			"ITEM_EXTENSION"
-				"item_recipe_ancient_janggo"	"ITEM_EXTENSION"
-				"item_ancient_janggo"			"ITEM_DERIVED | ITEM_SELLABLE"
-
 				"item_boots"			"ITEM_CORE"
 				"item_chainmail"		"ITEM_EXTENSION"
 				"item_blades_of_attack"	"ITEM_EXTENSION"
 				"item_phase_boots"		"ITEM_DERIVED"
-
+				
+				"item_helm_of_iron_will"	"ITEM_CORE"
+				"item_gloves"				"ITEM_CORE"
+				"item_blades_of_attack"		"ITEM_CORE"
+				"item_recipe_armlet"		"ITEM_CORE"
+				"item_armlet"				"ITEM_DERIVED"
+				
 				"item_broadsword"			"ITEM_EXTENSION"
 				"item_blades_of_attack"		"ITEM_EXTENSION"
 				"item_recipe_lesser_crit"	"ITEM_EXTENSION"
@@ -5358,6 +5460,21 @@
 				"item_mithril_hammer"			"ITEM_EXTENSION"
 				"item_recipe_black_king_bar"	"ITEM_EXTENSION"
 				"item_black_king_bar"			"ITEM_DERIVED"
+				
+				"item_reaver"			"ITEM_LUXURY"
+				"item_vitality_booster"	"ITEM_LUXURY"
+				"item_recipe_heart"	 "ITEM_LUXURY"
+				"item_heart"			"ITEM_DERIVED"
+				
+				"item_ring_of_protection"   "ITEM_LUXURY"
+				"item_recipe_buckler"	"ITEM_LUXURY"
+				"item_buckler"			"ITEM_DERIVED"
+				"item_platemail"		"ITEM_LUXURY"
+				"item_hyperstone"		"ITEM_LUXURY"
+				"item_recipe_assault"	"ITEM_LUXURY"
+				"item_assault"			"ITEM_DERIVED"
+				
+				
 			}
 			"Build"
 			{
@@ -5537,33 +5654,43 @@
 				"item_tango"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
 				"item_clarity"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
 				"item_clarity"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
-				"item_branches"		"ITEM_CORE"
-				"item_branches"		"ITEM_CORE"
-				"item_magic_stick"		"ITEM_CORE"
-				"item_recipe_magic_wand"		"ITEM_CORE"
-				"item_magic_wand"		"ITEM_DERIVED | ITEM_SELLABLE"
+				
 				"item_boots"		"ITEM_CORE"
 				"item_energy_booster"		"ITEM_CORE"
 				"item_arcane_boots"		"ITEM_DERIVED"
-				"item_staff_of_wizardry"		"ITEM_EXTENSION"
-				"item_fluffy_hat"		"ITEM_EXTENSION"
-				"item_recipe_force_staff"		"ITEM_EXTENSION"
-				"item_force_staff"		"ITEM_DERIVED"
+
 				"item_point_booster"		"ITEM_EXTENSION"
 				"item_staff_of_wizardry"		"ITEM_EXTENSION"
 				"item_ogre_axe"		"ITEM_EXTENSION"
 				"item_blade_of_alacrity"		"ITEM_EXTENSION"
 				"item_recipe_ultimate_scepter"		"ITEM_EXTENSION"
 				"item_ultimate_scepter" "ITEM_DERIVED"
+				
+				"item_ogre_axe"					"ITEM_LUXURY"
+				"item_mithril_hammer"			"ITEM_LUXURY"
+				"item_recipe_black_king_bar"	"ITEM_EXTENSION"
+				"item_black_king_bar"			"ITEM_DERIVED"
+				
 				"item_mystic_staff"		"ITEM_LUXURY"
 				"item_ultimate_orb"		"ITEM_LUXURY"
 				"item_void_stone"		"ITEM_LUXURY"
 				"item_sheepstick"		"ITEM_DERIVED"
-				"item_staff_of_wizardry"		"ITEM_LUXURY"
-				"item_wind_lace"		"ITEM_LUXURY"
+				
+				"item_energy_booster"		"ITEM_LUXURY"
 				"item_void_stone"		"ITEM_LUXURY"
-				"item_recipe_cyclone"		"ITEM_LUXURY"
-				"item_cyclone"		"ITEM_DERIVED"
+				"item_recipe_aether_lens"	"ITEM_LUXURY"
+				"item_aether_lens"			"ITEM_DERIVED"
+				"item_vitality_booster" "ITEM_LUXURY"
+				"item_energy_booster" 	"ITEM_LUXURY"
+				"item_point_booster" 	"ITEM_LUXURY"
+				"item_soul_booster"		"ITEM_LUXURY"
+				"item_octarine_core"	"ITEM_DERIVED"
+				
+				"item_lifesteal"				"ITEM_LUXURY"
+				"item_reaver"					"ITEM_LUXURY"
+				"item_claymore"					"ITEM_LUXURY"
+				"item_recipe_satanic"			"ITEM_LUXURY"
+				"item_satanic"					"ITEM_DERIVED"
 			}
 			"Build"
 			{
@@ -5762,13 +5889,23 @@
 				"item_boots"				"ITEM_CORE"
 				"item_ring_of_regen"		"ITEM_CORE"
 				"item_tranquil_boots"		"ITEM_DERIVED"
-
+				
+				"item_ring_of_regen"		"ITEM_EXTENSION"
+				"item_recipe_headdress"		"ITEM_EXTENSION"
+				"item_headdress"		"ITEM_DERIVED"
+				
 				"item_blink"				"ITEM_CORE"
 			
 				"item_energy_booster"		"ITEM_EXTENSION"
 				"item_void_stone"			"ITEM_EXTENSION"
 				"item_recipe_aether_lens"	"ITEM_EXTENSION"
 				"item_aether_lens"			"ITEM_DERIVED"
+				
+				"item_staff_of_wizardry" 	"ITEM_EXTENSION"
+				"item_void_stone" 			"ITEM_EXTENSION"
+				"item_wind_lace"			"ITEM_EXTENSION"
+				"item_recipe_cyclone"		"ITEM_EXTENSION"
+				"item_cyclone"				"ITEM_DERIVED"
 
 				"item_void_stone"		"ITEM_LUXURY"
 				"item_mystic_staff"		"ITEM_LUXURY"
@@ -5780,17 +5917,18 @@
 				"item_ring_of_regen"		"ITEM_EXTENSION"
 				"item_recipe_hood_of_defiance"		"ITEM_EXTENSION"
 				"item_hood_of_defiance"		"ITEM_DERIVED"
-				"item_ring_of_regen"		"ITEM_EXTENSION"
-				"item_recipe_headdress"		"ITEM_EXTENSION"
-				"item_headdress"		"ITEM_DERIVED"
 				"item_recipe_pipe"		"ITEM_EXTENSION"
 				"item_pipe"		"ITEM_DERIVED"
-
-				"item_point_booster"		"ITEM_LUXURY"
-				"item_ogre_axe"		"ITEM_LUXURY"
-				"item_staff_of_wizardry"		"ITEM_LUXURY"
-				"item_blade_of_alacrity"		"ITEM_LUXURY"
-				"item_ultimate_scepter"		"ITEM_DERIVED"
+				
+				"item_vitality_booster" "ITEM_EXTENSION"
+				"item_energy_booster" 	"ITEM_EXTENSION"
+				"item_point_booster" 	"ITEM_EXTENSION"
+				"item_soul_booster"		"ITEM_EXTENSION"
+				"item_octarine_core"	"ITEM_DERIVED"
+				
+				"item_mystic_staff"		"ITEM_LUXURY"
+				"item_recipe_wind_waker"	"ITEM_LUXURY"
+				"item_wind_waker"			"ITEM_DERIVED"
 			}
 			"Build"
 			{
@@ -5976,11 +6114,6 @@
 			"Loadout"
 			{
 				"item_tango"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
-				"item_branches"		"ITEM_CORE"
-				"item_branches"		"ITEM_CORE"
-				"item_magic_stick"		"ITEM_CORE"
-				"item_recipe_magic_wand"		"ITEM_CORE"
-				"item_magic_wand"		"ITEM_DERIVED | ITEM_SELLABLE"
 
 				"item_boots"				"ITEM_CORE"
 				"item_wind_lace"			"ITEM_CORE"
@@ -6017,6 +6150,12 @@
 				"item_dagon_4"			"ITEM_DERIVED"
 				"item_recipe_dagon"		"ITEM_LUXURY"
 				"item_dagon_5"			"ITEM_DERIVED"
+				
+				"item_vitality_booster" "ITEM_EXTENSION"
+				"item_energy_booster" 	"ITEM_EXTENSION"
+				"item_point_booster" 	"ITEM_EXTENSION"
+				"item_soul_booster"		"ITEM_EXTENSION"
+				"item_octarine_core"	"ITEM_DERIVED"
 			}
 			"Build"
 			{
@@ -6841,16 +6980,10 @@
 				"item_tango"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
 				"item_clarity"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
 				"item_clarity"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
-				"item_branches"		"ITEM_CORE"
-				"item_branches"		"ITEM_CORE"
 
 				"item_boots"				"ITEM_CORE"
 				"item_energy_booster"		"ITEM_CORE"
 				"item_arcane_boots"			"ITEM_DERIVED"
-
-				"item_magic_stick"		"ITEM_CORE"
-				"item_recipe_magic_wand"			"ITEM_CORE"
-				"item_magic_wand"		"ITEM_DERIVED | ITEM_SELLABLE"
 
 				"item_point_booster"		"ITEM_CORE"
 				"item_staff_of_wizardry"	"ITEM_CORE"
@@ -6874,16 +7007,21 @@
 				"item_ring_of_regen"		"ITEM_EXTENSION"
 				"item_recipe_hood_of_defiance"		"ITEM_EXTENSION"
 				"item_hood_of_defiance"		"ITEM_DERIVED"
+				
+				"item_mithril_hammer"			"ITEM_LUXURY"
+				"item_ogre_axe"					"ITEM_LUXURY"
+				"item_recipe_black_king_bar"	"ITEM_LUXURY"
+				"item_black_king_bar"			"ITEM_DERIVED"
+				
 				"item_ring_of_regen"		"ITEM_EXTENSION"
 				"item_recipe_headdress"		"ITEM_EXTENSION"
 				"item_headdress"			"ITEM_DERIVED"
 				"item_recipe_pipe"			"ITEM_EXTENSION"
 				"item_pipe"					"ITEM_DERIVED"
-
-				"item_mithril_hammer"			"ITEM_LUXURY"
-				"item_ogre_axe"					"ITEM_LUXURY"
-				"item_recipe_black_king_bar"	"ITEM_LUXURY"
-				"item_black_king_bar"			"ITEM_DERIVED"
+				
+				"item_mystic_staff"		"ITEM_LUXURY"
+				"item_recipe_wind_waker"	"ITEM_LUXURY"
+				"item_wind_waker"			"ITEM_DERIVED"
 			}
 			"Build"
 			{
@@ -7082,43 +7220,49 @@
 			{
 				"item_tango"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
 				"item_flask"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
-				"item_branches"		"ITEM_CORE"
-				"item_branches"		"ITEM_CORE"
-				"item_magic_stick"		"ITEM_CORE"
+				
 				"item_boots"			"ITEM_CORE"
 				"item_boots_of_elves"	"ITEM_CORE"
 				"item_gloves"			"ITEM_CORE"
 				"item_power_treads"		"ITEM_DERIVED"
-				"item_recipe_magic_wand"		"ITEM_CORE"
-				"item_magic_wand"		"ITEM_DERIVED | ITEM_SELLABLE"
+
 				"item_blade_of_alacrity"		"ITEM_EXTENSION"
 				"item_blade_of_alacrity"		"ITEM_EXTENSION"
 				"item_robe"		"ITEM_EXTENSION"
 				"item_recipe_diffusal_blade"		"ITEM_EXTENSION"
 				"item_diffusal_blade"		"ITEM_DERIVED"
+				
 				"item_blade_of_alacrity"		"ITEM_EXTENSION"
 				"item_boots_of_elves"		"ITEM_EXTENSION"
 				"item_recipe_yasha"		"ITEM_EXTENSION"
 				"item_yasha"		"ITEM_DERIVED"
-				"item_quarterstaff"		"ITEM_LUXURY"
-				"item_eagle"		"ITEM_LUXURY"
-				"item_talisman_of_evasion"		"ITEM_LUXURY"
-				"item_butterfly"		"ITEM_DERIVED"
 				"item_ogre_axe"		"ITEM_LUXURY"
 				"item_belt_of_strength"		"ITEM_LUXURY"
 				"item_recipe_sange"		"ITEM_LUXURY"
 				"item_sange"		"ITEM_DERIVED"
 				"item_sange_and_yasha"		"ITEM_DERIVED"
+				
 				"item_mithril_hammer"		"ITEM_LUXURY"
 				"item_belt_of_strength"		"ITEM_LUXURY"
 				"item_recipe_basher"		"ITEM_LUXURY"
 				"item_basher"		"ITEM_DERIVED"
+				
+				"item_ultimate_orb"			"ITEM_EXTENSION"
+				"item_ultimate_orb"			"ITEM_EXTENSION"
+				"item_point_booster"		"ITEM_EXTENSION"
+				"item_skadi"				"ITEM_LUXURY"
+				
 				"item_ring_of_health"		"ITEM_LUXURY"
 				"item_vitality_booster"		"ITEM_LUXURY"
 				"item_recipe_vanguard"	  "ITEM_LUXURY"
 				"item_vanguard"				"ITEM_DERIVED"
 				"item_recipe_abyssal_blade"	"ITEM_LUXURY"
 				"item_abyssal_blade"		"ITEM_DERIVED"
+				
+				"item_quarterstaff"		"ITEM_LUXURY"
+				"item_eagle"		"ITEM_LUXURY"
+				"item_talisman_of_evasion"		"ITEM_LUXURY"
+				"item_butterfly"		"ITEM_DERIVED"
 			}
 			"Build"
 			{
@@ -7641,17 +7785,11 @@
 			{
 				"item_tango"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
 				"item_flask"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
+				
 				"item_slippers"		"ITEM_CORE"
-				"item_branches"		"ITEM_CORE"
-				"item_branches"		"ITEM_CORE"
-
 				"item_circlet"				"ITEM_CORE"
 				"item_recipe_wraith_band"	"ITEM_CORE"
 				"item_wraith_band"			"ITEM_DERIVED | ITEM_SELLABLE"
-
-				"item_magic_stick"			"ITEM_CORE"
-				"item_recipe_magic_wand"	"ITEM_CORE"
-				"item_magic_wand"			"ITEM_DERIVED | ITEM_SELLABLE"
 
 				"item_boots"			"ITEM_CORE"
 				"item_boots_of_elves"	"ITEM_CORE"
@@ -7672,14 +7810,15 @@
 				"item_boots_of_elves"		"ITEM_LUXURY"
 				"item_recipe_yasha"			"ITEM_LUXURY"
 				"item_yasha"				"ITEM_DERIVED"
-				"item_ultimate_orb"			"ITEM_LUXURY"
-				"item_recipe_manta"			"ITEM_LUXURY"
-				"item_manta"				"ITEM_DERIVED"
-
+				
 				"item_mithril_hammer"			"ITEM_LUXURY"
 				"item_ogre_axe"					"ITEM_LUXURY"
 				"item_recipe_black_king_bar"	"ITEM_LUXURY"
 				"item_black_king_bar"			"ITEM_DERIVED"
+
+				"item_ultimate_orb"			"ITEM_LUXURY"
+				"item_recipe_manta"			"ITEM_LUXURY"
+				"item_manta"				"ITEM_DERIVED"
 
 				"item_hyperstone"		"ITEM_LUXURY"
 				"item_recipe_mjollnir"	"ITEM_LUXURY"
@@ -7692,6 +7831,14 @@
 				"item_demon_edge"			"ITEM_LUXURY"
 				"item_recipe_greater_crit"	"ITEM_LUXURY"
 				"item_greater_crit"			"ITEM_DERIVED"
+				
+				"item_fluffy_hat"		"ITEM_EXTENSION"
+				"item_staff_of_wizardry"	"ITEM_EXTENSION"
+				"item_recipe_force_staff"	"ITEM_EXTENSION"
+				"item_force_staff"			"ITEM_DERIVED"
+
+				"item_recipe_hurricane_pike"	"ITEM_EXTENSION"
+				"item_hurricane_pike"	"ITEM_DERIVED"
 			}
 			"Build"
 			{
@@ -7884,48 +8031,38 @@
 				"item_null_talisman"	"ITEM_DERIVED | ITEM_SELLABLE"
 
 				"item_boots"				"ITEM_CORE"
-				"item_energy_booster"		"ITEM_CORE"
-				"item_arcane_boots"			"ITEM_DERIVED"
-
-				"item_ring_of_regen"		"ITEM_EXTENSION"
-				"item_recipe_headdress"		"ITEM_EXTENSION"
-				"item_headdress"		"ITEM_DERIVED"
-				"item_chainmail"			"ITEM_DERIVED"
-				"item_recipe_mekansm"		"ITEM_EXTENSION"
-				"item_mekansm"		"ITEM_DERIVED"
-
-				"item_point_booster"		"ITEM_LUXURY"
-				"item_ogre_axe"		"ITEM_LUXURY"
-				"item_staff_of_wizardry"		"ITEM_LUXURY"
-				"item_blade_of_alacrity"		"ITEM_LUXURY"
-				"item_ultimate_scepter"		"ITEM_DERIVED"
+				"item_chainmail"		"ITEM_EXTENSION"
+				"item_blades_of_attack"	"ITEM_EXTENSION"
+				"item_phase_boots"		"ITEM_DERIVED"
 
 				"item_cloak"		"ITEM_EXTENSION"
 				"item_ring_of_health"		"ITEM_EXTENSION"
 				"item_ring_of_regen"		"ITEM_EXTENSION"
 				"item_recipe_hood_of_defiance"		"ITEM_EXTENSION"
 				"item_hood_of_defiance"		"ITEM_DERIVED"
-				"item_ring_of_regen"		"ITEM_EXTENSION"
-				"item_recipe_headdress"		"ITEM_EXTENSION"
-				"item_headdress"		"ITEM_DERIVED"
-				"item_recipe_pipe"		"ITEM_EXTENSION"
-				"item_pipe"		"ITEM_DERIVED"
+				"item_voodoo_mask" "ITEM_EXTENSION"
+				"item_recipe_eternal_shroud"		"ITEM_DERIVED"
+				"item_eternal_shroud"				"ITEM_DERIVED"
 
+				"item_point_booster"		"ITEM_LUXURY"
+				"item_ogre_axe"		"ITEM_LUXURY"
+				"item_staff_of_wizardry"		"ITEM_LUXURY"
+				"item_blade_of_alacrity"		"ITEM_LUXURY"
+				"item_ultimate_scepter"		"ITEM_DERIVED"
+				
 				"item_mystic_staff"		"ITEM_LUXURY"
 				"item_platemail"		"ITEM_LUXURY"
 				"item_recipe_shivas_guard"		"ITEM_LUXURY"
 				"item_shivas_guard"	 "ITEM_DERIVED"
 
-				"item_ring_of_protection"   "ITEM_LUXURY"
-				"item_recipe_buckler"	"ITEM_LUXURY"
-				"item_buckler"			"ITEM_DERIVED"
-				"item_recipe_guardian_greaves"	"ITEM_LUXURY"
-				"item_guardian_greaves" "ITEM_LUXURY | ITEM_DERIVED"
-
 				"item_ultimate_orb"		"ITEM_LUXURY"
 				"item_void_stone"		"ITEM_LUXURY"
 				"item_mystic_staff"		"ITEM_LUXURY"
 				"item_sheepstick"		"ITEM_DERIVED"
+				
+				"item_relic"		"ITEM_LUXURY"
+				"item_talisman_of_evasion"		"ITEM_LUXURY"
+				"item_radiance"			"ITEM_DERIVED"
 			}
 			"Build"
 			{
@@ -8172,10 +8309,15 @@
 				"item_recipe_refresher"	"ITEM_EXTENSION"
 				"item_refresher"		"ITEM_DERIVED"
 
+				"item_void_stone"		"ITEM_LUXURY"
+				"item_ultimate_orb"		"ITEM_LUXURY"
 				"item_mystic_staff"		"ITEM_LUXURY"
-				"item_platemail"		"ITEM_LUXURY"
-				"item_recipe_shivas_guard"		"ITEM_LUXURY"
-				"item_shivas_guard"	 "ITEM_DERIVED"
+				"item_sheepstick"		"ITEM_DERIVED"
+				
+				"item_vitality_booster"		"ITEM_EXTENSION"
+				"item_energy_booster"		"ITEM_EXTENSION"
+				"item_recipe_aeon_disk"		"ITEM_EXTENSION"
+				"item_aeon_disk"			"ITEM_LUXURY"
 			}
 
 			"Build"
@@ -9062,15 +9204,9 @@
 			{
 				"item_tango"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
 				"item_flask"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
-				"item_branches"		"ITEM_CORE"
-				"item_branches"		"ITEM_CORE"
 
 				"item_quelling_blade"	"ITEM_CORE | ITEM_SELLABLE"
 				"item_boots"			"ITEM_CORE"
-
-				"item_magic_stick"		"ITEM_CORE"
-				"item_recipe_magic_wand"			"ITEM_CORE"
-				"item_magic_wand"		"ITEM_DERIVED | ITEM_SELLABLE"
 
 				"item_belt_of_strength"		"ITEM_EXTENSION"
 				"item_gloves"				"ITEM_EXTENSION"
@@ -9084,17 +9220,10 @@
 
 				"item_blink"		"ITEM_CORE"
 
-				"item_recipe_blade_mail"					"ITEM_LUXURY"
-				"item_chainmail"			"ITEM_LUXURY"
-				"item_broadsword"			"ITEM_LUXURY"
-				"item_blade_mail" 			"ITEM_DERIVED | ITEM_SELLABLE"
-
-				"item_ogre_axe"			"ITEM_LUXURY"
-				"item_quarterstaff"		"ITEM_LUXURY"
-				"item_sobi_mask"		"ITEM_LUXURY"
-				"item_robe"				"ITEM_LUXURY"
-				"item_oblivion_staff"	"ITEM_LUXURY | ITEM_DERIVED"
-				"item_echo_sabre"		"ITEM_DERIVED"
+				"item_blight_stone"		"ITEM_EXTENSION"
+				"item_mithril_hammer"		"ITEM_EXTENSION"
+				"item_mithril_hammer"		"ITEM_EXTENSION"
+				"item_desolator"		"ITEM_DERIVED"
 
 				"item_demon_edge"		"ITEM_LUXURY"
 				"item_javelin"			"ITEM_LUXURY"
@@ -9335,13 +9464,16 @@
 				"item_chainmail"		"ITEM_EXTENSION"
 				"item_blades_of_attack"	"ITEM_EXTENSION"
 				"item_phase_boots"		"ITEM_DERIVED"
-
-				"item_sobi_mask"		"ITEM_EXTENSION"
-				"item_recipe_ring_of_basilius"  "ITEM_EXTENSION"
-				"item_ring_of_basilius"	"ITEM_DERIVED"
-				"item_crown"			"ITEM_EXTENSION"
-				"item_recipe_veil_of_discord"	"ITEM_EXTENSION"
-				"item_veil_of_discord"	"ITEM_DERIVED"
+				
+				"item_staff_of_wizardry"	"ITEM_CORE"
+				"item_robe"				 "ITEM_CORE"
+				"item_recipe_kaya"		  "ITEM_CORE"
+				"item_kaya"				 "ITEM_DERIVED"
+				"item_belt_of_strength"		"ITEM_LUXURY"
+				"item_ogre_axe"				"ITEM_LUXURY"
+				"item_recipe_sange"			"ITEM_LUXURY"
+				"item_sange"				"ITEM_DERIVED"
+				"item_kaya_and_sange"		"ITEM_DERIVED"
 
 				"item_wind_lace"		"ITEM_EXTENSION"
 				"item_void_stone"		"ITEM_EXTENSION"
@@ -9353,11 +9485,15 @@
 				"item_mithril_hammer"		"ITEM_EXTENSION"
 				"item_recipe_black_king_bar"		"ITEM_EXTENSION"
 				"item_black_king_bar"		"ITEM_DERIVED"
-
+			
 				"item_platemail"		"ITEM_LUXURY"
 				"item_mystic_staff"		"ITEM_LUXURY"
 				"item_recipe_shivas_guard"		"ITEM_LUXURY"
 				"item_shivas_guard"		"ITEM_DERIVED"
+				
+				"item_mystic_staff"		"ITEM_LUXURY"
+				"item_recipe_wind_waker"	"ITEM_LUXURY"
+				"item_wind_waker"			"ITEM_DERIVED"
 			}
 			"Build"
 			{
@@ -9546,24 +9682,21 @@
 				"item_tango"			"ITEM_CONSUMABLE | ITEM_SELLABLE"
 				"item_flask"			"ITEM_CONSUMABLE | ITEM_SELLABLE"
 
-				"item_branches"			"ITEM_CORE"
-				"item_branches"			"ITEM_CORE"
-				"item_magic_stick"		"ITEM_CORE"
-
 				"item_boots"			"ITEM_CORE"
-
-				"item_recipe_magic_wand"		"ITEM_CORE"
-				"item_magic_wand"	"ITEM_DERIVED | ITEM_SELLABLE"
-
 				"item_gloves"			"ITEM_CORE"
 				"item_boots_of_elves"	"ITEM_CORE"
 				"item_power_treads"		"ITEM_DERIVED"
+				
+				"item_blight_stone"		"ITEM_EXTENSION"
+				"item_mithril_hammer"		"ITEM_EXTENSION"
+				"item_mithril_hammer"		"ITEM_EXTENSION"
+				"item_desolator"		"ITEM_DERIVED"
 
 				"item_ogre_axe"					"ITEM_LUXURY"
 				"item_mithril_hammer"			"ITEM_LUXURY"
 				"item_recipe_black_king_bar"	"ITEM_EXTENSION"
-				"item_black_king_bar"			"ITEM_DERIVED"
-
+				"item_black_king_bar"			"ITEM_DERIVED"				
+				
 				"item_mithril_hammer"		"ITEM_LUXURY"
 				"item_belt_of_strength"		"ITEM_LUXURY"
 				"item_recipe_basher"		"ITEM_LUXURY"
@@ -9582,14 +9715,6 @@
 				"item_claymore"			"ITEM_LUXURY"
 				"item_recipe_satanic"	"ITEM_LUXURY"
 				"item_satanic"			"ITEM_DERIVED"
-
-				"item_ring_of_protection"   "ITEM_LUXURY"
-				"item_recipe_buckler"	"ITEM_LUXURY"
-				"item_buckler"			"ITEM_DERIVED"
-				"item_platemail"		"ITEM_LUXURY"
-				"item_hyperstone"		"ITEM_LUXURY"
-				"item_recipe_assault"	"ITEM_LUXURY"
-				"item_assault"			"ITEM_DERIVED"
 
 				"item_demon_edge"		"ITEM_LUXURY"
 				"item_javelin"			"ITEM_LUXURY"
@@ -10125,10 +10250,6 @@
 				"item_gloves"			"ITEM_CORE"
 				"item_power_treads"		"ITEM_DERIVED"
 
-				"item_sobi_mask"			"ITEM_CORE"
-				"item_recipe_ring_of_basilius"  "ITEM_CORE"
-				"item_ring_of_basilius"		"ITEM_DERIVED | ITEM_SELLABLE"
-
 				"item_ogre_axe"			"ITEM_CORE"
 				"item_boots_of_elves"	"ITEM_CORE"
 				"item_boots_of_elves"	"ITEM_CORE"
@@ -10138,7 +10259,12 @@
 				"item_ogre_axe"				"ITEM_EXTENSION"
 				"item_recipe_black_king_bar"	"ITEM_EXTENSION"
 				"item_black_king_bar"		"ITEM_DERIVED"
-
+				
+				"item_mithril_hammer"	"ITEM_CORE"
+				"item_javelin"		"ITEM_CORE"
+				"item_maelstrom"			 "ITEM_DERIVED"
+				
+				
 				"item_staff_of_wizardry"	"ITEM_EXTENSION"
 				"item_fluffy_hat"		"ITEM_EXTENSION"
 				"item_recipe_force_staff"	"ITEM_EXTENSION"
@@ -10146,6 +10272,10 @@
 
 				"item_recipe_hurricane_pike"	"ITEM_EXTENSION"
 				"item_hurricane_pike"		"ITEM_DERIVED"
+
+				"item_hyperstone"		"ITEM_CORE"
+				"item_recipe_mjollnir"	 "ITEM_CORE"
+				"item_mjollnir"			"ITEM_DERIVED"
 
 				"item_point_booster"		"ITEM_LUXURY"
 				"item_staff_of_wizardry"		"ITEM_LUXURY"
@@ -10351,15 +10481,7 @@
 			{
 				"item_flask"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
 				"item_tango"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
-				"item_ring_of_protection"		"ITEM_CORE"
-				"item_branches"		"ITEM_CORE"
-				"item_branches"		"ITEM_CORE"
-				"item_magic_stick"		"ITEM_CORE"
-				"item_recipe_magic_wand"		"ITEM_CORE"
-				"item_magic_wand"		"ITEM_DERIVED | ITEM_SELLABLE"
-				"item_sobi_mask"		"ITEM_CORE"
-				"item_recipe_ring_of_basilius"  "ITEM_CORE"
-				"item_ring_of_basilius"		"ITEM_DERIVED | ITEM_SELLABLE"
+				
 				"item_boots"		"ITEM_CORE"
 				"item_slippers"		"ITEM_CORE"
 				"item_circlet"		"ITEM_CORE"
@@ -10368,28 +10490,43 @@
 				"item_boots_of_elves"		"ITEM_CORE"
 				"item_gloves"		   	"ITEM_CORE"
 				"item_power_treads"		"ITEM_DERIVED"
+				
 				"item_blade_of_alacrity"		"ITEM_CORE"
 				"item_boots_of_elves"		"ITEM_CORE"
 				"item_recipe_yasha"		"ITEM_CORE"
 				"item_yasha"		"ITEM_DERIVED"
+				
+				"item_boots_of_elves"	"ITEM_CORE"
+				"item_boots_of_elves"	"ITEM_CORE"
+				"item_ogre_axe"			"ITEM_CORE"
+				"item_dragon_lance"		"ITEM_DERIVED"
+				
 				"item_ultimate_orb"		"ITEM_EXTENSION"
 				"item_recipe_manta"		"ITEM_EXTENSION"
 				"item_manta"		"ITEM_DERIVED"
+				
 				"item_ogre_axe"		"ITEM_EXTENSION"
 				"item_mithril_hammer"		"ITEM_EXTENSION"
 				"item_recipe_black_king_bar"		"ITEM_EXTENSION"
 				"item_black_king_bar"		"ITEM_DERIVED"
+				
+				"item_fluffy_hat"		"ITEM_EXTENSION"
+				"item_staff_of_wizardry"	"ITEM_EXTENSION"
+				"item_recipe_force_staff"	"ITEM_EXTENSION"
+				"item_force_staff"			"ITEM_DERIVED"
+				"item_recipe_hurricane_pike"	"ITEM_EXTENSION"
+				"item_hurricane_pike"	"ITEM_DERIVED"
+				
+				"item_ultimate_orb"			"ITEM_EXTENSION"
+				"item_ultimate_orb"			"ITEM_EXTENSION"
+				"item_point_booster"		"ITEM_EXTENSION"
+				"item_skadi"				"ITEM_LUXURY"
+				
 				"item_eagle"		"ITEM_EXTENSION"
 				"item_quarterstaff"		"ITEM_EXTENSION"
 				"item_talisman_of_evasion"		"ITEM_EXTENSION"
 				"item_butterfly"		"ITEM_DERIVED"
-				"item_ring_of_protection"   "ITEM_LUXURY"
-				"item_recipe_buckler"	"ITEM_LUXURY"
-				"item_buckler"			"ITEM_DERIVED"
-				"item_platemail"		"ITEM_LUXURY"
-				"item_hyperstone"		"ITEM_LUXURY"
-				"item_recipe_assault"	"ITEM_LUXURY"
-				"item_assault"			"ITEM_DERIVED"
+				
 			}
 			"Build"
 			{
@@ -10567,6 +10704,8 @@
 				"item_recipe_armlet"		"ITEM_CORE"
 				"item_armlet"				"ITEM_DERIVED"
 
+				"item_blink"			"ITEM_CORE"
+				
 				"item_ogre_axe"		"ITEM_LUXURY"
 				"item_mithril_hammer"		"ITEM_LUXURY"
 				"item_recipe_black_king_bar"		"ITEM_LUXURY"
@@ -10584,7 +10723,8 @@
 				"item_platemail"		"ITEM_LUXURY"
 				"item_hyperstone"		"ITEM_LUXURY"
 				"item_recipe_assault"	"ITEM_LUXURY"
-				"item_assault"			"ITEM_DERIVED"
+				"item_assault"			"ITEM_DERIVED"		
+				
 			}
 			"Build"
 			{
@@ -10916,30 +11056,54 @@
 				"item_clarity"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
 				"item_clarity"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
 
-				"item_branches"		"ITEM_CORE"
-				"item_branches"		"ITEM_CORE"
-				"item_magic_stick"		"ITEM_CORE"
-				"item_recipe_magic_wand"		"ITEM_CORE"
-				"item_magic_wand"		"ITEM_DERIVED | ITEM_SELLABLE"
-
 				"item_boots"		"ITEM_CORE"
-
-				"item_circlet"			"ITEM_CORE"
-				"item_sobi_mask"		"ITEM_CORE"
-				"item_ring_of_protection"		"ITEM_CORE"
-
 				"item_energy_booster"		"ITEM_EXTENSION"
 				"item_arcane_boots"		"ITEM_DERIVED"
+				
+				"item_ring_of_regen"		"ITEM_EXTENSION"
+				"item_recipe_headdress"		"ITEM_EXTENSION"
+				"item_headdress"			"ITEM_DERIVED"
+				"item_chainmail"		"ITEM_EXTENSION"
+				"item_recipe_mekansm"		"ITEM_EXTENSION"
+				"item_mekansm"				"ITEM_DERIVED"
 
+				"item_staff_of_wizardry"	"ITEM_EXTENSION"
+				"item_fluffy_hat"		"ITEM_EXTENSION"
+				"item_recipe_force_staff"	"ITEM_EXTENSION"
+				"item_force_staff"			"ITEM_DERIVED"
+				
+				"item_energy_booster"		"ITEM_EXTENSION"
+				"item_void_stone"		"ITEM_EXTENSION"
+				"item_recipe_aether_lens"	"ITEM_EXTENSION"
+				"item_aether_lens"			"ITEM_DERIVED"
+				
 				"item_ultimate_orb"		"ITEM_LUXURY"
 				"item_void_stone"		"ITEM_LUXURY"
 				"item_mystic_staff"		"ITEM_LUXURY"
 				"item_sheepstick"		"ITEM_DERIVED"
-
-				"item_quarterstaff"		"ITEM_LUXURY"
-				"item_sobi_mask"		"ITEM_LUXURY"
-				"item_robe"		"ITEM_LUXURY"
-				"item_oblivion_staff"		"ITEM_DERIVED"
+				
+				"item_vitality_booster" "ITEM_EXTENSION"
+				"item_energy_booster" 	"ITEM_EXTENSION"
+				"item_point_booster" 	"ITEM_EXTENSION"
+				"item_soul_booster"		"ITEM_EXTENSION"
+				"item_octarine_core"	"ITEM_DERIVED"
+				
+				"item_vitality_booster"		"ITEM_EXTENSION"
+				"item_energy_booster"		"ITEM_EXTENSION"
+				"item_recipe_aeon_disk"		"ITEM_EXTENSION"
+				"item_aeon_disk"			"ITEM_LUXURY"
+				
+				"item_point_booster"		"ITEM_LUXURY"
+				"item_staff_of_wizardry"		"ITEM_LUXURY"
+				"item_blade_of_alacrity"		"ITEM_LUXURY"
+				"item_ogre_axe"		"ITEM_LUXURY"
+				"item_ultimate_scepter"		"ITEM_DERIVED"
+				
+				"item_ring_of_protection"   "ITEM_LUXURY"
+				"item_recipe_buckler"	"ITEM_LUXURY"
+				"item_buckler"			"ITEM_DERIVED"
+				"item_recipe_guardian_greaves"	"ITEM_LUXURY"
+				"item_guardian_greaves" "ITEM_LUXURY | ITEM_DERIVED"
 			}
 			"Build"
 			{
@@ -12112,17 +12276,9 @@
 				"item_clarity"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
 				"item_clarity"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
 
-				"item_sobi_mask"				"ITEM_CORE"
-				"item_recipe_ring_of_basilius"  "ITEM_CORE"
-				"item_ring_of_basilius"			"ITEM_DERIVED | ITEM_SELLABLE"
-
 				"item_boots"		"ITEM_CORE"
-
-				"item_ring_of_protection"	"ITEM_CORE"
-				"item_gauntlets"		"ITEM_CORE"
-				"item_gauntlets"		"ITEM_CORE"
-				"item_recipe_soul_ring"	"ITEM_CORE"
-				"item_soul_ring"		"ITEM_DERIVED | ITEM_SELLABLE"
+				"item_energy_booster"		"ITEM_CORE"
+				"item_arcane_boots"			"ITEM_DERIVED"
 
 				"item_cloak"		"ITEM_EXTENSION"
 				"item_ring_of_health"		"ITEM_EXTENSION"
@@ -12136,6 +12292,15 @@
 
 				"item_recipe_pipe"		"ITEM_EXTENSION"
 				"item_pipe"		"ITEM_DERIVED"
+				
+				"item_relic"		"ITEM_LUXURY"
+				"item_talisman_of_evasion"		"ITEM_LUXURY"
+				"item_radiance"			"ITEM_DERIVED"
+				
+				"item_mystic_staff"		"ITEM_LUXURY"
+				"item_platemail"		"ITEM_LUXURY"
+				"item_recipe_shivas_guard"		"ITEM_LUXURY"
+				"item_shivas_guard"	 "ITEM_DERIVED"
 
 				"item_ultimate_orb"		"ITEM_LUXURY"
 				"item_void_stone"		"ITEM_LUXURY"
@@ -12147,6 +12312,8 @@
 				"item_vitality_booster"		"ITEM_LUXURY"
 				"item_recipe_heart" "ITEM_LUXURY"
 				"item_heart"		"ITEM_DERIVED"
+				
+				
 			}
 			"Build"
 			{
@@ -13013,32 +13180,42 @@
 				"item_chainmail"		"ITEM_EXTENSION"
 				"item_blades_of_attack"	"ITEM_EXTENSION"
 				"item_phase_boots"		"ITEM_DERIVED"
-
-				"item_chainmail"		"ITEM_CORE"
-				"item_sobi_mask"		"ITEM_CORE"
-				"item_blight_stone"		"ITEM_CORE"
-				"item_medallion_of_courage"		"ITEM_DERIVED"
-				"item_wind_lace"					"ITEM_EXTENSION"
-				"item_robe"						"ITEM_EXTENSION"
-				"item_belt_of_strength"			"ITEM_EXTENSION"
-				"item_recipe_ancient_janggo"	"ITEM_EXTENSION"
-				"item_ancient_janggo"			"ITEM_DERIVED | ITEM_SELLABLE"
+				
 				"item_blight_stone"		"ITEM_EXTENSION"
 				"item_mithril_hammer"		"ITEM_EXTENSION"
 				"item_mithril_hammer"		"ITEM_EXTENSION"
 				"item_desolator"		"ITEM_DERIVED"
-				"item_quarterstaff"		"ITEM_LUXURY"
-				"item_sobi_mask"		"ITEM_LUXURY"
-				"item_robe"		"ITEM_LUXURY"
-				"item_oblivion_staff"		"ITEM_DERIVED"
-				"item_quarterstaff"		"ITEM_LUXURY"
-				"item_sobi_mask"		"ITEM_LUXURY"
-				"item_robe"		"ITEM_LUXURY"
-				"item_oblivion_staff"		"ITEM_DERIVED"
+				
+				"item_energy_booster"		"ITEM_EXTENSION"
+				"item_void_stone"		"ITEM_EXTENSION"
+				"item_recipe_aether_lens"	"ITEM_EXTENSION"
+				"item_aether_lens"			"ITEM_DERIVED"
+				
+				"item_point_booster"		"ITEM_LUXURY"
+				"item_ogre_axe"		"ITEM_LUXURY"
+				"item_blade_of_alacrity"		"ITEM_LUXURY"
+				"item_staff_of_wizardry"		"ITEM_LUXURY"
+				"item_ultimate_scepter"		"ITEM_DERIVED"
+				
 				"item_ogre_axe"		"ITEM_LUXURY"
 				"item_mithril_hammer"		"ITEM_LUXURY"
 				"item_recipe_black_king_bar"		"ITEM_LUXURY"
 				"item_black_king_bar"		"ITEM_DERIVED"
+				
+				"item_broadsword"		"ITEM_LUXURY"
+				"item_blades_of_attack"		"ITEM_LUXURY"
+				"item_recipe_lesser_crit"		"ITEM_LUXURY"
+				"item_lesser_crit"		"ITEM_DERIVED"
+				"item_demon_edge"		"ITEM_LUXURY"
+				"item_recipe_greater_crit"		"ITEM_LUXURY"
+				
+				"item_vitality_booster" "ITEM_EXTENSION"
+				"item_energy_booster" 	"ITEM_EXTENSION"
+				"item_point_booster" 	"ITEM_EXTENSION"
+				"item_soul_booster"		"ITEM_EXTENSION"
+				"item_octarine_core"	"ITEM_DERIVED"
+				
+				
 			}
 			"Build"
 			{
@@ -13374,26 +13551,44 @@
 				"item_tango"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
 				"item_clarity"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
 				"item_clarity"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
-				"item_branches"		"ITEM_CORE"
-				"item_branches"		"ITEM_CORE"
-				"item_sobi_mask"		"ITEM_CORE"
-				"item_recipe_ring_of_basilius"  "ITEM_CORE"
-				"item_ring_of_basilius"		"ITEM_DERIVED"
-				"item_magic_stick"		"ITEM_CORE"
-				"item_recipe_magic_wand"		"ITEM_CORE"
-				"item_magic_wand"		"ITEM_DERIVED | ITEM_SELLABLE"
+				
 				"item_boots"		"ITEM_CORE"
 				"item_energy_booster"		"ITEM_CORE"
 				"item_arcane_boots"		"ITEM_DERIVED"
+				
+				"item_staff_of_wizardry"	"ITEM_CORE"
+				"item_robe"				 "ITEM_CORE"
+				"item_recipe_kaya"		  "ITEM_CORE"
+				"item_kaya"				 "ITEM_DERIVED"
+				
+				"item_staff_of_wizardry"		"ITEM_EXTENSION"
+				"item_fluffy_hat"		"ITEM_EXTENSION"
+				"item_recipe_force_staff"		"ITEM_EXTENSION"
+				"item_force_staff"		"ITEM_DERIVED"
+				
 				"item_mystic_staff"		"ITEM_EXTENSION"
 				"item_ultimate_orb"		"ITEM_EXTENSION"
 				"item_void_stone"		"ITEM_EXTENSION"
 				"item_sheepstick"		"ITEM_DERIVED"
+				
 				"item_point_booster"		"ITEM_EXTENSION"
 				"item_staff_of_wizardry"		"ITEM_EXTENSION"
 				"item_ogre_axe"		"ITEM_EXTENSION"
 				"item_blade_of_alacrity"		"ITEM_EXTENSION"
 				"item_ultimate_scepter"		"ITEM_DERIVED"
+				
+				"item_ogre_axe"			"ITEM_CORE"
+				"item_boots_of_elves"	"ITEM_CORE"
+				"item_boots_of_elves"	"ITEM_CORE"
+				"item_dragon_lance"		"ITEM_DERIVED"
+				"item_recipe_hurricane_pike"	"ITEM_EXTENSION"
+				"item_hurricane_pike"		"ITEM_DERIVED"
+				
+				"item_belt_of_strength"		"ITEM_LUXURY"
+				"item_ogre_axe"				"ITEM_LUXURY"
+				"item_recipe_sange"			"ITEM_LUXURY"
+				"item_sange"				"ITEM_DERIVED"
+				"item_kaya_and_sange"		"ITEM_DERIVED"
 			}
 			"Build"
 			{
@@ -16316,22 +16511,17 @@
 			{
 				"item_tango"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
 				"item_flask"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
-				"item_branches"		"ITEM_CORE"
-				"item_branches"		"ITEM_CORE"
+				
 				"item_boots"		"ITEM_CORE"
-				"item_magic_stick"		"ITEM_EXTENSION"
-				"item_crown"		"ITEM_EXTENSION"
-				"item_recipe_magic_wand"		"ITEM_EXTENSION"
-				"item_magic_wand"		"ITEM_DERIVED | ITEM_SELLABLE"
-
 				"item_belt_of_strength"	"ITEM_EXTENSION"
 				"item_gloves"			"ITEM_EXTENSION"
 				"item_power_treads"		"ITEM_DERIVED"
-				"item_wind_lace"					"ITEM_EXTENSION"
-				"item_robe"						"ITEM_EXTENSION"
-				"item_belt_of_strength"			"ITEM_EXTENSION"
-				"item_recipe_ancient_janggo"	"ITEM_EXTENSION"
-				"item_ancient_janggo"			"ITEM_DERIVED | ITEM_SELLABLE"
+				
+				"item_helm_of_iron_will"	"ITEM_CORE"
+				"item_gloves"				"ITEM_CORE"
+				"item_blades_of_attack"		"ITEM_CORE"
+				"item_recipe_armlet"		"ITEM_CORE"
+				"item_armlet"				"ITEM_DERIVED"
 
 				"item_ogre_axe"		"ITEM_EXTENSION"
 				"item_belt_of_strength"		"ITEM_EXTENSION"
@@ -16340,6 +16530,7 @@
 				"item_talisman_of_evasion"		"ITEM_EXTENSION"
 				"item_recipe_heavens_halberd"		"ITEM_EXTENSION"
 				"item_heavens_halberd"		"ITEM_DERIVED"
+				
 				"item_blade_of_alacrity"		"ITEM_EXTENSION"
 				"item_boots_of_elves"		"ITEM_EXTENSION"
 				"item_recipe_yasha"		"ITEM_EXTENSION"
@@ -16353,6 +16544,7 @@
 				"item_vitality_booster"		"ITEM_LUXURY"
 				"item_recipe_heart" "ITEM_LUXURY"
 				"item_heart"		"ITEM_DERIVED"
+				
 				"item_ring_of_protection"   "ITEM_LUXURY"
 				"item_recipe_buckler"	"ITEM_LUXURY"
 				"item_buckler"			"ITEM_DERIVED"
@@ -19227,31 +19419,29 @@
 			{
 				"item_tango"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
 				"item_clarity"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
-				"item_branches"		"ITEM_CORE"
-				"item_branches"		"ITEM_CORE"
-				"item_boots"		"ITEM_CORE"
-				"item_magic_stick"		"ITEM_CORE"
-				"item_recipe_magic_wand"		"ITEM_CORE"
-				"item_magic_wand"		"ITEM_DERIVED | ITEM_SELLABLE"
-				"item_sobi_mask"			"ITEM_CORE"
-				"item_recipe_ring_of_basilius"  "ITEM_CORE"
+				
+				"item_boots"		"ITEM_CORE"				
 				"item_ring_of_basilius"		"ITEM_DERIVED | ITEM_SELLABLE"
 				"item_belt_of_strength"		"ITEM_CORE"
 				"item_gloves"	   		"ITEM_CORE"
 				"item_power_treads"			"ITEM_DERIVED"
+				
 				"item_ring_of_health"		"ITEM_CORE"
 				"item_vitality_booster"		"ITEM_EXTENSION"
 				"item_recipe_vanguard"	  "ITEM_EXTENSION"
 				"item_vanguard"				"ITEM_DERIVED"
+				
 				"item_broadsword"			"ITEM_EXTENSION"
 				"item_chainmail"			"ITEM_EXTENSION"
 				"item_recipe_blade_mail"					"ITEM_EXTENSION"
 				"item_blade_mail"			"ITEM_DERIVED | ITEM_SELLABLE"
+				
 				//"item_ring_of_tarrasque"		"ITEM_LUXURY"
 				"item_reaver"				"ITEM_EXTENSION"
 				"item_vitality_booster"		"ITEM_EXTENSION"
 				"item_recipe_heart"		 "ITEM_EXTENSION"
 				"item_heart"				"ITEM_DERIVED"
+				
 				"item_ring_of_protection"   "ITEM_LUXURY"
 				"item_recipe_buckler"	"ITEM_LUXURY"
 				"item_buckler"			"ITEM_DERIVED"
@@ -19259,11 +19449,19 @@
 				"item_hyperstone"		"ITEM_LUXURY"
 				"item_recipe_assault"	"ITEM_LUXURY"
 				"item_assault"			"ITEM_DERIVED"
+				
 				"item_platemail"		"ITEM_LUXURY"
 				"item_mystic_staff"		"ITEM_LUXURY"
 				"item_recipe_shivas_guard"		"ITEM_LUXURY"
 				"item_shivas_guard"		"ITEM_DERIVED"
-				"item_relic"		"ITEM_EXTENSION"
+				
+				"item_mithril_hammer"		"ITEM_EXTENSION"
+				"item_belt_of_strength"		"ITEM_EXTENSION"
+				"item_recipe_basher"		"ITEM_EXTENSION"
+				"item_basher"		"ITEM_DERIVED"
+				"item_recipe_abyssal_blade"	"ITEM_LUXURY"
+				"item_abyssal_blade"		"ITEM_DERIVED"
+				
 			}
 			"Build"
 			{
@@ -19649,36 +19847,56 @@
 				"item_clarity"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
 				"item_clarity"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
 				"item_mantle"		"ITEM_CORE"
-				"item_branches"		"ITEM_CORE"
-				"item_branches"		"ITEM_CORE"
 				"item_boots"		"ITEM_CORE"
-				"item_magic_stick"		"ITEM_CORE"
-				"item_recipe_magic_wand"		"ITEM_CORE"
-				"item_magic_wand"		"ITEM_DERIVED | ITEM_SELLABLE"
+				
 				"item_circlet"		"ITEM_CORE"
 				"item_recipe_null_talisman"		"ITEM_CORE"
 				"item_null_talisman"		"ITEM_DERIVED | ITEM_SELLABLE"
+				
 				"item_energy_booster"		"ITEM_CORE"
 				"item_arcane_boots"		"ITEM_DERIVED"
+				
 				"item_staff_of_wizardry"		"ITEM_EXTENSION"
 				"item_fluffy_hat"		"ITEM_EXTENSION"
 				"item_recipe_force_staff"		"ITEM_EXTENSION"
 				"item_force_staff"		"ITEM_DERIVED"
-				"item_wind_lace"		"ITEM_EXTENSION"
-				"item_void_stone"		"ITEM_EXTENSION"
-				"item_staff_of_wizardry"		"ITEM_EXTENSION"
-				"item_recipe_cyclone"		"ITEM_EXTENSION"
-				"item_cyclone"		"ITEM_DERIVED"
+				
 				"item_crown"		"ITEM_LUXURY"
 				"item_crown"		"ITEM_LUXURY"
 				"item_staff_of_wizardry"		"ITEM_LUXURY"
 				"item_recipe_rod_of_atos"		"ITEM_LUXURY"
 				"item_rod_of_atos"		"ITEM_DERIVED"
+				
+				"item_staff_of_wizardry"		"ITEM_LUXURY"
+				"item_crown"			"ITEM_LUXURY"
+				"item_recipe_dagon"		"ITEM_LUXURY"
+				"item_dagon"			"ITEM_DERIVED"
+				
+				"item_wind_lace"		"ITEM_EXTENSION"
+				"item_void_stone"		"ITEM_EXTENSION"
+				"item_staff_of_wizardry"		"ITEM_EXTENSION"
+				"item_recipe_cyclone"		"ITEM_EXTENSION"
+				"item_cyclone"		"ITEM_DERIVED"
+				
 				"item_point_booster"		"ITEM_LUXURY"
 				"item_staff_of_wizardry"		"ITEM_LUXURY"
 				"item_ogre_axe"		"ITEM_LUXURY"
 				"item_blade_of_alacrity"		"ITEM_LUXURY"
 				"item_ultimate_scepter"		"ITEM_DERIVED"
+				
+				"item_recipe_dagon"		"ITEM_LUXURY"
+				"item_dagon_2"			"ITEM_DERIVED"
+				"item_recipe_dagon"		"ITEM_LUXURY"
+				"item_dagon_3"			"ITEM_DERIVED"
+				"item_recipe_dagon"		"ITEM_LUXURY"
+				"item_dagon_4"			"ITEM_DERIVED"
+				"item_recipe_dagon"		"ITEM_LUXURY"
+				"item_dagon_5"			"ITEM_DERIVED"
+				
+				"item_mystic_staff"		"ITEM_LUXURY"
+				"item_recipe_wind_waker"	"ITEM_LUXURY"
+				"item_wind_waker"			"ITEM_DERIVED"
+				
 				"item_ultimate_orb"		"ITEM_LUXURY"
 				"item_void_stone"		"ITEM_LUXURY"
 				"item_mystic_staff"		"ITEM_LUXURY"
@@ -21018,13 +21236,8 @@
 				"item_tango"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
 				"item_clarity"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
 				"item_clarity"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
-				"item_branches"		"ITEM_CORE"
-				"item_branches"		"ITEM_CORE"
+				
 				"item_boots"		"ITEM_CORE"
-				"item_magic_stick"		"ITEM_CORE"
-				"item_recipe_magic_wand"		"ITEM_CORE"
-				"item_magic_wand"		"ITEM_DERIVED | ITEM_SELLABLE"
-
 				"item_energy_booster"		"ITEM_CORE"
 				"item_arcane_boots"		"ITEM_DERIVED"
 
@@ -21033,21 +21246,38 @@
 				"item_staff_of_wizardry"		"ITEM_EXTENSION"
 				"item_recipe_cyclone"		"ITEM_EXTENSION"
 				"item_cyclone"		"ITEM_DERIVED"
+				
+				"item_fluffy_hat"		"ITEM_EXTENSION"
+				"item_staff_of_wizardry"	"ITEM_EXTENSION"
+				"item_recipe_force_staff"	"ITEM_EXTENSION"
+				"item_force_staff"			"ITEM_DERIVED"
+				
+				"item_ring_of_regen"		"ITEM_EXTENSION"
+				"item_recipe_headdress"		"ITEM_EXTENSION"
+				"item_headdress"			"ITEM_DERIVED"
+				"item_chainmail"		"ITEM_EXTENSION"
+				"item_recipe_mekansm"		"ITEM_EXTENSION"
+				"item_mekansm"				"ITEM_DERIVED"
+				
+				"item_energy_booster"		"ITEM_LUXURY"
+				"item_void_stone"		"ITEM_LUXURY"
+				"item_recipe_aether_lens"	"ITEM_LUXURY"
+				"item_aether_lens"			"ITEM_DERIVED"				
 
 				"item_ultimate_orb"		"ITEM_LUXURY"
 				"item_void_stone"		"ITEM_LUXURY"
 				"item_mystic_staff"		"ITEM_LUXURY"
 				"item_sheepstick"		"ITEM_DERIVED"
-
-				"item_quarterstaff"		"ITEM_LUXURY"
-				"item_sobi_mask"		"ITEM_LUXURY"
-				"item_robe"		"ITEM_LUXURY"
-				"item_oblivion_staff"		"ITEM_DERIVED"
-
-				"item_quarterstaff"		"ITEM_LUXURY"
-				"item_sobi_mask"		"ITEM_LUXURY"
-				"item_robe"		"ITEM_LUXURY"
-				"item_oblivion_staff"		"ITEM_DERIVED"
+				
+				"item_vitality_booster" "ITEM_LUXURY"
+				"item_energy_booster" 	"ITEM_LUXURY"
+				"item_point_booster" 	"ITEM_LUXURY"
+				"item_soul_booster"		"ITEM_LUXURY"
+				"item_octarine_core"	"ITEM_DERIVED"
+				
+				"item_mystic_staff"		"ITEM_LUXURY"
+				"item_recipe_wind_waker"	"ITEM_LUXURY"
+				"item_wind_waker"			"ITEM_DERIVED"
 			}
 			"Build"
 			{
