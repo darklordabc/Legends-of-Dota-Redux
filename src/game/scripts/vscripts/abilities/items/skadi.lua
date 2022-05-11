@@ -111,9 +111,9 @@ function modifier_item_skadi_consumable:DeclareFunctions()
   return funcs
 end
 
-function modifier_item_skadi_consumable:GetModifierProjectileName()
-  return "particles/items2_fx/skadi_projectile.vpcf"
-end
+--function modifier_item_skadi_consumable:GetModifierProjectileName()
+--  return "particles/items2_fx/skadi_projectile.vpcf"
+--end
 
 function modifier_item_skadi_consumable:GetModifierBonusStats_Strength()
   if not self:GetAbility() then
