@@ -1122,8 +1122,8 @@
 
         // Item Info
         //-------------------------------------------------------------------------------------------------------------
-        "ItemCost"                      "5250"
-        "AbilityGoldCost"               "5250"
+        "ItemCost"                      "5125"
+        "AbilityGoldCost"               "5125"
         "ItemShopTags"                  "attack_speed;armor;hard_to_tag"
         "ItemPurchasable"               "0"
         "ItemQuality"                   "epic"
@@ -1181,8 +1181,8 @@
 
         // Item Info
         //-------------------------------------------------------------------------------------------------------------
-        "ItemCost"                      "5075"
-        "AbilityGoldCost"               "5075"
+        "ItemCost"                      "5300"
+        "AbilityGoldCost"               "5300"
         "ItemPurchasable"              "0"
         "ItemShopTags"                  "agi;str;int;hard_to_tag;mana_pool;health_pool;unique"
         "ItemPurchasable"              "0"
@@ -1530,8 +1530,8 @@
 
         // Item Info
         //-------------------------------------------------------------------------------------------------------------
-        "ItemCost"                      "5475"
-        "AbilityGoldCost"               "5475"
+        "ItemCost"                      "5275"
+        "AbilityGoldCost"               "5275"
         "ItemPurchasable"              "0"
 
         "precache"
@@ -1669,8 +1669,8 @@
 
         // Item Info
         //-------------------------------------------------------------------------------------------------------------
-        "ItemCost"                      "5075"
-        "AbilityGoldCost"               "5075"
+        "ItemCost"                      "4975"
+        "AbilityGoldCost"               "4975"
         "ItemPurchasable"              "0"
         
         
@@ -2263,12 +2263,12 @@
         "AbilityTextureName"            "item_aeon_disk"
         "SpellDispellableType"          "SPELL_DISPELLABLE_NO"
         "AbilityCooldown"               "105"
-        "ItemCost"                      "3100"
+        "ItemCost"                      "3000"
 
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
         "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
         "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
-        "AbilityGoldCost"               "3100"
+        "AbilityGoldCost"               "3000"
         "ItemPurchasable"              "0"
 
         "AbilitySpecial"
