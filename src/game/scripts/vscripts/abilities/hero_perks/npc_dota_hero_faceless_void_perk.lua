@@ -27,7 +27,7 @@ end
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------
 
-function npc_dota_hero_faceless_void_perk:OnCreated()
+function modifier_npc_dota_hero_faceless_void_perk:OnCreated()
 	if IsServer() then
 		local caster = self:GetCaster()
 		local fv = caster:FindAbilityByName("faceless_void_time_lock")
