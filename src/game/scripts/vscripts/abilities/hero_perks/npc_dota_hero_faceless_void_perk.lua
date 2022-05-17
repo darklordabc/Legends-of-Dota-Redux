@@ -27,18 +27,18 @@ end
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------
 
-function modifier_npc_dota_hero_faceless_void_perk:OnCreated()
-	if IsServer() then
-		local caster = self:GetCaster()
-		local fv = caster:FindAbilityByName("faceless_void_time_lock")
-		if fv then
-			fv:SetLevel(1)
-		else
-			fv = caster:AddAbility("faceless_void_time_lock")
-            -- ab:SetStolen(true)
-			fv:SetLevel(1)
-			fv:SetActivated(true)
-			-- ab:SetHidden(true)
-		end
-	end
+function modifier_npc_dota_hero_faceless_void_perk:OnCreated(keys)
+    if IsServer() then
+        local caster = self:GetCaster()
+        local sadist = caster:FindAbilityByName("faceless_void_time_lock")
+
+        if sadist then
+            sadist:UpgradeAbility(false)
+        else 
+            sadist = caster:AddAbility("faceless_void_time_lock")
+            sadist:SetStolen(true)
+            sadist:SetActivated(true)
+            sadist:SetLevel(1)
+        end
+    end
 end
