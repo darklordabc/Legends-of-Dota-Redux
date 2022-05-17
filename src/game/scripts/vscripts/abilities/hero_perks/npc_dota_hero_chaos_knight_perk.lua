@@ -40,7 +40,7 @@ function modifier_npc_dota_hero_chaos_knight_perk:OnCreated()
 			ab = caster:AddAbility("lycan_summon_wolves_critical_strike")
             ab:SetStolen(true)
 			ab:SetLevel(1)
-			ab:SetHidden(true)
+			-- ab:SetHidden(true)
 		end
 	end
 end
