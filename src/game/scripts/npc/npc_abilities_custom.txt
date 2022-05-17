@@ -229,7 +229,7 @@
 #base "abilities\dota\tinker_rearm_lod.txt"
 #base "abilities\dota\tiny_grow_lod.txt"
 #base "abilities\dota\tiny_grow_lod_redux.txt"
-#base "abilities\dota\troll_warlord_berserkers_rage_melee.txt"
+// #base "abilities\dota\troll_warlord_berserkers_rage_melee.txt"
 #base "abilities\dota\undying_decay_agi.txt"
 #base "abilities\dota\undying_decay_int.txt"
 #base "abilities\dota\ursa_enrage_old.txt"
