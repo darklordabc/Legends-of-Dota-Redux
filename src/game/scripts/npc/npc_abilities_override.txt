@@ -751,7 +751,7 @@
 			"bounce_range"			"500"
 			"duration"				"1"
 			"slow"					"100"
-			"bounce_delay"			"0.3"
+			"bounce_delay"			"0.3 0.24 0.18 0.12"
 			}
 			"ReduxFlags"                                                           "neutral"
             "ReduxPerks"                                                           "neutral"
@@ -785,7 +785,7 @@
                 "01"
                 {
                     "var_type"                                             "FIELD_FLOAT"
-                    "bonus_hp"                                             "15 17 19 21"
+                    "bonus_hp"                                             "15 18 21 24"
                 }
                 "02"
                 {
@@ -810,8 +810,8 @@
 			"AbilityValues"
 			{
 					"duration"				"8"
-					"burn_damage"			"50 75 100 125"
-					"building_damage_pct"	"25"
+					"burn_damage"			"50 80 110 140"
+					"building_damage_pct"	"25 30 35 40"
 			}
 			"ReduxPerks"                                                           "ice | fire"
 		}
@@ -825,7 +825,7 @@
                 "01"
                 {
                     "var_type"                                             "FIELD_INTEGER"
-                    "bonus_armor"                                          "3 5 6 7"
+                    "bonus_armor"                                          "3 5 7 9"
                 }
                 "02"
                 {
@@ -892,7 +892,7 @@
                 "01"
                 {
                     "var_type"                                             "FIELD_INTEGER"
-                    "bonus_armor"                                          "3 4 5 7"
+                    "bonus_armor"                                          "3 5 7 9"
                 }
                 "02"
                 {
@@ -975,7 +975,7 @@
                 "03"
                 {
                     "var_type"                                             "FIELD_INTEGER"
-                    "movespeed_slow"                                       "-20 -20 -20 -20"
+                    "movespeed_slow"                                       "-20 -22 -24 -26"
                 }
                 "04"
                 {
@@ -1002,40 +1002,40 @@
         "visage_summon_familiars_stone_form"
         {
             "MaxLevel"                                                             "4"
-            "AbilityCooldown"                                                      "35.0"
+            "AbilityCooldown"                                                      "14.0"
             "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"                                             "FIELD_INTEGER"
-                    "stun_radius"                                          "350"
-                }
-                "02"
-                {
-                    "var_type"                                             "FIELD_FLOAT"
-                    "stun_delay"                                           "0.55"
-                }
-                "03"
-                {
-                    "var_type"                                             "FIELD_INTEGER"
-                    "stun_damage"                                          "60 100 140 200"
-                }
-                "04"
-                {
-                    "var_type"                                             "FIELD_FLOAT"
-                    "stun_duration"                                        "1.0 1.25 1.5 2.0"
-                }
-                "05"
-                {
-                    "var_type"                                             "FIELD_FLOAT"
-                    "stone_duration"                                       "5.0"
-                }
-                "06"
-                {
-                    "var_type"                                             "FIELD_FLOAT"
-                    "hp_regen"                                             "150 175 200 225"
-                }
-            }
+			{
+				"01"
+				{
+					"var_type"							"FIELD_INTEGER"
+					"stun_radius"						"350"
+				}
+				"02"
+				{
+					"var_type"							"FIELD_FLOAT"
+					"stun_delay"						"0.55"
+				}			
+				"03"
+				{
+					"var_type"							"FIELD_INTEGER"
+					"stun_damage"						"60 100 140 180" 
+				}
+				"04"
+				{
+					"var_type"							"FIELD_FLOAT"
+					"stun_duration"						"1.0 1.25 1.5 1.75"
+				}
+				"05"
+				{
+					"var_type"							"FIELD_FLOAT"
+					"stone_duration"					"6.0"
+				}
+				"06"
+				{
+					"var_type"							"FIELD_FLOAT"
+					"hp_regen"							"150 175 200 225"
+				}
+			}
             "ReduxFlags"                                                           "tank | stun"
             "ReduxPerks"                                                           "neutral | skillshot"
             "ReduxCost"                                                            "10"
