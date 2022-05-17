@@ -3431,10 +3431,9 @@
 				"item_cloak"		"ITEM_EXTENSION"
 				"item_ring_of_health"		"ITEM_EXTENSION"
 				"item_ring_of_regen"		"ITEM_EXTENSION"
-				"item_recipe_hood_of_defiance"		"ITEM_EXTENSION"
 				"item_hood_of_defiance"		"ITEM_DERIVED"
 				
-				"item_blink"		"ITEM_EXTENSION"
+				"item_blink"		"ITEM_CORE"
 				
 				"item_ring_of_regen"		"ITEM_EXTENSION"
 				"item_recipe_headdress"		"ITEM_EXTENSION"
@@ -5923,7 +5922,6 @@
 				"item_cloak"		"ITEM_EXTENSION"
 				"item_ring_of_health"		"ITEM_EXTENSION"
 				"item_ring_of_regen"		"ITEM_EXTENSION"
-				"item_recipe_hood_of_defiance"		"ITEM_EXTENSION"
 				"item_hood_of_defiance"		"ITEM_DERIVED"
 				"item_recipe_pipe"		"ITEM_EXTENSION"
 				"item_pipe"		"ITEM_DERIVED"
@@ -6768,7 +6766,6 @@
 				"item_cloak"				"ITEM_EXTENSION"
 				"item_ring_of_health"		"ITEM_EXTENSION"
 				"item_ring_of_regen"		"ITEM_EXTENSION"
-				"item_recipe_hood_of_defiance"		"ITEM_EXTENSION"
 				"item_hood_of_defiance"		"ITEM_DERIVED"
 				"item_ring_of_regen"		"ITEM_EXTENSION"
 				"item_recipe_headdress"		"ITEM_EXTENSION"
@@ -7013,7 +7010,6 @@
 				"item_cloak"				"ITEM_EXTENSION"
 				"item_ring_of_health"		"ITEM_EXTENSION"
 				"item_ring_of_regen"		"ITEM_EXTENSION"
-				"item_recipe_hood_of_defiance"		"ITEM_EXTENSION"
 				"item_hood_of_defiance"		"ITEM_DERIVED"
 				
 				"item_mithril_hammer"			"ITEM_LUXURY"
@@ -8046,7 +8042,6 @@
 				"item_cloak"		"ITEM_EXTENSION"
 				"item_ring_of_health"		"ITEM_EXTENSION"
 				"item_ring_of_regen"		"ITEM_EXTENSION"
-				"item_recipe_hood_of_defiance"		"ITEM_EXTENSION"
 				"item_hood_of_defiance"		"ITEM_DERIVED"
 				"item_voodoo_mask" "ITEM_EXTENSION"
 				"item_recipe_eternal_shroud"		"ITEM_DERIVED"
@@ -12296,7 +12291,6 @@
 				"item_cloak"		"ITEM_EXTENSION"
 				"item_ring_of_health"		"ITEM_EXTENSION"
 				"item_ring_of_regen"		"ITEM_EXTENSION"
-				"item_recipe_hood_of_defiance"		"ITEM_EXTENSION"
 				"item_hood_of_defiance"		"ITEM_DERIVED"
 
 				"item_ring_of_regen"		"ITEM_EXTENSION"
@@ -19862,13 +19856,9 @@
 				"item_flask"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
 				"item_clarity"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
 				"item_clarity"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
-				"item_mantle"		"ITEM_CORE"
+
+
 				"item_boots"		"ITEM_CORE"
-				
-				"item_circlet"		"ITEM_CORE"
-				"item_recipe_null_talisman"		"ITEM_CORE"
-				"item_null_talisman"		"ITEM_DERIVED | ITEM_SELLABLE"
-				
 				"item_energy_booster"		"ITEM_CORE"
 				"item_arcane_boots"		"ITEM_DERIVED"
 				
@@ -19877,10 +19867,10 @@
 				"item_recipe_force_staff"		"ITEM_EXTENSION"
 				"item_force_staff"		"ITEM_DERIVED"
 				
-				"item_crown"		"ITEM_LUXURY"
-				"item_crown"		"ITEM_LUXURY"
-				"item_staff_of_wizardry"		"ITEM_LUXURY"
-				"item_recipe_rod_of_atos"		"ITEM_LUXURY"
+				"item_crown"		"ITEM_EXTENSION"
+				"item_crown"		"ITEM_EXTENSION"
+				"item_staff_of_wizardry"		"ITEM_EXTENSION"
+				"item_recipe_rod_of_atos"		"ITEM_EXTENSION"
 				"item_rod_of_atos"		"ITEM_DERIVED"
 				
 				"item_staff_of_wizardry"		"ITEM_LUXURY"
@@ -19888,10 +19878,10 @@
 				"item_recipe_dagon"		"ITEM_LUXURY"
 				"item_dagon"			"ITEM_DERIVED"
 				
-				"item_wind_lace"		"ITEM_EXTENSION"
-				"item_void_stone"		"ITEM_EXTENSION"
-				"item_staff_of_wizardry"		"ITEM_EXTENSION"
-				"item_recipe_cyclone"		"ITEM_EXTENSION"
+				"item_wind_lace"		"ITEM_LUXURY"
+				"item_void_stone"		"ITEM_LUXURY"
+				"item_staff_of_wizardry"		"ITEM_LUXURY"
+				"item_recipe_cyclone"		"ITEM_LUXURY"
 				"item_cyclone"		"ITEM_DERIVED"
 				
 				"item_point_booster"		"ITEM_LUXURY"
