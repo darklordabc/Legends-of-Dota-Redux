@@ -7,14 +7,14 @@
 		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
 		"MaxLevel" "3"
-		"AbilityCastRange" "100"
+		"AbilityCastRange" "150"
 		"AbilityCastPoint" "0.0"
-		"AbilityDamage" "30 60 80"
+		"AbilityDamage" "30 60 90"
 
 		"AbilitySpecial" {
 			"01" {
 				"var_type" "FIELD_INTEGER"
-				"small_radius" "100"
+				"small_radius" "150"
 			}
 
 			"02" {
