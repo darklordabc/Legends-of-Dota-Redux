@@ -66,14 +66,14 @@ end
 
 function modifier_neutral_power:GetModifierBaseAttack_BonusDamage()
 	local stacks = self:GetStackCount()
-	local damage_per_level = 5
+	local damage_per_level = 3
 	
 	return damage_per_level * stacks
 end
 
 function modifier_neutral_power:GetModifierConstantHealthRegen()
 	local stacks = self:GetStackCount()
-	local regen_per_level = 0.1
+	local regen_per_level = 0.05
 
 	return regen_per_level * stacks
 end
@@ -83,8 +83,8 @@ function modifier_neutral_power:GetModifierIncomingDamage_Percentage()
 	local damage_reduction = -1
 	local stacks = self:GetStackCount()
 
-    -- Max damage reduction is 70%
-	stacks = math.min(70, stacks)
+    -- Max damage reduction is 40%
+	stacks = math.min(40, stacks)
 
 	if unit:GetUnitName() == "npc_dota_roshan" then
 		return damage_reduction * stacks
@@ -95,10 +95,10 @@ end
 
 function CalculateNewStats(unit, stacks, firstInstance)
 	if IsServer() then
-		local health_per_stack = 80	
+		local health_per_stack = 30	
 		local extra_gold_per_stack = 5
 		local extra_exp_per_stack = 5
-		local model_scale_per_stack = 0.01
+		local model_scale_per_stack = 0.005
 
 		-- Increase depending on initial call or interval
 		if firstInstance then
