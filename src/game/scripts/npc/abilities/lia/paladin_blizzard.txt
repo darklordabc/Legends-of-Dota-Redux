@@ -78,7 +78,7 @@
                 {
                     "DelayedAction"
                     {
-                        "Delay"                                "0.65"
+                        "Delay"                                "0.15"
                         "Action"
                         {
                             "Damage"
