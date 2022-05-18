@@ -8624,7 +8624,7 @@
         {
             "TalentRequiredAbility"                                                   "tinker_heat_seeking_missile"
         }
-        "special_bonus_unique_tinker_6"
+        "special_bonus_unique_tinker_7"
         {
             "TalentRequiredAbility"                                                   "tinker_defense_matrix"
         }
