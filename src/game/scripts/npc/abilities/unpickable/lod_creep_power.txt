@@ -8,17 +8,17 @@
 		"AbilitySpecial" {
 			"01" {
 				"var_type" "FIELD_INTEGER"
-				"coef" "8"
+				"coef" "5"
 			}
 
 			"02" {
 				"var_type" "FIELD_INTEGER"
-				"damage_per_level" "3"
+				"damage_per_level" "2"
 			}
 
 			"03" {
 				"var_type" "FIELD_FLOAT"
-				"resist_per_level" "0.5"
+				"resist_per_level" "0.25"
 			}
 		}
 	}
