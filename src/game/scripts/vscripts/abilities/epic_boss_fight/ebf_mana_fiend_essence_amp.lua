@@ -34,7 +34,7 @@ function EssenceAmp(filterTable)
 							Duration = 0.7,
 							Number = filterTable["damage"],
 							pfx = "spell_custom"} )
-				attacker:SpendMana(manaburn, ability)
+				attacker:SpendMana(manaburn / 2, ability)
 				attacker.essenceCritPrng = 0
 			else
 				attacker.essenceCritPrng = attacker.essenceCritPrng + 1
