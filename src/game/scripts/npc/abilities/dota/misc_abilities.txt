@@ -159,7 +159,7 @@
         
         // Time     
         //-------------------------------------------------------------------------------------------------------------
-        "AbilityCooldown"               "25.0"
+        "AbilityCooldown"               "18.0"
 
 
         // Cost
@@ -639,7 +639,7 @@
             "02"
             {
                 "var_type"              "FIELD_INTEGER"
-                "chain_latch_radius"    "1000"
+                "chain_latch_radius"    "600"
             }
             "03"
             {
@@ -734,7 +734,7 @@
 
         // Casting
         //-------------------------------------------------------------------------------------------------------------
-        "AbilityDuration"               "10.0 10.0 10.0"
+        "AbilityDuration"               "28.0 42.0 56.0"
                 
         // Special
         //-------------------------------------------------------------------------------------------------------------
@@ -743,7 +743,7 @@
             "01"
             {
                 "var_type"                      "FIELD_INTEGER"
-                "damage_per_stack"                  "18 24 30"
+                "damage_per_stack"                  "25 30 35"
                 "LinkedSpecialBonus"    "special_bonus_unique_bristleback_3"
             }
             "02"
@@ -859,12 +859,12 @@
             "01"
             {
                 "var_type"              "FIELD_INTEGER"
-                "bonus_damage"          "160 220 280 340"
+                "bonus_damage"          "60 100 140 180"
             }
             "02"
             {
                 "var_type"              "FIELD_INTEGER"
-                "gold_steal"            "36 60 84 108"
+                "gold_steal"            "80 120 160 200"
                 "LinkedSpecialBonus"        "special_bonus_unique_bounty_hunter"
             }
         }
@@ -916,7 +916,7 @@
             "02"
             {
                 "var_type"              "FIELD_INTEGER"
-                "chain_latch_radius"    "1000"
+                "chain_latch_radius"    "700"
             }
             "03"
             {
@@ -997,7 +997,7 @@
             "02"
             {
                 "var_type"          "FIELD_INTEGER"
-                "radius"            "750"
+                "radius"            "550"
             }
             "03"
             {
@@ -1012,7 +1012,7 @@
             "05"
             {
                 "var_type"          "FIELD_FLOAT"
-                "formation_time"    "0.6"
+                "formation_time"    "0.1"
             }
             "06"
             {
@@ -1027,7 +1027,7 @@
             "08"
             {
                 "var_type"          "FIELD_INTEGER"
-                "warrior_count"     "14"
+                "warrior_count"     "20"
             }
             "09"
             {
@@ -1149,12 +1149,12 @@
             "01"
             {
                 "var_type"          "FIELD_FLOAT"
-                "mana_regen"        "1.6 2.0 2.4 2.8"
+                "mana_regen"        "1.6 2.4 3.2 4.0"
             }
             "02"
             {
                 "var_type"          "FIELD_FLOAT"
-                "mana_regen_self"   "3.6 5.2 6.8 8.4"
+                "mana_regen_self"   "4.8 7.2 9.6 12.0"
             }
         }
         "AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_3"
