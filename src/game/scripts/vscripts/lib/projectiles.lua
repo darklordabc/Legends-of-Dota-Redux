@@ -132,7 +132,7 @@ local projectiles = {
 
 	['npc_dota_hero_necrolyte'] = {
 		model = "particles/units/heroes/hero_necrolyte/necrolyte_base_attack.vpcf",
-		speed = 900,
+		speed = 1200,
 	},
 
 	['npc_dota_hero_troll_warlord'] = {
@@ -142,7 +142,7 @@ local projectiles = {
 
 	['npc_dota_hero_visage'] = {
 		model = "particles/units/heroes/hero_visage/visage_base_attack.vpcf",
-		speed = 900,
+		speed = 1400,
 	},
 
 	['npc_dota_hero_keeper_of_the_light'] = {
@@ -206,7 +206,7 @@ local projectiles = {
 
 	['npc_dota_hero_silencer'] = {
 		model = "particles/units/heroes/hero_silencer/silencer_base_attack.vpcf",
-		speed = 1000,
+		speed = 900,
 	},
 
 	['npc_dota_hero_invoker'] = {

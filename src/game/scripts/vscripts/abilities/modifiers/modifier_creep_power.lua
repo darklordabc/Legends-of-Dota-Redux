@@ -24,7 +24,7 @@ function modifier_creep_power:OnIntervalThink()
 			parent:SetMinimumGoldBounty(parent:GetMinimumGoldBounty() + (parent:GetMinimumGoldBounty() * self.bounty_scaling))
 			parent:SetMaximumGoldBounty(parent:GetMaximumGoldBounty() + (parent:GetMaximumGoldBounty() * self.bounty_scaling))
 
-			parent:SetModelScale(parent:GetModelScale() + (parent:GetModelScale() * 0.02 * math.min(12, self.level)))
+			parent:SetModelScale(parent:GetModelScale() + (parent:GetModelScale() * 0.01 * math.min(12, self.level)))
 
 			parent:AddNewModifier(self:GetCaster(), ability, "modifier_creep_power_hp", {duration = self:GetDuration()})
 			
@@ -64,7 +64,7 @@ modifier_creep_power_hp = {
 		self.hp = self.hp or self:GetParent():GetMaxHealth()
 		local level = self:GetParent():GetModifierStackCount("modifier_creep_power", self:GetCaster()) or 0
 		--"bonus_hp" "20 50 80 110 140 170 200 230 260 290 320 350 380 410 440 470 500 530 560 590"
-		local bonus = (level>3 and 20 or 0) + 30 * (level/3)
+		local bonus = (level>3 and 20 or 0) + 10 * (level/3)
 		if self:GetParent().SetMaxHealth then
 			self:GetParent():SetMaxHealth(self.hp + self.hp * bonus * 0.01)
 		end

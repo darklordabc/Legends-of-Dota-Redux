@@ -3919,10 +3919,10 @@
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
-		"AttackDamageMin"			"20"
-		"AttackDamageMax"			"20"
+		"AttackDamageMin"			"25"
+		"AttackDamageMax"			"25"
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
-		"AttackRate"				"1.4"
+		"AttackRate"				"1.2"
 		"AttackAnimationPoint"		"0.3"
 		"AttackAcquisitionRange"	"600"
 		"AttackRange"				"600"
@@ -3997,10 +3997,10 @@
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
-		"AttackDamageMin"			"30"
-		"AttackDamageMax"			"30"
+		"AttackDamageMin"			"35"
+		"AttackDamageMax"			"35"
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
-		"AttackRate"				"1.4"
+		"AttackRate"				"1.2"
 		"AttackAnimationPoint"		"0.3"
 		"AttackAcquisitionRange"	"750"
 		"AttackRange"				"750"

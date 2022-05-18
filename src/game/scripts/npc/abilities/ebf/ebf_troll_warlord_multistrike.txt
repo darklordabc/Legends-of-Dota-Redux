@@ -20,7 +20,7 @@
             "03"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "stack_duration"                                       "10"
+                "stack_duration"                                       "20"
             }
         }
         "Modifiers"

@@ -35,12 +35,12 @@ function modifier_npc_dota_hero_chaos_knight_perk:OnCreated()
 		local caster = self:GetCaster()
 		local ab = caster:FindAbilityByName("lycan_summon_wolves_critical_strike")
 		if ab then
-			ab:SetLevel(1)
+			ab:UpgradeAbility(false)
 		else
 			ab = caster:AddAbility("lycan_summon_wolves_critical_strike")
             ab:SetStolen(true)
-			ab:SetLevel(1)
-			ab:SetHidden(true)
+            ab:SetActivated(true)
+            ab:SetLevel(1)
 		end
 	end
 end

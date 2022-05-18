@@ -15,7 +15,7 @@
         "AbilityCastPoint"                                                     "0.0"
         "AbilityCooldown"                                                      "13 12 11 10"
         "AbilityManaCost"                                                      "100 110 120 130"
-        "AbilityChannelTime"                                                   "0.5"
+        "AbilityChannelTime"                                                   "0.25"
         "AoERadius"                                                            "225 250 275 300"
 
         "precache"
@@ -37,7 +37,7 @@
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "damage"                                               "30 60 90 120"
+                "damage"                                               "40 80 120 160"
             }
             "03"
             {
@@ -47,7 +47,7 @@
             "04"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "delay"                                                "0.5"
+                "delay"                                                "0.25"
             }
             "05"
             {

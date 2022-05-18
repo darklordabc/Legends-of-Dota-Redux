@@ -21,7 +21,7 @@
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "decay_damage"                                         "20 60 100 140"
+                "decay_damage"                                         "100 140 180 220"
             }
             "02"
             {
