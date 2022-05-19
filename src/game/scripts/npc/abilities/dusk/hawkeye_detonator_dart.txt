@@ -42,7 +42,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"325 400 475"
+				"damage"					"350 450 550"
 			}
 			"02"
 			{
@@ -62,7 +62,7 @@
 			"05"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"radius"					"375"
+				"radius"					"400 450 500"
 			}
 		}
 		
