@@ -4508,7 +4508,7 @@
 				"01"
 				{
 					"var_type"			"FIELD_INTEGER"
-					"damage"		"25 50 75 100"
+					"damage"		"25 75 125 175"
 				}
 				"02"
 				{
@@ -5419,7 +5419,7 @@
 				"02"
 				{
 					"var_type"					"FIELD_INTEGER"
-					"status_resistance"				"25 30 35 40"
+					"status_resistance"				"25 45 65 85"
 				}
 				"03"
 				{
@@ -5488,7 +5488,7 @@
             "09"
             {
                 "var_type"              "FIELD_INTEGER"
-                "horn_toss_slow_pct"        "100"
+                "horn_toss_slow_pct"        "100 150 200 250"
             }
         }
             "ReduxPerks"                                                           "enemyMoving"
@@ -5697,7 +5697,7 @@
 				"hp_cost_per_second"    "7"
 				"radius"                "450"
 				"movement_slow"         "25 30 35 40"
-				"thirst_bonus_pct"      "50 60 70 80"
+				"thirst_bonus_pct"      "50 65 80 95"
 			}
 		}
 
@@ -5717,7 +5717,7 @@
 				"01"
 				{
 					"var_type"			"FIELD_INTEGER"
-					"range"			"1300"
+					"range"			"1300 1500 1700 1900"
 				}
 				"02"
 				{
@@ -5779,7 +5779,7 @@
 			//-------------------------------------------------------------------------------------------------------------
 			"AbilityValues"
 			{
-				"base_damage"             "300 325 350 375"
+				"base_damage"             "300 330 360 390"
 				"impact_radius"             "225"
 				"fragment_impact_distance"    "600"
 				"min_range"               "550"
@@ -5941,7 +5941,7 @@
 				"01"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"duration"				"3.0 3.5 4.0 4.5"
+					"duration"				"3.0 3.75 4.5 5.25"
 				}						
 			}
 		}
@@ -5957,7 +5957,7 @@
 				"01"
 				{
 					"var_type"			"FIELD_FLOAT"
-					"projectile_multiplier"		"125 135 145 155"
+					"projectile_multiplier"		"125 140 155 170"
 				}
 				"02"
 				{
