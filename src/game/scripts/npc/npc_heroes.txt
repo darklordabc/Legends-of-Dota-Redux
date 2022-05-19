@@ -1303,6 +1303,7 @@
 				"item_ogre_axe"		"ITEM_EXTENSION"
 				"item_blade_of_alacrity"		"ITEM_EXTENSION"
 				"item_ultimate_scepter"		"ITEM_DERIVED"
+				
 				"item_ogre_axe"		"ITEM_LUXURY"
 				"item_mithril_hammer"		"ITEM_LUXURY"
 				"item_recipe_black_king_bar"		"ITEM_LUXURY"
@@ -5670,7 +5671,6 @@
 				"item_staff_of_wizardry"		"ITEM_EXTENSION"
 				"item_ogre_axe"		"ITEM_EXTENSION"
 				"item_blade_of_alacrity"		"ITEM_EXTENSION"
-				"item_recipe_ultimate_scepter"		"ITEM_EXTENSION"
 				"item_ultimate_scepter" "ITEM_DERIVED"
 				
 				"item_ogre_axe"					"ITEM_LUXURY"
