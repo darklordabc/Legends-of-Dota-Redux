@@ -3434,7 +3434,7 @@
 		"AttackType"    "siege"
 		"ArmorType"     "fortified"
 
-		"BoundsHullName"		"DOTA_HULL_SIZE_FILLER"
+		"BoundsHullName"		"DOTA_HULL_SIZE_SMALL"
 		"RingRadius"			"100"
 
 		// Creature Data
@@ -3506,7 +3506,7 @@
 		"AttackType"    "siege"
 		"ArmorType"     "fortified"
 
-		"BoundsHullName"		"DOTA_HULL_SIZE_FILLER"
+		"BoundsHullName"		"DOTA_HULL_SIZE_SMALL"
 		"RingRadius"			"100"
 
 		// Creature Data
@@ -3578,7 +3578,7 @@
 		"AttackType"    "siege"
 		"ArmorType"     "fortified"
 
-		"BoundsHullName"		"DOTA_HULL_SIZE_FILLER"
+		"BoundsHullName"		"DOTA_HULL_SIZE_SMALL"
 		"RingRadius"			"100"
 
 		// Creature Data
@@ -3591,7 +3591,7 @@
 		//----------------------------------------------------------------
 		"BaseClass"			"npc_dota_creature"
 		"Model"				"models/heroes/rattletrap/rattletrap.vmdl"
-		"ModelScale"		"0.7"
+		"ModelScale"		"0.5"
 		"Level"				"0"
 
 		// Abilities
@@ -3671,7 +3671,7 @@
 		//----------------------------------------------------------------
 		"BaseClass"			"npc_dota_creature"
 		"Model"				"models/heroes/rattletrap/rattletrap.vmdl"
-		"ModelScale"		"0.8"
+		"ModelScale"		"0.6"
 		"Level"				"0"
 
 		// Abilities
@@ -3751,7 +3751,7 @@
 		//----------------------------------------------------------------
 		"BaseClass"			"npc_dota_creature"
 		"Model"				"models/heroes/rattletrap/rattletrap.vmdl"
-		"ModelScale"		"0.9"
+		"ModelScale"		"0.7"
 		"Level"				"0"
 
 		// Abilities
