@@ -321,7 +321,7 @@
         "AbilityCooldown"               "14 13 12 11"
         "AbilityDuration"               "2.5"
         //Damage
-        "AbilityDamage"                 "80 130 180 230"
+        "AbilityDamage"                 "80 160 240 320"
         //Cost
         "AbilityManaCost"               "80 90 100 110"
         "AbilityProcsMagicStick"        "1"
@@ -351,7 +351,7 @@
             "03"
             {
                 "var_type"          "FIELD_INTEGER"
-                "end_radius"        "300"
+                "end_radius"        "400"
             }
             "04"
             {
@@ -817,7 +817,7 @@
             "03"
             {
                 "var_type"          "FIELD_INTEGER"
-                "damage_cap"        "100 200 300 400"
+                "damage_cap"        "200 300 400 500"
             }
             "04"
             {
@@ -827,7 +827,7 @@
             "05"
             {
                 "var_type"          "FIELD_INTEGER"
-                "orb_duration"      "8"
+                "orb_duration"      "12"
             }
         }
         "OnSpellStart"
