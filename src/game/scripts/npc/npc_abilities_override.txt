@@ -1133,6 +1133,25 @@
             "ReduxFlags"                                                           "upgradeable"
             "ReduxPerks"                                                           "ice | channeled"
         }
+		
+		"crystal_maiden_let_it_go"
+		{
+			"MaxLevel"						"4"
+			"AbilityValues"
+			{
+				"AbilityCastPoint"				"0.1"
+				"AbilityCastRange"				"1400"
+				"AbilityCooldown"				"30 25 20 15"
+				"AbilityManaCost"				"100"
+				"speed"							"50 55 60 65"
+				"duration"						"12"
+				"path_radius"					"150 165 180 195"
+				"slow"							"10 15 20 25"
+			}
+		}
+		
+		
+		
         "dark_seer_wall_of_replica"
         {
             "ReduxFlags"                                                           "upgradeable | illusion"
