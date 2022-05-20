@@ -70,6 +70,7 @@
             "beastmaster_primal_roar"            "1"
             "beastmaster_wild_axes"            "1"
             "beastmaster_call_of_the_wild_hawk" "1"
+			"beastmaster_mark_of_the_beast"		"1"
             "bloodseeker_blood_bath"            "1"
             "bloodseeker_bloodrage"            "1"
             "bloodseeker_rupture"            "1"
@@ -126,6 +127,7 @@
             "dazzle_weave"            "1"
             "dazzle_bad_juju" "1"
             "dazzle_bad_juju_redux" "1"
+			"dazzle_rain_of_vermin"	"1"
             "death_prophet_carrion_swarm"            "1"
             "death_prophet_exorcism"            "1"
             "death_prophet_silence"            "1"
@@ -250,6 +252,7 @@
             "leshrac_split_earth"            "1"
             "lich_chain_frost"            "1"
             //"lich_dark_ritual"            "1"             //No longer in the game
+			"lich_dark_sorcery"			"1"
             "lich_frost_armor"            "1"
             "lich_frost_nova"            "1"
             "lich_sinister_gaze"          "1"
@@ -276,6 +279,7 @@
             "luna_lucent_beam"            "1"
             "luna_lunar_blessing"            "1"
             "luna_moon_glaive"            "1"
+			"luna_lunar_grace"				"1"
             "lycan_feral_impulse"            "1"
             "lycan_howl"            "1"
             "lycan_shapeshift"            "1"
@@ -358,6 +362,7 @@
             "omniknight_repel"            "1"
             "omniknight_pacify"             "1"
 			"omniknight_martyr"				"1"
+			"omniknight_angelic_flight"		"1"
             "oracle_false_promise"            "1"
             "oracle_fates_edict"            "1"
             "oracle_fortunes_end"            "1"
@@ -423,6 +428,7 @@
             "shadow_shaman_mass_serpent_ward"            "1"
             "shadow_shaman_shackles"            "1"
             "shadow_shaman_voodoo"            "1"
+			"shadow_shaman_serpentine"		"1"
             "shredder_chakram"            "1"
             "shredder_reactive_armor"            "1"
             "shredder_timber_chain"            "1"
@@ -645,6 +651,8 @@
             "grimstroke_ink_creature" "1"
             "grimstroke_spirit_walk"    "1"
             "grimstroke_soul_chain"    "1"
+			"grimstroke_dark_portrait" "1"
+			"grimstroke_ink_over"	"1"
             //"grimstroke_scepter"    "1"
             //"sled_penguin_redux"  "1"				// errors
             "hoodwink_acorn_shot"   "1"
@@ -2303,6 +2311,7 @@
             "Ability3"            "beastmaster_primal_roar"
             "Ability4"            "beastmaster_wild_axes"
             "Ability5"            "beastmaster_call_of_the_wild_hawk"
+			"Ability6"			  "beastmaster_mark_of_the_beast"
         }
 		
 		"npc_dota_hero_broodmother" {
@@ -2398,6 +2407,15 @@
             "Ability4"            "skeleton_king_vampiric_aura"
             "Ability5"            "skeleton_king_reincarnation_redux"
         }
+		
+		"npc_dota_hero_luna" {
+            "Ability1"		"luna_lucent_beam"
+			"Ability2"		"luna_moon_glaive"
+			"Ability3"		"luna_lunar_blessing"
+			"Ability4"		"luna_eclipse"
+			"Ability5"		"luna_lunar_grace"
+        }
+		
         "npc_dota_hero_bloodseeker" {
             "Ability1"            "bloodseeker_rupture"
             "Ability2"            "bloodseeker_blood_bath"
@@ -2431,6 +2449,17 @@
             "Ability5"            "zuus_thundergods_wrath"
 			"Ability6"			  "zuus_heavenly_jump"
         }
+		
+		"npc_dota_hero_grimstroke" {
+            "Ability1"				"grimstroke_dark_artistry"
+			"Ability2"				"grimstroke_ink_creature"
+			"Ability3"				"grimstroke_spirit_walk"
+			"Ability4"				"grimstroke_dark_portrait"
+			"Ability5"				"grimstroke_soul_chain"
+			"Ability6"				"grimstroke_dark_portrait"
+			"Ability7"				"grimstroke_ink_over"
+        }
+		
         "npc_dota_hero_vengefulspirit" {
             "Ability1"            "vengefulspirit_magic_missile"
             "Ability2"            "vengefulspirit_wave_of_terror"
@@ -2482,6 +2511,7 @@
             "Ability5"        "dazzle_bad_juju"
             "Ability6"        "dazzle_bad_juju_redux"
 			"Ability7"        "dazzle_good_juju"
+			"Ability8"		  "dazzle_rain_of_vermin"
         }
         "npc_dota_hero_rubick" {
             "Ability1"        "rubick_null_field"
@@ -2577,6 +2607,15 @@
 			"Ability9"			  "slark_depth_shroud"
 			"Ability10"			  "slark_fish_bait"
         }
+		
+		"npc_dota_hero_shadow_shaman" {
+            "Ability1"		"shadow_shaman_ether_shock"
+			"Ability2"		"shadow_shaman_voodoo"
+			"Ability3"		"shadow_shaman_shackles"
+			"Ability4"		"shadow_shaman_mass_serpent_ward"
+			"Ability5"		"shadow_shaman_serpentine"
+        }
+		
         "npc_dota_hero_pudge" {
             "Ability1"            "pudge_meat_hook"
             "Ability2"            "pudge_rot"
@@ -2624,6 +2663,7 @@
             "Ability5"            "omniknight_repel"
             "Ability6"            "omniknight_guardian_angel"
 			"Ability7"			  "omniknight_pacify"
+			"Ability8"			  "omniknight_angelic_flight"
 			
         }
         "npc_dota_hero_dazzle" {
@@ -2655,7 +2695,8 @@
             "Ability3"        "lich_sinister_gaze"
             "Ability4"        "lich_frost_armor"
             "Ability5"        "lich_chain_frost"
-			"Ability6"        "lich_ice_spire"		
+			"Ability6"        "lich_ice_spire"
+			"Ability7"		  "lich_dark_sorcery"
         }
       "npc_dota_hero_lone_druid" {
 
