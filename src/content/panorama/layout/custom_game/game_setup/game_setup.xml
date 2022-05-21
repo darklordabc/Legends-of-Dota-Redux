@@ -777,14 +777,14 @@
                                 <Panel id="pickingPhaseTabsContent">
                                     <Panel id="pickingPhaseMainTabContent" class="pickingPhaseTabContent">
                                         <Panel id="buildSortingProperties">
-                                            <Label id="buildSortingPropertyVotes" class="buildSortingProperty SettingsNavBarButton selected" text="txtBuildsSortVotes" onactivate="SelectBuildSortingOrder('votes')" />
+                                            <Label id="buildSortingPropertyVotes" class="buildSortingProperty SettingsNavBarButton selected" text="#txtBuildsSortVotes" onactivate="SelectBuildSortingOrder('votes')" />
                                             <Label class="SettingsTabSeparator" text="/" />
-                                            <Label id="buildSortingPropertyNewest" class="buildSortingProperty SettingsNavBarButton" text="txtBuildsSortNewest" onactivate="SelectBuildSortingOrder('newest')" />
+                                            <Label id="buildSortingPropertyNewest" class="buildSortingProperty SettingsNavBarButton" text="#txtBuildsSortNewest" onactivate="SelectBuildSortingOrder('newest')" />
                                             <Label class="SettingsTabSeparator" text="/" />
-                                            <Label id="buildSortingPropertyFavorite" class="buildSortingProperty SettingsNavBarButton" text="txtBuildsSortFavorite" onactivate="SelectBuildSortingOrder('favorite')" />
+                                            <Label id="buildSortingPropertyFavorite" class="buildSortingProperty SettingsNavBarButton" text="#txtBuildsSortFavorite" onactivate="SelectBuildSortingOrder('favorite')" />
                                         </Panel>
                                         <Button id="buildLoadMoreBuilds" class="" onactivate="LoadMoreBuilds()">
-                                            <Label text="txtLoadMoreBuilds" />
+                                            <Label text="#txtLoadMoreBuilds" />
                                         </Button>
                                         <Panel id="buildLoadingIndicator">
                                             <Panel id="buildLoadingSpinner" class="Spinner" />
@@ -837,10 +837,10 @@
 													<Image text="Str" src="s2r://panorama/images/primary_attribute_icons/primary_attribute_icon_strength_psd.vtex" />
 												</Button>
 												<Button class="pickingPhaseAttr" id="pickingPhaseSelectHeroAgi" onactivate="setPrimaryAttr('agi');">
-													<Image text="Str" src="s2r://panorama/images/primary_attribute_icons/primary_attribute_icon_agility_psd.vtex" />
+													<Image text="Agi" src="s2r://panorama/images/primary_attribute_icons/primary_attribute_icon_agility_psd.vtex" />
 												</Button>
 												<Button class="pickingPhaseAttr" id="pickingPhaseSelectHeroInt" onactivate="setPrimaryAttr('int');">
-													<Image text="Str" src="s2r://panorama/images/primary_attribute_icons/primary_attribute_icon_intelligence_psd.vtex" />
+													<Image text="Int" src="s2r://panorama/images/primary_attribute_icons/primary_attribute_icon_intelligence_psd.vtex" />
 												</Button>
 
 											</Panel>
@@ -881,28 +881,28 @@
                                 </Panel>
 
                                 <Panel id="pickingPhaseBans">
-                                    <Label class="lodBanningHeader" text="lodBanningSection" />
-                                    <Label class="lodBanningInstructions" text="lodBanningInstructions" />
-                                    <Label id="lodBanLimits" text="banLimits" />
+                                    <Label class="lodBanningHeader" text="#lodBanningSection" />
+                                    <Label class="lodBanningInstructions" text="#lodBanningInstructions" />
+                                    <Label id="lodBanLimits" text="#banLimits" />
 
                                     <Panel id="banningButtonContainer">
                                         <Panel id="banningAbilityContainer" class="disableButton">
                                             <DOTAAbilityImage id="lodBanThisSkill" abilityname="life_stealer_empty_1" />
                                             <Button id="lodBanSkillButton" onactivate="onBanButtonPressed()">
-                                                <Label text="banAbility" />
+                                                <Label text="#banAbility" />
                                             </Button>
                                         </Panel>
                                         <Panel id="banningHeroContainer" class="disableButton">
                                             <DOTAHeroImage id="lodBanThisHero" heroname="npc_dota_hero_nevermore" />
                                             <Button id="lodBanSkillButton" onactivate="onHeroBanButtonPressed()">
-                                                <Label text="banHero" />
+                                                <Label text="#banHero" />
                                             </Button>
                                         </Panel>
                                     </Panel>
 
                                     <Panel id="bansImportAndExportEntryRoot">
                                         <Button id="heroBuilderLockButtonBans" class="lockBuildButton makeThePlayerNoticeThisButton" onactivate="onLockBuildButtonPressed()">
-                                            <Label text="finishBanning" />
+                                            <Label text="#finishBanning" />
                                         </Button>
 
                                         <Button id="bansImportAndExportSaveButton" class="importAndExportButton" onactivate="recordPlayerBans()" onmouseover="UIShowCustomLayoutParametersTooltip( BansImportAndExportTooltip, file://{resources}/layout/custom_game/custom_tooltip.xml, text=bansImportAndExport_tooltip )" onmouseout="UIHideCustomLayoutTooltip( BansImportAndExportTooltip )">
@@ -1023,7 +1023,7 @@
                             <Panel id="allRandomBuildsContainer" />
 
                             <Button id="allRandomLockButton" class="lockBuildButton makeThePlayerNoticeThisButton" onactivate="onLockBuildButtonPressed()">
-                                <Label text="lockBuild" />
+                                <Label text="#lockBuild" />
                             </Button>
                         </Panel>
 
