@@ -47,10 +47,10 @@ local skillManager = {}
 -- Table of player's active skills to make swapping super fast
 local activeSkills = {}
 
---local meleeMap = {
+local meleeMap = {
     -- Remap troll ulty
     -- troll_warlord_berserkers_rage = 'troll_warlord_berserkers_rage_melee'
--- }
+}
 
 local meleeList = {}
 for heroName, values in pairs(heroListKV) do
