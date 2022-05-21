@@ -53,7 +53,7 @@
 			"04"
 			{
 				"var_type"			  "FIELD_INTEGER"
-				"threshold"			 "25"
+				"threshold"			 "35"
 			}
 		}
 

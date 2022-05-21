@@ -193,27 +193,27 @@ function Ingame:OnPlayerPurchasedItem(keys)
 
             if tangos then
             local refund = tangos:GetCost()
-            hero:ModifyGold(refund, false, 0)
+            --hero:ModifyGold(refund, false, 0)
             tangos:RemoveSelf()
             end
             if mangos then
                 local refund = mangos:GetCost()
-                hero:ModifyGold(refund, false, 0)
+                --hero:ModifyGold(refund, false, 0)
                 mangos:RemoveSelf()
             end
             if clarity then
                 local refund = clarity:GetCost() * clarity:GetCurrentCharges()
-                hero:ModifyGold(refund, false, 0)
+                --hero:ModifyGold(refund, false, 0)
                 clarity:RemoveSelf()
             end
             if faerie then
                 local refund = faerie:GetCost()
-                hero:ModifyGold(refund, false, 0)
+                --hero:ModifyGold(refund, false, 0)
                 faerie:RemoveSelf()
             end
             if flask then
                 local refund = flask:GetCost() * flask:GetCurrentCharges()
-                hero:ModifyGold(refund, false, 0)
+                --hero:ModifyGold(refund, false, 0)
                 flask:RemoveSelf()
             end
         end
@@ -1210,12 +1210,12 @@ function Ingame:balanceGold()
 	          local state = PlayerResource:GetConnectionState(playerID)
 	          if state == 1 or state == 2 then
 	          	if losingTeam == "goodGuys" and hero:GetTeam() == DOTA_TEAM_GOODGUYS and self.radiantBalanceMoney >= 1 then
-	          		hero:ModifyGold(moneySize, false, 0)
+	          		--hero:ModifyGold(moneySize, false, 0)
 	          		SendOverheadEventMessage(hero:GetPlayerOwner(), OVERHEAD_ALERT_GOLD, hero, moneySize, nil)
 	          		self.radiantBalanceMoney = self.radiantBalanceMoney - moneySize
                     self.radiantTotalBalanceMoney = self.radiantTotalBalanceMoney + moneySize
 	          	elseif losingTeam == "badGuys" and hero:GetTeam() == DOTA_TEAM_BADGUYS and self.direBalanceMoney >= 1 then
-	          		hero:ModifyGold(moneySize, false, 0)
+	          		--hero:ModifyGold(moneySize, false, 0)
 	          		SendOverheadEventMessage(hero:GetPlayerOwner(), OVERHEAD_ALERT_GOLD, hero, moneySize, nil)
 	          		self.direBalanceMoney = self.direBalanceMoney - moneySize
                     self.direTotalBalanceMoney = self.direTotalBalanceMoney + moneySize
