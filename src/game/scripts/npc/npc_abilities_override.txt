@@ -441,6 +441,7 @@
 
         "forest_troll_high_priest_mana_aura"
         {     
+			"MaxLevel"						"4"
             "ReduxFlags"                                                           "support | mana"
             "ReduxPerks"                                                           "support | neutral"
             "AbilitySpecial"
@@ -467,10 +468,10 @@
         {
             "ReduxFlags"                                                           "support"
             "ReduxPerks"                                                           "support | neutral"
-			"MaxLevel"						"1"
-			"AbilityCastRange"				"350"
+			"MaxLevel"						"4"
+			"AbilityCastRange"				"350 450 550 650"
 			"AbilityCastPoint"				"0.5"
-			"AbilityCooldown"				"10 9 8 7"
+			"AbilityCooldown"				"10 8 6 4"
 			"AbilityManaCost"				"60"
 
 			"AbilitySpecial"
@@ -6144,6 +6145,7 @@
 		{
 			"MaxLevel"				"4"
 			"AbilityCooldown"		"10 9 8 7"
+			"ReduxPerks"                                                           "neutral"
 			// Special
 			//-------------------------------------------------------------------------------------------------------------
 			"AbilitySpecial"
