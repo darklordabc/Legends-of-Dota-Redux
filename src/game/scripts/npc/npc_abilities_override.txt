@@ -1272,12 +1272,12 @@
 			"AbilityValues"
 			{
 				"AbilityCastPoint"				"0.1"
-				"AbilityCastRange"				"1400"
+				"AbilityCastRange"				"1400 1600 1800 2000"
 				"AbilityCooldown"				"30 25 20 15"
 				"AbilityManaCost"				"100"
 				"speed"							"50 55 60 65"
 				"duration"						"12"
-				"path_radius"					"150 165 180 195"
+				"path_radius"					"150 175 200 225"
 				"slow"							"10 15 20 25"
 			}
 		}
@@ -6276,7 +6276,7 @@
 				"03"
 				{
 					"var_type"				"FIELD_INTEGER"
-					"hp_regen"		"25 30 35 40"
+					"hp_regen"		"25 40 55 70"
 				}
 			}
 		}
@@ -6338,8 +6338,8 @@
 			"AbilityValues"
 			{			
 				"mana_drain"		"5 6 7 8"
-				"attack_count"		"5"
-				"attack_speed"		"100 150 200 250"
+				"attack_count"		"5 6 7 8"
+				"attack_speed"		"100 120 140 160"
 				"health_cost"		"20"
 				"duration"			"15"
 			}
