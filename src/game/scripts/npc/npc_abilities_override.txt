@@ -1,5 +1,24 @@
     "DOTAAbilities"
     {
+		"beastmaster_hawk_dive"
+		{
+			"MaxLevel"						"4"
+			"AbilityCastRange"				"1200 1500 1800 2100"
+			"AbilityCastPoint"				"1.0"
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"			"FIELD_INTEGER"
+					"damage"		"250 500 750 1000"
+				}
+				"02"
+				{
+					"var_type"			"FIELD_FLOAT"
+					"stun_duration"		"2 3 4 5"
+				}
+			}
+		}
         "spawnlord_master_freeze"
         {   
             "MaxLevel"                                                             "4"
