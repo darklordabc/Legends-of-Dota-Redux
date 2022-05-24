@@ -7807,7 +7807,6 @@
 
 				"item_javelin"				"ITEM_EXTENSION"
 				"item_mithril_hammer"		"ITEM_EXTENSION"
-				"item_recipe_maelstrom"		"ITEM_EXTENSION"
 				"item_maelstrom"			"ITEM_DERIVED"
 
 				"item_blade_of_alacrity"	"ITEM_LUXURY"
@@ -12327,7 +12326,7 @@
 				"1"		"omniknight_purification"
 				"2"		"omniknight_martyr"
 				"3"		"omniknight_purification"
-				"4"		"omniknight_degen_aura"
+				"4"		"omniknight_hammer_of_purity"
 				"5"		"omniknight_purification"
 				"6"		"omniknight_guardian_angel"
 				"7"		"omniknight_purification"
@@ -12336,10 +12335,10 @@
 				"10"		"special_bonus_unique_omniknight_5"
 				"11"		"omniknight_martyr"
 				"12"		"omniknight_guardian_angel"
-				"13"		"omniknight_degen_aura"
-				"14"		"omniknight_degen_aura"
+				"13"		"omniknight_hammer_of_purity"
+				"14"		"omniknight_hammer_of_purity"
 				"15"		"special_bonus_unique_omniknight_5"
-				"16"		"omniknight_degen_aura"
+				"16"		"omniknight_hammer_of_purity"
 				"17"		""
 				"18"		"omniknight_guardian_angel"
 				"19"		""
@@ -13180,8 +13179,6 @@
 			{
 				"item_tango"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
 				"item_flask"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
-				"item_branches"		"ITEM_CORE | ITEM_SELLABLE"
-				"item_branches"		"ITEM_CORE | ITEM_SELLABLE"
 
 				"item_boots"			"ITEM_CORE"
 				"item_chainmail"		"ITEM_EXTENSION"
