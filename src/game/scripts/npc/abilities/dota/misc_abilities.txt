@@ -561,7 +561,7 @@
         
         // Time     
         //-------------------------------------------------------------------------------------------------------------
-        "AbilityCooldown"               "50.0 50.0 50.0"
+        "AbilityCooldown"               "50.0 40.0 30.0"
         
         // Cost
         //-------------------------------------------------------------------------------------------------------------
@@ -1144,19 +1144,18 @@
         "ReduxCost"                                                            "120"
         "AbilityTextureName"            "custom/crystal_maiden_brilliance_aura_redux"
         
-        "AbilitySpecial"
-        {
-            "01"
-            {
-                "var_type"          "FIELD_FLOAT"
-                "mana_regen"        "1.6 2.4 3.2 4.0"
-            }
-            "02"
-            {
-                "var_type"          "FIELD_FLOAT"
-                "mana_regen_self"   "4.8 7.2 9.6 12.0"
-            }
-        }
+        "AbilityValues"
+		{
+			"AbilityCastPoint"				"0.2"
+			"mana_regen"					"2 3 4 5"
+			"self_factor"					"3.0"
+			"mana_per_cast"		
+			{
+				"value"										"10 20 30 40"
+				"special_bonus_unique_crystal_maiden_4"		"+20"
+			}
+			"radius"			"1200"
+		}
         "AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_3"
     }
 }
