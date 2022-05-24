@@ -1,5 +1,44 @@
     "DOTAAbilities"
     {
+		"frostivus2018_throw_snowball"
+		{
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+			"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+			"MaxLevel"						"4"
+			"AbilityCastRange"				"800"
+			"AbilityCastPoint"				"0.2"
+			"AbilityCooldown"				"30 24 18 12"
+
+
+			// Damage.
+			//-------------------------------------------------------------------------------------------------------------
+			"AbilityDamage"					"400"
+
+			// Cost
+			//-------------------------------------------------------------------------------------------------------------
+			"AbilityManaCost"				"0"
+
+			// Special
+			//-------------------------------------------------------------------------------------------------------------
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"					"FIELD_INTEGER"
+					"snowball_speed"			"1000"
+				}
+				"02"
+				{
+					"var_type"					"FIELD_INTEGER"
+					"snowball_aoe"				"500"
+				}
+				"03"
+				{
+					"var_type"					"FIELD_FLOAT"
+					"snowball_stun_duration"	"5.0"
+				}
+			}
+		}
 		"beastmaster_hawk_dive"
 		{
 			"MaxLevel"						"4"
