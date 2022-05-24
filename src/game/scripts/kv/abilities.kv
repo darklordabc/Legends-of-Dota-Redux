@@ -258,6 +258,7 @@
             "lich_frost_nova"            "1"
             "lich_sinister_gaze"          "1"
             "lich_frost_shield"              "1"
+			"lich_frost_aura"				"1"
             "life_stealer_feast"            "1"
             "life_stealer_feast_melee"      "1"
             "life_stealer_infest"            "1"
@@ -545,6 +546,7 @@
             "undying_flesh_golem"            "1"
             "undying_soul_rip"            "1"
             "undying_tombstone"            "1"
+			"undying_tombstone_zombie_deathstrike"	"1"
             "ursa_earthshock"            "1"
             "ursa_enrage"            "1"
             "ursa_fury_swipes"              "1"
@@ -751,8 +753,10 @@
             "harpy_scout_take_off"              "1"
             "enraged_wildkin_hurricane"         "1"
 			"black_dragon_fireball"				"1"
+			"tornado_tempest"					"1"
+			"necronomicon_warrior_sight"		"1"
 
-            //"skywrath_mage_shield_of_the_scion" "1"   // doesnt work
+            "skywrath_mage_shield_of_the_scion" "1"   // doesnt work
             "bloodseeker_blood_mist"            "1"
 
 			// Primal Beast
@@ -780,35 +784,33 @@
 				"lycan_summon_wolves_critical_strike"	"1"
 				"berserker_troll_break"					"1"
 				"kobold_disarm"							"1"
-				// "forged_spirit_melting_strike"			"1"
+				"undying_tombstone_zombie_deathstrike"	"1"
+				"forged_spirit_melting_strike"			"1"
             }
 
             "big_thunder_lizard_group" {
 				"alpha_wolf_command_aura"					"1"
-				"black_dragon_dragonhide_aura"				"1"
-				"granite_golem_hp_aura"						"1"
-				"blue_dragonspawn_overseer_devotion_aura"	"1"
 				"centaur_khan_endurance_aura"				"1"
-				"enraged_wildkin_toughness_aura"			"1"
 				"big_thunder_lizard_wardrums_aura"			"1"
-				"satyr_hellcaller_unholy_aura"				"1"
-				"spawnlord_aura"							"1"
 				"kobold_taskmaster_speed_aura"				"1"
-				"forest_troll_high_priest_mana_aura"		"1"
-				"mudgolem_cloak_aura"						"1"
 				"black_drake_magic_amplification_aura"		"1"
 				"ancient_rock_golem_weakening_aura"			"1"
 				"frostbitten_golem_time_warp_aura"			"1"
 				"hill_troll_rally"							"1"
-				"kobold_tunneler_prospecting"				"1"
-				"forest_troll_high_priest_heal_amp_aura"	"1"
+				"tornado_tempest"							"1"
             }
 			
             "black_dragon_group" {
-				"blue_dragonspawn_sorcerer_evasion"		"1"
-                "brewmaster_earth_spell_immunity"		"1"
-				"furbolg_enrage_attack_speed"			"1"
-				"furbolg_enrage_damage"					"1"
+				"satyr_hellcaller_unholy_aura"				"1"
+				"spawnlord_aura"							"1"
+				"kobold_tunneler_prospecting"				"1"
+				"forest_troll_high_priest_heal_amp_aura"	"1"
+				"forest_troll_high_priest_mana_aura"		"1"
+				"mudgolem_cloak_aura"						"1"
+				"enraged_wildkin_toughness_aura"			"1"
+				"black_dragon_dragonhide_aura"				"1"
+				"granite_golem_hp_aura"						"1"
+				"blue_dragonspawn_overseer_devotion_aura"	"1"
 				//"neutral_evasion"                "1"
 				//"mud_golem_rock_destroy"  "1"      //doesnt work
 
@@ -849,6 +851,10 @@
                 "ogre_magi_frost_armor"                "1"
                 "big_thunder_lizard_frenzy"            "1"
 				"forest_troll_high_priest_heal"        "1"
+				"blue_dragonspawn_sorcerer_evasion"		"1"
+                "brewmaster_earth_spell_immunity"		"1"
+				"furbolg_enrage_attack_speed"			"1"
+				"furbolg_enrage_damage"					"1"
             }
 			
             "lone_druid_spirit_bear_group" {
@@ -870,6 +876,7 @@
                 "necronomicon_archer_mana_burn_lod"                "1"
                 "necronomicon_warrior_last_will_lod"                "1"
                 "necronomicon_warrior_mana_burn_lod"                "1"
+				"necronomicon_warrior_sight"				"1"
             }
 			
             "roshan_group" {
@@ -2691,6 +2698,7 @@
             "Ability5"        "lich_chain_frost"
 			"Ability6"        "lich_ice_spire"
 			"Ability7"		  "lich_dark_sorcery"
+			"Ability8"		  "lich_frost_aura"
         }
       "npc_dota_hero_lone_druid" {
 
