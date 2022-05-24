@@ -13179,8 +13179,6 @@
 			{
 				"item_tango"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
 				"item_flask"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
-				"item_branches"		"ITEM_CORE | ITEM_SELLABLE"
-				"item_branches"		"ITEM_CORE | ITEM_SELLABLE"
 
 				"item_boots"			"ITEM_CORE"
 				"item_chainmail"		"ITEM_EXTENSION"
