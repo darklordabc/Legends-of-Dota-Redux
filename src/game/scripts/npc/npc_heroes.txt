@@ -7807,7 +7807,6 @@
 
 				"item_javelin"				"ITEM_EXTENSION"
 				"item_mithril_hammer"		"ITEM_EXTENSION"
-				"item_recipe_maelstrom"		"ITEM_EXTENSION"
 				"item_maelstrom"			"ITEM_DERIVED"
 
 				"item_blade_of_alacrity"	"ITEM_LUXURY"
