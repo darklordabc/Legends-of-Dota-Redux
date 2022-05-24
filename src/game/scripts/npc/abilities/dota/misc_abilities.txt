@@ -693,29 +693,22 @@
     
         // Special
         //-------------------------------------------------------------------------------------------------------------
-        "AbilitySpecial"
-        {
-            "01"
-            {
-                "var_type"                  "FIELD_INTEGER"
-                "bonus_attack_range"        "120 280 640 720"
-            }
-            "02"
-            {
-                "var_type"                  "FIELD_INTEGER"
-                "attack_spill_range"        "600 800 1000 1500"
-            }
-            "03"
-            {
-                "var_type"                  "FIELD_INTEGER"
-                "attack_spill_width"        "100"
-            }
-            "04"
-            {
-                "var_type"                  "FIELD_INTEGER"
-                "attack_spill_pct"          "100"
-            }
-        }
+        "AbilityValues"
+		{
+				"bonus_attack_range"		
+				{
+					"value"		"200 250 300 350"
+					"special_bonus_unique_templar_assassin_8"	"+120"
+				}
+				"attack_spill_range"		
+				{
+					"value"							"600 700 800 900"
+					"special_bonus_unique_templar_assassin_8"	"+120"
+				}
+				"attack_spill_width"		"200"
+				"attack_spill_pct"			"100"
+				"attack_spill_penalty"			"0"
+		}
         "AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_3"
     }   
 
