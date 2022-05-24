@@ -7,16 +7,16 @@
 			"MaxLevel"						"4"
 			"AbilityCastRange"				"800"
 			"AbilityCastPoint"				"0.2"
-			"AbilityCooldown"				"30 24 18 12"
+			"AbilityCooldown"				"18 16 14 12"
 
 
 			// Damage.
 			//-------------------------------------------------------------------------------------------------------------
-			"AbilityDamage"					"400"
+			"AbilityDamage"					"100 180 260 340"
 
 			// Cost
 			//-------------------------------------------------------------------------------------------------------------
-			"AbilityManaCost"				"0"
+			"AbilityManaCost"				"90 100 110 120"
 
 			// Special
 			//-------------------------------------------------------------------------------------------------------------
@@ -35,26 +35,27 @@
 				"03"
 				{
 					"var_type"					"FIELD_FLOAT"
-					"snowball_stun_duration"	"5.0"
+					"snowball_stun_duration"	"1.4 1.7 2.0 2.3"
 				}
 			}
 		}
 		"beastmaster_hawk_dive"
 		{
 			"MaxLevel"						"4"
-			"AbilityCastRange"				"1200 1500 1800 2100"
+			"AbilityCastRange"				"1200 1400 1600 1800"
 			"AbilityCastPoint"				"1.0"
+			"AbilityCooldown"				"15 14 13 12"
 			"AbilitySpecial"
 			{
 				"01"
 				{
 					"var_type"			"FIELD_INTEGER"
-					"damage"		"250 500 750 1000"
+					"damage"		"250 275 300 325"
 				}
 				"02"
 				{
 					"var_type"			"FIELD_FLOAT"
-					"stun_duration"		"2 3 4 5"
+					"stun_duration"		"2.0 2.25 2.5 2.75"
 				}
 			}
 		}
@@ -81,7 +82,7 @@
 				"04"
 				{
 					"var_type"				"FIELD_INTEGER"
-					"near_radius"			"150"
+					"near_radius"			"150 160 170 180"
 				}
 				"05"
 				{
