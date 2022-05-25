@@ -76,6 +76,11 @@
                 "var_type"                  "FIELD_INTEGER"
                 "damage_second_scepter"     "600"
             }
+			"10"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"missile_delay_tooltip"		"2"
+			}
         }
     }
 }
