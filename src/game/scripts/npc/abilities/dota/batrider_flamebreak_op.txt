@@ -72,5 +72,6 @@
         }
         "ReduxCost"                                                            "120"
         "ReduxFlags"                                                           ""
+		"ReduxPerks"														   "fire | enemyMoving"
     }
 }
