@@ -35,7 +35,7 @@
 				"03"
 				{
 					"var_type"					"FIELD_FLOAT"
-					"snowball_stun_duration"	"2.0 2.2 2.4 2.6"
+					"snowball_stun_duration"	"2.1 2.3 2.5 2.7"
 				}
 			}
 		}
@@ -895,8 +895,8 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityValues"
 			{
-				"radius"						"200"
-				"damage"						"200 230 260 290"
+				"radius"						"200 225 250 275"
+				"damage"						"200 240 280 320"
 				"damage_pct"					"8 10 12 14"
 				"hero_stun_duration"			"3.0"
 			}
@@ -978,7 +978,7 @@
 			{
 					"duration"				"8"
 					"burn_damage"			"50 80 110 140"
-					"building_damage_pct"	"25 30 35 40"
+					"building_damage_pct"	"25 35 45 55"
 			}
 			"ReduxPerks"                                                           "ice | fire"
 		}
@@ -1029,7 +1029,7 @@
                 "01"
                 {
                     "var_type"                                             "FIELD_FLOAT"
-                    "duration"                                             "35.0 40.0 50.0 60.0"
+                    "duration"                                             "35.0 45.0 55.0 65.0"
                 }
             }
             "ReduxFlags"                                                           "summon"
@@ -1088,16 +1088,26 @@
         {
             "MaxLevel"                                                             "4"
             "AbilitySpecial"
-				{
+			{
 				"01"
 				{
 					"var_type"					"FIELD_INTEGER"
 					"maim_chance"				"20 26 32 38"
 				}
+				"02"
+				{
+					"var_type"					"FIELD_FLOAT"
+					"maim_duration"					"4.0 5.0 6.0 7.0"
+				}
 				"03"
 				{
 					"var_type"					"FIELD_INTEGER"
 					"maim_movement_speed"				"15 19 23 27"
+				}
+				"04"
+				{
+					"var_type"					"FIELD_INTEGER"
+					"maim_attack_speed"				"60 75 90 105"
 				}
                 "05"
                 {
@@ -5345,7 +5355,7 @@
 
         "skywrath_mage_shield_of_the_scion"
         {
-            "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+            "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 			"MaxLevel"						"4"
 
 			// Special
@@ -5442,7 +5452,7 @@
             "03"
             {
                 "var_type"          "FIELD_FLOAT"
-                "duration"      "25 35 45 55"
+                "duration"      "25 40 55 70"
             }
             "04"
             {
