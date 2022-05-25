@@ -5,7 +5,7 @@
         "BaseClass"                                                            "ability_datadriven"
         "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
         "AbilityTextureName"                                                   "custom/shards_of_truesight_lod_OP"
-        "AbilityCooldown"                                                      "10"
+        "AbilityCooldown"                                                      "12"
         "AbilityManaCost"                                                      "100 75 50 0"
         "AbilityCastRange"                                                     "%radius"
         "precache"
@@ -18,7 +18,7 @@
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "ms_boost"                                             "25 45 65 85"
+                "ms_boost"                                             "30 50 70 90"
             }
             "02"
             {
@@ -28,7 +28,7 @@
             "03"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "radius"                                               "800 1200 1600 2000"
+                "radius"                                               "2000 4000 6000 8000"
             }
         }
         "OnSpellStart"

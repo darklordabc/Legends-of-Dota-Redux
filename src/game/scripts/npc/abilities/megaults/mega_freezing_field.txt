@@ -15,83 +15,56 @@
 
         "HasScepterUpgrade"         "1"
 
-        // Casting
-        //-------------------------------------------------------------------------------------------------------------
-        "AbilityChannelTime"            "10"
-        "AbilityCastPoint"              "0.3 0.3 0.3"
-        
-        // Time     
-        //-------------------------------------------------------------------------------------------------------------
-        "AbilityCooldown"               "120"
-        "AbilityDuration"               "10.0"
-
-        // Cost
-        //-------------------------------------------------------------------------------------------------------------
-        "AbilityManaCost"               "700"
-
         // Stats
         //-------------------------------------------------------------------------------------------------------------
         "AbilityModifierSupportValue"   "0.35"  // Primarily about the damage
 
         // Special
         //-------------------------------------------------------------------------------------------------------------
-        "AbilitySpecial"
-        {
-            "01"
-            {
-                "var_type"          "FIELD_INTEGER"
-                "radius"            "2500"
-            }       
-            "02"
-            {
-                "var_type"          "FIELD_INTEGER"
-                "explosion_radius"  "450"
-            }
-            "04"
-            {
-                "var_type"              "FIELD_FLOAT"
-                "explosion_interval"    "0.02"
-            }
-            "05"
-            {
-                "var_type"          "FIELD_INTEGER"
-                "movespeed_slow"    "-80"
-            }
-            "06"
-            {
-                "var_type"          "FIELD_INTEGER"
-                "attack_slow"   "-80"
-            }
-            "07"
-            {
-                "var_type"          "FIELD_FLOAT"
-                "slow_duration"     "2.0"
-            }
-            "08"
-            {
-                "var_type"              "FIELD_INTEGER"
-                "explosion_min_dist"    "195"
-            }
-            "09"
-            {
-                "var_type"              "FIELD_INTEGER"
-                "explosion_max_dist"    "2300"
-            }
-            "10"
-            {
-                "var_type"          "FIELD_INTEGER"
-                "damage"            "250"
-            }
-            "11"
-            {
-                "var_type"          "FIELD_INTEGER"
-                "duration_tooltip"  "10"
-            }
-            "12"
-            {
-                "var_type"              "FIELD_FLOAT"
-                "scepter_delay" "2.5"
-            }
-        }
+		"AbilityValues"
+		{
+			"AbilityChannelTime"			"10"
+			"AbilityCastPoint"				"0"
+			"AbilityCooldown"				"90"
+			"AbilityDuration"				"10.0"
+			"AbilityManaCost"				"600"
+			"radius"						"2500"
+			"explosion_radius"				"400"
+			"bonus_armor"					"40"
+			"explosion_interval"			"0.03"
+			"movespeed_slow"				"-80"
+			"attack_slow"					"-80"
+			"slow_duration"					"1.0"
+			"explosion_min_dist"			"195"
+			"explosion_max_dist"			"2300"
+			"damage"
+			{
+				"value"										"250"
+				"special_bonus_unique_crystal_maiden_3"		"+50"
+			}
+			"frostbite_delay" // negative means don't apply.
+			{
+				"value"						"-1"
+				"special_bonus_scepter"		"+2.75"
+				"RequiresScepter"			"1"
+			}
+			"shard_bonus_explosion"
+			{
+				"shard_bonus_explosion"		"0"
+				"special_bonus_shard"		"+20"
+				"RequiresShard"				"1"
+			}
+			"shard_self_movement_speed_slow_pct"
+			{
+				"value"						"0"
+				"special_bonus_shard"		"-0"
+				"RequiresShard"				"1"
+			}
+			"can_move"
+			{
+				"value"						"0"
+				"special_bonus_shard"		"+1"
+			}
+		}
     }
 }
