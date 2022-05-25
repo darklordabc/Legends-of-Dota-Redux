@@ -101,7 +101,8 @@
 				}
 			}
 			"ReduxFlags"                                                           ""
-            "ReduxPerks"                                                           "neutral | aura"
+            "ReduxPerks"                                                           "neutral | aura | nature"
+			"ReduxCost"                                                            "500"
 		}
         "spawnlord_master_freeze"
         {   
@@ -666,8 +667,7 @@
         }
         "enraged_wildkin_tornado"
         {
-			// Stats
-			//-------------------------------------------------------------------------------------------------------------
+			"MaxLevel"						"4"	
 			"AbilityCastRange"				"500 900 1300 1700"
 			"AbilityCastPoint"				"0.4"
 			"AbilityCooldown"				"40.0 35.0 30.0 25.0"
@@ -4208,10 +4208,7 @@
             "ReduxPerks"                                                           "channeled"
             "ReduxCost"                                                            "10"
         }
-        "tornado_tempest"
-        {
-            "ReduxPerks"                                                           "channeled | nature"
-        }
+        
         "windrunner_powershot"
         {
             "ReduxPerks"                                                           "channeled | skillshot"
