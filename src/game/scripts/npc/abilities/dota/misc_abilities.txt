@@ -1141,11 +1141,11 @@
         "AbilityValues"
 		{
 			"AbilityCastPoint"				"0.2"
-			"mana_regen"					"2 3 4 5"
+			"mana_regen"					"2 4 6 8"
 			"self_factor"					"3.0"
 			"mana_per_cast"		
 			{
-				"value"										"10 20 30 40"
+				"value"										"15 30 45 60"
 				"special_bonus_unique_crystal_maiden_4"		"+20"
 			}
 			"radius"			"1200"
