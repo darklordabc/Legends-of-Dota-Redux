@@ -2016,6 +2016,30 @@
             "ReduxPerks"                                                           "support"
             "ReduxCost"                                                            "10"
             "ReduxBans"                                                            "spell_lab_symbiotic"
+			"MaxLevel"						"4"
+			"AbilityCastRange"				"150 250 350 450"
+			"AbilityCooldown"				"50 40 30 20"
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"				"FIELD_INTEGER"
+					"damage"				"300 350 400 450"
+					"RequiresScepter"		"1"
+				}
+				"02"
+				{
+					"var_type"				"FIELD_INTEGER"
+					"radius"				"700 700 700"
+					"RequiresScepter"		"1"
+				}
+				"03"
+				{
+					"var_type"					"FIELD_FLOAT"
+					"order_lock_duration"		"2.0"
+					"RequiresScepter"		"1"
+				}
+			}
         }
         "pugna_decrepify"
         {
