@@ -447,8 +447,8 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "abilities/nextgeneration/hero_veera/thrill_of_the_hunt.lua"
-                        "Function"  "ThrillCameraCheck"
+                  //      "ScriptFile"    "abilities/nextgeneration/hero_veera/thrill_of_the_hunt.lua"
+                  //      "Function"      "ThrillCameraCheck"
                     }
                 }
             }
@@ -469,8 +469,8 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "abilities/nextgeneration/hero_veera/thrill_of_the_hunt.lua"
-                        "Function"  "ThrillCameraCheck"
+                    //    "ScriptFile"    "abilities/nextgeneration/hero_veera/thrill_of_the_hunt.lua"
+                    //    "Function"  "ThrillCameraCheck"
                     }
                 }
                 "OnCreated"
