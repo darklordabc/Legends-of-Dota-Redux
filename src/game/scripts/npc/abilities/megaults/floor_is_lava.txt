@@ -15,7 +15,7 @@
 
         // Casting
         //-------------------------------------------------------------------------------------------------------------
-        "AbilityCastRange"              "3600"
+        "AbilityCastRange"              "3000"
         "AbilityCastPoint"              "0.4"
 
         "precache"
@@ -29,17 +29,17 @@
             "01"
             {
                 "var_type"                  "FIELD_INTEGER"
-                "lines"                     "45"
+                "lines"                     "25"
             }
             "02"
             {
                 "var_type"                  "FIELD_INTEGER"
-                "damage"                    "150"
+                "damage"                    "200"
             }
             "03"
             {
                 "var_type"                  "FIELD_INTEGER"
-                "cast_range"                "3600"                  
+                "cast_range"                "3000"                  
             }
             "04"
             {
@@ -75,7 +75,7 @@
 
         // Casting
         //-------------------------------------------------------------------------------------------------------------
-        "AbilityCastRange"              "3500"
+        "AbilityCastRange"              "3000"
         "AbilityCastPoint"              "0"
 
         // Time     
