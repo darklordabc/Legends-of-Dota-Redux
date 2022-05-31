@@ -52,12 +52,12 @@
             "02"
             {
                 "var_type"          "FIELD_FLOAT"
-                "movement_slow"     "-2.0 -2.5 -3.0 -3.5"
+                "movement_slow"     "-2.5 -3.0 -3.5 -4.0"
             }
             "03"
             {
                 "var_type"          "FIELD_FLOAT"
-                "movement_slow_display"     "2.0 2.5 3.0 3.5"
+                "movement_slow_display"     "2.5 3.0 3.5 4.0"
             }
             "04"
             {
@@ -691,7 +691,7 @@
         "AnimationPlaybackRate"         "0.6"
         "AbilityProcsMagicStick"        "1"
     
-        "AbilityCooldown"               "17 14 11 8"
+        "AbilityCooldown"               "14 12 10 8"
         "AbilityManaCost"               "40"
     
         "AbilitySpecial"
@@ -734,7 +734,7 @@
             "07"
             {
                 "var_type"              "FIELD_INTEGER"
-                "buff_duration"         "6.0"
+                "buff_duration"         "8.0"
             }
         }
         "precache"
