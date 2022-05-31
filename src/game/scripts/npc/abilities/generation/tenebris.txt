@@ -27,8 +27,8 @@
  
         //Casting
         "AbilityCastPoint"      "0.3"
-        "AbilityCastRange"      "250"
-        "AbilityCooldown"       "35.0"
+        "AbilityCastRange"      "400"
+        "AbilityCooldown"       "36.0 34.0 32.0 30.0"
         "AbilityManaCost"       "100"
         "AOERadius"         "%radius"
  
@@ -38,12 +38,12 @@
             "01"
             {
                 "var_type"      "FIELD_FLOAT"
-                "dps"           "20 30 40 50"
+                "dps"           "30 45 60 75"
             }
             "02"
             {
                 "var_type"      "FIELD_FLOAT"
-                "reflect"       "80 90 100 110"
+                "reflect"       "100"
             }
             "03"
             {
@@ -382,7 +382,7 @@
             "01"
             {
                 "var_type"      "FIELD_INTEGER"
-                "bonus_damage"      "45 60 75 90"
+                "bonus_damage"      "45 55 65 75"
             }
             "02"
             {
@@ -510,12 +510,12 @@
             "02"
             {
                 "var_type"      "FIELD_INTEGER"
-                "radius"        "800"
+                "radius"        "900"
             }
             "03"
             {
                 "var_type"      "FIELD_FLOAT"
-                "duration_max"      "2.0 2.4 2.8 3.2"
+                "duration_max"      "1.5 1.8 2.1 2.4"
             }
         }
  
