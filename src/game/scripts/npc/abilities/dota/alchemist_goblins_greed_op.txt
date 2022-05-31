@@ -6,33 +6,14 @@
         "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
         "AbilityTextureName"                                                   "custom/alchemist_goblins_greed_op"
         "AbilitySpecial"
-        {
-            "01"
-            {
-                "var_type"                                             "FIELD_INTEGER"
-                "duration"                                             "90"
-            }
-            "02"
-            {
-                "var_type"                                             "FIELD_INTEGER"
-                "bonus_gold"                                           "6 8 10 12"
-            }
-            "03"
-            {
-                "var_type"                                             "FIELD_INTEGER"
-                "bonus_bonus_gold"                                     "3"
-            }
-            "04"
-            {
-                "var_type"                                             "FIELD_INTEGER"
-                "bonus_gold_cap"                                       "99999"
-            }
-            "05"
-            {
-                "var_type"                                             "FIELD_INTEGER"
-                "bounty_multiplier_tooltip"                            "2"
-            }
-        }
+        "AbilityValues"
+		{
+			"duration"				"90"
+			"bonus_gold"			"3 4 5 6"
+			"bonus_bonus_gold"		"3"
+			"bonus_gold_cap"		"99999"
+			"bounty_multiplier"		"10.0"
+		}
         "ReduxCost"                                                            "120"
         "ReduxBans"                                                            "alchemist_goblins_greed"
         "ReduxFlags"                                                           ""
