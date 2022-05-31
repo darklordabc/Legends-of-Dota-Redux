@@ -12,7 +12,7 @@
         "AbilityProcsMagicStick"                                               "1"
         "AbilityCooldown"                                                      "5.0"
         "AbilityManaCost"                                                      "90 100 110 120"
-        "AbilityCastPoint"                                                     "0.3"
+        "AbilityCastPoint"                                                     "0.1"
         "AbilitySpecial"
         {
             "10"
@@ -53,7 +53,7 @@
             "07"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "spore_movespeed"                                      "400"
+                "spore_movespeed"                                      "500"
             }
             "08"
             {
@@ -153,7 +153,7 @@
                             "Center"                       "TARGET"
                             "Radius"                       "%radius"
                             "Teams"                        "DOTA_UNIT_TARGET_TEAM_ENEMY"
-                            "Types"                        "DOTA_UNIT_TARGET_HERO"
+                            "Types"                        "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
                             "Flags"                        "DOTA_UNIT_TARGET_FLAG_NONE"
                         }
                         "Action"
