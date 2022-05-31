@@ -5,14 +5,14 @@
         "BaseClass"                                                            "ability_datadriven"
         "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE"
         "AbilityTextureName"                                                   "custom/angel_arena_rifle_op"
-        "AbilityCastPoint"                                                     "0.4 0.4 0.4 0.4 0.4 0.4 0.4"
+        "AbilityCastPoint"                                                     "0.1"
         "MaxLevel"                                                             "7"
         "AbilitySpecial"
         {
             "10"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "rifle_bonus_attack"                                   "25"
+                "rifle_bonus_attack"                                   "25 30 35 40 45 50 55"
             }
             "01"
             {
@@ -47,17 +47,17 @@
             "07"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "rifle_range"                                          "50 100 150 200 250 300 400"
+                "rifle_range"                                          "50 100 150 200 250 300 350"
             }
             "08"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "rifle_range_tooltip"                                  "50 100 150 200 250 300 400"
+                "rifle_range_tooltip"                                  "50 100 150 200 250 300 350"
             }
             "09"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "rifle_bonus_movespeed"                                "25"
+                "rifle_bonus_movespeed"                                "25 28 31 34 37 40 43"
             }
         }
         "OnUpgrade"

@@ -17,11 +17,11 @@
         "AbilityProcsMagicStick"        "1"
         "HasScepterUpgrade"             "1"
     
-        "AbilityGoldCost"               "100 125 150"
+        "AbilityGoldCost"               "75 100 125"
         "AbilityManaCost"               "50"
         "AbilityCooldown"               "5.0"
     
-        "AbilityCastRange"              "800"
+        "AbilityCastRange"              "1200"
         "AbilityCastPoint"              "0.3"
         "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_1"
     
@@ -50,12 +50,12 @@
             "05"
             {
                 "var_type"          "FIELD_INTEGER"
-                "movespeed_bonus"       "10 18 26"
+                "movespeed_bonus"       "12 20 28"
             }
             "06"
             {
                 "var_type"          "FIELD_INTEGER"
-                "movespeed_slow"        "-10 -18 -26"
+                "movespeed_slow"        "-12 -20 -28"
             }
         }
     
@@ -174,7 +174,7 @@
         "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
         "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
     
-        "AbilityCastRange"              "650"
+        "AbilityCastRange"              "750"
         "AbilityCastPoint"              "0.3"
     
         "AbilityCooldown"               "10"
@@ -379,7 +379,7 @@
             "03"
             {
                 "var_type"          "FIELD_INTEGER"
-                "bounty"            "300 400 500 600"
+                "bounty"            "300"
             }
             "04"
             {
@@ -595,12 +595,12 @@
             "01"
             {
                 "var_type"          "FIELD_INTEGER"
-                "proc_chance"       "16 19 22 25"
+                "proc_chance"       "20 25 30 35"
             }
             "02"
             {
                 "var_type"          "FIELD_INTEGER"
-                "crit_damage"       "150 200 250 300"
+                "crit_damage"       "150 180 210 240"
             }
             "03"
             {
@@ -806,7 +806,7 @@
     
         "AbilityCastPoint"              "0.3"
     
-        "AbilityCooldown"               "70"
+        "AbilityCooldown"               "70 60 50"
         "AbilityManaCost"               "150 175 200"
         "AbilityProcsMagicStick"        "1"
     
@@ -820,7 +820,7 @@
             "02"
             {
                 "var_type"          "FIELD_INTEGER"
-                "damage_reduction_pct"      "-10 -20 -30"
+                "damage_reduction_pct"      "-30"
             }
             "03"
             {
@@ -830,27 +830,27 @@
             "04"
             {
                 "var_type"          "FIELD_INTEGER"
-                "day_vision"            "600"
+                "day_vision"            "700"
             }
             "05"
             {
                 "var_type"          "FIELD_INTEGER"
-                "night_vision"      "600"
+                "night_vision"      "700"
             }
             "06"
             {
                 "var_type"          "FIELD_INTEGER"
-                "break_radius"              "1000"
+                "break_radius"              "900"
             }
             "07"
             {
                 "var_type"          "FIELD_INTEGER"
-                "day_vision_penalty"        "-1200"
+                "day_vision_penalty"        "-1100"
             }
             "08"
             {
                 "var_type"          "FIELD_INTEGER"
-                "night_vision_penalty"      "-200"
+                "night_vision_penalty"      "-100"
             }
         }
         "precache"

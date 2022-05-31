@@ -785,7 +785,7 @@
         "AbilityCastPoint"              "0.1"
         "AnimationPlaybackRate"         "1.4"
         "AbilityCastRange"              "600"
-        "AbilityDamage"                 "10"
+        "AbilityDamage"                 "25 30 35 40"
         "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_1"
     
             

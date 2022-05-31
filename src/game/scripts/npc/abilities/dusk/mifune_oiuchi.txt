@@ -44,7 +44,7 @@
 			"02"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"bonus_agi"						"0"
+				"bonus_agi"						"6 8 10 12"
 			}
 			"03"
 			{
@@ -54,7 +54,7 @@
 			"04"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"threshold"						"40"
+				"threshold"						"40 45 50 55"
 			}
 		}
 		

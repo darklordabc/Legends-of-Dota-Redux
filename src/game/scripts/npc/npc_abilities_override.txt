@@ -2016,6 +2016,30 @@
             "ReduxPerks"                                                           "support"
             "ReduxCost"                                                            "10"
             "ReduxBans"                                                            "spell_lab_symbiotic"
+			"MaxLevel"						"4"
+			"AbilityCastRange"				"150 250 350 450"
+			"AbilityCooldown"				"50 40 30 20"
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"				"FIELD_INTEGER"
+					"damage"				"300 350 400 450"
+					"RequiresScepter"		"1"
+				}
+				"02"
+				{
+					"var_type"				"FIELD_INTEGER"
+					"radius"				"700 700 700"
+					"RequiresScepter"		"1"
+				}
+				"03"
+				{
+					"var_type"					"FIELD_FLOAT"
+					"order_lock_duration"		"2.0"
+					"RequiresScepter"		"1"
+				}
+			}
         }
         "pugna_decrepify"
         {
@@ -4444,6 +4468,16 @@
         {
             "ReduxCost"                                                            "20"
             "ReduxFlags"                                                           "doNotRandom"
+			"MaxLevel"						"4"
+			"AbilityCastRange"				"175"
+			"AbilityCooldown"				"45 35 25 15"
+			"AbilityValues"
+			{
+					"duration"		"3"
+					"damage"	"450 475 500 525"
+					"aoe"		"450 475 500 525"
+					"ally_cast_range"	"500"
+			}
         }
         "ember_spirit_sleight_of_fist"
         {
@@ -5052,6 +5086,21 @@
         {
             "ReduxPerks"                                                           "earth"
             "ReduxFlags"                                                           ""
+			"MaxLevel"						"4"
+			"AbilityCooldown"				"50 42 34 26"
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"duration"				"4"
+				}
+				"02"
+				{
+					"var_type"				"FIELD_INTEGER"
+					"hp_restore"				"60 65 70 75"
+				}
+			}
         }
         "sirocco_shifting_sands"
         {
@@ -5659,11 +5708,12 @@
         "broodmother_sticky_snare"
         {
         "MaxLevel"                      "4"
+		"ReduxPerks"                    "trap"
 
         // Time     
         //-------------------------------------------------------------------------------------------------------------
         "AbilityCharges"                "2"
-        "AbilityChargeRestoreTime"      "20 18 16 14"       
+        "AbilityChargeRestoreTime"      "20 17 14 11"       
 
         // Cost
         //-------------------------------------------------------------------------------------------------------------
@@ -6105,7 +6155,7 @@
 				"01"
 				{
 					"var_type"			"FIELD_INTEGER"
-					"range"			"1300 1500 1700 1900"
+					"range"			"1300"
 				}
 				"02"
 				{
@@ -6115,12 +6165,12 @@
 				"03"
 				{
 					"var_type"			"FIELD_INTEGER"
-					"count"			"5 6 7 8"
+					"count"			"5"
 				}
 				"04"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"attack_rate"			"1.6"
+					"attack_rate"			"1.6 1.5 1.4 1.3"
 				}
 				"05"
 				{
@@ -6168,13 +6218,13 @@
 			"AbilityValues"
 			{
 				"base_damage"             "300 330 360 390"
-				"impact_radius"             "225"
+				"impact_radius"             "225 250 275 300"
 				"fragment_impact_distance"    "600"
 				"min_range"               "550"
 				"min_travel_time"                 "0.45"
 				"max_travel_time"                  "1.7"
 				"bounce_travel_time"                  "0.6"
-				"fragment_impact_radius"                  "150"
+				"fragment_impact_radius"                  "150 175 200 225"
 				"stun_duration"                  "1.75 2.0 2.25 2.5"
 			}
 			"ReduxFlags"                                                           "stun | physical"
@@ -6399,7 +6449,7 @@
 				"06"
 				{
 					"var_type"				"FIELD_INTEGER"
-					"damage"		"125 130 135 140"
+					"damage"		"125"
 				}
 			}
 		}
@@ -6420,7 +6470,7 @@
 				"02"
 				{
 					"var_type"				"FIELD_INTEGER"
-					"movement_speed"		"20 22 24 26"
+					"movement_speed"		"20 24 28 32"
 				}
 				"03"
 				{
@@ -6488,7 +6538,7 @@
 			{			
 				"mana_drain"		"5 6 7 8"
 				"attack_count"		"5 6 7 8"
-				"attack_speed"		"100 120 140 160"
+				"attack_speed"		"100"
 				"health_cost"		"20"
 				"duration"			"15"
 			}
@@ -6500,11 +6550,86 @@
 			"AbilityCastRange"				"1200"
 			"AbilityValues"
 			{
-				"movespeed_slow"	"7 14 21 28"
+				"movespeed_slow"	"10 18 26 34"
 				"aura_radius"		"1200"
-				"duration"		"1.0"
+				"duration"		"1.0 1.25 1.5 1.75"
 			}
 			"ReduxPerks"                               "ice"
+		}
+		
+		"pangolier_rollup"
+		{
+			"MaxLevel"						"3"
+			"AbilityCooldown"				"30 25 20 15"
+
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"cast_time_tooltip"		"0.5"
+				}			
+				"02"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"tick_interval"			"0.05"
+				}
+				"03"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"forward_move_speed"	"600"
+				}
+				"04"
+				{
+					"var_type"				"FIELD_FLOAT" // used after any break in the roll (start/jump/bounce)
+					"turn_rate_boosted"		"275"
+				}
+				"05"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"turn_rate"				"275"
+				}
+				"06"
+				{
+					"var_type"				"FIELD_INTEGER"
+					"radius"				"400"
+				}			
+				"07"
+				{
+					"var_type"				"FIELD_INTEGER"
+					"hit_radius"			"150"
+				}			
+				"08"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"bounce_duration"		"0.4"
+				}			
+				"09"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"stun_duration"			"1.0 1.25 1.5"
+				}			
+				"10"
+				{
+					"var_type"				"FIELD_INTEGER"
+					"knockback_radius"		"150"
+				}			
+				"11"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"duration"				"4.0"
+				}
+				"12"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"jump_recover_time"		"0.25"
+				}	
+				"13"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"rollup_bounce_duration"				"0.75"
+				}		
+			}
 		}
 		
 		// invoker AD

@@ -177,7 +177,7 @@
         "AbilityTextureName"            "custom/uther_hail_back"
         "MaxLevel"                      "1"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_HIDDEN"    
-        "AbilityCooldown"        "0.2"
+        "AbilityCooldown"        "0.1"
 
         "OnSpellStart"
         {
@@ -220,12 +220,12 @@
             "02"
             {
                 "var_type"          "FIELD_INTEGER"
-                "scepter_Hammer_Size"       "500"
+                "scepter_Hammer_Size"       "450"
             }
             "03"
             {
                 "var_type"          "FIELD_FLOAT"
-                "stun_duration"     "1.25 1.5 1.75 2.0"
+                "stun_duration"     "1.4 1.7 2.0 2.3"
             }
             "04"
             {
@@ -235,7 +235,7 @@
             "05"
             {
                 "var_type"          "FIELD_INTEGER"
-                "Automatic_Return"  "18"
+                "Automatic_Return"  "12"
             }
             "06"
             {
@@ -638,7 +638,7 @@
             "01"
             {
                 "var_type"          "FIELD_INTEGER"
-                "bolt_speed"            "700"
+                "bolt_speed"            "900"
             }
             "02"
             {
@@ -752,12 +752,12 @@
             "03"
             {
                 "var_type"                      "FIELD_INTEGER"
-                "blast_vision_radius"           "800"
+                "blast_vision_radius"           "900"
             }
             "04"
             {
                 "var_type"                      "FIELD_INTEGER"
-                "blast_vision_duration"         "2"
+                "blast_vision_duration"         "4"
             }
         }
 

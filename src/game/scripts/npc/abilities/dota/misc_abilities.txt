@@ -276,7 +276,7 @@
             "02"
             {
                 "var_type"              "FIELD_INTEGER"
-                "range"                 "1000"
+                "range"                 "1400"
                 "LinkedSpecialBonus"	"special_bonus_unique_pangolier"
             }
             "05"
@@ -304,7 +304,7 @@
             "07"
             {
                 "var_type"              "FIELD_INTEGER"
-                "end_radius"            "125"
+                "end_radius"            "250"
             }
             "08"
             {
@@ -653,7 +653,7 @@
             "03"
             {
                 "var_type"              "FIELD_INTEGER"
-                "chain_break_distance"  "1200"
+                "chain_break_distance"  "700"
             }
             "04"
             {
@@ -706,15 +706,15 @@
 		{
 				"bonus_attack_range"		
 				{
-					"value"		"200 250 300 350"
+					"value"		"80/130/180/230"
 					"special_bonus_unique_templar_assassin_8"	"+120"
 				}
 				"attack_spill_range"		
 				{
-					"value"							"600 700 800 900"
+					"value"							"600 800 1000 1200"
 					"special_bonus_unique_templar_assassin_8"	"+120"
 				}
-				"attack_spill_width"		"200"
+				"attack_spill_width"		"360"
 				"attack_spill_pct"			"100"
 				"attack_spill_penalty"			"0"
 		}
@@ -756,7 +756,7 @@
             "03"
             {
                 "var_type"                      "FIELD_FLOAT"
-                "stack_duration"                "28.0 42.0 56.0"
+                "stack_duration"                "30.0 45.0 60.0"
             }
             "04"
             {
@@ -985,7 +985,7 @@
         
         // Cost
         //-------------------------------------------------------------------------------------------------------------
-        "AbilityManaCost"               "200"
+        "AbilityManaCost"               "150 175 200"
         
         // Special  
         //-------------------------------------------------------------------------------------------------------------
@@ -994,7 +994,7 @@
             "01"
             {
                 "var_type"              "FIELD_FLOAT"
-                "duration"              "8 9 10"
+                "duration"              "8 10 12"
             }
             "02"
             {
@@ -1009,7 +1009,7 @@
             "04"
             {
                 "var_type"          "FIELD_INTEGER"
-                "spear_damage"      "150 200 250"
+                "spear_damage"      "100 150 200"
             }
             "05"
             {
@@ -1019,17 +1019,17 @@
             "06"
             {
                 "var_type"          "FIELD_INTEGER"
-                "spear_distance_from_wall"  "260"
+                "spear_distance_from_wall"  "160"
             }
             "07"
             {
                 "var_type"          "FIELD_FLOAT"
-                "spear_attack_interval" "0.5"
+                "spear_attack_interval" "0.25"
             }
             "08"
             {
                 "var_type"          "FIELD_INTEGER"
-                "warrior_count"     "20"
+                "warrior_count"     "28"
             }
             "09"
             {
@@ -1104,7 +1104,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"4.0 4.5 5.0 5.5"
+				"duration"				"3.5 4.0 4.5 5.0"
 			}
 			"03"
 			{
@@ -1141,11 +1141,11 @@
         "AbilityValues"
 		{
 			"AbilityCastPoint"				"0.2"
-			"mana_regen"					"2 3 4 5"
+			"mana_regen"					"2 4 6 8"
 			"self_factor"					"3.0"
 			"mana_per_cast"		
 			{
-				"value"										"10 20 30 40"
+				"value"										"15 30 45 60"
 				"special_bonus_unique_crystal_maiden_4"		"+20"
 			}
 			"radius"			"1200"

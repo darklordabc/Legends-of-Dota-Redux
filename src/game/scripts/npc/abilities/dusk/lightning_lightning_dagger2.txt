@@ -4,7 +4,7 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"				"ability_datadriven"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -15,16 +15,16 @@
 			// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
-		"AbilityCastRange"				"875"
+		"AbilityCastRange"				"900"
 		"AbilityCooldown"				"1"
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"40 45 50 55"
+		"AbilityManaCost"				"30 35 40 45"
 		
 		// Damage.
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"					"25"
+		"AbilityDamage"					"50"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -53,7 +53,7 @@
 			"05"
 			{
 				"var_type"								"FIELD_INTEGER"
-				"mark_aoe"								"250"
+				"mark_aoe"								"300"
 			}
 		}
 		

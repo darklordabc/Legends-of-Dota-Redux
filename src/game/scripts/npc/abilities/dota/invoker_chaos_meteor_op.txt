@@ -24,10 +24,10 @@
 				"value"					"55 45 35 25"
 				"special_bonus_shard"	"-15"
 			}
-			"land_time"					"1.3"
-			"area_of_effect"			"500"
+			"land_time"					"0.5"
+			"area_of_effect"			"300"
 			"travel_distance"			"1000 2000 3000 4000"
-			"travel_speed"				"500"
+			"travel_speed"				"350"
 			"damage_interval"
 			{
 				"value"					"0.5"
@@ -37,20 +37,20 @@
 			"end_vision_duration"		"10.0"
 			"main_damage"
 			{
-				"value"					"150 200 250 300"
+				"value"					"100 150 200 250"
 				"special_bonus_unique_invoker_6"	"+40%"
 			}
 			"burn_duration"				"6.0"
 			"burn_dps"
 			{
-				"value"					"30 40 50 60"
+				"value"					"30 50 70 90"
 				"CalculateSpellDamageTooltip"	"1"
 				"special_bonus_unique_invoker_6"	"+40%"
 			}
 			"meteor_count"
 			{
 				"value"					"1"
-				"special_bonus_shard"	"+2"
+				"special_bonus_shard"	"+4"
 			}
 		}
         "ReduxCost"                                                            "120"

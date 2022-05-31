@@ -42,7 +42,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"duration"				"3"
+				"duration"				"3 4 5 6"
 			}
 			"04"
 			{
@@ -52,7 +52,7 @@
 			"05"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"damage_reduction_duration" "0.5"
+				"damage_reduction_duration" "0.5 1.0 1.5 2.0"
 			}
 		}
 

@@ -42,18 +42,18 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"attack_rate_multiplier"	"2.0"
+				"attack_rate_multiplier"	"4.0"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"bonus_damage"				"0"
+				"bonus_damage"				"-100"
 				"CalculateSpellDamageTooltip"	"0"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"bonus_attack_speed"				"40"
+				"bonus_attack_speed"				"100"
 				"CalculateSpellDamageTooltip"	"0"
 			}
 			"04"
@@ -65,7 +65,7 @@
 			"05"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"omni_slash_radius"			"700"
+				"omni_slash_radius"			"1200"
 			}
 		}
     }

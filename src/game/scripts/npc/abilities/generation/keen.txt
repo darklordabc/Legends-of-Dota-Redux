@@ -11,9 +11,9 @@
         "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
         "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
         "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
-        "AbilityCooldown"               "34 28 22 16"
+        "AbilityCooldown"               "28 24 20 16"
         "AbilityManaCost"               "90"
-        "AbilityCastPoint"              "0.4"
+        "AbilityCastPoint"              "0.3"
         "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_1"
         "AbilityProcsMagicStick"        "1"
         "ReduxPerks"                                                           "explosive"
@@ -235,7 +235,7 @@
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
         "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_TREE"
         "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
-        "AbilityCooldown"               "60 45 30 15"
+        "AbilityCooldown"               "30 25 20 15"
         "AbilityManaCost"               "100 110 120 130"
         "AbilityCastRange"              "350"
         "AbilityCastPoint"              "0.3"
@@ -255,22 +255,22 @@
             "01"
             {
                 "var_type"          "FIELD_INTEGER"
-                "shock_range"   "300"
+                "shock_range"   "325"
             }
             "02"
             {
                 "var_type"          "FIELD_FLOAT"
-                "slow_duration"     "0.5 1.0 1.5 2.0"
+                "slow_duration"     "1.0 1.3 1.6 1.9"
             }
             "03"
             {
                 "var_type"          "FIELD_INTEGER"
-                "shock_damage"  "150 200 250 300"
+                "shock_damage"  "160 200 240 280"
             }
             "04"
             {
                 "var_type"          "FIELD_INTEGER"
-                "shock_null_duration"   "4"
+                "shock_null_duration"   "3"
             }
             "05"
             {
@@ -315,7 +315,7 @@
             "02"
             {
                 "var_type"          "FIELD_INTEGER"
-                "turn_rate_slow"        "-70"
+                "turn_rate_slow"        "-50"
             }
             "03"
             {
@@ -350,7 +350,7 @@
             "09"
             {
                 "var_type"          "FIELD_INTEGER"
-                "attack_min_range"      "400"
+                "attack_min_range"      "350"
             }
             "10"
             {
@@ -360,7 +360,7 @@
             "11"
             {
                 "var_type"          "FIELD_FLOAT"
-                "seconds_per_attack"    "3.0"
+                "seconds_per_attack"    "2.75"
             }
         }
         "OnToggleOn"
@@ -491,7 +491,7 @@
     
         "AbilityCastRange"              "600"
         "AbilityCastPoint"              "0.0"
-        "AbilityCooldown"               "6 4 2 0"
+        "AbilityCooldown"               "0"
         "AbilityManaCost"               "20"
         "HasScepterUpgrade"             "1"
     
@@ -509,7 +509,7 @@
             "01"
             {
                 "var_type"          "FIELD_INTEGER"
-                "damage_per_second" "13 17 21 25"
+                "damage_per_second" "15 20 25 30"
             }
             "02"
             {
@@ -519,17 +519,17 @@
             "03"
             {
                 "var_type"          "FIELD_INTEGER"
-                "armor_reduction"   "-3"
+                "armor_reduction"   "-1 -2 -3 -4"
             }
             "04"
             {
                 "var_type"          "FIELD_INTEGER"
-                "slow_duration"     "2"
+                "slow_duration"     "3"
             }
             "05"
             {
                 "var_type"          "FIELD_INTEGER"
-                "ms_slow"           "10"
+                "ms_slow"           "15"
             }
             "06"
             {
@@ -539,7 +539,7 @@
             "07"
             {
                 "var_type"          "FIELD_INTEGER"
-                "cooldown"          "6 4 2 0"
+                "cooldown"          "0"
             }
         }
         "Modifiers"
