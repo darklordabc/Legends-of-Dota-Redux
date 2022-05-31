@@ -784,7 +784,7 @@
 
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"12"
+		"StatusHealth"				"16"
 		"StatusHealthRegen"			"0.0"
 		"StatusMana"				"0"
 		"StatusManaRegen"			"0"
@@ -1136,7 +1136,7 @@
 
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"100"		// Base health.
+		"StatusHealth"				"200"		// Base health.
 		"StatusHealthRegen"			"0"			// Health regeneration rate.
 		"StatusMana"				"0"			// Base mana.
 		"StatusManaRegen"			"0"			// Mana regeneration rate.
@@ -1152,8 +1152,8 @@
 
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"400"
-		"VisionNighttimeRange"		"400"
+		"VisionDaytimeRange"		"600"
+		"VisionNighttimeRange"		"600"
 	}
 
 	"butcher_zombie_1"
@@ -1578,7 +1578,7 @@
 			// Status
 		//----------------------------------------------------------------
 		"StatusHealth"				"1200"		// Base health.
-		"StatusHealthRegen"			"0.25"		// Health regeneration rate.
+		"StatusHealthRegen"			"10.0"		// Health regeneration rate.
 		"StatusMana"				"0"			// Base mana.
 		"StatusManaRegen"			"0"			// Mana regeneration rate.
 
@@ -1655,7 +1655,7 @@
 			// Status
 		//----------------------------------------------------------------
 		"StatusHealth"				"1500"		// Base health.
-		"StatusHealthRegen"			"0.25"		// Health regeneration rate.
+		"StatusHealthRegen"			"15.0"		// Health regeneration rate.
 		"StatusMana"				"0"			// Base mana.
 		"StatusManaRegen"			"0"			// Mana regeneration rate.
 
@@ -1733,7 +1733,7 @@
 			// Status
 		//----------------------------------------------------------------
 		"StatusHealth"				"1800"		// Base health.
-		"StatusHealthRegen"			"0.25"		// Health regeneration rate.
+		"StatusHealthRegen"			"20.0"		// Health regeneration rate.
 		"StatusMana"				"0"			// Base mana.
 		"StatusManaRegen"			"0"			// Mana regeneration rate.
 
@@ -2561,7 +2561,7 @@
 		"AttackDamageType"            "DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"                "1.5"        // Speed of attack.
 		"AttackAnimationPoint"        "0.3"        // Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"    "300"        // Range within a target can be acquired.
+		"AttackAcquisitionRange"    "600"        // Range within a target can be acquired.
 		"AttackRange"                "10"        // Range within a target can be attacked.
 
 		// Bounds
@@ -2572,14 +2572,14 @@
 		// Movement
 		//----------------------------------------------------------------
 		"MovementCapabilities"        "DOTA_UNIT_CAP_MOVE_FLY"            // Type of locomotion - ground, air
-		"MovementSpeed"                "400"            // Speed
-		"MovementTurnRate"            "0.5"        // Turning rate.
+		"MovementSpeed"                "500"            // Speed
+		"MovementTurnRate"            "1.5"        // Turning rate.
 
 		// Bounty
 		//----------------------------------------------------------------
-		"BountyXP"                "25"        // Experience earn.
-		"BountyGoldMin"                "28"        // Gold earned min.
-		"BountyGoldMax"                "32"        // Gold earned max.
+		"BountyXP"                "0"        // Experience earn.
+		"BountyGoldMin"                "0"        // Gold earned min.
+		"BountyGoldMax"                "0"        // Gold earned max.
 
 		// Status
 		//----------------------------------------------------------------
@@ -2597,8 +2597,8 @@
 
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"        "400"        // Range of vision during day light.
-		"VisionNighttimeRange"        "400"        // Range of vision at night time.
+		"VisionDaytimeRange"        "600"        // Range of vision during day light.
+		"VisionNighttimeRange"        "600"        // Range of vision at night time.
 
 		//Inventory
 		"HasInventory"                "0"
@@ -2642,7 +2642,7 @@
 
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"                "150"        // Base health.
+		"StatusHealth"                "250"        // Base health.
 		"StatusHealthRegen"            "0.0"        // Health regeneration rate.
 		"StatusMana"                "0"            // Base mana.
 		"StatusManaRegen"            "0"            // Mana regeneration rate.
@@ -2656,8 +2656,8 @@
 
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"        "400"        // Range of vision during day light.
-		"VisionNighttimeRange"        "400"        // Range of vision at night time.
+		"VisionDaytimeRange"        "800"        // Range of vision during day light.
+		"VisionNighttimeRange"        "800"        // Range of vision at night time.
 
 		//Inventory
 		"HasInventory"                "0"
@@ -2706,8 +2706,8 @@
 		// Bounty
 		//----------------------------------------------------------------
 		"BountyXP"                "0"        // Experience earn.
-		"BountyGoldMin"                "28"        // Gold earned min.
-		"BountyGoldMax"                "32"        // Gold earned max.
+		"BountyGoldMin"                "0"        // Gold earned min.
+		"BountyGoldMax"                "0"        // Gold earned max.
 
 		// Status
 		//----------------------------------------------------------------
@@ -2768,8 +2768,8 @@
 		// Bounty
 		//----------------------------------------------------------------
 		"BountyXP"                "0"        // Experience earn.
-		"BountyGoldMin"                "28"        // Gold earned min.
-		"BountyGoldMax"                "32"        // Gold earned max.
+		"BountyGoldMin"                "0"        // Gold earned min.
+		"BountyGoldMax"                "0"        // Gold earned max.
 
 		// Status
 		//----------------------------------------------------------------
@@ -2819,12 +2819,12 @@
 		"AttackDamageMin"            "30"            // Damage range min.
 		"AttackDamageMax"            "50"        // Damage range max.
 		"AttackDamageType"            "DAMAGE_TYPE_ArmorPhysical"
-		"AttackRate"                "1.5"        // Speed of attack.
+		"AttackRate"                "1.0"        // Speed of attack.
 		"AttackAnimationPoint"        "0.3"        // Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"    "350"        // Range within a target can be acquired.
-		"AttackRange"                "350"        // Range within a target can be attacked.
+		"AttackAcquisitionRange"    "400"        // Range within a target can be acquired.
+		"AttackRange"                "400"        // Range within a target can be attacked.
 		"ProjectileModel"            "particles/base_attacks/ranged_tower_bad.vpcf"
-		"ProjectileSpeed"            "900"
+		"ProjectileSpeed"            "1200"
 
 		// Bounds
 		//----------------------------------------------------------------
@@ -2840,8 +2840,8 @@
 		// Bounty
 		//----------------------------------------------------------------
 		"BountyXP"                "0"        // Experience earn.
-		"BountyGoldMin"                "28"        // Gold earned min.
-		"BountyGoldMax"                "32"        // Gold earned max.
+		"BountyGoldMin"                "0"        // Gold earned min.
+		"BountyGoldMax"                "0"        // Gold earned max.
 
 		// Status
 		//----------------------------------------------------------------
@@ -2891,12 +2891,12 @@
 		"AttackDamageMin"            "30"            // Damage range min.
 		"AttackDamageMax"            "50"        // Damage range max.
 		"AttackDamageType"            "DAMAGE_TYPE_ArmorPhysical"
-		"AttackRate"                "1.5"        // Speed of attack.
+		"AttackRate"                "1.25"        // Speed of attack.
 		"AttackAnimationPoint"        "0.3"        // Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"    "350"        // Range within a target can be acquired.
+		"AttackAcquisitionRange"    "1000"        // Range within a target can be acquired.
 		"AttackRange"                "1000"        // Range within a target can be attacked.
 		"ProjectileModel"            "particles/base_attacks/ranged_tower_bad.vpcf"
-		"ProjectileSpeed"            "900"
+		"ProjectileSpeed"            "1200"
 
 		// Bounds
 		//----------------------------------------------------------------
@@ -2912,8 +2912,8 @@
 		// Bounty
 		//----------------------------------------------------------------
 		"BountyXP"                "0"        // Experience earn.
-		"BountyGoldMin"                "28"        // Gold earned min.
-		"BountyGoldMax"                "32"        // Gold earned max.
+		"BountyGoldMin"                "0"        // Gold earned min.
+		"BountyGoldMax"                "0"        // Gold earned max.
 
 		// Status
 		//----------------------------------------------------------------
@@ -2965,10 +2965,10 @@
 		"AttackDamageType"            "DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"                "1.5"        // Speed of attack.
 		"AttackAnimationPoint"        "0.3"        // Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"    "700"        // Range within a target can be acquired.
-		"AttackRange"                "700"        // Range within a target can be attacked.
+		"AttackAcquisitionRange"    "900"        // Range within a target can be acquired.
+		"AttackRange"                "900"        // Range within a target can be attacked.
 		"ProjectileModel"            "particles/base_attacks/ranged_tower_good.vpcf"
-		"ProjectileSpeed"            "900"
+		"ProjectileSpeed"            "1200"
 
 		// Bounds
 		//----------------------------------------------------------------
@@ -2984,8 +2984,8 @@
 		// Bounty
 		//----------------------------------------------------------------
 		"BountyXP"                "0"        // Experience earn.
-		"BountyGoldMin"                "28"        // Gold earned min.
-		"BountyGoldMax"                "32"        // Gold earned max.
+		"BountyGoldMin"                "0"        // Gold earned min.
+		"BountyGoldMax"                "0"        // Gold earned max.
 
 		// Status
 		//----------------------------------------------------------------
@@ -3046,8 +3046,8 @@
 		// Bounty
 		//----------------------------------------------------------------
 		"BountyXP"                "0"        // Experience earn.
-		"BountyGoldMin"                "28"        // Gold earned min.
-		"BountyGoldMax"                "32"        // Gold earned max.
+		"BountyGoldMin"                "0"        // Gold earned min.
+		"BountyGoldMax"                "0"        // Gold earned max.
 
 		// Status
 		//----------------------------------------------------------------
@@ -3269,8 +3269,8 @@
 	{
 		"BaseClass"					"npc_dota_creature"
 		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
-		"VisionDaytimeRange"		"0"
-		"VisionNighttimeRange"		"0"
+		"VisionDaytimeRange"		"600"
+		"VisionNighttimeRange"		"600"
 		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"
 		"AbilityLayout"				"4"
@@ -3375,7 +3375,7 @@
 		//----------------------------------------------------------------
 		"BaseClass"			"npc_dota_building"
 		"Model"				"models/props_structures/good_barracks_melee001.vmdl"
-		"ModelScale"		"0.8"
+		"ModelScale"		"0.4"
 		"Level"				"4"
 		"SoundSet"			"Creep_Good_Melee"
 		"MinimapIcon"		"minimap_racks90"
@@ -3447,7 +3447,7 @@
 		//----------------------------------------------------------------
 		"BaseClass"			"npc_dota_building"
 		"Model"				"models/props_structures/good_barracks_melee001.vmdl"
-		"ModelScale"		"0.8"
+		"ModelScale"		"0.4"
 		"Level"				"5"
 		"SoundSet"			"Creep_Good_Melee"
 		"MinimapIcon"		"minimap_racks90"
@@ -3519,7 +3519,7 @@
 		//----------------------------------------------------------------
 		"BaseClass"			"npc_dota_building"
 		"Model"				"models/props_structures/good_barracks_melee001.vmdl"
-		"ModelScale"		"0.8"
+		"ModelScale"		"0.4"
 		"Level"				"6"
 		"SoundSet"			"Creep_Good_Melee"
 		"MinimapIcon"		"minimap_racks90"
@@ -3606,8 +3606,8 @@
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"		"10.0"
-		"AttackDamageMax"		"10.0"
+		"AttackDamageMin"		"20.0"
+		"AttackDamageMax"		"20.0"
 		"AttackDamageType"		"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"			"0.8"
 		"AttackAnimationPoint"		"0.33"
@@ -3686,8 +3686,8 @@
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"		"43.0"
-		"AttackDamageMax"		"43.0"
+		"AttackDamageMin"		"45.0"
+		"AttackDamageMax"		"45.0"
 		"AttackDamageType"		"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"			"0.7"
 		"AttackAnimationPoint"		"0.33"
@@ -3767,8 +3767,8 @@
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"		"76.0"
-		"AttackDamageMax"		"76.0"
+		"AttackDamageMin"		"80.0"
+		"AttackDamageMax"		"80.0"
 		"AttackDamageType"		"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"			"0.6"
 		"AttackAnimationPoint"		"0.33"
@@ -3919,8 +3919,8 @@
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
-		"AttackDamageMin"			"25"
-		"AttackDamageMax"			"25"
+		"AttackDamageMin"			"35"
+		"AttackDamageMax"			"35"
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"				"1.2"
 		"AttackAnimationPoint"		"0.3"
@@ -3943,9 +3943,9 @@
 
 		// Bounty
 		//----------------------------------------------------------------
-		"BountyXP"					"15"
-		"BountyGoldMin"				"8"
-		"BountyGoldMax"				"8"
+		"BountyXP"					"0"
+		"BountyGoldMin"				"0"
+		"BountyGoldMax"				"0"
 
 		// Status
 		//----------------------------------------------------------------
@@ -3997,8 +3997,8 @@
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
-		"AttackDamageMin"			"35"
-		"AttackDamageMax"			"35"
+		"AttackDamageMin"			"90"
+		"AttackDamageMax"			"90"
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"				"1.2"
 		"AttackAnimationPoint"		"0.3"
@@ -4021,9 +4021,9 @@
 
 		// Bounty
 		//----------------------------------------------------------------
-		"BountyXP"					"30"
-		"BountyGoldMin"				"16"
-		"BountyGoldMax"				"16"
+		"BountyXP"					"0"
+		"BountyGoldMin"				"0"
+		"BountyGoldMax"				"0"
 
 		// Status
 		//----------------------------------------------------------------
@@ -4910,8 +4910,8 @@
 		//----------------------------------------------------------------
 		"MovementCapabilities" "DOTA_UNIT_CAP_MOVE_FLY" // Type of locomotion - ground, air
 		"MovementSpeed" "0" // Speed
-		"MovementTurnRate" "0.15" // Turning rate.
-		"FollowRange" "250" // Distance to keep when following
+		"MovementTurnRate" "1.0" // Turning rate.
+		"FollowRange" "50" // Distance to keep when following
 		// Status
 		//----------------------------------------------------------------
 		"StatusHealth" "3" // Base health.
@@ -4926,8 +4926,8 @@
 		"UnitRelationshipClass" "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange" "250" // Range of vision during day light.
-		"VisionNighttimeRange" "250" // Range of vision at night time.
+		"VisionDaytimeRange" "400" // Range of vision during day light.
+		"VisionNighttimeRange" "400" // Range of vision at night time.
 		// Bots
 		//----------------------------------------------------------------
 		"AttackDesire" "1.5" // How much bots want to attack them vs other non-hero things
@@ -5006,8 +5006,8 @@
 		"UnitRelationshipClass" "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange" "250" // Range of vision during day light.
-		"VisionNighttimeRange" "250" // Range of vision at night time.
+		"VisionDaytimeRange" "400" // Range of vision during day light.
+		"VisionNighttimeRange" "400" // Range of vision at night time.
 		// Bots
 		//----------------------------------------------------------------
 		"AttackDesire" "1.5" // How much bots want to attack them vs other non-hero things
@@ -5054,9 +5054,9 @@
 
 	        // Bounty
 	        //----------------------------------------------------------------
-	        "BountyXP"          "31"
-	        "BountyGoldMin"         "50"
-	        "BountyGoldMax"         "50"
+	        "BountyXP"          "0"
+	        "BountyGoldMin"         "0"
+	        "BountyGoldMax"         "0"
 
 	        // Movement
 	        //----------------------------------------------------------------
@@ -5188,7 +5188,7 @@
 		// Armor
 		//----------------------------------------------------------------
 		"ArmorPhysical"				"5"			// Physical protection.
-		"MagicalResistance"			"35"			// Magical protection.
+		"MagicalResistance"			"45"			// Magical protection.
 
 		// Attack
 		//----------------------------------------------------------------
@@ -5211,14 +5211,14 @@
 		// Movement
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
-		"MovementSpeed"				"340"			// Speed
-		"MovementTurnRate"			"0.8"		// Turning rate.
+		"MovementSpeed"				"380"			// Speed
+		"MovementTurnRate"			"1.0"		// Turning rate.
 
 		// Bounty
 		//----------------------------------------------------------------
 		"BountyXP"				"0"		// Experience earn.
-		"BountyGoldMin"				"11"		// Gold earned min.
-		"BountyGoldMax"				"17"		// Gold earned max.
+		"BountyGoldMin"				"5"		// Gold earned min.
+		"BountyGoldMax"				"7"		// Gold earned max.
 
 		// Status
 		//----------------------------------------------------------------
@@ -5492,9 +5492,9 @@
 
 		// Bounty
 		//----------------------------------------------------------------
-		"BountyXP"					"45"		// Experience earn.
-		"BountyGoldMin"				"18"		// Gold earned min.
-		"BountyGoldMax"				"32"		// Gold earned max.
+		"BountyXP"					"0"		// Experience earn.
+		"BountyGoldMin"				"0"		// Gold earned min.
+		"BountyGoldMax"				"0"		// Gold earned max.
 
 		// Bounds
 		//----------------------------------------------------------------
@@ -5609,9 +5609,9 @@
 
 		// Bounty
 		//----------------------------------------------------------------
-		"BountyXP"					"40"		// Experience earn.
-		"BountyGoldMin"				"18"		// Gold earned min.
-		"BountyGoldMax"				"32"		// Gold earned max.
+		"BountyXP"					"0"		// Experience earn.
+		"BountyGoldMin"				"0"		// Gold earned min.
+		"BountyGoldMax"				"0"		// Gold earned max.
 
 		// Bounds
 		//----------------------------------------------------------------
@@ -6100,70 +6100,7 @@
 		"VisionNighttimeRange"      "800"
 	}
 	
-	"npc_dota_elder_titan_ancestral_spirit"
-	{
-		// General
-		//----------------------------------------------------------------
-		"Model"						"models/heroes/elder_titan/ancestral_spirit.vmdl"	// Model.
-		"BaseClass"					"npc_dota_elder_titan_ancestral_spirit"
-		"SoundSet"					"0"			// Name of sound set.
-		"Level"						"1"
-		"ModelScale"				"1.0"
-		"ConsideredHero"			"1"
-		"IsAncient"					"1"
-
-		// Abilities
-		//----------------------------------------------------------------
-		"Ability1"					"imba_elder_titan_echo_stomp_spirit"	// Ability 1
-		"Ability2"					"generic_hidden"						// Ability 2
-		"Ability3"					"imba_elder_titan_natural_order"		// Ability 3
-
-		// Armor
-		//----------------------------------------------------------------
-		"ArmorPhysical"				"0"			// Physical protection.
-
-		// Attack
-		//----------------------------------------------------------------
-		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
-		"AttackDamageMin"			"0"			// Damage range min.
-		"AttackDamageMax"			"0"			// Damage range max.
-		"AttackRate"				"1.0"		// Speed of attack.
-		"AttackAnimationPoint"		"0.0"		// Normalized time in animation cycle to attack.
-		"AttackAcquisitionRange"	"0"			// Range within a target can be acquired.
-		"AttackRange"				"0"			// Range within a target can be attacked.
-		"ProjectileModel"			""			// Particle system model for projectile.
-		"ProjectileSpeed"			"0"			// Speed of projectile.
-
-		// Bounds
-		//----------------------------------------------------------------
-		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"			// Hull type used for navigation/locomotion.
-
-
-		// Movement
-		//----------------------------------------------------------------
-		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
-		"MovementSpeed"				"315"			// Speed
-		"MovementTurnRate"			"0.5"		// Turning rate.
-
-		// Status
-		//----------------------------------------------------------------
-		"StatusHealth"				"100"		// Base health.
-		"StatusHealthRegen"			"0.0"		// Health regeneration rate.
-
-		// Vision
-		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"400"		// Range of vision during day light.
-		"VisionNighttimeRange"		"400"		// Range of vision at night time.
-
-		// Team
-		//----------------------------------------------------------------
-		"TeamName"					"DOTA_TEAM_NEUTRALS"							// Team name.
-		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
-		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
-		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
-
-		"ImmuneToOmnislash"			"1"
-	}
+	
 	//SPELL LAB STORM MINION
 	"npc_spell_lab_storm_minion_1"
 	{
@@ -6211,9 +6148,9 @@
 
 		// Bounty
 		//----------------------------------------------------------------
-		"BountyXP"					"30"
-		"BountyGoldMin"				"40"
-		"BountyGoldMax"				"50"
+		"BountyXP"					"10"
+		"BountyGoldMin"				"10"
+		"BountyGoldMax"				"20"
 
 		// Movement
 		//----------------------------------------------------------------
@@ -6287,9 +6224,9 @@
 
 		// Bounty
 		//----------------------------------------------------------------
-		"BountyXP"					"30"
-		"BountyGoldMin"				"40"
-		"BountyGoldMax"				"50"
+		"BountyXP"					"10"
+		"BountyGoldMin"				"10"
+		"BountyGoldMax"				"20"
 
 		// Movement
 		//----------------------------------------------------------------
@@ -6363,9 +6300,9 @@
 
 		// Bounty
 		//----------------------------------------------------------------
-		"BountyXP"					"30"
-		"BountyGoldMin"				"40"
-		"BountyGoldMax"				"50"
+		"BountyXP"					"10"
+		"BountyGoldMin"				"10"
+		"BountyGoldMax"				"20"
 
 		// Movement
 		//----------------------------------------------------------------
@@ -6438,9 +6375,9 @@
 
 		// Bounty
 		//----------------------------------------------------------------
-		"BountyXP"					"30"
-		"BountyGoldMin"				"40"
-		"BountyGoldMax"				"50"
+		"BountyXP"					"10"
+		"BountyGoldMin"				"10"
+		"BountyGoldMax"				"20"
 
 		// Movement
 		//----------------------------------------------------------------
