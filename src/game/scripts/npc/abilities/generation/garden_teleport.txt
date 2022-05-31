@@ -5,8 +5,8 @@
 		"AbilityTextureName" "custom/garden_teleport"
 		"MaxLevel" "1"
 		"AbilityCastRange" "0"
-		"AbilityCastPoint" "2"
-		"AbilityCooldown" "10"
+		"AbilityCastPoint" "1"
+		"AbilityCooldown" "5"
 		"AbilityManaCost" "0"
 
 		"precache" {
@@ -25,7 +25,7 @@
 			"ApplyModifier" {
 				"ModifierName" "modifier_teleportation"
 				"Target" "CASTER"
-				"Duration" "2"
+				"Duration" "1"
 			}
 
 			"FireSound" {
