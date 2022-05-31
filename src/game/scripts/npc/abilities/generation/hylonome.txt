@@ -42,7 +42,7 @@
         "BaseClass"                 "ability_datadriven"
         "AbilityProcsMagicStick"        "1"
 
-        "AbilityDamage"             "60 130 200 270"
+        "AbilityDamage"             "70 140 210 280""
 
         // Special
         //-------------------------------------------------------------------------------------------------------------
@@ -61,7 +61,7 @@
             "04"
             {
                 "var_type"              "FIELD_FLOAT"
-                "move_slow"             "-25 -30 -35 -40"
+                "move_slow"             "-40"
             }
             "05"
             {
@@ -71,7 +71,7 @@
             "05"
             {
                 "var_type"              "FIELD_INTEGER"
-                "damage"                "85 95 115 125"
+                "damage"                "70 140 210 280"
             }
         }
         "precache"
@@ -149,9 +149,9 @@
                     {
                         "Target"        "TARGET"
                         "Center"        "CASTER"
-                        "Duration"      "0.15"
+                        "Duration"      "0.7"
                         "Distance"  "%distance"
-                        "Height"        "0"
+                        "Height"        "50"
                         "IsFixedDistance"   "0"
                         "ShouldStun"    "1"
                     }
@@ -201,7 +201,7 @@
         "BaseClass"                 "ability_datadriven"
         "AbilityProcsMagicStick"        "1"
 
-        "AbilityDamage"             "180 400 550 700"
+        "AbilityDamage"             "180 270 360 450"
         "ReduxFlags"                                                           ""
         "ReduxCost"                                                            "120"
 
@@ -232,7 +232,7 @@
             "05"
             {
                 "var_type"              "FIELD_INTEGER"
-                "damage"                "180 400 550 700"
+                "damage"                "180 270 360 450"
             }
         }
         "precache"
@@ -310,7 +310,7 @@
                     {
                         "Target"        "TARGET"
                         "Center"        "CASTER"
-                        "Duration"      "0.15"
+                        "Duration"      "0.9"
                         "Distance"  "%distance"
                         "Height"        "0"
                         "IsFixedDistance"   "0"
@@ -355,7 +355,7 @@
             "02"
             {
                 "var_type"          "FIELD_INTEGER"
-                "bonus_movement_speed"  "4 5 6 7"
+                "bonus_movement_speed"  "5 6 7 8"
             }
             "03"
             {
@@ -609,7 +609,7 @@
             "05"
             {
                 "var_type"          "FIELD_INTEGER"
-                "bleed_damage"      "4"
+                "bleed_damage"      "7"
             }
             "04"
             {
@@ -789,7 +789,7 @@
             "07"
             {
                 "var_type"          "FIELD_INTEGER"
-                "radius_scepter"        "400"
+                "radius_scepter"        "550"
             }
         }
         "OnSpellStart"
