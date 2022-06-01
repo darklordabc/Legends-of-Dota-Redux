@@ -42,7 +42,7 @@
         "BaseClass"                 "ability_datadriven"
         "AbilityProcsMagicStick"        "1"
 
-        "AbilityDamage"             "70 140 210 280""
+        "AbilityDamage"             "70 140 210 280"
 
         // Special
         //-------------------------------------------------------------------------------------------------------------
