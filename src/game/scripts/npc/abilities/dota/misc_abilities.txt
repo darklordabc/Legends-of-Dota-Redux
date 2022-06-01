@@ -706,7 +706,7 @@
 		{
 				"bonus_attack_range"		
 				{
-					"value"		"80/130/180/230"
+					"value"		"80 130 180 230"
 					"special_bonus_unique_templar_assassin_8"	"+120"
 				}
 				"attack_spill_range"		
