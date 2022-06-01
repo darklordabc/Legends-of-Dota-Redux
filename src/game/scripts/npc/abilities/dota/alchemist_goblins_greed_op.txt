@@ -5,7 +5,6 @@
         "BaseClass"                                                            "alchemist_goblins_greed"
         "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
         "AbilityTextureName"                                                   "custom/alchemist_goblins_greed_op"
-        "AbilitySpecial"
         "AbilityValues"
 		{
 			"duration"				"90"
