@@ -131,19 +131,19 @@
                         <Panel id="middleButtons">
                             <Button onactivate="onAutoAssignPressed()">
                                 <Image scaling="stretch-to-fit-preserve-aspect" src="s2r://panorama/images/control_icons/double_arrow_left_png.vtex"/>
-                                <Label text="autoAssignTeams" />
+                                <Label text="Auto Assign Teams" />
                             </Button>
                             <Button onactivate="onShufflePressed()">
                                 <Image scaling="stretch-to-fit-preserve-aspect" src="s2r://panorama/images/control_icons/shuffle_psd.vtex" />
-                                <Label text="shuffleTeams" />
+                                <Label text="Shuffle Teams" />
                             </Button>
                             <Button id="lodLockButton" onactivate="onLockPressed()">
                                 <Image scaling="stretch-to-fit-preserve-aspect" src="s2r://panorama/images/control_icons/lock_medium_png.vtex" />
-                                <Label text="lockTeams" />
+                                <Label text="Lock Teams" />
                             </Button>
                             <Button id="lodUnlockButton" onactivate="onUnlockPressed()">
                                 <Image scaling="stretch-to-fit-preserve-aspect" src="s2r://panorama/images/control_icons/gear_return_png.vtex" />
-                                <Label text="unlockTeams" />
+                                <Label text="Unlock Teams" />
                             </Button>
                         </Panel>
 
