@@ -33,7 +33,7 @@ modifier_flame_strike_thinker = class({
 
 	OnCreated = function(self)
 		self:StartIntervalThink(self:GetAbility():GetSpecialValueFor("delay"))
-		self.particleRadius = 200
+		self.particleRadius = 250
 	end,
 
 	OnIntervalThink = function(self)
