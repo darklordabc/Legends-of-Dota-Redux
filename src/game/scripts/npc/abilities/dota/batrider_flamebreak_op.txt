@@ -11,7 +11,7 @@
         "AbilityTextureName"                                                   "custom/batrider_flamebreak_op"
         "AbilityCastRange"                                                     "3000"
         "AbilityCastPoint"                                                     "0.2 0.2 0.2 0.2"
-        "AbilityCooldown"                                                      "15.0"
+        "AbilityCooldown"                                                      "15 14 13 12"
         "AbilityManaCost"                                                      "100"
         "AbilityModifierSupportValue"                                          "1.0"
         "AbilityValues"
@@ -22,18 +22,18 @@
 			"damage_duration"		"3 6 9 12"
 			"explosion_radius"		"700"
 			"collision_radius"		"100 100 100 100"
-			"stun_duration"			"1.5 2.0 2.5 3.0"
+			"stun_duration"			"1.0 1.25 1.5 1.75"
 			"speed"					"3000"
 			"knockback_distance"	
 			{
 				"value"				"300"
 				"special_bonus_unique_batrider_3"	"+75"
 			}
-			"knockback_height"		"300"
-			"knockback_duration"	"1.5 2.0 2.5 3.0"
+			"knockback_height"		"100"
+			"knockback_duration"	"0.35"
 			"napalm_stacks"
 			{
-				"value"				"0"
+				"value"				"5"
 				"special_bonus_unique_batrider_2"	"+5"
 			}
 						
