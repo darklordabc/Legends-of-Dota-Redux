@@ -16,7 +16,7 @@ function BuildPocketFactory( event )
 	local factory_duration =  ability:GetLevelSpecialValueFor( "factory_duration" , ability:GetLevel() - 1  )
 	local ability_level = ability:GetLevel()
 	local building_name = "android_pocket_factory_building"..ability_level
-	local sizeBuild = 144
+	local sizeBuild = 20
 
 	local dummy = CreateUnitByName("npc_dummy_blank", point, false, caster, nil, caster:GetTeam())
 	dummy:SetHullRadius(sizeBuild) --160
@@ -27,7 +27,7 @@ function BuildPocketFactory( event )
 	caster.pocket_factory:SetHullRadius(sizeBuild)
 	Timers:CreateTimer(0.01,
 	function()
-		ResolveNPCPositions(point,sizeBuild*2)
+		ResolveNPCPositions(point,sizeBuild*1.5)
 		FindClearSpaceForUnit(caster.pocket_factory, point, true)
 	end)
 	caster.pocket_factory:SetControllableByPlayer(caster:GetPlayerID(), true)
@@ -61,8 +61,8 @@ function StartGoblinSpawn( event )
 	local goblin_ability_bash = "android_pocket_factory_spawn_goblin"..ability_level
 	--
 	local locHero = caster:GetOrigin()
-	local sizeBuild = 144
-	local offsetExtra = 16
+	local sizeBuild = 20
+	local offsetExtra = 8
 	local offX = sizeBuild/math.sqrt(2)
 	local pointToCreate = Vector(locHero.x + (offX+offsetExtra),locHero.y - (offX+offsetExtra), locHero.z)
 	
