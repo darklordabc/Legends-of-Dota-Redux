@@ -14,7 +14,7 @@ function LightningShieldOnSpellStart(event)
 
 	target:EmitSound("Hero_Zuus.StaticField")
 
-	local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_zuus/zuus_thundergods_wrath_start_bolt_parent.vpcf_c", PATTACH_ABSORIGIN_FOLLOW, target)
+	local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_zuus/zuus_thundergods_wrath_start_bolt_parent.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
 	ParticleManager:SetParticleControl(particle, 1, target:GetAbsOrigin())
 	Timers:CreateTimer(0.1, function()
 		ability:ApplyDataDrivenModifier(caster, target, 'modifier_lord_of_lightning_lightning_shield', {})
@@ -36,7 +36,7 @@ function ModifierLightningShieldOnIntervalThink(event)
 	for i, nUnit in pairs(nearby_units) do
 		if target ~= nUnit then  --The carrier of Lightning Shield cannot damage itself.
 			ApplyDamage({victim = nUnit, attacker = caster, damage = damage, damage_type = DAMAGE_TYPE_MAGICAL, ability = ability})
-			ParticleManager:CreateParticle("particles/units/heroes/hero_zuus/zuus_static_field.vpcf_c", PATTACH_ABSORIGIN, nUnit)
+			ParticleManager:CreateParticle("particles/units/heroes/hero_zuus/zuus_static_field.vpcf", PATTACH_ABSORIGIN, nUnit)
 		end
 	end
 end
