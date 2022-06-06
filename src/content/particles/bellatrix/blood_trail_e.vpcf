@@ -1,81 +1,34 @@
-<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf36:version{d15c9157-10e0-47bc-9333-1ac81da07b8d} -->
 {
 	_class = "CParticleSystemDefinition"
 	m_bShouldHitboxesFallbackToRenderBounds = false
 	m_nMaxParticles = 200
-	m_BoundingBoxMin =
-	[
-		-10.000000,
-		-10.000000,
-		512.000000,
-	]
-	m_BoundingBoxMax =
-	[
-		10.000000,
-		10.000000,
-		512.000000,
-	]
-	m_flCullRadius = 90.000000
-	m_flMaxDrawDistance = 2000.000000
-	m_flNoDrawTimeToGoToSleep = 2.000000
-	m_Renderers =
+	m_BoundingBoxMin = [ -10.0, -10.0, 512.0 ]
+	m_BoundingBoxMax = [ 10.0, 10.0, 512.0 ]
+	m_flCullRadius = 90.0
+	m_flMaxDrawDistance = 2000.0
+	m_flNoDrawTimeToGoToSleep = 2.0
+	m_nBehaviorVersion = 12
+	m_nFirstMultipleOverride_BackwardCompat = 6
+	m_controlPointConfigurations = 
 	[
 		{
-			_class = "C_OP_RenderSprites"
-			VisibilityInputs =
+			m_name = "preview"
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_ContinuousEmitter"
+			m_flEmitRate = 
 			{
-				m_flInputMin = 1.000000
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 440.0
 			}
-			m_nSequenceCombineMode = "SEQUENCE_COMBINE_MODE_USE_SEQUENCE_0"
-			m_hTexture = resource:"materials/particle/bubble01.vtex"
-			m_flAnimationRate = 1.250000
-			m_flAnimationRate2 = 0.100000
 		},
 	]
-	m_Operators =
+	m_Initializers = 
 	[
-		{
-			_class = "C_OP_BasicMovement"
-			m_Gravity =
-			[
-				0.000000,
-				0.000000,
-				100.000000,
-			]
-			m_fDrag = 0.100000
-		},
-		{
-			_class = "C_OP_FadeOut"
-			m_flFadeOutTimeMin = 0.500000
-			m_flFadeOutTimeMax = 0.750000
-		},
-		{
-			_class = "C_OP_ColorInterpolate"
-			m_flFadeStartTime = 0.300000
-			m_ColorFade =
-			[
-				220,
-				241,
-				228,
-				255,
-			]
-		},
-		{
-			_class = "C_OP_Decay"
-		},
-		{
-			_class = "C_OP_FadeInSimple"
-		},
-		{
-			_class = "C_OP_InterpolateRadius"
-			m_flEndScale = 0.000000
-		},
-	]
-	m_Initializers =
-	[
-		{
-			_class = "C_INIT_RandomYawFlip"
-		},
 		{
 			_class = "C_INIT_RandomRotation"
 		},
@@ -86,92 +39,95 @@
 		},
 		{
 			_class = "C_INIT_RandomLifeTime"
-			m_fLifetimeMin = 0.125000
-			m_fLifetimeMax = 0.700000
+			m_fLifetimeMin = 0.125
+			m_fLifetimeMax = 0.7
 		},
 		{
 			_class = "C_INIT_RandomColor"
-			m_TintMin =
-			[
-				21,
-				27,
-				15,
-				255,
-			]
-			m_ColorMin =
-			[
-				145,
-				179,
-				160,
-				255,
-			]
-			m_ColorMax =
-			[
-				80,
-				145,
-				115,
-				255,
-			]
+			m_TintMin = [ 21, 27, 15, 255 ]
+			m_ColorMin = [ 145, 179, 160, 255 ]
+			m_ColorMax = [ 80, 145, 115, 255 ]
 		},
 		{
 			_class = "C_INIT_RandomRadius"
-			m_flRadiusMin = 8.000000
-			m_flRadiusMax = 20.000000
+			m_flRadiusMin = 8.0
+			m_flRadiusMax = 20.0
 		},
 		{
 			_class = "C_INIT_CreateFromPlaneCache"
-			m_vecOffsetMax =
-			[
-				64.000000,
-				64.000000,
-				0.000000,
-			]
-			m_vecOffsetMin =
-			[
-				-64.000000,
-				-64.000000,
-				0.000000,
-			]
+			m_vecOffsetMax = [ 64.0, 64.0, 0.0 ]
+			m_vecOffsetMin = [ -64.0, -64.0, 0.0 ]
+		},
+		{
+			_class = "C_INIT_RandomYawFlip"
 		},
 		{
 			_class = "C_INIT_InitialVelocityNoise"
-			m_vecOutputMin =
-			[
-				-24.000000,
-				-24.000000,
-				64.000000,
-			]
-			m_vecOutputMax =
-			[
-				24.000000,
-				24.000000,
-				128.000000,
-			]
+			m_vecOutputMin = [ -24.0, -24.0, 64.0 ]
+			m_vecOutputMax = [ 24.0, 24.0, 128.0 ]
 		},
 		{
 			_class = "C_INIT_RemapCPtoVector"
-			m_vOutputMax =
-			[
-				1.000000,
-				1.000000,
-				1.000000,
-			]
+			m_vOutputMax = [ 1.0, 1.0, 1.0 ]
 			m_nFieldOutput = 6
-			m_vInputMax =
-			[
-				255.000000,
-				255.000000,
-				255.000000,
-			]
+			m_vInputMax = [ 255.0, 255.0, 255.0 ]
 			m_nCPInput = 15
-			m_nOpScaleCP = 16
+			m_flOpStrength = 
+			{
+				m_nType = "PF_TYPE_CONTROL_POINT_COMPONENT"
+				m_nControlPoint = 16
+				m_nVectorComponent = 0
+				m_nMapType = "PF_MAP_TYPE_REMAP"
+				m_flInput0 = 0.0
+				m_flInput1 = 1.0
+				m_flOutput0 = 0.0
+				m_flOutput1 = 1.0
+			}
 		},
 	]
-	m_Emitters =
+	m_Operators = 
 	[
 		{
-			_class = "C_OP_ContinuousEmitter"
-			m_flEmitRate = 440.000000
+			_class = "C_OP_BasicMovement"
+			m_Gravity = [ 0.0, 0.0, 100.0 ]
+			m_fDrag = 0.1
+		},
+		{
+			_class = "C_OP_FadeOut"
+			m_flFadeOutTimeMin = 0.5
+			m_flFadeOutTimeMax = 0.75
+		},
+		{
+			_class = "C_OP_ColorInterpolate"
+			m_flFadeStartTime = 0.3
+			m_ColorFade = [ 220, 241, 228, 255 ]
+		},
+		{
+			_class = "C_OP_Decay"
+		},
+		{
+			_class = "C_OP_FadeInSimple"
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flEndScale = 0.0
+		},
+	]
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderSprites"
+			VisibilityInputs = 
+			{
+				m_flInputMin = 1.0
+			}
+			m_flAnimationRate = 1.25
+			m_vecTexturesInput = 
+			[
+				{
+					m_hTexture = resource:"materials/particle/bubble01.vtex"
+				},
+			]
 		},
 	]
 }
