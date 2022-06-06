@@ -1,92 +1,41 @@
-<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf36:version{d15c9157-10e0-47bc-9333-1ac81da07b8d} -->
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
 {
 	_class = "CParticleSystemDefinition"
 	m_bShouldHitboxesFallbackToRenderBounds = false
 	m_nMaxParticles = 128
-	m_flConstantRadius = 128.0
+	m_flConstantRadius = 128.000000
 	m_bShouldSort = false
-	m_nBehaviorVersion = 12
-	m_nFirstMultipleOverride_BackwardCompat = 8
-	m_controlPointConfigurations = 
+	m_flMaxRecreationTime = -1.000000
+	m_Renderers =
 	[
 		{
-			m_name = "preview"
+			_class = "C_OP_RenderSprites"
+			m_nSequenceCombineMode = "SEQUENCE_COMBINE_MODE_USE_SEQUENCE_0"
+			m_bAdditive = true
+			m_hTexture = resource:"materials/particle/smoke/static/static_smoke.vtex"
+			m_bFitCycleToLifetime = true
+			m_flAnimationRate = 0.500000
 		},
 	]
-	m_Emitters = 
-	[
-		{
-			_class = "C_OP_InstantaneousEmitter"
-			m_nParticlesToEmit = 
-			{
-				m_nType = "PF_TYPE_LITERAL"
-				m_flLiteralValue = 20.0
-			}
-		},
-	]
-	m_Initializers = 
-	[
-		{
-			_class = "C_INIT_CreateWithinSphere"
-			m_fSpeedMax = 60.0
-			m_fSpeedMin = 20.0
-			m_vecDistanceBias = [ 1.0, 1.0, 0.0 ]
-			m_fRadiusMax = 50.0
-		},
-		{
-			_class = "C_INIT_RandomLifeTime"
-			m_fLifetimeMax = 2.0
-			m_fLifetimeMin = 1.7
-		},
-		{
-			_class = "C_INIT_RandomRotation"
-		},
-		{
-			_class = "C_INIT_RandomAlpha"
-			m_nAlphaMax = 200
-			m_nAlphaMin = 100
-		},
-		{
-			_class = "C_INIT_RandomRadius"
-			m_flRadiusMax = 80.0
-			m_flRadiusMin = 50.0
-		},
-		{
-			_class = "C_INIT_RandomColor"
-			m_ColorMax = [ 203, 95, 243, 255 ]
-			m_ColorMin = [ 217, 149, 246, 255 ]
-		},
-		{
-			_class = "C_INIT_RandomSequence"
-			m_nSequenceMax = 4
-		},
-		{
-			_class = "C_INIT_RandomRotationSpeed"
-			m_flDegreesMax = 50.0
-		},
-		{
-			_class = "C_INIT_RandomYawFlip"
-		},
-		{
-			_class = "C_INIT_PositionOffset"
-			m_OffsetMax = [ 0.0, 0.0, 100.0 ]
-			m_OffsetMin = [ 0.0, 0.0, 50.0 ]
-		},
-	]
-	m_Operators = 
+	m_Operators =
 	[
 		{
 			_class = "C_OP_BasicMovement"
-			m_fDrag = 0.1
-			m_Gravity = [ 0.0, 0.0, 150.0 ]
-			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_OFF"
+			m_fDrag = 0.100000
+			m_Gravity =
+			[
+				0.000000,
+				0.000000,
+				150.000000,
+			]
+			m_nOpEndCapState = 0
 		},
 		{
 			_class = "C_OP_FadeIn"
 			m_bDisableOperator = true
 			m_bProportional = false
-			m_flFadeInTimeMax = 0.2
-			m_flFadeInTimeMin = 0.1
+			m_flFadeInTimeMax = 0.200000
+			m_flFadeInTimeMin = 0.100000
 		},
 		{
 			_class = "C_OP_Decay"
@@ -95,43 +44,127 @@
 			_class = "C_OP_FadeOut"
 			m_bEaseInAndOut = false
 			m_bProportional = false
-			m_flFadeOutTimeMax = 1.0
-			m_flFadeOutTimeMin = 0.7
+			m_flFadeOutTimeMax = 1.000000
+			m_flFadeOutTimeMin = 0.700000
 		},
 		{
 			_class = "C_OP_ColorInterpolate"
-			m_ColorFade = [ 25, 23, 90, 255 ]
+			m_ColorFade =
+			[
+				25,
+				23,
+				90,
+				255,
+			]
 		},
 		{
 			_class = "C_OP_InterpolateRadius"
-			m_flStartScale = 0.5
-			m_flEndScale = 2.0
+			m_flStartScale = 0.500000
+			m_flEndScale = 2.000000
 		},
 		{
 			_class = "C_OP_SpinUpdate"
 		},
 		{
 			_class = "C_OP_VectorNoise"
-			m_fl4NoiseScale = 0.2
+			m_fl4NoiseScale = 0.200000
 			m_nFieldOutput = 0
-			m_vecOutputMin = [ -2.0, -2.0, -2.0 ]
-			m_vecOutputMax = [ 2.0, 2.0, 2.0 ]
+			m_vecOutputMin =
+			[
+				-2.000000,
+				-2.000000,
+				-2.000000,
+			]
+			m_vecOutputMax =
+			[
+				2.000000,
+				2.000000,
+				2.000000,
+			]
 			m_bAdditive = true
 		},
 	]
-	m_Renderers = 
+	m_Initializers =
 	[
 		{
-			_class = "C_OP_RenderSprites"
-			m_flAnimationRate = 0.5
-			m_nAnimationType = "ANIMATION_TYPE_FIT_LIFETIME"
-			m_vecTexturesInput = 
+			_class = "C_INIT_CreateWithinSphere"
+			m_fSpeedMax = 60.000000
+			m_fSpeedMin = 20.000000
+			m_vecDistanceBias =
 			[
-				{
-					m_hTexture = resource:"materials/particle/smoke/static/static_smoke.vtex"
-				},
+				1.000000,
+				1.000000,
+				0.000000,
 			]
-			m_nOutputBlendMode = "PARTICLE_OUTPUT_BLEND_MODE_ADD"
+			m_fRadiusMax = 50.000000
+		},
+		{
+			_class = "C_INIT_RandomLifeTime"
+			m_fLifetimeMax = 2.000000
+			m_fLifetimeMin = 1.700000
+		},
+		{
+			_class = "C_INIT_RandomRotation"
+		},
+		{
+			_class = "C_INIT_RandomYawFlip"
+		},
+		{
+			_class = "C_INIT_RandomAlpha"
+			m_nAlphaMax = 200
+			m_nAlphaMin = 100
+		},
+		{
+			_class = "C_INIT_RandomRadius"
+			m_flRadiusMax = 80.000000
+			m_flRadiusMin = 50.000000
+		},
+		{
+			_class = "C_INIT_RandomColor"
+			m_ColorMax =
+			[
+				203,
+				95,
+				243,
+				255,
+			]
+			m_ColorMin =
+			[
+				217,
+				149,
+				246,
+				255,
+			]
+		},
+		{
+			_class = "C_INIT_RandomSequence"
+			m_nSequenceMax = 4
+		},
+		{
+			_class = "C_INIT_RandomRotationSpeed"
+			m_flDegreesMax = 50.000000
+		},
+		{
+			_class = "C_INIT_PositionOffset"
+			m_OffsetMax =
+			[
+				0.000000,
+				0.000000,
+				100.000000,
+			]
+			m_OffsetMin =
+			[
+				0.000000,
+				0.000000,
+				50.000000,
+			]
+		},
+	]
+	m_Emitters =
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 20
 		},
 	]
 }

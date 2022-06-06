@@ -1,95 +1,96 @@
-<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf36:version{d15c9157-10e0-47bc-9333-1ac81da07b8d} -->
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
 {
 	_class = "CParticleSystemDefinition"
 	m_bShouldHitboxesFallbackToRenderBounds = false
 	m_nMaxParticles = 64
-	m_ConstantColor = [ 255, 0, 0, 200 ]
-	m_nBehaviorVersion = 12
-	m_nFirstMultipleOverride_BackwardCompat = 3
-	m_controlPointConfigurations = 
+	m_ConstantColor =
+	[
+		255,
+		0,
+		0,
+		200,
+	]
+	m_Renderers =
 	[
 		{
-			m_name = "preview"
+			_class = "C_OP_RenderSprites"
+			m_nSequenceCombineMode = "SEQUENCE_COMBINE_MODE_USE_SEQUENCE_0"
+			m_bAdditive = true
+			m_flOverbrightFactor = 5.000000
+			m_hTexture = resource:"materials/particle/particle_glow_05.vtex"
+			m_bAnimateInFPS = true
+			m_flAnimationRate = 20.000000
 		},
 	]
-	m_Emitters = 
-	[
-		{
-			_class = "C_OP_ContinuousEmitter"
-			m_flEmitRate = 
-			{
-				m_nType = "PF_TYPE_LITERAL"
-				m_flLiteralValue = 30.0
-			}
-		},
-	]
-	m_Initializers = 
-	[
-		{
-			_class = "C_INIT_RandomRadius"
-			m_flRadiusMax = 80.0
-			m_flRadiusMin = 72.0
-		},
-		{
-			_class = "C_INIT_RandomRotation"
-		},
-		{
-			_class = "C_INIT_CreateOnModel"
-			m_HitboxSetName = "hands"
-			m_vecHitBoxScale = 
-			{
-				m_nType = "PVEC_TYPE_LITERAL"
-				m_vLiteralValue = [ 0.0, 0.0, 0.0 ]
-			}
-		},
-		{
-			_class = "C_INIT_InitialVelocityNoise"
-			m_vecOutputMax = [ 22.0, 22.0, 52.0 ]
-			m_vecOutputMin = [ -22.0, -22.0, 28.0 ]
-		},
-	]
-	m_Operators = 
+	m_Operators =
 	[
 		{
 			_class = "C_OP_Decay"
 		},
 		{
 			_class = "C_OP_FadeOutSimple"
-			m_flFadeOutTime = 1.0
+			m_flFadeOutTime = 1.000000
 		},
 		{
 			_class = "C_OP_BasicMovement"
-			m_Gravity = [ 0.0, 0.0, 35.0 ]
+			m_Gravity =
+			[
+				0.000000,
+				0.000000,
+				35.000000,
+			]
 		},
 		{
 			_class = "C_OP_InterpolateRadius"
-			m_flBias = 0.75
-			m_flEndScale = 0.15
+			m_flBias = 0.750000
+			m_flEndScale = 0.150000
 		},
 		{
 			_class = "C_OP_LockToBone"
 			m_HitboxSetName = "hands"
-			m_flLifeTimeFadeEnd = 2.5
+			m_flLifeTimeFadeEnd = 2.500000
 		},
 		{
 			_class = "C_OP_DistanceCull"
-			m_flDistance = 256.0
+			m_flDistance = 256.000000
 		},
 	]
-	m_Renderers = 
+	m_Initializers =
 	[
 		{
-			_class = "C_OP_RenderSprites"
-			m_flOverbrightFactor = 5.0
-			m_bAnimateInFPS = true
-			m_flAnimationRate = 20.0
-			m_vecTexturesInput = 
+			_class = "C_INIT_RandomRadius"
+			m_flRadiusMax = 80.000000
+			m_flRadiusMin = 72.000000
+		},
+		{
+			_class = "C_INIT_RandomRotation"
+		},
+		{
+			_class = "C_INIT_InitialVelocityNoise"
+			m_vecOutputMax =
 			[
-				{
-					m_hTexture = resource:"materials/particle/particle_glow_05.vtex"
-				},
+				22.000000,
+				22.000000,
+				52.000000,
 			]
-			m_nOutputBlendMode = "PARTICLE_OUTPUT_BLEND_MODE_ADD"
+			m_vecOutputMin =
+			[
+				-22.000000,
+				-22.000000,
+				28.000000,
+			]
+		},
+		{
+			_class = "C_INIT_CreateOnModel"
+			m_flHitBoxScale = 0.500000
+			m_HitboxSetName = "hands"
+		},
+	]
+	m_Emitters =
+	[
+		{
+			_class = "C_OP_ContinuousEmitter"
+			m_flEmitRate = 30.000000
 		},
 	]
 }

@@ -1,32 +1,161 @@
-<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf36:version{d15c9157-10e0-47bc-9333-1ac81da07b8d} -->
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
 {
 	_class = "CParticleSystemDefinition"
 	m_bShouldHitboxesFallbackToRenderBounds = false
 	m_nMaxParticles = 128
-	m_BoundingBoxMax = [ 10.0, 10.0, 500.0 ]
-	m_flCullRadius = 90.0
-	m_flMaxDrawDistance = 2000.0
-	m_flNoDrawTimeToGoToSleep = 2.0
-	m_nBehaviorVersion = 12
-	m_nFirstMultipleOverride_BackwardCompat = 8
-	m_controlPointConfigurations = 
+	m_BoundingBoxMax =
 	[
-		{
-			m_name = "preview"
-		},
+		10.000000,
+		10.000000,
+		500.000000,
 	]
-	m_Emitters = 
+	m_flCullRadius = 90.000000
+	m_flMaxDrawDistance = 2000.000000
+	m_flNoDrawTimeToGoToSleep = 2.000000
+	m_Renderers =
 	[
 		{
-			_class = "C_OP_ContinuousEmitter"
-			m_flEmitRate = 
+			_class = "C_OP_RenderSprites"
+			VisibilityInputs =
 			{
-				m_nType = "PF_TYPE_LITERAL"
-				m_flLiteralValue = 32.0
+				m_flRadiusScaleMax = 0.750000
+				m_flRadiusScaleMin = 0.750000
+				m_nCPin = 0
+				m_flInputMin = 1.000000
+				m_flAlphaScaleMin = 0.700000
+				m_flAlphaScaleMax = 0.700000
 			}
+			m_nSequenceCombineMode = "SEQUENCE_COMBINE_MODE_ALPHA_FROM0_RGB_FROM_1"
+			m_flZoomAmount1 = 4.000000
+			m_flStartFadeSize = 1.000000
+			m_flEndFadeSize = 1.400000
+			m_hTexture = resource:"materials/particle/smoke3/smoke3b.vtex"
+			m_flAnimationRate = 1.250000
+			m_flAnimationRate2 = 0.100000
+		},
+		{
+			_class = "C_OP_RenderSprites"
+			VisibilityInputs =
+			{
+				m_flInputMin = 1.000000
+			}
+			m_nSequenceCombineMode = "SEQUENCE_COMBINE_MODE_ALPHA_FROM0_RGB_FROM_1"
+			m_flZoomAmount1 = 4.000000
+			m_flStartFadeSize = 1.000000
+			m_flEndFadeSize = 1.400000
+			m_hTexture = resource:"materials/particle/smoke3/smoke3b.vtex"
+			m_nOrientationType = 2
+			m_flAnimationRate2 = 0.100000
+			m_flAnimationRate = 1.250000
 		},
 	]
-	m_Initializers = 
+	m_Operators =
+	[
+		{
+			_class = "C_OP_BasicMovement"
+			m_fDrag = 0.050000
+			m_Gravity =
+			[
+				0.000000,
+				0.000000,
+				5.000000,
+			]
+		},
+		{
+			_class = "C_OP_Decay"
+			m_nOpEndCapState = 0
+		},
+		{
+			_class = "C_OP_FadeIn"
+			m_flFadeInTimeMax = 0.350000
+			m_flFadeInTimeMin = 0.350000
+			m_bDisableOperator = true
+		},
+		{
+			_class = "C_OP_FadeOut"
+			m_flFadeOutTimeMax = 0.650000
+			m_flFadeOutTimeMin = 0.500000
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_nOpEndCapState = 0
+			m_flBias = 0.650000
+			m_flStartScale = 0.000000
+		},
+		{
+			_class = "C_OP_ColorInterpolate"
+			m_ColorFade =
+			[
+				170,
+				0,
+				0,
+				255,
+			]
+			m_flFadeStartTime = 0.300000
+		},
+		{
+			_class = "C_OP_AlphaDecay"
+			m_nOpEndCapState = 1
+		},
+		{
+			_class = "C_OP_RampScalarLinearSimple"
+			m_nOpEndCapState = 1
+			m_nField = 16
+			m_Rate = -1.500000
+			m_flEndTime = 99999.000000
+		},
+		{
+			_class = "C_OP_PositionLock"
+			m_flStartTime_max = 0.000000
+			m_flStartTime_min = 0.000000
+			m_flEndTime_min = 1.500000
+			m_flEndTime_max = 1.500000
+		},
+		{
+			_class = "C_OP_RampScalarSpline"
+			m_RateMax = 1.000000
+			m_RateMin = -1.000000
+			m_nField = 4
+		},
+		{
+			_class = "C_OP_RampScalarLinearSimple"
+			m_flEndTime = 999999.000000
+			m_Rate = 200.000000
+			m_nOpEndCapState = 1
+		},
+		{
+			_class = "C_OP_OscillateVector"
+			m_bOffset = true
+			m_flEndTime_max = 99999.000000
+			m_flEndTime_min = 99999.000000
+			m_FrequencyMax =
+			[
+				2.000000,
+				2.000000,
+				2.000000,
+			]
+			m_FrequencyMin =
+			[
+				0.400000,
+				0.400000,
+				0.400000,
+			]
+			m_RateMax =
+			[
+				294.000000,
+				294.000000,
+				24.000000,
+			]
+			m_RateMin =
+			[
+				-294.000000,
+				-294.000000,
+				-24.000000,
+			]
+			m_nOpEndCapState = 1
+		},
+	]
+	m_Initializers =
 	[
 		{
 			_class = "C_INIT_RandomSecondSequence"
@@ -38,6 +167,9 @@
 			m_nSequenceMax = 8
 		},
 		{
+			_class = "C_INIT_RandomYawFlip"
+		},
+		{
 			_class = "C_INIT_RandomRotation"
 		},
 		{
@@ -47,214 +179,110 @@
 		},
 		{
 			_class = "C_INIT_RandomLifeTime"
-			m_fLifetimeMax = 4.0
-			m_fLifetimeMin = 3.0
+			m_fLifetimeMax = 4.000000
+			m_fLifetimeMin = 3.000000
 		},
 		{
 			_class = "C_INIT_RandomColor"
-			m_ColorMax = [ 85, 0, 0, 255 ]
-			m_ColorMin = [ 255, 0, 0, 255 ]
-			m_TintMin = [ 170, 0, 0, 255 ]
-			m_TintMax = [ 170, 0, 0, 255 ]
-		},
-		{
-			_class = "C_INIT_RandomRadius"
-			m_flRadiusMin = 0.5
-		},
-		{
-			_class = "C_INIT_CreateFromPlaneCache"
-			m_vecOffsetMin = [ -32.0, -32.0, 16.0 ]
-			m_vecOffsetMax = [ 32.0, 32.0, 32.0 ]
-			m_bUseNormal = true
-		},
-		{
-			_class = "C_INIT_RandomYawFlip"
+			m_ColorMax =
+			[
+				85,
+				0,
+				0,
+				255,
+			]
+			m_ColorMin =
+			[
+				255,
+				0,
+				0,
+				255,
+			]
+			m_TintMin =
+			[
+				170,
+				0,
+				0,
+				255,
+			]
+			m_TintMax =
+			[
+				170,
+				0,
+				0,
+				255,
+			]
 		},
 		{
 			_class = "C_INIT_PositionOffset"
-			m_OffsetMin = [ -50.0, -50.0, 24.0 ]
-			m_OffsetMax = [ 50.0, 50.0, 64.0 ]
+			m_OffsetMin =
+			[
+				-50.000000,
+				-50.000000,
+				24.000000,
+			]
+			m_OffsetMax =
+			[
+				50.000000,
+				50.000000,
+				64.000000,
+			]
 		},
 		{
 			_class = "C_INIT_RemapCPtoScalar"
 			m_nCPInput = 1
-			m_flInputMax = 10000.0
-			m_flOutputMax = 2000.0
-			m_nSetMethod = "PARTICLE_SET_SCALE_INITIAL_VALUE"
+			m_flInputMax = 10000.000000
+			m_flOutputMax = 2000.000000
+			m_bScaleInitialRange = true
+		},
+		{
+			_class = "C_INIT_RandomRadius"
+			m_flRadiusMin = 0.500000
 		},
 		{
 			_class = "C_INIT_InheritVelocity"
-			m_flVelocityScale = 0.1
+			m_flVelocityScale = 0.100000
+		},
+		{
+			_class = "C_INIT_CreateFromPlaneCache"
+			m_vecOffsetMin =
+			[
+				-32.000000,
+				-32.000000,
+				16.000000,
+			]
+			m_vecOffsetMax =
+			[
+				32.000000,
+				32.000000,
+				32.000000,
+			]
+			m_bUseNormal = true
 		},
 		{
 			_class = "C_INIT_RemapCPtoVector"
-			m_vOutputMax = [ 1.0, 1.0, 1.0 ]
+			m_vOutputMax =
+			[
+				1.000000,
+				1.000000,
+				1.000000,
+			]
 			m_nFieldOutput = 6
-			m_vInputMax = [ 255.0, 255.0, 255.0 ]
+			m_vInputMax =
+			[
+				255.000000,
+				255.000000,
+				255.000000,
+			]
 			m_nCPInput = 15
-			m_flOpStrength = 
-			{
-				m_nType = "PF_TYPE_CONTROL_POINT_COMPONENT"
-				m_nControlPoint = 16
-				m_nVectorComponent = 0
-				m_nMapType = "PF_MAP_TYPE_REMAP"
-				m_flInput0 = 0.0
-				m_flInput1 = 1.0
-				m_flOutput0 = 0.0
-				m_flOutput1 = 1.0
-			}
+			m_nOpScaleCP = 16
 		},
 	]
-	m_Operators = 
+	m_Emitters =
 	[
 		{
-			_class = "C_OP_BasicMovement"
-			m_fDrag = 0.05
-			m_Gravity = [ 0.0, 0.0, 5.0 ]
-		},
-		{
-			_class = "C_OP_Decay"
-			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_OFF"
-		},
-		{
-			_class = "C_OP_FadeIn"
-			m_flFadeInTimeMax = 0.35
-			m_flFadeInTimeMin = 0.35
-			m_bDisableOperator = true
-		},
-		{
-			_class = "C_OP_FadeOut"
-			m_flFadeOutTimeMax = 0.65
-			m_flFadeOutTimeMin = 0.5
-		},
-		{
-			_class = "C_OP_InterpolateRadius"
-			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_OFF"
-			m_flBias = 0.65
-			m_flStartScale = 0.0
-		},
-		{
-			_class = "C_OP_ColorInterpolate"
-			m_ColorFade = [ 170, 0, 0, 255 ]
-			m_flFadeStartTime = 0.3
-		},
-		{
-			_class = "C_OP_AlphaDecay"
-			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
-		},
-		{
-			_class = "C_OP_RampScalarLinearSimple"
-			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
-			m_nField = 16
-			m_Rate = -1.5
-			m_flEndTime = 99999.0
-		},
-		{
-			_class = "C_OP_PositionLock"
-			m_flStartTime_max = 0.0
-			m_flStartTime_min = 0.0
-			m_flEndTime_min = 1.5
-			m_flEndTime_max = 1.5
-		},
-		{
-			_class = "C_OP_RampScalarSpline"
-			m_RateMax = 1.0
-			m_RateMin = -1.0
-			m_nField = 4
-		},
-		{
-			_class = "C_OP_RampScalarLinearSimple"
-			m_flEndTime = 999999.0
-			m_Rate = 200.0
-			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
-		},
-		{
-			_class = "C_OP_OscillateVector"
-			m_bOffset = true
-			m_flEndTime_max = 99999.0
-			m_flEndTime_min = 99999.0
-			m_FrequencyMax = [ 2.0, 2.0, 2.0 ]
-			m_FrequencyMin = [ 0.4, 0.4, 0.4 ]
-			m_RateMax = [ 294.0, 294.0, 24.0 ]
-			m_RateMin = [ -294.0, -294.0, -24.0 ]
-			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
-		},
-	]
-	m_Renderers = 
-	[
-		{
-			_class = "C_OP_RenderSprites"
-			VisibilityInputs = 
-			{
-				m_flRadiusScaleMax = 0.75
-				m_flRadiusScaleMin = 0.75
-				m_nCPin = 0
-				m_flInputMin = 1.0
-				m_flAlphaScaleMin = 0.7
-				m_flAlphaScaleMax = 0.7
-			}
-			m_flStartFadeSize = 1.0
-			m_flEndFadeSize = 1.4
-			m_flAnimationRate = 1.25
-			m_vecTexturesInput = 
-			[
-				{
-					m_hTexture = resource:"materials/particle/smoke3/smoke3b.vtex"
-					m_nTextureChannels = "SPRITECARD_TEXTURE_CHANNEL_MIX_A"
-				},
-				{
-					m_hTexture = resource:"materials/particle/smoke3/smoke3b.vtex"
-					m_TextureControls = 
-					{
-						m_flZoomScale = 
-						{
-							m_nType = "PF_TYPE_LITERAL"
-							m_flLiteralValue = 4.0
-						}
-						m_flFinalTextureUVRotation = 
-						{
-							m_nType = "PF_TYPE_LITERAL"
-							m_flLiteralValue = 0.125
-						}
-					}
-					m_nTextureChannels = "SPRITECARD_TEXTURE_CHANNEL_MIX_RGB"
-				},
-			]
-		},
-		{
-			_class = "C_OP_RenderSprites"
-			VisibilityInputs = 
-			{
-				m_flInputMin = 1.0
-			}
-			m_flStartFadeSize = 1.0
-			m_flEndFadeSize = 1.4
-			m_nOrientationType = "PARTICLE_ORIENTATION_WORLD_Z_ALIGNED"
-			m_flAnimationRate = 1.25
-			m_vecTexturesInput = 
-			[
-				{
-					m_hTexture = resource:"materials/particle/smoke3/smoke3b.vtex"
-					m_nTextureChannels = "SPRITECARD_TEXTURE_CHANNEL_MIX_A"
-				},
-				{
-					m_hTexture = resource:"materials/particle/smoke3/smoke3b.vtex"
-					m_TextureControls = 
-					{
-						m_flZoomScale = 
-						{
-							m_nType = "PF_TYPE_LITERAL"
-							m_flLiteralValue = 4.0
-						}
-						m_flFinalTextureUVRotation = 
-						{
-							m_nType = "PF_TYPE_LITERAL"
-							m_flLiteralValue = 0.125
-						}
-					}
-					m_nTextureChannels = "SPRITECARD_TEXTURE_CHANNEL_MIX_RGB"
-				},
-			]
+			_class = "C_OP_ContinuousEmitter"
+			m_flEmitRate = 32.000000
 		},
 	]
 }
