@@ -14,8 +14,8 @@
         "AbilityProcsMagicStick"                                               "1"
         "HasScepterUpgrade"                                                    "1"
         "AbilityCastPoint"                                                     "0.2"
-        "AOERadius"                                                            "750 900 1050"
-        "AbilityCooldown"                                                      "115 95 75"
+        "AOERadius"                                                            "900"
+        "AbilityCooldown"                                                      "115 100 85"
         "AbilityChannelTime"                                                   "4.0"
         "AbilityManaCost"                                                      "175 250 325"
         "AbilitySpecial"
@@ -23,7 +23,7 @@
             "01"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "cast_delay"                                           "0.2"
+                "cast_delay"                                           "0.25"
             }
             "02"
             {
@@ -33,7 +33,7 @@
             "03"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "damage"                                               "20 35 50"
+                "damage"                                               "22 33 44"
             }
             "04"
             {
@@ -48,7 +48,7 @@
             "06"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "radius"                                               "750 900 1050"
+                "radius"                                               "900"
             }
         }
         "precache"
@@ -137,7 +137,7 @@
                 "States"
                 {
                     "MODIFIER_STATE_STUNNED"                       "MODIFIER_STATE_VALUE_ENABLED"
-                   // "MODIFIER_STATE_UNSELECTABLE"                  "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_UNSELECTABLE"                  "MODIFIER_STATE_VALUE_ENABLED"
                     "MODIFIER_STATE_NO_UNIT_COLLISION"             "MODIFIER_STATE_VALUE_ENABLED"
                     "MODIFIER_STATE_NOT_ON_MINIMAP"                "MODIFIER_STATE_VALUE_ENABLED"
                     "MODIFIER_STATE_PROVIDES_VISION"               "MODIFIER_STATE_VALUE_ENABLED"

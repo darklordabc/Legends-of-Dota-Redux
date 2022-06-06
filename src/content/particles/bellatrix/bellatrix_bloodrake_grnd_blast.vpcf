@@ -1,49 +1,31 @@
-<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf36:version{d15c9157-10e0-47bc-9333-1ac81da07b8d} -->
 {
 	_class = "CParticleSystemDefinition"
 	m_bShouldHitboxesFallbackToRenderBounds = false
 	m_nMaxParticles = 32
-	m_flConstantRadius = 128.000000
+	m_flConstantRadius = 128.0
 	m_bShouldSort = false
-	m_flMaxRecreationTime = -1.000000
-	m_Renderers =
+	m_ConstantColor = [ 170, 0, 0, 255 ]
+	m_nBehaviorVersion = 12
+	m_nFirstMultipleOverride_BackwardCompat = 6
+	m_controlPointConfigurations = 
 	[
 		{
-			_class = "C_OP_RenderSprites"
-			m_nSequenceCombineMode = "SEQUENCE_COMBINE_MODE_USE_SEQUENCE_0"
-			m_hTexture = resource:"materials/particle/projected_ground_scorched_black.vtex"
-			m_nOrientationType = 2
-			m_flAnimationRate = 1.000000
-			m_bFitCycleToLifetime = true
+			m_name = "preview"
 		},
 	]
-	m_Operators =
+	m_Emitters = 
 	[
 		{
-			_class = "C_OP_BasicMovement"
-			m_nOpEndCapState = 0
-		},
-		{
-			_class = "C_OP_Decay"
-		},
-		{
-			_class = "C_OP_FadeOut"
-			m_flFadeOutTimeMin = 0.700000
-			m_flFadeOutTimeMax = 1.000000
-			m_bProportional = false
-			m_bEaseInAndOut = false
-		},
-		{
-			_class = "C_OP_FadeInSimple"
-			m_flFadeInTime = 0.100000
-		},
-		{
-			_class = "C_OP_LerpScalar"
-			m_nFieldOutput = 16
-			m_flEndTime = 0.150000
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 5.0
+			}
 		},
 	]
-	m_Initializers =
+	m_Initializers = 
 	[
 		{
 			_class = "C_INIT_CreateWithinSphere"
@@ -51,11 +33,8 @@
 		},
 		{
 			_class = "C_INIT_RandomLifeTime"
-			m_fLifetimeMin = 3.000000
-			m_fLifetimeMax = 4.000000
-		},
-		{
-			_class = "C_INIT_RandomYawFlip"
+			m_fLifetimeMin = 3.0
+			m_fLifetimeMax = 4.0
 		},
 		{
 			_class = "C_INIT_RandomAlpha"
@@ -64,69 +43,77 @@
 		},
 		{
 			_class = "C_INIT_RandomRadius"
-			m_flRadiusMin = 200.000000
-			m_flRadiusMax = 250.000000
+			m_flRadiusMin = 200.0
+			m_flRadiusMax = 250.0
 		},
 		{
 			_class = "C_INIT_RandomColor"
-			m_ColorMin =
-			[
-				255,
-				0,
-				0,
-				255,
-			]
-			m_ColorMax =
-			[
-				170,
-				0,
-				0,
-				255,
-			]
-		},
-		{
-			_class = "C_INIT_PositionOffset"
-			m_bLocalCoords = true
-			m_OffsetMax =
-			[
-				150.000000,
-				50.000000,
-				100.000000,
-			]
-			m_OffsetMin =
-			[
-				150.000000,
-				-50.000000,
-				100.000000,
-			]
-			m_nControlPointNumber = 3
-		},
-		{
-			_class = "C_INIT_PositionPlaceOnGround"
-			m_flMaxTraceLength = 512.000000
-			m_flOffset = 5.000000
-			m_bIncludeWater = true
-			m_CollisionGroupName = "DEBRIS"
+			m_ColorMin = [ 255, 0, 0, 255 ]
+			m_ColorMax = [ 170, 0, 0, 255 ]
 		},
 		{
 			_class = "C_INIT_RemapInitialCPDirectionToRotation"
 			m_nCP = 3
 			m_nFieldOutput = 4
-			m_flOffsetRot = 180.000000
+			m_flOffsetRot = 180.0
+		},
+		{
+			_class = "C_INIT_RandomYawFlip"
+		},
+		{
+			_class = "C_INIT_PositionOffset"
+			m_bLocalCoords = true
+			m_OffsetMax = [ 150.0, 50.0, 100.0 ]
+			m_OffsetMin = [ 150.0, -50.0, 100.0 ]
+			m_nControlPointNumber = 3
+		},
+		{
+			_class = "C_INIT_PositionPlaceOnGround"
+			m_flMaxTraceLength = 512.0
+			m_flOffset = 5.0
+			m_bIncludeWater = true
+			m_CollisionGroupName = "DEBRIS"
 		},
 	]
-	m_Emitters =
+	m_Operators = 
 	[
 		{
-			_class = "C_OP_InstantaneousEmitter"
-			m_nParticlesToEmit = 5
+			_class = "C_OP_BasicMovement"
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_OFF"
+		},
+		{
+			_class = "C_OP_Decay"
+		},
+		{
+			_class = "C_OP_FadeOut"
+			m_flFadeOutTimeMin = 0.7
+			m_flFadeOutTimeMax = 1.0
+			m_bProportional = false
+			m_bEaseInAndOut = false
+		},
+		{
+			_class = "C_OP_FadeInSimple"
+			m_flFadeInTime = 0.1
+		},
+		{
+			_class = "C_OP_LerpScalar"
+			m_nFieldOutput = 16
+			m_flEndTime = 0.15
 		},
 	]
-	m_ConstantColor =
+	m_Renderers = 
 	[
-		170,
-		0,
-		0,
-		255,
+		{
+			_class = "C_OP_RenderSprites"
+			m_nOrientationType = "PARTICLE_ORIENTATION_WORLD_Z_ALIGNED"
+			m_flAnimationRate = 1.0
+			m_nAnimationType = "ANIMATION_TYPE_FIT_LIFETIME"
+			m_vecTexturesInput = 
+			[
+				{
+					m_hTexture = resource:"materials/particle/projected_ground_scorched_black.vtex"
+				},
+			]
+		},
 	]
 }

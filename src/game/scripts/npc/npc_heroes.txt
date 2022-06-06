@@ -9214,29 +9214,29 @@
 				"item_gloves"				"ITEM_EXTENSION"
 				"item_power_treads"			"ITEM_DERIVED"
 
-				"item_helm_of_iron_will"	"ITEM_CORE"
-				"item_gloves"				"ITEM_CORE"
-				"item_blades_of_attack"		"ITEM_CORE"
-				"item_recipe_armlet"		"ITEM_CORE"
-				"item_armlet"				"ITEM_DERIVED | ITEM_SELLABLE"
-
 				"item_blink"		"ITEM_CORE"
 
 				"item_blight_stone"		"ITEM_EXTENSION"
 				"item_mithril_hammer"		"ITEM_EXTENSION"
 				"item_mithril_hammer"		"ITEM_EXTENSION"
 				"item_desolator"		"ITEM_DERIVED"
+				
+				"item_lifesteal"		"ITEM_LUXURY"
+				"item_reaver"			"ITEM_LUXURY"
+				"item_claymore"			"ITEM_LUXURY"
+				"item_recipe_satanic"	"ITEM_LUXURY"
+				"item_satanic"			"ITEM_DERIVED"
+				
+				"item_ogre_axe"					"ITEM_EXTENSION"
+				"item_mithril_hammer"			"ITEM_EXTENSION"
+				"item_recipe_black_king_bar"	"ITEM_EXTENSION"
+				"item_black_king_bar"			"ITEM_DERIVED"
 
 				"item_demon_edge"		"ITEM_LUXURY"
 				"item_javelin"			"ITEM_LUXURY"
 				"item_blitz_knuckles"		 "ITEM_LUXURY"
 				"item_recipe_monkey_king_bar"		 "ITEM_LUXURY"
-				"item_monkey_king_bar"	  "ITEM_DERIVED"
-
-				"item_ogre_axe"					"ITEM_EXTENSION"
-				"item_mithril_hammer"			"ITEM_EXTENSION"
-				"item_recipe_black_king_bar"	"ITEM_EXTENSION"
-				"item_black_king_bar"			"ITEM_DERIVED"
+				"item_monkey_king_bar"	  "ITEM_DERIVED"			
 			}
 			"Build"
 			{
@@ -10700,18 +10700,20 @@
 				"item_gloves"			"ITEM_CORE"
 				"item_power_treads"		"ITEM_DERIVED"
 
-				"item_helm_of_iron_will"	"ITEM_CORE"
-				"item_gloves"				"ITEM_CORE"
-				"item_blades_of_attack"		"ITEM_CORE"
-				"item_recipe_armlet"		"ITEM_CORE"
-				"item_armlet"				"ITEM_DERIVED | ITEM_SELLABLE"
-
 				"item_blink"			"ITEM_CORE"
 				
 				"item_ogre_axe"		"ITEM_LUXURY"
 				"item_mithril_hammer"		"ITEM_LUXURY"
 				"item_recipe_black_king_bar"		"ITEM_LUXURY"
 				"item_black_king_bar"		"ITEM_DERIVED"
+
+				"item_ogre_axe"		"ITEM_EXTENSION"
+				"item_belt_of_strength"		"ITEM_EXTENSION"
+				"item_recipe_sange"		"ITEM_EXTENSION"
+				"item_sange"		"ITEM_DERIVED"
+				"item_talisman_of_evasion"		"ITEM_EXTENSION"
+				"item_recipe_heavens_halberd"		"ITEM_EXTENSION"
+				"item_heavens_halberd"		"ITEM_DERIVED"
 
 				"item_lifesteal"		"ITEM_LUXURY"
 				"item_reaver"			"ITEM_LUXURY"

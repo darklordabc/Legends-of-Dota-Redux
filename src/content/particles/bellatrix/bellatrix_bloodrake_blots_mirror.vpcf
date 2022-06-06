@@ -1,55 +1,48 @@
-<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf36:version{d15c9157-10e0-47bc-9333-1ac81da07b8d} -->
 {
 	_class = "CParticleSystemDefinition"
 	m_bShouldHitboxesFallbackToRenderBounds = false
 	m_nMaxParticles = 10
-	m_flConstantRadius = 1.000000
-	m_flConstantLifespan = 2.000000
-	m_Renderers =
+	m_flConstantRadius = 1.0
+	m_flConstantLifespan = 2.0
+	m_nBehaviorVersion = 12
+	m_nFirstMultipleOverride_BackwardCompat = 3
+	m_controlPointConfigurations = 
 	[
 		{
-			_class = "C_OP_RenderSprites"
-			m_nSequenceCombineMode = "SEQUENCE_COMBINE_MODE_USE_SEQUENCE_0"
-			m_hTexture = resource:"materials/particle/ink_blot/ink_blot_flip.vtex"
-			m_flAnimationRate = 1.000000
-			m_nOrientationType = 2
+			m_name = "preview"
 		},
 	]
-	m_Operators =
+	m_Emitters = 
 	[
 		{
-			_class = "C_OP_Decay"
-		},
-		{
-			_class = "C_OP_BasicMovement"
-			m_fDrag = 0.100000
-		},
-		{
-			_class = "C_OP_InheritFromParentParticles"
-		},
-		{
-			_class = "C_OP_InheritFromParentParticles"
-			m_nFieldOutput = 9
-		},
-		{
-			_class = "C_OP_InheritFromParentParticles"
-			m_nFieldOutput = 1
-		},
-		{
-			_class = "C_OP_InheritFromParentParticles"
-			m_nFieldOutput = 7
-		},
-		{
-			_class = "C_OP_InheritFromParentParticles"
-			m_nFieldOutput = 6
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 10.0
+			}
 		},
 	]
-	m_Initializers =
+	m_Initializers = 
 	[
 		{
 			_class = "C_INIT_RandomLifeTime"
-			m_fLifetimeMin = 4.000000
-			m_fLifetimeMax = 4.000000
+			m_fLifetimeMin = 4.0
+			m_fLifetimeMax = 4.0
+		},
+		{
+			_class = "C_INIT_CreateSequentialPathV2"
+			m_flNumToAssign = 10.0
+			m_PathParams = 
+			{
+				m_nEndControlPointNumber = 6
+				m_nStartControlPointNumber = 3
+			}
+		},
+		{
+			_class = "C_INIT_Orient2DRelToCP"
+			m_nCP = 3
 		},
 		{
 			_class = "C_INIT_InheritFromParentParticles"
@@ -59,81 +52,83 @@
 			_class = "C_INIT_InheritFromParentParticles"
 		},
 		{
-			_class = "C_INIT_CreateSequentialPath"
-			m_flNumToAssign = 10.000000
-			m_PathParams =
-			{
-				m_nEndControlPointNumber = 6
-				m_nStartControlPointNumber = 3
-			}
-		},
-		{
 			_class = "C_INIT_PositionOffset"
-			m_OffsetMin =
-			[
-				0.000000,
-				-0.750000,
-				0.000000,
-			]
-			m_OffsetMax =
-			[
-				0.000000,
-				-0.750000,
-				0.000000,
-			]
+			m_OffsetMin = [ 0.0, -0.75, 0.0 ]
+			m_OffsetMax = [ 0.0, -0.75, 0.0 ]
 			m_nControlPointNumber = 3
 			m_bLocalCoords = true
 			m_bProportional = true
 		},
 		{
 			_class = "C_INIT_PositionOffset"
-			m_OffsetMax =
-			[
-				0.000000,
-				0.000000,
-				100.000000,
-			]
-			m_OffsetMin =
-			[
-				0.000000,
-				0.000000,
-				100.000000,
-			]
+			m_OffsetMax = [ 0.0, 0.0, 100.0 ]
+			m_OffsetMin = [ 0.0, 0.0, 100.0 ]
 		},
 		{
 			_class = "C_INIT_PositionPlaceOnGround"
-			m_bKill = true
 			m_CollisionGroupName = "DEBRIS"
 			m_bIncludeWater = true
-			m_flOffset = 20.000000
-			m_flMaxTraceLength = 512.000000
-		},
-		{
-			_class = "C_INIT_Orient2DRelToCP"
-			m_nCP = 3
+			m_flOffset = 20.0
+			m_flMaxTraceLength = 512.0
+			m_nTraceMissBehavior = "PARTICLE_TRACE_MISS_BEHAVIOR_KILL"
 		},
 	]
-	m_Emitters =
+	m_Operators = 
 	[
 		{
-			_class = "C_OP_InstantaneousEmitter"
-			m_nParticlesToEmit = 10
+			_class = "C_OP_Decay"
+		},
+		{
+			_class = "C_OP_BasicMovement"
+			m_fDrag = 0.1
+		},
+		{
+			_class = "C_OP_InheritFromParentParticlesV2"
+		},
+		{
+			_class = "C_OP_InheritFromParentParticlesV2"
+			m_nFieldOutput = 9
+		},
+		{
+			_class = "C_OP_InheritFromParentParticlesV2"
+			m_nFieldOutput = 1
+		},
+		{
+			_class = "C_OP_InheritFromParentParticlesV2"
+			m_nFieldOutput = 7
+		},
+		{
+			_class = "C_OP_InheritFromParentParticlesV2"
+			m_nFieldOutput = 6
 		},
 	]
-	m_ForceGenerators =
+	m_ForceGenerators = 
 	[
 		{
 			_class = "C_OP_AttractToControlPoint"
 			m_bScaleLocal = true
-			m_vecComponentScale =
-			[
-				0.000000,
-				1.000000,
-				0.000000,
-			]
+			m_vecComponentScale = [ 0.0, 1.0, 0.0 ]
 			m_nControlPointNumber = 6
-			m_fFalloffPower = 0.300000
-			m_fForceAmount = -100.000000
+			m_fFalloffPower = 0.3
+			m_fForceAmount = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = -100.0
+			}
+		},
+	]
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderSprites"
+			m_flAnimationRate = 1.0
+			m_nOrientationType = "PARTICLE_ORIENTATION_WORLD_Z_ALIGNED"
+			m_vecTexturesInput = 
+			[
+				{
+					m_hTexture = resource:"materials/particle/ink_blot/ink_blot_flip.vtex"
+				},
+			]
 		},
 	]
 }

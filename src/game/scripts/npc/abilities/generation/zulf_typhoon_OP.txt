@@ -137,7 +137,7 @@
                 "States"
                 {
                     "MODIFIER_STATE_STUNNED"                       "MODIFIER_STATE_VALUE_ENABLED"
-                   // "MODIFIER_STATE_UNSELECTABLE"                  "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_UNSELECTABLE"                  "MODIFIER_STATE_VALUE_ENABLED"
                     "MODIFIER_STATE_NO_UNIT_COLLISION"             "MODIFIER_STATE_VALUE_ENABLED"
                     "MODIFIER_STATE_NOT_ON_MINIMAP"                "MODIFIER_STATE_VALUE_ENABLED"
                     "MODIFIER_STATE_PROVIDES_VISION"               "MODIFIER_STATE_VALUE_ENABLED"

@@ -1,78 +1,50 @@
-<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf36:version{d15c9157-10e0-47bc-9333-1ac81da07b8d} -->
 {
 	_class = "CParticleSystemDefinition"
 	m_bShouldHitboxesFallbackToRenderBounds = false
 	m_nMaxParticles = 20
 	m_bShouldSort = false
-	m_Renderers =
+	m_nBehaviorVersion = 12
+	m_nFirstMultipleOverride_BackwardCompat = 6
+	m_controlPointConfigurations = 
 	[
 		{
-			_class = "C_OP_RenderSprites"
-			m_nSequenceCombineMode = "SEQUENCE_COMBINE_MODE_USE_SEQUENCE_0"
-			m_bRefract = true
-			m_flRefractAmount = 0.075000
-			m_nRefractBlurRadius = 3
-			m_nRefractBlurType = "BLURFILTER_BOX"
-			m_bGammaCorrectVertexColors = false
-			m_hTexture = resource:"materials/particle/urban_puddle01a_normal.vtex"
-			m_nOrientationType = 2
+			m_name = "preview"
 		},
 	]
-	m_Operators =
+	m_PreEmissionOperators = 
 	[
-		{
-			_class = "C_OP_BasicMovement"
-		},
-		{
-			_class = "C_OP_FadeInSimple"
-			m_flFadeInTime = 0.500000
-		},
-		{
-			_class = "C_OP_ColorInterpolate"
-			m_ColorFade =
-			[
-				170,
-				0,
-				0,
-				255,
-			]
-		},
-		{
-			_class = "C_OP_RampScalarLinearSimple"
-			m_nOpEndCapState = 1
-			m_nField = 16
-			m_Rate = -1.000000
-			m_flEndTime = 9999999.000000
-		},
-		{
-			_class = "C_OP_AlphaDecay"
-			m_nOpEndCapState = 1
-		},
 		{
 			_class = "C_OP_SetControlPointFromObjectScale"
 		},
 	]
-	m_Initializers =
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 20.0
+			}
+		},
+	]
+	m_Initializers = 
 	[
 		{
 			_class = "C_INIT_RandomLifeTime"
-			m_fLifetimeMax = 2.000000
-			m_fLifetimeMin = 2.000000
+			m_fLifetimeMax = 2.0
+			m_fLifetimeMin = 2.0
 		},
 		{
 			_class = "C_INIT_RandomRadius"
-			m_flRadiusMax = 300.000000
-			m_flRadiusMin = 150.000000
+			m_flRadiusMax = 300.0
+			m_flRadiusMin = 150.0
 		},
 		{
 			_class = "C_INIT_CreateWithinSphere"
-			m_vecDistanceBias =
-			[
-				1.000000,
-				1.000000,
-				0.000000,
-			]
-			m_fRadiusMax = 350.000000
+			m_vecDistanceBias = [ 1.0, 1.0, 0.0 ]
+			m_fRadiusMax = 350.0
 		},
 		{
 			_class = "C_INIT_RandomAlpha"
@@ -83,54 +55,68 @@
 			_class = "C_INIT_RandomRotation"
 		},
 		{
-			_class = "C_INIT_PositionOffset"
-			m_OffsetMax =
-			[
-				0.000000,
-				0.000000,
-				6.000000,
-			]
-			m_OffsetMin =
-			[
-				0.000000,
-				0.000000,
-				6.000000,
-			]
+			_class = "C_INIT_RandomColor"
+			m_ColorMin = [ 85, 0, 0, 255 ]
+			m_ColorMax = [ 170, 0, 0, 255 ]
 		},
 		{
-			_class = "C_INIT_RandomColor"
-			m_ColorMin =
-			[
-				85,
-				0,
-				0,
-				255,
-			]
-			m_ColorMax =
-			[
-				170,
-				0,
-				0,
-				255,
-			]
+			_class = "C_INIT_PositionOffset"
+			m_OffsetMax = [ 0.0, 0.0, 6.0 ]
+			m_OffsetMin = [ 0.0, 0.0, 6.0 ]
 		},
 		{
 			_class = "C_INIT_DistanceToCPInit"
-			m_flInputMin = 200.000000
-			m_flInputMax = 500.000000
+			m_flInputMin = 200.0
+			m_flInputMax = 500.0
 			m_nFieldOutput = 7
-			m_flOutputMin = 1.000000
-			m_flOutputMax = 0.000000
+			m_flOutputMin = 1.0
+			m_flOutputMax = 0.0
 		},
 		{
 			_class = "C_INIT_GlobalScale"
 		},
 	]
-	m_Emitters =
+	m_Operators = 
 	[
 		{
-			_class = "C_OP_InstantaneousEmitter"
-			m_nParticlesToEmit = 20
+			_class = "C_OP_BasicMovement"
+		},
+		{
+			_class = "C_OP_FadeInSimple"
+			m_flFadeInTime = 0.5
+		},
+		{
+			_class = "C_OP_ColorInterpolate"
+			m_ColorFade = [ 170, 0, 0, 255 ]
+		},
+		{
+			_class = "C_OP_RampScalarLinearSimple"
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
+			m_nField = 16
+			m_Rate = -1.0
+			m_flEndTime = 9999999.0
+		},
+		{
+			_class = "C_OP_AlphaDecay"
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
+		},
+	]
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderSprites"
+			m_bRefract = true
+			m_flRefractAmount = 0.075
+			m_nRefractBlurRadius = 3
+			m_nRefractBlurType = "BLURFILTER_BOX"
+			m_bGammaCorrectVertexColors = false
+			m_nOrientationType = "PARTICLE_ORIENTATION_WORLD_Z_ALIGNED"
+			m_vecTexturesInput = 
+			[
+				{
+					m_hTexture = resource:"materials/particle/urban_puddle01a_normal.vtex"
+				},
+			]
 		},
 	]
 }
