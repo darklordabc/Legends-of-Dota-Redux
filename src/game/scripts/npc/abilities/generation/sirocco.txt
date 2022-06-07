@@ -508,7 +508,7 @@
             "04"
             {
                 "var_type"                  "FIELD_FLOAT"
-                "damage_multiplier"     "15 20 25" 
+                "damage_multiplier"     "15 25 35" 
             }
             "05"
             {
