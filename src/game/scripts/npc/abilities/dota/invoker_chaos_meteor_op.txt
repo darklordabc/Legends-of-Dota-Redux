@@ -24,10 +24,10 @@
 				"value"					"55 45 35 25"
 				"special_bonus_shard"	"-15"
 			}
-			"land_time"					"0.5"
+			"land_time"					"1.3"
 			"area_of_effect"			"300"
 			"travel_distance"			"1000 2000 3000 4000"
-			"travel_speed"				"350"
+			"travel_speed"				"300"
 			"damage_interval"
 			{
 				"value"					"0.5"
