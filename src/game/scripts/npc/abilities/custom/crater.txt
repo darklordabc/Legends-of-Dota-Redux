@@ -8,9 +8,9 @@
         "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_POINT_TARGET"
         "AbilityUnitTargetTeam"                                                 "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
         "AbilityUnitTargetType"                                                 "DOTA_UNIT_TARGET_HERO"
-        "AbilityCastRange"                                                      "10000"
+        "AbilityCastRange"                                                      "25000"
         "AbilityCastPoint"                                                      "0.1"
-        "AbilityCooldown"                                                       "8 7 6 5"
+        "AbilityCooldown"                                                       "9"
         "AbilityManaCost"                                                       "100 110 120 130"
 
         "AbilitySpecial"
@@ -18,7 +18,7 @@
             "01"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "projectile_speed"                                              "2000"
+                "projectile_speed"                                              "10000"
             }
             "02"
             {
@@ -28,7 +28,7 @@
             "03"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "crater_damage"                                              "75 150 225 300"
+                "crater_damage"                                              "120 180 240 300"
             }
             "04"
             {
@@ -38,7 +38,7 @@
             "05"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "marker_speed"                                              "1250"
+                "marker_speed"                                              "2000"
             }
         }    
         "ReduxFlags"                                                           "dota_custom"
