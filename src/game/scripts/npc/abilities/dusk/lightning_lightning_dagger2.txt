@@ -20,11 +20,11 @@
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"30 35 40 45"
+		"AbilityManaCost"				"30"
 		
 		// Damage.
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"					"50"
+		"AbilityDamage"					"50 75 100 125"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -33,7 +33,7 @@
 			"01"
 			{
 				"var_type"								"FIELD_FLOAT"
-				"duration"								"0.4 0.6 0.8 1.00"
+				"duration"								"1.00"
 			}
 			"02"
 			{
@@ -43,7 +43,7 @@
 			"03"
 			{
 				"var_type"								"FIELD_INTEGER"
-				"mark_slow"								"-100"
+				"mark_slow"								"-300"
 			}
 			"04"
 			{
@@ -77,7 +77,7 @@
 				"Dodgeable"		"1"
 				"ProvidesVision"   "1"
 				"VisionRadius"	 "300"
-				"MoveSpeed"		"1500"
+				"MoveSpeed"		"1800"
 				"SourceAttachment"  "DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
 			}
 
@@ -144,7 +144,7 @@
 
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"		"-100"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"		"-300"
 				}
 			}
 

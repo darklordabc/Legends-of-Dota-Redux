@@ -26,12 +26,12 @@
 			"02"
 			{
 				"var_type"                  "FIELD_INTEGER"
-				"spot_radius"             "105"
+				"spot_radius"             "110"
 			}
 			"03"
 			{
 				"var_type"                  "FIELD_INTEGER"
-				"damage"             "65"
+				"damage"             "70"
 			}
 			"04"
 			{

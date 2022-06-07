@@ -43,7 +43,7 @@ function CasterStartLoc(keys)
 	local end_radius = ability:GetLevelSpecialValueFor("end_radius",ability:GetLevel() -1)
 	local CasterStartLocation = caster:GetAbsOrigin()
 	local CasterDirection = caster:GetForwardVector()
-	bloodrake_dummylocation = (CasterStartLocation + 150) + (CasterDirection * 50)
+	bloodrake_dummylocation = (CasterStartLocation) + (CasterDirection * 150)
 	ability:ApplyDataDrivenThinker(caster, bloodrake_dummylocation, "MarkLocation", {duration = duration})
 
 

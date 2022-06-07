@@ -10,8 +10,8 @@
         "AbilityCastAnimation"                                                 "ACT_DOTA_CAST_ABILITY_3"
         "AbilityCastRange"                                                     "500"
         "AbilityCastPoint"                                                     "0.3"
-        "AbilityCooldown"                                                      "25"
-        "AbilityManaCost"                                                      "150"
+        "AbilityCooldown"                                                      "30"
+        "AbilityManaCost"                                                      "200"
         "precache"
         {
             "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_techies.vsndevts"
@@ -28,12 +28,12 @@
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "goblin_hp"                                            "125 400 700"
+                "goblin_hp"                                            "125 325 525"
             }
             "03"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "goblin_damage"                                        "10 43 76"
+                "goblin_damage"                                        "15 40 65"
             }
         }
         "OnSpellStart"

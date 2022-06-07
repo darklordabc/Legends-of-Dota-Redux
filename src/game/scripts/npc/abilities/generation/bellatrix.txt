@@ -319,7 +319,7 @@
     
         //Time
         "AbilityCooldown"               "14 13 12 11"
-        "AbilityDuration"               "2.5"
+        "AbilityDuration"               "1.0"
         //Damage
         "AbilityDamage"                 "80 160 240 320"
         //Cost
@@ -361,17 +361,17 @@
             "05"
             {
                 "var_type"          "FIELD_FLOAT"
-                "pullback_time"     "0.5"
+                "pullback_time"     "0.8"
             }
             "06"
             {
                 "var_type"          "FIELD_FLOAT"
-                "returned_time"     "0.5"
+                "returned_time"     "0.8"
             }
             "07"
             {
                 "var_type"          "FIELD_FLOAT"
-                "buff_duration"     "2.5"
+                "buff_duration"     "1.0"
             }
             "08"
             {
@@ -391,7 +391,7 @@
             "11"
             {
                 "var_type"          "FIELD_INTEGER"
-                "animation"         "725"
+                "animation"         "750"
             }
         }
     
@@ -785,7 +785,7 @@
         "AbilityCastPoint"              "0.1"
         "AnimationPlaybackRate"         "1.4"
         "AbilityCastRange"              "600"
-        "AbilityDamage"                 "25 30 35 40"
+        "AbilityDamage"                 "25"
         "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_1"
     
             
