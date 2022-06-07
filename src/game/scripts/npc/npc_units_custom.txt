@@ -1529,13 +1529,13 @@
 		"Model"						"models/items/venomancer/centipede_ward/centipede_ward.vmdl"	// Model.
 		"SoundSet"					"Hero_VenomancerWard"					// Name of sound set.
 		"Level"						"4"
-		"ModelScale" 				"3"
+		"ModelScale" 				"2.5"
 		"SelectionGroup"			"Venomancer_Wards_Scourge"
 
 		// Abilities
 		//----------------------------------------------------------------
 		"Ability1"					"abaddon_borrowed_time"			// Ability 1.
-		"Ability2"					"imba_tower_spacecow"			// Ability 2.
+		"Ability2"					"omniknight_degen_aura_tower"			// Ability 2.
 		"Ability3"					""			// Ability 3.
 		"Ability4"					""			// Ability 4.
 		"Ability5"					""			// Ability 5.
@@ -1560,7 +1560,7 @@
 
 		// Bounds
 		//----------------------------------------------------------------
-		"BoundsHullName"			"DOTA_HULL_SIZE_TOWER"			// Hull type used for navigation/locomotion.
+		"BoundsHullName"			"DOTA_HULL_SIZE_HUGE"			// Hull type used for navigation/locomotion.
 		"HealthBarOffset"			"450"
 
 		// Movement
@@ -1606,13 +1606,13 @@
 		"Model"						"models/items/venomancer/centipede_ward/centipede_ward.vmdl"	// Model.
 		"SoundSet"					"Hero_VenomancerWard"					// Name of sound set.
 		"Level"						"4"
-		"ModelScale" 				"3"
+		"ModelScale" 				"2.5"
 		"SelectionGroup"			"Venomancer_Wards_Scourge"
 
 		// Abilities
 		//----------------------------------------------------------------
 		"Ability1"					"abaddon_borrowed_time"			// Ability 1.
-		"Ability2"					"imba_tower_spacecow"			// Ability 2.
+		"Ability2"					"omniknight_degen_aura_tower"			// Ability 2.
 		"Ability3"					"imba_tower_force"			// Ability 3.
 		"Ability4"					""			// Ability 4.
 		"Ability5"					""			// Ability 5.
@@ -1637,7 +1637,7 @@
 
 		// Bounds
 		//----------------------------------------------------------------
-		"BoundsHullName"			"DOTA_HULL_SIZE_TOWER"			// Hull type used for navigation/locomotion.
+		"BoundsHullName"			"DOTA_HULL_SIZE_HUGE"			// Hull type used for navigation/locomotion.
 		"HealthBarOffset"			"450"
 
 		// Movement
@@ -1683,16 +1683,16 @@
 		"Model"						"models/items/venomancer/centipede_ward/centipede_ward.vmdl"	// Model.
 		"SoundSet"					"Hero_VenomancerWard"					// Name of sound set.
 		"Level"						"4"
-		"ModelScale" 				"3"
+		"ModelScale" 				"2.5"
 		"SelectionGroup"			"Venomancer_Wards_Scourge"
 
 
 		// Abilities
 		//----------------------------------------------------------------
 		"Ability1"					"abaddon_borrowed_time"			// Ability 1.
-		"Ability2"					"imba_tower_spacecow"			// Ability 2.
+		"Ability2"					"omniknight_degen_aura_tower"			// Ability 2.
 		"Ability3"					"imba_tower_force"			// Ability 3.
-		"Ability4"					"imba_tower_machinegun"			// Ability 4.
+		"Ability4"					"imba_tower_death_pulse"			// Ability 4.
 		"Ability5"					""			// Ability 5.
 
 		// Armor
@@ -1715,7 +1715,7 @@
 
 		// Bounds
 		//----------------------------------------------------------------
-		"BoundsHullName"			"DOTA_HULL_SIZE_TOWER"			// Hull type used for navigation/locomotion.
+		"BoundsHullName"			"DOTA_HULL_SIZE_HUGE"			// Hull type used for navigation/locomotion.
 		"HealthBarOffset"			"450"
 
 		// Movement
@@ -3606,8 +3606,8 @@
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"		"20.0"
-		"AttackDamageMax"		"20.0"
+		"AttackDamageMin"		"15.0"
+		"AttackDamageMax"		"15.0"
 		"AttackDamageType"		"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"			"0.8"
 		"AttackAnimationPoint"		"0.33"
@@ -3634,7 +3634,7 @@
 
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"900"
+		"VisionDaytimeRange"		"1000"
 		"VisionNighttimeRange"		"800"
 
 		// Team
@@ -3686,10 +3686,10 @@
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"		"45.0"
-		"AttackDamageMax"		"45.0"
+		"AttackDamageMin"		"40.0"
+		"AttackDamageMax"		"40.0"
 		"AttackDamageType"		"DAMAGE_TYPE_ArmorPhysical"
-		"AttackRate"			"0.7"
+		"AttackRate"			"0.8"
 		"AttackAnimationPoint"		"0.33"
 		"AttackAcquisitionRange"	"5000"
 		"AttackRange"			"90"
@@ -3707,14 +3707,14 @@
 
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"			"400"
+		"StatusHealth"			"325"
 		"StatusHealthRegen"		"2"
 		"StatusMana"			"0"
 		"StatsManaRegen"		"0"
 
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"900"
+		"VisionDaytimeRange"		"1000"
 		"VisionNighttimeRange"		"800"
 
 		// Team
@@ -3767,10 +3767,10 @@
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"		"80.0"
-		"AttackDamageMax"		"80.0"
+		"AttackDamageMin"		"65.0"
+		"AttackDamageMax"		"65.0"
 		"AttackDamageType"		"DAMAGE_TYPE_ArmorPhysical"
-		"AttackRate"			"0.6"
+		"AttackRate"			"0.8"
 		"AttackAnimationPoint"		"0.33"
 		"AttackAcquisitionRange"	"5000"
 		"AttackRange"			"90"
@@ -3788,15 +3788,15 @@
 
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"			"700"
+		"StatusHealth"			"525"
 		"StatusHealthRegen"		"2"
 		"StatusMana"			"0"
 		"StatsManaRegen"		"0"
 
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"1800"
-		"VisionNighttimeRange"		"10"
+		"VisionDaytimeRange"		"1000"
+		"VisionNighttimeRange"		"800"
 
 		// Team
 		//----------------------------------------------------------------
