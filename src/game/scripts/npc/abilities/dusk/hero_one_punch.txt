@@ -55,7 +55,7 @@
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"landing_aoe"				"250"
+				"landing_aoe"				"300"
 			}
 			"04"
 			{
@@ -75,7 +75,7 @@
 			"07"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"scepter_landing_damage"	"150 175 200"
+				"scepter_landing_damage"	"240 300 360"
 			}
 		}
 		
