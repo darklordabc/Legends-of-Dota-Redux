@@ -9,7 +9,7 @@
 		"AbilityCastRange"				"0"
 		"AbilityCastPoint"				"0.0"
 		"AbilityCooldown"				"10.0"
-		"AbilityManaCost"				"100"
+		"AbilityManaCost"				"90"
 		"HasScepterUpgrade" "1"
 		"ReduxPerks"                                                           "mobility | blink"
         //
@@ -28,7 +28,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"blink_clamp"			"800 900 1000 1100"
+				"blink_clamp"			"900 1000 1100 1200"
 			}
 			"03"
 			{
@@ -38,13 +38,13 @@
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"help_duration"			"5.0"
+				"help_duration"			"6.0"
 			}
 
 			"05"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"cooldown_scepter"		"7.0"
+				"cooldown_scepter"		"6.0"
 			}
 		}
 	}
