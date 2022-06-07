@@ -13,7 +13,7 @@
         "RequiredLevel"                                                        "1"
         "LevelsBetweenUpgrades"                                                "2"
         "AbilityCastRange"                                                     "800"
-        "AbilityCastPoint"                                                     "0.5"
+        "AbilityCastPoint"                                                     "0.3"
         "AbilityCooldown"                                                      "18 17 16 15"
         "AbilityManaCost"                                                      "120 130 140 150"
         "AOERadius"                                                            "%radius"
