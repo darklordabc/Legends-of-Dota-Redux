@@ -33,7 +33,7 @@ function crater.GetAbilityTexture(self)
 end
 function crater.GetManaCost(self,i)
     local caster = self:GetCaster();
-    local cost = {70,80,90,100};
+    local cost = {100,110,120,130};
     if caster:GetModifierStackCount(self:GetIntrinsicModifierName(),caster)==0 then
         return cost[(i)+1]
     else
@@ -43,18 +43,18 @@ end
 function crater.GetCooldown(self,i)
     local caster = self:GetCaster();
     if IsClient() then
-        return 30
+        return 9
     end
     if caster:GetModifierStackCount(self:GetIntrinsicModifierName(),caster)==0 then
         return 0.5
     else
-        return 30
+        return 9
     end
 end
 function crater.GetCastPoint(self)
     local caster = self:GetCaster();
     if caster:GetModifierStackCount(self:GetIntrinsicModifierName(),caster)==0 then
-        return 0.3
+        return 0.1
     else
         return 0
     end
@@ -68,7 +68,7 @@ function crater.OnSpellStart(self)
     if caster:GetModifierStackCount(self:GetIntrinsicModifierName(),caster)==0 then
         local direction = (caster:GetCursorPosition()-origin):Normalized();
         direction.z = 0;
-        local projectileTable = {Ability = self,EffectName = "",vSpawnOrigin = origin,fDistance = 10000,fStartRadius = self:GetSpecialValueFor("crater_radius"),fEndRadius = self:GetSpecialValueFor("crater_radius"),Source = caster,vVelocity = direction*(self:GetSpecialValueFor("marker_speed"))};
+        local projectileTable = {Ability = self,EffectName = "",vSpawnOrigin = origin,fDistance = 25000,fStartRadius = self:GetSpecialValueFor("crater_radius"),fEndRadius = self:GetSpecialValueFor("crater_radius"),Source = caster,vVelocity = direction*(self:GetSpecialValueFor("marker_speed"))};
         self.projectileParticle = ParticleManager:CreateParticleForTeam("particles/crater_marker.vpcf",PATTACH_CUSTOMORIGIN,caster,caster:GetTeamNumber());
         ParticleManager:SetParticleControl(self.projectileParticle,0,caster:GetAbsOrigin()+direction);
         ParticleManager:SetParticleControl(self.projectileParticle,1,direction*self:GetSpecialValueFor("marker_speed"));

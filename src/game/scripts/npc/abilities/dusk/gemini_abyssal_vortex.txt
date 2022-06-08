@@ -9,12 +9,12 @@
 		"BaseClass"				"ability_datadriven"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"AoERadius"						"600"
+		"AoERadius"						"675"
 		"FightRecapLevel"				"1"
 		"AbilityTextureName"			"enigma_black_hole"
 
@@ -56,7 +56,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"chargetime"			"5.00 5.75 6.50"
+				"chargetime"			"5.00"
 			}
 			"02"
 			{
@@ -66,7 +66,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"pull_speed"			"240 300 360"
+				"pull_speed"			"250 325 400"
 			}
 			"04"
 			{

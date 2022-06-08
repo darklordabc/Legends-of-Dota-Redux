@@ -1313,15 +1313,15 @@ function Ingame:handleRespawnModifier()
                             local timeLeft = hero:GetRespawnTime()
 
                             --hotfix start: stop heros from having crazy respawn times
-                            if hero:GetLevel() > 25 then
+                            if hero:GetLevel() > 30 then
                                 timeLeft = 4 * hero:GetLevel()
                             end
-                            if timeLeft > 160 then
-                                timeLeft = 160
+                            if timeLeft > 100 then
+                                timeLeft = 100
                             end
                             --hotfix end
 
-                            timeLeft = timeLeft * respawnModifierPercentage / 100 + respawnModifierConstant
+                            timeLeft = timeLeft * (respawnModifierPercentage / 100) + respawnModifierConstant
 
                             if timeLeft <= 0 then
                                 timeLeft = 1
@@ -1524,7 +1524,7 @@ function Ingame:initGoldBalancer()
     -- Filter event
     GameRules:GetGameModeEntity():SetModifyGoldFilter(Dynamic_Wrap(Ingame, "FilterModifyGold" ), self)
     GameRules:GetGameModeEntity():SetModifyExperienceFilter(Dynamic_Wrap(Ingame, "FilterModifyExperience" ), self)
-    GameRules:GetGameModeEntity():SetBountyRunePickupFilter(Dynamic_Wrap( Ingame, "BountyRunePickupFilter" ), self )
+    GameRules:GetGameModeEntity():SetBountyRunePickupFilter(Dynamic_Wrap(Ingame, "BountyRunePickupFilter" ), self )
 
     local this = self
 
@@ -1607,7 +1607,7 @@ function Ingame:FilterModifyGold(filterTable)
     local goldModifier = OptionManager:GetOption('goldModifier')
 
     --print(filterTable.gold)
-    if goldModifier ~= 1 then
+    if goldModifier ~= 100 then
         -- If the gold is from killing heroes, creeps, or roshan, do nothing, its handled in pregame.lua
         if filterTable.reason_const ~= 12 and filterTable.reason_const ~= 13 and filterTable.reason_const ~= 14 then
             filterTable.gold = math.ceil(filterTable.gold * goldModifier / 100)
@@ -1652,7 +1652,7 @@ function Ingame:FilterModifyExperience(filterTable)
     --hotfix end
 
 
-    if expModifier ~= 1 then
+    if expModifier ~= 100 then
         filterTable.experience = math.ceil(filterTable.experience * expModifier / 100)
     end
 

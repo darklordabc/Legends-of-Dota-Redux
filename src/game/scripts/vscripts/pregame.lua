@@ -8486,7 +8486,7 @@ function Pregame:fixSpawningIssues()
                                 end
                             end
                         end
-                        if #filteredNearbyUnits > 1 then
+                        if filteredNearbyUnits > 1 then
                             for _, unit in pairs(filteredNearbyUnits) do
                                 if unit and unit.GetItemInSlot and unit:GetName() ~= "" and unit:GetLevel() == spawnedUnit:GetLevel() then
                                     for j=0,8 do
@@ -8543,7 +8543,7 @@ function Pregame:fixSpawningIssues()
         if IsValidEntity(spawnedUnit) then
             -- Filter gold modifier here instead of in filtergold in ingame because this makes the popup correct
             local goldModifier = OptionManager:GetOption('goldModifier')
-            if goldModifier ~= 1 and not spawnedUnit.bountyAdjusted then
+            if goldModifier ~= 100 and not spawnedUnit.bountyAdjusted then
                 -- Non hero units that respawn should only be adjusted once, this are things like bears or familiars
                 if not spawnedUnit:IsHero() then
                  spawnedUnit.bountyAdjusted = true
