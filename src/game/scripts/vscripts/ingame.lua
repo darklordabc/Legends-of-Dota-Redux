@@ -1313,7 +1313,7 @@ function Ingame:handleRespawnModifier()
                             local timeLeft = hero:GetRespawnTime()
 
                             --hotfix start: stop heros from having crazy respawn times
-                            if hero:GetLevel() > 25 then
+                            if hero:GetLevel() > 30 then
                                 timeLeft = 4 * hero:GetLevel()
                             end
                             if timeLeft > 160 then
@@ -1607,7 +1607,7 @@ function Ingame:FilterModifyGold(filterTable)
     local goldModifier = OptionManager:GetOption('goldModifier')
 
     --print(filterTable.gold)
-    if goldModifier ~= 1 then
+    if goldModifier ~= 100 then
         -- If the gold is from killing heroes, creeps, or roshan, do nothing, its handled in pregame.lua
         if filterTable.reason_const ~= 12 and filterTable.reason_const ~= 13 and filterTable.reason_const ~= 14 then
             filterTable.gold = math.ceil(filterTable.gold * goldModifier / 100)
@@ -1652,7 +1652,7 @@ function Ingame:FilterModifyExperience(filterTable)
     --hotfix end
 
 
-    if expModifier ~= 1 then
+    if expModifier ~= 100 then
         filterTable.experience = math.ceil(filterTable.experience * expModifier / 100)
     end
 
