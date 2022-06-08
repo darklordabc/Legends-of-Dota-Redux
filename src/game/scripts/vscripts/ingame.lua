@@ -1316,12 +1316,12 @@ function Ingame:handleRespawnModifier()
                             if hero:GetLevel() > 30 then
                                 timeLeft = 4 * hero:GetLevel()
                             end
-                            if timeLeft > 160 then
-                                timeLeft = 160
+                            if timeLeft > 100 then
+                                timeLeft = 100
                             end
                             --hotfix end
 
-                            timeLeft = timeLeft * respawnModifierPercentage / 100 + respawnModifierConstant
+                            timeLeft = timeLeft * (respawnModifierPercentage / 100) + respawnModifierConstant
 
                             if timeLeft <= 0 then
                                 timeLeft = 1
@@ -1524,7 +1524,7 @@ function Ingame:initGoldBalancer()
     -- Filter event
     GameRules:GetGameModeEntity():SetModifyGoldFilter(Dynamic_Wrap(Ingame, "FilterModifyGold" ), self)
     GameRules:GetGameModeEntity():SetModifyExperienceFilter(Dynamic_Wrap(Ingame, "FilterModifyExperience" ), self)
-    GameRules:GetGameModeEntity():SetBountyRunePickupFilter(Dynamic_Wrap( Ingame, "BountyRunePickupFilter" ), self )
+    GameRules:GetGameModeEntity():SetBountyRunePickupFilter(Dynamic_Wrap(Ingame, "BountyRunePickupFilter" ), self )
 
     local this = self
 
