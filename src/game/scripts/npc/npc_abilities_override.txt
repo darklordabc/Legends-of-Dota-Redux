@@ -8,7 +8,8 @@
 			"AbilityCastRange"				"800"
 			"AbilityCastPoint"				"0.2"
 			"AbilityCooldown"				"18 16 14 12"
-			"ReduxPerks"                                                           "ice"
+			"AbilitySharedCooldown"			""
+			"ReduxPerks"                    "ice"
 
 
 			// Damage.
@@ -55,6 +56,7 @@
 			// Time		
 			//-------------------------------------------------------------------------------------------------------------
 			"AbilityCooldown"				"18 17 16 15"
+			"AbilitySharedCooldown"			""
 
 			// Damage.
 			//-------------------------------------------------------------------------------------------------------------
@@ -106,6 +108,8 @@
 			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
 			"AbilityCastAnimation"			"ACT_INVALID"
 			"MaxLevel"						"4"
+			"AbilitySharedCooldown"			""
+			"ReduxPerks"                    "ice"
 
 			// Casting
 			//-------------------------------------------------------------------------------------------------------------
@@ -118,7 +122,7 @@
 
 			// Damage.
 			//-------------------------------------------------------------------------------------------------------------
-			"AbilityDamage"					"50 75 100 125"
+			"AbilityDamage"					"75 100 125 150"
 
 			// Cost
 			//-------------------------------------------------------------------------------------------------------------
@@ -141,12 +145,12 @@
 				"03"
 				{
 					"var_type"			"FIELD_INTEGER"
-					"taunt_radius"		"300 320 340 360"
+					"taunt_radius"		"300 325 350 375"
 				}
 				"04"
 				{
 					"var_type"			"FIELD_FLOAT"
-					"taunt_duration"	"1.75"
+					"taunt_duration"	"1.8"
 				}
 			}
 		}
@@ -157,18 +161,10 @@
 			"AbilityCastRange"				"1200 1400 1600 1800"
 			"AbilityCastPoint"				"1.0"
 			"AbilityCooldown"				"15 14 13 12"
-			"AbilitySpecial"
+			"AbilityValues"
 			{
-				"01"
-				{
-					"var_type"			"FIELD_INTEGER"
-					"damage"		"250 275 300 325"
-				}
-				"02"
-				{
-					"var_type"			"FIELD_FLOAT"
-					"stun_duration"		"2.0 2.25 2.5 2.75"
-				}
+				"damage"		"250 275 300 325"
+				"stun_duration"		"2 2.25 2.5 2.75"
 			}
 		}
 		"tornado_tempest"
@@ -1437,20 +1433,10 @@
 
 			// Special
 			//-------------------------------------------------------------------------------------------------------------
-			"AbilitySpecial"
+			"AbilityValues"
 			{
-				"01"
-				{
-					"var_type"			"FIELD_FLOAT"
-					"duration"		"6.0 6.5 7.0 7.5"
-					"RequiresScepter"				"1"
-				}
-				"02"
-				{
-					"var_type"			"FIELD_INTEGER"
-					"target_crit_multiplier"	"160 170 180 190"
-					"RequiresScepter"				"1"
-				}
+				"duration"		"6"
+				"target_crit_multiplier"	"160 180 200 220"
 			}
 		}
 		
@@ -4930,7 +4916,7 @@
 				"01"
 				{
 					"var_type"			"FIELD_INTEGER"
-					"radius"			"450"
+					"radius"			"350"
 				}
 				"02"
 				{
@@ -4940,7 +4926,7 @@
 				"03"
 				{
 					"var_type"			"FIELD_FLOAT"
-					"duration"			"10.0"
+					"duration"			"8.0"
 				}
 				"04"
 				{
@@ -5717,7 +5703,7 @@
 
         // Cost
         //-------------------------------------------------------------------------------------------------------------
-        "AbilityManaCost"               "150 140 130 120"
+        "AbilityManaCost"               "100"
         
         // Special
         //-------------------------------------------------------------------------------------------------------------
@@ -5740,7 +5726,7 @@
 
         // Cost
         //-------------------------------------------------------------------------------------------------------------
-        "AbilityManaCost"               "125"
+        "AbilityManaCost"               "100"
         
         // Special
         //-------------------------------------------------------------------------------------------------------------
@@ -6729,7 +6715,7 @@
 				"11"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"duration"				"4.0"
+					"duration"				"2.75"
 				}
 				"12"
 				{
@@ -10408,7 +10394,7 @@
         }
         "special_bonus_unique_clinkz_9"
         {
-            "TalentRequiredAbility"                                                   "clinkz_wind_walk"
+            "TalentRequiredAbility"                                                   "clinkz_death_pact"
         }
         "special_bonus_unique_clinkz_10"
         {
