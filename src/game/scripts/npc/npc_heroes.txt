@@ -372,10 +372,38 @@
 				"SlotText"		"#LoadoutSlot_Taunt_Antimage_Persona"
 				"DisplayInLoadout" "1"
 			}
-			// NOTE: PERSONAL SELECTOR MUST BE LAST!
 			"13"
 			{
-				"SlotIndex"		"13"
+				"SlotIndex" "13"
+				"SlotName" "ability_effects_1"
+				"SlotText" "antimage_mana_break"
+				"DisplayInLoadout" "0"
+			}
+			"14"
+			{
+				"SlotIndex" "14"
+				"SlotName" "ability_effects_2"
+				"SlotText" "antimage_blink"
+				"DisplayInLoadout" "0"
+			}
+			"15"
+			{
+				"SlotIndex" "15"
+				"SlotName" "ability_effects_3"
+				"SlotText" "antimage_counterspell"
+				"DisplayInLoadout" "0"
+			}
+			"16"
+			{
+				"SlotIndex" "16"
+				"SlotName" "ability_effects_4"
+				"SlotText" "antimage_mana_void"
+				"DisplayInLoadout" "0"
+			}
+			// NOTE: PERSONAL SELECTOR MUST BE LAST!
+			"17"
+			{
+				"SlotIndex"		"17"
 				"SlotName"		"persona_selector"
 				"SlotText"		"#LoadoutSlot_Persona_Selector"
 			}	
@@ -546,6 +574,34 @@
 				"SlotName"		"costume"
 				"SlotText"		"#LoadoutSlot_Costume"
 			}
+			"8"
+			{
+				"SlotIndex" "8"
+				"SlotName" "ability_effects_1"
+				"SlotText" "axe_berserkers_call"
+				"DisplayInLoadout" "0"
+			}
+			"9"
+			{
+				"SlotIndex" "9"
+				"SlotName" "ability_effects_2"
+				"SlotText" "axe_battle_hunger"
+				"DisplayInLoadout" "0"
+			}
+			"10"
+			{
+				"SlotIndex" "10"
+				"SlotName" "ability_effects_3"
+				"SlotText" "axe_counter_helix"
+				"DisplayInLoadout" "0"
+			}
+			"11"
+			{
+				"SlotIndex" "11"
+				"SlotName" "ability_effects_4"
+				"SlotText" "axe_culling_blade"
+				"DisplayInLoadout" "0"
+			}
 		}
 		"particle_folder"		"particles/units/heroes/hero_axe"
 		"GameSoundsFile"		"soundevents/game_sounds_heroes/game_sounds_axe.vsndevts"
@@ -592,7 +648,6 @@
 				"item_mystic_staff"		"ITEM_LUXURY"
 				"item_recipe_shivas_guard"		"ITEM_LUXURY"
 				"item_shivas_guard"		"ITEM_LUXURY | ITEM_DERIVED"
-				
 			}
 			"Build"
 			{
@@ -781,6 +836,20 @@
 				"SlotName"		"ambient_effects"
 				"SlotText"		"#LoadoutSlot_Ambient_Effects"
 				"DisplayInLoadout"		"0"
+			}
+			"6"
+			{
+				"SlotIndex" "6"
+				"SlotName" "ability_effects_3"
+				"SlotText" "bane_nightmare"
+				"DisplayInLoadout" "0"
+			}
+			"7"
+			{
+				"SlotIndex" "7"
+				"SlotName" "ability_effects_4"
+				"SlotText" "bane_fiends_grip"
+				"DisplayInLoadout" "0"
 			}
 		}
 		"Bot"
@@ -1032,6 +1101,20 @@
 				"SlotName"		"costume"
 				"SlotText"		"#LoadoutSlot_Costume"
 			}
+			"9"
+			{
+				"SlotIndex" "9"
+				"SlotName" "ability_effects_3"
+				"SlotText" "bloodseeker_thirst"
+				"DisplayInLoadout" "0"
+			}
+			"10"
+			{
+				"SlotIndex" "10"
+				"SlotName" "ability_effects_1"
+				"SlotText" "bloodseeker_bloodrage"
+				"DisplayInLoadout" "0"
+			}
 		}
 		"Bot"
 		{
@@ -1043,35 +1126,42 @@
 				"item_gloves"		"ITEM_EXTENSION"
 				"item_boots_of_elves"		"ITEM_EXTENSION"
 				"item_power_treads"		"ITEM_DERIVED"
+				
 				"item_blade_of_alacrity"		"ITEM_EXTENSION"
 				"item_boots_of_elves"		"ITEM_EXTENSION"
 				"item_recipe_yasha"		"ITEM_EXTENSION"
 				"item_yasha"		"ITEM_DERIVED"
+				
 				"item_mithril_hammer"	"ITEM_CORE"
 				"item_javelin"		"ITEM_CORE"
 				"item_maelstrom"			 "ITEM_DERIVED"
 				"item_hyperstone"		"ITEM_CORE"
 				"item_recipe_mjollnir"	 "ITEM_CORE"
 				"item_mjollnir"			"ITEM_DERIVED"
+				
 				"item_ogre_axe"		"ITEM_EXTENSION"
 				"item_belt_of_strength"		"ITEM_EXTENSION"
 				"item_recipe_sange"		"ITEM_EXTENSION"
 				"item_sange"		"ITEM_DERIVED"
 				"item_sange_and_yasha"		"ITEM_DERIVED"
+				
 				"item_mithril_hammer"		"ITEM_EXTENSION"
 				"item_belt_of_strength"		"ITEM_EXTENSION"
 				"item_recipe_basher"		"ITEM_EXTENSION"
 				"item_basher"		"ITEM_DERIVED"
+				
 				"item_ogre_axe"		"ITEM_LUXURY"
 				"item_mithril_hammer"		"ITEM_LUXURY"
 				"item_recipe_black_king_bar"		"ITEM_LUXURY"
 				"item_black_king_bar"		"ITEM_DERIVED"
+				
 				"item_ring_of_health"		"ITEM_LUXURY"
 				"item_vitality_booster"		"ITEM_LUXURY"
 				"item_recipe_vanguard"		"ITEM_LUXURY"
 				"item_vanguard"		"ITEM_DERIVED"
 				"item_recipe_abyssal_blade"	"ITEM_LUXURY"
 				"item_abyssal_blade"		"ITEM_DERIVED"
+				
 				"item_eagle"		"ITEM_LUXURY"
 				"item_quarterstaff"		"ITEM_LUXURY"
 				"item_talisman_of_evasion"		"ITEM_LUXURY"
@@ -1275,6 +1365,34 @@
 				"SlotName"		"ambient_effects"
 				"SlotText"		"#LoadoutSlot_Ambient_Effects"
 				"DisplayInLoadout"		"0"
+			}
+			"7"
+			{
+				"SlotIndex" "7"
+				"SlotName" "ability_effects_1"
+				"SlotText" "crystal_maiden_crystal_nova"
+				"DisplayInLoadout" "0"
+			}
+			"8"
+			{
+				"SlotIndex" "8"
+				"SlotName" "ability_effects_2"
+				"SlotText" "crystal_maiden_frostbite"
+				"DisplayInLoadout" "0"
+			}
+			"9"
+			{
+				"SlotIndex" "9"
+				"SlotName" "ability_effects_3"
+				"SlotText" "crystal_maiden_brilliance_aura"
+				"DisplayInLoadout" "0"
+			}
+			"10"
+			{
+				"SlotIndex" "10"
+				"SlotName" "ability_effects_4"
+				"SlotText" "crystal_maiden_freezing_field"
+				"DisplayInLoadout" "0"
 			}
 		}
 		"Bot"
@@ -1646,6 +1764,20 @@
 				"SlotName"		"costume"
 				"SlotText"		"#LoadoutSlot_Costume"
 			}
+			"9"
+			{
+				"SlotIndex" "9"
+				"SlotName" "ability_effects_2"
+				"SlotText" "drow_ranger_wave_of_silence"
+				"DisplayInLoadout" "0"
+			}
+			"10"
+			{
+				"SlotIndex" "10"
+				"SlotName" "ability_effects_4"
+				"SlotText" "drow_ranger_marksmanship"
+				"DisplayInLoadout" "0"
+			}
 		}
 	}
 	"npc_dota_hero_earthshaker"
@@ -1780,6 +1912,34 @@
 				"SlotName"		"taunt"
 				"SlotText"		"#LoadoutSlot_Taunt"
 			}
+			"6"
+			{
+				"SlotIndex" "6"
+				"SlotName" "ability_effects_1"
+				"SlotText" "earthshaker_fissure"
+				"DisplayInLoadout" "0"
+			}
+			"7"
+			{
+				"SlotIndex" "7"
+				"SlotName" "ability_effects_2"
+				"SlotText" "earthshaker_enchant_totem"
+				"DisplayInLoadout" "0"
+			}
+			"8"
+			{
+				"SlotIndex" "8"
+				"SlotName" "ability_effects_3"
+				"SlotText" "earthshaker_aftershock"
+				"DisplayInLoadout" "0"
+			}
+			"9"
+			{
+				"SlotIndex" "9"
+				"SlotName" "ability_effects_4"
+				"SlotText" "earthshaker_echo_slam"
+				"DisplayInLoadout" "0"
+			}
 		}
 		"Bot"
 		{
@@ -1826,8 +1986,6 @@
 				"item_mystic_staff"		"ITEM_LUXURY"
 				"item_recipe_wind_waker"	"ITEM_LUXURY"
 				"item_wind_waker"			"ITEM_DERIVED"
-				
-				
 			}
 			"Build"
 			{
@@ -2040,6 +2198,20 @@
 				"SlotIndex"		"8"
 				"SlotName"		"voice"
 				"SlotText"		"#LoadoutSlot_Voice"
+			}
+			"9"
+			{
+				"SlotIndex" "9"
+				"SlotName" "ability_effects_1"
+				"SlotText" "juggernaut_blade_fury"
+				"DisplayInLoadout" "0"
+			}
+			"10"
+			{ 
+				"SlotIndex" "11"
+				"SlotName" "ability_effects_4"
+				"SlotText" "juggernaut_omni_slash"
+				"DisplayInLoadout" "0"
 			}
 		}
 		"particle_folder"		"particles/units/heroes/hero_juggernaut"
@@ -2354,10 +2526,38 @@
 				"SlotName"		"taunt_persona_1"
 				"SlotText"		"#LoadoutSlot_Taunt"
 			}
-			// NOTE: PERSONAL SELECTOR MUST BE LAST!
 			"14"
 			{
-				"SlotIndex"		"14"
+				"SlotIndex" "14"
+				"SlotName" "ability_effects_1"
+				"SlotText" "mirana_starfall"
+				"DisplayInLoadout" "0"
+			}	
+			"15"
+			{
+				"SlotIndex" "15"
+				"SlotName" "ability_effects_2"
+				"SlotText" "mirana_arrow"
+				"DisplayInLoadout" "0"
+			}	
+			"16"
+			{
+				"SlotIndex" "16"
+				"SlotName" "ability_effects_3"
+				"SlotText" "mirana_leap"
+				"DisplayInLoadout" "0"
+			}	
+			"17"
+			{
+				"SlotIndex" "17"
+				"SlotName" "ability_effects_4"
+				"SlotText" "mirana_invis"
+				"DisplayInLoadout" "0"
+			}	
+			// NOTE: PERSONAL SELECTOR MUST BE LAST!
+			"18"
+			{
+				"SlotIndex"		"18"
 				"SlotName"		"persona_selector"
 				"SlotText"		"#LoadoutSlot_Persona_Selector"
 			}
@@ -2852,6 +3052,20 @@
 				"SlotText"		"#LoadoutSlot_Ambient_Effects"
 				"DisplayInLoadout"		"0"
 			}
+			"7"
+			{
+				"SlotIndex" "7"
+				"SlotName" "ability_effects_1"
+				"SlotText" "morphling_waveform"
+				"DisplayInLoadout" "0"
+			}	
+			"8"
+			{
+				"SlotIndex" "8"
+				"SlotName" "ability_effects_2"
+				"SlotText" "morphling_adaptive_strike_agi"
+				"DisplayInLoadout" "0"
+			}
 		}
 		"Bot"
 		{
@@ -3001,6 +3215,34 @@
 				"SlotText"		"#LoadoutSlot_Head"
 				"DisplayInLoadout" "0"
 			}
+			"7"
+			{
+				"SlotIndex" "7"
+				"SlotName" "ability_effects_1"
+				"SlotText" "phantom_lancer_spirit_lance"
+				"DisplayInLoadout" "0"
+			}
+			"8"
+			{
+				"SlotIndex" "8"
+				"SlotName" "ability_effects_2"
+				"SlotText" "phantom_lancer_doppelwalk"
+				"DisplayInLoadout" "0"
+			}
+			"9"
+			{
+				"SlotIndex" "9"
+				"SlotName" "ability_effects_3"
+				"SlotText" "phantom_lancer_phantom_edge"
+				"DisplayInLoadout" "0"
+			}		
+			"10"
+			{
+				"SlotIndex" "10"
+				"SlotName" "ability_effects_4"
+				"SlotText" "phantom_lancer_juxtapose"
+				"DisplayInLoadout" "0"
+			}		
 		}
 		"Bot"
 		{
@@ -3153,6 +3395,20 @@
 				"SlotName"		"ambient_effects"
 				"SlotText"		"#LoadoutSlot_Ambient_Effects"
 				"DisplayInLoadout"		"0"
+			}
+			"6"
+			{
+				"SlotIndex" "6"
+				"SlotName" "ability_effects_1"
+				"SlotText" "puck_illusory_orb"
+				"DisplayInLoadout" "0"
+			}	
+			"7"
+			{
+				"SlotIndex" "7"
+				"SlotName" "ability_effects_4"
+				"SlotText" "puck_dream_coil"
+				"DisplayInLoadout" "0"
 			}
 		}
 		"Bot"
@@ -3406,10 +3662,38 @@
 				"SlotName"		"costume"
 				"SlotText"		"#LoadoutSlot_Costume"
 			}
-			// NOTE: PERSONAL SELECTOR MUST BE LAST!
 			"16"
 			{
-				"SlotIndex"		"16"
+				"SlotIndex" "16"
+				"SlotName" "ability_effects_1"
+				"SlotText" "pudge_meat_hook"
+				"DisplayInLoadout" "0"
+			}	
+			"17"
+			{
+				"SlotIndex" "17"
+				"SlotName" "ability_effects_2"
+				"SlotText" "pudge_rot"
+				"DisplayInLoadout" "0"
+			}
+			"18"
+			{
+				"SlotIndex" "18"
+				"SlotName" "ability_effects_3"
+				"SlotText" "pudge_flesh_heap"
+				"DisplayInLoadout" "0"
+			}	
+			"19"
+			{
+				"SlotIndex" "19"
+				"SlotName" "ability_effects_4"
+				"SlotText" "pudge_dismember"
+				"DisplayInLoadout" "0"
+			}			
+			// NOTE: PERSONAL SELECTOR MUST BE LAST!
+			"20"
+			{
+				"SlotIndex"		"20"
 				"SlotName"		"persona_selector"
 				"SlotText"		"#LoadoutSlot_Persona_Selector"
 			}	
@@ -3652,6 +3936,20 @@
 				"SlotText"		"#LoadoutSlot_Ambient_Effects"
 				"DisplayInLoadout"		"0"
 			}
+			"7"
+			{
+				"SlotIndex" "7"
+				"SlotName" "ability_effects_1"
+				"SlotText" "razor_plasma_field"
+				"DisplayInLoadout" "0"
+			}		
+			"8"
+			{
+				"SlotIndex" "8"
+				"SlotName" "ability_effects_2"
+				"SlotText" "razor_static_link"
+				"DisplayInLoadout" "0"
+			}		
 		}
 		"Bot"
 		{
@@ -3899,6 +4197,20 @@
 				"SlotName"		"taunt"
 				"SlotText"		"#LoadoutSlot_Taunt"
 			}
+			"6"
+			{
+				"SlotIndex" "6"
+				"SlotName" "ability_effects_3"
+				"SlotText" "sandking_caustic_finale"
+				"DisplayInLoadout" "0"
+			}
+			"7"
+			{
+				"SlotIndex" "7"
+				"SlotName" "ability_effects_1"
+				"SlotText" "sandking_burrowstrike"
+				"DisplayInLoadout" "0"
+			}
 		}
 		"Bot"
 		{
@@ -3909,12 +4221,13 @@
 				"item_clarity"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
 				"item_clarity"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
 				"item_clarity"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
+				"item_branches"		"ITEM_CORE | ITEM_SELLABLE"
+				"item_branches"		"ITEM_CORE"
 
 				"item_boots"					"ITEM_CORE"
+				"item_blink"					"ITEM_CORE"
 				"item_energy_booster"			"ITEM_CORE"
 				"item_arcane_boots"				"ITEM_DERIVED"
-				
-				"item_blink"					"ITEM_CORE"
 
 				"item_sobi_mask"				"ITEM_EXTENSION"
 				"item_recipe_ring_of_basilius"  "ITEM_EXTENSION"
@@ -3922,21 +4235,14 @@
 				"item_crown"					"ITEM_EXTENSION"
 				"item_recipe_veil_of_discord"	"ITEM_EXTENSION"
 				"item_veil_of_discord"		"ITEM_DERIVED"
-				
 				"item_ogre_axe"		"ITEM_LUXURY"
 				"item_mithril_hammer"		"ITEM_LUXURY"
 				"item_recipe_black_king_bar"		"ITEM_LUXURY"
 				"item_black_king_bar"		"ITEM_DERIVED"
-				
 				"item_platemail"		"ITEM_LUXURY"
 				"item_mystic_staff"		"ITEM_LUXURY"
 				"item_recipe_shivas_guard"		"ITEM_LUXURY"
 				"item_shivas_guard"		"ITEM_DERIVED"
-				
-				"item_reaver"			"ITEM_LUXURY"
-				"item_vitality_booster"		"ITEM_LUXURY"
-				"item_recipe_heart"	 "ITEM_LUXURY"
-				"item_heart"			"ITEM_DERIVED"
 			}
 			"Build"
 			{
@@ -4106,6 +4412,20 @@
 				"SlotName"		"taunt"
 				"SlotText"		"#LoadoutSlot_Taunt"
 			}
+			"5"
+			{
+				"SlotIndex" "5"
+				"SlotName" "ability_effects_3"
+				"SlotText" "storm_spirit_overload"
+				"DisplayInLoadout" "0"
+			}
+			"6"
+			{
+				"SlotIndex" "6"
+				"SlotName" "ability_effects_4"
+				"SlotText" "storm_spirit_ball_lightning"
+				"DisplayInLoadout" "0"
+			}
 		}
 		"Bot"
 		{
@@ -4267,6 +4587,27 @@
 				{
 					"0" "npc_dota_companion"
 				}
+			}
+			"8"
+			{
+				"SlotIndex" "8"
+				"SlotName" "ability_effects_2"
+				"SlotText" "sven_great_cleave"
+				"DisplayInLoadout" "0"
+			}
+			"9"
+			{
+				"SlotIndex" "9"
+				"SlotName" "ability_effects_4"
+				"SlotText" "sven_gods_strength"
+				"DisplayInLoadout" "0"
+			}
+			"10"
+			{
+				"SlotIndex" "10"
+				"SlotName" "ability_effects_3"
+				"SlotText" "sven_warcry"
+				"DisplayInLoadout" "0"
 			}
 		}
 		"particle_folder"		"particles/units/heroes/hero_sven"
@@ -4509,6 +4850,34 @@
 				"SlotText"		"#LoadoutSlot_Ambient_Effects"
 				"DisplayInLoadout"		"0"
 			}
+			"8"
+			{
+				"SlotIndex" "8"
+				"SlotName" "ability_effects_1"
+				"SlotText" "tiny_avalanche"
+				"DisplayInLoadout" "0"
+			}
+			"9"
+			{
+				"SlotIndex" "9"
+				"SlotName" "ability_effects_2"
+				"SlotText" "tiny_toss"
+				"DisplayInLoadout" "0"
+			}
+			"10"
+			{
+				"SlotIndex" "10"
+				"SlotName" "ability_effects_3"
+				"SlotText" "tiny_tree_grab"
+				"DisplayInLoadout" "0"
+			}
+			"11"
+			{
+				"SlotIndex" "11"
+				"SlotName" "ability_effects_4"
+				"SlotText" "tiny_grow"
+				"DisplayInLoadout" "0"
+			}
 		}
 		"Bot"
 		{
@@ -4553,8 +4922,6 @@
 				"item_vitality_booster"	"ITEM_LUXURY"
 				"item_recipe_heart"	 "ITEM_LUXURY"
 				"item_heart"			"ITEM_DERIVED"
-				
-				
 			}
 			"Build"
 			{
@@ -4721,6 +5088,20 @@
 				"SlotName"		"ambient_effects"
 				"SlotText"		"#LoadoutSlot_Ambient_Effects"
 				"DisplayInLoadout"		"0"
+			}
+			"6"
+			{
+				"SlotIndex" "6"
+				"SlotName" "ability_effects_1"
+				"SlotText" "vengefulspirit_magic_missile"
+				"DisplayInLoadout" "0"
+			}
+			"7"
+			{
+				"SlotIndex" "7"
+				"SlotName" "ability_effects_2"
+				"SlotText" "vengefulspirit_wave_of_terror"
+				"DisplayInLoadout" "0"
 			}
 		}
 		"RenderablePortrait"
@@ -4940,6 +5321,27 @@
 				"SlotName"		"taunt"
 				"SlotText"		"#LoadoutSlot_Taunt"
 			}
+			"6"
+			{
+				"SlotIndex" "6"
+				"SlotName" "ability_effects_1"
+				"SlotText" "windrunner_shackleshot"
+				"DisplayInLoadout" "0"
+			}
+			"7"
+			{
+				"SlotIndex" "7"
+				"SlotName" "ability_effects_2"
+				"SlotText" "windrunner_powershot"
+				"DisplayInLoadout" "0"
+			}
+			"8"
+			{
+				"SlotIndex" "8"
+				"SlotName" "ability_effects_3"
+				"SlotText" "windrunner_windrun"
+				"DisplayInLoadout" "0"
+			}
 		}
 		"Bot"
 		{
@@ -4990,7 +5392,7 @@
 				"item_recipe_lesser_crit"		"ITEM_LUXURY"
 				"item_lesser_crit"		"ITEM_DERIVED"
 				"item_demon_edge"		"ITEM_LUXURY"
-				"item_recipe_greater_crit"		"ITEM_LUXURY"
+				"item_recipe_greater_crit"		"ITEM_LUXURY"   
 			}
 			"Build"
 			{
@@ -5176,6 +5578,27 @@
 				"TextureHeight"		"512"
 				"MaxPolygonsLOD0"		"3000"
 				"MaxPolygonsLOD1"		"1200"
+			}
+			"7"
+			{
+				"SlotIndex" "7"
+				"SlotName" "ability_effects_1"
+				"SlotText" "zuus_arc_lightning"
+				"DisplayInLoadout" "0"
+			}
+			"8"
+			{
+				"SlotIndex" "8"
+				"SlotName" "ability_effects_2"
+				"SlotText" "zuus_lightning_bolt"
+				"DisplayInLoadout" "0"
+			}
+			"9"
+			{
+				"SlotIndex" "9"
+				"SlotName" "ability_effects_3"
+				"SlotText" "zuus_static_field"
+				"DisplayInLoadout" "0"
 			}
 		}
 		"Bot"
@@ -5426,6 +5849,34 @@
 				"SlotName"		"taunt"
 				"SlotText"		"#LoadoutSlot_Taunt"
 			}
+			"9"
+			{
+				"SlotIndex" "9"
+				"SlotName" "ability_effects_1"
+				"SlotText" "kunkka_torrent"
+				"DisplayInLoadout" "0"
+			}
+			"10"
+			{
+				"SlotIndex" "10"
+				"SlotName" "ability_effects_4"
+				"SlotText" "kunkka_ghostship"
+				"DisplayInLoadout" "0"
+			}
+			"11"
+			{
+				"SlotIndex" "11"
+				"SlotName" "ability_effects_2"
+				"SlotText" "kunkka_tidebringer"
+				"DisplayInLoadout" "0"
+			}			
+			"12"
+			{
+				"SlotIndex" "12"
+				"SlotName" "ability_effects_3"
+				"SlotText" "kunkka_x_marks_the_spot"
+				"DisplayInLoadout" "0"
+			}
 		}
 		"particle_folder"		"particles/units/heroes/hero_kunkka"
 		"GameSoundsFile"		"soundevents/game_sounds_heroes/game_sounds_kunkka.vsndevts"
@@ -5482,8 +5933,6 @@
 				"item_hyperstone"		"ITEM_LUXURY"
 				"item_recipe_assault"	"ITEM_LUXURY"
 				"item_assault"			"ITEM_DERIVED"
-				
-				
 			}
 			"Build"
 			{
@@ -5653,6 +6102,20 @@
 				"SlotName"		"ambient_effects"
 				"SlotText"		"#LoadoutSlot_Ambient_Effects"
 				"DisplayInLoadout"		"0"
+			}
+			"6"
+			{
+				"SlotIndex" "6"
+				"SlotName" "ability_effects_2"
+				"SlotText" "lina_light_strike_array"
+				"DisplayInLoadout" "0"
+			}
+			"7"
+			{
+				"SlotIndex" "7"
+				"SlotName" "ability_effects_4"
+				"SlotText" "lina_laguna_blade"
+				"DisplayInLoadout" "0"
 			}
 		}
 		"Bot"
@@ -5874,6 +6337,27 @@
 				"SlotName"		"ambient_effects"
 				"SlotText"		"#LoadoutSlot_Ambient_Effects"
 				"DisplayInLoadout"		"0"
+			}
+			"7"
+			{
+				"SlotIndex" "7"
+				"SlotName" "ability_effects_1"
+				"SlotText" "lich_frost_nova"
+				"DisplayInLoadout" "0"
+			}
+			"8"
+			{
+				"SlotIndex" "8"
+				"SlotName" "ability_effects_3"
+				"SlotText" "lich_sinister_gaze"
+				"DisplayInLoadout" "0"
+			}
+			"9"
+			{
+				"SlotIndex" "9"
+				"SlotName" "ability_effects_4"
+				"SlotText" "lich_chain_frost"
+				"DisplayInLoadout" "0"
 			}
 		}
 		"VoiceFile"		"soundevents/voscripts/game_sounds_vo_lich.vsndevts"
@@ -6113,6 +6597,34 @@
 				"SlotIndex"		"5"
 				"SlotName"		"taunt"
 				"SlotText"		"#LoadoutSlot_Taunt"
+			}
+			"6"
+			{
+				"SlotIndex"		"6"
+				"SlotName"		"ability_effects_1"
+				"SlotText"		"lion_impale"
+				"DisplayInLoadout" "0"
+			}
+			"7"
+			{
+				"SlotIndex"		"7"
+				"SlotName"		"ability_effects_2"
+				"SlotText"		"lion_voodoo"
+				"DisplayInLoadout" "0"
+			}
+			"8"
+			{
+				"SlotIndex"		"8"
+				"SlotName"		"ability_effects_3"
+				"SlotText"		"lion_mana_drain"
+				"DisplayInLoadout" "0"
+			}
+			"9"
+			{
+				"SlotIndex"		"9"
+				"SlotName"		"ability_effects_4"
+				"SlotText"		"lion_finger_of_death"
+				"DisplayInLoadout" "0"
 			}
 		}
 		"Bot"
@@ -6361,6 +6873,27 @@
 				"SlotName"		"taunt"
 				"SlotText"		"#LoadoutSlot_Taunt"
 			}
+			"8"
+			{
+				"SlotIndex" "8"
+				"SlotName" "ability_effects_1"
+				"SlotText" "shadow_shaman_ether_shock"
+				"DisplayInLoadout" "0"
+			}
+			"9"
+			{
+				"SlotIndex" "9"
+				"SlotName" "ability_effects_2"
+				"SlotText" "shadow_shaman_voodoo"
+				"DisplayInLoadout" "0"
+			}		
+			"10"
+			{
+				"SlotIndex" "10"
+				"SlotName" "ability_effects_3"
+				"SlotText" "shadow_shaman_shackles"
+				"DisplayInLoadout" "0"
+			}
 		}
 		"Bot"
 		{
@@ -6567,6 +7100,27 @@
 				"SlotName"		"costume"
 				"SlotText"		"#LoadoutSlot_Costume"
 			}
+			"8"
+			{
+				"SlotIndex" "8"
+				"SlotName" "ability_effects_1"
+				"SlotText" "slardar_sprint"
+				"DisplayInLoadout" "0"
+			}
+			"9"
+			{
+				"SlotIndex" "9"
+				"SlotName" "ability_effects_2"
+				"SlotText" "slardar_slithereen_crush"
+				"DisplayInLoadout" "0"
+			}
+			"10"
+			{
+				"SlotIndex" "10"
+				"SlotName" "ability_effects_4"
+				"SlotText" "slardar_amplify_damage"
+				"DisplayInLoadout" "0"
+			}
 		}
 		"RenderablePortrait"
 		{
@@ -6736,6 +7290,20 @@
 				"SlotName"		"costume"
 				"SlotText"		"#LoadoutSlot_Costume"
 			}
+			"8"
+			{
+				"SlotIndex" "8"
+				"SlotName" "ability_effects_1"
+				"SlotText" "tidehunter_gush"
+				"DisplayInLoadout" "0"
+			}
+			"9"
+			{
+				"SlotIndex" "9"
+				"SlotName" "ability_effects_4"
+				"SlotText" "tidehunter_ravage"
+				"DisplayInLoadout" "0"
+			}
 		}
 		"Bot"
 		{
@@ -6767,6 +7335,7 @@
 				"item_cloak"				"ITEM_EXTENSION"
 				"item_ring_of_health"		"ITEM_EXTENSION"
 				"item_ring_of_regen"		"ITEM_EXTENSION"
+				"item_recipe_hood_of_defiance"		"ITEM_EXTENSION"
 				"item_hood_of_defiance"		"ITEM_DERIVED"
 				"item_ring_of_regen"		"ITEM_EXTENSION"
 				"item_recipe_headdress"		"ITEM_EXTENSION"
@@ -6972,6 +7541,27 @@
 				"SlotIndex"		"6"
 				"SlotName"		"taunt"
 				"SlotText"		"#LoadoutSlot_Taunt"
+			}
+			"7"
+			{
+				"SlotIndex" "7"
+				"SlotName" "ability_effects_1"
+				"SlotText" "witch_doctor_paralyzing_cask"
+				"DisplayInLoadout" "0"
+			}
+			"8"
+			{
+				"SlotIndex" "8"
+				"SlotName" "ability_effects_2"
+				"SlotText" "witch_doctor_voodoo_restoration"
+				"DisplayInLoadout" "0"
+			}
+			"9"
+			{
+				"SlotIndex" "9"
+				"SlotName" "ability_effects_3"
+				"SlotText" "witch_doctor_maledict"
+				"DisplayInLoadout" "0"
 			}
 		}
 		"particle_folder"		"particles/units/heroes/hero_witchdoctor"
@@ -7215,6 +7805,20 @@
 					"0" "npc_dota_companion"
 				}
 			}
+			"8"
+			{
+				"SlotIndex" "8"
+				"SlotName" "ability_effects_1"
+				"SlotText" "riki_smoke_screen"
+				"DisplayInLoadout" "0"
+			}		
+			"9"
+			{
+				"SlotIndex" "9"
+				"SlotName" "ability_effects_2"
+				"SlotText" "riki_blink_strike"
+				"DisplayInLoadout" "0"
+			}
 		}
 		"particle_folder"		"particles/units/heroes/hero_riki"
 		"GameSoundsFile"		"soundevents/game_sounds_heroes/game_sounds_riki.vsndevts"
@@ -7225,49 +7829,43 @@
 			{
 				"item_tango"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
 				"item_flask"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
-				
+				"item_branches"		"ITEM_CORE"
+				"item_branches"		"ITEM_CORE"
+				"item_magic_stick"		"ITEM_CORE"
 				"item_boots"			"ITEM_CORE"
 				"item_boots_of_elves"	"ITEM_CORE"
 				"item_gloves"			"ITEM_CORE"
 				"item_power_treads"		"ITEM_DERIVED"
-
+				"item_recipe_magic_wand"		"ITEM_CORE"
+				"item_magic_wand"		"ITEM_DERIVED | ITEM_SELLABLE"
 				"item_blade_of_alacrity"		"ITEM_EXTENSION"
 				"item_blade_of_alacrity"		"ITEM_EXTENSION"
 				"item_robe"		"ITEM_EXTENSION"
 				"item_recipe_diffusal_blade"		"ITEM_EXTENSION"
 				"item_diffusal_blade"		"ITEM_DERIVED"
-				
 				"item_blade_of_alacrity"		"ITEM_EXTENSION"
 				"item_boots_of_elves"		"ITEM_EXTENSION"
 				"item_recipe_yasha"		"ITEM_EXTENSION"
 				"item_yasha"		"ITEM_DERIVED"
+				"item_quarterstaff"		"ITEM_LUXURY"
+				"item_eagle"		"ITEM_LUXURY"
+				"item_talisman_of_evasion"		"ITEM_LUXURY"
+				"item_butterfly"		"ITEM_DERIVED"
 				"item_ogre_axe"		"ITEM_LUXURY"
 				"item_belt_of_strength"		"ITEM_LUXURY"
 				"item_recipe_sange"		"ITEM_LUXURY"
 				"item_sange"		"ITEM_DERIVED"
 				"item_sange_and_yasha"		"ITEM_DERIVED"
-				
 				"item_mithril_hammer"		"ITEM_LUXURY"
 				"item_belt_of_strength"		"ITEM_LUXURY"
 				"item_recipe_basher"		"ITEM_LUXURY"
 				"item_basher"		"ITEM_DERIVED"
-				
-				"item_ultimate_orb"			"ITEM_EXTENSION"
-				"item_ultimate_orb"			"ITEM_EXTENSION"
-				"item_point_booster"		"ITEM_EXTENSION"
-				"item_skadi"				"ITEM_LUXURY"
-				
 				"item_ring_of_health"		"ITEM_LUXURY"
 				"item_vitality_booster"		"ITEM_LUXURY"
 				"item_recipe_vanguard"	  "ITEM_LUXURY"
 				"item_vanguard"				"ITEM_DERIVED"
 				"item_recipe_abyssal_blade"	"ITEM_LUXURY"
 				"item_abyssal_blade"		"ITEM_DERIVED"
-				
-				"item_quarterstaff"		"ITEM_LUXURY"
-				"item_eagle"		"ITEM_LUXURY"
-				"item_talisman_of_evasion"		"ITEM_LUXURY"
-				"item_butterfly"		"ITEM_DERIVED"
 			}
 			"Build"
 			{
@@ -7455,6 +8053,13 @@
 				"SlotText"		"#LoadoutSlot_Ambient_Effects"
 				"DisplayInLoadout"		"0"
 			}
+			"7"
+			{
+				"SlotIndex"		"7"
+				"SlotName"		"ability_effects_4"
+				"SlotText"		"enigma_black_hole"
+				"DisplayInLoadout"		"0"
+			}
 		}
 		"Bot"
 		{
@@ -7627,6 +8232,20 @@
 				"SlotText"		"#LoadoutSlot_Misc"
 				//do not enable misc for workshop, only Immortal uses this slot
 			}
+			"9"
+			{
+				"SlotIndex" "9"
+				"SlotName" "ability_effects_1"
+				"SlotText" "tinker_laser"
+				"DisplayInLoadout" "0"
+			}
+			"10"
+			{
+				"SlotIndex" "10"
+				"SlotName" "ability_effects_5"
+				"SlotText" "tinker_keen_teleport"
+				"DisplayInLoadout" "0"
+			}
 		}
 		"Bot"
 		{
@@ -7778,6 +8397,27 @@
 				"SlotIndex"		"5"
 				"SlotName"		"taunt"
 				"SlotText"		"#LoadoutSlot_Taunt"
+			}
+			"6"
+			{
+				"SlotIndex" "6"
+				"SlotName" "ability_effects_1"
+				"SlotText" "sniper_shrapnel"
+				"DisplayInLoadout" "0"
+			}
+			"7"
+			{
+				"SlotIndex" "7"
+				"SlotName" "ability_effects_2"
+				"SlotText" "sniper_headshot"
+				"DisplayInLoadout" "0"
+			}		
+			"8"
+			{
+				"SlotIndex" "8"
+				"SlotName" "ability_effects_4"
+				"SlotText" "sniper_assassinate"
+				"DisplayInLoadout" "0"
 			}
 		}
 		"particle_folder"		"particles/units/heroes/hero_sniper"
@@ -8012,6 +8652,34 @@
 				"SlotText"		"#LoadoutSlot_Ambient_Effects"
 				"DisplayInLoadout"		"0"
 			}
+			"7"
+			{
+				"SlotIndex" "7"
+				"SlotName" "ability_effects_1"
+				"SlotText" "necrolyte_death_pulse"
+				"DisplayInLoadout" "0"
+			}	
+			"8"
+			{
+				"SlotIndex" "8"
+				"SlotName" "ability_effects_2"
+				"SlotText" "necrolyte_sadist"
+				"DisplayInLoadout" "0"
+			}
+			"9"
+			{
+				"SlotIndex" "9"
+				"SlotName" "ability_effects_3"
+				"SlotText" "necrolyte_heartstopper_aura"
+				"DisplayInLoadout" "0"
+			}		
+			"10"
+			{
+				"SlotIndex" "10"
+				"SlotName" "ability_effects_4"
+				"SlotText" "necrolyte_reapers_scythe"
+				"DisplayInLoadout" "0"
+			}		
 		}
 		"particle_folder"		"particles/units/heroes/hero_necrolyte"
 		"GameSoundsFile"		"soundevents/game_sounds_heroes/game_sounds_necrolyte.vsndevts"
@@ -8278,6 +8946,27 @@
 				"SlotName"		"taunt"
 				"SlotText"		"#LoadoutSlot_Taunt"
 			}
+			"9"
+			{
+				"SlotIndex" "9"
+				"SlotName" "ability_effects_1"
+				"SlotText" "warlock_fatal_bonds"
+				"DisplayInLoadout" "0"
+			}
+			"10"
+			{
+				"SlotIndex" "10"
+				"SlotName" "ability_effects_2"
+				"SlotText" "warlock_shadow_word"
+				"DisplayInLoadout" "0"
+			}
+			"11"
+			{
+				"SlotIndex" "9"
+				"SlotName" "ability_effects_3"
+				"SlotText" "warlock_upheaval"
+				"DisplayInLoadout" "0"
+			}
 		}
 		"Bot"
 		{
@@ -8526,6 +9215,20 @@
 				"SlotName"		"taunt"
 				"SlotText"		"#LoadoutSlot_Taunt"
 			}
+			"8"
+			{
+				"SlotIndex" "8"
+				"SlotName" "ability_effects_1"
+				"SlotText" "beastmaster_wild_axes"
+				"DisplayInLoadout" "0"
+			}
+			"9"
+			{
+				"SlotIndex" "9"
+				"SlotName" "ability_effects_4"
+				"SlotText" "beastmaster_primal_roar"
+				"DisplayInLoadout" "0"
+			}
 		}
 		"particle_folder"		"particles/units/heroes/hero_beastmaster"
 		"GameSoundsFile"		"soundevents/game_sounds_heroes/game_sounds_beastmaster.vsndevts"
@@ -8690,6 +9393,34 @@
 				"SlotIndex"		"4"
 				"SlotName"		"taunt"
 				"SlotText"		"#LoadoutSlot_Taunt"
+			}
+			"5"
+			{
+				"SlotIndex" "5"
+				"SlotName" "ability_effects_1"
+				"SlotText" "queenofpain_shadow_strike"
+				"DisplayInLoadout" "0"
+			}		
+			"6"
+			{
+				"SlotIndex" "6"
+				"SlotName" "ability_effects_2"
+				"SlotText" "queenofpain_blink"
+				"DisplayInLoadout" "0"
+			}
+			"7"
+			{
+				"SlotIndex" "7"
+				"SlotName" "ability_effects_3"
+				"SlotText" "queenofpain_scream_of_pain"
+				"DisplayInLoadout" "0"
+			}		
+			"8"
+			{
+				"SlotIndex" "8"
+				"SlotName" "ability_effects_4"
+				"SlotText" "queenofpain_sonic_wave"
+				"DisplayInLoadout" "0"
 			}
 		}
 		"Bot"
@@ -8859,6 +9590,20 @@
 				"SlotText"		"#LoadoutSlot_Ambient_Effects"
 				"DisplayInLoadout"		"0"
 			}
+			"8"
+			{
+				"SlotIndex" "8"
+				"SlotName" "ability_effects_1"
+				"SlotText" "venomancer_venomous_gale"
+				"DisplayInLoadout" "0"
+			}
+			"9"
+			{
+				"SlotIndex" "9"
+				"SlotName" "ability_effects_2"
+				"SlotText" "venomancer_poison_sting"
+				"DisplayInLoadout" "0"
+			}
 		}
 		"Bot"
 		{
@@ -8996,6 +9741,27 @@
 				"SlotIndex"		"5"
 				"SlotName"		"taunt"
 				"SlotText"		"#LoadoutSlot_Taunt"
+			}
+			"6"
+			{
+				"SlotIndex" "6"
+				"SlotName" "ability_effects_2"
+				"SlotText" "faceless_void_time_dilation"
+				"DisplayInLoadout" "0"
+			}
+			"7"
+			{
+				"SlotIndex" "7"
+				"SlotName" "ability_effects_4"
+				"SlotText" "faceless_void_chronosphere"
+				"DisplayInLoadout" "0"
+			}
+			"8"
+			{
+				"SlotIndex" "8"
+				"SlotName" "ability_effects_1"
+				"SlotText" "faceless_void_time_walk"
+				"DisplayInLoadout" "0"
 			}
 		}
 		"particle_folder"		"particles/units/heroes/hero_faceless_void"
@@ -9199,6 +9965,20 @@
 				"MaxPolygonsLOD0"		"2500"
 				"MaxPolygonsLOD1"		"1000"
 			}
+			"8"
+			{
+				"SlotIndex" "8"
+				"SlotName" "ability_effects_1"
+				"SlotText" "skeleton_king_hellfire_blast"
+				"DisplayInLoadout" "0"
+			}
+			"9"
+			{
+				"SlotIndex" "9"
+				"SlotName" "ability_effects_3"
+				"SlotText" "skeleton_king_mortal_strike"
+				"DisplayInLoadout" "0"
+			}
 		}
 		"Bot"
 		{
@@ -9237,7 +10017,7 @@
 				"item_javelin"			"ITEM_LUXURY"
 				"item_blitz_knuckles"		 "ITEM_LUXURY"
 				"item_recipe_monkey_king_bar"		 "ITEM_LUXURY"
-				"item_monkey_king_bar"	  "ITEM_DERIVED"			
+				"item_monkey_king_bar"	  "ITEM_DERIVED"
 			}
 			"Build"
 			{
@@ -9451,6 +10231,20 @@
 				"SlotIndex"		"9"
 				"SlotName"		"costume"
 				"SlotText"		"#LoadoutSlot_Costume"
+			}
+			"10"
+			{
+				"SlotIndex" "10"
+				"SlotName" "ability_effects_1"
+				"SlotText" "death_prophet_carrion_swarm"
+				"DisplayInLoadout" "0"
+			}
+			"11"
+			{
+				"SlotIndex" "11"
+				"SlotName" "ability_effects_2"
+				"SlotText" "death_prophet_silence"
+				"DisplayInLoadout" "0"
 			}
 		}
 		"Bot"
@@ -9673,6 +10467,27 @@
 				"SlotName"		"taunt"
 				"SlotText"		"#LoadoutSlot_Taunt"
 			}
+			"6"
+			{
+				"SlotIndex" "6"
+				"SlotName" "ability_effects_1"
+				"SlotText" "phantom_assassin_stifling_dagger"
+				"DisplayInLoadout" "0"
+			}	
+			"7"
+			{
+				"SlotIndex" "7"
+				"SlotName" "ability_effects_3"
+				"SlotText" "phantom_assassin_blur"
+				"DisplayInLoadout" "0"
+			}
+			"8"
+			{
+				"SlotIndex"		"8"
+				"SlotName"		"taunt_persona_1"
+				"SlotText"		"#LoadoutSlot_Taunt_Antimage_Persona"
+				"DisplayInLoadout" "1"
+			}
 		}
 		"BoundsHullName"		"DOTA_HULL_SIZE_HERO"
 		"particle_folder"		"particles/units/heroes/hero_phantom_assassin"
@@ -9682,7 +10497,7 @@
 		{
 			"Loadout"
 			{
-				"item_tango"			"ITEM_CONSUMABLE | ITEM_SELLABLE"
+				""item_tango"			"ITEM_CONSUMABLE | ITEM_SELLABLE"
 				"item_flask"			"ITEM_CONSUMABLE | ITEM_SELLABLE"
 
 				"item_boots"			"ITEM_CORE"
@@ -9916,6 +10731,20 @@
 				"SlotText"		"#LoadoutSlot_Ambient_Effects"
 				"DisplayInLoadout"		"0"
 			}
+			"9"
+			{
+				"SlotIndex" "9"
+				"SlotName" "ability_effects_1"
+				"SlotText" "pugna_nether_blast"
+				"DisplayInLoadout" "0"
+			}		
+			"10"
+			{
+				"SlotIndex" "10"
+				"SlotName" "ability_effects_4"
+				"SlotText" "pugna_life_drain"
+				"DisplayInLoadout" "0"
+			}
 		}
 		"precache"
 		{
@@ -10086,6 +10915,34 @@
 				"SlotText"		"#LoadoutSlot_Ambient_Effects"
 				"DisplayInLoadout"		"0"
 			}
+			"6"
+			{
+				"SlotIndex" "6"
+				"SlotName" "ability_effects_1"
+				"SlotText" "templar_assassin_refraction"
+				"DisplayInLoadout" "0"
+			}
+			"7"
+			{
+				"SlotIndex" "7"
+				"SlotName" "ability_effects_2"
+				"SlotText" "templar_assassin_meld"
+				"DisplayInLoadout" "0"
+			}		
+			"8"
+			{
+				"SlotIndex" "8"
+				"SlotName" "ability_effects_3"
+				"SlotText" "templar_assassin_psi_blades"
+				"DisplayInLoadout" "0"
+			}
+			"9"
+			{
+				"SlotIndex" "9"
+				"SlotName" "ability_effects_4"
+				"SlotText" "templar_assassin_psionic_trap"
+				"DisplayInLoadout" "0"
+			}
 		}
 		"Bot"
 		{
@@ -10235,6 +11092,20 @@
 				"SlotName"		"ambient_effects"
 				"SlotText"		"#LoadoutSlot_Ambient_Effects"
 				"DisplayInLoadout"	"0"
+			}
+			"5"
+			{
+				"SlotIndex" "5"
+				"SlotName" "ability_effects_1"
+				"SlotText" "viper_poison_attack"
+				"DisplayInLoadout" "0"
+			}		
+			"6"
+			{
+				"SlotIndex" "6"
+				"SlotName" "ability_effects_2"
+				"SlotText" "viper_nethertoxin"
+				"DisplayInLoadout" "0"
 			}
 		}
 		"Bot"
@@ -10477,6 +11348,20 @@
 				"SlotName"		"costume"
 				"SlotText"		"#LoadoutSlot_Costume"
 			}
+			"7"
+			{
+				"SlotIndex" "7"
+				"SlotName" "ability_effects_2"
+				"SlotText" "luna_moon_glaive"
+				"DisplayInLoadout" "0"
+			}
+			"8"
+			{
+				"SlotIndex" "8"
+				"SlotName" "ability_effects_1"
+				"SlotText" "luna_lucent_beam"
+				"DisplayInLoadout" "0"
+			}			
 		}
 		"Bot"
 		{
@@ -10529,7 +11414,6 @@
 				"item_quarterstaff"		"ITEM_EXTENSION"
 				"item_talisman_of_evasion"		"ITEM_EXTENSION"
 				"item_butterfly"		"ITEM_DERIVED"
-				
 			}
 			"Build"
 			{
@@ -10734,7 +11618,6 @@
 				"item_vitality_booster"		"ITEM_LUXURY"
 				"item_recipe_heart" "ITEM_LUXURY"
 				"item_heart"		"ITEM_DERIVED"
-				
 			}
 			"Build"
 			{
@@ -11046,6 +11929,27 @@
 				"SlotName"		"costume"
 				"SlotText"		"#LoadoutSlot_Costume"
 			}
+			"7"
+			{
+				"SlotIndex" "7"
+				"SlotName" "ability_effects_1"
+				"SlotText" "dazzle_poison_touch"
+				"DisplayInLoadout" "0"
+			}
+			"8"
+			{
+				"SlotIndex" "8"
+				"SlotName" "ability_effects_2"
+				"SlotText" "dazzle_shallow_grave"
+				"DisplayInLoadout" "0"
+			}
+			"9"
+			{
+				"SlotIndex" "9"
+				"SlotName" "ability_effects_3"
+				"SlotText" "dazzle_shadow_wave"
+				"DisplayInLoadout" "0"
+			}
 		}
 		"particle_folder"		"particles/units/heroes/hero_dazzle"
 		"GameSoundsFile"		"soundevents/game_sounds_heroes/game_sounds_dazzle.vsndevts"
@@ -11297,6 +12201,20 @@
 				"SlotName"		"costume"
 				"SlotText"		"#LoadoutSlot_Costume"
 			}
+			"7"
+			{
+				"SlotIndex" "7"
+				"SlotName" "ability_effects_3"
+				"SlotText" "rattletrap_rocket_flare"
+				"DisplayInLoadout" "0"
+			}		
+			"8"
+			{
+				"SlotIndex" "8"
+				"SlotName" "ability_effects_4"
+				"SlotText" "rattletrap_hookshot"
+				"DisplayInLoadout" "0"
+			}
 		}
 		"Bot"
 		{
@@ -11447,6 +12365,20 @@
 				"SlotName"		"ambient_effects"
 				"SlotText"		"#LoadoutSlot_Ambient_Effects"
 				"DisplayInLoadout"		"0"
+			}
+			"7"
+			{
+				"SlotIndex" "7"
+				"SlotName" "ability_effects_1"
+				"SlotText" "leshrac_split_earth"
+				"DisplayInLoadout" "0"
+			}
+			"8"
+			{
+				"SlotIndex" "8"
+				"SlotName" "ability_effects_2"
+				"SlotText" "leshrac_diabolic_edict"
+				"DisplayInLoadout" "0"
 			}
 		}
 		"Bot"
@@ -11623,6 +12555,20 @@
 					"0" "npc_dota_furion_treant"
 				}
 			}
+			"8"
+			{
+				"SlotIndex" "8"
+				"SlotName" "ability_effects_4"
+				"SlotText" "furion_wrath_of_nature"
+				"DisplayInLoadout" "0"
+			}
+			"9"
+			{
+				"SlotIndex" "9"
+				"SlotName" "ability_effects_2"
+				"SlotText" "furion_teleportation"
+				"DisplayInLoadout" "0"
+			}
 		}
 		"Bot"
 		{
@@ -11787,6 +12733,27 @@
 				"SlotName"		"costume"
 				"SlotText"		"#LoadoutSlot_Costume"
 			}
+			"8"
+			{
+				"SlotIndex" "8"
+				"SlotName" "ability_effects_1"
+				"SlotText" "life_stealer_rage"
+				"DisplayInLoadout" "0"
+			}
+			"9"
+			{
+				"SlotIndex" "9"
+				"SlotName" "ability_effects_3"
+				"SlotText" "life_stealer_open_wounds"
+				"DisplayInLoadout" "0"
+			}		
+			"10"
+			{
+				"SlotIndex" "10"
+				"SlotName" "ability_effects_4"
+				"SlotText" "life_stealer_infest"
+				"DisplayInLoadout" "0"
+			}	
 		}
 		"Bot"
 		{
@@ -11942,6 +12909,13 @@
 				"SlotName"		"ambient_effects"
 				"SlotText"		"#LoadoutSlot_Ambient_Effects"
 				"DisplayInLoadout"		"0"
+			}
+			"8"
+			{
+				"SlotIndex" "8"
+				"SlotName" "ability_effects_2"
+				"SlotText" "dark_seer_ion_shell"
+				"DisplayInLoadout" "0"
 			}
 		}
 		"Bot"
@@ -12119,6 +13093,20 @@
 				"SlotText"		"#LoadoutSlot_Ambient_Effects"
 				"DisplayInLoadout"		"0"
 			}
+			"9"
+			{
+				"SlotIndex" "9"
+				"SlotName" "ability_effects_4"
+				"SlotText" "clinkz_burning_army"
+				"DisplayInLoadout" "0"
+			}
+			"10"
+			{
+				"SlotIndex" "10"
+				"SlotName" "ability_effects_2"
+				"SlotText" "clinkz_searing_arrows"
+				"DisplayInLoadout" "0"
+			}
 		}
 		"Bot"
 		{
@@ -12276,6 +13264,34 @@
 				"SlotName"		"misc"
 				"SlotText"		"#LoadoutSlot_Misc"
 			}
+			"8"
+			{
+				"SlotIndex" "8"
+				"SlotName" "ability_effects_1"
+				"SlotText" "omniknight_purification"
+				"DisplayInLoadout" "0"
+			}
+			"9"
+			{
+				"SlotIndex" "9"
+				"SlotName" "ability_effects_3"
+				"SlotText" "omniknight_degen_aura"
+				"DisplayInLoadout" "0"
+			}		
+			"10"
+			{
+				"SlotIndex" "10"
+				"SlotName" "ability_effects_4"
+				"SlotText" "omniknight_guardian_angel"
+				"DisplayInLoadout" "0"
+			}
+			"11"
+			{
+				"SlotIndex" "11"
+				"SlotName" "ability_effects_2"
+				"SlotText" "omniknight_martyr"
+				"DisplayInLoadout" "0"
+			}
 		}
 		"Bot"
 		{
@@ -12321,8 +13337,6 @@
 				"item_vitality_booster"		"ITEM_LUXURY"
 				"item_recipe_heart" "ITEM_LUXURY"
 				"item_heart"		"ITEM_DERIVED"
-				
-				
 			}
 			"Build"
 			{
@@ -12490,7 +13504,20 @@
 				"SlotName"		"costume"
 				"SlotText"		"#LoadoutSlot_Costume"
 			}
-
+			"7"
+			{
+				"SlotIndex" "7"
+				"SlotName" "ability_effects_1"
+				"SlotText" "enchantress_impetus"
+				"DisplayInLoadout" "0"
+			}		
+			"8"
+			{
+				"SlotIndex" "8"
+				"SlotName" "ability_effects_3"
+				"SlotText" "enchantress_natures_attendants"
+				"DisplayInLoadout" "0"
+			}
 		}
 		"VoiceFile"		"soundevents/voscripts/game_sounds_vo_enchantress.vsndevts"
 		"particle_folder"		"particles/units/heroes/hero_enchantress"
@@ -12645,6 +13672,34 @@
 				"SlotIndex"		"5"
 				"SlotName"		"taunt"
 				"SlotText"		"#LoadoutSlot_Taunt"
+			}
+			"6"
+			{
+				"SlotIndex" "6"
+				"SlotName" "ability_effects_1"
+				"SlotText" "huskar_inner_fire"
+				"DisplayInLoadout" "0"
+			}
+			"7"
+			{
+				"SlotIndex" "7"
+				"SlotName" "ability_effects_2"
+				"SlotText" "huskar_burning_spear"
+				"DisplayInLoadout" "0"
+			}
+			"8"
+			{
+				"SlotIndex" "8"
+				"SlotName" "ability_effects_3"
+				"SlotText" "huskar_berserkers_blood"
+				"DisplayInLoadout" "0"
+			}
+			"9"
+			{
+				"SlotIndex" "9"
+				"SlotName" "ability_effects_4"
+				"SlotText" "huskar_life_break"
+				"DisplayInLoadout" "0"
 			}
 		}
 		"Bot"
@@ -12849,6 +13904,20 @@
 				"SlotIndex"		"6"
 				"SlotName"		"taunt"
 				"SlotText"		"#LoadoutSlot_Taunt"
+			}
+			"7"
+			{
+				"SlotIndex" "7"
+				"SlotName" "ability_effects_2"
+				"SlotText" "night_stalker_crippling_fear"
+				"DisplayInLoadout" "0"
+			}
+			"8"
+			{
+				"SlotIndex" "8"
+				"SlotName" "ability_effects_1"
+				"SlotText" "night_stalker_void"
+				"DisplayInLoadout" "0"
 			}
 		}
 		"Bot"
@@ -13175,6 +14244,34 @@
 				"SlotName"		"taunt"
 				"SlotText"		"#LoadoutSlot_Taunt"
 			}
+			"8"
+			{
+				"SlotIndex" "8"
+				"SlotName" "ability_effects_1"
+				"SlotText" "bounty_hunter_shuriken_toss"
+				"DisplayInLoadout" "0"
+			}
+			"9"
+			{
+				"SlotIndex" "9"
+				"SlotName" "ability_effects_2"
+				"SlotText" "bounty_hunter_jinada"
+				"DisplayInLoadout" "0"
+			}
+			"10"
+			{
+				"SlotIndex" "10"
+				"SlotName" "ability_effects_3"
+				"SlotText" "bounty_hunter_wind_walk"
+				"DisplayInLoadout" "0"
+			}
+			"11"
+			{
+				"SlotIndex" "11"
+				"SlotName" "ability_effects_4"
+				"SlotText" "bounty_hunter_track"
+				"DisplayInLoadout" "0"
+			}
 		}
 		"Bot"
 		{
@@ -13221,8 +14318,6 @@
 				"item_point_booster" 	"ITEM_EXTENSION"
 				"item_soul_booster"		"ITEM_EXTENSION"
 				"item_octarine_core"	"ITEM_DERIVED"
-				
-				
 			}
 			"Build"
 			{
@@ -13404,6 +14499,20 @@
 				"SlotName"		"taunt"
 				"SlotText"		"#LoadoutSlot_Taunt"
 			}
+			"6"
+			{
+				"SlotIndex" "6"
+				"SlotName" "ability_effects_1"
+				"SlotText" "weaver_the_swarm"
+				"DisplayInLoadout" "0"
+			}
+			"7"
+			{
+				"SlotIndex" "7"
+				"SlotName" "ability_effects_2"
+				"SlotText" "weaver_shukuchi"
+				"DisplayInLoadout" "0"
+			}
 		}
 		"Bot"
 		{
@@ -13548,6 +14657,27 @@
 				"SlotIndex"		"5"
 				"SlotName"		"taunt"
 				"SlotText"		"#LoadoutSlot_Taunt"
+			}
+			"6"
+			{
+				"SlotIndex" "6"
+				"SlotName" "ability_effects_1"
+				"SlotText" "jakiro_dual_breath"
+				"DisplayInLoadout" "0"
+			}
+			"7"
+			{
+				"SlotIndex" "7"
+				"SlotName" "ability_effects_2"
+				"SlotText" "jakiro_ice_path"
+				"DisplayInLoadout" "0"
+			}
+			"8"
+			{
+				"SlotIndex" "8"
+				"SlotName" "ability_effects_4"
+				"SlotText" "jakiro_macropyre"
+				"DisplayInLoadout" "0"
 			}
 		}
 		"Bot"
@@ -13754,6 +14884,13 @@
 				"SlotIndex"		"5"
 				"SlotName"		"taunt"
 				"SlotText"		"#LoadoutSlot_Taunt"
+			}
+			"6"
+			{
+				"SlotIndex" "6"
+				"SlotName" "ability_effects_3"
+				"SlotText" "batrider_firefly"
+				"DisplayInLoadout" "0"
 			}
 		}
 		"particle_folder"		"particles/units/heroes/hero_batrider"
@@ -14103,6 +15240,13 @@
 				"SlotText"		"#LoadoutSlot_Ambient_Effects"
 				"DisplayInLoadout"		"0"
 			}
+			"8"
+			{
+				"SlotIndex" "8"
+				"SlotName" "ability_effects_1"
+				"SlotText" "spectre_spectral_dagger"
+				"DisplayInLoadout" "0"
+			}
 		}
 		"Bot"
 		{
@@ -14274,6 +15418,20 @@
 				"SlotName"		"taunt"
 				"SlotText"		"#LoadoutSlot_Taunt"
 			}
+			"8"
+			{
+				"SlotIndex" "8"
+				"SlotName" "ability_effects_1"
+				"SlotText" "doom_bringer_devour"
+				"DisplayInLoadout" "0"
+			}
+			"9"
+			{
+				"SlotIndex" "9"
+				"SlotName" "ability_effects_3"
+				"SlotText" "doom_bringer_infernal_blade"
+				"DisplayInLoadout" "0"
+			}
 		}
 		"Bot"
 		{
@@ -14421,6 +15579,34 @@
 				"SlotName"		"taunt"
 				"SlotText"		"#LoadoutSlot_Taunt"
 			}
+			"6"
+			{
+				"SlotIndex"		"6"
+				"SlotName"		"ability_effects_1"
+				"SlotText"		"ancient_apparition_cold_feet"
+				"DisplayInLoadout" "0"
+			}
+			"7"
+			{
+				"SlotIndex"		"7"
+				"SlotName"		"ability_effects_2"
+				"SlotText"		"ancient_apparition_ice_vortex"
+				"DisplayInLoadout" "0"
+			}
+			"8"
+			{
+				"SlotIndex"		"8"
+				"SlotName"		"ability_effects_3"
+				"SlotText"		"ancient_apparition_chilling_touch"
+				"DisplayInLoadout" "0"
+			}
+			"9"
+			{
+				"SlotIndex"		"9"
+				"SlotName"		"ability_effects_4"
+				"SlotText"		"ancient_apparition_ice_blast"
+				"DisplayInLoadout" "0"
+			}			
 		}
 		"Bot"
 		{
@@ -14569,6 +15755,13 @@
 				"TextureHeight"		"512"
 				"MaxPolygonsLOD0"		"3000"
 				"MaxPolygonsLOD1"		"1200"
+			}
+			"6"
+			{
+				"SlotIndex" "6"
+				"SlotName" "ability_effects_1"
+				"SlotText" "ursa_earthshock"
+				"DisplayInLoadout" "0"
 			}
 		}
 		"Bot"
@@ -14728,6 +15921,20 @@
 				"SlotIndex"		"7"
 				"SlotName"		"taunt"
 				"SlotText"		"#LoadoutSlot_Taunt"
+			}
+			"8"
+			{
+				"SlotIndex" "8"
+				"SlotName" "ability_effects_3"
+				"SlotText" "spirit_breaker_greater_bash"
+				"DisplayInLoadout" "0"
+			}
+			"9"
+			{
+				"SlotIndex" "9"
+				"SlotName" "ability_effects_1"
+				"SlotText" "spirit_breaker_charge_of_darkness"
+				"DisplayInLoadout" "0"
 			}
 		}
 		"Bot"
@@ -14904,6 +16111,34 @@
 				"SlotName"		"ambient_effects"
 				"SlotText"		"#LoadoutSlot_Ambient_Effects"
 				"DisplayInLoadout"		"0"
+			}
+			"9"
+			{
+				"SlotIndex" "9"
+				"SlotName" "ability_effects_1"
+				"SlotText" "gyrocopter_rocket_barrage"
+				"DisplayInLoadout" "0"
+			}
+			"10"
+			{
+				"SlotIndex" "10"
+				"SlotName" "ability_effects_2"
+				"SlotText" "gyrocopter_homing_missile"
+				"DisplayInLoadout" "0"
+			}
+			"11"
+			{
+				"SlotIndex" "11"
+				"SlotName" "ability_effects_3"
+				"SlotText" "gyrocopter_flak_cannon"
+				"DisplayInLoadout" "0"
+			}
+			"12"
+			{
+				"SlotIndex" "12"
+				"SlotName" "ability_effects_4"
+				"SlotText" "gyrocopter_call_down"
+				"DisplayInLoadout" "0"
 			}
 		}
 		"RenderablePortrait"
@@ -15093,6 +16328,13 @@
 				"SlotIndex"		"10"
 				"SlotName"		"costume"
 				"SlotText"		"#LoadoutSlot_Costume"
+			}
+			"11"
+			{
+				"SlotIndex"		"11"
+				"SlotName"		"ability_effects_3"
+				"SlotText"		"alchemist_goblins_greed"
+				"DisplayInLoadout" "0"
 			}
 		}
 		"Bot"
@@ -15300,9 +16542,9 @@
 				"SlotText"		"#LoadoutSlot_Taunt"
 			}
 
-			"10"
+			"8"
 			{
-				"SlotIndex"		"10"
+				"SlotIndex"		"8"
 				"SlotName"		"head_persona_1"
 				"SlotText"		"#LoadoutSlot_Head_Invoker_Kid"
 				"TextureWidth"		"256"
@@ -15310,9 +16552,9 @@
 				"MaxPolygonsLOD0"		"2500"
 				"MaxPolygonsLOD1"		"1500"
 			}
-			"11"
+			"9"
 			{
-				"SlotIndex"		"11"
+				"SlotIndex"		"9"
 				"SlotName"		"shoulder_persona_1"
 				"SlotText"		"#LoadoutSlot_Shoulder_Invoker_Kid"
 				"TextureWidth"		"512"
@@ -15320,9 +16562,9 @@
 				"MaxPolygonsLOD0"		"3000"
 				"MaxPolygonsLOD1"		"1800"
 			}
-			"12"
+			"10"
 			{
-				"SlotIndex"		"12"
+				"SlotIndex"		"10"
 				"SlotName"		"back_persona_1"
 				"SlotText"		"#LoadoutSlot_Back_Invoker_Kid"
 				"TextureWidth"		"256"
@@ -15330,9 +16572,9 @@
 				"MaxPolygonsLOD0"		"1000"
 				"MaxPolygonsLOD1"		"600"
 			}
-			"13"
+			"11"
 			{
-				"SlotIndex"		"13"
+				"SlotIndex"		"11"
 				"SlotName"		"arms_persona_1"
 				"SlotText"		"#LoadoutSlot_Arms_Invoker_Kid"
 				"TextureWidth"		"256"
@@ -15340,9 +16582,9 @@
 				"MaxPolygonsLOD0"		"1500"
 				"MaxPolygonsLOD1"		"900"
 			}
-			"14"
+			"12"
 			{
-				"SlotIndex"		"14"
+				"SlotIndex"		"12"
 				"SlotName"		"summon_persona_1"
 				"SlotText"		"#LoadoutSlot_Invoker_ForgeSpirit_Invoker_Kid"
 				"TextureWidth"		"512"
@@ -15355,9 +16597,9 @@
 					"0" "npc_dota_invoker_forged_spirit"
 				}
 			}
-			"15"
+			"13"
 			{
-				"SlotIndex"		"15"
+				"SlotIndex"		"13"
 				"SlotName"		"armor_persona_1"
 				"SlotText"		"#LoadoutSlot_Armor_Invoker_Kid"
 				"TextureWidth"		"512"
@@ -15365,23 +16607,86 @@
 				"MaxPolygonsLOD0"		"3000"
 				"MaxPolygonsLOD1"		"1800"
 			}
-			"16"
+			"14"
 			{
-				"SlotIndex"		"16"
+				"SlotIndex"		"14"
 				"SlotName"		"taunt_persona_1"
 				"SlotText"		"#LoadoutSlot_Taunt_Invoker_Kid"
 			}
-			"17"
+			"15"
 			{
-				"SlotIndex"		"17"
+				"SlotIndex"		"15"
 				"SlotName"		"voice_persona_1"
 				"SlotText"		"#LoadoutSlot_Voice_Invoker_Kid"
 			}
 
-			// NOTE: PERSONAL SELECTOR MUST BE LAST!
+			"16"
+			{
+				"SlotIndex" "16"
+				"SlotName" "ability_effects_1"
+				"SlotText" "invoker_quas"
+				"DisplayInLoadout" "0"
+			}
+			"17"
+			{
+				"SlotIndex" "17"
+				"SlotName" "ability_effects_2"
+				"SlotText" "invoker_wex"
+				"DisplayInLoadout" "0"
+			}
 			"18"
 			{
-				"SlotIndex"		"18"
+				"SlotIndex" "18"
+				"SlotName" "ability_effects_3"
+				"SlotText" "invoker_exort"
+				"DisplayInLoadout" "0"
+			}
+			"19"
+			{
+				"SlotIndex" "19"
+				"SlotName" "ability_effects_4"
+				"SlotText" "invoker_ghost_walk"
+				"DisplayInLoadout" "0"
+			}			
+			"20"
+			{
+				"SlotIndex" "20"
+				"SlotName" "ability_effects_5"
+				"SlotText" "invoker_tornado"
+				"DisplayInLoadout" "0"
+			}
+			"21"
+			{
+				"SlotIndex" "21"
+				"SlotName" "ability_effects_6"
+				"SlotText" "invoker_alacrity"
+				"DisplayInLoadout" "0"
+			}
+			"22"
+			{
+				"SlotIndex" "22"
+				"SlotName" "ability_effects_7"
+				"SlotText" "invoker_sun_strike"
+				"DisplayInLoadout" "0"
+			}
+			"23"
+			{
+				"SlotIndex" "23"
+				"SlotName" "ability_effects_8"
+				"SlotText" "invoker_forge_spirit"
+				"DisplayInLoadout" "0"
+			}			
+			"24"
+			{
+				"SlotIndex" "24"
+				"SlotName" "ability_effects_9"
+				"SlotText" "invoker_deafening_blast"
+				"DisplayInLoadout" "0"
+			}
+			// NOTE: PERSONAL SELECTOR MUST BE LAST!
+			"25"
+			{
+				"SlotIndex"		"25"
 				"SlotName"		"persona_selector"
 				"SlotText"		"#LoadoutSlot_Persona_Selector"
 			}
@@ -15537,6 +16842,27 @@
 				"SlotName"		"taunt"
 				"SlotText"		"#LoadoutSlot_Taunt"
 			}
+			"7"
+			{
+				"SlotIndex" "7"
+				"SlotName" "ability_effects_1"
+				"SlotText" "silencer_curse_of_the_silent"
+				"DisplayInLoadout" "0"
+			}	
+			"8"
+			{
+				"SlotIndex" "8"
+				"SlotName" "ability_effects_2"
+				"SlotText" "silencer_glaives_of_wisdom"
+				"DisplayInLoadout" "0"
+			}
+			"9"
+			{
+				"SlotIndex" "9"
+				"SlotName" "ability_effects_3"
+				"SlotText" "silencer_last_word"
+				"DisplayInLoadout" "0"
+			}
 		}
 		"Bot"
 		{
@@ -15686,6 +17012,20 @@
 				"SlotName"		"ambient_effects"
 				"SlotText"		"#LoadoutSlot_Ambient_Effects"
 				"DisplayInLoadout"		"0"
+			}
+			"7"
+			{
+				"SlotIndex" "7"
+				"SlotName" "ability_effects_2"
+				"SlotText" "obsidian_destroyer_astral_imprisonment"
+				"DisplayInLoadout" "0"
+			}	
+			"8"
+			{
+				"SlotIndex" "8"
+				"SlotName" "ability_effects_4"
+				"SlotText" "obsidian_destroyer_sanity_eclipse"
+				"DisplayInLoadout" "0"
 			}
 		}
 		"Bot"
@@ -15879,6 +17219,13 @@
 				"SlotIndex"		"8"
 				"SlotName"		"taunt"
 				"SlotText"		"#LoadoutSlot_Taunt"
+			}
+			"9"
+			{
+				"SlotIndex" "9"
+				"SlotName" "ability_effects_2"
+				"SlotText" "lycan_howl"
+				"DisplayInLoadout" "0"
 			}
 		}
 		"Bot"
@@ -16191,6 +17538,13 @@
 				"SlotText"		"#LoadoutSlot_Ambient_Effects"
 				"DisplayInLoadout"		"0"
 			}
+			"7"
+			{
+				"SlotIndex" "7"
+				"SlotName" "ability_effects_3"
+				"SlotText" "shadow_demon_shadow_poison"
+				"DisplayInLoadout" "0"
+			}
 		}
 		"Bot"
 		{
@@ -16376,6 +17730,20 @@
 				"SlotName"		"taunt"
 				"SlotText"		"#LoadoutSlot_Taunt"
 			}
+			"8"
+			{
+				"SlotIndex" "8"
+				"SlotName" "ability_effects_1"
+				"SlotText" "lone_druid_spirit_bear_entangle"
+				"DisplayInLoadout" "0"
+			}
+			"9"
+			{
+				"SlotIndex" "9"
+				"SlotName" "ability_effects_2"
+				"SlotText" "lone_druid_spirit_link"
+				"DisplayInLoadout" "0"
+			}
 		}
 		"Bot"
 		{
@@ -16510,6 +17878,20 @@
 				"SlotIndex"		"5"
 				"SlotName"		"taunt"
 				"SlotText"		"#LoadoutSlot_Taunt"
+			}
+			"6"
+			{
+				"SlotIndex" "6"
+				"SlotName" "ability_effects_3"
+				"SlotText" "chaos_knight_chaos_strike"
+				"DisplayInLoadout" "0"
+			}
+			"7"
+			{
+				"SlotIndex" "7"
+				"SlotName" "ability_effects_2"
+				"SlotText" "chaos_knight_reality_rift"
+				"DisplayInLoadout" "0"
 			}
 		}
 		"Bot"
@@ -16754,6 +18136,13 @@
 				"SlotName"		"costume"
 				"SlotText"		"#LoadoutSlot_Costume"
 			}
+			"8"
+			{
+				"SlotIndex" "8"
+				"SlotName" "ability_effects_2"
+				"SlotText" "meepo_poof"
+				"DisplayInLoadout" "0"
+			}
 		}
 		"Bot"
 		{
@@ -16905,6 +18294,20 @@
 				"SlotIndex"		"6"
 				"SlotName"		"costume"
 				"SlotText"		"#LoadoutSlot_Costume"
+			}
+			"7"
+			{
+				"SlotIndex" "7"
+				"SlotName" "ability_effects_3"
+				"SlotText" "treant_living_armor"
+				"DisplayInLoadout" "0"
+			}		
+			"8"
+			{
+				"SlotIndex" "8"
+				"SlotName" "ability_effects_4"
+				"SlotText" "treant_overgrowth"
+				"DisplayInLoadout" "0"
 			}
 		}
 		"Bot"
@@ -17074,6 +18477,20 @@
 				"SlotName"		"voice"
 				"SlotText"		"#LoadoutSlot_Voice"
 			}
+			"8"
+			{
+				"SlotIndex" "8"
+				"SlotName" "ability_effects_3"
+				"SlotText" "ogre_magi_bloodlust"
+				"DisplayInLoadout" "0"
+			}
+			"9"
+			{
+				"SlotIndex" "9"
+				"SlotName" "ability_effects_4"
+				"SlotText" "ogre_magi_multicast"
+				"DisplayInLoadout" "0"
+			}
 		}
 		"Bot"
 		{
@@ -17240,6 +18657,20 @@
 				"SlotText"		"#LoadoutSlot_Ambient_Effects"
 				"DisplayInLoadout"		"0"
 			}
+			"7"
+			{
+				"SlotIndex" "7"
+				"SlotName" "ability_effects_1"
+				"SlotText" "undying_decay"
+				"DisplayInLoadout" "0"
+			}		
+			"8"
+			{
+				"SlotIndex" "8"
+				"SlotName" "ability_effects_2"
+				"SlotText" "undying_soul_rip"
+				"DisplayInLoadout" "0"
+			}
 		}
 		"Bot"
 		{
@@ -17405,6 +18836,20 @@
 				"SlotName"		"voice"
 				"SlotText"		"#LoadoutSlot_Voice"
 			}
+			"7"
+			{
+				"SlotIndex" "7"
+				"SlotName" "ability_effects_1"
+				"SlotText" "rubick_telekinesis"
+				"DisplayInLoadout" "0"
+			}		
+			"8"
+			{
+				"SlotIndex" "8"
+				"SlotName" "ability_effects_2"
+				"SlotText" "rubick_fade_bolt"
+				"DisplayInLoadout" "0"
+			}
 		}
 		"Bot"
 		{
@@ -17563,6 +19008,20 @@
 				"SlotText"		"#LoadoutSlot_Ambient_Effects"
 				"DisplayInLoadout"		"0"
 			}
+			"8"
+			{
+				"SlotIndex" "8"
+				"SlotName" "ability_effects_1"
+				"SlotText" "disruptor_thunder_strike"
+				"DisplayInLoadout" "0"
+			}
+			"9"
+			{
+				"SlotIndex" "9"
+				"SlotName" "ability_effects_3"
+				"SlotText" "disruptor_kinetic_field"
+				"DisplayInLoadout" "0"
+			}			
 		}
 		"Bot"
 		{
@@ -17708,6 +19167,20 @@
 				"SlotIndex"		"4"
 				"SlotName"		"taunt"
 				"SlotText"		"#LoadoutSlot_Taunt"
+			}
+			"5"
+			{
+				"SlotIndex" "5"
+				"SlotName" "ability_effects_1"
+				"SlotText" "nyx_assassin_impale"
+				"DisplayInLoadout" "0"
+			}	
+			"6"
+			{
+				"SlotIndex" "6"
+				"SlotName" "ability_effects_3"
+				"SlotText" "nyx_assassin_spiked_carapace"
+				"DisplayInLoadout" "0"
 			}
 		}
 		"Bot"
@@ -17881,6 +19354,20 @@
 				"SlotName"		"costume"
 				"SlotText"		"#LoadoutSlot_Costume"
 			}
+			"8"
+			{
+				"SlotIndex" "8"
+				"SlotName" "ability_effects_3"
+				"SlotText" "naga_siren_rip_tide"
+				"DisplayInLoadout" "0"
+			}
+			"9"
+			{
+				"SlotIndex" "9"
+				"SlotName" "ability_effects_4"
+				"SlotText" "naga_siren_song_of_the_siren"
+				"DisplayInLoadout" "0"
+			}
 		}
 	}
 	"npc_dota_hero_keeper_of_the_light"
@@ -18017,6 +19504,20 @@
 				"SlotName"		"ambient_effects"
 				"SlotText"		"#LoadoutSlot_Ambient_Effects"
 				"DisplayInLoadout"		"0"
+			}
+			"6"
+			{
+				"SlotIndex" "6"
+				"SlotName" "ability_effects_1"
+				"SlotText" "keeper_of_the_light_illuminate"
+				"DisplayInLoadout" "0"
+			}
+			"7"
+			{
+				"SlotIndex" "7"
+				"SlotName" "ability_effects_2"
+				"SlotText" "keeper_of_the_light_blinding_light"
+				"DisplayInLoadout" "0"
 			}
 		}
 		"Bot"
@@ -18275,6 +19776,13 @@
 				"SlotText"		"#LoadoutSlot_Ambient_Effects"
 				"DisplayInLoadout"		"0"
 			}
+			"5"
+			{
+				"SlotIndex" "5"
+				"SlotName" "ability_effects_4"
+				"SlotText" "visage_summon_familiars"
+				"DisplayInLoadout" "0"
+			}
 		}
 		"Bot"
 		{
@@ -18441,6 +19949,27 @@
 				"SlotText"		"#LoadoutSlot_Ambient_Effects"
 				"DisplayInLoadout"		"0"
 			}
+			"8"
+			{
+				"SlotIndex" "8"
+				"SlotName" "ability_effects_1"
+				"SlotText" "slark_dark_pact"
+				"DisplayInLoadout" "0"
+			}
+			"9"
+			{
+				"SlotIndex" "9"
+				"SlotName" "ability_effects_2"
+				"SlotText" "slark_pounce"
+				"DisplayInLoadout" "0"
+			}
+			"10"
+			{
+				"SlotIndex" "10"
+				"SlotName" "ability_effects_4"
+				"SlotText" "slark_shadow_dance"
+				"DisplayInLoadout" "0"
+			}
 		}
 		"Bot"
 		{
@@ -18595,6 +20124,20 @@
 				"SlotName"		"ambient_effects"
 				"SlotText"		"#LoadoutSlot_Ambient_Effects"
 				"DisplayInLoadout"		"0"
+			}
+			"7"
+			{
+				"SlotIndex" "7"
+				"SlotName" "ability_effects_2"
+				"SlotText" "medusa_mystic_snake"
+				"DisplayInLoadout" "0"
+			}	
+			"8"
+			{
+				"SlotIndex" "8"
+				"SlotName" "ability_effects_3"
+				"SlotText" "medusa_mana_shield"
+				"DisplayInLoadout" "0"
 			}
 		}
 		"Bot"
@@ -18751,6 +20294,20 @@
 				"SlotIndex"		"4"
 				"SlotName"		"taunt"
 				"SlotText"		"#LoadoutSlot_Taunt"
+			}
+			"5"
+			{
+				"SlotIndex" "5"
+				"SlotName" "ability_effects_1"
+				"SlotText" "troll_warlord_berserkers_rage"
+				"DisplayInLoadout" "0"
+			}		
+			"6"
+			{
+				"SlotIndex" "6"
+				"SlotName" "ability_effects_2"
+				"SlotText" "troll_warlord_whirling_axes_ranged"
+				"DisplayInLoadout" "0"
 			}
 		}
 		"Bot"
@@ -18949,6 +20506,20 @@
 				"SlotName"		"costume"
 				"SlotText"		"#LoadoutSlot_Costume"
 			}
+			"10"
+			{
+				"SlotIndex" "10"
+				"SlotName" "ability_effects_1"
+				"SlotText" "centaur_hoof_stomp"
+				"DisplayInLoadout" "0"
+			}
+			"11"
+			{
+				"SlotIndex" "11"
+				"SlotName" "ability_effects_2"
+				"SlotText" "centaur_double_edge"
+				"DisplayInLoadout" "0"
+			}
 		}
 	}
 	"npc_dota_hero_magnataur"
@@ -19085,6 +20656,20 @@
 				"SlotIndex"		"6"
 				"SlotName"		"costume"
 				"SlotText"		"#LoadoutSlot_Costume"
+			}
+			"7"
+			{
+				"SlotIndex" "7"
+				"SlotName" "ability_effects_4"
+				"SlotText" "magnataur_reverse_polarity"
+				"DisplayInLoadout" "0"
+			}
+			"8"
+			{
+				"SlotIndex" "8"
+				"SlotName" "ability_effects_1"
+				"SlotText" "magnataur_shockwave"
+				"DisplayInLoadout" "0"
 			}
 		}
 		"Bot"
@@ -19260,6 +20845,20 @@
 				"SlotText"		"#LoadoutSlot_Ambient_Effects"
 				"DisplayInLoadout"		"0"
 			}
+			"9"
+			{
+				"SlotIndex" "9"
+				"SlotName" "ability_effects_2"
+				"SlotText" "shredder_timber_chain"
+				"DisplayInLoadout" "0"
+			}		
+			"10"
+			{
+				"SlotIndex" "10"
+				"SlotName" "ability_effects_4"
+				"SlotText" "shredder_chakram"
+				"DisplayInLoadout" "0"
+			}
 		}
 		"Bot"
 		{
@@ -19422,6 +21021,20 @@
 				"SlotText"		"#LoadoutSlot_Ambient_Effects"
 				"DisplayInLoadout"		"0"
 			}
+			"8"
+			{
+				"SlotIndex" "8"
+				"SlotName" "ability_effects_1"
+				"SlotText" "bristleback_viscous_nasal_goo"
+				"DisplayInLoadout" "0"
+			}
+			"9"
+			{
+				"SlotIndex" "9"
+				"SlotName" "ability_effects_2"
+				"SlotText" "bristleback_quill_spray"
+				"DisplayInLoadout" "0"
+			}
 		}
 		"Bot"
 		{
@@ -19471,7 +21084,6 @@
 				"item_basher"		"ITEM_DERIVED"
 				"item_recipe_abyssal_blade"	"ITEM_LUXURY"
 				"item_abyssal_blade"		"ITEM_DERIVED"
-				
 			}
 			"Build"
 			{
@@ -19681,6 +21293,20 @@
 				"SlotText"		"#LoadoutSlot_Ambient_Effects"
 				"DisplayInLoadout"		"0"
 			}
+			"9"
+			{
+				"SlotIndex" "9"
+				"SlotName" "ability_effects_3"
+				"SlotText" "tusk_walrus_punch"
+				"DisplayInLoadout" "0"
+			}
+			"10"
+			{
+				"SlotIndex" "10"
+				"SlotName" "ability_effects_1"
+				"SlotText" "tusk_ice_shards"
+				"DisplayInLoadout" "0"
+			}
 		}
 		"Bot"
 		{
@@ -19846,6 +21472,20 @@
 				"SlotIndex"		"7"
 				"SlotName"		"costume"
 				"SlotText"		"#LoadoutSlot_Costume"
+			}
+			"8"
+			{
+				"SlotIndex" "8"
+				"SlotName" "ability_effects_1"
+				"SlotText" "skywrath_mage_arcane_bolt"
+				"DisplayInLoadout" "0"
+			}
+			"9"
+			{
+				"SlotIndex" "9"
+				"SlotName" "ability_effects_4"
+				"SlotText" "skywrath_mage_mystic_flare"
+				"DisplayInLoadout" "0"
 			}
 		}
 		"Bot"
@@ -20087,6 +21727,34 @@
 				"SlotText"		"#LoadoutSlot_Ambient_Effects"
 				"DisplayInLoadout"		"0"
 			}
+			"7"
+			{
+				"SlotIndex"		"7"
+				"SlotName"		"ability_effects_1"
+				"SlotText"		"abaddon_death_coil"
+				"DisplayInLoadout" "0"
+			}
+			"8"
+			{
+				"SlotIndex"		"8"
+				"SlotName"		"ability_effects_2"
+				"SlotText"		"abaddon_aphotic_shield"
+				"DisplayInLoadout" "0"
+			}
+			"9"
+			{
+				"SlotIndex"		"9"
+				"SlotName"		"ability_effects_3"
+				"SlotText"		"abaddon_frostmourne"
+				"DisplayInLoadout" "0"
+			}
+			"10"
+			{
+				"SlotIndex"		"10"
+				"SlotName"		"ability_effects_4"
+				"SlotText"		"abaddon_borrowed_time"
+				"DisplayInLoadout" "0"
+			}
 		}
 		"Bot"
 		{
@@ -20243,6 +21911,20 @@
 				"SlotIndex"		"7"
 				"SlotName"		"summon"
 				"SlotText"		"#LoadoutSlot_ElderTitan_AstralSpirit"
+				"DisplayInLoadout" "0"
+			}
+			"8"
+			{
+				"SlotIndex" "8"
+				"SlotName" "ability_effects_1"
+				"SlotText" "elder_titan_echo_stomp"
+				"DisplayInLoadout" "0"
+			}
+			"9"
+			{
+				"SlotIndex" "9"
+				"SlotName" "ability_effects_4"
+				"SlotText" "elder_titan_earth_splitter"
 				"DisplayInLoadout" "0"
 			}
 		}
@@ -20409,6 +22091,20 @@
 				"SlotIndex"		"8"
 				"SlotName"		"costume"
 				"SlotText"		"#LoadoutSlot_Costume"
+			}
+			"9"
+			{
+				"SlotIndex" "9"
+				"SlotName" "ability_effects_1"
+				"SlotText" "legion_commander_overwhelming_odds"
+				"DisplayInLoadout" "0"
+			}
+			"10"
+			{
+				"SlotIndex" "10"
+				"SlotName" "ability_effects_2"
+				"SlotText" "legion_commander_press_the_attack"
+				"DisplayInLoadout" "0"
 			}
 		}
 		"Bot"
@@ -20581,6 +22277,13 @@
 				"SlotIndex"		"6"
 				"SlotName"		"taunt"
 				"SlotText"		"#LoadoutSlot_Taunt"
+			}
+			"7"
+			{
+				"SlotIndex" "7"
+				"SlotName" "ability_effects_3"
+				"SlotText" "ember_spirit_flame_guard"
+				"DisplayInLoadout" "0"
 			}
 		}
 		"Bot"
@@ -20758,6 +22461,13 @@
 				"SlotText"		"#LoadoutSlot_Ambient_Effects"
 				"DisplayInLoadout"		"0"
 			}
+			"9"
+			{
+				"SlotIndex" "9"
+				"SlotName" "ability_effects_2"
+				"SlotText" "earth_spirit_rolling_boulder"
+				"DisplayInLoadout" "0"
+			}
 		}
 		"RenderablePortrait"
 		{
@@ -20932,6 +22642,13 @@
 				"SlotText"		"#LoadoutSlot_Ambient_Effects"
 				"DisplayInLoadout"		"0"
 			}
+			"7"
+			{
+				"SlotIndex" "7"
+				"SlotName" "ability_effects_4"
+				"SlotText" "terrorblade_sunder"
+				"DisplayInLoadout" "0"
+			}
 		}
 		"Bot"
 		{
@@ -21081,6 +22798,34 @@
 				{
 					"0" "npc_dota_phoenix_sun"
 				}
+			}
+			"5"
+			{
+				"SlotIndex" "5"
+				"SlotName" "ability_effects_1"
+				"SlotText" "phoenix_icarus_dive"
+				"DisplayInLoadout" "0"
+			}	
+			"6"
+			{
+				"SlotIndex" "6"
+				"SlotName" "ability_effects_2"
+				"SlotText" "phoenix_fire_spirits"
+				"DisplayInLoadout" "0"
+			}
+			"7"
+			{
+				"SlotIndex" "7"
+				"SlotName" "ability_effects_3"
+				"SlotText" "phoenix_sun_ray"
+				"DisplayInLoadout" "0"
+			}	
+			"8"
+			{
+				"SlotIndex" "8"
+				"SlotName" "ability_effects_4"
+				"SlotText" "phoenix_supernova"
+				"DisplayInLoadout" "0"
 			}
 		}
 		"Bot"
@@ -21233,6 +22978,20 @@
 				"SlotName"		"ambient_effects"
 				"SlotText"		"#LoadoutSlot_Ambient_Effects"
 				"DisplayInLoadout"		"0"
+			}
+			"6"
+			{
+				"SlotIndex" "6"
+				"SlotName" "ability_effects_1"
+				"SlotText" "oracle_fortunes_end"
+				"DisplayInLoadout" "0"
+			}	
+			"7"
+			{
+				"SlotIndex" "7"
+				"SlotName" "ability_effects_3"
+				"SlotText" "oracle_purifying_flames"
+				"DisplayInLoadout" "0"
 			}
 		}
 		"Bot"
@@ -21508,6 +23267,27 @@
 				"SlotName"		"taunt"
 				"SlotText"		"#LoadoutSlot_Taunt"
 			}
+			"8"
+			{
+				"SlotIndex" "8"
+				"SlotName" "ability_effects_2"
+				"SlotText" "techies_sticky_bomb"
+				"DisplayInLoadout" "0"
+			}
+			"9"
+			{
+				"SlotIndex" "9"
+				"SlotName" "ability_effects_3"
+				"SlotText" "techies_minefield_sign"
+				"DisplayInLoadout" "0"
+			}
+			"10"
+			{
+				"SlotIndex" "10"
+				"SlotName" "ability_effects_4"
+				"SlotText" "techies_land_mines"
+				"DisplayInLoadout" "0"
+			}
 		}
 		"Bot"
 		{
@@ -21717,6 +23497,13 @@
 				"SlotText"		"#LoadoutSlot_Ambient_Effects"
 				"DisplayInLoadout"		"0"
 			}
+			"5"
+			{
+				"SlotIndex" "5"
+				"SlotName" "ability_effects_3"
+				"SlotText" "winter_wyvern_cold_embrace"
+				"DisplayInLoadout" "0"
+			}
 		}
 		"Bot"
 		{
@@ -21901,6 +23688,13 @@
 				"SlotText"		"#LoadoutSlot_Ambient_Effects"
 				"DisplayInLoadout"		"0"
 			}
+			"6"
+			{
+				"SlotIndex" "6"
+				"SlotName" "ability_effects_3"
+				"SlotText" "arc_warden_spark_wraith"
+				"DisplayInLoadout" "0"
+			}
 		}
 		"Bot"
 		{
@@ -22045,6 +23839,34 @@
 				"SlotName"		"body_head"
 				"SlotText"		"#LoadoutSlot_Head"
 				"DisplayInLoadout" 	"0"
+			}
+			"6"
+			{
+				"SlotIndex"		"6"
+				"SlotName"		"ability_effects_1"
+				"SlotText"		"abyssal_underlord_firestorm"
+				"DisplayInLoadout" "0"
+			}
+			"7"
+			{
+				"SlotIndex"		"7"
+				"SlotName"		"ability_effects_2"
+				"SlotText"		"abyssal_underlord_pit_of_malice"
+				"DisplayInLoadout" "0"
+			}
+			"8"
+			{
+				"SlotIndex"		"8"
+				"SlotName"		"ability_effects_3"
+				"SlotText"		"abyssal_underlord_atrophy_aura"
+				"DisplayInLoadout" "0"
+			}
+			"9"
+			{
+				"SlotIndex"		"9"
+				"SlotName"		"ability_effects_4"
+				"SlotText"		"abyssal_underlord_dark_portal"
+				"DisplayInLoadout" "0"
 			}
 		}
 		"Bot"
@@ -22202,6 +24024,20 @@
 				"SlotIndex"		"4"
 				"SlotName"		"taunt"
 				"SlotText"		"#LoadoutSlot_Taunt"
+			}
+			"5"
+			{
+				"SlotIndex" "5"
+				"SlotName" "ability_effects_1"
+				"SlotText" "monkey_king_boundless_strike"
+				"DisplayInLoadout" "0"
+			}	
+			"6"
+			{
+				"SlotIndex" "6"
+				"SlotName" "ability_effects_4"
+				"SlotText" "monkey_king_wukongs_command"
+				"DisplayInLoadout" "0"
 			}
 		}
 		"Bot"
@@ -22364,6 +24200,20 @@
 				"SlotName"		"ambient_effects"
 				"SlotText"		"#LoadoutSlot_Ambient_Effects"
 				"DisplayInLoadout"		"0"
+			}
+			"6"
+			{
+				"SlotIndex" "6"
+				"SlotName" "ability_effects_1"
+				"SlotText" "pangolier_swashbuckle"
+				"DisplayInLoadout" "0"
+			}	
+			"7"
+			{
+				"SlotIndex" "7"
+				"SlotName" "ability_effects_2"
+				"SlotText" "pangolier_shield_crash"
+				"DisplayInLoadout" "0"
 			}
 		}
 		"Bot"
@@ -22564,6 +24414,34 @@
 				"SlotName"		"costume"
 				"SlotText"		"#LoadoutSlot_Costume"
 			}
+			"9"
+			{
+				"SlotIndex" "9"
+				"SlotName" "ability_effects_1"
+				"SlotText" "dark_willow_bramble_maze"
+				"DisplayInLoadout" "0"
+			}
+			"10"
+			{
+				"SlotIndex" "10"
+				"SlotName" "ability_effects_2"
+				"SlotText" "dark_willow_shadow_realm"
+				"DisplayInLoadout" "0"
+			}
+			"11"
+			{
+				"SlotIndex" "11"
+				"SlotName" "ability_effects_3"
+				"SlotText" "dark_willow_cursed_crown"
+				"DisplayInLoadout" "0"
+			}
+			"12"
+			{
+				"SlotIndex" "12"
+				"SlotName" "ability_effects_4"
+				"SlotText" "dark_willow_terrorize"
+				"DisplayInLoadout" "0"
+			}
 		}
 	}
 
@@ -22717,6 +24595,20 @@
 				"SlotName"			"ambient_effects"
 				"SlotText"			"#LoadoutSlot_Ambient_Effects"
 				"DisplayInLoadout"	"0"
+			}
+			"6"
+			{
+				"SlotIndex" "7"
+				"SlotName" "ability_effects_1"
+				"SlotText" "grimstroke_dark_artistry"
+				"DisplayInLoadout" "0"
+			}
+			"7"
+			{
+				"SlotIndex" "8"
+				"SlotName" "ability_effects_4"
+				"SlotText" "grimstroke_soul_chain"
+				"DisplayInLoadout" "0"
 			}
 		}
 		"Bot"
@@ -22875,6 +24767,20 @@
 				"SlotName"		"costume"
 				"SlotText"		"#LoadoutSlot_Costume"
 			}
+			"7"
+			{
+				"SlotIndex" "7"
+				"SlotName" "ability_effects_1"
+				"SlotText" "mars_spear"
+				"DisplayInLoadout" "0"
+			}	
+			"8"
+			{
+				"SlotIndex" "8"
+				"SlotName" "ability_effects_2"
+				"SlotText" "mars_gods_rebuke"
+				"DisplayInLoadout" "0"
+			}
 		}
 		"Bot"
 		{
@@ -23032,6 +24938,13 @@
 				"SlotName"		"ambient_effects"
 				"SlotText"		"#LoadoutSlot_Ambient_Effects"
 				"DisplayInLoadout"		"0"
+			}
+			"7"
+			{
+				"SlotIndex" "7"
+				"SlotName" "ability_effects_4"
+				"SlotText" "void_spirit_astral_step"
+				"DisplayInLoadout" "0"
 			}
 		}
 		"RenderablePortrait"
@@ -23207,6 +25120,13 @@
 				"SlotText"			"#LoadoutSlot_Ambient_Effects"
 				"DisplayInLoadout"	"0"
 			}
+			"7"
+			{
+				"SlotIndex" "7"
+				"SlotName" "ability_effects_3"
+				"SlotText" "snapfire_lil_shredder"
+				"DisplayInLoadout" "0"
+			}
 		}
 		"Bot"
 		{
@@ -23378,6 +25298,13 @@
 				"SlotText"			"#LoadoutSlot_Ambient_Effects"
 				"DisplayInLoadout"	"0"
 			}
+			"6"
+			{
+				"SlotIndex" "6"
+				"SlotName" "ability_effects_3"
+				"SlotText" "hoodwink_scurry"
+				"DisplayInLoadout" "0"
+			}
 		}
 		
 	}
@@ -23438,8 +25365,8 @@
 			"attack_long_range"		"80"
 		}
 		"AttributePrimary"		"DOTA_ATTRIBUTE_STRENGTH"
-		"AttributeBaseStrength"		"26"
-		"AttributeStrengthGain"		"3.400000"
+		"AttributeBaseStrength"		"27"
+		"AttributeStrengthGain"		"3.40000"
 		"AttributeBaseAgility"		"14"
 		"AttributeAgilityGain"		"1.700000"
 		"AttributeBaseIntelligence"		"20"
@@ -23572,7 +25499,7 @@
 		"LoadoutScale"			"0.8"
 		"SpectatorLoadoutScale" "1"
 		"HeroGlowColor"			"0 50 247"
-		"CMEnabled"				"0"
+		"CMEnabled"				"1"
 		"workshop_guide_name"		"Marci"
 		"new_player_enable"			"1"
 		"LastHitChallengeRival"		"npc_dota_hero_mirana"
