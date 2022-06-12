@@ -8486,7 +8486,7 @@ function Pregame:fixSpawningIssues()
                                 end
                             end
                         end
-                        if filteredNearbyUnits > 1 then
+                        if #filteredNearbyUnits > 1 then
                             for _, unit in pairs(filteredNearbyUnits) do
                                 if unit and unit.GetItemInSlot and unit:GetName() ~= "" and unit:GetLevel() == spawnedUnit:GetLevel() then
                                     for j=0,8 do
