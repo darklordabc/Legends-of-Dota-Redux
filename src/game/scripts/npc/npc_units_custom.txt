@@ -1692,7 +1692,7 @@
 		"Ability1"					"abaddon_borrowed_time"			// Ability 1.
 		"Ability2"					"omniknight_degen_aura_tower"			// Ability 2.
 		"Ability3"					"imba_tower_force"			// Ability 3.
-		"Ability4"					"imba_tower_death_pulse"			// Ability 4.
+		"Ability4"					"black_dragon_splash_attack"			// Ability 4.
 		"Ability5"					""			// Ability 5.
 
 		// Armor
