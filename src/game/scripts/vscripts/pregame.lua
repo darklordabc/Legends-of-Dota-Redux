@@ -7811,8 +7811,8 @@ function Pregame:applyExtraAbility( spawnedUnit )
             elseif random == 9 and not spawnedUnit:HasAbility('pudge_flesh_heap_magic_resistance') then fleshHeapToGive = "pudge_flesh_heap_evasion" ; givenAbility = true
             elseif random == 10 and not spawnedUnit:HasAbility('pudge_flesh_heap_evasion') then fleshHeapToGive = "pudge_flesh_heap_evasion" ; givenAbility = true
             elseif random == 11 and not spawnedUnit:HasAbility('pudge_flesh_heap_cast_range') then fleshHeapToGive = "pudge_flesh_heap_cast_range" ; givenAbility = true
-            elseif random == 12 and not spawnedUnit:HasAbility('pudge_flesh_heap_spell_lifesteal') then fleshHeapToGive = "pudge_flesh_heap_spell_lifesteal" ; givenAbility = true
-            elseif random == 13 and not spawnedUnit:HasAbility('pudge_flesh_heap_lifesteal') then fleshHeapToGive = "pudge_flesh_heap_lifesteal" ; givenAbility = true
+            elseif random == 12 and not spawnedUnit:HasAbility('pudge_flesh_heap_tenacity') then fleshHeapToGive = "pudge_flesh_heap_tenacity" ; givenAbility = true
+            elseif random == 13 and not spawnedUnit:HasAbility('pudge_flesh_heap_willpower') then fleshHeapToGive = "pudge_flesh_heap_willpower" ; givenAbility = true
             elseif random == 14 and not spawnedUnit:HasAbility('pudge_flesh_heap_armor') then fleshHeapToGive = "pudge_flesh_heap_armor" ; givenAbility = true
             elseif random == 15 and not spawnedUnit:HasAbility('pudge_flesh_heap_health_regeneration') then fleshHeapToGive = "pudge_flesh_heap_health_regeneration" ; givenAbility = true
             elseif random == 16 and not spawnedUnit:HasAbility('pudge_flesh_heap_mana_regeneration') then fleshHeapToGive = "pudge_flesh_heap_mana_regeneration" ; givenAbility = true
@@ -8486,7 +8486,7 @@ function Pregame:fixSpawningIssues()
                                 end
                             end
                         end
-                        if filteredNearbyUnits > 1 then
+                        if #filteredNearbyUnits > 1 then
                             for _, unit in pairs(filteredNearbyUnits) do
                                 if unit and unit.GetItemInSlot and unit:GetName() ~= "" and unit:GetLevel() == spawnedUnit:GetLevel() then
                                     for j=0,8 do

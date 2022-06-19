@@ -34,19 +34,19 @@
 
         // Special  
         //-------------------------------------------------------------------------------------------------------------
-        "AbilitySpecial"
-        {
-            "01"
-            {
-                "var_type"              "FIELD_INTEGER"
-                "blink_range"           "925 1000 1075 1150"
-            }
-            
-            "02"
-            {
-                "var_type"              "FIELD_INTEGER"
-                "min_blink_range"       "200"
-            }
-        }
+        "AbilityValues"
+		{
+				"AbilityCooldown"				
+				{
+					"value"			"17 14 12 10"
+					"special_bonus_unique_antimage"	"-1"
+				}
+				"AbilityCastRange"			
+				{
+					"value"					"925 1000 1075 1150"
+					"special_bonus_unique_antimage_3"	"+250"
+				}
+				"min_blink_range"		"200"
+		}
     }
 }
