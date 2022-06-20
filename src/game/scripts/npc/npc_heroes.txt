@@ -1778,6 +1778,13 @@
 				"SlotText" "drow_ranger_marksmanship"
 				"DisplayInLoadout" "0"
 			}
+			"11"
+			{
+				"SlotIndex" "11"
+				"SlotName" "ability_effects_1"
+				"SlotText" "drow_ranger_frost_arrows"
+				"DisplayInLoadout" "0"
+			}
 		}
 	}
 	"npc_dota_hero_earthshaker"
@@ -2831,34 +2838,28 @@
 				"item_gloves"			"ITEM_CORE"
 				"item_boots_of_elves"	"ITEM_CORE"
 				"item_power_treads"		"ITEM_DERIVED"
-				
 				"item_blade_of_alacrity"		"ITEM_EXTENSION"
 				"item_boots_of_elves"		"ITEM_EXTENSION"
 				"item_recipe_yasha"		"ITEM_EXTENSION"
 				"item_yasha"		"ITEM_DERIVED"
-				
 				"item_ogre_axe"		"ITEM_EXTENSION"
 				"item_mithril_hammer"		"ITEM_EXTENSION"
 				"item_recipe_black_king_bar"		"ITEM_EXTENSION"
 				"item_black_king_bar"		"ITEM_DERIVED"
-				
 				"item_blight_stone"		"ITEM_EXTENSION"
 				"item_mithril_hammer"		"ITEM_EXTENSION"
 				"item_mithril_hammer"		"ITEM_EXTENSION"
 				"item_desolator"		"ITEM_DERIVED"
-				
 				"item_broadsword"		"ITEM_LUXURY"
 				"item_blades_of_attack"		"ITEM_LUXURY"
 				"item_recipe_lesser_crit"		"ITEM_LUXURY"
 				"item_lesser_crit"		"ITEM_DERIVED"
 				"item_demon_edge"		"ITEM_LUXURY"
 				"item_recipe_greater_crit"		"ITEM_LUXURY"
-				
 				"item_greater_crit"		"ITEM_DERIVED"
 				"item_ultimate_orb"		"ITEM_LUXURY"
 				"item_recipe_manta"		"ITEM_LUXURY"
 				"item_manta"		"ITEM_DERIVED"
-				
 				"item_talisman_of_evasion"		"ITEM_LUXURY"
 				"item_quarterstaff"		"ITEM_LUXURY"
 				"item_eagle"		"ITEM_LUXURY"
@@ -9979,6 +9980,13 @@
 				"SlotText" "skeleton_king_mortal_strike"
 				"DisplayInLoadout" "0"
 			}
+			"10"
+			{
+				"SlotIndex" "10"
+				"SlotName" "ability_effects_2"
+				"SlotText" "skeleton_king_vampiric_aura"
+				"DisplayInLoadout" "0"
+			}
 		}
 		"Bot"
 		{
@@ -10497,7 +10505,7 @@
 		{
 			"Loadout"
 			{
-				""item_tango"			"ITEM_CONSUMABLE | ITEM_SELLABLE"
+				"item_tango"			"ITEM_CONSUMABLE | ITEM_SELLABLE"
 				"item_flask"			"ITEM_CONSUMABLE | ITEM_SELLABLE"
 
 				"item_boots"			"ITEM_CORE"
@@ -11788,10 +11796,17 @@
 				"SlotText"		"#LoadoutSlot_Taunt_Antimage_Persona"
 				"DisplayInLoadout" "1"
 			}
-			// NOTE: PERSONAL SELECTOR MUST BE LAST!
 			"13"
 			{
-				"SlotIndex"		"13"
+				"SlotIndex" "13"
+				"SlotName" "ability_effects_2"
+				"SlotText" "dragon_knight_dragon_tail"
+				"DisplayInLoadout" "0"
+			}		
+			// NOTE: PERSONAL SELECTOR MUST BE LAST!
+			"14"
+			{
+				"SlotIndex"		"14"
 				"SlotName"		"persona_selector"
 				"SlotText"		"#LoadoutSlot_Persona_Selector"
 			}
@@ -13343,7 +13358,7 @@
 				"1"		"omniknight_purification"
 				"2"		"omniknight_martyr"
 				"3"		"omniknight_purification"
-				"4"		"omniknight_hammer_of_purity"
+				"4"		"omniknight_degen_aura"
 				"5"		"omniknight_purification"
 				"6"		"omniknight_guardian_angel"
 				"7"		"omniknight_purification"
@@ -13352,10 +13367,10 @@
 				"10"		"special_bonus_unique_omniknight_5"
 				"11"		"omniknight_martyr"
 				"12"		"omniknight_guardian_angel"
-				"13"		"omniknight_hammer_of_purity"
-				"14"		"omniknight_hammer_of_purity"
+				"13"		"omniknight_degen_aura"
+				"14"		"omniknight_degen_aura"
 				"15"		"special_bonus_unique_omniknight_5"
-				"16"		"omniknight_hammer_of_purity"
+				"16"		"omniknight_degen_aura"
 				"17"		""
 				"18"		"omniknight_guardian_angel"
 				"19"		""
@@ -17734,7 +17749,7 @@
 			{
 				"SlotIndex" "8"
 				"SlotName" "ability_effects_1"
-				"SlotText" "lone_druid_spirit_bear_entangle"
+				"SlotText" "lone_druid_spirit_bear"
 				"DisplayInLoadout" "0"
 			}
 			"9"
