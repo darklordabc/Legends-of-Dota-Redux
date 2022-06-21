@@ -510,12 +510,12 @@
             "02"
             {
                 "var_type"      "FIELD_INTEGER"
-                "radius"        "900"
+                "radius"        "700"
             }
             "03"
             {
                 "var_type"      "FIELD_FLOAT"
-                "duration_max"      "1.5 1.8 2.1 2.4"
+                "duration_max"      "1.0 1.2 1.4 1.6"
             }
         }
  
