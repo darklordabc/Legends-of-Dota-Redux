@@ -39,7 +39,7 @@
             "02"
             {
                 "var_type"          "FIELD_INTEGER"
-                "slow_per_stack"    "-5 -7 -9 -11"
+                "slow_per_stack"    "-6 -8 -10 -12"
             }
             "03"
             {
@@ -547,17 +547,17 @@
             "01"
             {
                 "var_type"                  "FIELD_INTEGER"
-                "self_damage"               "50"
+                "self_damage"               "40"
             }
             "02"
             {
                 "var_type"                  "FIELD_INTEGER"
-                "damage_per_health"         "30 40 50"
+                "damage_per_health"         "25 35 45"
             }
             "03"
             {
                 "var_type"                  "FIELD_INTEGER"
-                "self_burn"                 "50"
+                "self_burn"                 "40"
             }
             "04"
             {
