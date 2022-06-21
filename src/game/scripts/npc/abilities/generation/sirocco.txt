@@ -239,14 +239,14 @@
 
         "AbilityDamage"                 "90 130 170 210"
 
-        "AbilityManaCost"               "60 65 70 75"
+        "AbilityManaCost"               "90 95 100 105"
 
         "AbilitySpecial"
         {
             "01"
             {
                 "var_type"                  "FIELD_INTEGER"
-                "duration"                  "15"
+                "duration"                  "10"
             }
             "02"
             {
@@ -513,7 +513,7 @@
             "05"
             {
                 "var_type"                  "FIELD_INTEGER"
-                "blast_radius"              "400"
+                "blast_radius"              "500"
             }
             "06"
             {
