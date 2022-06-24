@@ -8,7 +8,7 @@ LinkLuaModifier( "modifier_npc_dota_hero_hoodwink_perk", "abilities/hero_perks/n
 --------------------------------------------------------------------------------------------------------
 if npc_dota_hero_hoodwink_perk ~= "" then npc_dota_hero_hoodwink_perk = class({}) end
 --------------------------------------------------------------------------------------------------------
---		Modifier: modifier_npc_dota_hero_puck_perk			
+--		Modifier: modifier_npc_dota_hero_hoodwink_perk			
 --------------------------------------------------------------------------------------------------------
 if modifier_npc_dota_hero_hoodwink_perk ~= "" then modifier_npc_dota_hero_hoodwink_perk = class({}) end
 --------------------------------------------------------------------------------------------------------
