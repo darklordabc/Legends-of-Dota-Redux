@@ -1,11 +1,10 @@
-//=================================================================================================================
-	// Sniper: Shrapnel
-	//=================================================================================================================
-	"sniper_shrapnel"
+"DOTAAbilities" {
+	"sniper_shrapnel_perk"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"ID"					"5154"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"BaseClass"	 "sniper_shrapnel"
+		"ID"	 "51545154"												// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
@@ -76,4 +75,5 @@
 			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
+	}
 	}
