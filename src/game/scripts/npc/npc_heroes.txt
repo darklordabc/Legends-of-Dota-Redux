@@ -1778,6 +1778,13 @@
 				"SlotText" "drow_ranger_marksmanship"
 				"DisplayInLoadout" "0"
 			}
+			"11"
+			{
+				"SlotIndex" "11"
+				"SlotName" "ability_effects_1"
+				"SlotText" "drow_ranger_frost_arrows"
+				"DisplayInLoadout" "0"
+			}
 		}
 	}
 	"npc_dota_hero_earthshaker"
@@ -9979,6 +9986,13 @@
 				"SlotText" "skeleton_king_mortal_strike"
 				"DisplayInLoadout" "0"
 			}
+			"10"
+			{
+				"SlotIndex" "10"
+				"SlotName" "ability_effects_2"
+				"SlotText" "skeleton_king_vampiric_aura"
+				"DisplayInLoadout" "0"
+			}
 		}
 		"Bot"
 		{
@@ -11788,13 +11802,25 @@
 				"SlotText"		"#LoadoutSlot_Taunt_Antimage_Persona"
 				"DisplayInLoadout" "1"
 			}
-			// NOTE: PERSONAL SELECTOR MUST BE LAST!
 			"13"
 			{
 				"SlotIndex"		"13"
+				"SlotIndex" "13"
+				"SlotName" "ability_effects_2"
+				"SlotText" "dragon_knight_dragon_tail"
+				"DisplayInLoadout" "0"
+			}		
+			// NOTE: PERSONAL SELECTOR MUST BE LAST!
+			"14"
+			{
+				"SlotIndex"		"14"
+				"SlotName"		"persona_selector"
 				"SlotName"		"persona_selector"
 				"SlotText"		"#LoadoutSlot_Persona_Selector"
+				"SlotText"		"#LoadoutSlot_Persona_Selector"
 			}
+			
+			
 		}
 	}
 	"npc_dota_hero_dazzle"
@@ -17734,7 +17760,7 @@
 			{
 				"SlotIndex" "8"
 				"SlotName" "ability_effects_1"
-				"SlotText" "lone_druid_spirit_bear_entangle"
+				"SlotText" "lone_druid_spirit_bear"
 				"DisplayInLoadout" "0"
 			}
 			"9"
