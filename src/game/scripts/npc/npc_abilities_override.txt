@@ -1522,7 +1522,8 @@
 				"path_radius"					"150 175 200 225"
 				"slow"							"10 15 20 25"
 			}
-			"ReduxPerks"	"ice"
+			"ReduxPerks"	"ice | mobility"
+			"ReduxFlags"	"mobility"
 		}
 		
 		
@@ -1557,7 +1558,7 @@
         "drow_ranger_marksmanship"
         {
             "ReduxFlags"                                                           "upgradeable | aoe_attack | attack_modifier"
-            "ReduxPerks"                                                           "attack_modifier"
+            "ReduxPerks"                                                           "attack_modifier | ranger"
             "ReduxCost"                                                            "120"
             "ReduxBans"                                                            "brawler_agi"
         }
@@ -1603,8 +1604,8 @@
         }
         "huskar_life_break"
         {
-            "ReduxFlags"                                                           "upgradeable"
-            "ReduxPerks"                                                           "self_damage"
+            "ReduxFlags"                                                           "upgradeable | mobility"
+            "ReduxPerks"                                                           "self_damage | mobility"
             "ReduxCost"                                                            "120"
             "ReduxBans"                                                            "spell_lab_symbiotic"
         }
@@ -1875,6 +1876,7 @@
         {
             "ReduxFlags"                                                           "upgradeable"
             "ReduxCost"                                                            "40"
+			"ReduxPerks"														   "ranger"
         }
         "winter_wyvern_arctic_burn"
         {
@@ -1943,8 +1945,8 @@
         }
         "disruptor_glimpse"
         {
-            "ReduxFlags"                                                           "support | mobility"
-            "ReduxPerks"                                                           "support | mobility | lightning | enemyMoving"
+            "ReduxFlags"                                                           "support"
+            "ReduxPerks"                                                           "support | lightning | enemyMoving"
             "ReduxCost"                                                            "10"
         }
         "omniknight_purification"
@@ -2086,8 +2088,8 @@
         }
         "wisp_tether"
         {
-            "ReduxFlags"                                                           "support"
-            "ReduxPerks"                                                           "support | light"
+            "ReduxFlags"                                                           "support | mobility"
+            "ReduxPerks"                                                           "support | light | mobility"
             "ReduxBans"                                                            "spell_lab_symbiotic | life_stealer_infest"
         }
         "wisp_relocate"
@@ -2299,6 +2301,36 @@
                 }
             }
         }
+		"void_spirit_astral_step"
+		{
+            "ReduxFlags"                                                           "mobility"
+            "ReduxPerks"                                                           "mobility | blink"
+            "ReduxCost"                                                            "20"
+        }
+		"marci_unleash"
+		{
+            "ReduxFlags"                                                           "mobility"
+            "ReduxPerks"                                                           "mobility"
+            "ReduxCost"                                                            "20"
+        }
+		"bloodseeker_thirst"
+		{
+            "ReduxFlags"                                                           "mobility"
+            "ReduxPerks"                                                           "mobility"
+            "ReduxCost"                                                            "20"
+        }
+		"void_spirit_dissimilate"
+		{
+            "ReduxFlags"                                                           "mobility"
+            "ReduxPerks"                                                           "mobility"
+            "ReduxCost"                                                            "20"
+        }
+		"zuus_heavenly_jump"
+		{
+            "ReduxFlags"                                                           "mobility"
+            "ReduxPerks"                                                           "mobility | lightning"
+            "ReduxCost"                                                            "20"
+        }
         "phantom_assassin_phantom_strike"
         {
             "ReduxFlags"                                                           "mobility"
@@ -2345,14 +2377,14 @@
         }
         "riki_permanent_invisibility"
         {
-            "ReduxFlags"                                                           "mobility | invis | physical"
-            "ReduxPerks"                                                           "mobility | physical"
+            "ReduxFlags"                                                           "invis | physical"
+            "ReduxPerks"                                                           "physical"
             "ReduxCost"                                                            "120"
         }
 		"riki_backstab"
 		{
-            "ReduxFlags"                                                           "mobility | invis | physical"
-            "ReduxPerks"                                                           "mobility | physical"
+            "ReduxFlags"                                                           "invis | physical"
+            "ReduxPerks"                                                           "physical"
             "ReduxCost"                                                            "120"
         }
         "bounty_hunter_wind_walk"
@@ -2387,8 +2419,8 @@
         }
         "nyx_assassin_burrow"
         {
-            "ReduxFlags"                                                           "mobility | invis | mana"
-            "ReduxPerks"                                                           "mobility | earth"
+            "ReduxFlags"                                                           "invis | mana"
+            "ReduxPerks"                                                           "earth"
             "ReduxCost"                                                            "20"
             "ReduxBans"                                                            "nyx_assassin_burrow_redux"
 			"MaxLevel"						"4"
@@ -2441,8 +2473,8 @@
         }
         "templar_assassin_meld"
         {
-            "ReduxFlags"                                                           "mobility | invis | physical"
-            "ReduxPerks"                                                           "mobility | physical"
+            "ReduxFlags"                                                           "invis | physical"
+            "ReduxPerks"                                                           "physical"
             "ReduxCost"                                                            "10"
         }
         "weaver_shukuchi"
@@ -2453,8 +2485,8 @@
         }
         "sandking_sand_storm"
         {
-            "ReduxFlags"                                                           "mobility | invis"
-            "ReduxPerks"                                                           "mobility | earth | channeled"
+            "ReduxFlags"                                                           "invis"
+            "ReduxPerks"                                                           "earth | channeled"
             "ReduxCost"                                                            "10"
         }
         "queenofpain_blink"
@@ -2522,13 +2554,13 @@
         }
         "nyx_assassin_spiked_carapace"
         {
-            "ReduxFlags"                                                           "mobility | stun"
-            "ReduxPerks"                                                           "mobility | earth"
+            "ReduxFlags"                                                           "stun"
+            "ReduxPerks"                                                           "earth"
         }
         "lone_druid_savage_roar"
         {
-            "ReduxFlags"                                                           "mobility | doNotRandom"
-            "ReduxPerks"                                                           "mobility | rage"
+            "ReduxFlags"                                                           "doNotRandom"
+            "ReduxPerks"                                                           "rage"
         }
         "phantom_lancer_phantom_edge"
         {
@@ -2549,8 +2581,8 @@
         }
         "puck_phase_shift"
         {
-            "ReduxFlags"                                                           "mobility"
-            "ReduxPerks"                                                           "mobility | channeled"
+            "ReduxFlags"                                                           ""
+            "ReduxPerks"                                                           "channeled"
             "ReduxBans"                                                            "death_prophet_witchcraft"
             "ReduxCost"                                                            "120"
         }
@@ -2576,8 +2608,8 @@
         }
         "keeper_of_the_light_recall"
         {
-            "ReduxFlags"                                                           "mobility"
-            "ReduxPerks"                                                           "mobility | light | teleport"
+            "ReduxFlags"                                                           ""
+            "ReduxPerks"                                                           "light | teleport"
 			"MaxLevel"						"4"
 			"AbilityCooldown"				"15 14 13 12"
 			"AbilityManaCost"				"150 125 100 75"
@@ -2783,7 +2815,7 @@
         "medusa_split_shot"
         {
             "ReduxFlags"                                                           "aoe_attack | attack_modifier | semi_passive"
-            "ReduxPerks"                                                           "attack_modifier"
+            "ReduxPerks"                                                           "attack_modifier | ranger"
             "ReduxCost"                                                            "10"
             "ReduxBans"                                                            "holdout_multishot"
         }
@@ -2955,7 +2987,7 @@
         "drow_ranger_frost_arrows"
         {
             "ReduxFlags"                                                           "attack_modifier | semi_passive"
-            "ReduxPerks"                                                           "attack_modifier | ice | autocast_basic"
+            "ReduxPerks"                                                           "attack_modifier | ice | autocast_basic | ranger"
         }
         "antimage_mana_break"
         {
@@ -2966,7 +2998,7 @@
         "clinkz_searing_arrows"
         {
             "ReduxFlags"                                                           "attack_modifier | semi_passive | physical" 
-            "ReduxPerks"                                                           "attack_modifier | fire | autocast_basic | physical"
+            "ReduxPerks"                                                           "attack_modifier | fire | autocast_basic | physical | ranger"
         }
         "abaddon_frostmourne"
         {
@@ -3226,7 +3258,7 @@
         "mirana_arrow"
         {
             "ReduxFlags"                                                           "stun"
-            "ReduxPerks"                                                           "skillshot"
+            "ReduxPerks"                                                           "skillshot | ranger"
         }
         "morphling_adaptive_strike_agi"
         {
@@ -3264,7 +3296,7 @@
         "windrunner_shackleshot"
         {
             "ReduxFlags"                                                           "stun"
-            "ReduxPerks"                                                           "skillshot"
+            "ReduxPerks"                                                           "skillshot | ranger"
         }
         "enigma_malefice"
         {
@@ -3585,8 +3617,8 @@
         }
         "puck_waning_rift"
         {
-            "ReduxFlags"                                                           "silence"
-            "ReduxPerks"                                                           "silence"
+            "ReduxFlags"                                                           "silence | mobility"
+            "ReduxPerks"                                                           "silence | mobility"
         }
         "night_stalker_crippling_fear"
         {
@@ -3596,7 +3628,7 @@
         "drow_ranger_wave_of_silence"
         {
             "ReduxFlags"                                                           "silence"
-            "ReduxPerks"                                                           "enemyMoving | silence"
+            "ReduxPerks"                                                           "enemyMoving | silence | ranger"
         }
         "chaos_knight_phantasm"
         {
@@ -3748,8 +3780,8 @@
         }
         "ember_spirit_fire_remnant"
         {
-            "ReduxPerks"                                                           "fire | skillshot"
-            "ReduxFlags"                                                           "doNotRandom"
+            "ReduxPerks"                                                           "fire | skillshot | mobility"
+            "ReduxFlags"                                                           "doNotRandom | mobility"
         }
         "ember_spirit_flame_guard"
         {
@@ -3967,7 +3999,8 @@
         }
         "earth_spirit_rolling_boulder"
         {
-            "ReduxPerks"                                                           "earth | skillshot"
+            "ReduxPerks"                                                           "earth | skillshot | mobility"
+			"ReduxFlags"														   "mobility"
         }
         "earth_spirit_stone_caller"
         {
@@ -3976,7 +4009,7 @@
         }
         "meepo_poof"
         {
-            "ReduxPerks"                                                           "earth"
+            "ReduxPerks"                                                           "earth | mobility"
         }
         "sandking_epicenter"
         {
@@ -4382,13 +4415,14 @@
         }
         "riki_tricks_of_the_trade"
         {
-            "ReduxPerks"                                                           "channeled"
+            "ReduxPerks"                                                           "channeled | mobility"
+			"ReduxFlags"														   "mobility"
             "ReduxCost"                                                            "10"
         }
         
         "windrunner_powershot"
         {
-            "ReduxPerks"                                                           "channeled | skillshot"
+            "ReduxPerks"                                                           "channeled | skillshot | ranger"
         }
         "beastmaster_wild_axes"
         {
@@ -4400,7 +4434,7 @@
         }
         "drow_ranger_gust"
         {
-            "ReduxPerks"                                                           "skillshot | enemyMoving"
+            "ReduxPerks"                                                           "skillshot | enemyMoving | ranger"
         }
         "magnataur_shockwave"
         {
@@ -4452,7 +4486,8 @@
         }
         "chaos_knight_reality_rift"
         {
-            "ReduxPerks"                                                           "enemyMoving"
+            "ReduxPerks"                                                           "enemyMoving | mobility"
+			"ReduxFlags"														   "mobility"
         }
         "dark_seer_vacuum"
         {
@@ -4689,7 +4724,7 @@
 				"attack_targets"			"3 4 5 6"
 				}					
 			}
-			"ReduxPerks"                                                           "nature"
+			"ReduxPerks"                                                           "nature | mobility"
 		}
         "life_stealer_consume"
         {
@@ -4740,7 +4775,7 @@
         }
         "ember_spirit_activate_fire_remnant"
         {
-            "ReduxFlags"                                                           "doNotRandom"
+            "ReduxFlags"                                                           "doNotRandom | mobility"
         }
         "spectre_reality"
         {
@@ -4916,7 +4951,7 @@
         "hoodwink_bushwhack"
         {
             "ReduxFlags"                                                           "stun | skillshot"
-            "ReduxPerks"                                                           "enemyMoving | skillshot"
+            "ReduxPerks"                                                           "enemyMoving | skillshot | ranger"
         }
         "hoodwink_scurry"
         {
@@ -4925,7 +4960,7 @@
         }
         "hoodwink_sharpshooter"
         {
-            "ReduxPerks"                                                           "channeled | skillshot"
+            "ReduxPerks"                                                           "channeled | skillshot | ranger"
         }
         "lich_frost_shield"
         {
@@ -5039,7 +5074,7 @@
         }
         "sniper_concussive_grenade"
         {
-            "ReduxPerks"                                                           "explosive | enemyMoving"
+            "ReduxPerks"                                                           "explosive | enemyMoving | mobility"
 			"sniper_concussive_grenade"
 			"MaxLevel"						"4"
 			"AbilitySpecial"
@@ -5096,8 +5131,8 @@
         }
         "snapfire_firesnap_cookie"
         {
-            "ReduxPerks"                                                           "support"
-            "ReduxFlags"                                                           "support"
+            "ReduxPerks"                                                           "support | mobility"
+            "ReduxFlags"                                                           "support | mobility"
         }
         "ogre_magi_smash"
         {
@@ -5306,8 +5341,8 @@
         }
         "dawnbreaker_celestial_hammer"
         {
-            "ReduxPerks"                                                           "light | skillshot | fire"
-            "ReduxFlags"                                                           ""
+            "ReduxPerks"                                                           "light | skillshot | fire | mobility"
+            "ReduxFlags"                                                           "mobility"
         }
         "riki_poison_dart"
         {
@@ -5408,8 +5443,8 @@
         }
         "night_stalker_darkness"
         {
-            "ReduxPerks"                                                           "demon"
-            "ReduxFlags"                                                           ""
+            "ReduxPerks"                                                           "demon | mobility"
+            "ReduxFlags"                                                           "mobility"
         }
 
 
@@ -6403,12 +6438,12 @@
 		
 		"clinkz_strafe"
 		{
-			"ReduxPerks"                                                           "fire | channeled | skillshot"
+			"ReduxPerks"                                                           "fire | channeled | skillshot | ranger"
 		}
 		
 		"drow_ranger_silence"
 		{
-			"ReduxPerks"                                                           "skillshot"
+			"ReduxPerks"                                                           "skillshot | ranger"
 		}
 		
 		"techies_sticky_bomb"
@@ -6810,7 +6845,7 @@
         "invoker_ghost_walk_ad"
         {
             "AbilityTextureName"            "invoker_ghost_walk_ad_png"
-			"ReduxPerks"                    "invis | ice"
+			"ReduxPerks"                    "invis | ice | mobility"
 			"AbilityManaCost"				"200 160 120 80"
 			"AbilityCooldown"
 			{
@@ -6865,10 +6900,28 @@
         }
 
 
-		// Neutral skills
+		// Custom skills
 		
-
-
+		"ebf_clinkz_trickshot_passive"
+		{
+			"ReduxPerks"	"ranger"
+		}
+		"ebf_clinkz_trickshot"
+		{
+			"ReduxPerks"	"ranger"
+		}
+		"ebf_clinkz_trickshot_passive_ranged"
+		{
+			"ReduxPerks"	"ranger"
+		}
+		"drow_splitshot"
+		{
+			"ReduxPerks"	"ranger"
+		}
+		"dark_ranger_black_arrow"
+		{
+			"ReduxPerks"	"ranger"
+		}
 
         // Talents
 
