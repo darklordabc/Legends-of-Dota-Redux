@@ -2212,7 +2212,7 @@
         "phoenix_sun_ray"
         {
             "ReduxFlags"                                                           "support"
-            "ReduxPerks"                                                           "support | fire | self_damage"
+            "ReduxPerks"                                                           "support | fire | self_damage | light"
         }
         "dark_seer_surge"
         {
@@ -5219,21 +5219,6 @@
             "ReduxPerks"                                                           "skillshot"
             "ReduxFlags"                                                           ""
         }
-        "berserker_fire_spear"
-        {
-            "ReduxPerks"                                                           "skillshot"
-            "ReduxFlags"                                                           ""
-        }
-        "mifune_raigeki"
-        {
-            "ReduxPerks"                                                           "skillshot"
-            "ReduxFlags"                                                           ""
-        }
-        "hylonome_eldritch_pull"
-        {
-            "ReduxPerks"                                                           "enemyMoving"
-            "ReduxFlags"                                                           ""
-        }
         "meepo_petrify"
         {
             "ReduxPerks"                                                           "earth"
@@ -5254,11 +5239,7 @@
 				}
 			}
         }
-        "sirocco_shifting_sands"
-        {
-            "ReduxPerks"                                                           "earth"
-            "ReduxFlags"                                                           ""
-        }
+        
         "keeper_of_the_light_will_o_wisp"
         {
             "ReduxPerks"                                                           "light | enemyMoving"
@@ -5388,8 +5369,8 @@
         
         "dawnbreaker_solar_guardian"
         {
-            "ReduxPerks"                                                           "support"
-            "ReduxFlags"                                                           "support"
+            "ReduxPerks"                                                           "support | teleport | light | mobility"
+            "ReduxFlags"                                                           "support | mobility"
         }
         "life_stealer_open_wounds"
         {
@@ -5428,8 +5409,13 @@
         }
         "dawnbreaker_fire_wreath"
         {
-            "ReduxPerks"                                                           "physical"
-            "ReduxFlags"                                                           ""
+            "ReduxPerks"                                                           "physical | light"
+            "ReduxFlags"                                                           "stun"
+        }
+		"dawnbreaker_luminosity"
+		{
+            "ReduxPerks"                                                           "physical | light | attack_modifier"
+            "ReduxFlags"                                                           "stun | crit"
         }
         "grimstroke_spirit_walk"
         {
@@ -6922,7 +6908,136 @@
 		{
 			"ReduxPerks"	"ranger"
 		}
-
+		"imba_tower_healing_hero"
+		{
+			"ReduxPerks"	"support | light"
+			"ReduxFlags"	"support"
+		}
+		"imba_tower_healing_tower"
+		{
+			"ReduxPerks"	"support | light"
+			"ReduxFlags"	"support"
+		}
+		"angel_arena_grace"
+		{
+			"ReduxPerks"	"support | light"
+			"ReduxFlags"	"support"
+		}
+		"angel_arena_lightning"
+		{
+			"ReduxPerks"	"lightning"
+		}
+		"angel_arena_magic_fire"
+		{
+			"ReduxPerks"	"fire"
+		}
+		"angel_arena_roots"
+		{
+			"ReduxPerks"	"nature"
+		}
+		"angel_arena_song"
+		{
+			"ReduxPerks"	"support | silence"
+			"ReduxFlags"	"support | silence"
+		}
+		"alexander_elandras_blessing"
+		{
+			"ReduxPerks"	"support | light"
+			"ReduxFlags"	"support"
+		}
+		"alexander_soulseal"
+		{
+			"ReduxPerks"	"light"
+		}
+		"erra_morbid_blade"
+		{
+			"ReduxPerks"	"physical"
+			"ReduxFlags"	"physical"
+		}
+		"lysander_grapeshot"
+		{
+			"ReduxPerks"	"physical"
+			"ReduxFlags"	"physical | crit"
+		}
+		"mifune_genso"
+		{
+			"ReduxPerks"	"illusion"
+			"ReduxFlags"	"illusion"
+		}
+		"mifune_raigeki"
+		{
+			"ReduxPerks"	"lightning | skillshot"
+			"ReduxFlags"	""
+		}
+		"ptomely_mirror_blade"
+		{
+			"ReduxPerks"	"physical | skillshot"
+			"ReduxFlags"	"physical"
+		}
+		"achlys_death_mist"
+		{
+			"ReduxPerks"	"self_damage"
+			"ReduxFlags"	""
+		}
+		"bellatrix_blood_rake"
+		{
+			"ReduxPerks"	"self_damage | skillshot | enemyMoving"
+			"ReduxFlags"	""
+		}
+		"bellatrix_live_transfusion"
+		{
+			"ReduxPerks"	"self_damage | mobility"
+			"ReduxFlags"	"mobility"
+		}
+		"bellatrix_unholy_ecstasy"
+		{
+			"ReduxPerks"	"self_damage | support"
+			"ReduxFlags"	"support | mana"
+		}
+		"berserker_fire_spear"
+        {
+            "ReduxPerks"    "skillshot | fire"
+            "ReduxFlags"    ""
+        }
+        "hylonome_eldritch_pull"
+        {
+            "ReduxPerks"    "enemyMoving"
+            "ReduxFlags"    ""
+        }
+		"hylonome_eldritch_pull_op"
+        {
+            "ReduxPerks"    "enemyMoving"
+            "ReduxFlags"    ""
+        }
+		"proteus_razorwind"
+		{
+            "ReduxPerks"	"enemyMoving"
+        }
+		"proteus_rarefaction"
+		{
+            "ReduxPerks"	"water"
+        }
+		"sirocco_shifting_sands"
+        {
+            "ReduxPerks"	"earth"
+            "ReduxFlags"	""
+        }
+		"suna_puppeteer"
+		{
+            "ReduxPerks"	"summon_non_ult"
+            "ReduxFlags"	"summon"
+        }
+		"mercy_caduceus_healing"
+		{
+            "ReduxPerks"	"support | light"
+            "ReduxFlags"	"support"
+        }
+		"mercy_heroes_never_die"
+		{
+            "ReduxPerks"	"support | light"
+            "ReduxFlags"	"support"
+        }
+		
         // Talents
 
         "special_bonus_unique_mars_spear_bonus_damage"
