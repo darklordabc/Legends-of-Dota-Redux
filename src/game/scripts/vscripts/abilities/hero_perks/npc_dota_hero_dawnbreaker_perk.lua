@@ -1,56 +1,53 @@
 --------------------------------------------------------------------------------------------------------
 --
---		Hero: Drow Ranger
---		Perk: Gust also disarms enemies when cast by Drow Ranger. 
+--		Hero: Dawnbreaker
+--		Perk: Dawnbreaker gains 1.5% self healing and regen amplification for every level of Light spells she has.
 --
 --------------------------------------------------------------------------------------------------------
-LinkLuaModifier( "modifier_npc_dota_hero_drow_ranger_perk", "abilities/hero_perks/npc_dota_hero_drow_ranger_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_npc_dota_hero_drow_ranger_disarm", "abilities/hero_perks/npc_dota_hero_drow_ranger_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_npc_dota_hero_dawnbreaker_perk", "abilities/hero_perks/npc_dota_hero_dawnbreaker_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
 --------------------------------------------------------------------------------------------------------
-if npc_dota_hero_drow_ranger_perk ~= "" then npc_dota_hero_drow_ranger_perk = class({}) end
+if npc_dota_hero_dawnbreaker_perk ~= "" then npc_dota_hero_dawnbreaker_perk = class({}) end
 --------------------------------------------------------------------------------------------------------
---		Modifier: modifier_npc_dota_hero_drow_ranger_perk				
+--		Modifier: modifier_dawnbreaker_perk				
 --------------------------------------------------------------------------------------------------------
-if modifier_npc_dota_hero_drow_ranger_perk ~= "" then modifier_npc_dota_hero_drow_ranger_perk = class({}) end
+if modifier_npc_dota_hero_dawnbreaker_perk ~= "" then modifier_npc_dota_hero_dawnbreaker_perk = class({}) end
 --------------------------------------------------------------------------------------------------------
-function modifier_npc_dota_hero_drow_ranger_perk:IsPassive()
+function modifier_npc_dota_hero_dawnbreaker_perk:IsPassive()
 	return true
 end
 --------------------------------------------------------------------------------------------------------
-function modifier_npc_dota_hero_drow_ranger_perk:IsPurgable()
+function modifier_npc_dota_hero_dawnbreaker_perk:IsHidden()
 	return false
 end
 --------------------------------------------------------------------------------------------------------
-function modifier_npc_dota_hero_drow_ranger_perk:IsHidden()
+function modifier_npc_dota_hero_dawnbreaker_perk:IsPurgable()
 	return false
 end
 --------------------------------------------------------------------------------------------------------
-function modifier_npc_dota_hero_drow_ranger_perk:RemoveOnDeath()
-    return false
+function modifier_npc_dota_hero_dawnbreaker_perk:RemoveOnDeath()
+	return false
 end
 --------------------------------------------------------------------------------------------------------
--- Add additional functions
---------------------------------------------------------------------------------------------------------
-function modifier_npc_dota_hero_drow_ranger_perk:DeclareFunctions()
+function modifier_npc_dota_hero_dawnbreaker_perk:DeclareFunctions()
 	return {
-		MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
+		MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE,
 	}
 end
 --------------------------------------------------------------------------------------------------------
-function modifier_npc_dota_hero_drow_ranger_perk:OnCreated()
-	self.bonusPerLevel = 2
+function modifier_npc_dota_hero_dawnbreaker_perk:OnCreated()
+	self.bonusPerLevel = 1.5
 	self.bonusAmount = 1
 	if IsServer() then
 		self:StartIntervalThink(0.1)
 	end
 end
 --------------------------------------------------------------------------------------------------------
-function modifier_npc_dota_hero_drow_ranger_perk:OnIntervalThink()
+function modifier_npc_dota_hero_dawnbreaker_perk:OnIntervalThink()
 	if IsServer() then
 		local caster = self:GetParent()
 		for i=0, caster:GetAbilityCount() do
 			local skill = caster:GetAbilityByIndex(i)
-			if skill and skill:HasAbilityFlag("ranger") then
+			if skill and skill:HasAbilityFlag("light") then
 				if not skill.perkLevel then skill.perkLevel = skill:GetLevel() end
 				if skill:GetLevel() > skill.perkLevel then
 					local increase = (skill:GetLevel()  - skill.perkLevel)
@@ -64,6 +61,7 @@ function modifier_npc_dota_hero_drow_ranger_perk:OnIntervalThink()
 	end
 end
 --------------------------------------------------------------------------------------------------------
-function modifier_npc_dota_hero_drow_ranger_perk:GetModifierBonusStats_Agility(params)
+function modifier_npc_dota_hero_dawnbreaker_perk:GetModifierHPRegenAmplify_Percentage(params)
 	return self.bonusAmount * self:GetStackCount()
 end
+--------------------------------------------------------------------------------------------------------

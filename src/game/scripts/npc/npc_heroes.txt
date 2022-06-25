@@ -11798,6 +11798,7 @@
 			}
 			"13"
 			{
+
 				"SlotIndex" "13"
 				"SlotName" "ability_effects_2"
 				"SlotText" "dragon_knight_dragon_tail"
@@ -11807,9 +11808,13 @@
 			"14"
 			{
 				"SlotIndex"		"14"
+
 				"SlotName"		"persona_selector"
 				"SlotText"		"#LoadoutSlot_Persona_Selector"
+				"SlotText"		"#LoadoutSlot_Persona_Selector"
 			}
+			
+			
 		}
 	}
 	"npc_dota_hero_dazzle"

@@ -325,7 +325,7 @@
             "04"
             {
                 "var_type"          "FIELD_FLOAT"
-                "transform_time"    "2.0 1.5 1.0"
+                "transform_time"    "1.5 1.25 1.0"
             }
             "05"
             {
@@ -360,7 +360,7 @@
             "11"
             {
                 "var_type"          "FIELD_FLOAT"
-                "seconds_per_attack"    "2.75"
+                "seconds_per_attack"    "2.5"
             }
         }
         "OnToggleOn"
@@ -433,7 +433,7 @@
                     "MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"  "%attack_bonus"
                     "MODIFIER_PROPERTY_ATTACK_RANGE_BONUS"      "%attack_bonus_range"
                     "MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT"   "%bat_increase"
-                    "MODIFIER_PROPERTY_PROJECTILE_SPEED_BONUS"      "750"
+                    "MODIFIER_PROPERTY_PROJECTILE_SPEED_BONUS"      "1000"
                     "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"  "-9999"
                 }
                 "States"
@@ -491,7 +491,7 @@
     
         "AbilityCastRange"              "600"
         "AbilityCastPoint"              "0.0"
-        "AbilityCooldown"               "0"
+        "AbilityCooldown"               "5 4 3 2"
         "AbilityManaCost"               "20"
         "HasScepterUpgrade"             "1"
     
@@ -518,8 +518,8 @@
             }
             "03"
             {
-                "var_type"          "FIELD_INTEGER"
-                "armor_reduction"   "-1 -2 -3 -4"
+                "var_type"          "FIELD_FLOAT"
+                "armor_reduction"   "-4"
             }
             "04"
             {
@@ -529,7 +529,7 @@
             "05"
             {
                 "var_type"          "FIELD_INTEGER"
-                "ms_slow"           "15"
+                "ms_slow"           "15 18 21 24"
             }
             "06"
             {
@@ -539,7 +539,7 @@
             "07"
             {
                 "var_type"          "FIELD_INTEGER"
-                "cooldown"          "0"
+                "cooldown"          "5 4 3 2"
             }
         }
         "Modifiers"
