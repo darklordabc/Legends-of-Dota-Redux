@@ -1,5 +1,7 @@
 hero_freedom_strike = class({})
 
+require('lib/physics')
+
 LinkLuaModifier("modifier_freedom_strike","abilities/dusk/hero_freedom_strike",LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_freedom_strike_slow","abilities/dusk/hero_freedom_strike",LUA_MODIFIER_MOTION_NONE)
 

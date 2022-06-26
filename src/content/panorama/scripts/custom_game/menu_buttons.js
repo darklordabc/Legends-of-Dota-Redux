@@ -42,8 +42,8 @@ function enableIngameBuilder() {
 //}
 
 (function() {
-    var isPremium = GameUI.CustomUIConfig().isPremiumPlayer;
-    $('#patreonButton').visible = !isPremium;
+    //var isPremium = GameUI.CustomUIConfig().isPremiumPlayer;
+    //$('#patreonButton').visible = !isPremium;
 
 	GameUI.CustomUIConfig().Util.builderEnabled = false;
     CustomNetTables.SubscribeNetTableListener('options', function (tableName, key, value) {

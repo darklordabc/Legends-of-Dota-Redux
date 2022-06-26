@@ -5075,7 +5075,6 @@
         "sniper_concussive_grenade"
         {
             "ReduxPerks"                                                           "explosive | enemyMoving | mobility"
-			"sniper_concussive_grenade"
 			"MaxLevel"						"4"
 			"AbilitySpecial"
 			{
@@ -5116,10 +5115,6 @@
 					"knockback_duration"		"0.4"
 				}
 			}
-        }
-        "rattletrap_battery_assault"
-        {
-            "ReduxPerks"                                                           "explosive"
         }
         "snapfire_scatterblast"
         {
