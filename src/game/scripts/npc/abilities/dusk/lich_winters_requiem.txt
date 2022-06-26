@@ -28,7 +28,7 @@
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"140"
+		"AbilityManaCost"				"110 120 130 140"
 		
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
@@ -61,7 +61,7 @@
 			"05"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage_radius"				"175"
+				"damage_radius"				"200"
 			}
 			"06"
 			{
@@ -71,17 +71,17 @@
 			"07"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"targets"					"5"
+				"targets"					"6"
 			}
 			"08"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"slow"						"25 30 35 40"
+				"slow"						"30 35 40 45"
 			}
 			"09"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"slow_duration"				"2.0"
+				"slow_duration"				"3.0"
 			}
 		}
 		
