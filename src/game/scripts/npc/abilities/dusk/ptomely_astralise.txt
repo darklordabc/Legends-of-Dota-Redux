@@ -53,7 +53,7 @@
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"pulse_damage"				"30 45 60 75"
+				"pulse_damage"				"45 60 75 90"
 			}
 			"04"
 			{
