@@ -149,7 +149,7 @@
                     {
                         "Target"        "TARGET"
                         "Center"        "CASTER"
-                        "Duration"      "0.7"
+                        "Duration"      "0.5"
                         "Distance"  "%distance"
                         "Height"        "50"
                         "IsFixedDistance"   "0"
@@ -232,7 +232,7 @@
             "05"
             {
                 "var_type"              "FIELD_INTEGER"
-                "damage"                "180 270 360 450"
+                "damage"                "200 250 300 350"
             }
         }
         "precache"
@@ -310,7 +310,7 @@
                     {
                         "Target"        "TARGET"
                         "Center"        "CASTER"
-                        "Duration"      "0.9"
+                        "Duration"      "0.7"
                         "Distance"  "%distance"
                         "Height"        "0"
                         "IsFixedDistance"   "0"
