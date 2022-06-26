@@ -1,5 +1,7 @@
 hawkeye_hit_n_run = class({})
 
+require('lib/physics')
+
 LinkLuaModifier("modifier_hit_n_run_thinker","abilities/dusk/hawkeye_hit_n_run",LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_hit_n_run_slow","abilities/dusk/hawkeye_hit_n_run",LUA_MODIFIER_MOTION_NONE)
 

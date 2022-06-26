@@ -38,7 +38,7 @@ function createCommandPanel(data, root) {
 	panel.SetHasClass("cheatOnly", isCheat);
 	var commandSettings = panel.FindChildTraverse("commandSettings");
 	if (data.customXmlPanel != null) {
-		commandSettings.BLoadLayoutFromString(data.customXmlPanel, true, true);
+		//commandSettings.BLoadLayoutFromString(data.customXmlPanel, true, true);
 	}
 	panel.FindChildTraverse("commandHeader").SetPanelEvent("onactivate", function () {
 		if (!isCheat || $.GetContextPanel().BHasClass("cheatMode")) {
