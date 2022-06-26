@@ -44,7 +44,7 @@
             "02"
             {
                 "var_type"          "FIELD_FLOAT"
-                "Cooldown_Factor_Building"   "4.0"
+                "Cooldown_Factor_Building"   "3.0"
             }
             "03"
             {
@@ -59,7 +59,7 @@
             "05"
             {
                 "var_type"          "FIELD_FLOAT"
-                "Tower_Heal_Factor"     "0.50"
+                "Tower_Heal_Factor"     "0.7"
             }
         }
     }
@@ -648,7 +648,7 @@
             "03"
             {
                 "var_type"          "FIELD_INTEGER"
-                "attacks_needed"    "3"
+                "attacks_needed"    "2"
             }
             "04"
             {
