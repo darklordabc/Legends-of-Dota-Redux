@@ -15,7 +15,7 @@
 		"FightRecapLevel"				"1"
 		"AbilityTextureName"			"custom/seer"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityChannelTime"      "10.0"
+		"AbilityChannelTime"      "20.0"
 
 		// Time
 		//-------------------------------------------------------------------------------------------------------------
