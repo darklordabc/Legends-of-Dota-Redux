@@ -25,7 +25,7 @@
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "lol1"                                                 "3"
+                "lol1"                                                 "2"
             }
         }
         "ReduxFlags"                                                           "support"
