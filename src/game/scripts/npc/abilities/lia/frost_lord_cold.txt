@@ -19,8 +19,8 @@
         "AoERadius"                                                            "400"
         "AbilityCastRange"                                                     "700"
         "AbilityCastPoint"                                                     "0.0"
-        "AbilityCooldown"                                                      "14 13 12"
-        "AbilityManaCost"                                                      "100 110 120"
+        "AbilityCooldown"                                                      "14 13 12 11"
+        "AbilityManaCost"                                                      "100 110 120 130"
         "AbilitySpecial"
         {
             "01"
