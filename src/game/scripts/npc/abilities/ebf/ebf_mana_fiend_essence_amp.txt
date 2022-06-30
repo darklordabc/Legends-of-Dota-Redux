@@ -17,12 +17,12 @@
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "crit_chance"                                          "25"
+                "crit_chance"                                          "35"
             }
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "crit_amp"                                             "160 200 240"
+                "crit_amp"                                             "175 225 275"
             }
         }
         "ReduxFlags"                                                           "crit"
