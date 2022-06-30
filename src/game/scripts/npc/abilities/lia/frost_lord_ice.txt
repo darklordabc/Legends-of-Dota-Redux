@@ -50,7 +50,7 @@
             "06"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "damage_radius"                                        "200"
+                "damage_radius"                                        "225"
             }
         }
         "OnSpellStart"
