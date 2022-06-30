@@ -12,7 +12,7 @@
 		"AbilitySpecial" {
 			"01" {
 				"var_type" "FIELD_INTEGER"
-				"radius" "1000"
+				"radius" "1200"
 			}
 
 			"02" {
@@ -32,7 +32,7 @@
 
 			"05" {
 				"var_type" "FIELD_FLOAT"
-				"duration" "15.0"
+				"duration" "20.0"
 			}
 		}
 	}
