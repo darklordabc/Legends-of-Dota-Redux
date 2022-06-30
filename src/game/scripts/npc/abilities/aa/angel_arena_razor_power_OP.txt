@@ -13,12 +13,12 @@
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "radius"                                               "400"
+                "radius"                                               "400 450 500 550"
             }
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "damage_percent"                                       "80 85 90 100"
+                "damage_percent"                                       "70 80 90 100"
             }
         }
         "Modifiers"

@@ -18,7 +18,7 @@
 			"01"
 			{
 				"var_type"                  "FIELD_FLOAT"
-				"grow_time"					"10.0"
+				"grow_time"					"7.5"
 			}
 			"02"
 			{

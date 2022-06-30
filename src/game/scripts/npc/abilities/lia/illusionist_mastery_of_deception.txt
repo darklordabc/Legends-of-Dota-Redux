@@ -39,7 +39,7 @@
             "01"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "time"                                                 "8 10 12"
+                "time"                                                 "8 10 12 14"
             }
             "02"
             {
@@ -49,17 +49,17 @@
             "03"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "outgoing_damage"                                      "-40 -20 -0"
+                "outgoing_damage"                                      "-30 -20 -10 -0"
             }
             "04"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "incoming_damage"                                      "400 300 200"
+                "incoming_damage"                                      "400 300 200 100"
             }
             "05"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "outgoing_damage_tooltip"                              "60 80 100"
+                "outgoing_damage_tooltip"                              "70 80 90 100"
             }
         }
         "ReduxFlags"                                                           "illusion"

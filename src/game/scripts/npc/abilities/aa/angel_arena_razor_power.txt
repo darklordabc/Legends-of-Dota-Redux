@@ -18,7 +18,7 @@
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "damage_percent"                                       "35 40 45 50"
+                "damage_percent"                                       "30 45 60 75"
             }
         }
         "Modifiers"

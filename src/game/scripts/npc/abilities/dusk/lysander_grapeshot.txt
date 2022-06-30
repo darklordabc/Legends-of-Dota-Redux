@@ -20,8 +20,8 @@
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"550 650 750 850"
-		"AbilityCastPoint"				"0.2"
+		"AbilityCastRange"				"600"
+		"AbilityCastPoint"				"0.3"
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -44,7 +44,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"range_ministun"		"275"
+				"range_ministun"		"300"
 			}
 			"03"
 			{
@@ -54,7 +54,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"crit"					"25"
+				"crit"					"30"
 			}
 			"05"
 			{
@@ -69,12 +69,12 @@
 			"07"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"scepter_chance" 		"20 40 60 80"
+				"scepter_chance" 		"30 40 50 60"
 			}
 			"08"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"scepter_radius" 		"500"
+				"scepter_radius" 		"600"
 			}
 			"09"
 			{

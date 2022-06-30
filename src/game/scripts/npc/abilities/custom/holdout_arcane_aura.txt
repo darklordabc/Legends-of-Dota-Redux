@@ -8,7 +8,7 @@
         "AbilityUnitTargetTeam"                                                "DOTA_UNIT_TARGET_TEAM_BOTH"
         "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO"
         "AbilityCooldown"                                                      "10.0"
-        "AbilityManaCost"                                                      "40 45 50 55"
+        "AbilityManaCost"                                                      "10"
         "OnSpellStart"
         {
             "ApplyModifier"
@@ -64,7 +64,7 @@
                 }
                 "Properties"
                 {
-                    "MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE"      "%mana_regen_pct"
+                    "MODIFIER_PROPERTY_MANA_REGEN_TOTAL_PERCENTAGE"      "%mana_regen_pct"
                 }
             }
         }
@@ -78,7 +78,7 @@
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "mana_regen_pct"                                       "200 250 300 350"
+                "mana_regen_pct"                                       "50 75 100 125"
             }
             "03"
             {
@@ -88,7 +88,7 @@
             "04"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "self_mana_regen"                                      "2.0 3.0 4.0 5.0"
+                "self_mana_regen"                                      "3.0 4.5 6.0 7.5"
             }
         }   
         "ReduxFlags"                                                           "support | mana | semi_passive"

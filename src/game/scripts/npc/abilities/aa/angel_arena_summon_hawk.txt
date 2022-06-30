@@ -5,9 +5,9 @@
         "BaseClass"                                                            "ability_datadriven"
         "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
         "AbilityTextureName"                                                   "custom/angel_arena_summon_hawk"
-        "AbilityCooldown"                                                      "60.0"
+        "AbilityCooldown"                                                      "40.0"
         "AbilityCastPoint"                                                     "0.0"
-        "AbilityManaCost"                                                      "100 120 140 160"
+        "AbilityManaCost"                                                      "100"
         "MaxLevel"                                                             "4"
         "AbilitySpecial"
         {
@@ -19,7 +19,7 @@
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "bonus_damage"                                         "30 40 50 60"
+                "bonus_damage"                                         "30 45 60 75"
             }
             "03"
             {

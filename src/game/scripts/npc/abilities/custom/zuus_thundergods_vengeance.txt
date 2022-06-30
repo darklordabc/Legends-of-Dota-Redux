@@ -7,8 +7,8 @@
         "AbilityUnitDamageType"                                                "DAMAGE_TYPE_MAGICAL"
         "AbilityTextureName"                                                   "custom/zuus_thundergods_wrath_lod"
         "AbilityCastPoint"                                                     "0.4 0.4 0.4 0.4"
-        "AbilityCooldown"                                                      "90.0 85.0 80.0"
-        "AbilityManaCost"                                                      "225 325 450"
+        "AbilityCooldown"                                                      "90.0 80.0 70.0"
+        "AbilityManaCost"                                                      "250 350 450"
         "AbilitySpecial"
         {
             "01"
@@ -34,17 +34,17 @@
             "05"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "damage"                                               "300 420 550"
+                "damage"                                               "300 450 600"
             }
             "06"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "damage_scepter"                                       "550 650 750"
+                "damage_scepter"                                       "500 650 800"
             }
             "07"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "num_targets"                                          "12 16 20"
+                "num_targets"                                          "24"
             }
             "08"
             {

@@ -21,13 +21,13 @@
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0"
+		"AbilityCastPoint"				"0.3"
 		"AbilityCastRange"				"150"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"90 80 70"
+		"AbilityCooldown"				"75 60 45"
 		"HasScepterUpgrade"				"1"
 
 		// Cost
@@ -45,7 +45,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"crit"						"225 250 275"
+				"crit"						"200 225 250"
 			}
 			"02"
 			{
@@ -55,27 +55,27 @@
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"landing_aoe"				"300"
+				"landing_aoe"				"550"
 			}
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"landing_damage"			"240 300 360"
+				"landing_damage"			"200 300 400"
 			}
 			"05"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"landing_stun"				"1.25 1.50 1.75"
+				"landing_stun"				"1.5 1.75 2.0"
 			}
 			"06"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"scepter_crit"				"300 325 350"
+				"scepter_crit"				"275 300 325"
 			}
 			"07"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"scepter_landing_damage"	"240 300 360"
+				"scepter_landing_damage"	"250 350 450"
 			}
 		}
 		

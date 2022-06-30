@@ -21,12 +21,12 @@
 			"01"
 			{
 				"var_type"                  "FIELD_FLOAT"
-				"duration"					"60.0"
+				"duration"					"75.0"
 			}
 			"02"
 			{
 				"var_type"                  "FIELD_INTEGER"
-				"bonus"						"7"
+				"bonus"						"6"
 			}
 			"03"
 			{
@@ -36,7 +36,7 @@
 			"04"
 			{
 				"var_type"                  "FIELD_INTEGER"
-				"mana_cost_per_stack"		"25 20 15 10"
+				"mana_cost_per_stack"		"16 14 12 10"
 			}
 		}
 		"precache"

@@ -12,7 +12,7 @@
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "hero_lifesteal"                                       "14 16 18 20"
+                "hero_lifesteal"                                       "13 17 21 25"
             }
             "02"
             {
@@ -22,7 +22,7 @@
             "03"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "radius"                                               "900"
+                "radius"                                               "1200"
             }
         }
         "ReduxFlags"                                                           "support"

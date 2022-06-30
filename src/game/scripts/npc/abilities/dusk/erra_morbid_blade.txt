@@ -42,7 +42,7 @@
 			"01"
 			{
 				"var_type"			  "FIELD_INTEGER"
-				"pure_threshold"		"40 45 50 55"
+				"pure_threshold"		"50"
 			}
 			
 			"02"
@@ -54,7 +54,7 @@
 			"03"
 			{
 				"var_type"			  "FIELD_INTEGER"
-				"lifesteal"			 "4 6 8 10"
+				"lifesteal"			 "6 9 12 15"
 			}
 		}
 

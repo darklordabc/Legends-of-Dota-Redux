@@ -26,7 +26,7 @@
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "move_speed"                                           "50 100 150"
+                "move_speed"                                           "75 100 125"
             }
             "03"
             {
@@ -36,7 +36,7 @@
             "04"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "max"                                                  "550 600 650"
+                "max"                                                  "550 650 750"
             }
             "05"
             {

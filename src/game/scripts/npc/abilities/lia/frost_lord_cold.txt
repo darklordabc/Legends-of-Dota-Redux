@@ -13,35 +13,35 @@
             "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_crystalmaiden.vsndevts"
             "particle"                                                     "particles/units/heroes/hero_crystalmaiden/maiden_crystal_nova.vpcf"
         }
-        "MaxLevel"                                                             "3"
+        "MaxLevel"                                                             "4"
         "RequiredLevel"                                                        "1"
         "LevelsBetweenUpgrades"                                                "2"
         "AoERadius"                                                            "400"
         "AbilityCastRange"                                                     "700"
         "AbilityCastPoint"                                                     "0.0"
-        "AbilityCooldown"                                                      "14 13 12"
-        "AbilityManaCost"                                                      "100 110 120"
+        "AbilityCooldown"                                                      "14 13 12 11"
+        "AbilityManaCost"                                                      "100 110 120 130"
         "AbilitySpecial"
         {
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "damage"                                               "20 30 40"
+                "damage"                                               "20 30 40 50"
             }
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "add_damage"                                           "20 30 40"
+                "add_damage"                                           "20 30 40 50"
             }
             "03"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "movement_speed_slow"                                  "-20 -30 -40"
+                "movement_speed_slow"                                  "-20 -30 -40 -50"
             }
             "04"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "attack_speed_slow"                                    "-20 -30 -40"
+                "attack_speed_slow"                                    "-20 -30 -40 -50"
             }
             "05"
             {

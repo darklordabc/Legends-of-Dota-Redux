@@ -40,7 +40,7 @@
 
     "special_bonus_unique_pushing_blast_0" 
     {
-        "BaseClass"               "special_bonus_unique_antimage_3"
+        "BaseClass"               "special_bonus_unique_brewmaster_7"
         "TalentRank"              "3"
         "TalentRequiredAbility" "pushing_blast"
         "AbilityType"                   "DOTA_ABILITY_TYPE_ATTRIBUTES"
@@ -50,7 +50,7 @@
             "01"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "value"                                                "50"
+                "value"                                                "250"
             }
         }
     }

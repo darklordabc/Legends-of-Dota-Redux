@@ -4,13 +4,13 @@
     {
         "BaseClass"                                                            "ability_datadriven"
         "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-        "AbilityUnitDamageType"                                                "DAMAGE_TYPE_MAGICAL"
+        "AbilityUnitDamageType"                                                "DAMAGE_TYPE_PHYSICAL"
         "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
         "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_NO"
-        "AbilityCastPoint"                                                     "0.5 0.5 0.5"
+        "AbilityCastPoint"                                                     "0.3 0.3 0.3"
         "AbilityTextureName"                                                   "custom/angel_arena_roots"
         "MaxLevel"                                                             "3"
-        "AbilityCooldown"                                                      "70 50 30"
+        "AbilityCooldown"                                                      "70 60 50"
         "precache"
         {
             "particle"                                                     "particles/units/heroes/hero_treant/treant_overgrowth_vines.vpcf"
@@ -21,7 +21,7 @@
             "01"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "duration"                                             "2.0"
+                "duration"                                             "4.0"
             }
             "02"
             {
@@ -31,12 +31,12 @@
             "03"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "armor_reduction"                                      "-5 -6 -7"
+                "armor_reduction"                                      "-5 -7 -9"
             }
             "04"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "damage"                                               "100 150 200"
+                "damage"                                               "50 100 150"
             }
         }
         "OnSpellStart"
@@ -120,8 +120,8 @@
                 }
             }
         }
-        "ReduxFlags"                                                           "stun"
-        "ReduxPerks"                                                           "earth | demon"
+        "ReduxFlags"                                                           "stun | physical"
+        "ReduxPerks"                                                           "earth | demon | physical"
 
     }
 }

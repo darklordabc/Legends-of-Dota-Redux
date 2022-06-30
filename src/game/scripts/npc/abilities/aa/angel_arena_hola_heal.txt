@@ -13,7 +13,7 @@
 			"particle" "particles/units/heroes/hero_earthshaker/earthshaker_echoslam_start_c.vpcf"
 		}
 		"AbilityCastPoint" "0.3 0.3 0.3"
-		"AbilityCooldown" "20.0"
+		"AbilityCooldown" "60.0"
 		"AbilityManaCost" "200 300 400"
 
 		"AbilitySpecial" {
@@ -24,7 +24,7 @@
 
 			"02" {
 				"var_type" "FIELD_INTEGER"
-				"heal" "600 1000 1400"
+				"heal" "600 800 1000"
 			}
 
 			"03" {
@@ -34,7 +34,7 @@
 
 			"04" {
 				"var_type" "FIELD_FLOAT"
-				"heal_percent" "2.0 3.0 4.0"
+				"heal_percent" "10.0"
 			}
 		}
 
