@@ -25,12 +25,12 @@
             "01"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "instant_heal"                                         "50 100 150 200"
+                "instant_heal"                                         "80 120 160 200"
             }
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "heal_per_second"                                      "10 20 30 40"
+                "heal_per_second"                                      "25 30 35 40"
             }
             "03"
             {
@@ -50,7 +50,7 @@
             "06"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "slow_duration"                                        "5.0"
+                "slow_duration"                                        "7.0"
             }
         }
         "OnSpellStart"
