@@ -9,7 +9,7 @@
         "AbilityCooldown"                                                      "20 18 16 14"
         "AbilityCastRange"                                                     "0"
         "AbilityManaCost"                                                      "70 80 90 100"
-        "AoERadius"                                                            "275"
+        "AoERadius"                                                            "300"
         "MaxLevel"                                                             "4"
         "AbilityCastPoint"                                                     "0.2"
         "precache"
@@ -22,7 +22,7 @@
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "radius"                                               "275"
+                "radius"                                               "300"
             }
             "02"
             {
@@ -32,7 +32,7 @@
             "03"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "burn_damage"                                          "20 40 60 80"
+                "burn_damage"                                          "5 10 15 20"
             }
             "04"
             {
@@ -76,7 +76,7 @@
                     {
                         "Target"                               "TARGET"
                         "Type"                                 "DAMAGE_TYPE_MAGICAL"
-                        "Damage"                               "%burn_damage / 4"
+                        "Damage"                               "%burn_damage"
                     }
                 }
             }
