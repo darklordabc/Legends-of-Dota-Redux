@@ -19,7 +19,7 @@
 		// Time
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"45.0"
-		"AbilityDuration"				"15.0"
+		"AbilityDuration"				"20.0"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -44,7 +44,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"mana_regen"	"45 60 75"
+				"mana_regen"	"30 45 60"
 			}
 			"03"
 			{
@@ -54,17 +54,17 @@
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"magic_weak"	"-100"
+				"magic_weak"	"-75"
 			}
 			"05"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"radius_scepter"	"500"
+				"radius_scepter"	"600"
 			}
 			"06"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"duration"	"15"
+				"duration"	"20"
 			}
 			"07"
 			{
