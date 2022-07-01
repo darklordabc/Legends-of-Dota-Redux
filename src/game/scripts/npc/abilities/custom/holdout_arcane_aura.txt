@@ -77,13 +77,13 @@
             }
             "02"
             {
-                "var_type"                                             "FIELD_INTEGER"
-                "mana_regen_pct"                                       "50 75 100 125"
+                "var_type"                                             "FIELD_FLOAT"
+                "mana_regen_pct"                                       "0.5 1.0 1.5 2.0"
             }
             "03"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "buff_duration"                                        "25.0"
+                "buff_duration"                                        "10.0"
             }
             "04"
             {
