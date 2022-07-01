@@ -158,8 +158,6 @@
 			}
 		}
 
-		"ReduxPerks"	""
-		"ReduxFlags"	"crit"
         	"ReduxBans"                                                            "earthshaker_enchant_totem"
 	}
 }
