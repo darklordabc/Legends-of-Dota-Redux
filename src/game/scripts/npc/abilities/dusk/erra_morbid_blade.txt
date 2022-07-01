@@ -68,7 +68,5 @@
 		{
 		}
 
-		"ReduxPerks"	""
-		"ReduxFlags"	""
 	}
 }
