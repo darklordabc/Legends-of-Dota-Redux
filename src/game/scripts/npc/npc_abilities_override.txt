@@ -353,6 +353,8 @@
 		
 		"tiny_tree_channel"
 		{
+			"ReduxFlags"					"physical"
+			"ReduxPerks"					"physical | nature | channeled"
 			"MaxLevel"						"4"
 			"AbilityChannelTime"			"2.4"
 			"AbilityCastRange"				"1200"
@@ -2341,7 +2343,7 @@
         "monkey_king_tree_dance"
         {
             "ReduxFlags"                                                           "mobility"
-            "ReduxPerks"                                                           "mobility"
+            "ReduxPerks"                                                           "mobility | nature"
         }
         "phantom_lancer_doppelwalk"
         {
@@ -5308,8 +5310,8 @@
         }
         "tiny_tree_grab"
         {
-            "ReduxPerks"                                                           "physical"
-            "ReduxFlags"                                                           ""
+            "ReduxPerks"                                                           "physical | nature"
+            "ReduxFlags"                                                           "physical"
         }
         "tusk_tag_team"
         {
@@ -6066,6 +6068,8 @@
         
         "rattletrap_jetpack"
     	{
+		"ReduxPerks"	"mobility"
+        "ReduxFlags"	"mobility"
         "MaxLevel"                      "4"
     
         // Time     
@@ -6105,7 +6109,7 @@
         
         "terrorblade_demon_zeal"
         {
-		"ReduxPerks"					"demon"
+		"ReduxPerks"					"demon | self_damage"
         "MaxLevel"                      "4"
 
         
