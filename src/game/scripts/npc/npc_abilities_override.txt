@@ -1766,7 +1766,8 @@
 		}
         "nevermore_necromastery"
         {
-            "ReduxFlags"                                                           "upgradeable | demon"
+            "ReduxFlags"                                                           "upgradeable"
+			"ReduxPerks"														   "demon"
             "ReduxCost"                                                            "10"
         }
         "nevermore_requiem"
@@ -4945,12 +4946,12 @@
         
         "hoodwink_acorn_shot"
         {
-            "ReduxFlags"                                                           "stun | nature | physical"
-			"ReduxPerks"														   "physical"
+            "ReduxFlags"                                                           "stun | physical"
+			"ReduxPerks"														   "physical | nature"
         }
         "hoodwink_bushwhack"
         {
-            "ReduxFlags"                                                           "stun | skillshot"
+            "ReduxFlags"                                                           "stun"
             "ReduxPerks"                                                           "enemyMoving | skillshot | ranger"
         }
         "hoodwink_scurry"
