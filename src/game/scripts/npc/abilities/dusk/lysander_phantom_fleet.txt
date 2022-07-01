@@ -122,7 +122,6 @@
 		{
 		}
 
-		"ReduxPerks"	"water"
-		"ReduxFlags"	""
+
 	}
 }
