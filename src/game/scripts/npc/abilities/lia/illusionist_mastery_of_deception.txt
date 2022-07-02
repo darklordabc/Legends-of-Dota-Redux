@@ -6,7 +6,7 @@
         "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
         "AbilityUnitDamageType"                                                "DAMAGE_TYPE_PHYSICAL"
         "AbilityTextureName"                                                   "custom/illusionist_mastery_of_deception"
-        "MaxLevel"                                                             "3"
+        "MaxLevel"                                                             "4"
         "RequiredLevel"                                                        "1"
         "LevelsBetweenUpgrades"                                                "2"
         "Modifiers"
@@ -39,7 +39,7 @@
             "01"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "time"                                                 "8 10 12 14"
+                "time"                                                 "12 14 16 18"
             }
             "02"
             {
@@ -49,17 +49,17 @@
             "03"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "outgoing_damage"                                      "-30 -20 -10 -0"
+                "outgoing_damage"                                      "0 25 50 75"
             }
             "04"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "incoming_damage"                                      "400 300 200 100"
+                "incoming_damage"                                      "250 200 150 100"
             }
             "05"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "outgoing_damage_tooltip"                              "70 80 90 100"
+                "outgoing_damage_tooltip"                              "100 125 150 175"
             }
         }
         "ReduxFlags"                                                           "illusion"
