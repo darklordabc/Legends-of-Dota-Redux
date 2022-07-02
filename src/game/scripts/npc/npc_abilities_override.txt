@@ -2,26 +2,14 @@
     {
 		"frostivus2018_throw_snowball"
 		{
-			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-			"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 			"MaxLevel"						"4"
 			"AbilityCastRange"				"800"
 			"AbilityCastPoint"				"0.2"
 			"AbilityCooldown"				"18 16 14 12"
 			"AbilitySharedCooldown"			""
 			"ReduxPerks"                    "ice"
-
-
-			// Damage.
-			//-------------------------------------------------------------------------------------------------------------
 			"AbilityDamage"					"100 180 260 340"
-
-			// Cost
-			//-------------------------------------------------------------------------------------------------------------
 			"AbilityManaCost"				"90 100 110 120"
-
-			// Special
-			//-------------------------------------------------------------------------------------------------------------
 			"AbilitySpecial"
 			{
 				"01"
@@ -47,27 +35,12 @@
 			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 			"MaxLevel"						"4"
 			"ReduxPerks"                    "explosive"
-
-			// Casting
-			//-------------------------------------------------------------------------------------------------------------
 			"AbilityCastPoint"				"0.3"
 			"AbilityCastRange"				"0"
-
-			// Time		
-			//-------------------------------------------------------------------------------------------------------------
 			"AbilityCooldown"				"18 17 16 15"
 			"AbilitySharedCooldown"			""
-
-			// Damage.
-			//-------------------------------------------------------------------------------------------------------------
 			"AbilityDamage"					"200 240 280 320"
-
-			// Cost
-			//-------------------------------------------------------------------------------------------------------------
 			"AbilityManaCost"				"120 130 140 150"
-
-			// Special
-			//-------------------------------------------------------------------------------------------------------------
 			"AbilitySpecial"
 			{
 				"01"
@@ -105,31 +78,14 @@
 		
 		"frostivus2018_summon_snowman"
 		{
-			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
-			"AbilityCastAnimation"			"ACT_INVALID"
 			"MaxLevel"						"4"
 			"AbilitySharedCooldown"			""
 			"ReduxPerks"                    "ice"
-
-			// Casting
-			//-------------------------------------------------------------------------------------------------------------
 			"AbilityCastRange"				"600 700 800 900"
 			"AbilityCastPoint"				"0.3"
-
-			// Time		
-			//-------------------------------------------------------------------------------------------------------------
 			"AbilityCooldown"				"18 17 16 15"
-
-			// Damage.
-			//-------------------------------------------------------------------------------------------------------------
 			"AbilityDamage"					"75 100 125 150"
-
-			// Cost
-			//-------------------------------------------------------------------------------------------------------------
 			"AbilityManaCost"				"100"
-
-			// Special
-			//-------------------------------------------------------------------------------------------------------------
 			"AbilitySpecial"
 			{	
 				"01"
@@ -361,9 +317,6 @@
 			"AbilityCastPoint"				"0.2"
 			"AbilityCooldown"				"15 14 13 12"
 			"AbilityManaCost"				"200"
-
-			// Special
-			//-------------------------------------------------------------------------------------------------------------
 			"AbilitySpecial"
 			{
 				"01"
@@ -612,9 +565,6 @@
         {
             "MaxLevel"                      "4"
             "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-
-            // Special
-            //-------------------------------------------------------------------------------------------------------------
             "AbilitySpecial"
             {           
                 "01"
@@ -783,9 +733,6 @@
 			"AbilityCooldown"				"40.0 35.0 30.0 25.0"
 			"AbilityChannelTime"			"15.0 20.0 25.0 30.0"
 			"AbilityManaCost"				"100"
-
-			// Special
-			//-------------------------------------------------------------------------------------------------------------
 			"AbilitySpecial"
 			{
 				"01" // Only for tooltip, redundant with AbilityChannelTime
@@ -803,168 +750,168 @@
         }
 		"enraged_wildkin_hurricane"
 		{
-		"MaxLevel"						"4"
-		"AbilityCastRange"				"400 500 600 700"
-		"AbilityCastPoint"				"0"
-		"AbilityCooldown"				"30.0 23.0 16.0 9.0"
-		"AbilityManaCost"				"100 90 80 70"
+			"MaxLevel"						"4"
+			"AbilityCastRange"				"400 500 600 700"
+			"AbilityCastPoint"				"0"
+			"AbilityCooldown"				"30.0 23.0 16.0 9.0"
+			"AbilityManaCost"				"100 90 80 70"
 
-		"AbilitySpecial"
-			{
-			"01" 
+			"AbilitySpecial"
 				{
-					"var_type"				"FIELD_INTEGER"
-					"distance"				"400 500 600 700"
+				"01" 
+					{
+						"var_type"				"FIELD_INTEGER"
+						"distance"				"400 500 600 700"
+					}
 				}
-			}
-		"ReduxFlags"														   "support"
-		"ReduxPerks"                                                           "neutral | enemyMoving"
+			"ReduxFlags"	"support"
+			"ReduxPerks"	"neutral | enemyMoving | support"
 		}
 		"ancient_rock_golem_weakening_aura"
 		{
-		"MaxLevel"						"4"
-		"AbilityValues"
-			{
-				"armor_reduction"	"2 4 6 8"
-				"radius"			"1200"
-			}
-			"ReduxFlags"                                                           ""
-            "ReduxPerks"                                                           "aura | neutral"
+			"MaxLevel"						"4"
+			"AbilityValues"
+				{
+					"armor_reduction"	"2 4 6 8"
+					"radius"			"1200"
+				}
+			"ReduxFlags"	""
+			"ReduxPerks"	"aura | neutral"
 		}
 		"black_drake_magic_amplification_aura"
 		{
-		"MaxLevel"						"4"
-		"AbilityValues"
-			{
-				"spell_amp"			"5 10 15 20"
-				"radius"			"1200"
-			}
-            "ReduxPerks"                                                           "aura | neutral"
+			"MaxLevel"						"4"
+			"AbilityValues"
+				{
+					"spell_amp"			"5 10 15 20"
+					"radius"			"1200"
+				}
+			"ReduxPerks"	"aura | neutral"
 		}
 		"frostbitten_golem_time_warp_aura"
 		{
-		"MaxLevel"						"4"
-		"ReduxFlags"					"support"
-		"ReduxPerks"					"support | aura"
-		"AbilityValues"
-			{
-				"bonus_cdr"			"10 14 18 22"
-				"radius"			"1200"
-			}
-			"ReduxFlags"                                                           ""
-            "ReduxPerks"                                                           "support | aura | neutral"
+			"MaxLevel"						"4"
+			"ReduxFlags"					"support"
+			"ReduxPerks"					"support | aura"
+			"AbilityValues"
+				{
+					"bonus_cdr"			"10 14 18 22"
+					"radius"			"1200"
+				}
+			"ReduxFlags"	""
+			"ReduxPerks"	"support | aura | neutral"
 		}
 		"kobold_disarm"
 		{
-		"MaxLevel"						"4"
-		"AbilityCooldown"				"9.0 7.5 6.0 4.5"
-		"AbilitySpecial"
-			{
-			"01" 
+			"MaxLevel"						"4"
+			"AbilityCooldown"				"9.0 7.5 6.0 4.5"
+			"AbilitySpecial"
 				{
-					"var_type"				"FIELD_INTEGER"
-					"duration"				"3"
+				"01" 
+					{
+						"var_type"				"FIELD_INTEGER"
+						"duration"				"3"
+					}
 				}
-			}
-			"ReduxFlags"                                                           "disarm_break"
-            "ReduxPerks"                                                           "neutral"
+			"ReduxFlags"	"disarm_break"
+			"ReduxPerks"	"neutral"
 		}
 		"harpy_scout_take_off"
 		{
-		"MaxLevel"						"4"
-		"AbilityCastPoint"				"1.5 1.25 1.0 0.75"
-		"AbilityCooldown"				"10 9 8 7"
-		"AbilityManaCost"				"20"
+			"MaxLevel"						"4"
+			"AbilityCastPoint"				"1.5 1.25 1.0 0.75"
+			"AbilityCooldown"				"10 9 8 7"
+			"AbilityManaCost"				"20"
 
-		"AbilitySpecial"
-			{
-			"01"
+			"AbilitySpecial"
 				{
-				"var_type"			"FIELD_INTEGER"
-				"move_speed_penalty"	"50 35 20 5"
+				"01"
+					{
+					"var_type"			"FIELD_INTEGER"
+					"move_speed_penalty"	"50 35 20 5"
+					}
+				"02"
+					{
+					"var_type"			"FIELD_FLOAT"
+					"cost_per_second"	"4.0 3.1 2.2 1.3"
+					}
 				}
-			"02"
-				{
-				"var_type"			"FIELD_FLOAT"
-				"cost_per_second"	"4.0 3.1 2.2 1.3"
-				}
-			}
-			"ReduxFlags"                                                           ""
-            "ReduxPerks"                                                           "neutral"
+			"ReduxFlags"	"mobility"
+			"ReduxPerks"	"neutral | mobility"
 		}
 		
 		"kobold_tunneler_prospecting"
 		{
-		"MaxLevel"						"4"
-		"AbilitySpecial"
-			{
-			"01"
+			"MaxLevel"						"4"
+			"AbilitySpecial"
 				{
-				"var_type"			"FIELD_INTEGER"
-				"gpm_aura"	"20 50 80 110"
+				"01"
+					{
+					"var_type"			"FIELD_INTEGER"
+					"gpm_aura"	"20 50 80 110"
+					}
+				"02"
+					{
+					"var_type"			"FIELD_INTEGER"
+					"radius"	"1200 1600 2000 2400"
+					}
 				}
-			"02"
-				{
-				"var_type"			"FIELD_INTEGER"
-				"radius"	"1200 1600 2000 2400"
-				}
-			}
-			"ReduxFlags"                                                           "support"
-            "ReduxPerks"                                                           "support | aura | neutral"
+			"ReduxFlags"		"support"
+			"ReduxPerks"		"support | aura | neutral"
 		}
 		
 		"forest_troll_high_priest_heal_amp_aura"
 		{
-		"MaxLevel"				"4"	
-		"AbilitySpecial"
-			{	
-			"01"
-				{
-				"var_type"				"FIELD_FLOAT"
-				"heal_amp"				"15 25 35 45"
+			"MaxLevel"				"4"	
+			"AbilitySpecial"
+				{	
+				"01"
+					{
+					"var_type"				"FIELD_FLOAT"
+					"heal_amp"				"15 25 35 45"
+					}
+				"02"
+					{
+					"var_type"				"FIELD_INTEGER"
+					"radius"				"1200"
+					}
 				}
-			"02"
-				{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"1200"
-				}
-			}
-			"ReduxFlags"                                                           "support"
-            "ReduxPerks"                                                           "support | aura | neutral"
+			"ReduxFlags"	"support"
+			"ReduxPerks"	"support | aura | neutral"
 		}
 		
 		"fel_beast_haunt"
 		{
-		"MaxLevel"				"4"		
-		"AbilityCastRange"		"600 700 800 900"
-		"AbilityCooldown"		"15 14 13 12"
-		"AbilityManaCost"		"75"
-		"AbilityValues"
-			{
-			"projectile_speed"	"500"
-			"duration"				"3 5 7 9"
-			}
+			"MaxLevel"				"4"		
+			"AbilityCastRange"		"600 700 800 900"
+			"AbilityCooldown"		"15 14 13 12"
+			"AbilityManaCost"		"75"
+			"AbilityValues"
+				{
+				"projectile_speed"	"500"
+				"duration"				"3 5 7 9"
+				}
 			"ReduxFlags"                                                           "silence"
-            "ReduxPerks"                                                           "silence | neutral"
+			"ReduxPerks"                                                           "silence | neutral"
 		}
 		"hill_troll_rally"
 		{
-		"MaxLevel"				"4"	
-		"AbilitySpecial"
-			{
-			"01"
+			"MaxLevel"				"4"	
+			"AbilitySpecial"
 				{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"1200"
+				"01"
+					{
+					"var_type"				"FIELD_INTEGER"
+					"radius"				"1200"
+					}
+				"02"
+					{
+					"var_type"				"FIELD_INTEGER"
+					"damage_bonus"			"3 5 7 9"
+					}
 				}
-			"02"
-				{
-				"var_type"				"FIELD_INTEGER"
-				"damage_bonus"			"3 5 7 9"
-				}
-			}
-			"ReduxFlags"                                                           "support"
-            "ReduxPerks"                                                           "aura | neutral"
+			"ReduxFlags"		"support"
+			"ReduxPerks"		"aura | neutral"
 		}
 		"giant_wolf_intimidate"
 		{
@@ -991,28 +938,25 @@
 				"duration"			"4.0 5.0 6.0 7.0"
 				}
 			}
-			"ReduxFlags"                                                           "support"
-            "ReduxPerks"                                                           "support | neutral | rage"
+			"ReduxFlags"		"support"
+            "ReduxPerks"		"support | neutral | rage"
 		}
 		
 		"ogre_bruiser_ogre_smash"
 		{
-		"MaxLevel"						"4"
-		"AbilityCastPoint"				"2.8 2.1 1.4 0.7"
-		"AbilityCooldown"				"12.0 11.0 10.0 9.0"
-		"AbilityManaCost"				"0"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityValues"
-			{
-				"radius"						"200 225 250 275"
-				"damage"						"200 240 280 320"
-				"damage_pct"					"8 10 12 14"
-				"hero_stun_duration"			"3.0"
-			}
-			"ReduxFlags"                                                           ""
-            "ReduxPerks"                                                           "neutral"
+			"MaxLevel"						"4"
+			"AbilityCastPoint"				"2.8 2.1 1.4 0.7"
+			"AbilityCooldown"				"12.0 11.0 10.0 9.0"
+			"AbilityManaCost"				"0"
+			"AbilityValues"
+				{
+					"radius"						"200 225 250 275"
+					"damage"						"200 240 280 320"
+					"damage_pct"					"8 10 12 14"
+					"hero_stun_duration"			"3.0"
+				}
+				"ReduxFlags"		""
+				"ReduxPerks"		"neutral"
 		}
 		
 		"warpine_raider_seed_shot"
@@ -1078,13 +1022,7 @@
 		"ice_shaman_incendiary_bomb"
 		{
 			"AbilityCooldown"				"30 25 20 15"
-
-			// Cost
-			//-------------------------------------------------------------------------------------------------------------
 			"AbilityManaCost"				"100"
-
-			// Special
-			//-------------------------------------------------------------------------------------------------------------
 			"AbilityValues"
 			{
 					"duration"				"8"
@@ -1460,13 +1398,7 @@
 		{
 			"MaxLevel"						"4"
 			"AbilityCooldown"				"16.0 15.0 14.0 13.0"
-
-			// Cost
-			//-------------------------------------------------------------------------------------------------------------
 			"AbilityManaCost"				"75"
-
-			// Special
-			//-------------------------------------------------------------------------------------------------------------
 			"AbilityValues"
 			{
 				"duration"		"6"
@@ -2940,8 +2872,6 @@
             "MaxLevel"                                                             "4"
             "ReduxFlags"                                                           "attack_modifier"
             "ReduxPerks"                                                           "neutral | attack_modifier | ice"
-            // Special
-            //-------------------------------------------------------------------------------------------------------------
             "AbilitySpecial"
             {
                 "01"
@@ -4837,13 +4767,13 @@
 				"04"
 				{
 					"var_type"				"FIELD_INTEGER"
-					"images_take_damage_percent"	"250"
+					"images_take_damage_percent"	"250 225 200 175"
 					"RequiresScepter"			"1"
 				}
 				"05"
 				{
 					"var_type"				"FIELD_INTEGER"
-					"images_take_damage_percent_tooltip"			"350"
+					"images_take_damage_percent_tooltip"			"350 325 300 275"
 					"RequiresScepter"			"1"
 				}
 				"06"
@@ -4867,7 +4797,7 @@
 				"01"
 				{
 					"var_type"				"FIELD_INTEGER"
-					"illusion_duration"			"25"
+					"illusion_duration"			"25 30 35 40"
 				}
 				"02"
 				{
@@ -4882,17 +4812,17 @@
 				"04"
 				{
 					"var_type"				"FIELD_INTEGER"
-					"images_take_damage_percent"	"250"
+					"images_take_damage_percent"	"250 200 150 100"
 				}
 				"05"
 				{
 					"var_type"				"FIELD_INTEGER"
-					"images_take_damage_percent_tooltip"			"300"
+					"images_take_damage_percent_tooltip"			"350 300 250 200"
 				}
 				"06"
 				{
 					"var_type"				"FIELD_INTEGER"
-					"images_movespeed_bonus"			"30 40 50"
+					"images_movespeed_bonus"			"30 35 40 45"
 				}				
 			}
 		}
@@ -5150,12 +5080,13 @@
         }
         "antimage_mana_overload"
         {
+            "ReduxFlags"					"illusion"
             "ReduxPerks"                    "blink | illusion"
 			"MaxLevel"						"4"
 			"AbilityChargeRestoreTime"		"25 21 17 13"
 			"AbilityValues"
 			{
-				"duration"				"7"
+				"duration"				"7 8 9 10"
 				"outgoing_damage"			"-25"
 				"incoming_damage"			"100"
 			}
@@ -5254,7 +5185,7 @@
 				"04"
 				{
 					"var_type"					"FIELD_FLOAT"
-					"off_duration"				"1.85 1.75 1.65 1.55"
+					"off_duration"				"1.85 1.8 1.75 1.7"
 				}
 				"05"
 				{
@@ -5434,7 +5365,7 @@
 				"01"
 				{
 					"var_type"					"FIELD_FLOAT"
-					"duration"					"12.0"
+					"duration"					"12.0 14.0 16.0 18.0"
 				}
 				"02"
 				{
@@ -5449,7 +5380,7 @@
 				"04"
 				{
 					"var_type"					"FIELD_INTEGER"
-					"images_do_damage_percent"	"-100 -85 -70 -55"
+					"images_do_damage_percent"	"-100 -80 -60 -40"
 				}
 				"05"
 				{
@@ -5530,9 +5461,6 @@
         {
             "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 			"MaxLevel"						"4"
-
-			// Special
-			//-------------------------------------------------------------------------------------------------------------
 			"AbilityValues"
 			{
 				"stack_duration"			"35 50 65 80"
@@ -5559,17 +5487,8 @@
         "leshrac_greater_lightning_storm"
         {
         "MaxLevel"                      "4"
-
-        // Time     
-        //-------------------------------------------------------------------------------------------------------------
         "AbilityCooldown"               "25 21 19 16"
-
-        // Cost
-        //-------------------------------------------------------------------------------------------------------------
         "AbilityManaCost"               "75"
-
-        // Special
-        //-------------------------------------------------------------------------------------------------------------
         "AbilitySpecial"
             {
             "01"
@@ -5600,17 +5519,8 @@
         {
 		"ReduxPerks"					"fire | support"
         "MaxLevel"                      "4"
-                
-        // Time     
-        //-------------------------------------------------------------------------------------------------------------
         "AbilityCooldown"               "16 15 14 13"
-
-        // Cost
-        //-------------------------------------------------------------------------------------------------------------
         "AbilityManaCost"               "50"
-        
-        // Special
-        //-------------------------------------------------------------------------------------------------------------
         "AbilitySpecial"
         {
             "01"
@@ -5647,13 +5557,7 @@
 			"ReduxFlags"					"disarm_break"
 			"MaxLevel"                      "4"
 			"AbilityCooldown"               "15 14 13 12"
-
-			// Cost
-			//-------------------------------------------------------------------------------------------------------------
 			"AbilityManaCost"               "50"
-
-			// Special
-			//-------------------------------------------------------------------------------------------------------------
 			"AbilitySpecial"
 				{
 					"01"
@@ -5693,18 +5597,9 @@
         {
 			"ReduxPerks"                    "invis"
 			"ReduxFlags"					"invis"
-			"MaxLevel"                      "4" 
-
-			// Time     
-			//-------------------------------------------------------------------------------------------------------------
+			"MaxLevel"                      "4"
 			"AbilityCooldown"               "75 60 45 30"
-
-			// Cost
-			//-------------------------------------------------------------------------------------------------------------
 			"AbilityManaCost"               "75"
-
-			// Special
-			//-------------------------------------------------------------------------------------------------------------
 			"AbilitySpecial"
 				{
 					"01"
@@ -5722,79 +5617,57 @@
         
         "tinker_warp_grenade"
         {
-		"ReduxPerks"					"enemyMoving"
-        "MaxLevel"                      "4"
-
-        // Casting
-        //-------------------------------------------------------------------------------------------------------------
-        "AbilityCastRange"              "700 750 800 850"       
-        
-        // Time     
-        //-------------------------------------------------------------------------------------------------------------
-        "AbilityCooldown"               "15 14 13 12"
-
-        // Cost
-        //-------------------------------------------------------------------------------------------------------------
-        "AbilityManaCost"               "100"
-        
-        // Special
-        //-------------------------------------------------------------------------------------------------------------
-        "AbilityValues"
-        {
-                "damage"                    "50 125 200 275"
-                "knockback_distance"        "600"
-                "range_reduction"       "40 50 60 70"
-                "debuff_duration"       "3 5 7 9"
-        }
+			"ReduxPerks"					"enemyMoving"
+			"MaxLevel"                      "4"
+			"AbilityCastRange"              "700 750 800 850"
+			"AbilityCooldown"               "15 14 13 12"
+			"AbilityManaCost"               "100"
+			"AbilityValues"
+			{
+					"damage"                    "50 125 200 275"
+					"knockback_distance"        "600"
+					"range_reduction"       "40 50 60 70"
+					"debuff_duration"       "3 5 7 9"
+			}
         }
     
         "alchemist_berserk_potion"
         {
-        "ReduxPerks"                                                           "support | rage"
-        "ReduxFlags"                                                           "support"
-
-        "MaxLevel"                      "4"     
-        
-        // Time     
-        //-------------------------------------------------------------------------------------------------------------
-        "AbilityCooldown"               "35 29 23 17"
-
-        // Cost
-        //-------------------------------------------------------------------------------------------------------------
-        "AbilityManaCost"               "100"
-        
-        // Special
-        //-------------------------------------------------------------------------------------------------------------
-        "AbilitySpecial"
-            {
-            "01"
-            {
-                "var_type"          "FIELD_FLOAT"
-                "duration"      "10"
-            }
-            "02"
-            {
-                "var_type"          "FIELD_INTEGER"
-                "attack_speed"      "50 65 80 95"
-            }
-            "03"
-            {
-                "var_type"          "FIELD_INTEGER"
-                "hp_regen"      "40 55 70 85"
-            }
-            "04"
-            {
-                "var_type"                  "FIELD_INTEGER"
-                "movement_speed"            "900"
-            }
-            "05"
-            {
-                "var_type"                  "FIELD_INTEGER"
-                "move_speed"            "30 35 40 45"
-            }
-            }
-            "ReduxPerks"                                                           "support"
-            "ReduxFlags"                                                           ""
+			"ReduxPerks"                                                           "support | rage"
+			"ReduxFlags"                                                           "support"
+			"MaxLevel"                      "4"     
+			"AbilityCooldown"               "35 29 23 17"
+			"AbilityManaCost"               "100"
+			"AbilitySpecial"
+				{
+				"01"
+				{
+					"var_type"          "FIELD_FLOAT"
+					"duration"      "10"
+				}
+				"02"
+				{
+					"var_type"          "FIELD_INTEGER"
+					"attack_speed"      "50 65 80 95"
+				}
+				"03"
+				{
+					"var_type"          "FIELD_INTEGER"
+					"hp_regen"      "40 55 70 85"
+				}
+				"04"
+				{
+					"var_type"                  "FIELD_INTEGER"
+					"movement_speed"            "900"
+				}
+				"05"
+				{
+					"var_type"                  "FIELD_INTEGER"
+					"move_speed"            "30 35 40 45"
+				}
+				}
+				"ReduxPerks"                                                           "support"
+				"ReduxFlags"                                                           ""
         }   
     
         "bristleback_hairball"
@@ -5824,38 +5697,38 @@
 
         "broodmother_sticky_snare"
         {
-        "MaxLevel"                      "4"
-		"ReduxPerks"                    "trap"
-        "AbilityCharges"                "2"
-        "AbilityChargeRestoreTime"      "20 17 14 11"       
-        "AbilityManaCost"               "100"
-        "AbilityValues"
-        {
-            "formation_delay"       "2.0"
-            "root_duration"         "4.0"
-            "damage_per_second"     "100 120 140 160"
-            "count"                 "5 6 7 8"
-            "width"                 "900"
-            
-        }
+			"MaxLevel"                      "4"
+			"ReduxPerks"                    "trap"
+			"AbilityCharges"                "2"
+			"AbilityChargeRestoreTime"      "20 17 14 11"       
+			"AbilityManaCost"               "100"
+			"AbilityValues"
+			{
+				"formation_delay"       "2.0"
+				"root_duration"         "4.0"
+				"damage_per_second"     "100 120 140 160"
+				"count"                 "5 6 7 8"
+				"width"                 "900"
+
+			}
         }
         
         "dark_seer_normal_punch"
         {
-        "MaxLevel"                      "4"
-        "AbilityCooldown"               "14 13 12 11"
-        "AbilityValues"
-            {
-                "max_stun"                  "2.25 2.35 2.45 2.55"
-                "recent_duration"           "3.0"
-                "max_distance"          "900"
-                "knockback_distance"            "350"
-                "illusion_duration"         "6.0 7.0 8.0 9.0"
-                "max_damage"                    "300"
-                "normal_punch_illusion_delay"   "0.7 0.6 0.5 0.4"
-            }
-           "ReduxPerks"                                                           "enemyMoving | illusion | bash"
-           "ReduxFlags"                                                           "illusion | stun | bash"
+			"MaxLevel"                      "4"
+			"AbilityCooldown"               "14 13 12 11"
+			"AbilityValues"
+				{
+					"max_stun"                  "2.25 2.35 2.45 2.55"
+					"recent_duration"           "3.0"
+					"max_distance"          "900"
+					"knockback_distance"            "350"
+					"illusion_duration"         "6.0 7.0 8.0 9.0"
+					"max_damage"                    "300"
+					"normal_punch_illusion_delay"   "0.7 0.6 0.5 0.4"
+				}
+			   "ReduxPerks"		"enemyMoving | illusion | bash"
+			   "ReduxFlags"		"illusion | stun | bash"
         }
         
         "kunkka_tidal_wave"
@@ -6490,13 +6363,7 @@
 		{
 			"MaxLevel"						"4"
 			"AbilityCooldown"				"35 30 25 20"
-
-			// Cost
-			//-------------------------------------------------------------------------------------------------------------
 			"AbilityManaCost"				"100"
-
-			// Special
-			//-------------------------------------------------------------------------------------------------------------
 			"AbilitySpecial"
 			{
 				"01"
