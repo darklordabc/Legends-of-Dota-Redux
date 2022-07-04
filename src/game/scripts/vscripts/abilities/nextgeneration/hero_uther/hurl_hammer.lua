@@ -67,7 +67,7 @@ function ThrowHammer (keys)
 	local subability = 	caster:FindAbilityByName("uther_Hail_Back")
 	if subability then
 		caster:SwapAbilities(ability:GetName(),subability:GetName(),false,true)
-		subability:StartCooldown(2)
+		subability:StartCooldown(1)
 	end
 
 	caster.utherhammer = utherhammer
