@@ -2193,8 +2193,8 @@
         }
         "troll_warlord_battle_trance"
         {
-            "ReduxFlags"                                                           "support"
-            "ReduxPerks"                                                           "support | rage"
+            "ReduxFlags"                                                           ""
+            "ReduxPerks"                                                           "rage"
         }
         "big_thunder_lizard_frenzy"
         {
@@ -3521,7 +3521,12 @@
         "elder_titan_echo_stomp"
         {
             "ReduxFlags"                                                           "physical"
-            "ReduxPerks"                                                           "physical"
+            "ReduxPerks"                                                           "physical | sleep"
+        }
+		"elder_titan_echo_stomp_spirit"
+		{
+            "ReduxFlags"                                                           "physical"
+            "ReduxPerks"                                                           "physical | sleep"
         }
         "phantom_assassin_stifling_dagger"
         {
@@ -5216,7 +5221,7 @@
         }
         "cherub_explosive_spore"
         {
-            "ReduxPerks"                                                           "nature"
+            "ReduxPerks"                                                           "nature | explosive"
             "ReduxFlags"                                                           ""
         }
         "eat_tree_eldri"
@@ -6781,6 +6786,14 @@
             "ReduxPerks"    "enemyMoving"
             "ReduxFlags"    ""
         }
+		"hylonome_libation"
+		{
+            "ReduxPerks"    "drain"
+        }
+		"ptomely_expunge"
+		{
+            "ReduxPerks"    "drain"
+        }
 		"proteus_razorwind"
 		{
             "ReduxPerks"	"enemyMoving"
@@ -6819,6 +6832,80 @@
             "ReduxPerks"	"bash"
 			"ReduxFlags"	"crit | bash"
         }
+		"hero_freedom_strike"
+		{
+			"ReduxPerks"	"mobility"
+			"ReduxFlags"	"mobility"
+		}
+		"cherub_flower_garden"
+		{
+			"ReduxPerks"	"nature"
+		}
+		"garden_white_flower_base"
+		{
+			"ReduxPerks"	"nature"
+		}
+		"garden_red_flower_base"
+		{
+			"ReduxPerks"	"nature"
+		}
+		"garden_pink_blossom_base"
+		{
+			"ReduxPerks"	"nature"
+		}
+		"garden_blue_blossom_base"
+		{
+			"ReduxPerks"	"nature"
+		}
+		"garden_yellow_daisy_base"
+		{
+			"ReduxPerks"	"nature"
+		}
+		"garden_purple_lotus_base"
+		{
+			"ReduxPerks"	"nature"
+		}
+		"lord_of_lightning_lightning_shield"
+		{
+			"ReduxPerks"	"lightning"
+		}
+		"serpent_queen_ball_lightning"
+		{
+			"ReduxPerks"	"lightning"
+		}
+		"hawkeye_hit_n_run"
+		{
+			"ReduxPerks"	"mobility"
+			"ReduxFlags"	"mobility"
+		}
+		"molten_charge"
+		{
+			"ReduxPerks"	"mobility | fire"
+			"ReduxFlags"	"mobility"
+		}
+		"pushing_blast"
+		{
+			"ReduxPerks"	"enemyMoving"
+		}
+		"spell_lab_storm_minions"
+		{
+			"ReduxPerks"	"summon_non_ult"
+		}
+		"blink_support"
+		{
+			"ReduxPerks"	"mobility | support"
+			"ReduxFlags"	"mobility | support"
+		}
+		"veera_toxic_darts"
+		{
+			"ReduxPerks"	"poison"
+		}
+		"zeros_gerrymandering"
+		{
+			"ReduxPerks"	"support"
+			"ReduxFlags"	"support"
+		}
+		
 		
         // Talents
 
