@@ -80,7 +80,5 @@
                 "EffectAttachType"                                     "follow_origin"
             }
         }
-        "ReduxFlags"                                                           "silence | disarm_break"
-        "ReduxPerks"                                                           "silence"
     }
 }

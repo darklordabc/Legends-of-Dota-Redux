@@ -83,8 +83,5 @@
 			"particle"						"particles/units/heroes/hero_mifune/mifune_orb.vpcf"
 			"particle"						"particles/units/heroes/hero_jakiro/jakiro_liquid_fire_explosion.vpcf"
 		}
-
-		"ReduxPerks"	"physical"
-		"ReduxFlags"	"physical"
 	}
 }

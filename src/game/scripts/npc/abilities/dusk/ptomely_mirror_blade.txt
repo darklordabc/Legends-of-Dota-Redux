@@ -78,8 +78,5 @@
 			"particle"  "particles/units/heroes/hero_ptomely/mirror_blade.vpcf"
 			"particle"  "particles/units/heroes/hero_ptomely/mirror_blade_hit.vpcf"
 		}
-
-		"ReduxPerks"	"skillshot"
-		"ReduxFlags"	""
 	}
 }

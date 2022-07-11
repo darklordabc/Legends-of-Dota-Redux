@@ -45,7 +45,7 @@ function Direct_Bolt (keys) -- KV OnIntervalThink
 	
 	if caster.utherhammer and not caster.utherhammer:IsNull() then
 		local distance = (caster.utherhammer:GetAbsOrigin() - target:GetAbsOrigin()):Length2D()
-		if distance <= 75 then 
+		if distance <= 100 then 
 			target:RemoveModifierByName("modifier_bolt_dummy")
 		end
 	end

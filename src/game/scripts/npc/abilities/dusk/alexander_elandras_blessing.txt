@@ -73,7 +73,5 @@
 
 		}
 
-		"ReduxPerks"	"support"
-		"ReduxFlags"	""
 	}
 }

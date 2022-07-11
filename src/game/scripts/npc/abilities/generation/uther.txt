@@ -235,7 +235,7 @@
             "05"
             {
                 "var_type"          "FIELD_INTEGER"
-                "Automatic_Return"  "12"
+                "Automatic_Return"  "4"
             }
             "06"
             {
@@ -643,7 +643,7 @@
             "02"
             {
                 "var_type"          "FIELD_INTEGER"
-                "damage"            "125 200 275 350"
+                "damage"            "140 220 300 380"
             }
             "03"
             {
@@ -679,7 +679,7 @@
     
                 "Properties"
                 {
-                   "MODIFIER_PROPERTY_TURN_RATE_PERCENTAGE" "-99.9%" 
+                   "MODIFIER_PROPERTY_TURN_RATE_PERCENTAGE" "-50%" 
                 }
         
                 "ThinkInterval"  "0.03"

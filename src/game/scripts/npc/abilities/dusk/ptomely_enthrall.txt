@@ -120,8 +120,5 @@
 				}
 			}
 		}
-
-		"ReduxPerks"	"support"
-		"ReduxFlags"	""
 	}
 }

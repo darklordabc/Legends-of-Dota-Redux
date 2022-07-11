@@ -79,7 +79,5 @@
 			"soundfile" "soundevents/game_sounds_heroes/game_sounds_magnataur.vsndevts"
 		}
 
-		"ReduxPerks"	""
-		"ReduxFlags"	""
 	}
 }

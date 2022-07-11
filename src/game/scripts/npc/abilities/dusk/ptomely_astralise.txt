@@ -86,7 +86,5 @@
 			"soundfile" "soundevents/hero_ptomely.vsndevts"
 		}
 
-		"ReduxPerks"	"support"
-		"ReduxFlags"	""
 	}
 }

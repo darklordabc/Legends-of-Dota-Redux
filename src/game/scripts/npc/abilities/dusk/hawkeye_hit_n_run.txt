@@ -22,7 +22,7 @@
 		"AbilityCastRange"				"0"
 		"AbilityCastPoint"				"0.01"
 		
-		"AbilityDamage" 				"60 100 140 180"
+		"AbilityDamage" 				"60 120 180 240"
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -53,7 +53,7 @@
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"radius"					"350"
+				"radius"					"500"
 			}
 			"04"
 			{
@@ -63,7 +63,7 @@
 			"05"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"slow_duration"				"0.8"
+				"slow_duration"				"1.0"
 			}
 			"06"
 			{
