@@ -36,12 +36,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"duration"				"12"
+				"duration"				"14"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"increase"				"20"
+				"increase"				"25"
 			}
 			"03"
 			{
