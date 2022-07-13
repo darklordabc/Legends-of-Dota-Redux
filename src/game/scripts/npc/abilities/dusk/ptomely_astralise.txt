@@ -26,7 +26,7 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"15 14 13 12"
+		"AbilityCooldown"				"18 16 14 12"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -43,7 +43,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"80 140 200 260"
+				"damage"					"70 140 210 270"
 			}
 			"02"
 			{
@@ -53,7 +53,7 @@
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"pulse_damage"				"45 60 75 90"
+				"pulse_damage"				"50 75 100 125"
 			}
 			"04"
 			{
@@ -63,17 +63,17 @@
 			"05"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"duration"					"1.5 2.0 2.5 3.0"
+				"duration"					"2.5"
 			}
 			"06"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"pulse_duration"			"1.0 1.5 2.0 2.5"
+				"pulse_duration"			"4.0"
 			}
 			"07"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"ally_heal"					"100"
+				"ally_heal"					"50"
 			}
 		}
 		
