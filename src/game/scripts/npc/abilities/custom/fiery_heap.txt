@@ -16,17 +16,17 @@
             "01"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "attack_speed_bonus"                  "5 10 15 20"
+                "attack_speed_bonus"                  "3 5 7 9"
             }
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "move_speed_bonus"                                     "4 9 12 16"
+                "move_speed_bonus"                                     "2 4 6 8"
             }
             "03"
             {
-                "var_type"                                             "FIELD_INTEGER"
-                "int_bonus"                                     "1 2 3 4"
+                "var_type"                                             "FIELD_FLOAT"
+                "int_bonus"                                     "1.0 1.5 2.0 2.5"
             }
             "04"
             {
