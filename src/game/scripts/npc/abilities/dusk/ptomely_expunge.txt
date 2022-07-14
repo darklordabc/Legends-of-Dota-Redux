@@ -19,8 +19,8 @@
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"1000"
-		"AbilityCastPoint"				"0.30"
+		"AbilityCastRange"				"900"
+		"AbilityCastPoint"				"0.3"
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -42,17 +42,17 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"duration"					"2.5"
+				"duration"					"2.0"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"mana_drain"				"35 50 65"
+				"mana_drain"				"35 45 55"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"radius"					"575"
+				"radius"					"600"
 			}
 			"04"
 			{
@@ -67,7 +67,7 @@
 			"06"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"base_drain"				"200 250 300"
+				"base_drain"				"200 300 400"
 			}
 		}
 		
@@ -77,8 +77,5 @@
 			"particle" "particles/units/heroes/hero_ptomely/expunge_drain.vpcf"
 			"soundfile" "soundevents/hero_ptomely.vsndevts"
 		}
-
-		"ReduxPerks"	""
-		"ReduxFlags"	""
 	}
 }
