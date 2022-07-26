@@ -2923,6 +2923,11 @@
             "ReduxFlags"                                                           "attack_modifier | semi_passive"
             "ReduxPerks"                                                           "attack_modifier | ice | autocast_basic | ranger"
         }
+		"drow_ranger_multishot"
+		{
+            "ReduxFlags"                                                           ""
+            "ReduxPerks"                                                           "skillshot | ranger | channeled"
+        }
         "antimage_mana_break"
         {
             "ReduxFlags"                                                           "attack_modifier | physical"
@@ -7954,7 +7959,7 @@
         }
         "special_bonus_unique_lycan_3"
         {
-            "TalentRequiredAbility"                                                   "lycan_feral_impulse"
+            "TalentRequiredAbility"                                                   "lycan_summon_wolves"
         }
         "special_bonus_unique_lycan_4"
         {
