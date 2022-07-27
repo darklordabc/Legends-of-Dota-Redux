@@ -32,7 +32,7 @@
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"125"
+		"AbilityManaCost"				"100 125 150"
 		
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
@@ -45,7 +45,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"crit"						"200 225 250"
+				"crit"						"150 175 200"
 			}
 			"02"
 			{
@@ -60,7 +60,7 @@
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"landing_damage"			"200 300 400"
+				"landing_damage"			"250 300 350"
 			}
 			"05"
 			{
@@ -70,12 +70,12 @@
 			"06"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"scepter_crit"				"275 300 325"
+				"scepter_crit"				"200 250 300"
 			}
 			"07"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"scepter_landing_damage"	"250 350 450"
+				"scepter_landing_damage"	"325 400 475"
 			}
 		}
 		
