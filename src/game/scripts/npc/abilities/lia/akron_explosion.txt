@@ -9,7 +9,7 @@
         "AbilityCooldown"                                                      "20 18 16 14"
         "AbilityCastRange"                                                     "0"
         "AbilityManaCost"                                                      "70 80 90 100"
-        "AoERadius"                                                            "300"
+        "AoERadius"                                                            "375"
         "MaxLevel"                                                             "4"
         "AbilityCastPoint"                                                     "0.2"
         "precache"
@@ -22,22 +22,22 @@
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "radius"                                               "300"
+                "radius"                                               "375"
             }
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "hp_prc_dmg"                                           "10 14 18 22"
+                "hp_prc_dmg"                                           "11 14 17 20"
             }
             "03"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "burn_damage"                                          "5 10 15 20"
+                "burn_damage"                                          "20 40 60 80"
             }
             "04"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "duration"                                             "6"
+                "duration"                                             "4"
             }
         }
         "OnSpellStart"
@@ -69,7 +69,7 @@
                 "EffectName"                                           "particles/units/heroes/hero_jakiro/jakiro_liquid_fire_debuff.vpcf"
                 "EffectAttachType"                                     "follow_origin"
                 "Duration"                                             "%duration"
-                "ThinkInterval"                                        "0.25"
+                "ThinkInterval"                                        "1"
                 "OnIntervalThink"
                 {
                     "Damage"

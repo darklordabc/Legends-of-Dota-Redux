@@ -9,7 +9,7 @@
 		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
 		"AnimationPlaybackRate"			"2.5"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"custom/lightning_lightning_dagger"
@@ -17,8 +17,8 @@
 			// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"				"0.1 0.1 0.1 0.1"
-		"AbilityCastRange"				"675"
-		"AbilityCooldown"				"3.5"
+		"AbilityCastRange"				"700"
+		"AbilityCooldown"				"2.5"
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -26,7 +26,7 @@
 		
 		// Damage.
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"					"50 60 70 80"
+		"AbilityDamage"					"75 100 125 150"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -35,17 +35,17 @@
 			"01"
 			{
 				"var_type"								"FIELD_FLOAT"
-				"duration"								"0.75"
+				"duration"								"1.0 1.2 1.4 1.6"
 			}
 			"02"
 			{
 				"var_type"								"FIELD_INTEGER"
-				"slow"									"100"
+				"slow"									"100 200 300 400"
 			}
 			"03"
 			{
 				"var_type"								"FIELD_INTEGER"
-				"bounces"								"3 4 5 6"
+				"bounces"								"3 5 7 9"
 			}
 		}
 		
