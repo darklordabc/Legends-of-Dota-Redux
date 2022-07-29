@@ -928,11 +928,11 @@
         "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
         "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
     
-        "AbilityCastRange"              "475"
-        "AbilityCastPoint"              "1.0"
+        "AbilityCastRange"              "700"
+        "AbilityCastPoint"              "0.3"
         "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_4"
     
-        "AbilityCooldown"               "19.0"
+        "AbilityCooldown"               "19.0 17.0 15.0 13.0"
         "AbilityManaCost"               "0"
     
         "AbilitySpecial"
@@ -945,7 +945,7 @@
             "02"
             {
                 "var_type"          "FIELD_FLOAT"
-                "vicissitude_duration"  "2.5 3.0 3.5 4.0"
+                "vicissitude_duration"  "4.0"
             }
         }
         "precache"
