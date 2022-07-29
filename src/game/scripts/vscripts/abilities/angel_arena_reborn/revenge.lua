@@ -10,12 +10,12 @@ function takedamage(params)
 	if not hero then return end
 	if not attacker then return end
 
-	if hero:IsIllusion() then return end
+	-- if hero:IsIllusion() then return end
 	
 
 	if attacker:IsInvulnerable() then return end
 
-	if attacker == hero then return end
+	-- if attacker == hero then return end
 
 	if attacker:IsBuilding() then return end
 
