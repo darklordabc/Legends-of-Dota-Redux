@@ -2277,6 +2277,7 @@
         {
             "ReduxFlags"                                                           "mobility"
             "ReduxPerks"                                                           "mobility | nature"
+			"LinkedAbility"					"monkey_king_primal_spring"
         }
         "phantom_lancer_doppelwalk"
         {
