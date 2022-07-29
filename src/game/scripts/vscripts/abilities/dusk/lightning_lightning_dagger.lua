@@ -69,7 +69,7 @@ function lightning_lightning_dagger:OnProjectileHit_ExtraData(target,location,ex
 
 	local en = FindEnemiesRandom(self:GetCaster(),target:GetAbsOrigin(),jump_radius)
 
-	local chosen
+	local chosen = target
 
 	for k,v in pairs(en) do
 		if v ~= target then
