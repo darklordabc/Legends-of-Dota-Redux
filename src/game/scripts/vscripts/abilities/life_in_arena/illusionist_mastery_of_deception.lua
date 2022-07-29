@@ -34,6 +34,7 @@ function illusions( event )
 	local creep = CreateUnitByName(attacker:GetUnitName(), attacker:GetAbsOrigin(), true, caster, nil, caster:GetTeamNumber())
 	
 	creep:SetControllableByPlayer(caster:GetPlayerID(), true)
+	creep:SetOwner(caster:GetOwner())
 	creep:AddNewModifier(caster, event.ability, "modifier_kill", {duration = duration})
 	creep:AddNewModifier(caster, event.ability, "modifier_illusion", {duration = lifetime, outgoing_damage = outgoingDamage, incoming_damage = incomingDamage})
 	creep:SetRenderColor(249, 127, 127)
