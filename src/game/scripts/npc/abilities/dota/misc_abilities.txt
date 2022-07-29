@@ -282,7 +282,7 @@
             "05"
             {
                 "var_type"              "FIELD_INTEGER"
-                "damage"                "25 45 65 85"
+                "damage"                "55 75 95 115"
                 "LinkedSpecialBonus"    "special_bonus_unique_pangolier_3"
                 "CalculateSpellDamageTooltip"   "0"
             }
@@ -706,15 +706,15 @@
 		{
 				"bonus_attack_range"		
 				{
-					"value"		"80 130 180 230"
+					"value"		"160 190 220 250"
 					"special_bonus_unique_templar_assassin_8"	"+120"
 				}
 				"attack_spill_range"		
 				{
-					"value"							"600 800 1000 1200"
+					"value"							"800 1000 1200 1400"
 					"special_bonus_unique_templar_assassin_8"	"+120"
 				}
-				"attack_spill_width"		"360"
+				"attack_spill_width"		"400"
 				"attack_spill_pct"			"100"
 				"attack_spill_penalty"			"0"
 		}
@@ -736,7 +736,7 @@
 
         // Casting
         //-------------------------------------------------------------------------------------------------------------
-        "AbilityDuration"               "28.0 42.0 56.0"
+        "AbilityDuration"               "30.0 45.0 60.0"
                 
         // Special
         //-------------------------------------------------------------------------------------------------------------
@@ -870,7 +870,7 @@
             "01"
             {
                 "var_type"              "FIELD_INTEGER"
-                "bonus_damage"          "60 100 140 180"
+                "bonus_damage"          "100 140 180 220"
 				"LinkedSpecialBonus"	"special_bonus_unique_bounty_hunter_4"
             }
             "02"
@@ -1029,7 +1029,7 @@
             "08"
             {
                 "var_type"          "FIELD_INTEGER"
-                "warrior_count"     "28"
+                "warrior_count"     "24"
             }
             "09"
             {
