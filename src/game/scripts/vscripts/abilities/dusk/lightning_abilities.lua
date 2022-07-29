@@ -148,7 +148,7 @@ function generate_thunder(keys)
 	                              nil,
 	                                radius/2,
 	                                DOTA_UNIT_TARGET_TEAM_ENEMY,
-	                                DOTA_UNIT_TARGET_HERO+DOTA_UNIT_TARGET_CREEP,
+	                                DOTA_UNIT_TARGET_HERO+DOTA_UNIT_TARGET_BASIC,
 	                                DOTA_UNIT_TARGET_FLAG_NONE,
 	                                FIND_CLOSEST,
 	                                false)
@@ -174,7 +174,7 @@ function overload(keys)
 	local ability2 = caster:FindAbilityByName("lightning_thunder_wave")
 
 	ability1:EndCooldown()
-	--ability2:EndCooldown()
+	ability2:EndCooldown()
 end
 
 function check_pos(keys)
@@ -305,7 +305,7 @@ function Spark(keys)
       nil,
         radius,
         DOTA_UNIT_TARGET_TEAM_ENEMY,
-        DOTA_UNIT_TARGET_HERO+DOTA_UNIT_TARGET_CREEP,
+        DOTA_UNIT_TARGET_HERO+DOTA_UNIT_TARGET_BASIC,
         DOTA_UNIT_TARGET_FLAG_NONE,
         FIND_CLOSEST,
         false)
