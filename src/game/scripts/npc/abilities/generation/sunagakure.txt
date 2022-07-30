@@ -475,10 +475,10 @@
         "AbilityUnitTargetFlags"        "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
         "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
     
-        "AbilityCastRange"              "475"
+        "AbilityCastRange"              "700"
         "AbilityCastPoint"              "0.0"
-        "AbilityChannelTime"            "2.5 3.0 3.5 4.0"
-        "AbilityManaCost"               "110 130 150 170"
+        "AbilityChannelTime"            "4.0 5.0 6.0 7.0"
+        "AbilityManaCost"               "100"
         "AbilityCooldown"               "2.0"
         "AnimationPlaybackRate"         "0.3"
         "AbilityProcsMagicStick"        "1"
@@ -488,7 +488,7 @@
             "01"
             {
                 "var_type"          "FIELD_FLOAT"
-                "duration"          "2.5 3.0 3.5 4.0"
+                "duration"          "4.0 5.0 6.0 7.0"
             }
             "02"
             {
@@ -498,7 +498,7 @@
             "03"
             {
                 "var_type"          "FIELD_FLOAT"
-                "dummy_duration"    "2.4 2.9 3.4 3.9"
+                "dummy_duration"    "3.9 4.9 5.9 6.9"
             }
         }
         "OnSpellStart"
@@ -940,19 +940,19 @@
             "01"
             {
                 "var_type"          "FIELD_FLOAT"
-                "duration"          "8.0 10.0 12.0 14.0"
+                "duration"          "8.0"
             }
             "02"
             {
                 "var_type"          "FIELD_FLOAT"
-                "vicissitude_duration"  "4.0"
+                "vicissitude_duration"  "4.0 5.0 6.0 7.0"
             }
         }
         "precache"
         {
-            "particle"  "particles/units/heroes/hero_nyx_assassin/nyx_assassin_burrow.vpcf"
-            "particle"  "particles/units/heroes/hero_nyx_assassin/nyx_assassin_burrow_exit.vpcf"
-            "particle"  "particles/status_fx/status_effect_invisible.vpcf"
+            "particle"  "particles/units/heroes/hero_nyx_assassin/nyx_assassin_burrow.vpcf_c"
+            "particle"  "particles/units/heroes/hero_nyx_assassin/nyx_assassin_burrow_exit.vpcf_c"
+            "particle"  "particles/status_fx/status_effect_faceless_timewalk.vpcf"
             "soundfile" "soundevents/game_sounds_heroes/game_sounds_nyx_assassin.vsndevts"
         }
         "OnUpgrade"
@@ -989,7 +989,7 @@
             {
                 "ModifierName"  "modifier_vicissitude_disarm"
                 "Target"        "CASTER"
-                "Duration"      "1.65"
+                "Duration"      "1.25"
             }
             "SpawnUnit"
             {
@@ -1020,7 +1020,7 @@
                 "IsHidden"          "0"
                 "IsDebuff"          "0"
             
-                "EffectName"        "particles/units/heroes/hero_nyx_assassin/nyx_assassin_burrow.vpcf"
+                "EffectName"        "particles/units/heroes/hero_nyx_assassin/nyx_assassin_burrow.vpcf_c"
                 "EffectAttachType"  "follow_origin"
     
                 "OnOrder"
@@ -1098,7 +1098,7 @@
                 "IsHidden"          "1"
                 "IsDebuff"          "0"
             
-                "EffectName"        "particles/econ/items/natures_prophet/natures_prophet_weapon_sufferwood/furion_teleport_end_team_sufferwood_ground_soft.vpcf"      
+                "EffectName"        "particles/econ/items/natures_prophet/natures_prophet_weapon_sufferwood/furion_teleport_end_team_sufferwood_ground_soft.vpcf_c"      
                 "EffectAttachType"  "follow_origin"
     
                 "States"
