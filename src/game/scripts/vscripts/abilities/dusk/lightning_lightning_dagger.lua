@@ -61,7 +61,7 @@ function lightning_lightning_dagger:OnProjectileHit_ExtraData(target,location,ex
 
 	target:EmitSound("Hero_PhantomAssassin.Dagger.Target")
 
-	InflictDamage(target,self:GetCaster(),self,damage,DAMAGE_TYPE_MAGICAL)
+	InflictDamage(target,self:GetCaster(),self,damage,DAMAGE_TYPE_PURE)
 
 	target:AddNewModifier(self:GetCaster(), self, "modifier_lightning_dagger_slow", {Duration=duration}) --[[Returns:void
 	No Description Set
@@ -69,7 +69,7 @@ function lightning_lightning_dagger:OnProjectileHit_ExtraData(target,location,ex
 
 	local en = FindEnemiesRandom(self:GetCaster(),target:GetAbsOrigin(),jump_radius)
 
-	local chosen
+	local chosen = target
 
 	for k,v in pairs(en) do
 		if v ~= target then

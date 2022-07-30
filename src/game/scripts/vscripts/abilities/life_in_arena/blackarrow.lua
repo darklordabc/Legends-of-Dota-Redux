@@ -16,6 +16,7 @@ function BlackArrow(event)
 
 	local creep = CreateUnitByName(target:GetUnitName(), target:GetAbsOrigin(), true, caster, nil, caster:GetTeamNumber())
 	creep:SetControllableByPlayer(caster:GetPlayerID(), true)
+	creep:SetOwner(caster:GetOwner())
 	creep:AddNewModifier(caster, event.ability, "modifier_kill", {duration = lifetime})
 	--creep:AddNewModifier(caster, event.ability, "modifier_illusion", nil)
 	-- event.ability:ApplyDataDrivenModifier(caster, creep, "modifier_dark_ranger_black_arrow_unit", nil)
@@ -25,7 +26,7 @@ function BlackArrow(event)
 	if target:IsRealHero() then
 		local target_level = target:GetLevel()
 	    for i = 1, target_level - 1 do
-	        creep:HeroLevelUp(false)
+	        creep:HeroLevelUp(true)
 	    end
 	end
 

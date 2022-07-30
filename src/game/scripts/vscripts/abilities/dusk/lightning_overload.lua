@@ -46,7 +46,7 @@ function modifier_overload_slow:GetModifierAttackSpeedBonus_Constant()
 end
 
 function FindEnemies(caster,point,radius,targets,flags)
-  local targets = targets or DOTA_UNIT_TARGET_HERO+DOTA_UNIT_TARGET_CREEP
+  local targets = targets or DOTA_UNIT_TARGET_HERO+DOTA_UNIT_TARGET_BASIC
   local flags = flags or DOTA_UNIT_TARGET_FLAG_NONE
   return FindUnitsInRadius( caster:GetTeamNumber(),
                             point,
