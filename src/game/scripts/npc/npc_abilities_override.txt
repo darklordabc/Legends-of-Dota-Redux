@@ -6999,7 +6999,7 @@
         }
         "special_bonus_unique_beastmaster_5"
         {
-            "TalentRequiredAbility"                                                   "beastmaster_call_of_the_wild_hawk"
+            "TalentRequiredAbility"                                                   "beastmaster_inner_beast"
         }
         "special_bonus_unique_beastmaster_6"
         {
@@ -7350,7 +7350,8 @@
         }
         "special_bonus_unique_faceless_void_4"
         {
-            "TalentRequiredAbility"                                                   "special_bonus_inherent"
+            // "TalentRequiredAbility"                                                   "special_bonus_inherent"
+			"TalentRequiredAbility"                                                   "faceless_void_chronosphere"
         }
         "special_bonus_unique_faceless_void_5"
         {
@@ -9740,7 +9741,7 @@
         }
         "special_bonus_unique_venomancer_5"
         {
-            "TalentRequiredAbility"                                                   "venomancer_venomous_gale"
+            "TalentRequiredAbility"                                                   "venomancer_poison_nova"
         }
         "special_bonus_unique_venomancer_6"
         {
@@ -10399,7 +10400,7 @@
         }
         "special_bonus_unique_clinkz_2"
         {
-            "TalentRequiredAbility"                                                   "clinkz_wind_walk"
+            "TalentRequiredAbility"                                                   "clinkz_death_pact"
         }
         "special_bonus_unique_clinkz_3"
         {
