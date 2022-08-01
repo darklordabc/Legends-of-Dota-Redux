@@ -6,7 +6,6 @@
 			"AbilityCastRange"				"800"
 			"AbilityCastPoint"				"0.2"
 			"AbilityCooldown"				"18 16 14 12"
-			"AbilitySharedCooldown"			""
 			"ReduxPerks"                    "ice"
 			"AbilityDamage"					"100 180 260 340"
 			"AbilityManaCost"				"90 100 110 120"
@@ -38,7 +37,6 @@
 			"AbilityCastPoint"				"0.3"
 			"AbilityCastRange"				"0"
 			"AbilityCooldown"				"18 17 16 15"
-			"AbilitySharedCooldown"			""
 			"AbilityDamage"					"200 240 280 320"
 			"AbilityManaCost"				"120 130 140 150"
 			"AbilitySpecial"
@@ -79,13 +77,13 @@
 		"frostivus2018_summon_snowman"
 		{
 			"MaxLevel"						"4"
-			"AbilitySharedCooldown"			""
 			"ReduxPerks"                    "ice"
 			"AbilityCastRange"				"600 700 800 900"
 			"AbilityCastPoint"				"0.3"
 			"AbilityCooldown"				"18 17 16 15"
 			"AbilityDamage"					"75 100 125 150"
 			"AbilityManaCost"				"100"
+			"AbilityTextureName"			"crystal_maiden_let_it_go"
 			"AbilitySpecial"
 			{	
 				"01"
@@ -107,6 +105,212 @@
 				{
 					"var_type"			"FIELD_FLOAT"
 					"taunt_duration"	"1.8"
+				}
+			}
+		}
+		
+		"frostivus2018_decorate_tree"
+		{
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+			"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_TREE"
+			"AbilityCastAnimation"			"ACT_INVALID"
+			"MaxLevel"						"4"
+			"AbilityCastRange"				"400"
+			"AbilityCastPoint"				"0.0"
+			"AbilityCooldown"				"30 25 20 15"
+			"AbilityDamage"					"50"
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"duration"				"5 10 15 20"
+				}
+				"02"
+				{
+					"var_type"				"FIELD_INTEGER"
+					"num_explosions"		"50 100 150 200"
+				}
+				"03"
+				{
+					"var_type"				"FIELD_INTEGER"
+					"radius"				"500"
+				}
+			}
+		}
+		
+		"seasonal_summon_penguin"
+		{
+
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+			"AbilityCastAnimation"			"ACT_INVALID"
+			"MaxLevel"						"4"
+
+			// Casting
+			//-------------------------------------------------------------------------------------------------------------
+			"AbilityCastRange"				"400"
+			"AbilityCastPoint"				"0.3"
+
+			// Time		
+			//-------------------------------------------------------------------------------------------------------------
+			"AbilityCooldown"				"30 25 20 15"
+
+			// Damage.
+			//-------------------------------------------------------------------------------------------------------------
+			"AbilityDamage"					"125 200 275 350"
+
+			// Cost
+			//-------------------------------------------------------------------------------------------------------------
+			"AbilityManaCost"				"50"
+
+			// Special
+			//-------------------------------------------------------------------------------------------------------------
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"initial_lifetime"		"20.0"
+				}
+				"02"
+				{
+					"var_type"				"FIELD_INTEGER"
+					"initial_speed"			"100 150 200 250"
+				}
+				"03"
+				{
+					"var_type"				"FIELD_INTEGER"
+					"speed_step"			"1"
+				}
+				"04"
+				{
+					"var_type"				"FIELD_INTEGER"
+					"max_speed"				"1500"
+				}
+				"05"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"impaired_duration"		"3.0 2.5 2.0 1.5"
+				}
+				"06"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"bump_delay"			"1.5 1.4 1.3 1.2"
+				}
+				"07"
+				{
+					"var_type"				"FIELD_INTEGER"
+					"bump_collision_radius"	"120"
+				}
+				"08"
+				{
+					"var_type"				"FIELD_INTEGER"
+					"spawn_offset"			"150"
+				}
+				"09"
+				{
+					"var_type"				"FIELD_INTEGER"
+					"run_distance"			"200"
+				}
+				"10"
+				{
+					"var_type"				"FIELD_INTEGER"
+					"jump_distance"			"150"
+				}
+				"11"
+				{
+					"var_type"				"FIELD_INTEGER"
+					"speed_after_crash"		"125 150 175 200"
+				}
+				"12"
+				{
+					"var_type"					"FIELD_INTEGER"
+					"speed_gain_per_hero_bump"	"60 80 100 120"
+				}
+				"13"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"speed_step_interval"	"0.05"
+				}
+				"14"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"max_gainable_lifetime"	"120.0"
+				}
+				"15"
+				{
+					"var_type"						"FIELD_FLOAT"
+					"lifetime_gain_per_hero_bump"	"5.0 7.0 9.0 11.0"
+				}
+				"16"
+				{
+					"var_type"					"FIELD_FLOAT"
+					"min_speech_repeat_time"	"0.5"
+				}
+				"17"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"bump_delay_absolute"	"0.25"
+				}
+			}
+		}
+		
+		"seasonal_ti9_monkey"
+		{
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+			"AbilityCastAnimation"			"ACT_INVALID"
+			"MaxLevel"						"4"
+			"AbilityCastRange"				"400"
+			"AbilityCastPoint"				"0.1"
+			"AbilityCooldown"				"30"
+			"AbilityDamage"					"200"
+			"AbilityManaCost"				"30 40 50 60"
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"				"FIELD_INTEGER"
+					"duration"				"45 50 55 60"
+				}
+				"02"
+				{
+					"var_type"				"FIELD_INTEGER"
+					"attack_range"			"1400"
+				}
+				"03"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"attack_time"			"6 5 4 3"
+				}
+				"04"
+				{
+					"var_type"					"FIELD_FLOAT"
+					"attack_projectile_time"	"0.34"
+				}
+				"05"
+				{
+					"var_type"					"FIELD_INTEGER"
+					"projectile_speed"			"1000"
+				}
+				"06"
+				{
+					"var_type"					"FIELD_FLOAT"
+					"turn_time"					"0.25"
+				}
+				"07"
+				{
+					"var_type"					"FIELD_FLOAT"
+					"turn_angle"					"45"
+				}
+				"08"
+				{
+					"var_type"					"FIELD_FLOAT"
+					"shoot_angle"					"90"
+				}
+				"09"
+				{
+					"var_type"					"FIELD_FLOAT"
+					"debuff_time"					"2.5"
 				}
 			}
 		}
@@ -1449,13 +1653,13 @@
 			"AbilityValues"
 			{
 				"AbilityCastPoint"				"0.1"
-				"AbilityCastRange"				"1400 1600 1800 2000"
-				"AbilityCooldown"				"30 25 20 15"
+				"AbilityCastRange"				"1400 1550 1700 1850"
+				"AbilityCooldown"				"30 24 18 12"
 				"AbilityManaCost"				"100"
-				"speed"							"50 55 60 65"
+				"speed"							"50"
 				"duration"						"12"
 				"path_radius"					"150 175 200 225"
-				"slow"							"10 15 20 25"
+				"slow"							"10 18 26 34"
 			}
 			"ReduxPerks"	"ice | mobility"
 			"ReduxFlags"	"mobility"
@@ -2278,6 +2482,13 @@
             "ReduxFlags"                                                           "mobility"
             "ReduxPerks"                                                           "mobility | nature"
 			"LinkedAbility"					"monkey_king_primal_spring"
+        }
+		"monkey_king_primal_spring"
+        {
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_OVERSHOOT | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+            "ReduxFlags"                                                           "mobility"
+            "ReduxPerks"                                                           "mobility | nature"
+			"LinkedAbility"					"monkey_king_tree_dance"
         }
         "phantom_lancer_doppelwalk"
         {
@@ -6999,7 +7210,7 @@
         }
         "special_bonus_unique_beastmaster_5"
         {
-            "TalentRequiredAbility"                                                   "beastmaster_call_of_the_wild_hawk"
+            "TalentRequiredAbility"                                                   "beastmaster_inner_beast"
         }
         "special_bonus_unique_beastmaster_6"
         {
@@ -7350,7 +7561,8 @@
         }
         "special_bonus_unique_faceless_void_4"
         {
-            "TalentRequiredAbility"                                                   "special_bonus_inherent"
+            // "TalentRequiredAbility"                                                   "special_bonus_inherent"
+			"TalentRequiredAbility"                                                   "faceless_void_chronosphere"
         }
         "special_bonus_unique_faceless_void_5"
         {
@@ -9740,7 +9952,7 @@
         }
         "special_bonus_unique_venomancer_5"
         {
-            "TalentRequiredAbility"                                                   "venomancer_venomous_gale"
+            "TalentRequiredAbility"                                                   "venomancer_poison_nova"
         }
         "special_bonus_unique_venomancer_6"
         {
@@ -10399,7 +10611,7 @@
         }
         "special_bonus_unique_clinkz_2"
         {
-            "TalentRequiredAbility"                                                   "clinkz_wind_walk"
+            "TalentRequiredAbility"                                                   "clinkz_death_pact"
         }
         "special_bonus_unique_clinkz_3"
         {
