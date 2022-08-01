@@ -1653,13 +1653,13 @@
 			"AbilityValues"
 			{
 				"AbilityCastPoint"				"0.1"
-				"AbilityCastRange"				"1400 1600 1800 2000"
-				"AbilityCooldown"				"30 25 20 15"
+				"AbilityCastRange"				"1400 1550 1700 1850"
+				"AbilityCooldown"				"30 24 18 12"
 				"AbilityManaCost"				"100"
-				"speed"							"50 55 60 65"
+				"speed"							"50"
 				"duration"						"12"
 				"path_radius"					"150 175 200 225"
-				"slow"							"10 15 20 25"
+				"slow"							"10 18 26 34"
 			}
 			"ReduxPerks"	"ice | mobility"
 			"ReduxFlags"	"mobility"
