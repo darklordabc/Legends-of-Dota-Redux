@@ -2,6 +2,7 @@
     {
 		"frostivus2018_throw_snowball"
 		{
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 			"MaxLevel"						"4"
 			"AbilityCastRange"				"800"
 			"AbilityCastPoint"				"0.2"
@@ -76,6 +77,7 @@
 		
 		"frostivus2018_summon_snowman"
 		{
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
 			"MaxLevel"						"4"
 			"ReduxPerks"                    "ice"
 			"AbilityCastRange"				"600 700 800 900"
@@ -118,18 +120,18 @@
 			"AbilityCastRange"				"400"
 			"AbilityCastPoint"				"0.0"
 			"AbilityCooldown"				"30 25 20 15"
-			"AbilityDamage"					"50"
+			"AbilityDamage"					"20 30 40 50"
 			"AbilitySpecial"
 			{
 				"01"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"duration"				"5 10 15 20"
+					"duration"				"20"
 				}
 				"02"
 				{
 					"var_type"				"FIELD_INTEGER"
-					"num_explosions"		"50 100 150 200"
+					"num_explosions"		"200"
 				}
 				"03"
 				{
@@ -141,7 +143,6 @@
 		
 		"seasonal_summon_penguin"
 		{
-
 			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
 			"AbilityCastAnimation"			"ACT_INVALID"
 			"MaxLevel"						"4"
@@ -149,7 +150,7 @@
 			// Casting
 			//-------------------------------------------------------------------------------------------------------------
 			"AbilityCastRange"				"400"
-			"AbilityCastPoint"				"0.3"
+			"AbilityCastPoint"				"0.0"
 
 			// Time		
 			//-------------------------------------------------------------------------------------------------------------
@@ -157,7 +158,7 @@
 
 			// Damage.
 			//-------------------------------------------------------------------------------------------------------------
-			"AbilityDamage"					"125 200 275 350"
+			"AbilityDamage"					"0"
 
 			// Cost
 			//-------------------------------------------------------------------------------------------------------------
@@ -170,12 +171,12 @@
 				"01"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"initial_lifetime"		"20.0"
+					"initial_lifetime"		"20.0 30.0 40.0 50.0"
 				}
 				"02"
 				{
 					"var_type"				"FIELD_INTEGER"
-					"initial_speed"			"100 150 200 250"
+					"initial_speed"			"100 175 225 300"
 				}
 				"03"
 				{
@@ -195,7 +196,7 @@
 				"06"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"bump_delay"			"1.5 1.4 1.3 1.2"
+					"bump_delay"			"1.5 1.3 1.1 0.9"
 				}
 				"07"
 				{
@@ -220,7 +221,7 @@
 				"11"
 				{
 					"var_type"				"FIELD_INTEGER"
-					"speed_after_crash"		"125 150 175 200"
+					"speed_after_crash"		"150 200 250 300"
 				}
 				"12"
 				{
@@ -262,15 +263,15 @@
 			"MaxLevel"						"4"
 			"AbilityCastRange"				"400"
 			"AbilityCastPoint"				"0.1"
-			"AbilityCooldown"				"30"
-			"AbilityDamage"					"200"
+			"AbilityCooldown"				"30 25 20 15"
+			"AbilityDamage"					"100"
 			"AbilityManaCost"				"30 40 50 60"
 			"AbilitySpecial"
 			{
 				"01"
 				{
 					"var_type"				"FIELD_INTEGER"
-					"duration"				"45 50 55 60"
+					"duration"				"45 60 75 90"
 				}
 				"02"
 				{
@@ -280,7 +281,7 @@
 				"03"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"attack_time"			"6 5 4 3"
+					"attack_time"			"6.0 4.5 3.0 1.5"
 				}
 				"04"
 				{
@@ -305,12 +306,33 @@
 				"08"
 				{
 					"var_type"					"FIELD_FLOAT"
-					"shoot_angle"					"90"
+					"shoot_angle"					"360"
 				}
 				"09"
 				{
 					"var_type"					"FIELD_FLOAT"
-					"debuff_time"					"2.5"
+					"debuff_time"					"3.0"
+				}
+			}
+			"Modifiers"
+			{
+				"modifier_ti9_monkey_poop"
+				{
+					"Passive"           "0"
+					"IsHidden"          "0"
+					"IsDebuff"          "1"
+					"Duration"          "%debuff_time"
+
+					"ThinkInterval"  "1.0"
+					"OnIntervalThink"
+					{
+						"Damage"
+                      {
+                          "Target"        "TARGET"
+                          "Type"          "DAMAGE_TYPE_MAGICAL"
+                          "Damage"        "%AbilityDamage"
+                      }
+					}
 				}
 			}
 		}

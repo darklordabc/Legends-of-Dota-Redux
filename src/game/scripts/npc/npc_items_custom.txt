@@ -1199,27 +1199,27 @@
             "01"
             {
                 "var_type"              "FIELD_INTEGER"
-                "skadi_bonus_all_stats"       "25"
+                "skadi_bonus_all_stats"       "22"
             }
             "02"
             {
                 "var_type"              "FIELD_INTEGER"
-                "skadi_bonus_health"          "225"
+                "skadi_bonus_health"          "220"
             }
             "03"
             {
                 "var_type"              "FIELD_INTEGER"
-                "skadi_bonus_mana"            "250"
+                "skadi_bonus_mana"            "220"
             }
             "04"
             {
                 "var_type"              "FIELD_INTEGER"
-                "skadi_cold_slow_melee"   "-25"
+                "skadi_cold_slow_melee"   "-20"
             }
             "05"
             {
                 "var_type"              "FIELD_INTEGER"
-                "skadi_cold_slow_ranged"  "-50"
+                "skadi_cold_slow_ranged"  "-40"
             }
             "06"
             {
@@ -1229,7 +1229,7 @@
             "07"
             {
                 "var_type"              "FIELD_INTEGER"
-                "skadi_heal_reduction"    "40"
+                "skadi_heal_reduction"    "-40"
             }
         }
     }
@@ -1559,7 +1559,7 @@
             "03"
             {
                 "var_type"              "FIELD_INTEGER"
-                "octarine_core_cast_range_bonus"   "250"
+                "octarine_core_cast_range_bonus"   "225"
             }
             "04"
             {
@@ -1640,17 +1640,17 @@
             "01"
             {
                 "var_type"              "FIELD_INTEGER"
-                "aether_lens_bonus_mana"            "450"
+                "aether_lens_bonus_mana"            "300"
             }
             "02"
             {
                 "var_type"              "FIELD_FLOAT"
-                "aether_lens_bonus_mana_regen"      "3.0"
+                "aether_lens_bonus_mana_regen"      "2.5"
             }
             "03"
             {
                 "var_type"              "FIELD_INTEGER"
-                "aether_lens_cast_range_bonus"          "250"
+                "aether_lens_cast_range_bonus"          "225"
             }
             
         }
@@ -1684,7 +1684,7 @@
             "01"
             {
                 "var_type"              "FIELD_INTEGER"
-                "butterfly_bonus_agility"         "30"
+                "butterfly_bonus_agility"         "35"
             }
             "02"
             {
@@ -1815,7 +1815,7 @@
         //-------------------------------------------------------------------------------------------------------------
         "AbilityCastRange"              "800"
         "AbilityCastPoint"              "0.0"
-        "AbilityCooldown"               "17.0"
+        "AbilityCooldown"               "13.0"
         "AbilityManaCost"               "50"
         
         "AbilitySharedCooldown"         ""
@@ -1840,7 +1840,7 @@
             "01"
             {
                 "var_type"              "FIELD_INTEGER"
-                "bonus_all_stats"       "15"
+                "bonus_all_stats"       "20"
             }
             "02"
             {
@@ -1850,7 +1850,7 @@
             "03"
             {
                 "var_type"              "FIELD_INTEGER"
-                "damage_reduction"      "40"
+                "damage_reduction"      "50"
             }
         }
         
@@ -1947,7 +1947,7 @@
         //-------------------------------------------------------------------------------------------------------------
         "AbilityCastRange"              "800"
         "AbilityCastPoint"              "0.0"
-        "AbilityCooldown"               "17.0"
+        "AbilityCooldown"               "13.0"
         "AbilityManaCost"               "50"
         
         "AbilitySharedCooldown"         ""
@@ -1986,7 +1986,7 @@
             "03"
             {
                 "var_type"              "FIELD_INTEGER"
-                "damage_reduction"      "40"
+                "damage_reduction"      "50"
             }
         }
         
