@@ -10,7 +10,7 @@
 		"BaseClass"					"npc_dota_creature"
 		"Model"						"models/events/frostivus/penguin/penguin.vmdl"
 		"SoundSet"					"Creep_Good_Melee_Mega"
-		"ModelScale"				"1.8"
+		"ModelScale"				"2.0"
 		"Level"						"1"
 
 		// Abilities
