@@ -105,6 +105,10 @@ function modifier_item_skadi_consumable:DeclareFunctions()
     MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
     MODIFIER_PROPERTY_HEALTH_BONUS,
     MODIFIER_PROPERTY_MANA_BONUS,
+	MODIFIER_PROPERTY_HEAL_AMPLIFY_PERCENTAGE_TARGET,
+	MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE,
+	MODIFIER_PROPERTY_LIFESTEAL_AMPLIFY_PERCENTAGE,
+	MODIFIER_PROPERTY_SPELL_LIFESTEAL_AMPLIFY_PERCENTAGE,
     MODIFIER_EVENT_ON_ATTACK_LANDED,
     MODIFIER_PROPERTY_PROJECTILE_NAME,
   }
@@ -154,6 +158,39 @@ function modifier_item_skadi_consumable:GetModifierManaBonus()
   end
   return self:GetAbility():GetSpecialValueFor("skadi_bonus_mana")
 end
+
+function modifier_item_skadi_consumable:GetModifierHealAmplify_PercentageTarget()
+  if not self:GetAbility() then
+    self:Destroy()
+    return
+  end
+  return self:GetAbility():GetSpecialValueFor("skadi_heal_reduction")
+end
+
+function modifier_item_skadi_consumable:GetModifierHPRegenAmplify_Percentage()
+  if not self:GetAbility() then
+    self:Destroy()
+    return
+  end
+  return self:GetAbility():GetSpecialValueFor("skadi_heal_reduction")
+end
+
+function modifier_item_skadi_consumable:GetModifierLifestealRegenAmplify_Percentage()
+  if not self:GetAbility() then
+    self:Destroy()
+    return
+  end
+  return self:GetAbility():GetSpecialValueFor("skadi_heal_reduction")
+end
+
+function modifier_item_skadi_consumable:GetModifierSpellLifestealRegenAmplify_Percentage()
+  if not self:GetAbility() then
+    self:Destroy()
+    return
+  end
+  return self:GetAbility():GetSpecialValueFor("skadi_heal_reduction")
+end
+
 
 function modifier_item_skadi_consumable:OnAttackLanded(keys)
   if IsServer() and keys.attacker == self:GetCaster() and not keys.target:IsBuilding() then
