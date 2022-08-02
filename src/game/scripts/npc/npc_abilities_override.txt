@@ -2,6 +2,7 @@
     {
 		"frostivus2018_throw_snowball"
 		{
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 			"MaxLevel"						"4"
 			"AbilityCastRange"				"800"
 			"AbilityCastPoint"				"0.2"
@@ -76,6 +77,7 @@
 		
 		"frostivus2018_summon_snowman"
 		{
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
 			"MaxLevel"						"4"
 			"ReduxPerks"                    "ice"
 			"AbilityCastRange"				"600 700 800 900"
@@ -141,7 +143,6 @@
 		
 		"seasonal_summon_penguin"
 		{
-
 			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
 			"AbilityCastAnimation"			"ACT_INVALID"
 			"MaxLevel"						"4"
