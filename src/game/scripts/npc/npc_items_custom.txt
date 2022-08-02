@@ -1229,7 +1229,7 @@
             "07"
             {
                 "var_type"              "FIELD_INTEGER"
-                "skadi_heal_reduction"    "40"
+                "skadi_heal_reduction"    "-40"
             }
         }
     }
