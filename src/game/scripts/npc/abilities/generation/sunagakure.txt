@@ -666,6 +666,7 @@
                 "Properties"
                 {
                     "MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE" "522"
+					"MODIFIER_PROPERTY_PROCATTACK_BONUS_DAMAGE_PURE " "50" 
                 }
                 "States"
                 {
@@ -685,13 +686,13 @@
     
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT_TARGET"
     
-        "AbilityCastRange"              "465"
-        "AbilityCastPoint"              "1.0"
+        "AbilityCastRange"              "600"
+        "AbilityCastPoint"              "0.6"
         "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_3"
         "AnimationPlaybackRate"         "0.6"
         "AbilityProcsMagicStick"        "1"
     
-        "AbilityCooldown"               "14 12 10 8"
+        "AbilityCooldown"               "6"
         "AbilityManaCost"               "40"
     
         "AbilitySpecial"
@@ -704,7 +705,7 @@
             "02"
             {
                 "var_type"              "FIELD_INTEGER"
-                "skeleton_movespeed"    "320 340 360 380"
+                "skeleton_movespeed"    "340 360 380 400"
             }
             "03"
             {
@@ -714,22 +715,22 @@
             "04"
             {
                 "var_type"              "FIELD_INTEGER"
-                "attackspeed_bonus"     "50"
+                "attackspeed_bonus"     "100"
             }
             "05"
             {
                 "var_type"              "FIELD_INTEGER"
-                "regen_bonus"           "30"
+                "regen_bonus"           "50"
             }
             "06" //Must be 300 less than skeleton_movespeed
             {
                 "var_type"              "FIELD_INTEGER"
-                "bonus_movement_speed"  "20 40 60 80"
+                "bonus_movement_speed"  "40 60 80 100"
             }
             "07"
             {
                 "var_type"              "FIELD_INTEGER"
-                "max_distance"          "1600"
+                "max_distance"          "1800"
             }
             "07"
             {
@@ -950,9 +951,10 @@
         }
         "precache"
         {
-            "particle"  "particles/units/heroes/hero_nyx_assassin/nyx_assassin_burrow.vpcf_c"
-            "particle"  "particles/units/heroes/hero_nyx_assassin/nyx_assassin_burrow_exit.vpcf_c"
-            "particle"  "particles/status_fx/status_effect_faceless_timewalk.vpcf"
+            "particle"  "particles/units/heroes/hero_meepo/meepo_burrow.vpcf"
+            "particle"  "particles/units/heroes/hero_nyx_assassin/nyx_assassin_burrow_exit.vpcf"
+            "particle"  "particles/status_fx/status_effect_faceless_timewalk.vpcf_c"
+			"particle"	"particles/econ/items/natures_prophet/natures_prophet_weapon_sufferwood/furion_teleport_end_team_sufferwood_ground_soft.vpcf" 
             "soundfile" "soundevents/game_sounds_heroes/game_sounds_nyx_assassin.vsndevts"
         }
         "OnUpgrade"
@@ -1020,7 +1022,7 @@
                 "IsHidden"          "0"
                 "IsDebuff"          "0"
             
-                "EffectName"        "particles/units/heroes/hero_nyx_assassin/nyx_assassin_burrow.vpcf_c"
+                "EffectName"        "particles/units/heroes/hero_meepo/meepo_burrow.vpcf"
                 "EffectAttachType"  "follow_origin"
     
                 "OnOrder"
@@ -1060,6 +1062,7 @@
                 "Properties"
                 {
                     "MODIFIER_PROPERTY_DISABLE_AUTOATTACK"  "1"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"30"
                 }
                 "OnCreated"
                 {
@@ -1098,7 +1101,7 @@
                 "IsHidden"          "1"
                 "IsDebuff"          "0"
             
-                "EffectName"        "particles/econ/items/natures_prophet/natures_prophet_weapon_sufferwood/furion_teleport_end_team_sufferwood_ground_soft.vpcf_c"      
+                "EffectName"        "particles/econ/items/natures_prophet/natures_prophet_weapon_sufferwood/furion_teleport_end_team_sufferwood_ground_soft.vpcf"      
                 "EffectAttachType"  "follow_origin"
     
                 "States"
