@@ -115,10 +115,10 @@ function RollInitiate( keys )
 
 	-- Physics
 	local direction = caster:GetForwardVector()
-	local velocity = leap_speed * 3.0
-	local end_time = 0.6
+	local velocity = leap_speed * 4.0
+	local end_time = 0.4
 	local time_elapsed = 0
-	local time = 0.3
+	local time = 0.2
 	local jump = 48
 	local flip = 360
 
