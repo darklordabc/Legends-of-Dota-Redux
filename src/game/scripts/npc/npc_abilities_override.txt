@@ -211,12 +211,12 @@
 				"09"
 				{
 					"var_type"				"FIELD_INTEGER"
-					"run_distance"			"200"
+					"run_distance"			"250"
 				}
 				"10"
 				{
 					"var_type"				"FIELD_INTEGER"
-					"jump_distance"			"150"
+					"jump_distance"			"200"
 				}
 				"11"
 				{
@@ -327,11 +327,10 @@
 					"OnIntervalThink"
 					{
 						"Damage"
-                      {
-                          "Target"        "TARGET"
+                      	{
                           "Type"          "DAMAGE_TYPE_MAGICAL"
                           "Damage"        "%AbilityDamage"
-                      }
+                      	}
 					}
 				}
 			}
