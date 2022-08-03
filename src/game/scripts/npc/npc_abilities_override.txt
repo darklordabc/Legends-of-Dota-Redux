@@ -211,12 +211,12 @@
 				"09"
 				{
 					"var_type"				"FIELD_INTEGER"
-					"run_distance"			"200"
+					"run_distance"			"250"
 				}
 				"10"
 				{
 					"var_type"				"FIELD_INTEGER"
-					"jump_distance"			"150"
+					"jump_distance"			"200"
 				}
 				"11"
 				{
@@ -327,11 +327,10 @@
 					"OnIntervalThink"
 					{
 						"Damage"
-                      {
-                          "Target"        "TARGET"
+                      	{
                           "Type"          "DAMAGE_TYPE_MAGICAL"
                           "Damage"        "%AbilityDamage"
-                      }
+                      	}
 					}
 				}
 			}
@@ -2501,16 +2500,15 @@
         }
         "monkey_king_tree_dance"
         {
-            "ReduxFlags"                                                           "mobility"
-            "ReduxPerks"                                                           "mobility | nature"
-			"LinkedAbility"					"monkey_king_primal_spring"
+            "ReduxFlags"                                                        "mobility"
+            "ReduxPerks"                                                        "mobility | nature"
+			"LinkedAbility"														"monkey_king_primal_spring"
         }
 		"monkey_king_primal_spring"
         {
-			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_OVERSHOOT | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-            "ReduxFlags"                                                           "mobility"
-            "ReduxPerks"                                                           "mobility | nature"
-			"LinkedAbility"					"monkey_king_tree_dance"
+            "ReduxFlags"                                                        "mobility"
+            "ReduxPerks"                                                        "mobility | nature"
+			"LinkedAbility"														"monkey_king_tree_dance"
         }
         "phantom_lancer_doppelwalk"
         {
