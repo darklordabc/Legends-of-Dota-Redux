@@ -170,7 +170,7 @@ function modifier_item_skadi_consumable:OnAttackLanded(keys)
     --if keys.attacker:IsRangedAttacker() then
     --  duration = self:GetAbility():GetSpecialValueFor("skadi_cold_duration_ranged")
     --end
-    keys.target:AddNewModifier(self:GetCaster(),self:GetAbility(),"modifier_item_skadi_consumable_slow",{duration = duration}))
+    keys.target:AddNewModifier(self:GetCaster(),self:GetAbility(),"modifier_item_skadi_consumable_slow",{duration = duration})
   end
 end
 
