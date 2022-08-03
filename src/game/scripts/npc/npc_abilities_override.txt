@@ -2500,16 +2500,15 @@
         }
         "monkey_king_tree_dance"
         {
-            "ReduxFlags"                                                           "mobility"
-            "ReduxPerks"                                                           "mobility | nature"
-			"LinkedAbility"					"monkey_king_primal_spring"
+            "ReduxFlags"                                                        "mobility"
+            "ReduxPerks"                                                        "mobility | nature"
+			"LinkedAbility"														"monkey_king_primal_spring"
         }
 		"monkey_king_primal_spring"
         {
-			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_OVERSHOOT | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-            "ReduxFlags"                                                           "mobility"
-            "ReduxPerks"                                                           "mobility | nature"
-			"LinkedAbility"					"monkey_king_tree_dance"
+            "ReduxFlags"                                                        "mobility"
+            "ReduxPerks"                                                        "mobility | nature"
+			"LinkedAbility"														"monkey_king_tree_dance"
         }
         "phantom_lancer_doppelwalk"
         {
