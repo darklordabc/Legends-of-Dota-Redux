@@ -10,12 +10,12 @@
 		"BaseClass"					"npc_dota_creature"
 		"Model"						"models/events/frostivus/penguin/penguin.vmdl"
 		"SoundSet"					"Creep_Good_Melee_Mega"
-		"ModelScale"				"2.0"
+		"ModelScale"				"2.3"
 		"Level"						"1"
 
 		// Abilities
 		//----------------------------------------------------------------
-		"Ability1"					""
+		"Ability1"					"lich_cold_aura"
 
 		// Armor
 		//----------------------------------------------------------------
@@ -30,7 +30,7 @@
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"				"0.5"
 		"AttackAnimationPoint"		"0.1"
-		"AttackAcquisitionRange"	"600"
+		"AttackAcquisitionRange"	"1000"
 		"AttackRange"				"400"
 		"ProjectileModel"			"particles/neutral_fx/ghost_frost_attack.vpcf"
 		"ProjectileSpeed"			"2000"
@@ -90,6 +90,59 @@
 		//}
 	}
 
+	"npc_dota_seasonal_ti9_monkey"
+	{
+		// General
+		//----------------------------------------------------------------
+		"BaseClass"					"npc_dota_seasonal_ti9_monkey"	// Class of entity of link to.
+		"Model"						"models/props_gameplay/ti9_consumables_monkey.vmdl"	// Model.
+		"SoundSet"					""					// Name of sound set.
+		"Level"						"0"
+		"ModelScale"				"1.9"
+		"ConsideredHero"			"0"
+
+		// Bounds
+		//----------------------------------------------------------------
+		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"			// Hull type used for navigation/locomotion.
+		"HealthBarOffset"			"120"
+
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"			// Type of locomotion - ground, air
+		"MovementSpeed"				"0"		// Speed
+		"MovementTurnRate"			"3"		// Turning rate.
+
+		// Abilities
+		//----------------------------------------------------------------
+		"Ability1"					""			// Ability 1
+		"Ability2"					""			// Ability 2
+		"Ability3"					""			// Ability 3
+		"Ability4"					""			// Ability 4
+
+		// Armor
+		//----------------------------------------------------------------
+		"ArmorPhysical"				"0"			// Physical protection.
+		"MagicalResistance"			"25"		// Magical protection.
+
+		// Status
+		//----------------------------------------------------------------
+		"StatusHealth"				"5000"		// Base health.
+		"StatusHealthRegen"			"0"			// Health regeneration rate.
+		"StatusMana"				"0"			// Base mana.
+		"StatusManaRegen"			"0"			// Mana regeneration rate.
+
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"					"DOTA_TEAM_GOODGUYS"			// Team name.
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"	// heroes won't proc off aoe stuff
+		
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"		"600"		// Range of vision during day light.
+		"VisionNighttimeRange"		"600"		// Range of vision at night time.
+	}
 
     //=================================================================================
 	// Basic dummy unit
