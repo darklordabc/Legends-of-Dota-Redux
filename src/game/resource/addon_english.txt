@@ -12147,6 +12147,14 @@
 		"DOTA_Tooltip_Ability_special_bonus_unique_dawnbreaker_celestial_hammer_slow"			"+{s:value}% Celestial Hammer Slow"
 		"DOTA_Tooltip_Ability_special_bonus_unique_dawnbreaker_fire_wreath_aoe"					"+{s:value} Starbreaker AoE"
 
+		"DOTA_Tooltip_Ability_dawnbreaker_luminosity_lua"							"Luminosity"
+		"DOTA_Tooltip_Ability_dawnbreaker_luminosity_lua_Lore"							"Diminished in power without access to the Children's replenishing light, Valora can still recharge herself and her allies by creating order from the chaos which resides within each fight."
+		"DOTA_Tooltip_Ability_dawnbreaker_luminosity_lua_Description"				"After %attack_count% attacks, Dawnbreaker powers up, charging her next attack with a critical hit that heals all allied heroes within %heal_radius% units around her for a portion of attack damage dealt. Creeps and neutral enemies provide less healing. Allies are healed for %allied_healing_pct%%% of the amount."
+		"DOTA_Tooltip_ability_dawnbreaker_luminosity_lua_Note0"							"Luminosity Heal is considered a lifesteal and increased by sources of Lifesteal Amplification."
+		"DOTA_Tooltip_Ability_dawnbreaker_luminosity_lua_bonus_damage"				"%CRITICAL STRIKE DAMAGE:"
+		"DOTA_Tooltip_Ability_dawnbreaker_luminosity_lua_heal_pct"					"%HEALING FROM HEROES:"
+		"DOTA_Tooltip_Ability_dawnbreaker_luminosity_lua_heal_from_creeps"			"%CREEP HEAL PENALTY:"
+
 		// Hoodwink
 		"DOTA_Tooltip_ability_special_bonus_unique_hoodwink_acorn_shot_charges"							"{s:value} Acorn Shot Charges"
 		"DOTA_Tooltip_ability_special_bonus_unique_hoodwink_sharpshooter_speed"							"{s:pct_change}% Sharpshooter Faster Projectile / Charge Time"
