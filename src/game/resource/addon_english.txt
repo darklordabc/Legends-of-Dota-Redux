@@ -13361,6 +13361,15 @@
 "DOTA_Tooltip_ability_juggernaut_swift_slash_Description"			"Performs a mini Omnislash for a short duration.<br><br><font color='#FF4949'>Warning:</font> Requires <font color='#70EA72'>Omnislash</font>.<br>"
 "DOTA_Tooltip_ability_juggernaut_swift_slash_duration"		"DURATION:"
 
+		"DOTA_Tooltip_modifier_windrunner_gale_force_OP"			"Gale Force OP"
+		"DOTA_Tooltip_modifier_windrunner_gale_force__OPDescription"			"Buffeted by gale force winds."
+
+		"DOTA_Tooltip_ability_windrunner_gale_force_OP"				"Gale Force OP"
+		"DOTA_Tooltip_ability_windrunner_gale_force_OP_Lore"				"At last Lyralei has learned to call upon the might of her true birthright."
+		"DOTA_Tooltip_ability_windrunner_gale_force_OP_Description"	"Summons a strong wind that pushes all enemies in the target area towards the target direction. Vector Targeted. Cast Range: %abilitycastrange% Mana Cost: %abilitymanacost% Cooldown: %abilitycooldown%s."
+		"DOTA_Tooltip_ability_windrunner_gale_force_OP_duration"			"DURATION:"
+		"DOTA_Tooltip_ability_windrunner_gale_force_OP_wind_strength"		"WIND SPEED:"
+		"DOTA_Tooltip_ability_windrunner_gale_force_OP_radius"				"RADIUS:"
 
 }
 }

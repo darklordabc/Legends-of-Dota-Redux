@@ -253,6 +253,7 @@
 #base "abilities\dota\feast_redux.txt"
 #base "abilities\dota\overpower_redux.txt"
 #base "abilities\dota\coup_de_grace_redux.txt"
+#base "abilities\dota\windrunner_gale_force_op.txt"
 #base "abilities\dusk\lightning_blinding_speed.txt"
 #base "abilities\dusk\lightning_blinding_speed2.txt"
 #base "abilities\dusk\lightning_boltblast.txt"
