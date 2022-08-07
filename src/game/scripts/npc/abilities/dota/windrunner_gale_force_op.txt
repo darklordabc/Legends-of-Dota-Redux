@@ -10,7 +10,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT |  DOTA_ABILITY_BEHAVIOR_VECTOR_TARGETING | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"		
 
-		"MaxLevel"						"1"
+		"MaxLevel"						"4"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -19,7 +19,7 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"20"
+		"AbilityCooldown"				"20 18 16 14"
 		
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -30,8 +30,8 @@
 		"AbilityValues"
 		{
 			"duration"			"10"
-			"wind_strength"		"600"
-			"radius"			"1200"
+			"wind_strength"		"400"
+			"radius"			"10000 15000 20000 25000"
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
 
