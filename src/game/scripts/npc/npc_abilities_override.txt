@@ -11316,19 +11316,13 @@
         "ItemPurchasable"               "1"
         "ItemSellable"                  "1"
     }
-    "item_elixer"                   
-    {
-        "ItemCost"                      "500"
-        "ItemPurchasable"               "1"
-        "ItemSellable"                  "1"
-    }
-    "item_ocean_heart"                
-    {
-        "ItemCost"                      "500"
-        "ItemPurchasable"               "1"
-        "ItemSellable"                  "1"
-    }
     "item_broom_handle"             
+    {
+        "ItemCost"                      "500"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_elixer"                   
     {
         "ItemCost"                      "500"
         "ItemPurchasable"               "1"
@@ -11383,6 +11377,25 @@
         "ItemSellable"                  "1"
     }
     "item_pogo_stick"              
+    {
+        "ItemCost"                      "500"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+
+    "item_seeds_of_serenity"              
+    {
+        "ItemCost"                      "500"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_lance_of_pursuit"              
+    {
+        "ItemCost"                      "500"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_occult_bracelet"              
     {
         "ItemCost"                      "500"
         "ItemPurchasable"               "1"
@@ -11469,7 +11482,24 @@
         "ItemPurchasable"               "1"
         "ItemSellable"                  "1"
     }
-
+    "item_dagger_of_ristul"              
+    {
+        "ItemCost"                      "750"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_specialists_array"              
+    {
+        "ItemCost"                      "750"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_eye_of_the_vizier"              
+    {
+        "ItemCost"                      "750"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
 
     // Tier 3
 
@@ -11545,8 +11575,18 @@
         "ItemPurchasable"               "1"
         "ItemSellable"                  "1"
     }
-
-
+    "item_ogre_seal_totem"
+    {
+        "ItemCost"                      "1000"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_slime_vial"
+    {
+        "ItemCost"                      "1000"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
 
     // Tier 4
 
@@ -11623,6 +11663,24 @@
         "ItemSellable"                  "1"
     }
     "item_heavy_blade"         
+    {
+        "ItemCost"                      "2000"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_harpoon"         
+    {
+        "ItemCost"                      "2000"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_barricade"         
+    {
+        "ItemCost"                      "2000"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_guardian_shell"         
     {
         "ItemCost"                      "2000"
         "ItemPurchasable"               "1"
@@ -11709,7 +11767,24 @@
         "ItemPurchasable"               "1"
         "ItemSellable"                  "1"
     }
-
+    "item_manacles_of_power"         
+    {
+        "ItemCost"                      "5000"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_bottomless_chalice"         
+    {
+        "ItemCost"                      "5000"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_wand_of_sanctitude"         
+    {
+        "ItemCost"                      "5000"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
 
     // Old
 
