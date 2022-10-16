@@ -2960,6 +2960,8 @@
 		}
 		"AbilityDraftIgnoreCount"	"8"
 		"ArmorPhysical"		"-2"
+		"StatusHealthRegen"		"0.5"
+		"StatusManaRegen"		"0.5"
 		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
 		"AttackDamageMin"		"9"
 		"AttackDamageMax"		"18"
@@ -4768,7 +4770,7 @@
 		"AttributeBaseAgility"		"0"
 		"AttributeAgilityGain"		"0.00000"
 		"StatusHealthRegen"		"1.5"
-		"MovementSpeed"		"295"
+		"MovementSpeed"		"285"
 		"BoundsHullName"		"DOTA_HULL_SIZE_HERO"
 		"particle_folder"		"particles/units/heroes/hero_tiny"
 		"GameSoundsFile"		"soundevents/game_sounds_heroes/game_sounds_tiny.vsndevts"
@@ -7957,7 +7959,7 @@
 		"Ability15"		"special_bonus_unique_enigma_3"
 		"Ability16"		"special_bonus_unique_enigma_2"
 		"Ability17"		"special_bonus_unique_enigma"
-		"ArmorPhysical"		"2"
+		"ArmorPhysical"		"1"
 		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
 		"AttackDamageMin"		"24"
 		"AttackDamageMax"		"30"
@@ -9093,9 +9095,9 @@
 		"Ability6"		"beastmaster_primal_roar"
 		"Ability7"		"beastmaster_drums_of_slom_stop"
 		"Ability10"		"special_bonus_attack_damage_30"
-		"Ability11"		"special_bonus_unique_beastmaster_4"
+		"Ability11"		"special_bonus_unique_beastmaster_9"
 		"Ability12"		"special_bonus_unique_beastmaster_5"
-		"Ability13"		"special_bonus_unique_beastmaster_9"
+		"Ability13"		"special_bonus_unique_beastmaster_4"
 		"Ability14"		"special_bonus_unique_beastmaster_2"
 		"Ability15"		"special_bonus_unique_beastmaster_6"
 		"Ability16"		"special_bonus_unique_beastmaster_wild_axe_cooldown"
@@ -9619,6 +9621,13 @@
 				"SlotText" "venomancer_poison_sting"
 				"DisplayInLoadout" "0"
 			}
+			"10"
+			{
+				"SlotIndex" "10"
+				"SlotName" "ability_effects_4"
+				"SlotText" "venomancer_poison_nova"
+				"DisplayInLoadout" "0"
+			}
 		}
 		"Bot"
 		{
@@ -9651,7 +9660,7 @@
 		"HeroOrderID"	"27"
 		"ModelScale"		"0.840000"
 		"ModelScale"		"0.900000"
-		"VersusScale"		"0.980000"
+		"VersusScale"		"0.85"
 		"SpectatorLoadoutScale" "0.95"
 		"LoadoutScale"		"0.950000"
 		"HeroGlowColor"		"217 160 255"
@@ -9699,6 +9708,12 @@
 		"MovementTurnRate"		"0.900000"
 		"BoundsHullName"		"DOTA_HULL_SIZE_HERO"
 		"HasAggressiveStance"		"1"
+		"AttackSpeedActivityModifiers"
+		{
+			"fast"		"180"
+			"faster"	"250"
+			"fastest"	"350"
+		}
 		"ItemSlots"
 		{
 			"0"
@@ -10403,8 +10418,8 @@
 		"Ability17"		"special_bonus_unique_phantom_assassin"
 		"ArmorPhysical"		"1"
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"		"32"
-		"AttackDamageMax"		"34"
+		"AttackDamageMin"		"31"
+		"AttackDamageMax"		"33"
 		"AttackRate"		"1.700000"
 		"StatusHealthRegen"		"0.75"
 		"AttackAnimationPoint"		"0.300000"
@@ -10417,10 +10432,10 @@
 		"AttackAcquisitionRange"		"600"
 		"AttackRange"		"150"
 		"AttributePrimary"		"DOTA_ATTRIBUTE_AGILITY"
-		"AttributeBaseStrength"		"21"
-		"AttributeStrengthGain"		"2.20000"
+		"AttributeBaseStrength"		"19"
+		"AttributeStrengthGain"		"2.0000"
 		"AttributeBaseAgility"		"23"
-		"AttributeAgilityGain"		"3.40000"
+		"AttributeAgilityGain"		"3.20000"
 		"AttributeBaseIntelligence"		"15"
 		"AttributeIntelligenceGain"		"1.400000"
 		"MovementSpeed"		"305"
@@ -12132,6 +12147,7 @@
 		"Ability17"		"special_bonus_unique_clockwerk"
 		"ArmorPhysical"		"1"
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"StatusHealthRegen"		"0.5"
 		"AttackDamageMin"		"24"
 		"AttackDamageMax"		"26"
 		"AttackRate"		"1.700000"
@@ -12313,7 +12329,7 @@
 		"ProjectileSpeed"		"900"
 		"AttributePrimary"		"DOTA_ATTRIBUTE_INTELLECT"
 		"AttributeBaseStrength"		"20"
-		"AttributeStrengthGain"		"2.500000"
+		"AttributeStrengthGain"		"2.8"
 		"AttributeBaseIntelligence"		"22"
 		"AttributeIntelligenceGain"		"3.5"
 		"AttributeBaseAgility"		"23"
@@ -12471,7 +12487,7 @@
 		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
 		"AttackDamageMin"		"27"
 		"AttackDamageMax"		"37"
-		"AttackRate"		"1.700000"
+		"AttackRate"		"1.5" 
 		"StatusManaRegen"	"0.75"
 		"AttackAnimationPoint"		"0.400000"
 		"MovementTurnRate"		"0.900000"
@@ -13548,6 +13564,13 @@
 				"SlotText" "enchantress_natures_attendants"
 				"DisplayInLoadout" "0"
 			}
+			"9"
+			{
+				"SlotIndex" "9"
+				"SlotName" "ability_effects_4"
+				"SlotText" "enchantress_untouchable"
+				"DisplayInLoadout" "0"
+			}
 		}
 		"VoiceFile"		"soundevents/voscripts/game_sounds_vo_enchantress.vsndevts"
 		"particle_folder"		"particles/units/heroes/hero_enchantress"
@@ -14169,7 +14192,7 @@
 		"Ability15"		"special_bonus_unique_bounty_hunter"
 		"Ability16"		"special_bonus_unique_bounty_hunter_7"
 		"Ability17"		"special_bonus_unique_bounty_hunter_3"
-		"ArmorPhysical"		"4"
+		"ArmorPhysical"		"5"
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
 		"AttackDamageMin"		"30"
 		"AttackDamageMax"		"38"
@@ -14834,9 +14857,9 @@
 		"Ability11"		"special_bonus_unique_batrider_3"
 		"Ability12"		"special_bonus_movement_speed_20"
 		"Ability13"		"special_bonus_unique_batrider_6"
-		"Ability14"		"special_bonus_unique_batrider_4"
+		"Ability14"		"special_bonus_unique_batrider_1"
 		"Ability15"		"special_bonus_unique_batrider_5"
-		"Ability16"		"special_bonus_unique_batrider_1"
+		"Ability16"		"special_bonus_unique_batrider_4"
 		"Ability17"		"special_bonus_unique_batrider_2"
 		"ArmorPhysical"		"2"
 		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
@@ -16243,8 +16266,8 @@
 		"AttackAcquisitionRange"		"600"
 		"AttackRange"		"150"
 		"AttributePrimary"		"DOTA_ATTRIBUTE_STRENGTH"
-		"AttributeBaseStrength"		"25"
-		"AttributeStrengthGain"		"2.9"
+		"AttributeBaseStrength"		"23"
+		"AttributeStrengthGain"		"2.7"
 		"AttributeBaseAgility"		"22"
 		"AttributeAgilityGain"		"1.500000"
 		"AttributeBaseIntelligence"		"25"
@@ -18173,6 +18196,13 @@
 				"SlotText" "meepo_poof"
 				"DisplayInLoadout" "0"
 			}
+			"9"
+			{
+				"SlotIndex" "9"
+				"SlotName" "ability_effects_1"
+				"SlotText" "meepo_earthbind"
+				"DisplayInLoadout" "0"
+			}
 		}
 		"Bot"
 		{
@@ -19276,6 +19306,7 @@
 		"AttackDamageMin"		"23"
 		"AttackDamageMax"		"25"
 		"AttackRate"		"1.700000"
+		"BaseAttackSpeed"		"110"
 		"AttackAnimationPoint"		"0.500000"
 		"AttackAcquisitionRange"		"600"
 		"AttackRange"		"150"
@@ -20399,7 +20430,7 @@
 		"Ability16"		"special_bonus_unique_centaur_1"
 		"Ability17"		"special_bonus_unique_centaur_2"
 		"ArmorPhysical"		"-2"
-		"StatusHealthRegen"		"4"
+		"StatusHealthRegen"		"5"
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
 		"AttackDamageMin"		"36"
 		"AttackDamageMax"		"38"
@@ -20550,6 +20581,13 @@
 				"SlotIndex" "11"
 				"SlotName" "ability_effects_2"
 				"SlotText" "centaur_double_edge"
+				"DisplayInLoadout" "0"
+			}
+			"12"
+			{
+				"SlotIndex" "11"
+				"SlotName" "ability_effects_4"
+				"SlotText" "centaur_stampede"
 				"DisplayInLoadout" "0"
 			}
 		}
@@ -21068,6 +21106,20 @@
 				"SlotText" "bristleback_quill_spray"
 				"DisplayInLoadout" "0"
 			}
+			"10"
+			{
+				"SlotIndex" "10"
+				"SlotName" "ability_effects_4"
+				"SlotText" "bristleback_warpath"
+				"DisplayInLoadout" "0"
+			}
+			"11"
+			{
+				"SlotIndex" "11"
+				"SlotName" "ability_effects_3"
+				"SlotText" "bristleback_bristleback"
+				"DisplayInLoadout" "0"
+			}			
 		}
 		"Bot"
 		{
@@ -25341,6 +25393,13 @@
 				"SlotText" "hoodwink_scurry"
 				"DisplayInLoadout" "0"
 			}
+			"7"
+			{
+				"SlotIndex" "7"
+				"SlotName" "ability_effects_4"
+				"SlotText" "hoodwink_sharpshooter"
+				"DisplayInLoadout" "0"
+			}
 		}
 		
 	}
@@ -25389,8 +25448,8 @@
 		
 		"ArmorPhysical"		"1"
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"		"31"
-		"AttackDamageMax"		"35"
+		"AttackDamageMin"		"29"
+		"AttackDamageMax"		"33"
 		"AttackRate"		"1.700000"
 		"AttackAnimationPoint"		"0.460000"
 		"AttackAcquisitionRange"		"600"
@@ -25575,13 +25634,13 @@
 		"ProjectileSpeed"			"0"
 		"AttributePrimary"			"DOTA_ATTRIBUTE_STRENGTH"
 		"AttributeBaseStrength"		"23"
-		"AttributeStrengthGain"		"3.300000"
+		"AttributeStrengthGain"		"3.600000"
 		"AttributeBaseIntelligence"	"19"
 		"AttributeIntelligenceGain"	"1.900000"
 		"AttributeBaseAgility"		"20"
 		"AttributeAgilityGain"		"2.40000"
 		"StatusManaRegen"			"0.0"
-		"MovementSpeed"			"310"
+		"MovementSpeed"			"315"
 		"MovementTurnRate"		"0.900000"
 		"animation_transitions"
 		{
@@ -25723,7 +25782,7 @@
 		"AttributeBaseAgility"		"15"
 		"AttributeAgilityGain"		"1.000000"
 		"ShowcasePlayIdleExpression" "0"
-		"MovementSpeed"				"305"
+		"MovementSpeed"				"310"
 		"MovementTurnRate"			"0.600000"
 		"HasAggressiveStance"		"0"
 		"animation_transitions"

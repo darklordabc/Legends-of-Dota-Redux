@@ -5030,7 +5030,6 @@
 			"MaxLevel"						"4"
 			"AbilityCooldown"				"25 22 19 16"
 			"AbilityValues"
-			"AbilityValues"
 			{
 				"bonus_movespeed"			"-30 -35 -40 -45"
 				"aura_radius"				"750"
@@ -5931,7 +5930,6 @@
 			"MaxLevel"                      "4"
 			"AbilityCooldown"               "14 13 12 11"
 			"AbilityValues"
-				"AbilityValues"
 			{
 					"max_stun"					"2.25 2.5 2.75 3.0"
 					"recent_duration"			"3.0"

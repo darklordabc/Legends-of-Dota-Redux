@@ -101,7 +101,6 @@
 			"item_psychic_headband"				  "1"
 
 			"item_ogre_seal_totem"					"1"
-			"item_slime_vial"					"1"
 		}
 	}
 	"4"
@@ -135,9 +134,6 @@
 			"item_stormcrafter"				  "1"
 			"item_penta_edged_sword"		  "1"
 
-			"item_harpoon"					  "1"
-			"item_barricade"			  	  "1"
-			"item_guardian_shell"			  "1"
 		}
 	}
 	"5"
@@ -171,9 +167,6 @@
 			"item_vengeances_shadow"				  "1"
 			"item_book_of_shadows"			  "1"
 
-			"item_manacles_of_power"		"1"
-			"item_bottomless_chalice"		"1"
-			"item_wand_of_sanctitude"		"1"
 		}
 	}
 }
