@@ -1718,7 +1718,7 @@
 
 			// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"1200"		// Base health.
+		"StatusHealth"				"1000"		// Base health.
 		"StatusHealthRegen"			"10.0"		// Health regeneration rate.
 		"StatusMana"				"0"			// Base mana.
 		"StatusManaRegen"			"0"			// Mana regeneration rate.
@@ -1732,8 +1732,8 @@
 
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"1200"		// Range of vision during day light.
-		"VisionNighttimeRange"		"800"		// Range of vision at night time.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day light.
+		"VisionNighttimeRange"		"1800"		// Range of vision at night time.
 
 		//Inventory
 		"HasInventory"				"0"
@@ -1766,8 +1766,8 @@
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
-		"AttackDamageMin"			"100"			// Damage range min.
-		"AttackDamageMax"			"100"		// Damage range max.
+		"AttackDamageMin"			"125"			// Damage range min.
+		"AttackDamageMax"			"125"		// Damage range max.
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"				"1.2"		// Speed of attack.
 		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
@@ -1795,7 +1795,7 @@
 
 			// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"1500"		// Base health.
+		"StatusHealth"				"1400"		// Base health.
 		"StatusHealthRegen"			"15.0"		// Health regeneration rate.
 		"StatusMana"				"0"			// Base mana.
 		"StatusManaRegen"			"0"			// Mana regeneration rate.
@@ -1809,8 +1809,8 @@
 
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"1200"		// Range of vision during day light.
-		"VisionNighttimeRange"		"800"		// Range of vision at night time.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day light.
+		"VisionNighttimeRange"		"1800"		// Range of vision at night time.
 
 		//Inventory
 		"HasInventory"				"0"
@@ -1844,8 +1844,8 @@
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
-		"AttackDamageMin"			"125"			// Damage range min.
-		"AttackDamageMax"			"125"		// Damage range max.
+		"AttackDamageMin"			"175"			// Damage range min.
+		"AttackDamageMax"			"175"		// Damage range max.
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"				"1.2"		// Speed of attack.
 		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
@@ -1887,8 +1887,8 @@
 
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"1200"		// Range of vision during day light.
-		"VisionNighttimeRange"		"800"		// Range of vision at night time.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day light.
+		"VisionNighttimeRange"		"1800"		// Range of vision at night time.
 
 		//Inventory
 		"HasInventory"				"0"
@@ -3410,8 +3410,8 @@
 	{
 		"BaseClass"					"npc_dota_creature"
 		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
-		"VisionDaytimeRange"		"600"
-		"VisionNighttimeRange"		"600"
+		"VisionDaytimeRange"		"800"
+		"VisionNighttimeRange"		"800"
 		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"
 		"AbilityLayout"				"4"
@@ -5147,8 +5147,8 @@
 		"UnitRelationshipClass" "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange" "400" // Range of vision during day light.
-		"VisionNighttimeRange" "400" // Range of vision at night time.
+		"VisionDaytimeRange" "600" // Range of vision during day light.
+		"VisionNighttimeRange" "600" // Range of vision at night time.
 		// Bots
 		//----------------------------------------------------------------
 		"AttackDesire" "1.5" // How much bots want to attack them vs other non-hero things
@@ -5212,8 +5212,8 @@
 
 	        // Vision
 	        //----------------------------------------------------------------
-	        "VisionDaytimeRange"        "600"
-	        "VisionNighttimeRange"      "600"
+	        "VisionDaytimeRange"        "1800"
+	        "VisionNighttimeRange"      "1800"
 
 	        // Team
 	        //----------------------------------------------------------------
@@ -5302,8 +5302,8 @@
 		"UnitRelationshipClass" "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange" "250" // Range of vision during day light.
-		"VisionNighttimeRange" "250" // Range of vision at night time.
+		"VisionDaytimeRange" "600" // Range of vision during day light.
+		"VisionNighttimeRange" "600" // Range of vision at night time.
 		// Bots
 		//----------------------------------------------------------------
 		"AttackDesire" "1.5" // How much bots want to attack them vs other non-hero things
@@ -5329,13 +5329,13 @@
 		// Armor
 		//----------------------------------------------------------------
 		"ArmorPhysical"				"5"			// Physical protection.
-		"MagicalResistance"			"45"			// Magical protection.
+		"MagicalResistance"			"55"			// Magical protection.
 
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"			"35"			// Damage range min.
-		"AttackDamageMax"			"35"		// Damage range max.
+		"AttackDamageMin"			"45"			// Damage range min.
+		"AttackDamageMax"			"45"		// Damage range max.
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
 		"AttackRate"				"1.0"		// Speed of attack.
 		"AttackAnimationPoint"		"0.56"		// Normalized time in animation cycle to attack.
@@ -5363,8 +5363,8 @@
 
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"400"		// Base health.
-		"StatusHealthRegen"			"5.0"		// Health regeneration rate.
+		"StatusHealth"				"500"		// Base health.
+		"StatusHealthRegen"			"10.0"		// Health regeneration rate.
 		"StatusMana"				"0"			// Base mana.
 		"StatusManaRegen"			"0"			// Mana regeneration rate.
 
@@ -5430,8 +5430,8 @@
 
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"800"		// Range of vision during day light.
-		"VisionNighttimeRange"		"800"		// Range of vision at night time.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day light.
+		"VisionNighttimeRange"		"1800"		// Range of vision at night time.
 
 		//Inventory
 		"HasInventory"				"0"
@@ -6265,8 +6265,8 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"8"
-		"MagicalResistance"			"20"
+		"ArmorPhysical"				"10"
+		"MagicalResistance"			"40"
 
 		// Attack
 		//----------------------------------------------------------------
@@ -6296,15 +6296,15 @@
 		// Movement
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
-		"MovementSpeed"				"330"
+		"MovementSpeed"				"350"
 		"MovementTurnRate"			"0.5"
 
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"50"
+		"StatusHealth"				"100"
 		"StatusHealthRegen"			"0.0"
 		"StatusMana"				"150"
-		"StatusManaRegen"			"5.0"
+		"StatusManaRegen"			"10.0"
 		"ManaGain"                  "75"
 
 		// Team
@@ -6316,7 +6316,7 @@
 
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"750"
+		"VisionDaytimeRange"		"1000"
 		"VisionNighttimeRange"		"1200"
 	}
 	//SPELL LAB STORM MINION
@@ -6342,8 +6342,8 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"8"
-		"MagicalResistance"			"20"
+		"ArmorPhysical"				"10"
+		"MagicalResistance"			"40"
 
 		// Attack
 		//----------------------------------------------------------------
@@ -6372,15 +6372,15 @@
 		// Movement
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
-		"MovementSpeed"				"330"
+		"MovementSpeed"				"350"
 		"MovementTurnRate"			"0.5"
 
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"50"
+		"StatusHealth"				"100"
 		"StatusHealthRegen"			"0.0"
 		"StatusMana"				"225"
-		"StatusManaRegen"			"5.0"
+		"StatusManaRegen"			"10.0"
 		"ManaGain"                  "75"
 
 		// Team
@@ -6392,7 +6392,7 @@
 
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"750"
+		"VisionDaytimeRange"		"1000"
 		"VisionNighttimeRange"		"1200"
 	}
 	//SPELL LAB STORM MINION
@@ -6418,8 +6418,8 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"8"
-		"MagicalResistance"			"20"
+		"ArmorPhysical"				"10"
+		"MagicalResistance"			"40"
 
 		// Attack
 		//----------------------------------------------------------------
@@ -6448,15 +6448,15 @@
 		// Movement
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
-		"MovementSpeed"				"330"
+		"MovementSpeed"				"350"
 		"MovementTurnRate"			"0.5"
 
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"50"
+		"StatusHealth"				"100"
 		"StatusHealthRegen"			"0.0"
 		"StatusMana"				"300"
-		"StatusManaRegen"			"5.0"
+		"StatusManaRegen"			"10.0"
 
 		// Team
 		//----------------------------------------------------------------
@@ -6467,7 +6467,7 @@
 
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"750"
+		"VisionDaytimeRange"		"1000"
 		"VisionNighttimeRange"		"1200"
 	}
 	//SPELL LAB STORM MINION
@@ -6493,8 +6493,8 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"8"
-		"MagicalResistance"			"20"
+		"ArmorPhysical"				"10"
+		"MagicalResistance"			"40"
 
 		// Attack
 		//----------------------------------------------------------------
@@ -6523,15 +6523,15 @@
 		// Movement
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
-		"MovementSpeed"				"330"
+		"MovementSpeed"				"350"
 		"MovementTurnRate"			"0.5"
 
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"50"
+		"StatusHealth"				"100"
 		"StatusHealthRegen"			"0.0"
 		"StatusMana"				"375"
-		"StatusManaRegen"			"5.0"
+		"StatusManaRegen"			"10.0"
 
 		// Team
 		//----------------------------------------------------------------
@@ -6631,8 +6631,8 @@
 
 			// Vision
 			//----------------------------------------------------------------
-			"VisionDaytimeRange"		"450"		// Range of vision during day light.
-			"VisionNighttimeRange"		"350"		// Range of vision at night time.
+			"VisionDaytimeRange"		"600"		// Range of vision during day light.
+			"VisionNighttimeRange"		"600"		// Range of vision at night time.
 
 			// Bots
 			//----------------------------------------------------------------
@@ -7534,7 +7534,7 @@
 
 		// Abilities
 		//----------------------------------------------------------------
-		"Ability1"					"ogre_magi_frost_armor"			// Ability 1
+		"Ability1"					""			// Ability 1
 		"Ability2"					""			// Ability 2
 		"Ability3"					""			// Ability 3
 		"Ability4"					""			// Ability 4
