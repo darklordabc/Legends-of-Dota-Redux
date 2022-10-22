@@ -33,12 +33,12 @@
 			"01"
 			{
 				"var_type"								"FIELD_FLOAT"
-				"duration"								"1.00"
+				"duration"								"1.5"
 			}
 			"02"
 			{
 				"var_type"								"FIELD_FLOAT"
-				"mark_damage"							"20 40 60 80"
+				"mark_damage"							"50 100 150 200"
 			}
 			"03"
 			{
@@ -53,7 +53,7 @@
 			"05"
 			{
 				"var_type"								"FIELD_INTEGER"
-				"mark_aoe"								"300"
+				"mark_aoe"								"350"
 			}
 		}
 		
