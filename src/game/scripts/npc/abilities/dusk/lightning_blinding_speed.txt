@@ -13,7 +13,7 @@
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"125"
+		"AbilityCastRange"				"150"
 		"AbilityCastPoint"				"0"
 		
 		// Time		
@@ -40,12 +40,12 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"80 160 240"
+				"damage"					"110 190 270"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"radius"					"125"
+				"radius"					"150"
 			}
 			"04"
 			{
