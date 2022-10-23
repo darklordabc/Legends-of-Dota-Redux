@@ -81,7 +81,7 @@
             "02"
             {
                 "var_type"          "FIELD_FLOAT"
-                "duration"          "4.0"
+                "duration"          "6.0"
             }
             "03"
             {
@@ -144,7 +144,7 @@
             }
             "modifier_plains_runner_agility"
             {
-                "Passive"           "0"
+                "Passive"           "1"
                 "IsHidden"          "1"
                 "IsDebuff"          "0"
     
