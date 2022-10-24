@@ -1157,7 +1157,6 @@
 				
 				"item_ring_of_health"		"ITEM_LUXURY"
 				"item_vitality_booster"		"ITEM_LUXURY"
-				"item_recipe_vanguard"		"ITEM_LUXURY"
 				"item_vanguard"		"ITEM_DERIVED"
 				"item_recipe_abyssal_blade"	"ITEM_LUXURY"
 				"item_abyssal_blade"		"ITEM_DERIVED"
@@ -7890,7 +7889,6 @@
 				"item_basher"		"ITEM_DERIVED"
 				"item_ring_of_health"		"ITEM_LUXURY"
 				"item_vitality_booster"		"ITEM_LUXURY"
-				"item_recipe_vanguard"	  "ITEM_LUXURY"
 				"item_vanguard"				"ITEM_DERIVED"
 				"item_recipe_abyssal_blade"	"ITEM_LUXURY"
 				"item_abyssal_blade"		"ITEM_DERIVED"
@@ -10582,7 +10580,6 @@
 
 				"item_ring_of_health"		"ITEM_LUXURY"
 				"item_vitality_booster"		"ITEM_LUXURY"
-				"item_recipe_vanguard"	  "ITEM_LUXURY"
 				"item_vanguard"				"ITEM_DERIVED"
 
 				"item_recipe_abyssal_blade"	"ITEM_LUXURY"
@@ -21158,12 +21155,11 @@
 				
 				"item_ring_of_health"		"ITEM_CORE"
 				"item_vitality_booster"		"ITEM_EXTENSION"
-				"item_recipe_vanguard"	  "ITEM_EXTENSION"
 				"item_vanguard"				"ITEM_DERIVED"
 				
 				"item_broadsword"			"ITEM_EXTENSION"
 				"item_chainmail"			"ITEM_EXTENSION"
-				"item_recipe_blade_mail"					"ITEM_EXTENSION"
+				"item_recipe_blade_mail"	"ITEM_EXTENSION"
 				"item_blade_mail"			"ITEM_DERIVED | ITEM_SELLABLE"
 				
 				//"item_ring_of_tarrasque"		"ITEM_LUXURY"
