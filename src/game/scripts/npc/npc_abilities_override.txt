@@ -9096,11 +9096,10 @@
         {
             "TalentRequiredAbility"                                                   "queenofpain_sonic_wave"
         }
-        //"special_bonus_unique_queen_of_pain_4"
-        //{
-        //    "TalentRequiredAbility"                                                   "queenofpain_shadow_strike"
-        //}
-        // stops talent window from opening
+        "special_bonus_unique_queen_of_pain_4"
+        {
+            "TalentRequiredAbility"                                                   "queenofpain_shadow_strike"
+        }
         "special_bonus_unique_queen_of_pain_5"
         {
             "TalentRequiredAbility"                                                   "queenofpain_sonic_wave"
