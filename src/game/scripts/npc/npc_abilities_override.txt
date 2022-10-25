@@ -177,6 +177,8 @@
 		
 		"centaur_mount"
 		{
+			"ReduxPerks"                    "support"
+            "ReduxFlags"                    "support"
 			"MaxLevel"						"4"
 			"AbilityCooldown"				"45 40 35 30"
 			"AbilityCastRange"				"300"
@@ -260,7 +262,7 @@
         {
             "MaxLevel"                                                             "1"
             "ReduxFlags"                                                           "attack_modifier"
-            "ReduxPerks"                                                           "neutral | attack_modifier"
+            "ReduxPerks"                                                           "neutral | attack_modifier | poison"
             "ReduxCost"                                                            "20"
         }
      //   "attribute_bonus"
@@ -1654,6 +1656,8 @@
         }
 		"lina_flame_cloak"
 		{
+			"ReduxPerks"                                                           "fire | mobility"
+            "ReduxFlags"                                                           "mobility"
 			"MaxLevel"						"4"
 			"AbilityCooldown"				"25 22 19 16"
 			"AbilityCastPoint"				"0.0"
@@ -1778,6 +1782,11 @@
 			"ReduxPerks"	"demon | support"
 			"ReduxFlags"	"support"
 		}
+		"shadow_demon_disseminate"
+        {
+            "ReduxFlags"                                                           ""
+            "ReduxPerks"                                                           "demon"
+        }
         "nevermore_necromastery"
         {
             "ReduxFlags"                                                           "upgradeable"
@@ -5290,6 +5299,7 @@
         
 		"naga_siren_reel_in"
 		{
+			"ReduxPerks"                	"enemyMoving"
 			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
 			"MaxLevel"							"4"
 			"AbilityCastPoint"				"0.0"
@@ -5307,6 +5317,7 @@
 		
 		"furion_curse_of_the_forest"
 		{
+			"ReduxPerks"                "nature"
 			"MaxLevel"					"4"
 			"IsGrantedByShard"			"1"
 			"AbilityCastPoint"				"0.2"
@@ -5627,6 +5638,8 @@
 		
 		"spirit_breaker_planar_pocket"
 		{
+			"ReduxPerks"                                                           "support"
+            "ReduxFlags"                                                           "support"
 			"IsGrantedByShard"				"1"
 			"MaxLevel"						"4"
 			"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
@@ -5666,6 +5679,8 @@
 		
 		"tidehunter_arm_of_the_deep"
 		{
+			"ReduxFlags"                    "stun"
+			"ReduxPerks"                	"water"
 			"IsGrantedByShard"				"1"
 			"MaxLevel"						"4"
 			"AbilityCastRange"				"0"
@@ -6355,13 +6370,13 @@
 		
 		"marci_grapple"
         {
-            "ReduxFlags"                                                           "stun"
+            "ReduxFlags"                                                           ""
             "ReduxPerks"                                                           "enemyMoving"
         }
 		
 		"marci_companion_run"
 		{
-		    "ReduxFlags"                                                           "support | mobility"
+		    "ReduxFlags"                                                           "stun | support | mobility"
             "ReduxPerks"                                                           "support | mobility"
 		}
 		
@@ -6458,6 +6473,7 @@
 		
 		"venomancer_latent_poison"
 		{
+			"ReduxPerks"                    "poison"
 			"IsGrantedByShard"				"1"
 			"MaxLevel"						"4"
 			"AbilityCastRange"				"800"
@@ -6478,6 +6494,8 @@
 		
 		"viper_nose_dive"
 		{
+			"ReduxPerks"					"poison | mobility"
+			"ReduxFlags"					"mobility"
 			"IsGrantedByScepter"			"1"
 			"MaxLevel"						"4"
 			"AbilityCastPoint"				"0.1"
@@ -6490,7 +6508,7 @@
 				"corrosive_radius"					"1200"
 				"duration"							"0.1"
 				"effect_duration"						"4 5 6 7"
-				"dive_speed"						"500"
+				"dive_speed"						"500 600 700 800"
 				"start_height"						"100"
 				"movespeed_slow"					"0"
 
