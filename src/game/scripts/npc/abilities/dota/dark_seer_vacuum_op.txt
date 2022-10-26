@@ -13,8 +13,8 @@
         "MaxLevel"                                                             "4"
         "AbilityCastRange"                                                     "600"
         "AbilityCastPoint"                                                     "0.4"
-        "AbilityCooldown"                                                      "60 50 40 30"
-        "AbilityManaCost"                                                      "200"
+        "AbilityCooldown"                                                      "30"
+        "AbilityManaCost"                                                      "60 90 120 150"
         "AbilitySpecial"
         {
             "01"
@@ -30,17 +30,12 @@
             "03"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "damage"                                               "100 200 300 400"
+                "damage"                                               "100 150 200 250"
             }
             "04"
             {
                 "var_type"                                             "FIELD_INTEGER"
                 "radius_tree"                                          "800"
-            }
-            "05"
-            {
-                "var_type"                                             "FIELD_INTEGER"
-                "cast_range"                                           "600"
             }
         }
         "ReduxPerks"                                                           "enemymoving"
