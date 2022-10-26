@@ -8,7 +8,7 @@
         "MaxLevel"                                                             "3"
         "AbilitySharedWithTeammates"                                           "1"
         "AbilityCastRange"                                                     "1200"
-        "AbilityCooldown"                                                      "6"
+        "AbilityCooldown"                                                      "6 5 4"
         "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
         "AbilitySpecial"
         {
@@ -20,7 +20,7 @@
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "burn_pct"                                             "25 35 45"
+                "burn_pct"                                             "30"
             }
         }
         "Modifiers"
