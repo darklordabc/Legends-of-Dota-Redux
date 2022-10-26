@@ -5,27 +5,27 @@
         "BaseClass"                                                            "ability_lua"
         "ScriptFile"                                                           "abilities/spell_lab/ggs/ggs.lua"
         "AbilityTextureName"                                                   "custom/spell_lab_ggs"
-        "AbilityCooldown"                                                      "75"
-        "AbilityManaCost"                                                      "100 200 300 400"
-        "AbilityCastRange"                                                     "1000"
+        "AbilityCooldown"                                                      "50 45 40 35"
+        "AbilityManaCost"                                                      "25"
+        "AbilityCastRange"                                                     "2000"
         "AbilityCastPoint"                                                     "0.21"
         "AbilityUnitDamageType"                                                "DAMAGE_TYPE_MAGICAL"
         "AbilityType"                                                          "DOTA_ABILITY_TYPE_BASIC"
         "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
         "HasScepterUpgrade"                                                    "0"
-    		"AbilityChannelTime"      "15.0 25.0 35.0 45.0"
-        "AoERadius"               "125"
+    		"AbilityChannelTime"      "45.0"
+        "AoERadius"               "250"
         "AbilitySpecial"
         {
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "radius"						"125 150 175 200"
+                "radius"						"250"
             }
             "02"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "damage"						"2.0"
+                "damage"						"4.0"
             }
             "03"
             {
@@ -35,7 +35,7 @@
             "04"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "channel_time"						"15.0 25.0 35.0 45.0"
+                "channel_time"						"45.0"
             }
         }
         "precache"
@@ -60,7 +60,7 @@
           "01"
           {
               "var_type"                                             "FIELD_INTEGER"
-              "radius"						"125 150 175 200"
+              "radius"						"250"
           }
       }
     }
