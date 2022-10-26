@@ -18,22 +18,22 @@
 			"01"
 			{
 				"var_type"                  "FIELD_FLOAT"
-				"grow_time"					"7.5"
+				"grow_time"					"5"
 			}
 			"02"
 			{
 				"var_type"                  "FIELD_INTEGER"
-				"gold"					"2 4 6 8"
+				"gold"					"7 8 9 10"
 			}
 			"03"
 			{
 				"var_type"                  "FIELD_INTEGER"
-				"speed"					"-1"
+				"speed"					"0"
 			}
 			"04"
 			{
 				"var_type"                  "FIELD_INTEGER"
-				"block"					"1 2 3 4"
+				"block"					"2 3 4 5"
 			}
 			"05"
 			{
