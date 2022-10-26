@@ -23,17 +23,17 @@
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "bonus_armor"                                          "6 9 12"
+                "bonus_armor"                                          "5 10 15"
             }
             "03"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "bonus_regen"                                          "10 20 30"
+                "bonus_regen"                                          "15 25 35"
             }
             "04"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "bonus_damage"                                         "5 8 11 14"
+                "bonus_damage"                                         "5 8 11"
             }
         }
         "precache"
