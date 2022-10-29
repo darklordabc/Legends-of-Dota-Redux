@@ -309,7 +309,7 @@
             "08"
             {
                 "var_type"              "FIELD_INTEGER"
-                "strikes"               "8"
+                "strikes"               "6"
 				"LinkedSpecialBonus"	"special_bonus_unique_pangolier_7"
             }
         }
@@ -501,7 +501,7 @@
             "01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"fade_delay"			"2.0 1.5 1.0"
+				"fade_delay"			"1.5 1.0 0.5"
 			}
 			"02"
 			{
@@ -909,7 +909,7 @@
         //-------------------------------------------------------------------------------------------------------------
         "AbilityCastAnimation"          "ACT_DOTA_GS_SOUL_CHAIN"
         "AbilityCastGestureSlot"        "DEFAULT"
-        "AbilityCooldown"               "15 10 3"
+        "AbilityCooldown"               "15 10 5"
         "AbilityCastRange"              "1000 2000 3000"
         "AbilityCastPoint"              "0.15"
         "AbilityManaCost"               "150 200 250"
@@ -923,7 +923,7 @@
             "01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"chain_duration"		"60"
+				"chain_duration"		"30"
 			}
 			"02"
 			{
@@ -1024,12 +1024,12 @@
             "07"
             {
                 "var_type"          "FIELD_FLOAT"
-                "spear_attack_interval" "0.25"
+                "spear_attack_interval" "0.5"
             }
             "08"
             {
                 "var_type"          "FIELD_INTEGER"
-                "warrior_count"     "24"
+                "warrior_count"     "14"
             }
             "09"
             {
@@ -1140,15 +1140,14 @@
         
         "AbilityValues"
 		{
-			"AbilityCastPoint"				"0.2"
-			"mana_regen"					"2 4 6 8"
-			"self_factor"					"3.0"
-			"mana_per_cast"		
+			"base_mana_regen"					
 			{
-				"value"										"15 30 45 60"
-				"special_bonus_unique_crystal_maiden_4"		"+20"
+				"value"					"1 2 3 4"
+				"special_bonus_unique_crystal_maiden_4" 	"+0.5"
 			}
-			"radius"			"1200"
+			"self_factor"					"4"
+			"proximity_bonus_factor"		"3"
+			"proximity_bonus_radius"		"1200"
 		}
         "AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_3"
     }

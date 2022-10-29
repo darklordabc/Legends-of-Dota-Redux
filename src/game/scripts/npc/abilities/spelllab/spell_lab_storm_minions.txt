@@ -6,7 +6,7 @@
         "ScriptFile"                                                           "abilities/spell_lab/storm/storm_minions.lua"
         "AbilityTextureName"                                                   "custom/spell_lab_storm_minions"
         "AbilityCooldown"                                                      "20 18 16 14"
-        "AbilityManaCost"                                                      "120"
+        "AbilityManaCost"                                                      "75"
         "AbilityCastRange"                                                     "750"
         "AbilityCastPoint"                                                     "0.21"
         "AbilityType"                                                          "DOTA_ABILITY_TYPE_BASIC"

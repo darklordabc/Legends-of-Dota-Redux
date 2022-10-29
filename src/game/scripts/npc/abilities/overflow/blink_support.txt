@@ -9,7 +9,7 @@
 		"AbilityCastRange"				"0"
 		"AbilityCastPoint"				"0.0"
 		"AbilityCooldown"				"10.0"
-		"AbilityManaCost"				"90"
+		"AbilityManaCost"				"60"
 		"HasScepterUpgrade" "1"
 		"ReduxPerks"                                                           "mobility | blink"
         //

@@ -22,7 +22,7 @@
 
         // Damage.
         //-------------------------------------------------------------------------------------------------------------
-        //"AbilityDamage"                 "90 120 150 180"
+        //"AbilityDamage"                 "100 140 180 220"
 
         // Time     
         //-------------------------------------------------------------------------------------------------------------
@@ -39,13 +39,13 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"arc_damage"			"90 120 150 180"
+				"arc_damage"			"100 140 180 220"
 				"LinkedSpecialBonus"	"special_bonus_unique_zeus_2"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"				"3000"
+				"radius"				"3500"
 			}
 			"03"
 			{
@@ -55,7 +55,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"jump_delay"			"0.15 0.15 0.15 0.15"
+				"jump_delay"			"0.05 0.05 0.05 0.05"
 			}
         }
     }
@@ -89,7 +89,7 @@
         
         // Casting
         //-------------------------------------------------------------------------------------------------------------
-        "AbilityCastRange"              "1000"
+        "AbilityCastRange"              "750"
         "AbilityCastPoint"              "0.3"
 
         // Time     
@@ -110,18 +110,18 @@
 		{
 			"damage"
 			{
-				"value"		"300 550 700"
+				"value"		"100 200 300"
 				"special_bonus_unique_lich_7" "+200"
 			}
-			"jumps"					"10 20 30"
+			"jumps"					"25 50 75"
 			"jump_range"			"800"
 			"slow_movement_speed"	"-65 -75 -85"
 			"slow_attack_speed"		"-65 -75 -85"
 			"slow_duration"			"2.5 3.0 3.5"
-			"projectile_speed"		"1500"
+			"projectile_speed"		"2000"
 			"vision_radius"			"1000"
 			"bonus_jump_damage"		"20 30 40"
-			"initial_projectile_speed"		"1500"
+			"initial_projectile_speed"		"2000"
 			"has_unlimited_jumps"
 			{
 				"special_bonus_unique_lich_5"	"+1"

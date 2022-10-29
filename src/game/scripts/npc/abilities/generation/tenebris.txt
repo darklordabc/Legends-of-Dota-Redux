@@ -43,7 +43,7 @@
             "02"
             {
                 "var_type"      "FIELD_FLOAT"
-                "reflect"       "100"
+                "reflect"       "80"
             }
             "03"
             {
@@ -58,7 +58,7 @@
             "05" //Must be double attacks to destroy
             {
                 "var_type"      "FIELD_INTEGER"
-                "maximum_reflections"   "6 8 10 12"
+                "maximum_reflections"   "6 10 14 18"
             }
             "06" //Must be one half number of maximum reflections
             {
@@ -123,7 +123,7 @@
                 "Aura_Radius"       "%radius"
                 "Aura_Teams"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
                 "Aura_Types"     "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-                "Aura_Flags"     "DOTA_UNIT_TARGET_FLAG_PLAYER_CONTROLLED"
+             // "Aura_Flags"     "DOTA_UNIT_TARGET_FLAG_PLAYER_CONTROLLED"
                 "Aura_ApplyToCaster" "1"
  
                 "States"
