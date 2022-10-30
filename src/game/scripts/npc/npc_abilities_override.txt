@@ -9445,10 +9445,10 @@
         {
             "TalentRequiredAbility"                                                   "silencer_last_word"
         }
-        "special_bonus_unique_silencer_5"
-        {
-            "TalentRequiredAbility"                                                   "silencer_glaives_of_wisdom"
-        }
+        //"special_bonus_unique_silencer_5"
+        //{
+        //    "TalentRequiredAbility"                                                   "silencer_glaives_of_wisdom"
+        //}
         "special_bonus_unique_silencer_6"
         {
             "TalentRequiredAbility"                                                   "silencer_curse_of_the_silent"
