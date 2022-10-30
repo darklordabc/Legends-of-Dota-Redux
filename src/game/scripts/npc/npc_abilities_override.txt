@@ -6389,7 +6389,7 @@
 		"primal_beast_onslaught"
 		{
 			"ReduxFlags"                                                           "mobility | stun | physical"
-            "ReduxPerks"                                                           "mobility | enemyMoving | skillshot | rage"
+            "ReduxPerks"                                                           "mobility | enemyMoving | skillshot | rage | physical"
 		}
 		
 		"primal_beast_trample"
