@@ -619,7 +619,8 @@
 			"Loadout"
 			{
 				"item_tango"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
-				"item_flask"		"ITEM_CONSUMABLE | ITEM_SELLABLE"	
+				"item_flask"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
+				"item_tango"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
 				
 				"item_branches"		"ITEM_CORE"
 				"item_branches"		"ITEM_CORE"
@@ -1598,8 +1599,7 @@
 			"SupportsEasyMode"	"1"
 			"Loadout"
 			{
-				"item_tango"				"ITEM_CONSUMABLE | ITEM_SELLABLE"
-				"item_flask"				"ITEM_CONSUMABLE | ITEM_SELLABLE"	
+				"item_tango"				"ITEM_CONSUMABLE | ITEM_SELLABLE"	
 				
 				"item_slippers"				"ITEM_CORE"
 				"item_circlet"				"ITEM_CORE"
@@ -3736,9 +3736,11 @@
 		{
 			"Loadout"
 			{
+				"item_tango"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
+				"item_flask"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
+				
 				"item_gauntlets"		"ITEM_CORE"
 				"item_circlet"		"ITEM_CORE"
-				"item_flask"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
 				"item_boots"		"ITEM_CORE"
 				"item_recipe_bracer"		"ITEM_CORE"
 				"item_bracer"		"ITEM_DERIVED | ITEM_SELLABLE"
@@ -4266,8 +4268,6 @@
 			{
 				"item_flask"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
 				"item_tango"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
-				"item_clarity"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
-				"item_clarity"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
 				"item_clarity"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
 				
 				"item_branches"		"ITEM_CORE"
@@ -5424,7 +5424,6 @@
 				"item_tango"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
 				"item_tango"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
 				"item_clarity"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
-				"item_clarity"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
 				"item_boots"		"ITEM_CORE"
 				
 				"item_circlet"		  "ITEM_CORE"
@@ -5973,7 +5972,6 @@
 			{
 				"item_tango"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
 				"item_flask"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
-				"item_clarity"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
 				
 				"item_branches"		"ITEM_CORE"
 				"item_branches"		"ITEM_CORE"
@@ -6489,6 +6487,9 @@
 			"Loadout"
 			{
 				"item_tango"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
+				"item_flask"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
+				"item_clarity"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
+				"item_clarity"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
 				
 				"item_branches"		"ITEM_CORE"
 				"item_branches"		"ITEM_CORE"
@@ -6754,6 +6755,8 @@
 			"Loadout"
 			{
 				"item_tango"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
+				"item_tango"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
+				"item_flask"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
 				
 				"item_branches"		"ITEM_CORE"
 				"item_branches"		"ITEM_CORE"
@@ -7709,7 +7712,8 @@
 
 				"item_tango"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
 				"item_clarity"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
-				"item_clarity"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
+				"item_tango"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
+				"item_flask"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
 				
 				"item_branches"		"ITEM_CORE"
 				"item_branches"		"ITEM_CORE"
@@ -9124,7 +9128,11 @@
 			"SupportsEasyMode"	"1"
 			"Loadout"
 			{
-				"item_tango"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
+				"item_tango"		"ITEM_CONSUMABLE | ITEM_SELLABLE"			
+				"item_flask"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
+				"item_clarity"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
+				"item_clarity"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
+				
 				"item_crown"		"ITEM_CORE"
 				
 				"item_branches"		"ITEM_CORE"
@@ -10447,6 +10455,9 @@
 			"SupportsEasyMode"	"1"
 			"Loadout"
 			{
+				"item_tango"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
+				"item_clarity"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
+				
 				"item_branches"		"ITEM_CORE"
 				"item_branches"		"ITEM_CORE"
 				"item_magic_stick"	"ITEM_CORE"
@@ -11314,7 +11325,10 @@
 			"SupportsEasyMode"	"1"
 			"Loadout"
 			{
-				"item_faerie_fire"	"ITEM_CORE | ITEM_SELLABLE"
+				"item_tango"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
+				"item_flask"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
+				"item_clarity"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
+				
 				"item_slippers"		"ITEM_CORE"
 				"item_circlet"				"ITEM_CORE"
 				"item_recipe_wraith_band"	"ITEM_CORE"
@@ -14525,6 +14539,8 @@
 			{
 				"item_tango"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
 				"item_flask"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
+				"item_clarity"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
+				"item_clarity"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
 				
 				"item_branches"		"ITEM_CORE"
 				"item_branches"		"ITEM_CORE"
@@ -21336,6 +21352,7 @@
 		{
 			"Loadout"
 			{
+				"item_tango"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
 				"item_tango"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
 				"item_clarity"		"ITEM_CONSUMABLE | ITEM_SELLABLE"
 				
