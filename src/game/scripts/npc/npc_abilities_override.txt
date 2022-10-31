@@ -7673,7 +7673,7 @@
         {
             "TalentRequiredAbility"                                                   "faceless_void_time_lock"
         }
-        "special_bonus_unique_faceless_void_4"
+        "special_bonus_unique_faceless_void_4"   // Backtrack talent; crashes talent picker
         {
             // "TalentRequiredAbility"                                                   "special_bonus_inherent"
 			"TalentRequiredAbility"                                                   "faceless_void_chronosphere"
@@ -9011,10 +9011,10 @@
         {
             "TalentRequiredAbility"                                                   "puck_dream_coil"
         }
-        "special_bonus_unique_puck_4"
-        {
-            "TalentRequiredAbility"                                                   "puck_dream_coil"
-        }
+       // "special_bonus_unique_puck_4"   // Dream Coil stun duration; removed by valve
+       // {
+       //     "TalentRequiredAbility"                                                   "puck_dream_coil"
+       // }
         "special_bonus_unique_puck_5"
         {
             "TalentRequiredAbility"                                                   "puck_dream_coil"
@@ -9445,7 +9445,7 @@
         {
             "TalentRequiredAbility"                                                   "silencer_last_word"
         }
-        //"special_bonus_unique_silencer_5"
+        //"special_bonus_unique_silencer_5"		// Glaives silence(??); not functional
         //{
         //    "TalentRequiredAbility"                                                   "silencer_glaives_of_wisdom"
         //}
@@ -10399,7 +10399,7 @@
         }
         "special_bonus_unique_warlock_8"
         {
-            "TalentRequiredAbility"                                                   "warlock_rain_of_chaos"
+            "TalentRequiredAbility"                                                   "warlock_shadow_word"
         }
         "special_bonus_unique_warlock_9"
         {
