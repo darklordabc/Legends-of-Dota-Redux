@@ -184,39 +184,39 @@ function Ingame:OnPlayerPurchasedItem(keys)
     if util:isPlayerBot(keys.PlayerID) then
         local hero = PlayerResource:GetPlayer(keys.PlayerID):GetAssignedHero()
         -- If bots buy boots remove first instances of cheap items they have, this is a fix for them having boots in backpack
-        if string.find(keys.itemname, "boots") or keys.itemname == "item_power_treads" then
-            local tangos = hero:FindItemByName("item_tango")
-            local mangos = hero:FindItemByName("item_enchanted_mango")
-            local clarity = hero:FindItemByName("item_clarity")
-            local faerie = hero:FindItemByName("item_faerie_fire")
-            local flask = hero:FindItemByName("item_flask")
+        -- if string.find(keys.itemname, "boots") or keys.itemname == "item_power_treads" then
+        --    local tangos = hero:FindItemByName("item_tango")
+        --    local mangos = hero:FindItemByName("item_enchanted_mango")
+        --    local clarity = hero:FindItemByName("item_clarity")
+        --    local faerie = hero:FindItemByName("item_faerie_fire")
+        --    local flask = hero:FindItemByName("item_flask")
 
-            if tangos then
-            local refund = tangos:GetCost()
-            --hero:ModifyGold(refund, false, 0)
-            tangos:RemoveSelf()
-            end
-            if mangos then
-                local refund = mangos:GetCost()
+        --    if tangos then
+        --    local refund = tangos:GetCost()
+        --    --hero:ModifyGold(refund, false, 0)
+        --    tangos:RemoveSelf()
+        --    end
+        --    if mangos then
+        --        local refund = mangos:GetCost()
                 --hero:ModifyGold(refund, false, 0)
-                mangos:RemoveSelf()
-            end
-            if clarity then
-                local refund = clarity:GetCost() * clarity:GetCurrentCharges()
+        --        mangos:RemoveSelf()
+        --    end
+        --    if clarity then
+        --        local refund = clarity:GetCost() * clarity:GetCurrentCharges()
                 --hero:ModifyGold(refund, false, 0)
-                clarity:RemoveSelf()
-            end
-            if faerie then
-                local refund = faerie:GetCost()
+        --        clarity:RemoveSelf()
+        --    end
+        --    if faerie then
+        --        local refund = faerie:GetCost()
                 --hero:ModifyGold(refund, false, 0)
-                faerie:RemoveSelf()
-            end
-            if flask then
-                local refund = flask:GetCost() * flask:GetCurrentCharges()
+        --        faerie:RemoveSelf()
+        --    end
+        --    if flask then
+        --        local refund = flask:GetCost() * flask:GetCurrentCharges()
                 --hero:ModifyGold(refund, false, 0)
-                flask:RemoveSelf()
-            end
-        end
+        --        flask:RemoveSelf()
+        --    end
+        --end
 
 
             for slot =  DOTA_STASH_SLOT_1, DOTA_STASH_SLOT_6 do
@@ -377,11 +377,11 @@ function Ingame:FilterExecuteOrder(filterTable)
     -- end		
 
     -- Block Alchemists Innate, heroes should not have innate abilities
-    if ability and target then
-        if string.match(target:GetName(), "npc_dota_hero_") and ability:GetName() == "item_ultimate_scepter" and unit:GetUnitName() == "npc_dota_hero_alchemist" then
-            return false
-        end
-    end
+  --  if ability and target then
+  --      if string.match(target:GetName(), "npc_dota_hero_") and ability:GetName() == "item_ultimate_scepter" and unit:GetUnitName() == "npc_dota_hero_alchemist" then
+  --          return false
+  --      end
+  --  end
     if unit then
         if unit:IsRealHero() then
             local unitPlayerID = unit:GetPlayerID()
@@ -391,10 +391,10 @@ function Ingame:FilterExecuteOrder(filterTable)
             -- increase counter. If counter gets too high, it means they have been stuck in same position for a long time, do action to help them.
             if util:isPlayerBot(unitPlayerID) then
                 -- Bot Armlet Fix: Bots do not know how to use armlets so return false if they attempt to and put on cooldown
-                if ability and ability:GetName() == "item_armlet" then
-                    ability:StartCooldown(200)
-                    return false
-                end
+             --   if ability and ability:GetName() == "item_armlet" then
+             --       ability:StartCooldown(200)
+             --       return false
+             --   end
                 if OptionManager:GetOption('stupidBots') == 1 then
                     if unit.blocked == true then
                         return false
