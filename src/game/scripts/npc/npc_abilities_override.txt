@@ -8533,7 +8533,11 @@
         }
         "special_bonus_unique_morphling_3"
         {
-            "TalentRequiredAbility"                                                   "morphling_adaptive_strike"
+            "TalentRequiredAbility"
+			{
+				"1"	"morphling_adaptive_strike"
+				"2" "morphling_adaptive_strike_str"
+			}
         }
         "special_bonus_unique_morphling_4"
         {
@@ -8549,7 +8553,11 @@
         }
         "special_bonus_unique_morphling_7"
         {
-            "TalentRequiredAbility"                                                   "morphling_adaptive_strike"
+            "TalentRequiredAbility"
+			{
+				"1"	"morphling_adaptive_strike"
+				"2" "morphling_adaptive_strike_str"
+			}
         }
         "special_bonus_unique_morphling_8"
         {
@@ -8557,7 +8565,11 @@
         }
         "special_bonus_unique_morphling_9"
         {
-            "TalentRequiredAbility"                                                   "morphling_adaptive_strike"
+            "TalentRequiredAbility"
+			{
+				"1"	"morphling_adaptive_strike"
+				"2" "morphling_adaptive_strike_str"
+			}
         }
         "special_bonus_unique_morphling_10"
         {
@@ -9256,10 +9268,10 @@
         {
             "TalentRequiredAbility"                                                   "sandking_sand_storm"
         }
-        //"special_bonus_unique_sand_king_4"
-        //{
-        //    "TalentRequiredAbility"                                                   "sandking_sand_storm"
-        //}
+        "special_bonus_unique_sand_king_4"
+        {
+            "TalentRequiredAbility"                                                   "sandking_sand_storm"
+        }
         "special_bonus_unique_sand_king_5"
         {
             "TalentRequiredAbility"                                                   "sandking_epicenter"
@@ -9673,14 +9685,14 @@
         {
             "TalentRequiredAbility"                                                   "storm_spirit_overload"
         }
-        //"special_bonus_unique_storm_spirit_4"
-        //{
-        //    "TalentRequiredAbility" 
-        //    {
-        //        "1" "storm_spirit_ball_lightning"
-        //        "2" "storm_spirit_static_remnant"
-        //    }  
-        //}
+        "special_bonus_unique_storm_spirit_4"
+        {
+            "TalentRequiredAbility" 
+            {
+                "1" "storm_spirit_ball_lightning"
+                "2" "storm_spirit_static_remnant"
+            }  
+        }
         "special_bonus_unique_storm_spirit_5"
         {
             "TalentRequiredAbility"                                                   "storm_spirit_static_remnant"
