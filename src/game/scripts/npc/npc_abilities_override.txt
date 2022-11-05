@@ -6389,7 +6389,7 @@
 		"primal_beast_onslaught"
 		{
 			"ReduxFlags"                                                           "mobility | stun | physical"
-            "ReduxPerks"                                                           "mobility | enemyMoving | skillshot | rage"
+            "ReduxPerks"                                                           "mobility | enemyMoving | skillshot | rage | physical"
 		}
 		
 		"primal_beast_trample"
@@ -7673,7 +7673,7 @@
         {
             "TalentRequiredAbility"                                                   "faceless_void_time_lock"
         }
-        "special_bonus_unique_faceless_void_4"
+        "special_bonus_unique_faceless_void_4"   // Backtrack talent; crashes talent picker
         {
             // "TalentRequiredAbility"                                                   "special_bonus_inherent"
 			"TalentRequiredAbility"                                                   "faceless_void_chronosphere"
@@ -8533,7 +8533,11 @@
         }
         "special_bonus_unique_morphling_3"
         {
-            "TalentRequiredAbility"                                                   "morphling_adaptive_strike"
+            "TalentRequiredAbility"
+			{
+				"1"	"morphling_adaptive_strike"
+				"2" "morphling_adaptive_strike_str"
+			}
         }
         "special_bonus_unique_morphling_4"
         {
@@ -8549,7 +8553,11 @@
         }
         "special_bonus_unique_morphling_7"
         {
-            "TalentRequiredAbility"                                                   "morphling_adaptive_strike"
+            "TalentRequiredAbility"
+			{
+				"1"	"morphling_adaptive_strike"
+				"2" "morphling_adaptive_strike_str"
+			}
         }
         "special_bonus_unique_morphling_8"
         {
@@ -8557,7 +8565,11 @@
         }
         "special_bonus_unique_morphling_9"
         {
-            "TalentRequiredAbility"                                                   "morphling_adaptive_strike"
+            "TalentRequiredAbility"
+			{
+				"1"	"morphling_adaptive_strike"
+				"2" "morphling_adaptive_strike_str"
+			}
         }
         "special_bonus_unique_morphling_10"
         {
@@ -9011,10 +9023,10 @@
         {
             "TalentRequiredAbility"                                                   "puck_dream_coil"
         }
-        "special_bonus_unique_puck_4"
-        {
-            "TalentRequiredAbility"                                                   "puck_dream_coil"
-        }
+       // "special_bonus_unique_puck_4"   // Dream Coil stun duration; removed by valve
+       // {
+       //     "TalentRequiredAbility"                                                   "puck_dream_coil"
+       // }
         "special_bonus_unique_puck_5"
         {
             "TalentRequiredAbility"                                                   "puck_dream_coil"
@@ -9256,10 +9268,10 @@
         {
             "TalentRequiredAbility"                                                   "sandking_sand_storm"
         }
-        //"special_bonus_unique_sand_king_4"
-        //{
-        //    "TalentRequiredAbility"                                                   "sandking_sand_storm"
-        //}
+        "special_bonus_unique_sand_king_4"
+        {
+            "TalentRequiredAbility"                                                   "sandking_sand_storm"
+        }
         "special_bonus_unique_sand_king_5"
         {
             "TalentRequiredAbility"                                                   "sandking_epicenter"
@@ -9445,10 +9457,10 @@
         {
             "TalentRequiredAbility"                                                   "silencer_last_word"
         }
-        "special_bonus_unique_silencer_5"
-        {
-            "TalentRequiredAbility"                                                   "silencer_glaives_of_wisdom"
-        }
+        //"special_bonus_unique_silencer_5"		// Glaives silence(??); not functional
+        //{
+        //    "TalentRequiredAbility"                                                   "silencer_glaives_of_wisdom"
+        //}
         "special_bonus_unique_silencer_6"
         {
             "TalentRequiredAbility"                                                   "silencer_curse_of_the_silent"
@@ -9673,14 +9685,14 @@
         {
             "TalentRequiredAbility"                                                   "storm_spirit_overload"
         }
-        //"special_bonus_unique_storm_spirit_4"
-        //{
-        //    "TalentRequiredAbility" 
-        //    {
-        //        "1" "storm_spirit_ball_lightning"
-        //        "2" "storm_spirit_static_remnant"
-        //    }  
-        //}
+        "special_bonus_unique_storm_spirit_4"
+        {
+            "TalentRequiredAbility" 
+            {
+                "1" "storm_spirit_ball_lightning"
+                "2" "storm_spirit_static_remnant"
+            }  
+        }
         "special_bonus_unique_storm_spirit_5"
         {
             "TalentRequiredAbility"                                                   "storm_spirit_static_remnant"
@@ -10399,7 +10411,7 @@
         }
         "special_bonus_unique_warlock_8"
         {
-            "TalentRequiredAbility"                                                   "warlock_rain_of_chaos"
+            "TalentRequiredAbility"                                                   "warlock_shadow_word"
         }
         "special_bonus_unique_warlock_9"
         {
