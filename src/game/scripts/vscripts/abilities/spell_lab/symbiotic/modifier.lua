@@ -92,8 +92,8 @@ end
 function spell_lab_symbiotic_modifier:OnTakeDamage (kv)
 	if IsServer() then
 		if kv.unit ~= self.hHost then return end
-		if self:GetAbility():GetCooldownTimeRemaining() < 3 then
-			self:GetAbility():StartCooldown(3)
+		if self:GetAbility():GetCooldownTimeRemaining() < 1 then
+			self:GetAbility():StartCooldown(1)
 		end
 	end
 end
@@ -129,10 +129,10 @@ function spell_lab_symbiotic_modifier:OnSpentMana (kv)
 	    local hParent = self:GetParent()
 	    
 	    -- Tether semi-nerf, prevent players having hearts and giving massive health regen constantly
-	    local tether = hParent:FindAbilityByName("wisp_tether")
-	    if tether then
-	    	tether:StartCooldown(60)
-	    end
+	  --  local tether = hParent:FindAbilityByName("wisp_tether")
+	  --  if tether then
+	  --  	tether:StartCooldown(60)
+	  --  end
 
 			--DeepPrintTable(kv)
 			local mana = self.hHost:GetMana()
