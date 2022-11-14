@@ -2062,6 +2062,12 @@
             "ReduxPerks"                                                           "support | light"
             "ReduxCost"                                                            "20"
         }
+		"omniknight_martyr"
+        {
+            "ReduxFlags"                                                           "support"
+            "ReduxPerks"                                                           "support | light"
+            "ReduxCost"                                                            "20"
+        }
         "oracle_false_promise"
         {
             "ReduxFlags"                                                           "support"
@@ -7208,6 +7214,7 @@
 		}
 		"spell_lab_storm_minions"
 		{
+			"ReduxFlags"    "summon"
 			"ReduxPerks"	"summon_non_ult"
 		}
 		"blink_support"
