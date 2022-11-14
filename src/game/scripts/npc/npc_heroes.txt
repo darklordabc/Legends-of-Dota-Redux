@@ -8867,13 +8867,17 @@
 				"item_ring_of_regen"		"ITEM_EXTENSION"
 				"item_hood_of_defiance"		"ITEM_DERIVED"
 				"item_voodoo_mask" "ITEM_EXTENSION"
-				"item_recipe_eternal_shroud"		"ITEM_DERIVED"
+				"item_recipe_eternal_shroud"		"ITEM_EXTENSION"
 				"item_eternal_shroud"				"ITEM_DERIVED"
 				
 				"item_mystic_staff"		"ITEM_LUXURY"
 				"item_platemail"		"ITEM_LUXURY"
 				"item_recipe_shivas_guard"		"ITEM_LUXURY"
 				"item_shivas_guard"	 "ITEM_DERIVED"
+				
+				"item_relic"		"ITEM_LUXURY"
+				"item_talisman_of_evasion"		"ITEM_LUXURY"
+				"item_radiance"			"ITEM_DERIVED"
 
 				"item_ultimate_orb"		"ITEM_LUXURY"
 				"item_void_stone"		"ITEM_LUXURY"
@@ -8886,9 +8890,7 @@
 				"item_blade_of_alacrity"		"ITEM_LUXURY"
 				"item_ultimate_scepter"		"ITEM_DERIVED"
 				
-				"item_relic"		"ITEM_LUXURY"
-				"item_talisman_of_evasion"		"ITEM_LUXURY"
-				"item_radiance"			"ITEM_DERIVED"
+				
 			}
 			"Build"
 			{
