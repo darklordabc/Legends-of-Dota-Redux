@@ -46,7 +46,7 @@ function modifier_npc_dota_hero_wisp_perk:OnCreated(keys)
             essense = caster:AddAbility("obsidian_destroyer_essence_aura")
             essense:SetStolen(true)
             essense:SetActivated(true)
-            essense:SetLevel(1)
+            essense:SetLevel(2)
         end
     end
 end

@@ -266,32 +266,32 @@ function Pregame:init()
     GameRules:GetGameModeEntity():SetCustomGameForceHero("npc_dota_hero_wisp")
 
     -- Rune fix
-    local totalRunes = 0
-    local needBounty = false
-    GameRules:GetGameModeEntity():SetRuneSpawnFilter(function(context, runeStuff)
-        totalRunes = totalRunes + 1
-        if totalRunes % 2 == 1 then
-            if math.random() < 0.5 then
-                needBounty = false
-                runeStuff.rune_type = DOTA_RUNE_BOUNTY
-            else
-                needBounty = true
-                runeStuff.rune_type = util:pickRandomRune()
-            end
-        else
-            if needBounty then
-                runeStuff.rune_type = DOTA_RUNE_BOUNTY
-            else
-                runeStuff.rune_type = util:pickRandomRune()
+    -- local totalRunes = 0
+    -- local needBounty = false
+    -- GameRules:GetGameModeEntity():SetRuneSpawnFilter(function(context, runeStuff)
+    --    totalRunes = totalRunes + 1
+    --    if totalRunes % 2 == 1 then
+    --        if math.random() < 0.5 then
+    --            needBounty = false
+    --           runeStuff.rune_type = DOTA_RUNE_BOUNTY
+    --        else
+    --            needBounty = true
+    --            runeStuff.rune_type = util:pickRandomRune()
+    --        end
+    --    else
+    --        if needBounty then
+    --            runeStuff.rune_type = DOTA_RUNE_BOUNTY
+    --        else
+    --            runeStuff.rune_type = util:pickRandomRune()
 
-            end
+    --        end
 
             -- No longer need a bounty rune
-            needBounty = false
-        end
+    --        needBounty = false
+    --    end
 
-        return true
-    end, self)
+    --    return true
+    -- end, self)
 
     -- Init options
     self:initOptionSelector()
