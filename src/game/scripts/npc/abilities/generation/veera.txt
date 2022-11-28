@@ -191,8 +191,8 @@
         "AbilityProcsMagicStick"        "1"
     
         "AbilityCastRange"          "150"
-        "AbilityCooldown"           "9 8 7 6"
-        "AbilityManaCost"           "60"
+        "AbilityCooldown"           "4 3 2 1"
+        "AbilityManaCost"           "40"
     
         "AbilitySpecial"
         {
@@ -204,7 +204,7 @@
             "02"
             {
                 "var_type"          "FIELD_INTEGER"
-                "base_damage"       "20 30 40 50"
+                "base_damage"       "30 40 50 60"
             }
             "03"
             {
@@ -259,11 +259,11 @@
                 "Passive"           "0"
                 "IsHidden"          "1"
             
-                "OverrideAnimation"     "ACT_DOTA_CAST_ABILITY_2"
+                // "OverrideAnimation"     "ACT_DOTA_CAST_ABILITY_2"
 
                 "Orb"
                 {
-                    "Priority"          "DOTA_ORB_PRIORITY_ABILITY"
+                    // "Priority"          "DOTA_ORB_PRIORITY_ABILITY"
                     "ProjectileName"    ""
                     "CastAttack"        "1"
                 }
