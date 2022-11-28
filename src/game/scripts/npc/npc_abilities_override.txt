@@ -11785,6 +11785,10 @@
         {
             "TalentRequiredAbility" "dawnbreaker_solar_guardian"
         }
+		"special_bonus_unique_dawnbreaker_celestial_hammer_slow"
+		{
+            "TalentRequiredAbility" "dawnbreaker_celestial_hammer"
+        }
 
         "special_bonus_unique_marci_grapple_stun_duration"
         {
