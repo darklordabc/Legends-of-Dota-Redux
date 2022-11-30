@@ -411,7 +411,7 @@
 			"AbilityChannelTime"			"2.4"
 			"AbilityCastRange"				"1200"
 			"AbilityCastPoint"				"0.2"
-			"AbilityCooldown"				"15 14 13 12"
+			"AbilityCooldown"				"17 16 15 14"
 			"AbilityManaCost"				"200"
 			"AbilitySpecial"
 			{
@@ -5401,11 +5401,11 @@
 			"AbilityManaCost"				"80"
 			"AbilityValues"
 			{
-				"duration"		"6 7 8 9"
-				"damage_per_tree"		"15 16 17 18"
+				"duration"		"7 8 9 10"
+				"damage_per_tree"		"15"
 				"slow_per_tree"			"7 8 9 10"
 				"radius"				"250"
-				"range"					"1200 1400 1600 1800"
+				"range"					"1200 1500 1800 2100"
 			}
 		}
 		
@@ -5987,7 +5987,7 @@
 			"AbilityValues"
 			{
 				"formation_delay"       "2.0"
-				"root_duration"         "4.0"
+				"root_duration"         "3.0"
 				"damage_per_second"	
 				{
 					"value"			"100 125 150 175"
@@ -6055,7 +6055,7 @@
 				"03"
 				{
 					"var_type"          "FIELD_INTEGER"
-					"damage"        "170 210 250 290"
+					"damage"        "250 270 290 310"
 				}
 				"04"
 				{
@@ -6082,7 +6082,7 @@
 				"01"
 					{
 						"var_type"          "FIELD_FLOAT"
-						"duration"      "0.8 0.9 1.0 1.1"
+						"duration"      "0.8 1.0 1.2 1.4"
 					}
 				}
         }
@@ -6091,7 +6091,7 @@
 		{
 			"ReduxPerks"					"rage"
 			"MaxLevel"						"4"
-			"AbilityCooldown"				"80 65 50 35"
+			"AbilityCooldown"				"80 60 40 20"
 			"AbilityManaCost"				"75"
 			"AbilitySpecial"
 			{
@@ -6270,7 +6270,7 @@
 				"05"
 				{
 					"var_type"              "FIELD_FLOAT"
-					"scepter_meta_duration"     "10 14 18 22"
+					"scepter_meta_duration"     "10 15 20 25"
 				}
 			}
 		}
@@ -6361,7 +6361,7 @@
 				"07"
 				{
 					"var_type"				"FIELD_FLOAT"
-					"spawn_interval"			"0.5"
+					"spawn_interval"			"0.5 0.45 0.4 0.35"
 				}
 			}
 		}	
@@ -6428,7 +6428,7 @@
 				"04"
 				{
 					"var_type"							"FIELD_INTEGER"
-					"movespeed_bonus"					"20 25 30 35"
+					"movespeed_bonus"					"20 30 40 50"
 				}			
 			}
 			"ReduxFlags"	"mobility | invis"
@@ -6555,7 +6555,7 @@
 						"value"					"20 26 32 38"
 						"CalculateSpellDamageTooltip"	"1"
 					}
-					"movement_slow"			"-10 -13 -16 -19"
+					"movement_slow"			"-10 -14 -18 -22"
 					"projectile_speed"		"1800"
 					"damage_interval"		"1.0"
 					"duration"				"7 9 11 13"
@@ -6571,7 +6571,7 @@
 			"IsGrantedByScepter"			"1"
 			"MaxLevel"						"4"
 			"AbilityCastPoint"				"0.1"
-			"AbilityCastRange"				"300 450 600 750"
+			"AbilityCastRange"				"375 525 675 825"
 			"AbilityCooldown"				"20.0 17.0 14.0 11.0"
 			"AbilityManaCost"				"75"
 			"AbilityValues"
