@@ -1,5 +1,27 @@
     "DOTAAbilities"
     {
+		"venomancer_area_poison"
+		{
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES"
+			"MaxLevel"						"4"
+			"AbilityCooldown"				"60 50 40 30"
+			"AbilityCastRange"				"900"
+			"AbilityManaCost"				"150"
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"duration"		"15"
+				}
+				"02"
+				{
+					"var_type"				"FIELD_INTEGER"
+					"radius"		"650 700 750 800"
+				}
+			}
+		}
+		
 		"frostivus2018_throw_snowball"
 		{
 			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
