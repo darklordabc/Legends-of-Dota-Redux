@@ -10792,15 +10792,15 @@
 		"DOTA_Tooltip_ability_special_bonus_unique_faceless_void_4_Description"		"Grants a 20% chance to avoid damage entirely. Disabled by break."
 		"DOTA_Tooltip_ability_special_bonus_unique_storm_spirit_4_Description" "Every 500 distance travelled in Ball Lightning creates a Static Remnant."
 		"DOTA_Tooltip_ability_special_bonus_unique_lion_manadrain_damage_Description"		"Damage is equal to 150% of mana stolen"
-		"DOTA_Tooltip_ability_special_bonus_unique_silencer_glaives_bounces_Description"	"Glaives of Wisdom Bounce to targets withing a 600 range."
+		"DOTA_Tooltip_ability_special_bonus_unique_silencer_glaives_bounces_Description"	"Glaives of Wisdom Bounce to targets within a 600 range."
 		"DOTA_Tooltip_ability_special_bonus_unique_magnus_reverse_polarity_strength_Description"		"Bonus Strength lasts for 15s"
 		"DOTA_Tooltip_ability_special_bonus_unique_sand_king_4_Description"		"Enemy units in range of Sand Storm have their movement speed slowed by 35% and miss 35% of their attacks."
 	// "DOTA_Tooltip_ability_special_bonus_unique_slardar_6_Description"	"Trails are {s:bonus_puddle_radius} units wide and last {s:bonus_puddle_duration} seconds"
 		"DOTA_Tooltip_ability_special_bonus_unique_puck_3_Description"	"Puck instantly attacks all enemies while affected by Dream Coil, every 0.6 seconds."
 		"DOTA_Tooltip_ability_special_bonus_unique_monkey_king_6_Description"	"Creates an additional ring of 7 soldiers at 1100 range from the center."
-		
-		
-		
+		"DOTA_Tooltip_ability_special_bonus_unique_magnus_reverse_polarity_strength"		"+16 Strength per hero hit with Reverse Polarity"
+		"DOTA_Tooltip_ability_special_bonus_unique_magnus_reverse_polarity_strength_Description"		"Bonus Strength lasts for 15s"
+		"DOTA_Tooltip_ability_special_bonus_unique_venomancer_gale_plagueward_Description"		"When Venomous Gale impacts enemy Heroes, it creates 2 Plague Wards around them."
 
 
 
