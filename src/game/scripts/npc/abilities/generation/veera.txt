@@ -263,7 +263,7 @@
 
                 "Orb"
                 {
-                    // "Priority"          "DOTA_ORB_PRIORITY_ABILITY"
+                    "Priority"          "DOTA_ORB_PRIORITY_ABILITY"
                     "ProjectileName"    ""
                     "CastAttack"        "1"
                 }
