@@ -567,7 +567,7 @@
             
                 "Orb"
                 {
-                    // "Priority"          "DOTA_ORB_PRIORITY_ABILITY"
+                    "Priority"          "DOTA_ORB_PRIORITY_ABILITY"
                     "ProjectileName"    "particles/econ/events/coal/coal_projectile.vpcf"
                     "CastAttack"        "1"
                 }
