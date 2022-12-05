@@ -573,7 +573,7 @@
         {
             "MaxLevel"                                                             "4"
             "AbilityCooldown"                                                      "10 9 8 7"
-            "ReduxPerks"                                                           "neutral"
+            "ReduxPerks"                                                           "neutral | earth"
 			"AbilitySpecial"
 			{
 				"01"
@@ -599,7 +599,7 @@
 				"05"
 				{
 					"var_type"			"FIELD_INTEGER"
-					"damage"			"70 110 150 190"
+					"damage"			"70 120 170 220"
 				}
 				"06"
 				{
