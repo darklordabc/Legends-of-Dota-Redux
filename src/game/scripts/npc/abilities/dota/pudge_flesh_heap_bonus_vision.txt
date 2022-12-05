@@ -16,7 +16,7 @@
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "flesh_heap_bonus_vision_buff_amount"                  "20 40 60 80"
+                "flesh_heap_bonus_vision_buff_amount"                  "25 50 75 100"
             }
             "02"
             {
