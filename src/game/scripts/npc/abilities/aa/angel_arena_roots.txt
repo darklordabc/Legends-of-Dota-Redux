@@ -36,7 +36,7 @@
             "04"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "damage"                                               "50 100 150"
+                "damage"                                               "50 75 100"
             }
         }
         "OnSpellStart"
@@ -102,7 +102,7 @@
                             "Damage"
                             {
                                 "Target"               "TARGET"
-                                "Type"                 "DAMAGE_TYPE_MAGICAL"
+                                "Type"                 "DAMAGE_TYPE_PHYSICAL"
                                 "Damage"               "%damage"
                             }
                         }
