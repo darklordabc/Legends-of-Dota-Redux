@@ -6,14 +6,14 @@
 		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
 		"MaxLevel" "3"
 		"AbilityCastPoint" "0.0"
-		"AbilityCooldown" "140.0 125.0 110.0"
-		"AbilityManaCost" "150 200 250"
+		"AbilityCooldown" "120.0 110.0 100.0"
+		"AbilityManaCost" "150"
 		"ReduxPerks"                                                           "demon"
 
 		"AbilitySpecial" {
 			"01" {
 				"var_type" "FIELD_FLOAT"
-				"duration" "20 30 40"
+				"duration" "40"
 			}
 
 			"02" {
@@ -33,7 +33,7 @@
 
 			"05" {
 				"var_type" "FIELD_INTEGER"
-				"tooltip_attack_range" "150"
+				"tooltip_attack_range" "0"
 			}
 
 			"06" {
@@ -43,7 +43,7 @@
 
 			"07" {
 				"var_type" "FIELD_INTEGER"
-				"bonus_hp" "500 750 1000"
+				"bonus_hp" "500 800 1100"
 			}
 		}
 
