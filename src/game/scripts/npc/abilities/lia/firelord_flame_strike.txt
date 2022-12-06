@@ -13,10 +13,10 @@
         "AbilityCastAnimation"                                                 "ACT_DOTA_CAST_ABILITY_4"
         "AbilityCastRange"                                                     "1000"
         "AbilityCastPoint"                                                     "0.0"
-        "AbilityCooldown"                                                      "13 12 11 10"
+        "AbilityCooldown"                                                      "14 13 12 11"
         "AbilityManaCost"                                                      "100 110 120 130"
-        "AbilityChannelTime"                                                   "0.25"
-        "AoERadius"                                                            "225 250 275 300"
+        "AbilityChannelTime"                                                   "0.15"
+        "AoERadius"                                                            "250 275 300 325"
 
         "precache"
         {
@@ -32,12 +32,12 @@
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "radius"                                               "225 250 275 300"
+                "radius"                                               "250 275 300 325"
             }
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "damage"                                               "40 80 120 160"
+                "damage"                                               "60 90 120 150"
             }
             "03"
             {
@@ -52,9 +52,9 @@
             "05"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "interval"                                             "0.5"
+                "interval"                                             "0.25"
             }
         }
-        "ReduxPerks"                                                           "fire"
+        "ReduxPerks"                                                           "fire | skillshot"
     }
 }
