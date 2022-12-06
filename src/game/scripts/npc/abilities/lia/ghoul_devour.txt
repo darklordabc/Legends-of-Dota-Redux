@@ -16,7 +16,7 @@
         "MaxLevel"                                                             "4"
         "RequiredLevel"                                                        "1"
         "LevelsBetweenUpgrades"                                                "2"
-        "AbilityCastRange"                                                     "150"
+        "AbilityCastRange"                                                     "175"
         "AbilityCastPoint"                                                     "0.0"
         "AbilityCooldown"                                                      "40.0 32.0 24.0 16.0"
         "AbilityManaCost"                                                      "20 30 40 50"
@@ -30,7 +30,7 @@
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "heal_per_second"                                      "25 30 35 40"
+                "heal_per_second"                                      "24 30 36 42"
             }
             "03"
             {
