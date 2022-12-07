@@ -15,7 +15,7 @@ function EssenceAmp(filterTable)
 	--print(amp and amp:GetLevel() > 0, "ampcheck")
 	if amp and amp:GetLevel() > 0 then
 		local damageMult = amp:GetSpecialValueFor("crit_amp") / 100
-		local manaburn = ability:GetManaCost(-1) * (filterTable["damage"]*damageMult / (ability:GetLevel()*80))
+		local manaburn = ability:GetManaCost(-1) * (filterTable["damage"]*damageMult / (ability:GetLevel()*50))
 		-- Return if the source of spell damage does not have a manacost, its probably a passive source of spell damage like radiance.
 		--print(manaburn)
 		if manaburn == 0 then
@@ -34,7 +34,7 @@ function EssenceAmp(filterTable)
 							Duration = 0.7,
 							Number = filterTable["damage"],
 							pfx = "spell_custom"} )
-				attacker:SpendMana(manaburn / 2, ability)
+				attacker:SpendMana((manaburn * 0.25), ability)
 				attacker.essenceCritPrng = 0
 			else
 				attacker.essenceCritPrng = attacker.essenceCritPrng + 1
