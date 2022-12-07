@@ -19,7 +19,7 @@
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"975"
-		"AbilityCastPoint"				"0.4"
+		"AbilityCastPoint"				"0.3"
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
@@ -50,12 +50,12 @@
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"movespeed_slow"			"-40"
+				"movespeed_slow"			"-70"
 			}
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"attack_slow"				"-50"
+				"attack_slow"				"-70"
 			}
 			"05"
 			{
@@ -65,7 +65,7 @@
 			"05"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"radius"					"315"
+				"radius"					"350"
 			}
 		}
 		
