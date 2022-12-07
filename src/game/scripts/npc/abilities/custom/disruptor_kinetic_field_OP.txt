@@ -12,23 +12,29 @@
         "AbilityManaCost"                                                      "70 70 70 70"
         "AbilityCastRange"                                                     "99999"
         "AbilitySpecial"
-        {
-            "01"
-            {
-                "var_type"                                             "FIELD_INTEGER"
-                "radius"                                               "350"
-            }
-            "02"
-            {
-                "var_type"                                             "FIELD_FLOAT"
-                "formation_time"                                       "0.1 0.1 0.1 0.1"
-            }
-            "03"
-            {
-                "var_type"                                             "FIELD_FLOAT"
-                "duration"                                             "5.0 6.0 7.0 8.0"
-            }
-        }
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"350"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"formation_time"			"0.1"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"3 4 5 6"
+				"LinkedSpecialBonus"		"special_bonus_unique_disruptor_5"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"damage_per_second"			"30 60 90 120"
+			}
+		}
         "ReduxCost"                                                            "120"
         "ReduxFlags"                                                           ""
     }
