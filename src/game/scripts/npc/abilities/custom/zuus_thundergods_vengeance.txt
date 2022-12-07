@@ -14,22 +14,22 @@
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "true_sight_radius"                                    "1200 1200 1200"
+                "true_sight_radius"                                    "1800"
             }
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "sight_radius_day"                                     "1200 1200 1200 1200"
+                "sight_radius_day"                                     "1800"
             }
             "03"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "sight_radius_night"                                   "1200 1200 1200 1200"
+                "sight_radius_night"                                   "1800"
             }
             "04"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "sight_duration"                                       "5.0 5.0 5.0 5.0"
+                "sight_duration"                                       "5 6 7"
             }
             "05"
             {
