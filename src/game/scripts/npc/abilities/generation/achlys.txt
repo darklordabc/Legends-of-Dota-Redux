@@ -552,7 +552,7 @@
             "02"
             {
                 "var_type"                  "FIELD_INTEGER"
-                "damage_per_health"         "25 35 45"
+                "damage_per_health"         "30 40 50"
             }
             "03"
             {
