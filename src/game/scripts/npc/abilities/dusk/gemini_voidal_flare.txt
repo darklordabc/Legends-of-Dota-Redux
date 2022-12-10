@@ -27,7 +27,7 @@
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"750"
+		"AbilityCastRange"				"800"
 		"AbilityCastPoint"				"0.1 0.1 0.1 0.1"
 		
 		// Time		
@@ -50,7 +50,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"stun"					"0.55 0.65 0.75 0.85" // per use on the same target
+				"stun"					"0.6 0.7 0.8 0.9" // per use on the same target
 			}
 			"03"
 			{

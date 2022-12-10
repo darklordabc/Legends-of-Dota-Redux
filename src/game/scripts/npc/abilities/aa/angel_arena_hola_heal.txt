@@ -24,17 +24,17 @@
 
 			"02" {
 				"var_type" "FIELD_INTEGER"
-				"heal" "600 800 1000"
+				"heal" "300 450 600"
 			}
 
 			"03" {
 				"var_type" "FIELD_INTEGER"
-				"damage" "400 600 800"
+				"damage" "300 450 600"
 			}
 
 			"04" {
 				"var_type" "FIELD_FLOAT"
-				"heal_percent" "10.0"
+				"heal_percent" "10.0 15.0 20.0"
 			}
 		}
 

@@ -11,7 +11,7 @@
 			"soundfile" "soundevents/game_sounds_heroes/game_sounds_bane.vsndevts"
 			"particle" "particles/units/heroes/hero_bane/bane_enfeeble.vpcf"
 		}
-		"AbilityCastRange" "700 750 800 850"
+		"AbilityCastRange" "850"
 		"AbilityCastPoint" "0.3 0.3 0.3 0.3"
 		"AbilityCooldown" "18.0 16.0 14.0 12.0"
 		"AbilityDuration" "8.0"
@@ -20,12 +20,12 @@
 		"AbilitySpecial" {
 			"01" {
 				"var_type" "FIELD_FLOAT"
-				"duration" "5.0 6.0 7.0 8.0"
+				"duration" "8.0"
 			}
 
 			"02" {
 				"var_type" "FIELD_INTEGER"
-				"damage" "55 60 65 70"
+				"damage" "40 55 70 85"
 			}
 
 			"03" {
@@ -35,7 +35,7 @@
 
 			"04" {
 				"var_type" "FIELD_INTEGER"
-				"slow_percent" "-10 -14 -18 -22"
+				"slow_percent" "-10 -15 -20 -25"
 			}
 		}
 

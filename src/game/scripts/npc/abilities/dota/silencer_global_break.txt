@@ -10,8 +10,8 @@
         "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO"
         "AbilityCastPoint"                                                     "0.3"
         "AbilityCooldown"                                                      "100 80 60"
-        "AbilityManaCost"                                                      "250 375 500"
-        "AbilityDuration"                                                      "4 5 6"
+        "AbilityManaCost"                                                      "100 125 150"
+        "AbilityDuration"                                                      "4 6 8"
         "precache"
         {
             "particle"                                                     "particles/units/heroes/hero_silencer/silencer_global_silence.vpcf"
@@ -22,7 +22,7 @@
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "duration"                                             "4 5 6"
+                "duration"                                             "4 6 8"
             }
         }
         "OnSpellStart"

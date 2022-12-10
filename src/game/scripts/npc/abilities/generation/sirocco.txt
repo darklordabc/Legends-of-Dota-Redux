@@ -47,7 +47,7 @@
             "01"
             {
                 "var_type"              "FIELD_INTEGER"
-                "duration"              "6"
+                "duration"              "8"
             }
             
             "02"
@@ -58,7 +58,7 @@
             "03"
             {
                 "var_type"              "FIELD_FLOAT"
-                "ministun_duration"     "0.6"
+                "ministun_duration"     "0.7"
             }
             "04"
             {
@@ -73,7 +73,7 @@
             "06"
             {
                 "var_type"              "FIELD_INTEGER"
-                "slow_pct"              "-15 -20 -25 -30"
+                "slow_pct"              "-20 -25 -30 -35"
             }
             "07"
             {
@@ -237,7 +237,7 @@
             "soundfile"                 "soundevents/game_sounds_heroes/game_sounds_terrorblade.vsndevts"
         }
 
-        "AbilityDamage"                 "90 130 170 210"
+        "AbilityDamage"                 "70 130 190 250"
 
         "AbilityManaCost"               "90 95 100 105"
 
@@ -256,7 +256,7 @@
             "03"
             {
                 "var_type"                  "FIELD_INTEGER"
-                "illusion_dealt"            "-50"
+                "illusion_dealt"            "-25"
             }
             "04"
             {
@@ -266,7 +266,7 @@
             "05"
             {
                 "var_type"                  "FIELD_INTEGER"
-                "illusion_dealt_tt"         "50"
+                "illusion_dealt_tt"         "75"
             }
         }
 
@@ -484,7 +484,7 @@
             "soundfile"     "soundevents/game_sounds_heroes/game_sounds_sirocco.vsndevts"
         }
 
-        "AbilityManaCost"               "150 200 250"
+        "AbilityManaCost"               "100 150 200"
         "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
         "MaxLevel"                      "3"
 
@@ -493,37 +493,42 @@
             "01"
             {
                 "var_type"                  "FIELD_INTEGER"
-                "projectle_speed"           "900"
+                "projectle_speed"           "1200"
             }
             "02"
             {
                 "var_type"                  "FIELD_INTEGER"
-                "mana_damage_lost"          "30 50 70"
+                "mana_damage_lost"          "50 75 100"
             }
             "03"
             {
                 "var_type"                  "FIELD_INTEGER"
-                "attack_lost"           "-15 -20 -25"
+                "attack_lost"           "-40 -60 -80"
             }
             "04"
             {
                 "var_type"                  "FIELD_FLOAT"
-                "damage_multiplier"     "15 25 35" 
+                "damage_multiplier"     "16 24 32" 
             }
             "05"
             {
                 "var_type"                  "FIELD_INTEGER"
-                "blast_radius"              "500"
+                "blast_radius"              "600"
             }
             "06"
             {
                 "var_type"                  "FIELD_INTEGER"
-                "duration"                  "6"
+                "duration"                  "8"
             }
             "07"
             {
                 "var_type"                  "FIELD_INTEGER"
-                "scepter_duration"          "10"
+                "scepter_duration"          "12"
+            }
+			"08"
+			{
+                "var_type"                  "FIELD_INTEGER"
+                "ms_lost"          "-10 -15 -20"
             }
         }
 
@@ -686,6 +691,7 @@
                 "Properties"
                 {
                     "MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"  "%attack_lost"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT"	"%ms_lost"
                 }
             }
         }

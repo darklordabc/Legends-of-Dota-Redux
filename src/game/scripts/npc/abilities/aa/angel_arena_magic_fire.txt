@@ -17,12 +17,12 @@
 		"AbilitySpecial" {
 			"01" {
 				"var_type" "FIELD_INTEGER"
-				"damage" "180 240 300 360"
+				"damage" "120 200 280 360"
 			}
 
 			"02" {
 				"var_type" "FIELD_FLOAT"
-				"damage_pct" "4.0 6.0 8.0 10.0"
+				"damage_pct" "10.0"
 			}
 		}
 

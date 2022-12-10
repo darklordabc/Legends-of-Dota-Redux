@@ -12,12 +12,12 @@
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "hero_lifesteal"                                       "13 17 21 25"
+                "hero_lifesteal"                                       "15 20 25 30"
             }
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "creep_lifesteal"                                      "2 4 6 8"
+                "creep_lifesteal"                                      "3 6 9 12"
             }
             "03"
             {

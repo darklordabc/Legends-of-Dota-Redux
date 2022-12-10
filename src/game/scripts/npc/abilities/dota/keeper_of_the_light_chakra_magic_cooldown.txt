@@ -12,27 +12,33 @@
         "AbilityTextureName"                                                   "custom/keeper_of_the_light_chakra_magic_cooldown"
         "AbilityCastRange"                                                     "900 900 900 900"
         "AbilityCastPoint"                                                     "0.3 0.3 0.3 0.3"
-        "AbilityCooldown"                                                      "30 28 26 24"
-        "AbilityManaCost"                                                      "50 100 150 200"
+        "AbilityCooldown"                                                      "28 24 20 16"
+        "AbilityManaCost"                                                      "100"
         "AbilityModifierSupportValue"                                          "3.0"
         "AbilitySpecial"
-        {
-            "01"
-            {
-                "var_type"                                             "FIELD_INTEGER"
-                "mana_restore"                                         "0"
-            }
-            "02"
-            {
-                "var_type"                                             "FIELD_FLOAT"
-                "cooldown_reduction"                                   "10 20 30 40"
-            }
-            "03"
-            {
-                "var_type"                                             "FIELD_FLOAT"
-                "duration"                                             "15"
-            }
-        }
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"mana_restore"			"0"
+				"LinkedSpecialBonus"	"special_bonus_unique_keeper_of_the_light_2"
+			}						
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cooldown_reduction"	"10 20 30 40"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mana_leak_pct"	"0"
+			}	
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"	"100"
+			}
+		}
         "ReduxFlags"                                                           "support | dota_custom | cooldown"
         "ReduxPerks"                                                           "support"
     }

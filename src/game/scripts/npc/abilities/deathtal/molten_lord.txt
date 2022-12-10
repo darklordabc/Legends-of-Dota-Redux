@@ -31,8 +31,8 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
 		"AbilityCastRange"				"400"
-		"AbilityCooldown"				"3.0"
-		"AbilityManaCost"				"30 35 40 45"
+		"AbilityCooldown"				"2.5"
+		"AbilityManaCost"				"18 21 24 27"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -41,7 +41,7 @@
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"armor_multiplier"				"3 4 5 6"
+				"armor_multiplier"				"2 3 4 5"
 			}
 			"02"
 			{
@@ -151,9 +151,9 @@
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"				"0.3 0.3 0.3 0.3"
-		"AbilityCooldown"				"13 12 11 10"
-		"AbilityManaCost"				"100"
-		"AbilityCastRange"				"700"
+		"AbilityCooldown"				"10 9 8 7"
+		"AbilityManaCost"				"70 80 90 100"
+		"AbilityCastRange"				"800"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -172,17 +172,17 @@
 			"03"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"base_damage"				"50 100 150 200"
+				"base_damage"				"90 160 230 300"
 			}
 			"04"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"mini_stun"					"1.2"
+				"mini_stun"					"1.8"
 			}
 			"05"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"ablaze_multiplier"				"1.0"
+				"ablaze_multiplier"				"2.0"
 			}
 			"06"
 			{
@@ -291,7 +291,7 @@
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
-		"AbilityCooldown"				"30.0 26.0 22.0 18.0"
+		"AbilityCooldown"				"28.0 24.0 20.0 16.0"
 		"AbilityManaCost"				"0.0"
 
 		// Special
@@ -306,7 +306,7 @@
 			"02"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"ablaze_duration"	"8"
+				"ablaze_duration"	"12"
 			}
 		}
 
@@ -362,7 +362,7 @@
 			{
 				"Passive"		"0"
 				"IsHidden"		"1"
-				"ThinkInterval"	"0.1"
+				"ThinkInterval"	"0.05"
 				"OnIntervalThink"
 				{
 					"RunScript"
@@ -459,7 +459,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"speed"					"1800"
+				"speed"					"1600"
 			}
 			"03"
 			{
@@ -474,7 +474,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"width"					"200"
+				"width"					"250"
 			}
 			"06"
 			{
@@ -484,12 +484,12 @@
 			"07"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"slow_duration"			"3"
+				"slow_duration"			"3 4 5"
 			}
 			"08"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"root_duration"			"2"
+				"root_duration"			"2 2.5 3"
 			}
 			"09"
 			{
@@ -514,7 +514,7 @@
 			"13"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"7"
+				"duration"				"10"
 			}
 			"14"
 			{

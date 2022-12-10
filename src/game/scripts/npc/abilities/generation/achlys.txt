@@ -49,7 +49,7 @@
             "04"
             {
                 "var_type"          "FIELD_INTEGER"
-                "root_duration"     "3"
+                "root_duration"     "1"
             }
         }
 
@@ -504,7 +504,7 @@
         "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
         "AbilityUnitTargetFlags"        "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
         "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
-        "AbilityUnitDamageType"         "DAMAGE_TYPE_PURE"  
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"  
         "FightRecapLevel"               "2"
         "AbilityTextureName"            "custom/achlys_death_mist"
         "AbilityProcsMagicStick"        "1"
@@ -523,7 +523,7 @@
 
         // Casting
         //-------------------------------------------------------------------------------------------------------------
-        "AbilityCastPoint"              "0.5"
+        "AbilityCastPoint"              "0.3"
 
         // Time     
         //-------------------------------------------------------------------------------------------------------------
@@ -552,7 +552,7 @@
             "02"
             {
                 "var_type"                  "FIELD_INTEGER"
-                "damage_per_health"         "25 35 45"
+                "damage_per_health"         "30 40 50"
             }
             "03"
             {

@@ -177,8 +177,8 @@
         "AbilityCastRange"              "750"
         "AbilityCastPoint"              "0.3"
     
-        "AbilityCooldown"               "10"
-        "AbilityManaCost"               "80 90 100 110"
+        "AbilityCooldown"               "7"
+        "AbilityManaCost"               "50"
         "AbilityProcsMagicStick"        "1"
     
         "AbilitySpecial"
@@ -356,10 +356,10 @@
         "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
         "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
     
-        "AbilityCooldown"               "30"
-        "AbilityManaCost"               "100"
+        "AbilityCooldown"               "20"
+        "AbilityManaCost"               "75"
     
-        "AbilityCastRange"              "500"
+        "AbilityCastRange"              "600"
         "AbilityCastPoint"              "0.3"
         "AnimationPlaybackRate"         "1.2"
         "AbilityProcsMagicStick"        "1"
@@ -369,7 +369,7 @@
             "01"
             {
                 "var_type"          "FIELD_INTEGER"
-                "duration"          "30"
+                "duration"          "20"
             }
             "02"
             {
@@ -384,7 +384,7 @@
             "04"
             {
                 "var_type"          "FIELD_INTEGER"
-                "bonus_gold"        "15 20 25 30"
+                "bonus_gold"        "18 24 30 36"
             }
             "05"
             {
@@ -394,7 +394,7 @@
             "06"
             {
                 "var_type"          "FIELD_INTEGER"
-                "damage_reduction"      "-10 -15 -20 -25"
+                "damage_reduction"      "-10 -20 -30 -40"
             }
             "06"
             {
@@ -595,7 +595,7 @@
             "01"
             {
                 "var_type"          "FIELD_INTEGER"
-                "proc_chance"       "20 25 30 35"
+                "proc_chance"       "35"
             }
             "02"
             {
@@ -615,7 +615,7 @@
             "05"
             {
                 "var_type"          "FIELD_INTEGER"
-                "bonus_movement_speed"      "10"
+                "bonus_movement_speed"      "8 9 10 11"
             }
         }
         "precache"
@@ -807,7 +807,7 @@
         "AbilityCastPoint"              "0.3"
     
         "AbilityCooldown"               "70 60 50"
-        "AbilityManaCost"               "150 175 200"
+        "AbilityManaCost"               "120 140 160"
         "AbilityProcsMagicStick"        "1"
     
         "AbilitySpecial"
