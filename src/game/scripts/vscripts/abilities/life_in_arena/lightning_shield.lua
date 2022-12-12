@@ -36,7 +36,7 @@ function ModifierLightningShieldOnIntervalThink(event)
 	for i, nUnit in pairs(nearby_units) do
 		if target ~= nUnit then  --The carrier of Lightning Shield cannot damage itself.
 			ApplyDamage({victim = nUnit, attacker = caster, damage = damage, damage_type = DAMAGE_TYPE_MAGICAL, ability = ability})
-			ParticleManager:CreateParticle("particles/lightning_shield_hit.vpcf", PATTACH_ABSORIGIN, nUnit)
+			ParticleManager:CreateParticle("particles/units/heroes/hero_zuus/zuus_static_field.vpcf", PATTACH_ABSORIGIN, nUnit)
 		end
 	end
 end
