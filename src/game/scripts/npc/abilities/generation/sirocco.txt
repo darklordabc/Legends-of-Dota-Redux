@@ -216,7 +216,7 @@
         "BaseClass"                     "ability_datadriven"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
         "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
-        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
         "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
         "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
         "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_4"
@@ -237,7 +237,7 @@
             "soundfile"                 "soundevents/game_sounds_heroes/game_sounds_terrorblade.vsndevts"
         }
 
-        "AbilityDamage"                 "70 130 190 250"
+        "AbilityDamage"                 "70 140 210 280"
 
         "AbilityManaCost"               "90 95 100 105"
 
@@ -251,7 +251,7 @@
             "02"
             {
                 "var_type"                  "FIELD_INTEGER"
-                "illusion_taken"            "200"
+                "illusion_taken"            "100"
             }
             "03"
             {
@@ -261,7 +261,7 @@
             "04"
             {
                 "var_type"                  "FIELD_INTEGER"
-                "illusion_taken_tt"         "300"
+                "illusion_taken_tt"         "200"
             }
             "05"
             {
