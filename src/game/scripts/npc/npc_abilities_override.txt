@@ -7297,6 +7297,10 @@
 			"ReduxPerks"	"support | ranger"
 			"ReduxFlags"	"support"
 		}
+		"aether_reality_shift"
+		{
+			"ReduxPerks"	"enemyMoving | light"
+		}
 		
 		
         // Talents
