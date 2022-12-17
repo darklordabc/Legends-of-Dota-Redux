@@ -2668,7 +2668,7 @@
         "windrunner_windrun"
         {
             "ReduxFlags"                                                           "mobility | invis"
-            "ReduxPerks"                                                           "mobility"
+            "ReduxPerks"                                                           "mobility | ranger"
             "ReduxCost"                                                            "10"
         }
         "juggernaut_blade_fury"
@@ -6309,7 +6309,7 @@
 				"wind_strength"     "250 300 350 400"
 				"radius"            "1000"
 			}
-			"ReduxPerks"            "enemyMoving"
+			"ReduxPerks"            "enemyMoving | ranger"
 		}
         
         "witch_doctor_voodoo_switcheroo"
@@ -7290,6 +7290,11 @@
 		"zeros_gerrymandering"
 		{
 			"ReduxPerks"	"support"
+			"ReduxFlags"	"support"
+		}
+		"benneng"
+		{
+			"ReduxPerks"	"support | ranger"
 			"ReduxFlags"	"support"
 		}
 		
