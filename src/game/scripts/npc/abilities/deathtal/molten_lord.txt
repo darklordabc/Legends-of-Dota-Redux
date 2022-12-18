@@ -198,7 +198,8 @@
 				"ScriptFile"	"abilities/deathtal/molten_lord"
 				"Function"		"SkippingFlames"
 				"Target"		"TARGET"
-				"particle"		"particles/molten_lord/skipping_flames.vpcf"
+				// "particle"		"particles/molten_lord/skipping_flames.vpcf"
+				"particle"		"particles\econ\items\doom\doom_ti8_immortal_arms\doom_ti8_immortal_devour_burst.vpcf"
 				"sound"			"Hero_AbyssalUnderlord.Firestorm.Start"
 			}
 		}
@@ -252,7 +253,8 @@
 					}
 					"FireEffect"
 					{
-						"EffectName"		"particles/molten_lord/skipping_flames_impact.vpcf"
+						// "EffectName"		"particles/molten_lord/skipping_flames_impact.vpcf"
+						"EffectName"		"particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_shadowraze.vpcf"
 						"EffectAttachType"	"attach_origin"
 						"Target"			"TARGET"
 					}

@@ -21,7 +21,6 @@
 				"LinkedSpecialBonus"			"special_bonus_unique_dragon_knight"
 			}
 		}
-		"Ab
         "ReduxCost"                                                            "120"
         "ReduxBans"                                                            "dragon_knight_dragon_blood"
         "ReduxFlags"                                                           ""
