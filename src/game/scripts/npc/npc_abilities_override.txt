@@ -6422,7 +6422,7 @@
 				"fragment_impact_radius"                  "150 160 170 180"
         	}
 			"ReduxFlags"		"stun | physical"
-            "ReduxPerks"		"skillshot | physical"
+            "ReduxPerks"		"skillshot | physical | earth"
 		} 
 		
 		"visage_silent_as_the_grave"
