@@ -9303,7 +9303,7 @@
         }
         "special_bonus_unique_riki_3"
         {
-            "TalentRequiredAbility"                                                   "riki_blink_strike"
+            "TalentRequiredAbility"                                                   "riki_smoke_screen"
         }
         "special_bonus_unique_riki_4"
         {
