@@ -114,19 +114,19 @@ function modifier_item_assault_consumable:DeclareFunctions()
   local funcs = {
     MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
     MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
-    MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
-    MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
-    MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
+   -- MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
+   -- MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
+   -- MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
   }
   return funcs
 end
 
-function modifier_item_assault_consumable:GetModifierBonusStats_Agility()
+--[[ function modifier_item_assault_consumable:GetModifierBonusStats_Agility()
   if not self:GetAbility() then
     self:Destroy()
   end
   return self:GetAbility():GetSpecialValueFor("assault_bonus_all_stats")
-end
+end  
 
 function modifier_item_assault_consumable:GetModifierBonusStats_Intellect()
   if not self:GetAbility() then
@@ -141,6 +141,7 @@ function modifier_item_assault_consumable:GetModifierBonusStats_Strength()
   end
   return self:GetAbility():GetSpecialValueFor("assault_bonus_all_stats")
 end
+]]
 
 function modifier_item_assault_consumable:GetModifierPhysicalArmorBonus()
   if not self:GetAbility() then
@@ -205,11 +206,11 @@ function modifier_item_assault_consumable_aura:DeclareFunctions()
 end 
 
 function modifier_item_assault_consumable_aura:GetModifierPhysicalArmorBonus()
-  if not self:GetAbility() or not self:GetAbility():GetSpecialValueFor("assault_aura_armor") then self:Destroy() return end
+  if not self:GetAbility() or not self:GetAbility():GetSpecialValueFor("assault_aura_positive_armor") then self:Destroy() return end
   if self:GetCaster():GetTeamNumber() == self:GetParent():GetTeamNumber() then
-    return self:GetAbility():GetSpecialValueFor("assault_aura_armor")
+    return self:GetAbility():GetSpecialValueFor("assault_aura_positive_armor")
   else
-    return -self:GetAbility():GetSpecialValueFor("assault_aura_armor")
+    return -self:GetAbility():GetSpecialValueFor("assault_aura_positive_armor")
   end
 end
 
@@ -251,8 +252,8 @@ function modifier_item_assault_consumable_aura_enemies:DeclareFunctions()
 end 
 
 function modifier_item_assault_consumable_aura_enemies:GetModifierPhysicalArmorBonus()
-  if not self:GetAbility() or not self:GetAbility():GetSpecialValueFor("assault_aura_armor") then self:Destroy() return end
-  return -self:GetAbility():GetSpecialValueFor("assault_aura_armor")
+  if not self:GetAbility() or not self:GetAbility():GetSpecialValueFor("assault_aura_negative_armor") then self:Destroy() return end
+  return -self:GetAbility():GetSpecialValueFor("assault_aura_negative_armor")
 end
 
 
