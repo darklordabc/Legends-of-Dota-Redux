@@ -2,7 +2,7 @@
     {
 		"venomancer_area_poison"
 		{
-			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES"
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 			"MaxLevel"						"4"
 			"AbilityCooldown"				"60 50 40 30"
 			"AbilityCastRange"				"900"
