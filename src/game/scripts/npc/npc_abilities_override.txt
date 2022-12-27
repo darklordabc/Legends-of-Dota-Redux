@@ -2,7 +2,7 @@
     {
 		"venomancer_area_poison"
 		{
-			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES"
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 			"MaxLevel"						"4"
 			"AbilityCooldown"				"60 50 40 30"
 			"AbilityCastRange"				"900"
@@ -6422,7 +6422,7 @@
 				"fragment_impact_radius"                  "150 160 170 180"
         	}
 			"ReduxFlags"		"stun | physical"
-            "ReduxPerks"		"skillshot | physical"
+            "ReduxPerks"		"skillshot | physical | earth"
 		} 
 		
 		"visage_silent_as_the_grave"
@@ -9303,7 +9303,7 @@
         }
         "special_bonus_unique_riki_3"
         {
-            "TalentRequiredAbility"                                                   "riki_blink_strike"
+            "TalentRequiredAbility"                                                   "riki_smoke_screen"
         }
         "special_bonus_unique_riki_4"
         {

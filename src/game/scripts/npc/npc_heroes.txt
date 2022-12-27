@@ -6783,7 +6783,7 @@
 				"item_blink"		"ITEM_CORE"
 				
 				"item_energy_booster"		"ITEM_EXTENSION"
-				"item_sobi_mask"			"ITEM_EXTENSION"
+				"item_void_stone"		"ITEM_EXTENSION"
 				"item_recipe_aether_lens"	"ITEM_EXTENSION"
 				"item_aether_lens"			"ITEM_DERIVED"
 				
