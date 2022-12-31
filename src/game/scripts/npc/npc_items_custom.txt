@@ -1164,7 +1164,7 @@
             "06"
             {
                 "var_type"              "FIELD_INTEGER"
-                "assault_aura_negative_armor"   "-5"
+                "assault_aura_negative_armor"   "5"
           }
         }
     }
@@ -2276,7 +2276,7 @@
             "01"
             {
                 "var_type"              "FIELD_INTEGER"
-                "aeon_disk_bonus_health"          "300"
+                "aeon_disk_bonus_health"          "250"
             }           
             "02"
             {

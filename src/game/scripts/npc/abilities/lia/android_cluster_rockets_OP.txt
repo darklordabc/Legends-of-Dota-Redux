@@ -28,12 +28,12 @@
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "damage"                                               "80 160 260 360"
+                "damage"                                               "50 75 100 125"
             }
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "projectile_count"                                     "12 22 36 56"
+                "projectile_count"                                     "45"
             }
             "03"
             {
@@ -43,12 +43,12 @@
             "04"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "radius"                                               "250 300 350 400"
+                "radius"                                               "600"
             }
             "05"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "projectile_speed"                                     "950"
+                "projectile_speed"                                     "1000"
             }
             "06"
             {
@@ -58,7 +58,7 @@
             "07"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "projectile_interval"                                  "0.08 0.044 0.028 0.018"
+                "projectile_interval"                                  "0.02"
             }
         }
         "OnSpellStart"

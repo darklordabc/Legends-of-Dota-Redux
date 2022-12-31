@@ -19,7 +19,7 @@
         "AbilityManaCost"                                                      "60 70 80 90"
         "precache"
         {
-            "particle"                                                     "particles/wisp_overcharge_custom.vpcf"
+            "particle"                                                     "particles/units/heroes/hero_wisp/wisp_overcharge.vpcf"
         }
         "AbilitySpecial"
         {
