@@ -73,12 +73,12 @@ local state = {
 [MODIFIER_STATE_TRUESIGHT_IMMUNE] = true,
 [MODIFIER_STATE_INVISIBLE] = true,
 }
-if (self.hHost ~= nil) then
-	state[MODIFIER_STATE_STUNNED] = self.hHost:IsStunned()
-	state[MODIFIER_STATE_SILENCED] = self.hHost:IsSilenced()
-	state[MODIFIER_STATE_MUTED] = self.hHost:IsMuted()
-	state[MODIFIER_STATE_COMMAND_RESTRICTED] = self.hHost:IsCommandRestricted()
-end
+--if (self.hHost ~= nil) then
+--	state[MODIFIER_STATE_STUNNED] = self.hHost:IsStunned()
+--	state[MODIFIER_STATE_SILENCED] = self.hHost:IsSilenced()
+--	state[MODIFIER_STATE_MUTED] = self.hHost:IsMuted()
+--	state[MODIFIER_STATE_COMMAND_RESTRICTED] = self.hHost:IsCommandRestricted()
+--end
 	return state
 end
 
