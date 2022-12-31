@@ -5,8 +5,8 @@
         "BaseClass"                                                            "ability_lua"
         "ScriptFile"                                                           "abilities/spell_lab/symbiotic/ability.lua"
         "AbilityTextureName"                                                   "custom/spell_lab_symbiotic"
-        "AbilityCooldown"                                                      "30.0 20.0 10.0"
-        "AbilityManaCost"                                                      "50"
+        "AbilityCooldown"                                                      "15.0 10.0 5.0"
+        "AbilityManaCost"                                                      "0"
         "AbilityCastRange"                                                     "250"
         "AbilityCastPoint"                                                     "0.2"
         "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
@@ -50,12 +50,12 @@
             "07"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "range_scepter"                                          "1200"
+                "range_scepter"                                          "3000"
             }
             "08"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "stat_scepter"                                          "3"
+                "stat_scepter"                                          "5"
             }
         }
         "precache"
