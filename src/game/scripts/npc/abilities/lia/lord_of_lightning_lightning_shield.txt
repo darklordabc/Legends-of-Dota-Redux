@@ -15,7 +15,7 @@
         "AbilityCastRange"                                                     "1000"
         "AbilityCastPoint"                                                     "0"
         "AbilityCooldown"                                                      "14 12 10 8"
-        "AbilityManaCost"                                                      "100"
+        "AbilityManaCost"                                                      "75"
         "AOERadius"                                                            "350"
         "precache"
         {
@@ -42,7 +42,7 @@
             "04"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "duration"                                             "8"
+                "duration"                                             "14"
             }
         }
         "OnSpellStart"
