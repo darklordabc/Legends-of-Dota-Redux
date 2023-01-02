@@ -2,7 +2,76 @@
 "DOTAUnits"
 {
 	"Version"	"1"
+	
+	"npc_crypt_lord_locust"
+	{
+		// General
+		//----------------------------------------------------------------
+		"Model"						"models/heroes/zeus/zeus_sigil.vmdl"
+		"BaseClass"					"npc_dota_error"
+		"SoundSet"					"0"
+		"Level"						"1"
+		"ModelScale"				"0.5"
 
+		// Abilities
+		//----------------------------------------------------------------
+		"Ability1"					""
+		"Ability2"					""
+		"Ability3"					""
+		"Ability4"					""
+
+		// Armor
+		//----------------------------------------------------------------
+		"ArmorPhysical"				"0"
+
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttackDamageMin"			"0"
+		"AttackDamageMax"			"0"
+		"AttackRate"				"1.0"
+		"AttackAnimationPoint"		"0.0"
+		"AttackAcquisitionRange"	"0"
+		"AttackRange"				"0"
+		"ProjectileModel"			""
+		"ProjectileSpeed"			"0"
+
+		// Bounds
+		//----------------------------------------------------------------
+		"HealthBarOffset"			"120"
+		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"	// Hull type used for navigation/locomotion.	   
+
+		// Bounty
+		//----------------------------------------------------------------
+		"BountyXP"					"10"
+		"BountyGoldMin"				"10"
+		"BountyGoldMax"				"10"
+
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_FLY"
+		"MovementSpeed"				"0" // this is set in code
+		"MovementTurnRate"			"1.0"
+		"FollowRange"				"-100"		// Needs to be negative so it doesn't scale down when it gets close
+
+		// Status
+		//----------------------------------------------------------------
+		"StatusHealth"				"100"
+		"StatusHealthRegen"			"0.0"
+		
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"		"200"
+		"VisionNighttimeRange"		"200"
+
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"					"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_ATTACHED"
+	}
+	
 	"npc_dota_seasonal_penguin"
 	{
 		// General

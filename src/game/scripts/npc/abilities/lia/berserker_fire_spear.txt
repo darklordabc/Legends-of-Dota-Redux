@@ -11,7 +11,7 @@
         "precache"
         {
             "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_huskar.vsndevts"
-            "particle"                                                     "particles/units/heroes/hero_huskar/huskar_burning_spear.vpcf"
+            "particle"                                                     "particles/units/heroes/hero_mars/mars_spear.vpcf"
         }
         "AbilityCastRange"                                                     "900 1050 1200 1350"
         "AbilityCastPoint"                                                     "0.3 0.3 0.3 0.3"
@@ -28,17 +28,17 @@
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "spear_width"                                          "150"
+                "spear_width"                                          "175"
             }
             "03"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "movement_speed_slow"                                  "-45"
+                "movement_speed_slow"                                  "-50"
             }
             "04"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "slow_duration"                                        "6"
+                "slow_duration"                                        "3 4 5 6"
             }
             "05"
             {
@@ -61,7 +61,7 @@
             "LinearProjectile"
             {
                 "Target"                                               "POINT"
-                "EffectName"                                           "particles/berserker_fire_spear.vpcf"
+                "EffectName"                                           "particles/units/heroes/hero_mars/mars_spear.vpcf"
                 "MoveSpeed"                                            "%spear_speed"
                 "StartRadius"                                          "%spear_width"
                 "StartPosition"                                        "attach_attack1"

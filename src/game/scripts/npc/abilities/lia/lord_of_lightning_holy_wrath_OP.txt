@@ -13,7 +13,7 @@
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "chance_dmg"                                           "25 27 29 31"
+                "chance_dmg"                                           "25 30 35 40"
             }
             "02"
             {
@@ -28,7 +28,7 @@
             "04"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "radius_dop_dmg"                                       "200"
+                "radius_dop_dmg"                                       "300"
             }
         }
         "precache"
