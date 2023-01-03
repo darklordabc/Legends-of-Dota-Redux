@@ -64,7 +64,7 @@ function ancient_priestess_spirit_link:OnSpellStart()
 				local modifier = target:FindModifierByName("modifier_ancient_priestess_spirit_link")
 				modifier.tTargets = tTargets
 
-				local particle = ParticleManager:CreateParticle("particles/dazzle_shadow_wave_custom.vpcf", PATTACH_WORLDORIGIN, prevTarget)
+				local particle = ParticleManager:CreateParticle("particles/neutral_fx/harpy_chain_lightning.vpcf", PATTACH_WORLDORIGIN, prevTarget)
 				ParticleManager:SetParticleControl(particle,0,Vector(prevTarget:GetAbsOrigin().x,prevTarget:GetAbsOrigin().y,prevTarget:GetAbsOrigin().z + prevTarget:GetBoundingMaxs().z ))	
 				ParticleManager:SetParticleControl(particle,1,Vector(target:GetAbsOrigin().x,target:GetAbsOrigin().y,target:GetAbsOrigin().z + target:GetBoundingMaxs().z ))
 				--звук
