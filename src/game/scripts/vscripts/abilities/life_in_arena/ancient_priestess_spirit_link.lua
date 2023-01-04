@@ -36,7 +36,7 @@ function ancient_priestess_spirit_link:OnSpellStart()
 	target:AddNewModifier(caster, self, "modifier_ancient_priestess_spirit_link", {duration = duration})
 	target:FindModifierByName("modifier_ancient_priestess_spirit_link").tTargets = tTargets 
 
-	local particle = ParticleManager:CreateParticle("particles/neutral_fx/harpy_chain_lightning.vpcf", PATTACH_WORLDORIGIN, caster)
+	local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_dazzle/dazzle_shadow_wave.vpcf", PATTACH_WORLDORIGIN, caster)
 	ParticleManager:SetParticleControl(particle,0,Vector(caster:GetAbsOrigin().x,caster:GetAbsOrigin().y,caster:GetAbsOrigin().z + caster:GetBoundingMaxs().z ))	
 	ParticleManager:SetParticleControl(particle,1,Vector(target:GetAbsOrigin().x,target:GetAbsOrigin().y,target:GetAbsOrigin().z + target:GetBoundingMaxs().z ))
 	--звук
@@ -64,7 +64,7 @@ function ancient_priestess_spirit_link:OnSpellStart()
 				local modifier = target:FindModifierByName("modifier_ancient_priestess_spirit_link")
 				modifier.tTargets = tTargets
 
-				local particle = ParticleManager:CreateParticle("particles/neutral_fx/harpy_chain_lightning.vpcf", PATTACH_WORLDORIGIN, prevTarget)
+				local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_dazzle/dazzle_shadow_wave.vpcf", PATTACH_WORLDORIGIN, prevTarget)
 				ParticleManager:SetParticleControl(particle,0,Vector(prevTarget:GetAbsOrigin().x,prevTarget:GetAbsOrigin().y,prevTarget:GetAbsOrigin().z + prevTarget:GetBoundingMaxs().z ))	
 				ParticleManager:SetParticleControl(particle,1,Vector(target:GetAbsOrigin().x,target:GetAbsOrigin().y,target:GetAbsOrigin().z + target:GetBoundingMaxs().z ))
 				--звук
