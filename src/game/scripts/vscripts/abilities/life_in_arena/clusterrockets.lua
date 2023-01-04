@@ -15,7 +15,7 @@ function FireClusterRocket( event )
     local radius =  ability:GetLevelSpecialValueFor( "radius" , ability:GetLevel() - 1  )
     local projectile_count =  ability:GetLevelSpecialValueFor( "projectile_count" , ability:GetLevel() - 1  )
     local projectile_speed =  ability:GetLevelSpecialValueFor( "projectile_speed" , ability:GetLevel() - 1  )
-    local particleName = "particles/units/heroes/hero_tinker/tinker_missile.vpcf"
+    local particleName = "particles/units/heroes/hero_gyrocopter/gyro_rocket_barrage.vpcf"
 
     -- Get engineering level and increase the radius
     local engineering_level = 0
@@ -64,7 +64,7 @@ function ClusterRocketHit(event)
     local ability = event.ability
     local damage = ability:GetAbilityDamage()
     local duration = ability:GetLevelSpecialValueFor("stun_duration",ability:GetLevel()-1)
-    local enemies = FindEnemiesInRadius(caster, 100, target:GetAbsOrigin())
+    local enemies = FindEnemiesInRadius(caster, 125, target:GetAbsOrigin())
 
     for _,enemy in pairs(enemies) do
         if IsCustomBuilding(enemy) then
