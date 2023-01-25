@@ -652,7 +652,7 @@
         }
         "brewmaster_earth_spell_immunity"
         {
-            "MaxLevel"                                                             "3"
+            "MaxLevel"                                                             "1"
 			"ReduxCost"                                                            "200"
         }
         "brewmaster_earth_pulverize"
@@ -680,7 +680,17 @@
             "ReduxFlags"                                                           "mobility | invis | doNotRandom"
             "ReduxPerks"                                                           "mobility"
         }
-		
+		"brewmaster_void_astral_pulse"
+		{
+            "MaxLevel"                                                             "3"
+            "ReduxFlags"                                                           "disarm"
+            "ReduxPerks"                                                           ""
+        }
+		"brewmaster_fire_phase"
+		{
+            "MaxLevel"                                                             "1"
+			"ReduxCost"                                                            "40"
+        }
         "mudgolem_cloak_aura"
         {
             "MaxLevel"                      "4"
@@ -1722,7 +1732,7 @@
         "lina_laguna_blade"
         {
             "ReduxFlags"                                                           "upgradeable"
-            "ReduxPerks"                                                           "fire"
+            "ReduxPerks"                                                           "fire | lightning"
         }
 		"lina_flame_cloak"
 		{
@@ -3242,6 +3252,12 @@
         {
             "ReduxFlags"                                                           "attack_modifier"
             "ReduxPerks"                                                           "attack_modifier | poison"
+            "ReduxCost"                                                            "10"
+        }
+		"broodmother_insatiable_hunger"
+        {
+            "ReduxFlags"                                                           "attack_modifier"
+            "ReduxPerks"                                                           "attack_modifier | rage"
             "ReduxCost"                                                            "10"
         }
         "venomancer_poison_sting"
@@ -7159,8 +7175,8 @@
 		}
 		"berserker_fire_spear"
         {
-            "ReduxPerks"    "skillshot | fire"
-            "ReduxFlags"    ""
+            "ReduxPerks"    "skillshot | fire | physical"
+            "ReduxFlags"    "physical"
         }
         "hylonome_eldritch_pull"
         {
