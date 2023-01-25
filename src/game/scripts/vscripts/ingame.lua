@@ -533,10 +533,10 @@ function Ingame:onStart()
         end
 
     -- Force bots to take a defensive pose until the first tower has been destroyed. This is top stop bots from straight away pushing lanes when they hit level 6
-    Timers:CreateTimer(function ()
-               GameRules:GetGameModeEntity():SetBotsInLateGame(self.botsInLateGameMode)
-               --print("bots will only defend")
-            end, 'forceBotsToDefend', 0.5)
+    --Timers:CreateTimer(function ()
+    --           GameRules:GetGameModeEntity():SetBotsInLateGame(self.botsInLateGameMode)
+    --           --print("bots will only defend")
+    --        end, 'forceBotsToDefend', 0.5)
 
     ---Enable and then quickly disable all vision. This fixes two problems. First it fixes the scoreboard missing enemy abilities, and second it fixes the issues of bots not moving until they see an enemy player.
     if Convars:GetBool("dota_all_vision") == false then
@@ -1993,7 +1993,7 @@ function Ingame:addStrongTowers()
             Timers:CreateTimer(function()
                 self.botsInLateGameMode = true
                 GameRules:GetGameModeEntity():SetBotsInLateGame(self.botsInLateGameMode)
-            end, DoUniqueString('makesBotsLateGameAgain'), 180)
+            end, DoUniqueString('makesBotsLateGameAgain'), 120)
         else
             --print("bots are in late game behaviour")
             self.botsInLateGameMode = true
