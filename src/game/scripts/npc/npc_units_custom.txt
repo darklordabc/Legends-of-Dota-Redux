@@ -7,11 +7,11 @@
 	{
 		// General
 		//----------------------------------------------------------------
-		"Model"						"models/heroes/zeus/zeus_sigil.vmdl"
-		"BaseClass"					"npc_dota_error"
+		"Model"						"models/heroes/keeper_of_the_light/kotl_wisp.vmdl"
+		"BaseClass"					"npc_dota_base_additive"
 		"SoundSet"					"0"
 		"Level"						"1"
-		"ModelScale"				"0.5"
+		"ModelScale"				"0.25"
 
 		// Abilities
 		//----------------------------------------------------------------
