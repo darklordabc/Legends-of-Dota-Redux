@@ -734,6 +734,11 @@
         {
             "MaxLevel"                                                             "1"
         }
+		"life_stealer_ghoul_frenzy"
+		{
+            "ReduxFlags"                                                           "attack_modifier"
+            "ReduxPerks"                                                           "attack_modifier | rage"
+        }
         "big_thunder_lizard_wardrums_aura"
         {
             "MaxLevel"                                                             "4"
@@ -1686,7 +1691,7 @@
         "huskar_life_break"
         {
             "ReduxFlags"                                                           "upgradeable | mobility"
-            "ReduxPerks"                                                           "self_damage | mobility"
+            "ReduxPerks"                                                           "self_damage | mobility | rage"
             "ReduxCost"                                                            "120"
             "ReduxBans"                                                            "spell_lab_symbiotic"
         }
@@ -2478,7 +2483,7 @@
         "lycan_shapeshift"
         {
             "ReduxFlags"                                                           "mobility | crit | attack_modifier"
-            "ReduxPerks"                                                           "mobility | attack_modifier"
+            "ReduxPerks"                                                           "mobility | attack_modifier | rage"
         }
         "faceless_void_time_walk"
         {
@@ -5340,7 +5345,7 @@
         
         "huskar_inner_fire"
         {
-            "ReduxPerks"                                                           "enemyMoving | fire"
+            "ReduxPerks"                                                           "enemyMoving | fire | rage"
             "ReduxFlags"                                                           ""
         }
         "invoker_retro_deafening_blast"
@@ -5589,7 +5594,7 @@
         }
         "terrorblade_demon_zeal"
         {
-            "ReduxPerks"                                                           "demon"
+            "ReduxPerks"                                                           "demon | rage"
             "ReduxFlags"                                                           ""
         }
         "terrorblade_sunder"
@@ -5986,8 +5991,6 @@
 					"move_speed"            "30 35 40 45"
 				}
 				}
-				"ReduxPerks"                                                           "support"
-				"ReduxFlags"                                                           "support"
         }   
     
         "bristleback_hairball"
