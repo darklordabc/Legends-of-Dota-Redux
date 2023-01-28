@@ -2420,7 +2420,7 @@
 		"marci_unleash"
 		{
             "ReduxFlags"                                                           "mobility"
-            "ReduxPerks"                                                           "mobility"
+            "ReduxPerks"                                                           "mobility | rage"
             "ReduxCost"                                                            "20"
         }
 		"bloodseeker_thirst"
