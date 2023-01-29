@@ -439,8 +439,8 @@
 		"HeroUnlockOrder"		"2"
 		"HeroPool1"				"1"
 		"HeroPool2"				"1"
-		"Role"			"Initiator,Durable,Disabler,Jungler,Carry"
-		"Rolelevels"	"3,3,2,2,1"
+		"Role"			"Initiator,Durable,Disabler,Carry"
+		"Rolelevels"	"3,3,2,1"
 		"Complexity"	"1"
 		"Team"		"Bad"
 		"HeroID"		"2"
@@ -474,8 +474,8 @@
 		"Ability17"		"special_bonus_unique_axe"
 		"ArmorPhysical"		"-1"
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"		"27"
-		"AttackDamageMax"		"31"
+		"AttackDamageMin"		"30"
+		"AttackDamageMax"		"34"
 		"AttackRate"		"1.700000"
 		"AttackAnimationPoint"		"0.400000"
 		"AttackAcquisitionRange"		"600"
@@ -971,8 +971,8 @@
 		"Enabled"		"1"
 		"BotImplemented"		"1"
 		"HeroUnlockOrder"		"3"
-		"Role"			"Carry,Disabler,Jungler,Nuker,Initiator"
-		"Rolelevels"	"1,1,1,1,1"
+		"Role"			"Carry,Disabler,Nuker,Initiator"
+		"Rolelevels"	"1,1,1,1"
 		"Complexity"	"1"
 		"Team"		"Bad"
 		"HeroID"		"4"
@@ -1237,8 +1237,8 @@
 		"HeroUnlockOrder"		"0"
 		"HeroPool1"				"1"
 		"HeroPool2"		"1"
-		"Role"			"Support,Disabler,Nuker,Jungler"
-		"Rolelevels"	"3,2,2,1"
+		"Role"			"Support,Disabler,Nuker"
+		"Rolelevels"	"3,2,2"
 		"Complexity"	"1"
 		"Team"		"Good"
 		"HeroID"		"5"
@@ -1313,6 +1313,38 @@
 			"Particles"
 			{
 				"particles/units/heroes/hero_crystalmaiden/maiden_loadout.vpcf"		"loadout"
+			}
+		}
+		"MovementSpeedActivityModifiers"
+		{
+			"walk"		"0"
+			"run"		"320"
+			"run_fast"	"345"
+		}
+		"animation_transitions"
+		{
+			"ACT_DOTA_RUN"
+			{
+				"regular"		"0.600000"
+				"aggressive"		"0.6"
+			}
+			"ACT_DOTA_IDLE"
+			{
+				"regular"		"0.80000"
+				"aggressive"		"0.8"
+			}
+		}
+		"AttackSpeedActivityModifiers"
+		{
+			"fast"		"200"
+		}
+
+		"Persona"
+		{
+			"1"
+			{
+				"name"					"npc_dota_hero_crystal_maiden_persona1"
+				"Model"					"models/heroes/crystal_maiden_persona/crystal_maiden_persona.vmdl"	// For tools only
 			}
 		}
 		"ItemSlots"
@@ -1408,6 +1440,78 @@
 				"SlotText" "crystal_maiden_freezing_field"
 				"DisplayInLoadout" "0"
 			}
+			"11"
+			{
+				"SlotIndex"		"11"
+				"SlotName"		"head_persona_1"
+				"SlotText"		"#LoadoutSlot_Head_Crystal_Maiden_Persona"
+				"TextureWidth"		"256"
+				"TextureHeight"		"256"
+				"MaxPolygonsLOD0"		"1000"
+				"MaxPolygonsLOD1"		"500"
+			}
+			"12"
+			{
+				"SlotIndex"		"12"
+				"SlotName"		"tail_persona_1"
+				"SlotText"		"#LoadoutSlot_Tail_Crystal_Maiden_Persona"
+				"TextureWidth"		"512"
+				"TextureHeight"		"512"
+				"MaxPolygonsLOD0"		"3000"
+				"MaxPolygonsLOD1"		"1200"
+			}
+			"13"
+			{
+				"SlotIndex"		"13"
+				"SlotName"		"armor_persona_1"
+				"SlotText"		"#LoadoutSlot_Armor_Crystal_Maiden_Persona"
+				"TextureWidth"		"512"
+				"TextureHeight"		"512"
+				"MaxPolygonsLOD0"		"2500"
+				"MaxPolygonsLOD1"		"1000"
+			}
+			"14"
+			{
+				"SlotIndex"		"14"
+				"SlotName"		"misc_persona_1"
+				"SlotText"		"#LoadoutSlot_Misc_Crystal_Maiden_Persona"
+				"TextureWidth"		"256"
+				"TextureHeight"		"256"
+				"MaxPolygonsLOD0"		"1500"
+				"MaxPolygonsLOD1"		"600"
+			}
+			"15"
+			{
+				"SlotIndex"		"15"
+				"SlotName"		"taunt_persona_1"
+				"SlotText"		"#LoadoutSlot_Taunt_Crystal_Maiden_Persona"
+				"DisplayInLoadout" "1"
+			}
+			"16"
+			{
+				"SlotIndex"		"16"
+				"SlotName"		"ambient_effects_persona_1"
+				"SlotText"		"#LoadoutSlot_Ambient_Effects"
+				"DisplayInLoadout"		"0"
+			}
+			"17"
+			{
+				"SlotIndex"		"17"
+				"SlotName"		"summon_persona_1"
+				"SlotText"		"#LoadoutSlot_Pet_Crystal_Maiden_Persona"
+				"ShowItemOnGeneratedUnits" "1"
+				"GeneratesUnits"
+				{
+					"0" "npc_dota_companion"
+				}
+			}
+			// NOTE: PERSONAL SELECTOR MUST BE LAST!
+			"18"
+			{
+				"SlotIndex"		"18"
+				"SlotName"		"persona_selector"
+				"SlotText"		"#LoadoutSlot_Persona_Selector"
+			}	
 		}
 		"Bot"
 		{
@@ -1514,6 +1618,7 @@
 		"HeroOrderID"	"5"
 		"ModelScale"		"0.970000"
 		"LoadoutScale"		"1.100000"
+		"VersusScale"		"1"
 		"HeroGlowColor"		"1 60 246"
 		"CMEnabled"		"1"
 		"workshop_guide_name"		"Drow Ranger"
@@ -1556,7 +1661,7 @@
 		"AttributeAgilityGain"		"2.900000"
 		"StatusHealthRegen"		"0.25"
 		"VisionDaytimeRange"		"1800"
-		"MovementSpeed"		"295"
+		"MovementSpeed"		"300"
 		"MovementTurnRate"		"0.7000"
 		"HasAggressiveStance"		"0"
 		"BoundsHullName"		"DOTA_HULL_SIZE_HERO"
@@ -1822,6 +1927,7 @@
 		"Team"		"Good"
 		"HeroID"		"7"
 		"HeroOrderID"	"6"
+		"NameAliases"		"es"
 		"ModelScale"		"0.930000"
 		"VersusScale"		"0.770000"
 		"HeroGlowColor"		"255 160 0"
@@ -2710,7 +2816,7 @@
 		"SpectatorLoadoutScale" "0.8"
 		"HeroGlowColor"		"240 34 18"
 		"CMEnabled"		"1"
-		"NameAliases"		"sf"
+		"NameAliases"		"sf,nevermore"
 		"workshop_guide_name"		"Shadow Fiend"
 		"LastHitChallengeRival"		"npc_dota_hero_lion"
 		"AbilityDraftDisabled"		"0"
@@ -2980,7 +3086,7 @@
 		"Ability18"		"special_bonus_agility_15"
 		"Ability19"		"special_bonus_unique_morphling_4"
 		"Ability20"		"special_bonus_unique_morphling_10"
-		"Ability21"		"special_bonus_unique_morphling_6"
+		"Ability21"		"special_bonus_unique_morphling_waveform_cooldown"
 		"Ability22"		"special_bonus_strength_35"
 		"AbilityTalentStart"		"15"
 		"AbilityDraftAbilities"
@@ -3507,7 +3613,7 @@
 		"Ability6"		"pudge_dismember"
 		"Ability10"		"special_bonus_armor_4"
 		"Ability11"		"special_bonus_unique_pudge_4"
-		"Ability12"		"special_bonus_spell_lifesteal_10"
+		"Ability12"		"special_bonus_spell_lifesteal_8"
 		"Ability13"		"special_bonus_unique_pudge_7"
 		"Ability14"		"special_bonus_unique_pudge_6"
 		"Ability15"		"special_bonus_unique_pudge_5"
@@ -3813,7 +3919,7 @@
 				"12"		"pudge_dismember"
 				"13"		"pudge_flesh_heap"
 				"14"		"pudge_flesh_heap"
-				"15"		"special_bonus_spell_lifesteal_10"
+				"15"		"special_bonus_spell_lifesteal_8"
 				"16"		"pudge_flesh_heap"
 				"17"		""
 				"18"		"pudge_dismember"
@@ -3856,7 +3962,7 @@
 		"HeroOrderID"	"15"
 		"BotImplemented"		"1"
 		"ModelScale"		"0.860000"
-		"VersusScale"		"0.900000"
+		"VersusScale"		"0.9"
 		"SpectatorLoadoutScale" "0.8"
 		"HeroGlowColor"		"182 242 255"
 		"CMEnabled"		"1"
@@ -3876,7 +3982,7 @@
 		"Ability5"		"generic_hidden"
 		"Ability6"		"razor_eye_of_the_storm"
 		"Ability10"		"special_bonus_unique_razor_4"
-		"Ability11"		"special_bonus_agility_9"
+		"Ability11"		"special_bonus_agility_12"
 		"Ability12"		"special_bonus_unique_razor"
 		"Ability13"		"special_bonus_strength_14"
 		"Ability14"		"special_bonus_unique_razor_5"
@@ -4090,7 +4196,7 @@
 				"7"		"razor_plasma_field"
 				"8"		"razor_eye_of_the_storm"
 				"9"		"razor_static_link"
-				"10"		"special_bonus_agility_9"
+				"10"		"special_bonus_agility_12"
 				"11"		"razor_static_link"
 				"12"		"razor_eye_of_the_storm"
 				"13"		"razor_unstable_current"
@@ -4129,8 +4235,8 @@
 		"Enabled"		"1"
 		"BotImplemented"		"1"
 		"HeroUnlockOrder"		"1"
-		"Role"			"Initiator,Disabler,Support,Nuker,Escape,Jungler"
-		"Rolelevels"	"3,2,1,2,2,1"
+		"Role"			"Initiator,Disabler,Support,Nuker,Escape"
+		"Rolelevels"	"3,2,1,2,2"
 		"Complexity"	"2"
 		"Team"		"Bad"
 		"HeroID"		"16"
@@ -6065,7 +6171,7 @@
 			}
 			"LaningInfo"
 			{
-				"SoloDesire"		"1"
+				"SoloDesire"		"0"
 				"RequiresBabysit"		"0"
 				"ProvidesBabysit"		"1"
 				"SurvivalRating"		"2"
@@ -6112,7 +6218,7 @@
 		"Ability4"		"lina_flame_cloak"
 		"Ability5"		"generic_hidden"
 		"Ability6"		"lina_laguna_blade"
-		"Ability10"		"special_bonus_attack_damage_25"
+		"Ability10"		"special_bonus_attack_damage_20"
 		"Ability11"		"special_bonus_unique_lina_1"
 		"Ability12"		"special_bonus_hp_350"
 		"Ability13"		"special_bonus_unique_lina_3"
@@ -6120,7 +6226,7 @@
 		"Ability15"		"special_bonus_unique_lina_2"
 		"Ability16"		"special_bonus_unique_lina_6"
 		"Ability17"		"special_bonus_unique_lina_7"
-		"ArmorPhysical"		"0"
+		"ArmorPhysical"		"-1"
 		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
 		"AttackDamageMin"		"21"
 		"AttackDamageMax"		"29"
@@ -6374,6 +6480,7 @@
 		"Ability15"		"special_bonus_unique_lich_4"
 		"Ability16"		"special_bonus_unique_lich_1"
 		"Ability17"		"special_bonus_unique_lich_5"
+		"StatusHealthRegen"		"0.5"
 		"ArmorPhysical"		"-1"
 		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
 		"AttackDamageMin"		"24"
@@ -8071,8 +8178,8 @@
 		"BanSound"		"enigma_enig_anger_01"
 		"Enabled"		"1"
 		"HeroUnlockOrder"		"1"
-		"Role"			"Disabler,Jungler,Initiator,Pusher"
-		"Rolelevels"	"2,3,2,2"
+		"Role"			"Disabler,Initiator,Pusher"
+		"Rolelevels"	"2,2,2"
 		"Complexity"	"2"
 		"Team"		"Bad"
 		"HeroID"		"33"
@@ -8101,7 +8208,7 @@
 		"Ability6"		"enigma_black_hole"
 		"Ability10"		"special_bonus_unique_enigma_4"
 		"Ability11"		"special_bonus_unique_enigma_6"
-		"Ability12"		"special_bonus_hp_350"
+		"Ability12"		"special_bonus_hp_250"
 		"Ability13"		"special_bonus_unique_enigma_5"
 		"Ability14"		"special_bonus_unique_enigma_9"
 		"Ability15"		"special_bonus_unique_enigma_3"
@@ -9028,8 +9135,8 @@
 				"SlotIndex"		"0"
 				"SlotName"		"weapon"
 				"SlotText"		"#LoadoutSlot_Weapon"
-				"TextureWidth"		"256"
-				"TextureHeight"		"256"
+				"TextureWidth"		"512"
+				"TextureHeight"		"512"
 				"MaxPolygonsLOD0"		"2000"
 				"MaxPolygonsLOD1"		"800"
 			}
@@ -9038,7 +9145,7 @@
 				"SlotIndex"		"1"
 				"SlotName"		"head"
 				"SlotText"		"#LoadoutSlot_Head_Accessory"
-				"TextureWidth"		"256"
+				"TextureWidth"		"512"
 				"TextureHeight"		"256"
 				"MaxPolygonsLOD0"		"3000"
 				"MaxPolygonsLOD1"		"1200"
@@ -9058,7 +9165,7 @@
 				"SlotIndex"		"3"
 				"SlotName"		"back"
 				"SlotText"		"#LoadoutSlot_Back"
-				"TextureWidth"		"256"
+				"TextureWidth"		"512"
 				"TextureHeight"		"256"
 				"MaxPolygonsLOD0"		"2000"
 				"MaxPolygonsLOD1"		"800"
@@ -9083,7 +9190,7 @@
 				"SlotIndex"		"5"
 				"SlotName"		"offhand_weapon"
 				"SlotText"		"#LoadoutSlot_Warlock_Lantern"
-				"TextureWidth"		"256"
+				"TextureWidth"		"512"
 				"TextureHeight"		"256"
 				"MaxPolygonsLOD0"		"2000"
 				"MaxPolygonsLOD1"		"800"
@@ -9093,7 +9200,7 @@
 				"SlotIndex"		"6"
 				"SlotName"		"shoulder"
 				"SlotText"		"#LoadoutSlot_Shoulder"
-				"TextureWidth"		"256"
+				"TextureWidth"		"512"
 				"TextureHeight"		"256"
 				"MaxPolygonsLOD0"		"2500"
 				"MaxPolygonsLOD1"		"1000"
@@ -9227,8 +9334,8 @@
 				"ProvidesBabysit"		"2"
 				"SurvivalRating"		"0"
 				"RequiresFarm"		"1"
-				"ProvidesSetup"		"1"
-				"RequiresSetup"		"0"
+				"ProvidesSetup"		"0"
+				"RequiresSetup"		"1"
 			}
 		}
 	}
@@ -10311,7 +10418,7 @@
 		"Ability5"		"generic_hidden"
 		"Ability6"		"death_prophet_exorcism"
 		"Ability10"		"special_bonus_attack_damage_30"
-		"Ability11"		"special_bonus_magic_resistance_12"
+		"Ability11"		"special_bonus_magic_resistance_14"
 		"Ability12"		"special_bonus_unique_death_prophet_3"
 		"Ability13"		"special_bonus_unique_death_prophet_2"
 		"Ability14"		"special_bonus_unique_death_prophet_4"
@@ -10528,7 +10635,7 @@
 				"12"		"death_prophet_exorcism"
 				"13"		"death_prophet_silence"
 				"14"		"death_prophet_silence"
-				"15"		"special_bonus_magic_resistance_12"
+				"15"		"special_bonus_magic_resistance_14"
 				"16"		"death_prophet_silence"
 				"17"		""
 				"18"		"death_prophet_exorcism"
@@ -10603,13 +10710,13 @@
 		"AttackDamageMin"		"31"
 		"AttackDamageMax"		"33"
 		"AttackRate"		"1.700000"
-		"StatusHealthRegen"		"1"
+		"StatusHealthRegen"		"1.0"
 		"AttackAnimationPoint"		"0.300000"
 		"AttackSpeedActivityModifiers"
 		{
-			"fast"		"249"
-			"faster"	"350"
-			"fastest"	"450"
+			"fast"		"170" //"249"
+			"faster"	"275" //"350"
+			"fastest"	"350" //"450"
 		}
 		"AttackAcquisitionRange"		"600"
 		"AttackRange"		"150"
@@ -10622,6 +10729,7 @@
 		"AttributeIntelligenceGain"		"1.400000"
 		"MovementSpeed"		"305"
 		"HasAggressiveStance"		"1"
+		"MovementTurnRate"		"0.800000"
 		"RenderablePortrait"
 		{
 			"Particles"
@@ -10629,6 +10737,33 @@
 				"particles/units/heroes/hero_phantom_assassin/phantom_assassin_loadout.vpcf"		"loadout"
 			}
 		}
+		"Persona"
+			{
+				"1"
+				{
+					"name"					"npc_dota_hero_phantom_assassin_persona1"
+					"Model"					"models/heroes/phantom_assassin_persona/phantom_assassin_persona.vmdl"	// For tools only
+				}
+			}
+		"animation_transitions"
+		{
+			"ACT_DOTA_IDLE"
+			{
+		 		"regular"	"0.9"
+				"aggressive"	"0.9"	
+			}
+			"ACT_DOTA_RUN"
+			{
+				"regular"		"1"
+				"aggressive"		"1"
+			}
+		}
+		"MovementSpeedActivityModifiers"
+		{
+			"run"		"345"
+			"run_fast"	"400"
+		}
+
 		"ItemSlots"
 		{
 			"0"
@@ -10701,13 +10836,62 @@
 				"SlotText" "phantom_assassin_blur"
 				"DisplayInLoadout" "0"
 			}
-			"8"
+        	"8"
 			{
 				"SlotIndex"		"8"
+				"SlotName"		"head_persona_1"
+				"SlotText"		"#LoadoutSlot_Head_Phantom_Assassin_Persona"
+				"TextureWidth"		"256"
+				"TextureHeight"		"256"
+				"MaxPolygonsLOD0"		"1000"
+				"MaxPolygonsLOD1"		"500"
+			}
+           	"9"
+			{
+				"SlotIndex"		"9"
+				"SlotName"		"armor_persona_1"
+				"SlotText"		"#LoadoutSlot_Armor_Phantom_Assassin_Persona"
+				"TextureWidth"		"256"
+				"TextureHeight"		"256"
+				"MaxPolygonsLOD0"		"1000"
+				"MaxPolygonsLOD1"		"500"
+			}
+           	"10"
+			{
+				"SlotIndex"		"10"
+				"SlotName"		"legs_persona_1"
+				"SlotText"		"#LoadoutSlot_Legs_Phantom_Assassin_Persona"
+				"TextureWidth"		"256"
+				"TextureHeight"		"256"
+				"MaxPolygonsLOD0"		"1000"
+				"MaxPolygonsLOD1"		"500"
+			}
+		"11"
+			{
+				"SlotIndex"		"11"
+				"SlotName"		"weapon_persona_1"
+				"SlotText"		"#LoadoutSlot_Weapon_Phantom_Assassin_Persona"
+				"TextureWidth"		"256"
+				"TextureHeight"		"256"
+				"MaxPolygonsLOD0"		"1000"
+				"MaxPolygonsLOD1"		"500"
+			}
+		"12"
+			{
+				"SlotIndex"		"12"
 				"SlotName"		"taunt_persona_1"
-				"SlotText"		"#LoadoutSlot_Taunt_Antimage_Persona"
+				"SlotText"		"#LoadoutSlot_Taunt"
 				"DisplayInLoadout" "1"
 			}
+
+			// NOTE: PERSONAL SELECTOR MUST BE LAST!
+			"13"
+			{
+				"SlotIndex"		"13"
+				"SlotName"		"persona_selector"
+				"SlotText"		"#LoadoutSlot_Persona_Selector"
+			}
+
 		}
 		"BoundsHullName"		"DOTA_HULL_SIZE_HERO"
 		"particle_folder"		"particles/units/heroes/hero_phantom_assassin"
@@ -10802,7 +10986,7 @@
 				"SurvivalRating"		"1"
 				"RequiresFarm"		"2"
 				"ProvidesSetup"		"0"
-				"RequiresSetup"		"1"
+				"RequiresSetup"		"2"
 			}
 		}
 	}
@@ -11900,7 +12084,7 @@
 				"RequiresBabysit"		"1"
 				"ProvidesBabysit"		"1"
 				"SurvivalRating"		"1"
-				"RequiresFarm"		"1"
+				"RequiresFarm"		"2"
 				"ProvidesSetup"		"2"
 				"RequiresSetup"		"1"
 			}
@@ -12158,7 +12342,7 @@
 				"TextureWidth"		"512"
 				"TextureHeight"		"512"
 				"MaxPolygonsLOD0"		"2500"
-				"MaxPolygonsLOD1"		"100"
+				"MaxPolygonsLOD1"		"1000"
 			}
 			"4"
 			{
@@ -12486,7 +12670,7 @@
 				"ProvidesBabysit"		"1"
 				"SurvivalRating"		"1"
 				"RequiresFarm"		"2"
-				"ProvidesSetup"		"2"
+				"ProvidesSetup"		"1"
 				"RequiresSetup"		"1"
 			}
 		}
@@ -12523,7 +12707,7 @@
 		"Ability4"		"leshrac_greater_lightning_storm"
 		"Ability5"		"generic_hidden"
 		"Ability6"		"leshrac_pulse_nova"
-		"Ability10"		"special_bonus_mp_regen_175"
+		"Ability10"		"special_bonus_mp_regen_150"
 		"Ability11"		"special_bonus_unique_leshrac_5"
 		"Ability12"		"special_bonus_unique_leshrac_6"
 		"Ability13"		"special_bonus_movement_speed_25"
@@ -12663,8 +12847,8 @@
 		"SoundSet"		"Hero_Furion"
 		"Enabled"		"1"
 		"HeroUnlockOrder"		"2"
-		"Role"			"Carry,Jungler,Pusher,Escape,Nuker"
-		"Rolelevels"	"1,3,3,1,1"
+		"Role"			"Carry,Pusher,Escape,Nuker"
+		"Rolelevels"	"1,3,1,1"
 		"Complexity"	"2"
 		"Team"		"Good"
 		"HeroID"		"53"
@@ -12852,8 +13036,8 @@
 		"SoundSet"		"Hero_LifeStealer"
 		"Enabled"		"1"
 		"HeroUnlockOrder"		"1"
-		"Role"			"Carry,Durable,Jungler,Escape,Disabler"
-		"Rolelevels"	"2,2,1,1,1"
+		"Role"			"Carry,Durable,Escape,Disabler"
+		"Rolelevels"	"2,2,1,1"
 		"Complexity"	"2"
 		"Team"		"Bad"
 		"HeroID"		"54"
@@ -12865,6 +13049,7 @@
 		"CMEnabled"		"1"
 		"PickSound"		"life_stealer_lifest_spawn_01"
 		"BanSound"		"life_stealer_lifest_anger_05"
+		"NameAliases"				"ls"
 		"workshop_guide_name"		"Lifestealer"
 		"new_player_enable"		"1"
 		"SimilarHeroes"		"104,28,93"
@@ -13037,8 +13222,8 @@
 		"SoundSet"		"Hero_DarkSeer"
 		"Enabled"		"1"
 		"HeroUnlockOrder"		"3"
-		"Role"			"Initiator,Jungler,Escape,Disabler"
-		"Rolelevels"	"1,1,1,1"
+		"Role"			"Initiator,Escape,Disabler"
+		"Rolelevels"	"1,1,1"
 		"Complexity"	"1"
 		"Team"		"Bad"
 		"HeroID"		"55"
@@ -13175,6 +13360,13 @@
 				"SlotIndex" "8"
 				"SlotName" "ability_effects_2"
 				"SlotText" "dark_seer_ion_shell"
+				"DisplayInLoadout" "0"
+			}
+			"9"
+			{
+				"SlotIndex" "9"
+				"SlotName" "ability_effects_4"
+				"SlotText" "dark_seer_wall_of_replica"
 				"DisplayInLoadout" "0"
 			}
 		}
@@ -13609,7 +13801,7 @@
 				"1"		"omniknight_purification"
 				"2"		"omniknight_martyr"
 				"3"		"omniknight_purification"
-				"4"		"omniknight_hammer_of_purity"
+				"4"		"omniknight_degen_aura"
 				"5"		"omniknight_purification"
 				"6"		"omniknight_guardian_angel"
 				"7"		"omniknight_purification"
@@ -13618,10 +13810,10 @@
 				"10"		"special_bonus_unique_omniknight_5"
 				"11"		"omniknight_martyr"
 				"12"		"omniknight_guardian_angel"
-				"13"		"omniknight_hammer_of_purity"
-				"14"		"omniknight_hammer_of_purity"
+				"13"		"omniknight_degen_aura"
+				"14"		"omniknight_degen_aura"
 				"15"		"special_bonus_unique_omniknight_5"
-				"16"		"omniknight_hammer_of_purity"
+				"16"		"omniknight_degen_aura"
 				"17"		""
 				"18"		"omniknight_guardian_angel"
 				"19"		""
@@ -13652,8 +13844,8 @@
 		"SoundSet"		"Hero_Enchantress"
 		"Enabled"		"1"
 		"HeroUnlockOrder"		"2"
-		"Role"			"Support,Jungler,Pusher,Durable,Disabler"
-		"Rolelevels"	"2,3,2,1,1"
+		"Role"			"Support,Pusher,Durable,Disabler"
+		"Rolelevels"	"2,2,1,1"
 		"Complexity"	"2"
 		"Team"		"Good"
 		"HeroID"		"58"
@@ -14354,6 +14546,13 @@
 					"0" "npc_dota_broodmother_spider"
 				}
 			}
+			"7"
+			{
+				"SlotIndex" 		"7"
+				"SlotName" 		"ability_effects_2"
+				"SlotText" 		"broodmother_spin_web"
+				"DisplayInLoadout" 	"0"
+			}
 		}
 		"Bot"
 		{
@@ -14414,8 +14613,8 @@
 		"Ability17"		"special_bonus_unique_bounty_hunter_3"
 		"ArmorPhysical"		"5"
 		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
-		"AttackDamageMin"		"30"
-		"AttackDamageMax"		"38"
+		"AttackDamageMin"		"33"
+		"AttackDamageMax"		"41"
 		"AttackRate"		"1.700000"
 		"AttackAnimationPoint"		"0.590000"
 		"AttackAcquisitionRange"		"600"
@@ -15061,8 +15260,8 @@
 		"SoundSet"		"Hero_Batrider"
 		"Enabled"		"1"
 		"HeroUnlockOrder"		"3"
-		"Role"			"Initiator,Jungler,Disabler,Escape"
-		"Rolelevels"	"3,2,2,1"
+		"Role"			"Initiator,Disabler,Escape"
+		"Rolelevels"	"3,2,1"
 		"Complexity"	"2"
 		"Team"		"Bad"
 		"HeroID"		"65"
@@ -15210,8 +15409,8 @@
 		"SoundSet"		"Hero_Chen"
 		"Enabled"		"1"
 		"HeroUnlockOrder"		"3"
-		"Role"			"Support,Jungler,Pusher"
-		"Rolelevels"	"2,3,2"
+		"Role"			"Support,Pusher"
+		"Rolelevels"	"2,2"
 		"Complexity"	"3"
 		"Team"		"Good"
 		"HeroID"		"66"
@@ -15916,8 +16115,8 @@
 		"SoundSet"		"Hero_Ursa"
 		"Enabled"		"1"
 		"HeroUnlockOrder"		"1"
-		"Role"			"Carry,Jungler,Durable,Disabler"
-		"Rolelevels"	"2,1,1,1"
+		"Role"			"Carry,Durable,Disabler"
+		"Rolelevels"	"2,1,1"
 		"Complexity"	"1"
 		"Team"		"Good"
 		"HeroID"		"70"
@@ -16834,8 +17033,8 @@
 				"SlotIndex"		"8"
 				"SlotName"		"head_persona_1"
 				"SlotText"		"#LoadoutSlot_Head_Invoker_Kid"
-				"TextureWidth"		"256"
-				"TextureHeight"		"256"
+				"TextureWidth"		"512"
+				"TextureHeight"		"512"
 				"MaxPolygonsLOD0"		"2500"
 				"MaxPolygonsLOD1"		"1500"
 			}
@@ -16854,8 +17053,8 @@
 				"SlotIndex"		"10"
 				"SlotName"		"back_persona_1"
 				"SlotText"		"#LoadoutSlot_Back_Invoker_Kid"
-				"TextureWidth"		"256"
-				"TextureHeight"		"256"
+				"TextureWidth"		"512"
+				"TextureHeight"		"512"
 				"MaxPolygonsLOD0"		"1000"
 				"MaxPolygonsLOD1"		"600"
 			}
@@ -16864,7 +17063,7 @@
 				"SlotIndex"		"11"
 				"SlotName"		"arms_persona_1"
 				"SlotText"		"#LoadoutSlot_Arms_Invoker_Kid"
-				"TextureWidth"		"256"
+				"TextureWidth"		"512"
 				"TextureHeight"		"256"
 				"MaxPolygonsLOD0"		"1500"
 				"MaxPolygonsLOD1"		"900"
@@ -17032,7 +17231,7 @@
 		"Ability15"		"special_bonus_unique_silencer_arcane_curse_undispellable"
 		"Ability16"		"special_bonus_unique_silencer_glaives_bounces"
 		"Ability17"		"special_bonus_unique_silencer_2"
-		"ArmorPhysical"		"-1"
+		"ArmorPhysical"		"0"
 		"BaseAttackSpeed"		"100"
 		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
 		"AttackDamageMin"		"18"
@@ -17336,8 +17535,8 @@
 		"SoundSet"		"Hero_Lycan"
 		"Enabled"		"1"
 		"HeroUnlockOrder"		"0"
-		"Role"			"Carry,Pusher,Jungler,Durable,Escape"
-		"Rolelevels"	"2,3,1,1,1"
+		"Role"			"Carry,Pusher,Durable,Escape"
+		"Rolelevels"	"2,3,1,1"
 		"Complexity"	"2"
 		"AlternateLoadoutScale" "0.6"
 		"Team"		"Bad"
@@ -17718,7 +17917,7 @@
 		"Ability5"		"shadow_demon_demonic_cleanse"
 		"Ability6"		"shadow_demon_demonic_purge"
 		"Ability10"		"special_bonus_unique_shadow_demon_4"
-		"Ability11"		"special_bonus_strength_10"
+		"Ability11"		"special_bonus_strength_12"
 		"Ability12"		"special_bonus_movement_speed_25"
 		"Ability13"		"special_bonus_unique_shadow_demon_1"
 		"Ability14"		"special_bonus_unique_shadow_demon_disseminate_damage"
@@ -17729,7 +17928,7 @@
 		"AbilityDraftAbilities"
 		{
 			"Ability1"		"shadow_demon_disruption"
-			"Ability2"		"shadow_demon_soul_catcher"
+			"Ability2"		"shadow_demon_disseminate"
 			"Ability3"		"shadow_demon_shadow_poison"
 			"Ability4"		"shadow_demon_demonic_purge"
 		}		
@@ -17855,8 +18054,8 @@
 		"SoundSet"		"Hero_LoneDruid"
 		"Enabled"		"1"
 		"HeroUnlockOrder"		"3"
-		"Role"			"Carry,Pusher,Jungler,Durable"
-		"Rolelevels"	"2,3,1,1"
+		"Role"			"Carry,Pusher,Durable"
+		"Rolelevels"	"2,3,1"
 		"Complexity"	"3"
 		"Team"		"Good"
 		"HeroID"		"80"
@@ -18269,8 +18468,8 @@
 			"HeroType"		"DOTA_BOT_SEMI_CARRY | DOTA_BOT_GANKER | DOTA_BOT_TANK"
 			"LaningInfo"
 			{
-				"SoloDesire"		"0"
-				"RequiresBabysit"		"1"
+				"SoloDesire"		"1"
+				"RequiresBabysit"		"2"
 				"ProvidesBabysit"		"0"
 				"SurvivalRating"		"1"
 				"RequiresFarm"		"2"
@@ -19321,6 +19520,13 @@
 				"SlotName" "ability_effects_3"
 				"SlotText" "disruptor_kinetic_field"
 				"DisplayInLoadout" "0"
+			}	
+			"10"
+			{
+				"SlotIndex" "10"
+				"SlotName" "ability_effects_4"
+				"SlotText" "disruptor_static_storm"
+				"DisplayInLoadout" "0"
 			}			
 		}
 		"Bot"
@@ -19677,8 +19883,8 @@
 		"IdleExpression"		"scenes/keeper_of_the_light/keeper_of_the_light_exp_idle_01.vcd"
 		"SoundSet"		"Hero_KeeperOfTheLight"
 		"Enabled"		"1"
-		"Role"			"Support,Nuker,Disabler,Jungler"
-		"Rolelevels"	"3,2,1,1"
+		"Role"			"Support,Nuker,Disabler"
+		"Rolelevels"	"3,2,1"
 		"Complexity"	"2"
 		"Team"		"Good"
 		"HeroID"		"90"
@@ -21454,8 +21660,8 @@
 				"ProvidesBabysit"		"0"
 				"SurvivalRating"		"2"
 				"RequiresFarm"		"1"
-				"ProvidesSetup"		"2"
-				"RequiresSetup"		"0"
+				"ProvidesSetup"		"1"
+				"RequiresSetup"		"1"
 			}
 		}
 	}
@@ -21921,7 +22127,7 @@
 			{
 				"SoloDesire"		"1"
 				"RequiresBabysit"		"0"
-				"ProvidesBabysit"		"1"
+				"ProvidesBabysit"		"2"
 				"SurvivalRating"		"1"
 				"RequiresFarm"		"0"
 				"ProvidesSetup"		"1"
@@ -22127,7 +22333,7 @@
 		"VersusScale"		"0.650000"
 		"LoadoutScale"		"0.630000"
 		"SpectatorLoadoutScale" "0.70"
-		"NameAliases"		"TC,Cairne"
+		"NameAliases"		"TC,Cairne,et"
 		"workshop_guide_name"		"Elder Titan"
 		"NoCombine"		"1"
 		"PickSound"		"elder_titan_elder_spawn_01"
@@ -22298,7 +22504,7 @@
 		"HeroOrderID"	"105"
 		"ModelScale"		"1.025000"
 		"VersusScale"		"1.0000"
-		"NameAliases"		"Tresdin,Legion"
+		"NameAliases"		"Tresdin,Legion,lc"
 		"PickSound"		"legion_commander_legcom_spawn_01"
 		"BanSound"		"legion_commander_legcom_anger_07"
 		"workshop_guide_name"		"Legion Commander"
@@ -23909,7 +24115,7 @@
 		"Ability5"		"generic_hidden"
 		"Ability6"		"arc_warden_tempest_double"
 		"Ability10"		"special_bonus_unique_arc_warden_5"
-		"Ability11"		"special_bonus_hp_225"
+		"Ability11"		"special_bonus_hp_200"
 		"Ability12"		"special_bonus_unique_arc_warden_4"
 		"Ability13"		"special_bonus_unique_arc_warden_3"
 		"Ability14"		"special_bonus_unique_arc_warden"
@@ -24086,7 +24292,7 @@
 		"VersusScale"		"0.700000"
 		"LoadoutScale"		"0.70"
 		"SpectatorLoadoutScale" "0.785"
-		"NameAliases"		"PitLord,Azgalor"
+		"NameAliases"		"PitLord,Azgalor,ul"
 		"workshop_guide_name"		"Underlord"
 		"Ability1"		"abyssal_underlord_firestorm"
 		"Ability2"		"abyssal_underlord_pit_of_malice"
@@ -25511,6 +25717,7 @@
 		"ModelScale"		"0.80"
 		"LoadoutScale"		"0.95"
 		"SpectatorLoadoutScale" "0.98"
+		"VersusScale"		"1.20000"
 		"HeroGlowColor"		"170 112 194"
 		"CMEnabled"					"1"
 		"Legs"	"4"
@@ -25929,8 +26136,8 @@
 				"SlotIndex"		"0"
 				"SlotName"		"head"
 				"SlotText"		"#LoadoutSlot_Head"
-				"TextureWidth"		"256"
-				"TextureHeight"		"256"
+				"TextureWidth"		"512"
+				"TextureHeight"		"512"
 				"MaxPolygonsLOD0"		"2500"
 				"MaxPolygonsLOD1"		"1250"
 			}
@@ -25959,7 +26166,7 @@
 				"SlotIndex"		"3"
 				"SlotName"		"back"
 				"SlotText"		"#LoadoutSlot_Back"
-				"TextureWidth"		"256"
+				"TextureWidth"		"512"
 				"TextureHeight"		"256"
 				"MaxPolygonsLOD0"		"2500"
 				"MaxPolygonsLOD1"		"1250"
@@ -25992,6 +26199,7 @@
 		"ModelScale"			"0.900000"
 		"MaxModelScaleMultiplier"	"1.25"
 		"LoadoutScale"		"0.900000"
+		"VersusScale"		"0.70000"
 		"SpectatorLoadoutScale" "0.7"
 		"HeroGlowColor"			"0 0 255"
 		"PickSound"				"0"
@@ -26081,8 +26289,8 @@
 				"SlotIndex"		"0"
 				"SlotName"		"head"
 				"SlotText"		"#LoadoutSlot_Head"
-				"TextureWidth"		"256"
-				"TextureHeight"		"256"
+				"TextureWidth"		"512"
+				"TextureHeight"		"512"
 				"MaxPolygonsLOD0"		"2500"
 				"MaxPolygonsLOD1"		"1250"
 			}
@@ -26111,7 +26319,7 @@
 				"SlotIndex"		"3"
 				"SlotName"		"legs"
 				"SlotText"		"#LoadoutSlot_Legs"
-				"TextureWidth"		"256"
+				"TextureWidth"		"512"
 				"TextureHeight"		"256"
 				"MaxPolygonsLOD0"		"2500"
 				"MaxPolygonsLOD1"		"1250"
@@ -26121,6 +26329,13 @@
 				"SlotIndex"		"4"
 				"SlotName"		"taunt"
 				"SlotText"		"#LoadoutSlot_Taunt"
+			}
+			"5"
+			{
+				"SlotIndex" "5"
+				"SlotName" "ability_effects_1"
+				"SlotText" "primal_beast_onslaught"
+				"DisplayInLoadout" "0"
 			}
 		}
 	}
