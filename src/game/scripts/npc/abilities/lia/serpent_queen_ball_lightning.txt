@@ -14,7 +14,7 @@
         "AbilityCastRange"                                                     "800"
         "AbilityCastPoint"                                                     "0.3"
         "AbilityCooldown"                                                      "40 36 32 28"
-        "AbilityManaCost"                                                      "100 125 150 175"
+        "AbilityManaCost"                                                      "100 120 140 160"
         "precache"
         {
             "particle"                                                     "particles/units/heroes/hero_stormspirit/stormspirit_base_attack_explosion.vpcf"
@@ -45,7 +45,7 @@
             "04"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "locusts_speed"                                        "500"
+                "locusts_speed"                                        "700"
             }
             "05"
             {
@@ -65,7 +65,7 @@
             "08"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "locust_damage"                                        "16"
+                "locust_damage"                                        "20"
             }
             "09"
             {
@@ -171,6 +171,6 @@
                 }
             }
         }
-        "ReduxPerks"                                                           "lightning"
+        "ReduxPerks"                                                           "lightning | physical"
     }
 }
