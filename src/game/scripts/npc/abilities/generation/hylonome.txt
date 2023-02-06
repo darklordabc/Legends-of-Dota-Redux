@@ -730,7 +730,7 @@
     {
         "BaseClass"                     "ability_datadriven"
         // "AbilityTextureName"            "custom/hylonome_libation"
-		"AbilityTextureName"			"bloodseeker_thirst_alt"
+		"AbilityTextureName"			"custom/hylonome_libation_bloodrage"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
         "AbilityUnitDamageType"         "DAMAGE_TYPE_PURE"
         "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
