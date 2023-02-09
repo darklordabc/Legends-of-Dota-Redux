@@ -19,7 +19,9 @@
         "AOERadius"                                                            "350"
         "precache"
         {
-            "particle"                                                     "particles/lightning_shield_hit.vpcf"
+            "particle"                                                     "particles/units/heroes/hero_stormspirit/stormspirit_overload_discharge.vpcf"
+			"particle"													   "particles/units/heroes/hero_zuus/zuus_static_field.vpcf"
+			"particle"													   "particles/units/heroes/hero_arc_warden/arc_warden_flux_tgt.vpcf"
             "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_zuus.vsndevts"
         }
         "AbilitySpecial"
@@ -59,7 +61,7 @@
             {
                 "IsPurgable"                                           "1"
                 "Duration"                                             "%duration"
-                "EffectName"                                           "particles/lightning_shield.vpcf"
+                "EffectName"                                           "particles/units/heroes/hero_arc_warden/arc_warden_flux_tgt.vpcf"
                 "EffectAttachType"                                     "follow_origin"
                 "ThinkInterval"                                        "%think_interval"
                 "OnIntervalThink"

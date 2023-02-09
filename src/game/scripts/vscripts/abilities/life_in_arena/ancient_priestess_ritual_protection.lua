@@ -11,7 +11,7 @@ function ancient_priestess_ritual_protection:OnSpellStart()
 
 	for _,unit in pairs(targets) do 
 		unit:AddNewModifier(caster, self, "modifier_ancient_priestess_ritual_protection", {duration = duration})
-		ParticleManager:CreateParticle("particles/items_fx/wand_of_the_brine_buff.vpcf", PATTACH_ABSORIGIN_FOLLOW, unit)
+		ParticleManager:CreateParticle("particles/units/heroes/hero_omniknight/omniknight_repel_cast.vpcf", PATTACH_ABSORIGIN_FOLLOW, unit)
 
 	end
 

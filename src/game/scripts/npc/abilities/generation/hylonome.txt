@@ -729,7 +729,8 @@
     "hylonome_libation"
     {
         "BaseClass"                     "ability_datadriven"
-        "AbilityTextureName"            "custom/hylonome_libation"
+        // "AbilityTextureName"            "custom/hylonome_libation"
+		"AbilityTextureName"			"custom/hylonome_libation_bloodrage"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
         "AbilityUnitDamageType"         "DAMAGE_TYPE_PURE"
         "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
@@ -737,7 +738,7 @@
         "AbilityCooldown"               "50"
         "AbilityManaCost"               "150 175 200"
 
-        "AbilityCastRange"              "550 650 750"
+        "AbilityCastRange"              "750"
         "AbilityCastPoint"              "0.3"
         "AbilityCastAnimation"          "ACT_DOTA_ATTACK_EVENT"
         "AbilityProcsMagicStick"        "1"
@@ -779,7 +780,7 @@
             "05"
             {
                 "var_type"          "FIELD_INTEGER"
-                "distance"              "550 650 750"
+                "distance"              "750"
             }
             "06"
             {

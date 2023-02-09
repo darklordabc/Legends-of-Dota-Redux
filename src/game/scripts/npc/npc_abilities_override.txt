@@ -8388,7 +8388,11 @@
         }
         "special_bonus_unique_lone_druid_9"
         {
-            "TalentRequiredAbility"                                                   "do_not_give_talent"
+			"TalentRequiredAbility"                                                 
+            {
+                "1" "lone_druid_spirit_bear"
+                "2" "lone_druid_spirit_bear_entangle"          
+            }  
         }
         "special_bonus_unique_lone_druid_10"
         {
@@ -8707,7 +8711,11 @@
         {
             "TalentRequiredAbility"                                                   "morphling_adaptive_strike_str"
         }
-
+		"special_bonus_unique_morphling_waveform_cooldown"
+		{
+            "TalentRequiredAbility"                                                   "morphling_waveform"
+        }
+		
 
         "special_bonus_unique_naga_siren"
         {
@@ -11267,7 +11275,7 @@
         }
         "special_bonus_unique_broodmother_2"
         {
-            "TalentRequiredAbility"                                                   "broodmother_spawn_spiderlings"
+            "TalentRequiredAbility"                                                   "broodmother_silken_bola"
         }
         "special_bonus_unique_broodmother_3"
         {
