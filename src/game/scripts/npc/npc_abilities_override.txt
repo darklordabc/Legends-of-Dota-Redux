@@ -11275,7 +11275,7 @@
         }
         "special_bonus_unique_broodmother_2"
         {
-            "TalentRequiredAbility"                                                   "broodmother_spawn_spiderlings"
+            "TalentRequiredAbility"                                                   "broodmother_silken_bola"
         }
         "special_bonus_unique_broodmother_3"
         {
