@@ -34,7 +34,7 @@
 
 		"precache"
 		{
-			"particle"          "particles/econ/items/pugna/pugna_ti10_immortal/pugna_ti10_immortal_life_drain_beam.vpcf"
+			"particle"          "particles/econ/items/lina/lina_ti6/lina_ti6_laguna_blade.vpcf"
 			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_nightstalker.vsndevts"
 		}
 
