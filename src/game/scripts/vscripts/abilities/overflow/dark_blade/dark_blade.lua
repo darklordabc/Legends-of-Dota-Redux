@@ -40,11 +40,11 @@ function dark_blade:OnSpellStart()
 			EmitSoundOn( "Hero_Nightstalker.Void.Nihility", hTarget )
 		end
 
-		local nFXIndex = ParticleManager:CreateParticle( "particles/econ/items/pugna/pugna_ti10_immortal/pugna_ti10_immortal_life_drain_beam.vpcf", PATTACH_CUSTOMORIGIN, nil );
+		local nFXIndex = ParticleManager:CreateParticle( "particles\econ\items\dazzle\dazzle_ti9\dazzle_shadow_wave_ti9.vpcf", PATTACH_CUSTOMORIGIN, nil );
 		ParticleManager:SetParticleControlEnt( nFXIndex, 0, self:GetCaster(), PATTACH_POINT_FOLLOW, "attach_attack1", self:GetCaster():GetOrigin() + Vector( 0, 0, 96 ), true );
 		ParticleManager:SetParticleControlEnt( nFXIndex, 1, hTarget, PATTACH_POINT_FOLLOW, "attach_hitloc", hTarget:GetOrigin(), true );
 		
-			local Colour = {255,150,255}
+			local Colour = {150,50,150}
 			if hTarget:HasModifier("modifier_dark_blade_curse") then
 				local hMod = hTarget:FindModifierByName("modifier_dark_blade_curse")
 				local nStack = hMod:GetStackCount()
