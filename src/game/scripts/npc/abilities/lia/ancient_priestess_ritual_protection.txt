@@ -9,11 +9,11 @@
         "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
         "MaxLevel"                                                             "3"
         "AbilityCastPoint"                                                     "0"
-        "AbilityCooldown"                                                      "60 50 40"
+        "AbilityCooldown"                                                      "55 40 25"
         "AbilityManaCost"                                                      "100 125 150"
         "precache"
         {
-            "particle"                                                     "particles/units/heroes/hero_omniknight/omniknight_repel_cast.vpcf"
+            "particle"                                                     "particles/units/heroes/hero_keeper_of_the_light/keeper_chakra_magic.vpcf"
             "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_mirana.vsndevts"
         }
         "AbilitySpecial"
@@ -21,12 +21,12 @@
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "damage_absorb"                                        "300 550 800"
+                "damage_absorb"                                        "300 600 900"
             }
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "radius"                                               "900"
+                "radius"                                               "1200"
             }
             "03"
             {
