@@ -14,6 +14,7 @@
         "precache"
         {
             "particle"                                                     "particles/units/heroes/hero_keeper_of_the_light/keeper_chakra_magic.vpcf"
+			"particle"													   "particles/items4_fx/combo_breaker_buff.vpcf"
             "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_mirana.vsndevts"
         }
         "AbilitySpecial"
