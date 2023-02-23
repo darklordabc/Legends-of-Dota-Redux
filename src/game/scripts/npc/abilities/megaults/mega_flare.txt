@@ -56,7 +56,7 @@
             "05"
             {
                 "var_type"              "FIELD_INTEGER"
-                "scepter_radius"        "700"
+                "scepter_radius"        "2100"
 				"RequiresScepter"	"1"
             }
         }

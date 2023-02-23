@@ -1,7 +1,7 @@
 modifier_ancient_priestess_ritual_protection = class({})
 
 function modifier_ancient_priestess_ritual_protection:GetEffectName()
-	return "particles/lotus_orb_shell_custom.vpcf"
+	return "particles/items4_fx/combo_breaker_buff.vpcf"
 end
 
 function modifier_ancient_priestess_ritual_protection:GetEffectAttachType()

@@ -8038,6 +8038,10 @@
         {
             "TalentRequiredAbility"                                                   "juggernaut_blade_dance"
         }
+		"special_bonus_unique_juggernaut_omnislash_duration"
+        {
+            "TalentRequiredAbility"                                                   "juggernaut_omni_slash"
+        }
 
 
         "special_bonus_unique_keeper_of_the_light"

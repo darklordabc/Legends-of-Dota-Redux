@@ -21,7 +21,7 @@
         {
             "particle"                                                     "particles/units/heroes/hero_stormspirit/stormspirit_overload_discharge.vpcf"
 			"particle"													   "particles/units/heroes/hero_zuus/zuus_static_field.vpcf"
-			"particle"													   "particles/units/heroes/hero_arc_warden/arc_warden_flux_tgt.vpcf"
+			"particle"													   "particles/items2_fx/mjollnir_shield.vpcf"
             "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_zuus.vsndevts"
         }
         "AbilitySpecial"
@@ -34,7 +34,7 @@
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "damage_per_second"                                    "50 90 130 170"
+                "damage_per_second"                                    "65 100 135 170"
             }
             "03"
             {
@@ -61,7 +61,7 @@
             {
                 "IsPurgable"                                           "1"
                 "Duration"                                             "%duration"
-                "EffectName"                                           "particles/units/heroes/hero_arc_warden/arc_warden_flux_tgt.vpcf"
+                "EffectName"                                           "particles/items2_fx/mjollnir_shield.vpcf"
                 "EffectAttachType"                                     "follow_origin"
                 "ThinkInterval"                                        "%think_interval"
                 "OnIntervalThink"
