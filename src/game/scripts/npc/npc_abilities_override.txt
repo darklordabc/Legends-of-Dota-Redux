@@ -11926,7 +11926,26 @@
             "TalentRequiredAbility" 		"primal_beast_pulverize"
         }
 
-
+		"special_bonus_unique_muerta_dead_shot_range"
+        {
+            "TalentRequiredAbility"                                                   "muerta_dead_shot"
+        }
+        "special_bonus_unique_muerta_dead_shot_damage"
+        {
+            "TalentRequiredAbility"                                                   "muerta_dead_shot"
+        }
+        "special_bonus_unique_muerta_the_calling_num_revenants"
+        {
+            "TalentRequiredAbility"                                                   "muerta_the_calling"
+        }
+        "special_bonus_unique_muerta_gunslinger_double_shot_chance"
+        {
+            "TalentRequiredAbility"                                                   "muerta_gunslinger"
+        }
+        "special_bonus_unique_muerta_dead_shot_charges"
+        {
+            "TalentRequiredAbility"                                                   "muerta_dead_shot"
+        }
 
 
 
