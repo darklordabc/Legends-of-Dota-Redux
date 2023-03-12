@@ -1219,7 +1219,7 @@
             "05"
             {
                 "var_type"              "FIELD_INTEGER"
-                "skadi_cold_slow_ranged"  "-40"
+                "skadi_cold_slow_ranged"  "-50"
             }
             "06"
             {
