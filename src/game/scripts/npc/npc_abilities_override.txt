@@ -187,7 +187,7 @@
 				"radius"						"600"
 				"base_damage"						
 				{
-					"value"			"110"
+					"value"			"115"
 					"CalculateSpellDamageTooltip" "1"
 				}
 				"base_heal"						"25 30 35 40"
@@ -206,7 +206,7 @@
 			"ReduxPerks"                    "support"
             "ReduxFlags"                    "support"
 			"MaxLevel"						"4"
-			"AbilityCooldown"				"45 38 31 24"
+			"AbilityCooldown"				"30 25 20 15"
 			"AbilityCastRange"				"300 350 400 450"
 			"AbilityManaCost"				"75 65 55 45"
 			"AbilityValues"
@@ -242,7 +242,7 @@
 				"04"
 				{
 					"var_type"				"FIELD_INTEGER"
-					"near_radius"			"150 160 170 180"
+					"near_radius"			"150 175 200 225"
 				}
 				"05"
 				{
@@ -275,12 +275,12 @@
                 "01"
                 {
                     "var_type"          "FIELD_FLOAT"
-                    "duration"          "2.0"
+                    "duration"          "2.0 2.25 2.5 2.75"
                 }           
                 "02"
                 {
                     "var_type"          "FIELD_INTEGER"
-                    "damage"            "75 100 125 150"
+                    "damage"            "75 80 85 90"
                 }           
             }
         }
@@ -430,7 +430,7 @@
 			"ReduxFlags"					"physical"
 			"ReduxPerks"					"physical | nature | channeled"
 			"MaxLevel"						"4"
-			"AbilityChannelTime"			"2.4"
+			"AbilityChannelTime"			"2.5"
 			"AbilityCastRange"				"1200"
 			"AbilityCastPoint"				"0.2"
 			"AbilityCooldown"				"17 16 15 14"
@@ -460,7 +460,7 @@
 				"05"
 				{
 					"var_type"			"FIELD_FLOAT"
-					"interval"		"0.4 0.35 0.3 0.25"
+					"interval"		"0.5 0.45 0.4 0.35"
 				}
 				"06"
 				{
@@ -2531,9 +2531,9 @@
 			"AbilityValues"
 			{
 				"radius"					"150"
-				"grace_time"				"0.75 1.0 1.25 1.5"
-				"cooldown_time"				"3 2.5 2.0 1.5"
-				"regen_amp"					"40 45 50 55"
+				"grace_time"				"0.75"
+				"cooldown_time"				"3"
+				"regen_amp"					"0"
 				"shard_root_time"
 				{
 					"value"			"1.0 1.25 1.5 1.75"
@@ -2546,18 +2546,18 @@
 				}
 				"shard_damage"
 				{
-					"value"					"200 225 250 275"
+					"value"					"200 230 260 290"
 					"RequiresShard"				"1"
 					"DamageTypeTooltip"		"DAMAGE_TYPE_MAGICAL"
 				}
 				"movement_bonus"
 				{
 					"value"							"12 14 16 18"
-					"special_bonus_shard"						"+15"
+					"special_bonus_shard"			"+15"
 				}
 				"shard_cooldown"
 				{
-					"value"					"10 8 6 4"
+					"value"					"10 9 8 7"
 					"RequiresShard"						"1"
 				}
 			}
@@ -5429,7 +5429,7 @@
 			"AbilityValues"
 			{
 				"radius"					"1400 1600 1800 2000"
-				"pull_strength"				"150 200 250 300"
+				"pull_strength"				"200 250 300 350"
 				"min_pull_distance"			"100"
 			}
 		}
@@ -5473,7 +5473,7 @@
 				"03"
 				{
 					"var_type"					"FIELD_INTEGER"
-					"hit_count"					"6"
+					"hit_count"					"7"
 				}
 				"04"
 				{
@@ -5542,7 +5542,7 @@
             "ReduxPerks"                    "sleep | poison"
             "ReduxFlags"                    ""
 			"MaxLevel"                      "4"
-			"AbilityCooldown"               "12 11 10 9"
+			"AbilityCooldown"               "15 14 13 12"
 			"AbilityManaCost"               "75"
 			"AbilityValues"
 			{
@@ -5552,7 +5552,7 @@
 					"value"					"150 200 250 300"
 					"CalculateSpellDamageTooltip"	"1"
 				}
-				"movement_slow"		"30 40 50 60"
+				"movement_slow"		"30 45 60 75"
 				"debuff_duration"		"4"
 				"projectile_speed"		"1600"
 				"wake_damage_limit"		"200"
@@ -5851,7 +5851,7 @@
             "01"
             {
                 "var_type"          "FIELD_INTEGER"
-                "damage"        "125 150 175 200"
+                "damage"        "160 190 220 250"
             }
             "02"
             {
@@ -6023,7 +6023,7 @@
 			"MaxLevel"                      "4"
 			"ReduxPerks"                    "trap"
 			"AbilityCharges"                "2"
-			"AbilityChargeRestoreTime"      "20 17 14 11"       
+			"AbilityChargeRestoreTime"      "30 25 20 15"       
 			"AbilityManaCost"               "100"
 			"AbilityValues"
 			{
@@ -6046,7 +6046,7 @@
 			"AbilityCooldown"               "14 13 12 11"
 			"AbilityValues"
 			{
-					"max_stun"					"2.25 2.5 2.75 3.0"
+					"max_stun"					"2.0 2.25 2.5 2.75"
 					"recent_duration"			"3.0"
 					"max_distance"			"900"
 					"knockback_distance"			"350"
@@ -6062,7 +6062,7 @@
 		{
 			"MaxLevel"						"4"
 			"AbilityCooldown"				"20 19 18 17"
-			"AbilityCastRange"				"600 650 700 750"
+			"AbilityCastRange"				"750 800 850 900"
 			"AbilityManaCost"				"75"
 			"AbilityValues"
 			{
