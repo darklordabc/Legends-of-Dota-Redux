@@ -24,7 +24,7 @@ local info =
 	Source = hCaster,
 	Ability = self,
 	EffectName = "particles/spell_lab/storm_missile.vpcf",
-        iMoveSpeed = 950,
+        iMoveSpeed = 1200,
 	vSourceLoc= hCaster:GetAbsOrigin()+vPos,                -- Optional (HOW)
 	bDrawsOnMinimap = false,                          -- Optional
         bDodgeable = true,                                -- Optional
@@ -33,7 +33,7 @@ local info =
         bReplaceExisting = false,                         -- Optional
         flExpireTime = GameRules:GetGameTime() + 120,      -- Optional but recommended
 	bProvidesVision = true,                           -- Optional
-	iVisionRadius = 40,                              -- Optional
+	iVisionRadius = 300,                              -- Optional
 	iVisionTeamNumber = hCaster:GetTeamNumber()        -- Optional
 }
 ProjectileManager:CreateTrackingProjectile(info)
