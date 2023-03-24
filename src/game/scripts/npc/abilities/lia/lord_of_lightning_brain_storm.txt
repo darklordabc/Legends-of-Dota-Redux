@@ -14,8 +14,8 @@
         "RequiredLevel"                                                        "6"
         "AbilityCastRange"                                                     "800"
         "AbilityCastPoint"                                                     "0"
-        "AbilityCooldown"                                                      "50 45 40"
-        "AbilityManaCost"                                                      "150 175 200"
+        "AbilityCooldown"                                                      "50 40 30"
+        "AbilityManaCost"                                                      "150"
         "AbilitySpecial"
         {
             "01"
@@ -26,7 +26,7 @@
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "reduce_movement_speed"                                "-30 -40 -50"
+                "reduce_movement_speed"                                "-30 -45 -60"
             }
             "03"
             {
