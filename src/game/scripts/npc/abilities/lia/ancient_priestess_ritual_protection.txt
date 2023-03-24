@@ -13,7 +13,7 @@
         "AbilityManaCost"                                                      "100 125 150"
         "precache"
         {
-            "particle"                                                     "particles/units/heroes/hero_keeper_of_the_light/keeper_chakra_magic.vpcf"
+            "particle"                                                     "particles/units/heroes/hero_oracle/oracle_fatesedict_disarm.vpcf"
 			"particle"													   "particles/units/heroes/hero_dazzle/dazzle_lucky_charm.vpcf"
             "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_mirana.vsndevts"
         }
