@@ -27,7 +27,7 @@
             "02"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "stun"                                                 "0.4"
+                "stun"                                                 "0.45"
             }
             "03"
             {
@@ -42,7 +42,7 @@
             "05"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "radius"                                               "325"
+                "radius"                                               "350"
             }
             "06"
             {
