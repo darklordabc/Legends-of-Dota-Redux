@@ -22,7 +22,7 @@ function spell_lab_bfg:OnChannelThink(fInterval)
 end
 
 function spell_lab_bfg:GetChannelledManaCostPerSecond (iLevel)
-	return self:GetCaster():GetMaxMana()*0.1
+	return self:GetCaster():GetMaxMana()*0.2
 end
 
 function spell_lab_bfg:OnChannelFinish (bInterrupt)
@@ -43,8 +43,8 @@ function spell_lab_bfg:OnChannelFinish (bInterrupt)
     EffectName = "particles/spell_lab/bfg_linear.vpcf",
     vSpawnOrigin = hCaster:GetAbsOrigin(),
     fDistance = fCastRange,
-    fStartRadius = 300,
-    fEndRadius = 300,
+    fStartRadius = 500,
+    fEndRadius = 500,
     Source = hCaster,
     bHasFrontalCone = false,
     bReplaceExisting = false,
@@ -53,7 +53,7 @@ function spell_lab_bfg:OnChannelFinish (bInterrupt)
     iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
     fExpireTime = GameRules:GetGameTime() + 20.0,
     bDeleteOnHit = false,
-    vVelocity = hCaster:GetForwardVector() * fCastRange * 0.5,
+    vVelocity = hCaster:GetForwardVector() * fCastRange * 0.75,
     bProvidesVision = true,
     iVisionRadius = 1000,
     iVisionTeamNumber = hCaster:GetTeamNumber(),
@@ -92,7 +92,7 @@ function spell_lab_bfg:Explosion(vPosition, tExtra)
 			end
 		end
 	local particleName = "particles/spell_lab/bfg_aoe.vpcf"
- local aoe = 350
+ local aoe = 500
 
 	--silly field of view
 	AddFOWViewer(hCaster:GetTeamNumber(), vPosition, 350, 1.0, false)
