@@ -11,7 +11,7 @@ function ancient_priestess_ritual_protection_staff:OnSpellStart()
 
 	for _,unit in pairs(targets) do 
 		unit:AddNewModifier(caster, self, "modifier_ancient_priestess_ritual_protection", {duration = duration})
-		ParticleManager:CreateParticle("particles/units/heroes/hero_keeper_of_the_light/keeper_chakra_magic.vpcf", PATTACH_ABSORIGIN_FOLLOW, unit)
+		ParticleManager:CreateParticle("particles/units/heroes/hero_dazzle/dazzle_lucky_charm.vpcf", PATTACH_ABSORIGIN_FOLLOW, unit)
 	end
 
 	EmitSoundOn("Ability.MoonlightShadow", caster)
