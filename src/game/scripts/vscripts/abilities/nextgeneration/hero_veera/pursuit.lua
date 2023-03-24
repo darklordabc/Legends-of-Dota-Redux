@@ -105,7 +105,7 @@ end
 function RollInitiate( keys )
 	local caster = keys.caster
 	local ability = keys.ability
-	local leap_speed = caster:GetMoveSpeedModifier(caster:GetBaseMoveSpeed(), false) + 250
+	local leap_speed = caster:GetMoveSpeedModifier(caster:GetBaseMoveSpeed(), false) + 100
 	local casterAngles = caster:GetAngles()
 
 	-- Clears any current command
