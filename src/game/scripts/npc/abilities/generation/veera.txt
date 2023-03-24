@@ -86,7 +86,7 @@
             "03"
             {
                 "var_type"          "FIELD_FLOAT"
-                "distance"          "300"
+                "distance"          "200"
             }
             "04"
             {
@@ -199,7 +199,7 @@
             "01"
             {
                 "var_type"          "FIELD_INTEGER"
-                "movement_bonus"        "40"
+                "movement_bonus"        "10"
             }
             "02"
             {
@@ -372,7 +372,7 @@
     
         "AbilityManaCost"           "75"
         "AbilityCastPoint"          "0.0"
-        "AbilityCooldown"           "100 80 60"
+        "AbilityCooldown"           "75 60 45"
         "AbilityProcsMagicStick"        "1"
         //"HasScepterUpgrade"             "1"
         "ReduxFlags"    "cooldown"
@@ -526,7 +526,8 @@
         "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
         "AbilityUnitDamageType"         "DAMAGE_TYPE_PHYSICAL"  
         "SpellImmunityType"         "SPELL_IMMUNITY_ENEMIES_NO"
-        "AbilityTextureName"            "custom/veera_toxic_darts"
+        // "AbilityTextureName"            "custom/veera_toxic_darts"
+		"AbilityTextureName"            "riki_poison_dart"
         "AbilityProcsMagicStick"        "1"
     
         "AbilityCooldown"       "1.0"
