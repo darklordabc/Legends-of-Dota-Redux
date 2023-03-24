@@ -11173,10 +11173,10 @@
         {
             "TalentRequiredAbility"                                                   "clinkz_searing_arrows"
         }
-        "special_bonus_unique_clinkz_2"
-        {
-            "TalentRequiredAbility"                                                   "clinkz_death_pact"
-        }
+        //"special_bonus_unique_clinkz_2"
+        //{
+        //    "TalentRequiredAbility"                                                   "clinkz_death_pact"
+        //}
         "special_bonus_unique_clinkz_3"
         {
             "TalentRequiredAbility"                                                   "clinkz_searing_arrows"
