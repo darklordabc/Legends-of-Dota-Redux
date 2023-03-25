@@ -1,5 +1,13 @@
     "DOTAAbilities"
-    {
+    {	
+		"dawnbreaker_luminosity"
+	{
+		"precache"
+        {
+            "particle"          "particles/units/heroes/hero_dawnbreaker/dawnbreaker_luminosity.vpcf"
+			"particle"          "particles/units/heroes/hero_dawnbreaker/dawnbreaker_luminosity_attack_buff.vpcf"
+        }
+	}
 		"venomancer_area_poison"
 		{
 			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
