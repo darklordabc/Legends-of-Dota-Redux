@@ -70,7 +70,7 @@
         "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
         "AbilityCooldown"                "0"
         "AbilityManaCost"                "0"
-        "AbilityCastRange"               "500"
+        "AbilityCastRange"               "1200"
         "AbilityCastPoint"               "0.05"
         
        "AbilitySpecial"
@@ -78,7 +78,7 @@
             "01"
             {
                 "var_type"              "FIELD_FLOAT"
-                "observer_ward_duration"          "1200"
+                "observer_ward_duration"          "3000"
             }
             "02"
             {
@@ -98,7 +98,7 @@
             "05"
             {
                 "var_type"              "FIELD_FLOAT"
-                "sentry_ward_duration"          "1200"
+                "sentry_ward_duration"          "3000"
             }
             "06"
             {
