@@ -34,7 +34,7 @@
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "cast_range"                                           "1200 1500 1800 2100"
+                "cast_range"                                           "1200 1800 2400 3000"
             }
             "03"
             {
