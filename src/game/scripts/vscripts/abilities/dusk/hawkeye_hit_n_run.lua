@@ -1,5 +1,7 @@
 hawkeye_hit_n_run = class({})
 
+require('lib/physics')
+
 LinkLuaModifier("modifier_hit_n_run_thinker","abilities/dusk/hawkeye_hit_n_run",LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_hit_n_run_slow","abilities/dusk/hawkeye_hit_n_run",LUA_MODIFIER_MOTION_NONE)
 
@@ -37,7 +39,7 @@ function hawkeye_hit_n_run:OnSpellStart()
 		  c:SetPhysicsVelocity(facing * distance * 2)
 		  c:AddPhysicsVelocity(Vector(0,0,distance*2))
 		  
-		  c:SetPhysicsAcceleration(Vector(0,0,-(distance*15)))
+		  c:SetPhysicsAcceleration(Vector(0,0,-(distance*10)))
 		  
 		  Timers:CreateTimer(0.3,function()
 		    c:SetPhysicsVelocity(Vector(0,0,0))
