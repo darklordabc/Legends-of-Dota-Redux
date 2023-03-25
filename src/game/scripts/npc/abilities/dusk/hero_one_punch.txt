@@ -27,12 +27,12 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"75 60 45"
+		"AbilityCooldown"				"45"
 		"HasScepterUpgrade"				"1"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"100 125 150"
+		"AbilityManaCost"				"100"
 		
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
@@ -55,12 +55,12 @@
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"landing_aoe"				"550"
+				"landing_aoe"				"500"
 			}
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"landing_damage"			"250 300 350"
+				"landing_damage"			"200 250 300"
 			}
 			"05"
 			{
@@ -70,12 +70,12 @@
 			"06"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"scepter_crit"				"200 250 300"
+				"scepter_crit"				"175 200 225"
 			}
 			"07"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"scepter_landing_damage"	"325 400 475"
+				"scepter_landing_damage"	"250 300 350"
 			}
 		}
 		
