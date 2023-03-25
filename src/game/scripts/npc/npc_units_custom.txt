@@ -39,7 +39,7 @@
 		// Bounds
 		//----------------------------------------------------------------
 		"HealthBarOffset"			"120"
-		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"	// Hull type used for navigation/locomotion.	   
+		"BoundsHullName"			"DOTA_HULL_SIZE_SMALLEST"	// Hull type used for navigation/locomotion.	   
 
 		// Bounty
 		//----------------------------------------------------------------
@@ -994,7 +994,7 @@
 
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"16"
+		"StatusHealth"				"20"
 		"StatusHealthRegen"			"0.0"
 		"StatusMana"				"0"
 		"StatusManaRegen"			"0"
@@ -1742,6 +1742,7 @@
 		"Level"						"4"
 		"ModelScale" 				"2.5"
 		"SelectionGroup"			"Venomancer_Wards_Scourge"
+		"ConsideredHero"			"1"
 
 		// Abilities
 		//----------------------------------------------------------------
@@ -1819,6 +1820,7 @@
 		"Level"						"4"
 		"ModelScale" 				"2.5"
 		"SelectionGroup"			"Venomancer_Wards_Scourge"
+		"ConsideredHero"			"1"
 
 		// Abilities
 		//----------------------------------------------------------------
@@ -1896,6 +1898,7 @@
 		"Level"						"4"
 		"ModelScale" 				"2.5"
 		"SelectionGroup"			"Venomancer_Wards_Scourge"
+		"ConsideredHero"			"1"
 
 
 		// Abilities
@@ -4882,9 +4885,9 @@
 
 		// Bounty
 		//----------------------------------------------------------------
-		"BountyXP"					"60"		// Experience earn.
-		"BountyGoldMin"				"55"		// Gold earned min.
-		"BountyGoldMax"				"65"		// Gold earned max.
+		"BountyXP"					"0"		// Experience earn.
+		"BountyGoldMin"				"0"		// Gold earned min.
+		"BountyGoldMax"				"0"		// Gold earned max.
 
 		// Movement
 		//----------------------------------------------------------------
@@ -4901,8 +4904,8 @@
 
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"1400"		// Range of vision during day light.
-		"VisionNighttimeRange"		"800"		// Range of vision at night time.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day light.
+		"VisionNighttimeRange"		"1800"		// Range of vision at night time.
 
 		"BoundsHullName"			"DOTA_HULL_SIZE_HUGE"
 
@@ -5001,7 +5004,7 @@
 	{
 		// General
 		//----------------------------------------------------------------
-		"Model"						"models\heroes\weaver\weaver_bug.mdl"	// Model.
+		"Model"						"models/heroes/weaver/weaver_bug.mdl"	// Model.
 		"BaseClass"					"npc_dota_base_additive"
 		"SoundSet"					"0"			// Name of sound set.
 		"Level"						"2"
@@ -5123,7 +5126,7 @@
 		"MovementCapabilities" "DOTA_UNIT_CAP_MOVE_FLY" // Type of locomotion - ground, air
 		"MovementSpeed" "0" // Speed
 		"MovementTurnRate" "1.0" // Turning rate.
-		"FollowRange" "50" // Distance to keep when following
+		"FollowRange" "-10" // Distance to keep when following
 		// Status
 		//----------------------------------------------------------------
 		"StatusHealth" "3" // Base health.
@@ -5138,8 +5141,8 @@
 		"UnitRelationshipClass" "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange" "400" // Range of vision during day light.
-		"VisionNighttimeRange" "400" // Range of vision at night time.
+		"VisionDaytimeRange" "800" // Range of vision during day light.
+		"VisionNighttimeRange" "800" // Range of vision at night time.
 		// Bots
 		//----------------------------------------------------------------
 		"AttackDesire" "1.5" // How much bots want to attack them vs other non-hero things
@@ -5218,8 +5221,8 @@
 		"UnitRelationshipClass" "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange" "600" // Range of vision during day light.
-		"VisionNighttimeRange" "600" // Range of vision at night time.
+		"VisionDaytimeRange" "800" // Range of vision during day light.
+		"VisionNighttimeRange" "800" // Range of vision at night time.
 		// Bots
 		//----------------------------------------------------------------
 		"AttackDesire" "1.5" // How much bots want to attack them vs other non-hero things
@@ -5278,7 +5281,7 @@
 
 	        // Status
 	        //----------------------------------------------------------------
-	        "StatusHealth"          "100"
+	        "StatusHealth"          "200"
 	        "StatusHealthRegen"     "0.0"
 
 	        // Vision
@@ -5373,8 +5376,8 @@
 		"UnitRelationshipClass" "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange" "600" // Range of vision during day light.
-		"VisionNighttimeRange" "600" // Range of vision at night time.
+		"VisionDaytimeRange" "800" // Range of vision during day light.
+		"VisionNighttimeRange" "800" // Range of vision at night time.
 		// Bots
 		//----------------------------------------------------------------
 		"AttackDesire" "1.5" // How much bots want to attack them vs other non-hero things
@@ -5400,7 +5403,7 @@
 		// Armor
 		//----------------------------------------------------------------
 		"ArmorPhysical"				"5"			// Physical protection.
-		"MagicalResistance"			"55"			// Magical protection.
+		"MagicalResistance"			"60"			// Magical protection.
 
 		// Attack
 		//----------------------------------------------------------------
@@ -5434,7 +5437,7 @@
 
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"500"		// Base health.
+		"StatusHealth"				"400"		// Base health.
 		"StatusHealthRegen"			"10.0"		// Health regeneration rate.
 		"StatusMana"				"0"			// Base mana.
 		"StatusManaRegen"			"0"			// Mana regeneration rate.
