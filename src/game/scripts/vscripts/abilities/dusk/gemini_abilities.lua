@@ -195,7 +195,7 @@ function gemini_unstable_rift_transport(event)
   local enemy_found = FindUnitsInRadius( caster:GetTeamNumber(),
                               target:GetCenter(),
                               nil,
-                                100,
+                                150,
                                 DOTA_UNIT_TARGET_TEAM_BOTH,
                                 DOTA_UNIT_TARGET_HERO,
                                 DOTA_UNIT_TARGET_FLAG_NONE,
