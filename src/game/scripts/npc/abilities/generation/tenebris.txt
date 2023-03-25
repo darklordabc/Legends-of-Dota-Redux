@@ -63,7 +63,7 @@
             "06" //Must be one half number of maximum reflections
             {
                 "var_type"      "FIELD_INTEGER"
-                "attacks_to_destroy"    "3 4 5 6"
+                "attacks_to_destroy"    "3 5 7 9"
             }
             "07"
             {
@@ -374,7 +374,7 @@
         //Casting
         "AbilityCastRange"      "150"
         "AbilityCooldown"       "0.2"
-        "AbilityManaCost"       "25 30 35 40"
+        "AbilityManaCost"       "30"
  
         // Special
         "AbilitySpecial"
@@ -392,7 +392,7 @@
             "03"
             {
                 "var_type"      "FIELD_FLOAT"
-                "duration_debuff"   "1.5"
+                "duration_debuff"   "1.0"
             }
         }
  
@@ -481,7 +481,7 @@
 
                 "States"
                 {
-                    "MODIFIER_STATE_DISARMED"       "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"  "-10000"
                 }
             }
         }
@@ -505,12 +505,12 @@
             "01"
             {
                 "var_type"      "FIELD_FLOAT"
-                "ias"           "1.0 1.2 1.4 1.6"
+                "ias"           "1.1 1.3 1.5 1.7"
             }
             "02"
             {
                 "var_type"      "FIELD_INTEGER"
-                "radius"        "700"
+                "radius"        "600 700 800 900"
             }
             "03"
             {
