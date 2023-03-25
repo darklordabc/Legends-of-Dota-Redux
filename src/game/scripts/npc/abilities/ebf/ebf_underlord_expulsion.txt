@@ -46,7 +46,7 @@
             "06"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "base_duration"                                        "6.66"
+                "base_duration"                                        "6"
             }
             "07"
             {
@@ -56,12 +56,12 @@
             "08"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "bonus_damage_per_aura_affected_scepter"               "10 13 16"
+                "bonus_damage_per_aura_affected_scepter"               "10 15 20"
             }
             "09"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "bonus_heal_per_aura_affected_scepter"                 "10 13 16"
+                "bonus_heal_per_aura_affected_scepter"                 "10 15 20"
             }
         }
         "OnSpellStart"
