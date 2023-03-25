@@ -9,8 +9,8 @@
         "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_NO"
         "SpellDispellableType"                                                 "SPELL_DISPELLABLE_NO"
         "HasScepterUpgrade"                                                    "1"
-        "AbilityCastRange"                                                     "625"
-        "AbilityCastPoint"                                                     "0.45 0.45 0.45 0.45"
+        "AbilityCastRange"                                                     "650"
+        "AbilityCastPoint"                                                     "0.3 0.3 0.3 0.3"
         "FightRecapLevel"                                                      "1"
         "AbilityTextureName"                                                   "custom/undying_decay_int"
         "AOERadius"                                                            "325"
@@ -21,17 +21,17 @@
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "decay_damage"                                         "100 140 180 220"
+                "decay_damage"                                         "120 160 200 240"
             }
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "int_steal"                                            "8"
+                "int_steal"                                            "9"
             }
             "03"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "int_steal_enemy"                                      "-8"
+                "int_steal_enemy"                                      "-9"
             }
             "04"
             {
