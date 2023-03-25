@@ -18,7 +18,7 @@
             "02"
             {
                 "var_type"              "FIELD_FLOAT"
-                "gold_cost"             "3000"
+                "gold_cost"             "100"
             }
             "03"
             {
