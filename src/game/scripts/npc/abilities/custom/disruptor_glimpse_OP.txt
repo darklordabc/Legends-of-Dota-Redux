@@ -18,7 +18,7 @@
 		{
 			"backtrack_time"			"4.0 4.0 4.0 4.0"
 			"cast_range"				"1000 2000 3000 4000"
-			"silence_duration"			"0"
+			"silence_duration"			"5"
 			"AbilityCooldown"
 			{
 				"value"									"21 18 15 12"
@@ -27,8 +27,8 @@
 			"min_damage"				"100"
 			"max_damage"				
 			{
-				"value"											"200 300 400 500"
-				"special_bonus_unique_disruptor_9"				"250"
+				"value"											"200 400 600 800"
+				"special_bonus_unique_disruptor_9"				"400"
 			}
 			"max_distance"					"1400"
 		}
