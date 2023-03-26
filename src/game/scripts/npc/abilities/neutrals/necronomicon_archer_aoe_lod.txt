@@ -15,12 +15,12 @@
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "ms_bonus"                                             "5 7 9 12"
+                "ms_bonus"                                             "8 10 12 14"
             }
             "03"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "as_bonus"                                             "12 14 16 18"
+                "as_bonus"                                             "15 20 25 30"
             }
         }
         "ReduxFlags"                                                           "support"

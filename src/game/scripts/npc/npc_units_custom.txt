@@ -8,10 +8,10 @@
 		// General
 		//----------------------------------------------------------------
 		"Model"						"models/heroes/keeper_of_the_light/kotl_wisp.vmdl"
-		"BaseClass"					"npc_dota_base_additive"
+		"BaseClass"					"npc_dota_ignis_fatuus"
 		"SoundSet"					"0"
 		"Level"						"1"
-		"ModelScale"				"0.25"
+		"ModelScale"				"0.5"
 
 		// Abilities
 		//----------------------------------------------------------------
@@ -39,7 +39,7 @@
 		// Bounds
 		//----------------------------------------------------------------
 		"HealthBarOffset"			"120"
-		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"	// Hull type used for navigation/locomotion.	   
+		"BoundsHullName"			"DOTA_HULL_SIZE_SMALLEST"	// Hull type used for navigation/locomotion.	   
 
 		// Bounty
 		//----------------------------------------------------------------
@@ -50,7 +50,7 @@
 		// Movement
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_FLY"
-		"MovementSpeed"				"0" // this is set in code
+		"MovementSpeed"				"400" // this is set in code
 		"MovementTurnRate"			"1.0"
 		"FollowRange"				"-100"		// Needs to be negative so it doesn't scale down when it gets close
 
@@ -994,7 +994,7 @@
 
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"16"
+		"StatusHealth"				"20"
 		"StatusHealthRegen"			"0.0"
 		"StatusMana"				"0"
 		"StatusManaRegen"			"0"
@@ -1671,10 +1671,11 @@
 	"npc_custom_unit_hawk"
 	{
 		"BaseClass" "npc_dota_creature"
-		"Model" "models/heroes/visage/visage_familiar.vmdl"
+		// "Model" "models/heroes/visage/visage_familiar.vmdl"
+		"Model" "models/items/courier/faceless_rex/faceless_rex_flying.vmdl"
 
 		"ModelScale" "1.0"
-		"Level" "11"
+		"Level" "10"
 		"IsAncient" "1"
 		"IsSummoned"				"1"
 
@@ -1687,33 +1688,33 @@
 		"Ability7" ""
 		"Ability8" ""
 
-		"ArmorPhysical" "0"
-		"MagicalResistance" "20"
+		"ArmorPhysical" "5"
+		"MagicalResistance" "30"
 
 		"AttackCapabilities" "DOTA_UNIT_CAP_RANGED_ATTACK"
-		"AttackDamageMin" "5"
-		"AttackDamageMax" "11"
-		"AttackRate" "0.2"
-		"AttackAnimationPoint" "0.6"
-		"AttackAcquisitionRange" "300"
+		"AttackDamageMin" "10"
+		"AttackDamageMax" "10"
+		"AttackRate" "0.25"
+		"AttackAnimationPoint" "0.2"
+		"AttackAcquisitionRange" "600"
 
 		"AttackRange" "300"
-		"ProjectileModel" "particles/units/heroes/hero_visage/visage_familiar_base_attack.vpcf"
+		"ProjectileModel" "particles/units/heroes/hero_enigma/enigma_base_attack.vpcf"
 		"ProjectileSpeed" "900"
 
-		"BoundsHullName"			"DOTA_HULL_SIZE_HERO"
+		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"
 		"HealthBarOffset"			"140"
 
-		"BountyXP" "200"
-		"BountyGoldMin" "300"
-		"BountyGoldMax" "500"
+		"BountyXP" "25"
+		"BountyGoldMin" "50"
+		"BountyGoldMax" "50"
 
 		"MovementCapabilities" "DOTA_UNIT_CAP_MOVE_GROUND"
-		"MovementSpeed" "360"
-		"MovementTurnRate" "0.5"
+		"MovementSpeed" "375"
+		"MovementTurnRate" "0.9"
 
 		"StatusHealth" "600"
-		"StatusHealthRegen" "0"
+		"StatusHealthRegen" "2"
 		"StatusMana" "0"
 		"StatusManaRegen" "0"
 
@@ -1725,8 +1726,8 @@
 
 		"precache"
 		{
-			"model" "models/heroes/visage/visage_familiar.vmdl"
-			"particle" "particles/units/heroes/hero_visage/visage_familiar_base_attack.vpcf"
+			"model" "models/items/courier/faceless_rex/faceless_rex_flying.vmdl"
+			"particle" "particles/units/heroes/hero_enigma/enigma_base_attack.vpcf"
 		}
 	}
 
@@ -1741,6 +1742,7 @@
 		"Level"						"4"
 		"ModelScale" 				"2.5"
 		"SelectionGroup"			"Venomancer_Wards_Scourge"
+		"ConsideredHero"			"1"
 
 		// Abilities
 		//----------------------------------------------------------------
@@ -1818,6 +1820,7 @@
 		"Level"						"4"
 		"ModelScale" 				"2.5"
 		"SelectionGroup"			"Venomancer_Wards_Scourge"
+		"ConsideredHero"			"1"
 
 		// Abilities
 		//----------------------------------------------------------------
@@ -1829,8 +1832,8 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"0"			// Physical protection.
-		"MagicalResistance"				"0"			// Magical protection.
+		"ArmorPhysical"				"10"			// Physical protection.
+		"MagicalResistance"				"25"			// Magical protection.
 
 		// Attack
 		//----------------------------------------------------------------
@@ -1895,6 +1898,7 @@
 		"Level"						"4"
 		"ModelScale" 				"2.5"
 		"SelectionGroup"			"Venomancer_Wards_Scourge"
+		"ConsideredHero"			"1"
 
 
 		// Abilities
@@ -1907,8 +1911,8 @@
 
 		// Armor
 		//----------------------------------------------------------------
-		"ArmorPhysical"				"0"			// Physical protection.
-		"MagicalResistance"				"0"			// Magical protection.
+		"ArmorPhysical"				"10"			// Physical protection.
+		"MagicalResistance"				"25"			// Magical protection.
 
 		// Attack
 		//----------------------------------------------------------------
@@ -2784,6 +2788,7 @@
 		"MovementCapabilities"        "DOTA_UNIT_CAP_MOVE_FLY"            // Type of locomotion - ground, air
 		"MovementSpeed"                "500"            // Speed
 		"MovementTurnRate"            "1.5"        // Turning rate.
+		"FollowRange"				"-10"
 
 		// Bounty
 		//----------------------------------------------------------------
@@ -2921,7 +2926,7 @@
 
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"                "250"        // Base health.
+		"StatusHealth"                "400"        // Base health.
 		"StatusHealthRegen"            "10.0"        // Health regeneration rate.
 		"StatusMana"                "0"            // Base mana.
 		"StatusManaRegen"            "0"            // Mana regeneration rate.
@@ -2983,7 +2988,7 @@
 
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"                "250"        // Base health.
+		"StatusHealth"                "400"        // Base health.
 		"StatusHealthRegen"            "10.0"        // Health regeneration rate.
 		"StatusMana"                "0"            // Base mana.
 		"StatusManaRegen"            "0"            // Mana regeneration rate.
@@ -3055,7 +3060,7 @@
 
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"                "250"        // Base health.
+		"StatusHealth"                "400"        // Base health.
 		"StatusHealthRegen"            "10.0"        // Health regeneration rate.
 		"StatusMana"                "0"            // Base mana.
 		"StatusManaRegen"            "0"            // Mana regeneration rate.
@@ -3127,7 +3132,7 @@
 
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"                "250"        // Base health.
+		"StatusHealth"                "400"        // Base health.
 		"StatusHealthRegen"            "10.0"        // Health regeneration rate.
 		"StatusMana"                "0"            // Base mana.
 		"StatusManaRegen"            "0"            // Mana regeneration rate.
@@ -3199,7 +3204,7 @@
 
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"                "250"        // Base health.
+		"StatusHealth"                "400"        // Base health.
 		"StatusHealthRegen"            "10.0"        // Health regeneration rate.
 		"StatusMana"                "0"            // Base mana.
 		"StatusManaRegen"            "0"            // Mana regeneration rate.
@@ -3261,7 +3266,7 @@
 
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"                "250"        // Base health.
+		"StatusHealth"                "400"        // Base health.
 		"StatusHealthRegen"            "10.0"        // Health regeneration rate.
 		"StatusMana"                "0"            // Base mana.
 		"StatusManaRegen"            "0"            // Mana regeneration rate.
@@ -3479,8 +3484,8 @@
 	{
 		"BaseClass"					"npc_dota_creature"
 		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
-		"VisionDaytimeRange"		"800"
-		"VisionNighttimeRange"		"800"
+		"VisionDaytimeRange"		"1000"
+		"VisionNighttimeRange"		"1000"
 		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"
 		"AbilityLayout"				"4"
@@ -3584,7 +3589,7 @@
 		// General
 		//----------------------------------------------------------------
 		"BaseClass"			"npc_dota_building"
-		"Model"				"models/props_structures/good_barracks_melee001.vmdl"
+		"Model"				"models/props_structures/outpost.vmdl"
 		"ModelScale"		"0.4"
 		"Level"				"4"
 		"SoundSet"			"Creep_Good_Melee"
@@ -3656,7 +3661,7 @@
 		// General
 		//----------------------------------------------------------------
 		"BaseClass"			"npc_dota_building"
-		"Model"				"models/props_structures/good_barracks_melee001.vmdl"
+		"Model"				"models/props_structures/outpost.vmdl"
 		"ModelScale"		"0.4"
 		"Level"				"5"
 		"SoundSet"			"Creep_Good_Melee"
@@ -3728,7 +3733,7 @@
 		// General
 		//----------------------------------------------------------------
 		"BaseClass"			"npc_dota_building"
-		"Model"				"models/props_structures/good_barracks_melee001.vmdl"
+		"Model"				"models/props_structures/outpost.vmdl"
 		"ModelScale"		"0.4"
 		"Level"				"6"
 		"SoundSet"			"Creep_Good_Melee"
@@ -4880,9 +4885,9 @@
 
 		// Bounty
 		//----------------------------------------------------------------
-		"BountyXP"					"60"		// Experience earn.
-		"BountyGoldMin"				"55"		// Gold earned min.
-		"BountyGoldMax"				"65"		// Gold earned max.
+		"BountyXP"					"0"		// Experience earn.
+		"BountyGoldMin"				"0"		// Gold earned min.
+		"BountyGoldMax"				"0"		// Gold earned max.
 
 		// Movement
 		//----------------------------------------------------------------
@@ -4899,8 +4904,8 @@
 
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"1400"		// Range of vision during day light.
-		"VisionNighttimeRange"		"800"		// Range of vision at night time.
+		"VisionDaytimeRange"		"1800"		// Range of vision during day light.
+		"VisionNighttimeRange"		"1800"		// Range of vision at night time.
 
 		"BoundsHullName"			"DOTA_HULL_SIZE_HUGE"
 
@@ -4999,7 +5004,7 @@
 	{
 		// General
 		//----------------------------------------------------------------
-		"Model"						"models\heroes\weaver\weaver_bug.mdl"	// Model.
+		"Model"						"models/heroes/weaver/weaver_bug.mdl"	// Model.
 		"BaseClass"					"npc_dota_base_additive"
 		"SoundSet"					"0"			// Name of sound set.
 		"Level"						"2"
@@ -5121,7 +5126,7 @@
 		"MovementCapabilities" "DOTA_UNIT_CAP_MOVE_FLY" // Type of locomotion - ground, air
 		"MovementSpeed" "0" // Speed
 		"MovementTurnRate" "1.0" // Turning rate.
-		"FollowRange" "50" // Distance to keep when following
+		"FollowRange" "-10" // Distance to keep when following
 		// Status
 		//----------------------------------------------------------------
 		"StatusHealth" "3" // Base health.
@@ -5136,8 +5141,8 @@
 		"UnitRelationshipClass" "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange" "400" // Range of vision during day light.
-		"VisionNighttimeRange" "400" // Range of vision at night time.
+		"VisionDaytimeRange" "800" // Range of vision during day light.
+		"VisionNighttimeRange" "800" // Range of vision at night time.
 		// Bots
 		//----------------------------------------------------------------
 		"AttackDesire" "1.5" // How much bots want to attack them vs other non-hero things
@@ -5216,8 +5221,8 @@
 		"UnitRelationshipClass" "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange" "600" // Range of vision during day light.
-		"VisionNighttimeRange" "600" // Range of vision at night time.
+		"VisionDaytimeRange" "800" // Range of vision during day light.
+		"VisionNighttimeRange" "800" // Range of vision at night time.
 		// Bots
 		//----------------------------------------------------------------
 		"AttackDesire" "1.5" // How much bots want to attack them vs other non-hero things
@@ -5276,7 +5281,7 @@
 
 	        // Status
 	        //----------------------------------------------------------------
-	        "StatusHealth"          "100"
+	        "StatusHealth"          "200"
 	        "StatusHealthRegen"     "0.0"
 
 	        // Vision
@@ -5371,8 +5376,8 @@
 		"UnitRelationshipClass" "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange" "600" // Range of vision during day light.
-		"VisionNighttimeRange" "600" // Range of vision at night time.
+		"VisionDaytimeRange" "800" // Range of vision during day light.
+		"VisionNighttimeRange" "800" // Range of vision at night time.
 		// Bots
 		//----------------------------------------------------------------
 		"AttackDesire" "1.5" // How much bots want to attack them vs other non-hero things
@@ -5398,7 +5403,7 @@
 		// Armor
 		//----------------------------------------------------------------
 		"ArmorPhysical"				"5"			// Physical protection.
-		"MagicalResistance"			"55"			// Magical protection.
+		"MagicalResistance"			"60"			// Magical protection.
 
 		// Attack
 		//----------------------------------------------------------------
@@ -5432,7 +5437,7 @@
 
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"500"		// Base health.
+		"StatusHealth"				"400"		// Base health.
 		"StatusHealthRegen"			"10.0"		// Health regeneration rate.
 		"StatusMana"				"0"			// Base mana.
 		"StatusManaRegen"			"0"			// Mana regeneration rate.
@@ -6344,7 +6349,7 @@
 		"AttackDamageMax"			"45"
 		"DamageGain"                "15"
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
-		"AttackRate"				"1.2"
+		"AttackRate"				"1.0"
 		"AttackAnimationPoint"		"0.3"
 		"AttackAcquisitionRange"	"900"
 		"AttackRange"				"600"
@@ -6366,13 +6371,13 @@
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
 		"MovementSpeed"				"350"
-		"MovementTurnRate"			"0.5"
+		"MovementTurnRate"			"0.8"
 
 		// Status
 		//----------------------------------------------------------------
 		"StatusHealth"				"100"
 		"StatusHealthRegen"			"0.0"
-		"StatusMana"				"150"
+		"StatusMana"				"300"
 		"StatusManaRegen"			"10.0"
 		"ManaGain"                  "75"
 
@@ -6385,7 +6390,7 @@
 
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"1000"
+		"VisionDaytimeRange"		"1200"
 		"VisionNighttimeRange"		"1200"
 	}
 	//SPELL LAB STORM MINION
@@ -6420,7 +6425,7 @@
 		"AttackDamageMin"			"60"
 		"AttackDamageMax"			"60"
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
-		"AttackRate"				"1.2"
+		"AttackRate"				"1.0"
 		"AttackAnimationPoint"		"0.3"
 		"AttackAcquisitionRange"	"900"
 		"AttackRange"				"600"
@@ -6442,13 +6447,13 @@
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
 		"MovementSpeed"				"350"
-		"MovementTurnRate"			"0.5"
+		"MovementTurnRate"			"0.8"
 
 		// Status
 		//----------------------------------------------------------------
 		"StatusHealth"				"100"
 		"StatusHealthRegen"			"0.0"
-		"StatusMana"				"225"
+		"StatusMana"				"400"
 		"StatusManaRegen"			"10.0"
 		"ManaGain"                  "75"
 
@@ -6461,7 +6466,7 @@
 
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"1000"
+		"VisionDaytimeRange"		"1200"
 		"VisionNighttimeRange"		"1200"
 	}
 	//SPELL LAB STORM MINION
@@ -6496,7 +6501,7 @@
 		"AttackDamageMin"			"75"
 		"AttackDamageMax"			"75"
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
-		"AttackRate"				"1.2"
+		"AttackRate"				"1.0"
 		"AttackAnimationPoint"		"0.3"
 		"AttackAcquisitionRange"	"900"
 		"AttackRange"				"600"
@@ -6518,13 +6523,13 @@
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
 		"MovementSpeed"				"350"
-		"MovementTurnRate"			"0.5"
+		"MovementTurnRate"			"0.8"
 
 		// Status
 		//----------------------------------------------------------------
 		"StatusHealth"				"100"
 		"StatusHealthRegen"			"0.0"
-		"StatusMana"				"300"
+		"StatusMana"				"500"
 		"StatusManaRegen"			"10.0"
 
 		// Team
@@ -6536,7 +6541,7 @@
 
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"1000"
+		"VisionDaytimeRange"		"1200"
 		"VisionNighttimeRange"		"1200"
 	}
 	//SPELL LAB STORM MINION
@@ -6571,7 +6576,7 @@
 		"AttackDamageMin"			"90"
 		"AttackDamageMax"			"90"
 		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
-		"AttackRate"				"1.2"
+		"AttackRate"				"1.0"
 		"AttackAnimationPoint"		"0.3"
 		"AttackAcquisitionRange"	"900"
 		"AttackRange"				"600"
@@ -6593,13 +6598,13 @@
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
 		"MovementSpeed"				"350"
-		"MovementTurnRate"			"0.5"
+		"MovementTurnRate"			"0.8"
 
 		// Status
 		//----------------------------------------------------------------
 		"StatusHealth"				"100"
 		"StatusHealthRegen"			"0.0"
-		"StatusMana"				"375"
+		"StatusMana"				"600"
 		"StatusManaRegen"			"10.0"
 
 		// Team
@@ -6611,7 +6616,7 @@
 
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"750"
+		"VisionDaytimeRange"		"1200"
 		"VisionNighttimeRange"		"1200"
 	}
 	//SPELL LAB GGS SUMMON
@@ -6680,9 +6685,9 @@
 			// Movement
 			//----------------------------------------------------------------
 			"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
-			"MovementSpeed"				"300"		// Speed
-			"MovementTurnRate"			"1.1"		// Turning rate.
-			"FollowRange"				"-10"		// Distance to keep when following
+			"MovementSpeed"				"375"		// Speed
+			"MovementTurnRate"			"1.5"		// Turning rate.
+			"FollowRange"				"-100"		// Distance to keep when following
 
 			// Status
 			//----------------------------------------------------------------
@@ -6700,8 +6705,8 @@
 
 			// Vision
 			//----------------------------------------------------------------
-			"VisionDaytimeRange"		"600"		// Range of vision during day light.
-			"VisionNighttimeRange"		"600"		// Range of vision at night time.
+			"VisionDaytimeRange"		"800"		// Range of vision during day light.
+			"VisionNighttimeRange"		"800"		// Range of vision at night time.
 
 			// Bots
 			//----------------------------------------------------------------

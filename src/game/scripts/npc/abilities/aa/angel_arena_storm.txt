@@ -12,7 +12,7 @@
             "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_leshrac.vsndevts"
             "particle"                                                     "particles/units/heroes/hero_leshrac/leshrac_pulse_nova_ambient.vpcf"
         }
-        "AbilityCooldown"                                                      "28.0 24.0 20.0 16.0"
+        "AbilityCooldown"                                                      "22.0 20.0 18.0 16.0"
         "AbilityCastPoint"                                                     "0.0 0.0 0.0 0.0"
         "AbilityManaCost"                                                      "110 120 130 140"
         "MaxLevel"                                                             "4"
@@ -26,12 +26,12 @@
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "damage"                                               "90 120 150 180"
+                "damage"                                               "80 100 120 140"
             }
             "03"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "radius"                                               "500"
+                "radius"                                               "600"
             }
             "04"
             {
@@ -41,7 +41,7 @@
             "05"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "damage_percent"                                       "3.0 4.0 5.0 6.0"
+                "damage_percent"                                       "3.0 4.5 6.0 7.5"
             }
         }
         "OnSpellStart"
@@ -51,6 +51,12 @@
                 "ModifierName"                                         "aa_modifier_storm"
                 "Target"                                               "CASTER"
                 "Duration"                                             "%duration"
+            }
+			"AttachEffect"
+            {
+                "EffectName"                                           "particles/units/heroes/hero_leshrac/leshrac_pulse_nova.vpcf"
+                "EffectAttachType"                                     "attach_origin"
+                "Target"                                               "CASTER"
             }
         }
         "Modifiers"

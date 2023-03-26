@@ -19,7 +19,7 @@
         "AbilityManaCost"                                                      "60"
         "precache"
         {
-            "particle"                                                     "particles/neutral_fx/harpy_chain_lightning.vpcf"
+            "particle"                                                     "particles/units/heroes/hero_lone_druid/lone_druid_spiritlink_cast.vpcf"
 			"particle"													   "particles/econ/taunts/snapfire/snapfire_taunt_bubble.vpcf"
         }
         "AbilitySpecial"

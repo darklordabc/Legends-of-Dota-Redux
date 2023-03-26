@@ -6,7 +6,7 @@
         "ScriptFile"                                                           "abilities/spell_lab/storm/missile_storm.lua"
         "AbilityTextureName"                                                   "custom/spell_lab_missile_storm"
         "AbilityCooldown"                                                      "16 15 14 13"
-        "AbilityManaCost"                                                      "100 115 130 145"
+        "AbilityManaCost"                                                      "100 110 120 130"
         "AbilityCastRange"                                                     "750"
         "AbilityCastPoint"                                                     "0.1"
         "AbilityType"                                                          "DOTA_ABILITY_TYPE_BASIC"
@@ -22,7 +22,7 @@
             "02"
             {
                 "var_type"                                             "FIELD_FLOAT"
-        				"duration"						"1.0"
+        				"duration"						"1.0 1.2 1.4 1.6"
             }
         }
         "precache"

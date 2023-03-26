@@ -34,7 +34,7 @@
 
 		"precache"
 		{
-			"particle"          "particles/econ/items/lina/lina_ti6/lina_ti6_laguna_blade.vpcf"
+			"particle"          "particles/black_laguna.vpcf"
 			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_nightstalker.vsndevts"
 		}
 

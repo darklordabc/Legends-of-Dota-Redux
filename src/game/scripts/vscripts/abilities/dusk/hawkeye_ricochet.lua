@@ -69,7 +69,7 @@ end
 
 function modifier_rapidfire_damage_reduction:CheckState()
 	local state = {
-		[MODIFIER_STATE_COMMAND_RESTRICTED] = true
+		[MODIFIER_STATE_COMMAND_RESTRICTED] = false
 	}
 	return state
 end

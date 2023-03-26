@@ -6,10 +6,10 @@
         "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
         "AbilityUnitDamageType"                                                "DAMAGE_TYPE_MAGICAL"
         "AbilityTextureName"                                                   "custom/golem_explosion"
-        "AbilityCooldown"                                                      "20 18 16 14"
+        "AbilityCooldown"                                                      "14"
         "AbilityCastRange"                                                     "0"
         "AbilityManaCost"                                                      "70 80 90 100"
-        "AoERadius"                                                            "375"
+        "AoERadius"                                                            "400"
         "MaxLevel"                                                             "4"
         "AbilityCastPoint"                                                     "0.2"
         "precache"
@@ -22,12 +22,12 @@
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "radius"                                               "375"
+                "radius"                                               "400"
             }
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "hp_prc_dmg"                                           "11 14 17 20"
+                "hp_prc_dmg"                                           "14 16 18 20"
             }
             "03"
             {
@@ -37,7 +37,7 @@
             "04"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "duration"                                             "4"
+                "duration"                                             "5"
             }
         }
         "OnSpellStart"

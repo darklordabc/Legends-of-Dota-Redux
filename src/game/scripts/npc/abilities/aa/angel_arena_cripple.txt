@@ -13,7 +13,7 @@
 		}
 		"AbilityCastRange" "850"
 		"AbilityCastPoint" "0.3 0.3 0.3 0.3"
-		"AbilityCooldown" "18.0 16.0 14.0 12.0"
+		"AbilityCooldown" "15.0 14.0 13.0 12.0"
 		"AbilityDuration" "8.0"
 		"AbilityManaCost" "90 100 110 120"
 
@@ -25,7 +25,7 @@
 
 			"02" {
 				"var_type" "FIELD_INTEGER"
-				"damage" "40 55 70 85"
+				"damage" "35 50 65 80"
 			}
 
 			"03" {
@@ -35,7 +35,7 @@
 
 			"04" {
 				"var_type" "FIELD_INTEGER"
-				"slow_percent" "-10 -15 -20 -25"
+				"slow_percent" "-15 -20 -25 -30"
 			}
 		}
 

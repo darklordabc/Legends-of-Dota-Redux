@@ -5,7 +5,7 @@
 		"AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
 		"AbilityTextureName" "custom/ancient_priestess_surge_of_intelligence"
 		"MaxLevel" "4"
-		"AbilityCastPoint" "0.5"
+		"AbilityCastPoint" "0.3"
 
 		"precache" {
 			"particle" "particles/leshrac_diabolic_edict_custom.vpcf"

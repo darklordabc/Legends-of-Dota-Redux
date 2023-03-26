@@ -18,7 +18,7 @@
 
 			"03" {
 				"var_type" "FIELD_FLOAT"
-				"resist_per_level" "0.25"
+				"resist_per_level" "0.1"
 			}
 		}
 	}

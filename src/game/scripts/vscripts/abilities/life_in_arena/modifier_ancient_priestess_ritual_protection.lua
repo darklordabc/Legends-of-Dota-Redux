@@ -1,7 +1,7 @@
 modifier_ancient_priestess_ritual_protection = class({})
 
 function modifier_ancient_priestess_ritual_protection:GetEffectName()
-	return "particles/items4_fx/combo_breaker_buff.vpcf"
+	return "particles/units/heroes/hero_oracle/oracle_fatesedict_disarm.vpcf"
 end
 
 function modifier_ancient_priestess_ritual_protection:GetEffectAttachType()

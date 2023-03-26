@@ -4,7 +4,7 @@
 		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
-		"AbilityCastRange" "0"
+		"AbilityCastRange" "1200"
 		"AbilityCastPoint" "0.3 0.3 0.3"
 		"AbilityCooldown" "60.0"
 		"AbilityManaCost" "150 200 250"
@@ -27,7 +27,7 @@
 
 			"04" {
 				"var_type" "FIELD_INTEGER"
-				"lifesteal_per_hero" "10 12 14"
+				"lifesteal_per_hero" "10 15 20"
 			}
 
 			"05" {
