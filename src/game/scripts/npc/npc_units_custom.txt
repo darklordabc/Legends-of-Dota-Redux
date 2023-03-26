@@ -5004,7 +5004,7 @@
 	{
 		// General
 		//----------------------------------------------------------------
-		"Model"						"models/heroes/weaver/weaver_bug.mdl"	// Model.
+		"Model"						"models/props_wildlife/wildlife_caterpillar001.vmdl"	// Model.
 		"BaseClass"					"npc_dota_base_additive"
 		"SoundSet"					"0"			// Name of sound set.
 		"Level"						"2"
