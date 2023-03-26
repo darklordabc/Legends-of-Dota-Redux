@@ -6625,8 +6625,9 @@
 			// General
 			//----------------------------------------------------------------
 			"BaseClass"					"npc_dota_base_additive"	// Class of entity of link to.
-			"Model"						"models/heroes/monkey_king/transform_invisiblebox.vmdl"	// Model.
-			"ModelScale"				"1.4"
+			// "Model"						"models/heroes/monkey_king/transform_invisiblebox.vmdl"	// Model.
+			"Model"						"models/props_consumables/portal/ti10_portal_fx.vmdl"
+			"ModelScale"				"1.0"
 			"SoundSet"					"Creep_Good_Range"					// Name of sound set.
 			"Level"						"0"
 			"UnitLabel"					"Beam"
@@ -6679,7 +6680,7 @@
 
 			// Bounds
 			//----------------------------------------------------------------
-			"BoundsHullName"			"DOTA_HULL_SIZE_HUGE"			// Hull type used for navigation/locomotion.
+			"BoundsHullName"			"DOTA_HULL_SIZE_SMALLEST"			// Hull type used for navigation/locomotion.
 			"RingRadius"                "125"
 
 			// Movement
