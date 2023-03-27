@@ -8,7 +8,7 @@
         "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
         "AbilityUnitTargetFlags"                                               "DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES"
         "AbilityTextureName"                                                   "custom/force_dash_lod_OP"
-        "AbilityCooldown"                                                      "12 10 8 6"
+        "AbilityCooldown"                                                      "10 8 6 4"
         "AbilityManaCost"                                                      "75 50 25 0"
         "AbilityCastRange"                                                     "2000"
         "AbilityCastPoint"                                                     "0.01"
