@@ -200,7 +200,7 @@
 
         "AbilityCastRange"              "800 950 1100 1250"
         "AbilityCastPoint"              "0.25"
-        "AbilityDamage"                 "90 130 170 210"
+        "AbilityDamage"                 "120 170 220 270"
         "AbilityCooldown"               "8"
         "AbilityManaCost"               "80 90 100 110"
 
@@ -230,17 +230,17 @@
             "04"
             {
                 "var_type"          "FIELD_INTEGER"
-                "Movement_Speed_Bonus"  "15"
+                "Movement_Speed_Bonus"  "15 20 25 30"
             }
             "05"
             {
                 "var_type"          "FIELD_INTEGER"
-                "Automatic_Return"  "2"
+                "Automatic_Return"  "3"
             }
             "06"
             {
                 "var_type"          "FIELD_FLOAT"
-                "ministun_duration" "0.01"
+                "ministun_duration" "0.3"
             }
             "07"
             {
