@@ -547,7 +547,7 @@
             "03"
             {
                 "var_type"          "FIELD_INTEGER"
-                "buff_ms"           "5 10 15"
+                "buff_ms"           "10 15 20"
             }
             "04"
             {
@@ -567,7 +567,7 @@
             "07"
             {
                 "var_type"          "FIELD_INTEGER"
-                "vision_radius"     "200"
+                "vision_radius"     "400"
             }
             "08"
             {
@@ -785,7 +785,7 @@
         "AbilityCastPoint"              "0.1"
         "AnimationPlaybackRate"         "1.4"
         "AbilityCastRange"              "600"
-        "AbilityDamage"                 "25"
+        "AbilityDamage"                 "40"
         "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_1"
     
             
@@ -807,17 +807,17 @@
             "01"
             {
                 "var_type"          "FIELD_INTEGER"
-                "damage_reduction"  "-30 -40 -50 -60"
+                "damage_reduction"  "-40"
             }
             "02"
             {
                 "var_type"          "FIELD_INTEGER"
-                "bonus_damage"      "100"
+                "bonus_damage"      "100 125 150 175"
             }
             "03"
             {
                 "var_type"          "FIELD_INTEGER"
-                "damage_cap"        "200 300 400 500"
+                "damage_cap"        "200 350 500 650"
             }
             "04"
             {
@@ -827,7 +827,7 @@
             "05"
             {
                 "var_type"          "FIELD_INTEGER"
-                "orb_duration"      "12"
+                "orb_duration"      "16"
             }
         }
         "OnSpellStart"
