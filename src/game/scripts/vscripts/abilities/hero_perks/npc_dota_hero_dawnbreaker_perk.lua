@@ -35,7 +35,7 @@ function modifier_npc_dota_hero_dawnbreaker_perk:DeclareFunctions()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_dawnbreaker_perk:OnCreated()
-	self.bonusPerLevel = 1.5
+	self.bonusPerLevel = 2.0
 	self.bonusAmount = 1
 	if IsServer() then
 		self:StartIntervalThink(0.1)
