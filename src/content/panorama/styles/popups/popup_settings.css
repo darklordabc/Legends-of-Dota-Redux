@@ -1244,13 +1244,13 @@ DOTASettingsCheckbox
 	background-repeat: no-repeat;	
 }
 
-#DefaultItemQuickcastCheckBox:selected .TickBox,
+/*#DefaultItemQuickcastCheckBox:selected .TickBox,
 #DefaultAbilityQuickcastCheckBox:selected .TickBox,
 {
 	border-color: #66AADD;	
 	border-radius: 4px;
 	border-width: 1px;
-}
+} */
 	
 #DefaultItemQuickcastCheckBox:hover .TickBox,
 #DefaultAbilityQuickcastCheckBox:hover .TickBox,
@@ -2292,14 +2292,14 @@ Slider.HorizontalSlider
 	letter-spacing: 0;
 }
 
-.ChatWheelPhraseChoiceLine.MessageHasSound.MessageIsUnlocked .ChatWheelPhraseChoiceText,
+/*.ChatWheelPhraseChoiceLine.MessageHasSound.MessageIsUnlocked .ChatWheelPhraseChoiceText,
 #ChatWheelPhraseListContainer.Active .ChatWheelPhraseChoiceLine.MessageHasSound.MessageIsUnlocked .ChatWheelPhraseChoiceText,
 #PingWheelListContainer.Active .ChatWheelPhraseChoiceLine.MessageHasSound.MessageIsUnlocked .ChatWheelPhraseChoiceText,
 #ChatWheelPhraseListContainer.Active .ChatWheelPhraseChoiceLine.MessageHasSound.MessageIsUnlocked .ChatWheelAllLabel
 #PingWheelListContainer.Active .ChatWheelPhraseChoiceLine.MessageHasSound.MessageIsUnlocked .ChatWheelPhraseChoiceText,
 {
 	color: white;
-}
+} */
 
 .ChatWheelUnlockInfo_EventLevel > Label
 {
