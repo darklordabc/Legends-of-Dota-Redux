@@ -5,7 +5,7 @@ if IsServer() then
 end
 
 function modifier_ancient_priestess_spirit_link:GetEffectName()
-	return "particles/econ/taunts/snapfire/snapfire_taunt_bubble.vpcf"
+	return "particles/econ/items/wisp/wisp_overcharge_ti7.vpcf"
 end
 
 function modifier_ancient_priestess_spirit_link:GetEffectAttachType()
