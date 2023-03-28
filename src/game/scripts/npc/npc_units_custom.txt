@@ -2741,7 +2741,7 @@
 	"explosive_spore"
 	{
 		"BaseClass"                    "npc_dota_creature"    // Class of entity of link to.
-		"Model"                        "models/heroes/techies/fx_techiesfx_mine.vmdl"    // Model.
+		"Model"                        "models/items/courier/pumpkin_courier/pumpkin_courier_flying.vmdl"    // Model.
 		"SoundSet"                    "Hero_TechiesLandMines"                    // Name of sound set.
 		"GameSoundsFile"            "soundevents/game_sounds_heroes/game_sounds_techies.vsndevts"
 		"Level"                        "1"
@@ -2786,7 +2786,7 @@
 		// Movement
 		//----------------------------------------------------------------
 		"MovementCapabilities"        "DOTA_UNIT_CAP_MOVE_FLY"            // Type of locomotion - ground, air
-		"MovementSpeed"                "500"            // Speed
+		"MovementSpeed"                "450"            // Speed
 		"MovementTurnRate"            "1.5"        // Turning rate.
 		"FollowRange"				"-10"
 
