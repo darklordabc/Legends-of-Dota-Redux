@@ -3589,8 +3589,8 @@
 		// General
 		//----------------------------------------------------------------
 		"BaseClass"			"npc_dota_building"
-		"Model"				"models/props_structures/outpost.vmdl"
-		"ModelScale"		"0.4"
+		"Model"				"models/items/rattletrap/clockwerk_furnator_furnators_furnace/clockwerk_furnator_furnators_furnace.vmdl"
+		"ModelScale"		"2.0"
 		"Level"				"4"
 		"SoundSet"			"Creep_Good_Melee"
 		"MinimapIcon"		"minimap_racks90"
@@ -3638,7 +3638,7 @@
 		// Vision
 		//----------------------------------------------------------------
 		"VisionDaytimeRange"		"800"
-		"VisionNighttimeRange"		"600"
+		"VisionNighttimeRange"		"800"
 
 		// Team
 		//----------------------------------------------------------------
@@ -3661,8 +3661,8 @@
 		// General
 		//----------------------------------------------------------------
 		"BaseClass"			"npc_dota_building"
-		"Model"				"models/props_structures/outpost.vmdl"
-		"ModelScale"		"0.4"
+		"Model"				"models/items/rattletrap/clockwerk_furnator_furnators_furnace/clockwerk_furnator_furnators_furnace.vmdl"
+		"ModelScale"		"2.0"
 		"Level"				"5"
 		"SoundSet"			"Creep_Good_Melee"
 		"MinimapIcon"		"minimap_racks90"
@@ -3710,7 +3710,7 @@
 		// Vision
 		//----------------------------------------------------------------
 		"VisionDaytimeRange"		"800"
-		"VisionNighttimeRange"		"600"
+		"VisionNighttimeRange"		"800"
 
 		// Team
 		//----------------------------------------------------------------
@@ -3733,8 +3733,8 @@
 		// General
 		//----------------------------------------------------------------
 		"BaseClass"			"npc_dota_building"
-		"Model"				"models/props_structures/outpost.vmdl"
-		"ModelScale"		"0.4"
+		"Model"				"models/items/rattletrap/clockwerk_furnator_furnators_furnace/clockwerk_furnator_furnators_furnace.vmdl"
+		"ModelScale"		"2.0"
 		"Level"				"6"
 		"SoundSet"			"Creep_Good_Melee"
 		"MinimapIcon"		"minimap_racks90"
@@ -3782,7 +3782,7 @@
 		// Vision
 		//----------------------------------------------------------------
 		"VisionDaytimeRange"		"800"
-		"VisionNighttimeRange"		"600"
+		"VisionNighttimeRange"		"800"
 
 		// Team
 		//----------------------------------------------------------------
