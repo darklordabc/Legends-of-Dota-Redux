@@ -5,19 +5,19 @@
 		"AbilityBehavior"													  "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
 		"BaseClass"															"ability_datadriven"
 		"AbilityTextureName"												   "custom/holdout_blade_fury"
-		"AbilityCastRange"													 "1000"
+		"AbilityCastRange"													 "650"
 		"AbilityCastPoint"													 "0.0"
 		"AbilityCooldown"													  "10.0"
-		"AbilityChannelTime"												   "2.5"
+		"AbilityChannelTime"												   "1.5"
 		"AbilityUnitDamageType"												"DAMAGE_TYPE_PURE"
 		"AbilityCastAnimation"												 "ACT_DOTA_DISABLED"
-		"AbilityDamage"														"300 450 600 750"
+		"AbilityDamage"														"200 300 400 500"
 		"precache"
 		{
 			"particle"													 "particles/econ/generic/generic_aoe_explosion_sphere_1/generic_aoe_explosion_sphere_1.vpcf"
 			"soundfile"													"soundevents/game_sounds_heroes/game_sounds_gyrocopter.vsndevts"
 		}
-		"AbilityManaCost"													  "150 170 190 210"
+		"AbilityManaCost"													  "125 150 175 200"
 		"SideShop"															 "1"
 		"OnSpellStart"
 		{
@@ -125,12 +125,12 @@
 			"01"
 			{
 				"var_type"											 "FIELD_FLOAT"
-				"duration"											 "1.5"
+				"duration"											 "1.0"
 			}
 			"02"
 			{
 				"var_type"											 "FIELD_INTEGER"
-				"damage"											   "300 450 600 750"
+				"damage"											   "200 300 400 500"
 			}
 			"03"
 			{
@@ -140,7 +140,7 @@
 			"04"
 			{
 				"var_type"											 "FIELD_INTEGER"
-				"distance"											 "300"
+				"distance"											 "150"
 			}
 			"05"
 			{
