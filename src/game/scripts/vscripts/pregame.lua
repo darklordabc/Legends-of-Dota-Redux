@@ -8474,11 +8474,11 @@ function Pregame:fixSpawningIssues()
                     local realHero
                     if spawnedUnit.IsIllusion and spawnedUnit:IsIllusion() and spawnedUnit:IsHero() then
                       -- Search nearby radius to find the real hero
-                        local nearbyUnits = Entities:FindAllInSphere(spawnedUnit:GetAbsOrigin(), 2000)
+                        local nearbyUnits = Entities:FindAllInSphere(spawnedUnit:GetAbsOrigin(), 20000)
                         local filteredNearbyUnits = {}
                         for i, unit in pairs(nearbyUnits) do
                             if not unit.IsRealHero or not unit:IsRealHero()  then
-                                --nearbyUnits[i] = nil
+                                nearbyUnits[i] = nil
                             else
                                 -- We have found the real hero if: Hero is Real and Not Illusion and unit has same name as the spawned illusion
                                 if unit and unit:GetName() == spawnedUnit:GetName() then
