@@ -15,7 +15,7 @@
         "AbilityCastRange"                                                     "4000"
         "AbilityCastPoint"                                                     "0.3"
         "AbilityCooldown"                                                      "10.0"
-        "AbilityManaCost"                                                      "50 75 100 125"
+        "AbilityManaCost"                                                      "95 105 115 125"
         "AOERadius"                                                            "%radius"
         "AbilityChannelTime"                                                   "1.01"
         "precache"
@@ -28,7 +28,7 @@
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "damage"                                               "50 75 100 125"
+                "damage"                                               "75 100 125 150"
             }
             "02"
             {
