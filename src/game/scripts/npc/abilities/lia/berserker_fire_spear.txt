@@ -114,6 +114,6 @@
                 }
             }
         }
-        "ReduxPerks"                                                           "fire"
+        "ReduxPerks"                                                           "fire | physical"
     }
 }
