@@ -11,7 +11,7 @@
 		"BaseClass"					"npc_dota_ignis_fatuus"
 		"SoundSet"					"0"
 		"Level"						"1"
-		"ModelScale"				"0.5"
+		"ModelScale"				"1.0"
 
 		// Abilities
 		//----------------------------------------------------------------
@@ -1674,7 +1674,7 @@
 		// "Model" "models/heroes/visage/visage_familiar.vmdl"
 		"Model" "models/items/courier/faceless_rex/faceless_rex_flying.vmdl"
 
-		"ModelScale" "1.0"
+		"ModelScale" "1.2"
 		"Level" "10"
 		"IsAncient" "1"
 		"IsSummoned"				"1"
@@ -1692,15 +1692,15 @@
 		"MagicalResistance" "30"
 
 		"AttackCapabilities" "DOTA_UNIT_CAP_RANGED_ATTACK"
-		"AttackDamageMin" "10"
-		"AttackDamageMax" "10"
-		"AttackRate" "0.25"
+		"AttackDamageMin" "0"
+		"AttackDamageMax" "0"
+		"AttackRate" "0.8"
 		"AttackAnimationPoint" "0.2"
 		"AttackAcquisitionRange" "600"
 
-		"AttackRange" "300"
+		"AttackRange" "350"
 		"ProjectileModel" "particles/units/heroes/hero_enigma/enigma_base_attack.vpcf"
-		"ProjectileSpeed" "900"
+		"ProjectileSpeed" "800"
 
 		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"
 		"HealthBarOffset"			"140"
@@ -1713,7 +1713,7 @@
 		"MovementSpeed" "375"
 		"MovementTurnRate" "0.9"
 
-		"StatusHealth" "600"
+		"StatusHealth" "400"
 		"StatusHealthRegen" "2"
 		"StatusMana" "0"
 		"StatusManaRegen" "0"
@@ -3842,7 +3842,7 @@
 
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"			"125"
+		"StatusHealth"			"200"
 		"StatusHealthRegen"		"2"
 		"StatusMana"			"0"
 		"StatsManaRegen"		"0"
@@ -3922,7 +3922,7 @@
 
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"			"325"
+		"StatusHealth"			"300"
 		"StatusHealthRegen"		"2"
 		"StatusMana"			"0"
 		"StatsManaRegen"		"0"
@@ -4003,7 +4003,7 @@
 
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"			"525"
+		"StatusHealth"			"400"
 		"StatusHealthRegen"		"2"
 		"StatusMana"			"0"
 		"StatsManaRegen"		"0"
@@ -4082,8 +4082,8 @@
 		// Movement
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_FLY"
-		"MovementSpeed"				"200"		// Speed.
-		"MovementTurnRate"			"0.6"		// Turning rate.
+		"MovementSpeed"				"400"		// Speed.
+		"MovementTurnRate"			"0.9"		// Turning rate.
 
 		// Status
 		//----------------------------------------------------------------
@@ -4092,8 +4092,8 @@
 
 		// Vision
 		//----------------------------------------------------------------
-		"VisionDaytimeRange"		"100"		// Range of vision during day light.
-		"VisionNighttimeRange"		"100"		// Range of vision at night time.
+		"VisionDaytimeRange"		"600"		// Range of vision during day light.
+		"VisionNighttimeRange"		"600"		// Range of vision at night time.
 
 		// Team
 		//----------------------------------------------------------------
