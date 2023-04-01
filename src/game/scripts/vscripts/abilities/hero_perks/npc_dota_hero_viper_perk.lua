@@ -51,6 +51,7 @@ function ViperPoisonTracker(self, ent)
 
   self.poisonTracker = self.poisonTracker or Timers:CreateTimer(1,function()
     for k,v in pairs(self.perkTargets) do
+		local count = 0
       if v and not v:IsNull() then
         local count = 0
         for l,m in pairs(v:FindAllModifiers()) do

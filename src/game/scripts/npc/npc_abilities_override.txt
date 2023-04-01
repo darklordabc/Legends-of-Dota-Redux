@@ -1,12 +1,71 @@
     "DOTAAbilities"
     {	
-		"dawnbreaker_luminosity"
+	"dawnbreaker_luminosity"
 	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"7918"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ALLIES_YES"
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastAnimation"			"ACT_DOTA_OVERRIDE_ABILITY_3"
+		"AbilityCastGestureSlot"		"DEFAULT"
+		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
 		"precache"
         {
             "particle"          "particles/units/heroes/hero_dawnbreaker/dawnbreaker_luminosity.vpcf"
 			"particle"          "particles/units/heroes/hero_dawnbreaker/dawnbreaker_luminosity_attack_buff.vpcf"
         }
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"attack_count"				"3"
+				"LinkedSpecialBonus"		"special_bonus_unique_dawnbreaker_luminosity_attack_count"
+				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_SUBTRACT"				  
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"heal_radius"				"650"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"heal_pct"					"35 40 45 50"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"heal_from_creeps"			"50"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_damage"				"125 150 175 200"
+				"LinkedSpecialBonus"		"special_bonus_unique_dawnbreaker_luminosity_crit"
+			}	
+			"06"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"proc_cooldown"				"0.00"
+			}	
+			"07"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"allied_healing_pct"		"50"
+			}				
+		
+		}
 	}
 		"venomancer_area_poison"
 		{

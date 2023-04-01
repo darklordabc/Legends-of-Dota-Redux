@@ -13,19 +13,19 @@
         "AbilityType"                                                          "DOTA_ABILITY_TYPE_BASIC"
         "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
         "HasScepterUpgrade"                                                    "0"
-    		"AbilityChannelTime"      "45.0"
-        "AoERadius"               "250"
+    		"AbilityChannelTime"      "30.0"
+        "AoERadius"               "220"
         "AbilitySpecial"
         {
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "radius"						"250"
+                "radius"						"220"
             }
             "02"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "damage"						"2.0 2.5 3.0"
+                "damage"						"2.0 2.6 3.2"
             }
             "03"
             {
@@ -35,7 +35,7 @@
             "04"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "channel_time"						"45.0"
+                "channel_time"						"30.0"
             }
         }
         "precache"
@@ -60,7 +60,7 @@
           "01"
           {
               "var_type"                                             "FIELD_INTEGER"
-              "radius"						"250"
+              "radius"						"225"
           }
       }
     }

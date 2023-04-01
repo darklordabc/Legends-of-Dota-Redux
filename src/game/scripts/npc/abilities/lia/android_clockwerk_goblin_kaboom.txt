@@ -9,7 +9,7 @@
 		"MaxLevel" "3"
 		"AbilityCastRange" "150"
 		"AbilityCastPoint" "0.0"
-		"AbilityDamage" "30 60 90"
+		"AbilityDamage" "40 70 100"
 
 		"AbilitySpecial" {
 			"01" {
