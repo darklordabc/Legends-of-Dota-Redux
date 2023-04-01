@@ -6,7 +6,7 @@
         "ScriptFile"                                                           "abilities/mana_laser.lua"
         "AbilityTextureName"                                                   "custom/mana_laser"
         "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-        "AbilityCooldown"                "12 11 10 9"
+        "AbilityCooldown"                "11"
         "HasScepterUpgrade"              "1"
         "AbilitySpecial"
         {
@@ -23,7 +23,7 @@
             "03"
             {
                 "var_type"              "FIELD_FLOAT"
-                "laser_damage"          "100 150 200 250"
+                "laser_damage"          "140 180 220 260"
             }
             "04"
             {
