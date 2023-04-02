@@ -2741,18 +2741,18 @@
 	"explosive_spore"
 	{
 		"BaseClass"                    "npc_dota_creature"    // Class of entity of link to.
-		"Model"                        "models/items/courier/pumpkin_courier/pumpkin_courier_flying.vmdl"    // Model.
+		"Model"                        "models/items/pugna/ward/weta_call_of_the_nether_lotus_ward/weta_call_of_the_nether_lotus_ward.vmdl"    // Model.
 		"SoundSet"                    "Hero_TechiesLandMines"                    // Name of sound set.
 		"GameSoundsFile"            "soundevents/game_sounds_heroes/game_sounds_techies.vsndevts"
 		"Level"                        "1"
-		"ModelScale"                 "1.0"
+		"ModelScale"                 "1.2"
 
 		"precache"
 		{
 			"soundfile"       "soundevents/game_sounds_heroes/game_sounds_techies.vsndevts"
 			"particle"        "particles/units/heroes/hero_techies/techies_land_mine.vpcf"
 			"particle"        "particles/units/heroes/hero_techies/techies_land_mine_explode.vpcf"
-			"model"           "models/heroes/techies/fx_techiesfx_mine.vmdl"
+			"model"           "models/items/pugna/ward/weta_call_of_the_nether_lotus_ward/weta_call_of_the_nether_lotus_ward.vmdl"
 		}
 		// Abilities
 		//----------------------------------------------------------------
@@ -2776,7 +2776,7 @@
 		"AttackRate"                "1.5"        // Speed of attack.
 		"AttackAnimationPoint"        "0.3"        // Normalized time in animation cycle to attack.
 		"AttackAcquisitionRange"    "600"        // Range within a target can be acquired.
-		"AttackRange"                "10"        // Range within a target can be attacked.
+		"AttackRange"                "5"        // Range within a target can be attacked.
 
 		// Bounds
 		//----------------------------------------------------------------
@@ -3590,7 +3590,7 @@
 		//----------------------------------------------------------------
 		"BaseClass"			"npc_dota_building"
 		"Model"				"models/items/rattletrap/clockwerk_furnator_furnators_furnace/clockwerk_furnator_furnators_furnace.vmdl"
-		"ModelScale"		"2.0"
+		"ModelScale"		"2.3"
 		"Level"				"4"
 		"SoundSet"			"Creep_Good_Melee"
 		"MinimapIcon"		"minimap_racks90"
@@ -3662,7 +3662,7 @@
 		//----------------------------------------------------------------
 		"BaseClass"			"npc_dota_building"
 		"Model"				"models/items/rattletrap/clockwerk_furnator_furnators_furnace/clockwerk_furnator_furnators_furnace.vmdl"
-		"ModelScale"		"2.0"
+		"ModelScale"		"2.3"
 		"Level"				"5"
 		"SoundSet"			"Creep_Good_Melee"
 		"MinimapIcon"		"minimap_racks90"
@@ -3734,7 +3734,7 @@
 		//----------------------------------------------------------------
 		"BaseClass"			"npc_dota_building"
 		"Model"				"models/items/rattletrap/clockwerk_furnator_furnators_furnace/clockwerk_furnator_furnators_furnace.vmdl"
-		"ModelScale"		"2.0"
+		"ModelScale"		"2.3"
 		"Level"				"6"
 		"SoundSet"			"Creep_Good_Melee"
 		"MinimapIcon"		"minimap_racks90"
