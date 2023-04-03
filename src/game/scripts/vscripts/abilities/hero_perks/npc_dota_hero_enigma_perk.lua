@@ -30,18 +30,36 @@ end
 --------------------------------------------------------------------------------------------------------
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_enigma_perk:OnCreated()
+  if IsServer() then
+    local cooldownReductionPercent = 25
+    self.cooldownReduction = 1 - (cooldownReductionPercent / 100)
+  end
+  return true
+end
+--------------------------------------------------------------------------------------------------------
+-- Add additional functions
+--------------------------------------------------------------------------------------------------------
+
 function modifier_npc_dota_hero_enigma_perk:DeclareFunctions()
   local funcs = {
-    MODIFIER_EVENT_ON_DEATH,
+    MODIFIER_EVENT_ON_ABILITY_FULLY_CAST,
   }
   return funcs
 end
 
-function modifier_npc_dota_hero_enigma_perk:OnDeath(keys)
+function modifier_npc_dota_hero_enigma_perk:OnAbilityFullyCast(keys)
   if IsServer() then
-    local caster = self:GetParent()
-    if caster == keys.unit and caster:HasAbility("enigma_black_hole") then
-      caster:FindAbilityByName("enigma_black_hole"):EndCooldown() 
+    local hero = self:GetCaster()
+    local unit = keys.unit
+    local ability = keys.ability
+
+
+    if hero == unit and ability:GetName() == "enigma_black_hole" then
+      local cooldown = ability:GetCooldownTimeRemaining() * self.cooldownReduction
+      ability:RefundManaCost()
+      ability:EndCooldown()
+      ability:StartCooldown(cooldown)
     end
   end
 end
