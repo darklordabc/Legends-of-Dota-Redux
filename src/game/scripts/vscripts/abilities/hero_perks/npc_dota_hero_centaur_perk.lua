@@ -31,18 +31,28 @@ end
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------
 
+function modifier_npc_dota_hero_centaur_perk:OnCreated(keys)
+	self.cooldownPercentReduction = 75
+	self.cooldownReduction = self.cooldownPercentReduction / 100
+	return true
+end
+--------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_centaur_perk:DeclareFunctions()
 	local funcs = {
-		MODIFIER_EVENT_ON_TAKEDAMAGE,
+	  MODIFIER_EVENT_ON_ABILITY_FULLY_CAST
 	}
 	return funcs
 end
-
-function modifier_npc_dota_hero_centaur_perk:OnTakeDamage(params)
-	if params.attacker == self:GetParent() then
-		if params.inflictor and params.inflictor:HasAbilityFlag("self_damage") then
-			local hp = self:GetParent():GetHealth()
-			self:GetParent():SetHealth(hp + params.damage*0.25)
-		end
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_centaur_perk:OnAbilityFullyCast(keys)
+  if IsServer() then
+    local hero = self:GetCaster()
+    local target = keys.target
+    local ability = keys.ability
+    if hero == keys.unit and ability and ability:HasAbilityFlag("self_damage") then
+	  local cooldown = ability:GetCooldownTimeRemaining() * self.cooldownReduction
+      ability:EndCooldown()
+      ability:StartCooldown(cooldown)
 	end
+  end
 end
