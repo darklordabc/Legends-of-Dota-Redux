@@ -35,6 +35,6 @@ end
 
 function modifier_npc_dota_hero_medusa_perk:OnAttackLanded(params)
     if self:GetParent() == params.attacker then
-       self:GetParent():GiveMana(params.damage * 0.075)
+       self:GetParent():GiveMana(params.damage * 0.1)
     end
 end
