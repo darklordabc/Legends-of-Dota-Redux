@@ -31,19 +31,17 @@ end
 --------------------------------------------------------------------------------------------------------
 
 --------------------------------------------------------------------------------------------------------
--- Add additional functions
 function modifier_npc_dota_hero_skeleton_king_perk:OnCreated(keys)
+	
     if IsServer() then
         local caster = self:GetCaster()
-        local pudge = caster:FindAbilityByName("skeleton_king_vampiric_aura")
+        local mars = caster:FindAbilityByName("skeleton_king_vampiric_aura")
 
-        if pudge then
-            pudge:UpgradeAbility(false)
+        if mars then
+            mars:UpgradeAbility(false)
         else 
-            pudge = caster:AddAbility("skeleton_king_vampiric_aura")
-            pudge:SetStolen(true)
-            pudge:SetActivated(true)
-            pudge:SetLevel(1)
+            mars = caster:AddAbility("skeleton_king_vampiric_aura")
+            --nullField:SetLevel(1)	
         end
     end
 end
