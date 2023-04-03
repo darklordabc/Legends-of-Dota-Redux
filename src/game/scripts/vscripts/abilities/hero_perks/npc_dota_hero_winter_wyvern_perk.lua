@@ -36,7 +36,7 @@ function modifier_npc_dota_hero_winter_wyvern_perk:OnCreated()
 	if not IsServer() then return end
 
 	self:GetCaster().flying = false
-	self.flightDelay = 5
+	self.flightDelay = 3
 	self:StartIntervalThink(0.1)
 
 	return true
