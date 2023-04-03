@@ -3898,6 +3898,11 @@
             "ReduxFlags"                                                           "silence"
             "ReduxPerks"                                                           "silence"
         }
+		"muerta_the_calling"
+        {
+            "ReduxFlags"                                                           "silence"
+            "ReduxPerks"                                                           "silence"
+        }
         "silencer_last_word"
         {
             "ReduxFlags"                                                           "silence"
