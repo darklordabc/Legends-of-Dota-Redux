@@ -29,8 +29,8 @@ function modifier_npc_dota_hero_techies_perk:IsPurgable()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_techies_perk:OnCreated(keys)
-	self.cooldownPercentReduction = 50
-	self.manaPercentReduction = 50
+	self.cooldownPercentReduction = 30
+	self.manaPercentReduction = 30
 
 	self.cooldownReduction = 1-(self.cooldownPercentReduction / 100)
 	self.manaReduction = self.manaPercentReduction / 100

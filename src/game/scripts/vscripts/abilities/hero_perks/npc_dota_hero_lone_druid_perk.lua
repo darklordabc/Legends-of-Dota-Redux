@@ -47,7 +47,7 @@ if IsServer() then
 		self.damageRedirect = 1 - self.damageTaken
 		self.suicide = {item_bloodstone = true,
 						techies_suicide = true}
-		self.leash = 1100
+		self.leash = 1800
 	end
 
 	function modifier_npc_dota_hero_lone_druid_perk:DeclareFunctions()

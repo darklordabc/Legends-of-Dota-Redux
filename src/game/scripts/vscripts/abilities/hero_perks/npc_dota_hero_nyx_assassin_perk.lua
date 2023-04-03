@@ -41,7 +41,7 @@ end
 function modifier_npc_dota_hero_nyx_assassin_perk:GetModifierMoveSpeedBonus_Percentage()
     local caster = self:GetParent()
     if caster:IsInvisible() then
-      return 17
+      return 25
     else
       return 0
     end

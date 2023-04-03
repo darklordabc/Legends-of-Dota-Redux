@@ -26,7 +26,7 @@ function modifier_npc_dota_hero_arc_warden_perk:IsPurgable()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_arc_warden_perk:OnCreated(keys)
-	self.downtime = 90
+	self.downtime = 60
 	return true
 end
 --------------------------------------------------------------------------------------------------------
@@ -64,7 +64,7 @@ function modifier_npc_dota_hero_arc_warden_perk:OnAbilityFullyCast(keys)
 	  -- If Tome of Knowledge used, this perk has double cooldown length
 	  local cooldown = self.downtime
 	  if ability:GetAbilityName() == "item_tome_of_knowledge" then
-	  	cooldown = cooldown * 2
+	  	cooldown = 90
 	  end
 	  
 	  -- Adds modifier

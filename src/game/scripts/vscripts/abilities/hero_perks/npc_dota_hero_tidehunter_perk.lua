@@ -31,18 +31,39 @@ end
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_tidehunter_perk:DeclareFunctions()
-  local funcs = {
-    MODIFIER_EVENT_ON_DEATH,
-  }
-  return funcs
+	return {
+		MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK,
+	}
 end
-
-function modifier_npc_dota_hero_tidehunter_perk:OnDeath(keys)
-  if IsServer() then
-    local caster = self:GetParent()
-    if caster == keys.unit and caster:HasAbility("tidehunter_ravage") then
-      caster:FindAbilityByName("tidehunter_ravage"):EndCooldown()
-    end
-  end
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_tidehunter_perk:OnCreated()
+	self.bonusPerLevel = 3
+	self.bonusAmount = 1
+	if IsServer() then
+		self:StartIntervalThink(0.1)
+	end
+end
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_tidehunter_perk:OnIntervalThink()
+	if IsServer() then
+		local caster = self:GetParent()
+		for i=0, caster:GetAbilityCount() do
+			local skill = caster:GetAbilityByIndex(i)
+			if skill and skill:HasAbilityFlag("water") then
+				if not skill.perkLevel then skill.perkLevel = skill:GetLevel() end
+				if skill:GetLevel() > skill.perkLevel then
+					local increase = (skill:GetLevel()  - skill.perkLevel)
+					increase = increase * self.bonusPerLevel
+					local stacks = self:GetStackCount()
+					self:SetStackCount(stacks + increase)
+					skill.perkLevel = skill:GetLevel()
+				end
+			end
+		end
+	end
+end
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_tidehunter_perk:GetModifierPhysical_ConstantBlock(params)
+	return self.bonusAmount * self:GetStackCount()
 end
 

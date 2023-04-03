@@ -44,7 +44,7 @@ end
       local ability = keys.ability
       
           
-      if ability:GetAbilityName() == "chen_holy_persuasion" and target:IsCreep() then
+      if (ability:GetAbilityName() == "chen_holy_persuasion" or ability:GetAbilityName() == "enchantress_enchant" or ability:GetAbilityName() == "item_helm_of_the_dominator" ability:GetAbilityName() == "item_helm_of_the_overlord") and target:IsCreep() then
         local boolMana = false -- To check mana costs
         local boolAllowActive = false -- To check if we should allow an active
         if not target.chenAbilityCount then target.chenAbilityCount = 0 end

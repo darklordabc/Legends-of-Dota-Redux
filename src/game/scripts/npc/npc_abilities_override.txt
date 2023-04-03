@@ -336,7 +336,7 @@
             "MaxLevel"                                                             "4"
 			"AbilityCooldown"				"15 12 9 6"
             "ReduxFlags"                                                           "bash | attack_modifier | semi_passive"
-            "ReduxPerks"                                                           "neutral | bash | attack_modifier | autocast_basic"
+            "ReduxPerks"                                                           "neutral | bash | attack_modifier | autocast_basic | physical"
             "AbilitySpecial"
             {       
                 "01"
@@ -3430,7 +3430,7 @@
             "MaxLevel"      				"4"
 			"AbilityCastPoint"				"0.2"
             "ReduxFlags"                    "stun"
-            "ReduxPerks"                    "neutral"
+            "ReduxPerks"                    "neutral | physical"
 			"AbilityCooldown"				"12.0 11.0 10.0 9.0"
             "AbilitySpecial"
             {
@@ -3894,6 +3894,11 @@
             "ReduxPerks"                                                           "skillshot | silence"
         }
         "death_prophet_silence"
+        {
+            "ReduxFlags"                                                           "silence"
+            "ReduxPerks"                                                           "silence"
+        }
+		"muerta_the_calling"
         {
             "ReduxFlags"                                                           "silence"
             "ReduxPerks"                                                           "silence"

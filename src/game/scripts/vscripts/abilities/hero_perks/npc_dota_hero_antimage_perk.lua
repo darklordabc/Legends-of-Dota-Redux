@@ -32,8 +32,8 @@ end
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_antimage_perk:OnCreated()
-	self.radius = 200
-	self.duration = 2
+	self.radius = 250
+	self.duration = 2.5
 end
 
 function modifier_npc_dota_hero_antimage_perk:DeclareFunctions()
