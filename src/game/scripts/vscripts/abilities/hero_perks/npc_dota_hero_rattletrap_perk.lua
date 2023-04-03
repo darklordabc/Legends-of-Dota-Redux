@@ -44,5 +44,6 @@ end
 function modifier_npc_dota_hero_rattletrap_perk:CheckState()
     return {
         [MODIFIER_STATE_NO_UNIT_COLLISION ] = true,
+		[MODIFIER_STATE_CANNOT_MISS ] = true,
     }
 end
