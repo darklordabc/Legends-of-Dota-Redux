@@ -38,12 +38,12 @@ end
 function modifier_npc_dota_hero_necrolyte_perk:OnCreated(keys)
     if IsServer() then
         local caster = self:GetCaster()
-        local sadist = caster:FindAbilityByName("necrolyte_death_pulse")
+        local sadist = caster:FindAbilityByName("necrolyte_heartstopper_aura")
 
         if sadist then
             sadist:UpgradeAbility(false)
         else 
-            sadist = caster:AddAbility("necrolyte_death_pulse")
+            sadist = caster:AddAbility("necrolyte_heartstopper_aura")
             sadist:SetStolen(true)
             sadist:SetActivated(true)
             sadist:SetLevel(1)
