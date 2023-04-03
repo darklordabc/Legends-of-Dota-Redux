@@ -40,7 +40,7 @@ end
 function modifier_npc_dota_hero_lich_perk:OnDeath(params)
 	if IsServer() then
 		if params.attacker == self:GetParent() and params.attacker:GetTeamNumber() == params.unit:GetTeamNumber() then
-			params.attacker:GiveMana(params.unit:GetMaxHealth()*0.25)
+			params.attacker:GiveMana(params.unit:GetMaxHealth()*0.5)
 		end
 	end
 end
