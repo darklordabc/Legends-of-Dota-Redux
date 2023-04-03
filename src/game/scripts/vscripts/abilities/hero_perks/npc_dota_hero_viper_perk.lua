@@ -61,7 +61,7 @@ function ViperPoisonTracker(self, ent)
           end
         end
         if count > 0 then
-          local mod = v:FindModifierByNameAndCaster("modifier_npc_dota_hero_viper_armor_debuff", self) or v:AddNewModifier(self, nil, "modifier_npc_dota_hero_viper_armor_debuff", {})
+          local mod = v:FindModifierByNameAndCaster("modifier_npc_dota_hero_viper_armor_debuff", self) or v:AddNewModifier(self, nil, "modifier_npc_dota_hero_viper_armor_debuff", {duration = 5})
           if mod then
             mod:SetStackCount(count)
           end
