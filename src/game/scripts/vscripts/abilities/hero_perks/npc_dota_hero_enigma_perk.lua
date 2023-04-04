@@ -30,37 +30,53 @@ end
 --------------------------------------------------------------------------------------------------------
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------
-function modifier_npc_dota_hero_enigma_perk:OnCreated()
-  if IsServer() then
-    local cooldownReductionPercent = 25
-    self.cooldownReduction = 1 - (cooldownReductionPercent / 100)
-  end
-  return true
-end
---------------------------------------------------------------------------------------------------------
--- Add additional functions
---------------------------------------------------------------------------------------------------------
-
 function modifier_npc_dota_hero_enigma_perk:DeclareFunctions()
-  local funcs = {
-    MODIFIER_EVENT_ON_ABILITY_FULLY_CAST,
-  }
-  return funcs
+	return {
+	MODIFIER_EVENT_ON_TAKEDAMAGE,
+	MODIFIER_EVENT_ON_HERO_KILLED  
+	}
 end
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_enigma_perk:OnTakeDamage(keys)
+	if IsServer() then
+		local caster = self:GetCaster()
+		local ability = keys.inflictor
+		local target = keys.target
+		local attacker = keys.attacker
+		if attacker == caster then
+			if ability then 
+				self.ability = ability 
+			else
+				self.ability = nil
+			end
+		end
+	end
+	return true
+end
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_enigma_perk:OnHeroKilled(keys)
+	if IsServer() then
+		local caster = self:GetCaster() 
+		local target = keys.target
+		local attacker = keys.attacker
 
-function modifier_npc_dota_hero_enigma_perk:OnAbilityFullyCast(keys)
-  if IsServer() then
-    local hero = self:GetCaster()
-    local unit = keys.unit
-    local ability = keys.ability
-
-
-    if hero == unit and ability:GetName() == "enigma_black_hole" then
-      local cooldown = ability:GetCooldownTimeRemaining() * self.cooldownReduction
-      ability:RefundManaCost()
-      ability:EndCooldown()
-      ability:StartCooldown(cooldown)
-    end
-  end
+		if attacker == caster and self.ability then
+			local ability = caster:FindAbilityByName(self.ability:GetName())
+			if ability and ability:GetName() == "en" then
+				-- Reduces remaining cooldown by 75%
+				local cooldownReduction = self.cooldownReduction
+				for i = 0, 15 do 
+					local ability = caster:GetAbilityByIndex(i)
+					if ability and not ability:IsCooldownReady() then
+						local cooldown = ability:GetCooldownTimeRemaining() * cooldownReduction
+						if cooldown > 120 then cooldown = ability:GetCooldownTimeRemaining() - 30 end
+						ability:EndCooldown()
+						ability:StartCooldown(cooldown)
+					end
+				end
+			end
+		end
+	end
+	return true
 end
 
