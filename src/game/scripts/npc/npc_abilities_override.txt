@@ -1,26 +1,185 @@
     "DOTAAbilities"
     {	
+		"roshan_halloween_burn"
+		{
+			"MaxLevel"						"4"
+			"AbilityCooldown"				"30.0 26.0 22.0 18.0"
+			"AbilityChannelTime"			"2.5"
+			"AbilityCastRange"				"800 900 1000 1100"
+			"AbilityCastPoint"				"1.5 1.25 1.0 0.75"
+			"AbilityManaCost"				"100 120 140 160"
+
+			// Special
+			//-------------------------------------------------------------------------------------------------------------
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"radius"				"200.0"
+				}
+				"02"
+				{
+					"var_type"				"FIELD_INTEGER"
+					"speed"					"1000"
+				}
+				"03"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"damage"				"50 100 150 200"
+				}
+				"04"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"rotation_angle"			"90.0"
+				}
+				"05"
+				{
+					"var_type"				"FIELD_INTEGER"
+					"projectile_count"			"20"
+				}
+			}
+		}
+		"courier_shield"
+		{
+			"MaxLevel"		"4"		
+			"AbilityCooldown"				"60 50 40 30"
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"		"FIELD_FLOAT"
+					"duration"		"2.0 3.0 4.0 5.0"
+				}
+			}
+		}
+		"magnataur_greater_shockwave"
+		{
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT  | DOTA_ABILITY_BEHAVIOR_VECTOR_TARGETING | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES"
+			"HasScepterUpgrade"				"1"
+			"MaxLevel"						"4"
+			"IsGrantedByScepter"			"1"
+			"HasScepterUpgrade"				"1"
+			"AbilityCastRange"				"1500"
+			"AbilityCooldown"				"16 15 14 13"
+			"AbilityManaCost"				"100"
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"				"FIELD_INTEGER"
+					"length"		"1200 1400 1600 1800"
+				}
+			}
+		}
+		"centaur_overrun"
+		{
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES"
+			"MaxLevel"						"4"
+			"AbilityCooldown"				"16 15 14 13"
+			"AbilityManaCost"				"50"
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"			"FIELD_FLOAT"
+					"duration"			"2.0 2.5 3.0 3.5"
+				}
+			}
+		}	
+
+		"troll_warlord_scepter"
+		{
+			"MaxLevel"						"4"
+			"IsGrantedByScepter"			"1"
+			"HasScepterUpgrade"			"1"
+			"AbilityCastRange"				"800"
+			"AbilityCastPoint"				"0.2"
+			"AbilityCooldown"				"25 20 15 10"
+			"AbilityManaCost"				"150"
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"					"FIELD_INTEGER"
+					"range"			"1200"
+				}
+				"02"
+				{
+					"var_type"					"FIELD_FLOAT"
+					"duration"				"3.0 3.5 4.0 4.5"
+				}
+			}
+		}
+		"slark_fish_bait"
+		{
+			"MaxLevel"						"4"
+			"AbilityCastRange"				"1100"
+			"AbilityCastPoint"				"0.2"
+			"AbilityCooldown"				"9"
+			"AbilityManaCost"				"50"
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"			"FIELD_FLOAT"
+					"slow_duration"		"6"
+				}
+				"02"
+				{
+					"var_type"			"FIELD_INTEGER"
+					"movement_speed"				"30 45 60 75"
+				}
+				"03"
+				{
+					"var_type"			"FIELD_INTEGER"
+					"attack_speed"				"75 90 105 120"
+				}
+			}
+		}
+		"furion_greater_sprout"
+		{
+			"MaxLevel"						"4"
+			"AbilityCastRange"				"850"
+			"AbilityCastPoint"				"0.35"
+			"AbilityCooldown"				"30 25 20 15"
+			"AbilityManaCost"				"130"
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"				"FIELD_INTEGER"
+					"vision_range"			"500 600 700 800"
+				}
+				"02"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"duration"				"6 7 8 9"
+				}
+			}
+			"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
+		}
+		"luna_lunar_grace"
+		{
+			"AbilityCooldown"				"30 25 20 15"
+			"AbilityManaCost"				"40"
+			"AbilityValues"
+			{
+				"attack_speed"					"30 45 60 75"
+				"night_multiplier"				"2.0"
+				"duration"						"5.0 6.0 7.0 8.0"
+			}
+		}
+		
 		"bounty_hunter_lookout"
 		{
 			"MaxLevel"						"4"
 			"IsGrantedByShard"				"1"
-
-			// Casting
-			//-------------------------------------------------------------------------------------------------------------
 			"AbilityCastRange"				"1800"
 			"AbilityCastPoint"				"0.1"
 			"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_5"
-
-			// Time		
-			//-------------------------------------------------------------------------------------------------------------
 			"AbilityCooldown"				"18.0 16.0 14.0 12.0"
-
-			// Cost
-			//-------------------------------------------------------------------------------------------------------------
 			"AbilityManaCost"				"30"
-
-			// Special
-			//-------------------------------------------------------------------------------------------------------------
 			"AbilityValues"
 			{
 				"max_lookouts"				"4 5 6 7"
@@ -29,73 +188,26 @@
 			}
 		}
 	
-		"dawnbreaker_luminosity"
-		{
-			// General
-			//-------------------------------------------------------------------------------------------------------------
-			"ID"					"7918"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-			"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-			"SpellImmunityType"				"SPELL_IMMUNITY_ALLIES_YES"
-
-			// Casting
-			//-------------------------------------------------------------------------------------------------------------
-			"AbilityCastAnimation"			"ACT_DOTA_OVERRIDE_ABILITY_3"
-			"AbilityCastGestureSlot"		"DEFAULT"
-			"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
-			"precache"
+		"crystal_maiden_ice_rink"
+		{	
+			"AbilityCastRange"				"675"
+			"AbilityCastPoint"				"0.45"
+			"FightRecapLevel"				"1"
+			"MaxLevel"						"4"
+			"AbilityCooldown"				"25 21 17 13"
+			"AbilityManaCost"				"80"
+			"AbilityValues"
 			{
-				"particle"          "particles/units/heroes/hero_dawnbreaker/dawnbreaker_luminosity.vpcf"
-				"particle"          "particles/units/heroes/hero_dawnbreaker/dawnbreaker_luminosity_attack_buff.vpcf"
+				"radius"						"500 600 700 800"
+				"rink_duration"					"8.0 9.0 10.0 11.0"
+				"rink_damage"					"250"
+				"rink_formation_time"			"0.5"
+				"min_move_speed"				"250"
 			}
-
-			// Special
-			//-------------------------------------------------------------------------------------------------------------
-
-
-			"AbilitySpecial"
-			{
-				"01"
-				{
-					"var_type"					"FIELD_INTEGER"
-					"attack_count"				"3"
-					"LinkedSpecialBonus"		"special_bonus_unique_dawnbreaker_luminosity_attack_count"
-					"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_SUBTRACT"				  
-				}
-				"02"
-				{
-					"var_type"					"FIELD_INTEGER"
-					"heal_radius"				"650"
-				}
-				"03"
-				{
-					"var_type"					"FIELD_INTEGER"
-					"heal_pct"					"35 40 45 50"
-				}
-				"04"
-				{
-					"var_type"					"FIELD_INTEGER"
-					"heal_from_creeps"			"50"
-				}
-				"05"
-				{
-					"var_type"					"FIELD_INTEGER"
-					"bonus_damage"				"125 150 175 200"
-					"LinkedSpecialBonus"		"special_bonus_unique_dawnbreaker_luminosity_crit"
-				}	
-				"06"
-				{
-					"var_type"					"FIELD_FLOAT"
-					"proc_cooldown"				"0.00"
-				}	
-				"07"
-				{
-					"var_type"					"FIELD_INTEGER"
-					"allied_healing_pct"		"50"
-				}				
-
-			}
+			"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
 		}
+		
+		
 		"venomancer_area_poison"
 		{
 			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
@@ -150,7 +262,6 @@
 		
 		"frostivus2018_festive_firework"
 		{
-			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 			"MaxLevel"						"4"
 			"ReduxPerks"                    "explosive"
 			"AbilityCastPoint"				"0.3"
@@ -3234,6 +3345,19 @@
             "ReduxFlags"                                                           "attack_modifier"
             "ReduxPerks"                                                           "attack_modifier | earth"
             "ReduxCost"                                                            "10"
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"				"FIELD_INTEGER"
+					"gold_steal"			"4 6 8 10"
+				}
+				"02"
+				{
+					"var_type"				"FIELD_INTEGER"
+					"hp_steal"				"7 14 21 28"
+				}
+			}
         }
         "huskar_burning_spear"
         {
@@ -3425,7 +3549,7 @@
 				"01"
 				{
 					"var_type"				"FIELD_INTEGER"
-					"slow"					"-7"
+					"slow"					"-5"
 				}
 				"03"
 				{
@@ -3837,6 +3961,29 @@
         {
             "ReduxFlags"                                                           "attack_modifier"
             "ReduxPerks"                                                           "attack_modifier"
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"				"FIELD_INTEGER"
+					"chance_pct"			"15 16 17 18"
+				}
+				"02"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"duration"				"2 3 4 5"
+				}
+				"03"
+				{
+					"var_type"				"FIELD_INTEGER"
+					"slow_pct"			"-35 -40 -45 -50"
+				}
+				"04"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"debuff_delay"			"2.0 1.5 1.0 0.5"
+				}
+			}
         }
         "pangolier_lucky_shot" 
         {
@@ -4898,7 +5045,13 @@
 		{
             "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 			"ReduxFlags"                    "mobility | crit | attack_modifier | support"
-            "ReduxPerks"                    "mobility | attack_modifier | support | rage"	
+            "ReduxPerks"                    "mobility | attack_modifier | support | rage"
+			"AbilityValues"
+			{
+				"lifesteal_percent"		"30 40 50"		
+				"lifesteal_range"		"1200 1500 1800"		
+				"attack_range"		"150"		
+			}
 		}
         "lone_druid_rabid"
         {
@@ -5685,8 +5838,53 @@
         }
         "shadow_demon_soul_catcher"
         {
-            "ReduxPerks"                                                           "demon"
-            "ReduxFlags"                                                           ""
+            "ReduxPerks"                     "demon"
+            "ReduxFlags"                     ""
+			"AbilityCooldown"				"20 19 18 17"
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"				"FIELD_INTEGER"
+					"health_lost"			"20 25 30 35"
+				}
+				"02"
+				{
+					"var_type"				"FIELD_INTEGER"
+					"radius"				"250 275 300 325"
+				}
+				"03"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"duration"				"10"
+					"LinkedSpecialBonus"		"special_bonus_unique_shadow_demon_8"
+				}
+				"04"
+				{
+					"var_type"					"FIELD_INTEGER"
+					"illusion_outgoing_damage"	"-60 -40 -20 -0"
+				}
+				"05"
+				{
+					"var_type"					"FIELD_INTEGER"
+					"illusion_outgoing_damage_tooltip"	"40 60 80 100"
+				}
+				"06"
+				{
+					"var_type"				"FIELD_INTEGER"
+					"illusion_incoming_damage"	"0"
+				}
+				"07"
+				{
+					"var_type"				"FIELD_INTEGER"
+					"illusion_incoming_damage_tooltip"	"100"
+				}	
+				"08"
+				{
+					"var_type"				"FIELD_INTEGER"
+					"bonus_spell_amp"		"5 7 9 11"
+				}	
+			}
         }
         "night_stalker_void"
         {
@@ -6514,7 +6712,7 @@
 			"AbilityCooldown"				"12 8 4 0"
 			"AbilityValues"
 			{
-				"damage"		"0 50 100 150"
+				"damage"		"0 70 140 210"
 			}
 		}
 		
