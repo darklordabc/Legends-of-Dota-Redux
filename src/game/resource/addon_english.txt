@@ -10801,7 +10801,6 @@
 		"DOTA_Tooltip_ability_special_bonus_unique_monkey_king_6_Description"	"Creates an additional ring of 7 soldiers at 1100 range from the center."
 		"DOTA_Tooltip_ability_special_bonus_unique_magnus_reverse_polarity_strength"		"+16 Strength per hero hit with Reverse Polarity"
 		"DOTA_Tooltip_ability_special_bonus_unique_magnus_reverse_polarity_strength_Description"		"Bonus Strength lasts for 15s"
-		"DOTA_Tooltip_ability_special_bonus_unique_venomancer_gale_plagueward_Description"		"When Venomous Gale impacts enemy Heroes, it creates 2 Plague Wards around them."
 
 
 
@@ -22763,6 +22762,8 @@
 		"DOTA_Tooltip_ability_special_bonus_unique_magnus_reverse_polarity_strength"		"+16 Strength per hero hit with Reverse Polarity"
 		"DOTA_Tooltip_ability_special_bonus_unique_magnus_reverse_polarity_strength_Description"		"Bonus Strength lasts for 15s"
 		"DOTA_Tooltip_ability_special_bonus_unique_venomancer"	"2.5x Plague Ward HP/Damage"
+		"DOTA_Tooltip_ability_special_bonus_unique_venomancer_7" "+15s Plague Ward Duration"
+		"DOTA_Tooltip_ability_special_bonus_unique_venomancer_8" "-1s Plague Ward Cooldown"
 		
 
 
