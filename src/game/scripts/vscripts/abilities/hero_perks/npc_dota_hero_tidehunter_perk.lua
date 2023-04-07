@@ -37,7 +37,7 @@ function modifier_npc_dota_hero_tidehunter_perk:DeclareFunctions()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_tidehunter_perk:OnCreated()
-	self.bonusPerLevel = 3
+	self.bonusPerLevel = 5
 	self.bonusAmount = 1
 	if IsServer() then
 		self:StartIntervalThink(0.1)

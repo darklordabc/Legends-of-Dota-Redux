@@ -83,6 +83,7 @@
             "bounty_hunter_shuriken_toss"            "1"
             "bounty_hunter_track"            "1"
             "bounty_hunter_wind_walk"            "1"
+			"bounty_hunter_lookout"		"1"  //test
             "brewmaster_drunken_brawler"            "1"
             "brewmaster_drunken_haze"            "1"
             "brewmaster_primal_split"            "1"
@@ -102,6 +103,7 @@
             "centaur_return"            "1"
             "centaur_stampede"            "1"
 			"centaur_mount"				"1"
+			"centaur_overrun"			"1"  //test
             "chaos_knight_chaos_bolt"            "1"
             "chaos_knight_chaos_strike"            "1"
             "chaos_knight_phantasm"            "1"
@@ -120,7 +122,8 @@
             "crystal_maiden_crystal_nova"            "1"
             "crystal_maiden_freezing_field"            "1"
             "crystal_maiden_frostbite"            "1"
-			"crystal_maiden_let_it_go"		"1"  // test
+			"crystal_maiden_let_it_go"		"1"
+			"crystal_maiden_ice_rink"		"1"  // test
             "dark_seer_ion_shell"            "1"
             "dark_seer_surge"            "1"
             "dark_seer_vacuum"            "1"
@@ -167,7 +170,7 @@
             //"elder_titan_echo_stomp"            "1"             // channels but doesnt stomp
             "elder_titan_echo_stomp_spirit"           "1"         // doesnt cast
             "elder_titan_natural_order"            "1"
-			"elder_titan_natural_order_spirit"		"1"
+			//"elder_titan_natural_order_spirit"		"1"
             //"ember_spirit_activate_fire_remnant"            "1"
             "ember_spirit_fire_remnant"            "1"
             "ember_spirit_flame_guard"            "1"
@@ -284,6 +287,7 @@
             "lone_druid_spirit_bear"            "1"
             "lone_druid_true_form"            "1"
             "lone_druid_spirit_link" "1"
+			"lone_druid_entangling_claws"	"1"
             "luna_eclipse"            "1"
             "luna_lucent_beam"            "1"
             "luna_lunar_blessing"            "1"
@@ -302,6 +306,7 @@
             "magnataur_reverse_polarity"            "1"
             "magnataur_shockwave"            "1"
             "magnataur_skewer"            "1"
+			"magnataur_greater_shockwave"	"1"
             "medusa_mana_shield"            "1"
             "medusa_mystic_snake"            "1"
             "medusa_split_shot"            "1"
@@ -359,6 +364,7 @@
             "obsidian_destroyer_arcane_orb"            "1"
             "obsidian_destroyer_astral_imprisonment"            "1"
             "obsidian_destroyer_astral_imprisonment_redux" "1"
+			"obsidian_destroyer_essence_aura"	"1"
             "obsidian_destroyer_essence_aura_lod"            "1"
             "obsidian_destroyer_essence_aura_redux"            "1"
             "obsidian_destroyer_sanity_eclipse"            "1"
@@ -538,6 +544,7 @@
             "troll_warlord_whirling_axes_ranged"            "1"
 			"troll_warlord_whirling_axes_melee"				"1"
 			"troll_warlord_rampage"			"1"
+			"troll_warlord_scepter"			"1" //test
             "tusk_frozen_sigil"            "1"
             "tusk_ice_shards"            "1"
             "tusk_snowball"            "1"
@@ -574,7 +581,7 @@
             "venomancer_poison_sting"            "1"
             "venomancer_venomous_gale"            "1"
 			"venomancer_latent_poison"			"1"
-			// "venomancer_area_poison"			"1"  //broken
+			"venomancer_area_poison"			"1"  //broken
             "viper_corrosive_skin"            "1"
             "viper_nethertoxin"            "1"
             "viper_poison_attack"            "1"
@@ -683,7 +690,7 @@
             "dawnbreaker_fire_wreath" "1"
             "dawnbreaker_celestial_hammer" "1"
             //"dawnbreaker_converge" "1"
-            "dawnbreaker_luminosity" "1"      // crashes game: CGameParticleManager::SetParticleControlEnt: Unable to lookup attachment attach_weapon_core_fx
+            // "dawnbreaker_luminosity" "1"      // crashes game: CGameParticleManager::SetParticleControlEnt: Unable to lookup attachment attach_weapon_core_fx
             "dawnbreaker_solar_guardian" "1"
             "life_stealer_ghoul_frenzy" "1"
 
@@ -731,8 +738,8 @@
             "windrunner_gale_force"             "1"
             "windrunner_gale_force_op"          "1"
             "slark_depth_shroud"				"1"   // needs shadow dance - added warning text
-			//"snapfire_gobble_up"				"1"   // cant get spit creep to work
-			//"snapfire_spit_creep"				"1"
+			"snapfire_gobble_up"				"1"   // cant get spit creep to work
+			// "snapfire_spit_creep"				"1"
 			"keeper_of_the_light_radiant_bind"	"1"
 
 			// Marci
@@ -798,7 +805,8 @@
 			"primal_beast_onslaught_release"	"0"	
 			"primal_beast_pulverize"			"1"
 
-
+			"courier_shield"	"1"
+			"roshan_halloween_burn"		"1"
 
 
 
@@ -861,6 +869,7 @@
 				"enraged_wildkin_hurricane"					"1"
 				"ice_shaman_incendiary_bomb"				"1"
 				"necronomicon_archer_mana_burn_lod"         "1"
+				"roshan_halloween_burn"						"1"
             }
 			
             "centaur_khan_group" {
@@ -891,6 +900,7 @@
 				"furbolg_enrage_attack_speed"			"1"
 				"furbolg_enrage_damage"					"1"
 				"necronomicon_warrior_last_will_lod"    "1"
+				"courier_shield"	"1"
             }
 			
             "lone_druid_spirit_bear_group" {
@@ -2409,8 +2419,27 @@
 			"Ability4"		"troll_warlord_fervor"
 			"Ability5"		"troll_warlord_rampage"
 			"Ability6"		"troll_warlord_battle_trance"
+			"Ability7"		"troll_warlord_scepter"
         }
-
+		
+		"npc_dota_hero_furion" {
+			"Ability1"		"furion_sprout"
+			"Ability2"		"furion_teleportation"
+			"Ability3"		"furion_force_of_nature"
+			"Ability4"		"furion_curse_of_the_forest"
+			"Ability5"		"furion_wrath_of_nature"
+			"Ability6"		"furion_greater_sprout"
+        }
+		
+		
+		"npc_dota_hero_bounty_hunter" {
+			"Ability1"		"bounty_hunter_shuriken_toss"
+			"Ability2"		"bounty_hunter_jinada"
+			"Ability3"		"bounty_hunter_wind_walk"
+			"Ability4"		"bounty_hunter_track"
+			"Ability5"		"bounty_hunter_lookout"
+        }
+		
         "npc_dota_hero_tusk" {
             "Ability1"        "tusk_ice_shards"
             "Ability2"        "tusk_snowball"
@@ -2529,6 +2558,7 @@
             "Ability3"            "crystal_maiden_brilliance_aura"
             "Ability4"            "crystal_maiden_freezing_field"
 			"Ability5"			  "crystal_maiden_let_it_go"
+			"Ability6"			  "crystal_maiden_ice_rink"
         }
         "npc_dota_hero_chen" {
             "Ability1"        "chen_penitence"
@@ -2655,6 +2685,16 @@
             "Ability3"            "centaur_return" 
             "Ability4"            "centaur_stampede"
 			"Ability5"			  "centaur_mount"
+			"Ability6"			  "centaur_overrun"
+        }
+		
+		"npc_dota_hero_magnataur" {
+            "Ability1"            "magnataur_shockwave"
+            "Ability2"            "magnataur_empower"
+            "Ability3"            "magnataur_skewer"
+            "Ability4"            "magnataur_horn_toss"
+			"Ability5"			  "magnataur_reverse_polarity"
+			"Ability6"			  "magnataur_greater_shockwave"
         }
 
 		"npc_dota_hero_shadow_shaman" {
@@ -2748,6 +2788,7 @@
             "Ability4"        "lone_druid_spirit_link"
             "Ability5"        "lone_druid_true_form_battle_cry"
             "Ability6"        "lone_druid_savage_roar"
+			"Ability7"		  "lone_druid_entangling_claws"
         }
         "npc_dota_hero_meepo" {
 
@@ -2973,8 +3014,7 @@
             "Ability1"		"elder_titan_echo_stomp_spirit"
 			"Ability2"		"elder_titan_ancestral_spirit"
 			"Ability3"		"elder_titan_natural_order"
-			"Ability4"		"elder_titan_natural_order_spirit"
-			"Ability5"		"elder_titan_earth_splitter"
+			"Ability4"		"elder_titan_earth_splitter"
         }
 
         //"npc_dota_hero_dawnbreaker" {
@@ -3005,8 +3045,8 @@
 			"Ability2"		"venomancer_poison_sting"
 			"Ability3"		"venomancer_plague_ward"
 			"Ability4"		"venomancer_latent_poison"
-			// "Ability5"		"venomancer_area_poison"
-			"Ability5"		"venomancer_poison_nova"
+			"Ability5"		"venomancer_area_poison"
+			"Ability6"		"venomancer_poison_nova"
         }
 		
 		"npc_dota_hero_shadow_demon" {

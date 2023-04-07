@@ -39,7 +39,7 @@ end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_bounty_hunter_perk:GetModifierTotalDamageOutgoing_Percentage(keys)
     if keys.target and keys.target:HasModifier("modifier_stunned") then
-        return 17
+        return 20
     else 
         return 0
     end

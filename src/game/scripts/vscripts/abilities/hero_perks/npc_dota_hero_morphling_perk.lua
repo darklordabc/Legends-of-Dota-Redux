@@ -31,7 +31,8 @@ end
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_morphling_perk:DeclareFunctions()
-	return { MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE }
+	return { MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
+			 MODIFIER_PROPERTY_CAST_RANGE_BONUS }
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_morphling_perk:GetModifierMoveSpeedBonus_Percentage()
@@ -45,3 +46,14 @@ function modifier_npc_dota_hero_morphling_perk:GetModifierMoveSpeedBonus_Percent
 	end
 end
 --------------------------------------------------------------------------------------------------------
+
+function modifier_npc_dota_hero_morphling_perk:GetModifierCastRangeBonus()
+	local caster = self:GetCaster() 
+	local height = caster:GetAbsOrigin().z
+	-- 128 is the height of the river, 140 is around the edges -- dota map river is now at 0 not 128
+	if height <= 10 then 
+		return 500
+	else 
+		return 0 
+	end
+end
