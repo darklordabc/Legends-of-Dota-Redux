@@ -10747,7 +10747,7 @@
         }
 		"special_bonus_unique_venomancer_gale_plagueward"
         {
-            "TalentRequiredAbility"                                                   "venomancer_plague_ward"
+            "TalentRequiredAbility"                                                   "disabled" // breaks talent picker
         }
 
 
@@ -11671,7 +11671,7 @@
         }
         "special_bonus_unique_bloodseeker_rupture_charges"
         {
-            "TalentRequiredAbility"                                                   "bloodseeker_rupture"
+            "TalentRequiredAbility"                                                   "disabled" // causes severe lag
         }
 
 
