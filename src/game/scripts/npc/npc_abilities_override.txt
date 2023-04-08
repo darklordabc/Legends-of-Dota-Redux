@@ -56,6 +56,7 @@
 		"magnataur_greater_shockwave"
 		{
 			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT  | DOTA_ABILITY_BEHAVIOR_VECTOR_TARGETING | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES"
+			"AbilityTextureName"			"magnataur_shockwave"
 			"HasScepterUpgrade"				"1"
 			"MaxLevel"						"4"
 			"IsGrantedByScepter"			"1"
@@ -90,6 +91,8 @@
 
 		"troll_warlord_scepter"
 		{
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+			"AbilityTextureName"			"troll_warlord_rampage"
 			"MaxLevel"						"4"
 			"IsGrantedByScepter"			"1"
 			"HasScepterUpgrade"			"1"
@@ -194,13 +197,13 @@
 			"AbilityCastPoint"				"0.45"
 			"FightRecapLevel"				"1"
 			"MaxLevel"						"4"
-			"AbilityCooldown"				"25 21 17 13"
-			"AbilityManaCost"				"80"
+			"AbilityCooldown"				"25 23 21 19"
+			"AbilityManaCost"				"80 90 100 110"
 			"AbilityValues"
 			{
-				"radius"						"500 600 700 800"
-				"rink_duration"					"8.0 9.0 10.0 11.0"
-				"rink_damage"					"250"
+				"radius"						"500"
+				"rink_duration"					"8.0 8.5 9.0 9.5"
+				"rink_damage"					"250 275 300 325"
 				"rink_formation_time"			"0.5"
 				"min_move_speed"				"250"
 			}

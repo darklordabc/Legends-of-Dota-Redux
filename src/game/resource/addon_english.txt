@@ -23924,6 +23924,33 @@
 "DOTA_Tooltip_ability_juggernaut_swift_slash_Description"			"Performs a mini Omnislash for a short duration.<br><br><font color='#FF4949'>Warning:</font> Requires <font color='#70EA72'>Omnislash</font>.<br>"
 "DOTA_Tooltip_ability_juggernaut_swift_slash_duration"		"DURATION:"
 
+"DOTA_Tooltip_ability_crystal_maiden_ice_rink" "Crystal Rink"
+"DOTA_Tooltip_ability_crystal_maiden_ice_rink_Description" "Creates a skating rink that causes enemies to slide uncontrollably. Deals damage after the slide."
+"DOTA_Tooltip_ability_crystal_maiden_ice_rink_radius" "RADIUS:"
+"DOTA_Tooltip_ability_crystal_maiden_ice_rink_rink_duration" "DURATION:"
+"DOTA_Tooltip_ability_crystal_maiden_ice_rink_rink_damage" "DAMAGE:"
+
+"DOTA_Tooltip_ability_beastmaster_mark_of_the_beast" "Mark of the Beast"
+"DOTA_Tooltip_ability_beastmaster_mark_of_the_beast_Description" "Marks a target for death, causing all attacks against it to be critical strikes."
+"DOTA_Tooltip_ability_beastmaster_mark_of_the_beast_duration" "DURATION:"
+"DOTA_Tooltip_ability_beastmaster_mark_of_the_beast_target_crit_multiplier" "CRIT MULTIPLIER:"
+
+"DOTA_Tooltip_ability_dazzle_rain_of_vermin" "Rain of Vermin"
+"DOTA_Tooltip_ability_dazzle_rain_of_vermin_Description" "Curses an area, causing enemies to take damage every 0.5 seconds with a chance to get Hexed for 1 second."
+"DOTA_Tooltip_ability_dazzle_rain_of_vermin_duration" "DURATION:"
+"DOTA_Tooltip_ability_dazzle_rain_of_vermin_radius" "RADIUS:"
+"DOTA_Tooltip_ability_dazzle_rain_of_vermin_hex_chance" "HEX CHANCE:"
+"DOTA_Tooltip_ability_dazzle_rain_of_vermin_damage" "DAMAGE:"
+
+"DOTA_Tooltip_ability_omniknight_angelic_flight" "Angelic Flight"
+"DOTA_Tooltip_ability_omniknight_angelic_flight_Description" "Blesses a target with flight, movement speed and HP regen."
+"DOTA_Tooltip_ability_omniknight_angelic_flight_duration" "DURATION:"
+"DOTA_Tooltip_ability_omniknight_angelic_flight_movement_speed" "MS BONUS:"
+"DOTA_Tooltip_ability_omniknight_angelic_flight_hp_regen" "HP REGEN:"
+
+
+
+
 		"DOTA_Tooltip_modifier_windrunner_gale_force_OP"			"Gale Force OP"
 		"DOTA_Tooltip_modifier_windrunner_gale_force__OPDescription"			"Buffeted by gale force winds."
 

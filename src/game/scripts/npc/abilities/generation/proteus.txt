@@ -157,17 +157,17 @@
             "01"
             {
                 "var_type"              "FIELD_INTEGER"
-                "base_polyp_health"     "50 75 100 125"
+                "base_polyp_health"     "100 125 150 175"
             }
             "02"
             {
                 "var_type"              "FIELD_FLOAT"
-                "polyp_regen"           "10 15 20 25"
+                "polyp_regen"           "15 25 35 45"
             }
             "03"
             {
                 "var_type"              "FIELD_FLOAT"
-                "max_polyp_health"      "150 225 300 375"
+                "max_polyp_health"      "175 250 325 400"
             }
             "03"
             {
@@ -182,7 +182,7 @@
             "05"
             {
                 "var_type"          "FIELD_INTEGER"
-                "duration"          "30"
+                "duration"          "45"
             }
         }
         "OnSpellStart"
@@ -274,16 +274,16 @@
         
         // Casting
         //-------------------------------------------------------------------------------------------------------------
-        "AbilityCastRange"              "300 400 500 600"
+        "AbilityCastRange"              "500"
         "AbilityCastPoint"              "0"
 
         // Time     
         //-------------------------------------------------------------------------------------------------------------
-        "AbilityCooldown"               "5"
+        "AbilityCooldown"               "6.5 6.0 5.5 5.0"
 
         // Cost
         //-------------------------------------------------------------------------------------------------------------
-        "AbilityManaCost"               "15"
+        "AbilityManaCost"               "30 25 20 15"
 
         "precache"
         {
@@ -298,7 +298,7 @@
             "01"
             {
                 "var_type"              "FIELD_INTEGER"
-                "jet_distance"          "300 400 500 600"
+                "jet_distance"          "500"
             }
             "02"
             {
