@@ -5538,6 +5538,21 @@
         {
             "ReduxPerks"                                                           "fire | skillshot"
         }
+		"snapfire_gobble_up"
+        {
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"max_time_in_belly"		"3.0"
+					"RequiresScepter"		"0"
+				}
+			}
+			"ReduxFlags"		"support | stun"
+            "ReduxPerks"        "fire | skillshot | support"
+        }
         "sniper_shrapnel"
         {
             "ReduxPerks"                                                           "explosive"
