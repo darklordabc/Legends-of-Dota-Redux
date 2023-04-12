@@ -3162,10 +3162,11 @@
         }
         "bounty_hunter_jinada"
         {
-            "ReduxFlags"                                                           "attack_modifier"
-            "ReduxPerks"                                                           "attack_modifier | autocast_basic"
-            "ReduxCost"                                                            "40"
-            "ReduxBans"                                                            "ursa_overpower"
+            "ReduxFlags"                "attack_modifier"
+            "ReduxPerks"                "attack_modifier | autocast_basic"
+            "ReduxCost"                 "40"
+            "ReduxBans"                 "ursa_overpower"
+			"AbilityCastAnimation"		"ACT_DOTA_ATTACK"
         }
         "giant_wolf_critical_strike"
         {
