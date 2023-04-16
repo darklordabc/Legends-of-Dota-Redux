@@ -4952,7 +4952,7 @@
         }
         "kunkka_ghostship"
         {	
-			"ReduxFlags"														  "stun"
+			"ReduxFlags"														   "stun"
             "ReduxPerks"                                                           "skillshot | water"
         }
         "pugna_nether_blast"
@@ -4983,7 +4983,7 @@
         }
         "tiny_grow"
         {
-            "ReduxCost"                                                            ""
+            "ReduxCost"                                                            "80"
         }
         "item_orchid"
         {
