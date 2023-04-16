@@ -1095,7 +1095,7 @@
 					"linger_duration"		"5.0 7.0 9.0 11.0"
 				}
 			}
-            "ReduxPerks"                                                           "neutral"
+            "ReduxPerks"                                                           "neutral | channeled"
         }
 		"enraged_wildkin_hurricane"
 		{
@@ -1922,11 +1922,6 @@
         {
             "ReduxFlags"                                                           ""
             "ReduxPerks"                                                           "light | channeled | skillshot"
-        }
-        "kunkka_ghostship"
-        {
-            "ReduxFlags"                                                           "stun"
-            "ReduxPerks"                                                           "water"
         }
         "legion_commander_duel"
         {
@@ -3167,10 +3162,11 @@
         }
         "bounty_hunter_jinada"
         {
-            "ReduxFlags"                                                           "attack_modifier"
-            "ReduxPerks"                                                           "attack_modifier | autocast_basic"
-            "ReduxCost"                                                            "40"
-            "ReduxBans"                                                            "ursa_overpower"
+            "ReduxFlags"                "attack_modifier"
+            "ReduxPerks"                "attack_modifier | autocast_basic"
+            "ReduxCost"                 "40"
+            "ReduxBans"                 "ursa_overpower"
+			"AbilityCastAnimation"		"ACT_DOTA_ATTACK"
         }
         "giant_wolf_critical_strike"
         {
@@ -3893,6 +3889,11 @@
             "ReduxFlags"                                                           "stun"
             "ReduxPerks"                                                           "drain | channeled"
         }
+		"tinker_keen_teleport"
+		{
+            "ReduxFlags"                                                           "stun"
+            "ReduxPerks"                                                           "teleport | channeled"
+        }
         "shadow_shaman_shackles"
         {
             "ReduxFlags"                                                           "stun"
@@ -4056,12 +4057,12 @@
         "elder_titan_echo_stomp"
         {
             "ReduxFlags"                                                           "physical"
-            "ReduxPerks"                                                           "physical | sleep"
+            "ReduxPerks"                                                           "physical | sleep | channeled"
         }
 		"elder_titan_echo_stomp_spirit"
 		{
-            "ReduxFlags"                                                           "physical"
-            "ReduxPerks"                                                           "physical | sleep"
+            "ReduxFlags"                                                           ""
+            "ReduxPerks"                                                           "sleep | channeled"
         }
         "phantom_assassin_stifling_dagger"
         {
@@ -4756,7 +4757,7 @@
         }
         "beastmaster_inner_beast"
         {
-            "ReduxPerks"                                                           "aura"
+            "ReduxPerks"                                                           "aura | support"
         }
     //    "dark_willow_bedlam"
     //    { 
@@ -4793,7 +4794,7 @@
         }
         "obsidian_destroyer_essence_aura"
         {
-            "ReduxPerks"			"aura"
+            "ReduxPerks"			"aura | support"
             "ReduxCost"				"120"
             "ReduxFlags"			"mana"
             "ReduxBans"				"death_prophet_witchcraft"
@@ -4884,6 +4885,11 @@
             "ReduxFlags"                                                           "support"
             "ReduxPerks"                                                           "channeled  | support"
         }
+		"monkey_king_primal_spring"
+		{
+            "ReduxFlags"                                                           "mobility"
+            "ReduxPerks"                                                           "channeled  | mobility"
+        }
         "riki_tricks_of_the_trade"
         {
             "ReduxPerks"                                                           "channeled | mobility | upgradeable"
@@ -4929,7 +4935,11 @@
         "troll_warlord_whirling_axes_ranged"
         {
             "ReduxPerks"                                                           "skillshot | upgradeable"
-        }	
+        }
+		"troll_warlord_whirling_axes_melee"
+		{
+			"ReduxPerks"                                                           "upgradeable"
+		}
         "vengefulspirit_wave_of_terror"
         {
             "ReduxPerks"                                                           "skillshot"
@@ -4940,13 +4950,10 @@
             "ReduxFlags"                                                           "physical"
             "ReduxPerks"                                                           "physical"
         }
-        "kunkka_torrent"
-        {
-            "ReduxPerks"                                                           "skillshot"
-        }
         "kunkka_ghostship"
-        {
-            "ReduxPerks"                                                           "skillshot"
+        {	
+			"ReduxFlags															   "stun"
+            "ReduxPerks"                                                           "skillshot | water"
         }
         "pugna_nether_blast"
         {
@@ -4976,7 +4983,7 @@
         }
         "tiny_grow"
         {
-            "ReduxCost"                                                            "80"
+            "ReduxCost"                                                            ""
         }
         "item_orchid"
         {
@@ -5091,7 +5098,7 @@
         }
 		"templar_assassin_trap_teleport"
 		{
-			"ReduxPerks"                                                           "trap"
+			"ReduxPerks"                                                           "trap | channeled | teleport"
             "ReduxFlags"                                                           "doNotRandom"
 		}
         "bane_nightmare"
@@ -5532,6 +5539,21 @@
         {
             "ReduxPerks"                                                           "fire | skillshot"
         }
+		"snapfire_gobble_up"
+        {
+			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+			"AbilitySpecial"
+			{
+				"01"
+				{
+					"var_type"				"FIELD_FLOAT"
+					"max_time_in_belly"		"3.0"
+					"RequiresScepter"		"0"
+				}
+			}
+			"ReduxFlags"		"support | stun"
+            "ReduxPerks"        "fire | skillshot | support"
+        }
         "sniper_shrapnel"
         {
             "ReduxPerks"                                                           "explosive"
@@ -5626,7 +5648,7 @@
         }
         "lich_sinister_gaze"
         {
-            "ReduxPerks"                                                           "enemyMoving | upgradeable"
+            "ReduxPerks"                                                           "enemyMoving | upgradeable | channeled"
             "ReduxFlags"                                                           ""
         }
       
@@ -5686,7 +5708,7 @@
 		"naga_siren_reel_in"
 		{
 			"ReduxFlags"					"upgradeable"
-			"ReduxPerks"                	"enemyMoving | water"
+			"ReduxPerks"                	"enemyMoving | water | channeled"
 			"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
 			"MaxLevel"						"4"
 			"AbilityCastPoint"				"0.0"
@@ -5829,7 +5851,7 @@
         
         "dawnbreaker_solar_guardian"
         {
-            "ReduxPerks"                                                           "support | teleport | light | mobility"
+            "ReduxPerks"                                                           "support | teleport | light | mobility | channeled"
             "ReduxFlags"                                                           "support | mobility | upgradeable"
         }
         "life_stealer_open_wounds"
