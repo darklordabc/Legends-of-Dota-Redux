@@ -4952,7 +4952,7 @@
         }
         "kunkka_ghostship"
         {	
-			"ReduxFlags															   "stun"
+			"ReduxFlags"														  "stun"
             "ReduxPerks"                                                           "skillshot | water"
         }
         "pugna_nether_blast"
@@ -11692,7 +11692,7 @@
         }
         "special_bonus_unique_bloodseeker_2"
         {
-            "TalentRequiredAbility"                                                   "bloodseeker_blood_bath"
+            "TalentRequiredAbility"                                          		"bloodseeker_blood_bath"
         }
         "special_bonus_unique_bloodseeker_3"
         {
