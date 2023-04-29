@@ -12405,6 +12405,20 @@
         "ItemPurchasable"               "1"
         "ItemSellable"                  "1"
     }
+    "item_duelist_gloves"              
+    {
+        "ItemCost"                      "500"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_spark_of_courage"              
+    {
+        "ItemCost"                      "500"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+
+
 
     // Tier 2
 
@@ -12504,6 +12518,13 @@
         "ItemPurchasable"               "1"
         "ItemSellable"                  "1"
     }
+    "item_gossamer_cape"              
+    {
+        "ItemCost"                      "750"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+
 
     // Tier 3
 
@@ -12586,6 +12607,24 @@
         "ItemSellable"                  "1"
     }
     "item_slime_vial"
+    {
+        "ItemCost"                      "1000"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_dandelion_amulet"
+    {
+        "ItemCost"                      "1000"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_defiant_shell"
+    {
+        "ItemCost"                      "1000"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_vindicators_axe"
     {
         "ItemCost"                      "1000"
         "ItemPurchasable"               "1"
@@ -12685,6 +12724,12 @@
         "ItemSellable"                  "1"
     }
     "item_guardian_shell"         
+    {
+        "ItemCost"                      "2000"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+    "item_martyrs_plate"         
     {
         "ItemCost"                      "2000"
         "ItemPurchasable"               "1"
