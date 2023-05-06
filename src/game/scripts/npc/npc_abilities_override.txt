@@ -11484,7 +11484,7 @@
         }
         "special_bonus_unique_dazzle_5"
         {
-            "TalentRequiredAbility"                                                   "dazzle_shadow_wave"
+            "TalentRequiredAbility"                                                   "dazzle_shallow_grave"
         }
 		"special_bonus_unique_dazzle_poison_touch_attack_range_bonus"
         {
