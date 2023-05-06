@@ -117,6 +117,7 @@
 			"item_defiant_shell"			  "1"
 			"item_dandelion_amulet"			  "1"
 			"item_vindicators_axe"			  "1"
+			"item_princes_knife"			"1"
 		}
 	}
 	"4"
@@ -150,6 +151,7 @@
 			"item_stormcrafter"				  "1"
 			"item_penta_edged_sword"		  "1"
 			"item_martyrs_plate"			  "1"
+			"item_horizons_equilibrium"			  "1"
 
 		}
 	}
