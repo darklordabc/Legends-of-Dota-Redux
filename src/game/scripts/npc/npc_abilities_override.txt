@@ -1,5 +1,43 @@
     "DOTAAbilities"
     {	
+	
+		"venomancer_poison_nova"
+		{
+			"MaxLevel"						"4"
+			"AbilityValues"
+			{
+				"radius"					"900 1100 1300 1500"
+				"start_radius"				"255"
+				"duration"					"10"
+				"damage"					"3 4 5 6"
+				"magic_resist"				"-20 -25 -30 -35"
+				"speed"						"550"
+				"trigger_cd"				"10 8 6 4"
+			}
+		}
+	
+		muerta_parting_shot"
+		{
+			"MaxLevel"						"4"
+			"AbilityCastRange"				"750 800 850 900"
+			"AbilityCastPoint"				"0.3"
+			"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_5"
+			"AbilityCooldown"				"45 40 35 30"
+			"AbilityDamage"					"300 325 350 375"
+			"AbilityManaCost"				"250"
+			"AbilityValues"
+			{
+				"projectile_speed"			"2500"
+				"knockback_duration"		"0.2"
+				"knockback_distance"		"150"
+				"debuff_duration"			"4"
+				"ethereal_damage_bonus"		"0"
+				"movement_slow"				"0"
+				"soul_return_time"			"0.75"
+				"soul_return_min_speed"		"500"
+				"damage_reduction_percent"	"50"
+			}		
+		}
 		"roshan_halloween_burn"
 		{
 			"MaxLevel"						"4"
@@ -205,8 +243,8 @@
 			"AbilityManaCost"				"80 90 100 110"
 			"AbilityValues"
 			{
-				"radius"						"500"
-				"rink_duration"					"8.0 8.5 9.0 9.5"
+				"radius"						"300"
+				"rink_duration"					"8.0"
 				"rink_damage"					"250"
 				"rink_formation_time"			"0.5"
 				"min_move_speed"				"250"
@@ -386,32 +424,29 @@
 			"AbilityValues"
 			{
 				"damage"		"250 275 300 325"
-				"stun_duration"		"2.5 2.75 3.0 3.25"
+				"stun_duration"		"2.0 2.25 2.5 2.75"
 			}
 			
 		}
 		"beastmaster_drums_of_slom"
 		{
 			"MaxLevel"						"4"
-			"AbilityCooldown"				"40 35 30 25"
-			"AbilityManaCost"				"100"
-			"AbilityDuration"				"6"
 			"AbilityValues"
 			{
 				"radius"						"600"
+				"max_stacks"					"20"
+				"stack_decay_time"				"1.0"
+				"min_drum_hit_interval"			"0.4 0.35 0.3 0.25"
+				"max_drum_hit_interval"			"3"
+
 				"base_damage"						
 				{
-					"value"			"115"
+					"value"			"90"
 					"CalculateSpellDamageTooltip" "1"
 				}
-				"base_heal"						"25 30 35 40"
-				"min_pulse_interval"			"0.2"
-				"pulse_divisor"					"6"
-				"duration"						"6"
-				"movespeed_slow"				"0"
-				"heal_pct"						"25 30 35 40"
-				"creep_heal_pct"				"5 7 9 11"
-
+				"heal_pct"						"25 28 31 34"
+				"creep_heal_pct"				"5 8 11 13"
+				"aura_radius"					"1200"
 			}
 		}	
 		
@@ -530,7 +565,7 @@
 				"03"
 				{
 					"var_type"			"FIELD_FLOAT"
-					"duration"			"10.0"
+					"duration"			"8 9 10 12"
 				}
 				"04"
 				{
@@ -762,7 +797,7 @@
 				"01"
 				{
 					"var_type"						"FIELD_INTEGER"
-					"damage_per_second"				"0 10 20 30"
+					"damage_per_second"				"0 20 40 80"
 				}
 				"02"
 				{
@@ -772,12 +807,12 @@
 				"03"
 				{
 					"var_type"						"FIELD_FLOAT"
-					"hero_duration"					"2.0 8.0 14.0 20.0"
+					"hero_duration"					"2.0 5.0 8.0 11.0"
 				}
 				"04"
 				{
 					"var_type"						"FIELD_INTEGER"
-					"regen_reduction"				"75 90 105 120"
+					"regen_reduction"				"75 80 85 90"
 				}
 			}
             "ReduxFlags"                                                           "attack_modifier | doNotRandom"
@@ -1159,7 +1194,7 @@
 				"01" 
 					{
 						"var_type"				"FIELD_INTEGER"
-						"duration"				"3"
+						"duration"				"3 3.5 4 5"
 					}
 				}
 			"ReduxFlags"	"disarm_break"
@@ -1233,12 +1268,12 @@
 		{
 			"MaxLevel"				"4"		
 			"AbilityCastRange"		"600 700 800 900"
-			"AbilityCooldown"		"15 13 11 9"
+			"AbilityCooldown"		"15 13 11 7"
 			"AbilityManaCost"		"75"
 			"AbilityValues"
 				{
 					"projectile_speed"	"500 600 700 800"
-					"duration"				"3 5 7 9"
+					"duration"				"3 4 5 6"
 				}
 			"ReduxFlags"                                                           "silence"
 			"ReduxPerks"                                                           "silence | neutral"
@@ -1299,10 +1334,10 @@
 			"AbilityManaCost"				"0"
 			"AbilityValues"
 				{
-					"radius"						"200 225 250 275"
-					"damage"						"200 240 280 320"
+					"radius"						"200 210 220 230"
+					"damage"						"200 250 300 400"
 					"damage_pct"					"8 12 16 20"
-					"hero_stun_duration"			"3.0 3.25 3.5 3.75"
+					"hero_stun_duration"			"2.4"
 				}
 				"ReduxFlags"		""
 				"ReduxPerks"		"neutral"
@@ -1317,8 +1352,8 @@
 		"AbilityManaCost"				"100 110 120 130"
 		"AbilityValues"
 			{		
-			"damage"		"100 145 190 235"
-			"bounces"			"4 5 6 7"
+			"damage"		"100"
+			"bounces"			"4 6 8 12"
 			"bounce_range"			"500"
 			"duration"				"1.0 1.5 2.0 2.5"
 			"slow"					"100"
@@ -1370,8 +1405,9 @@
 		
 		"ice_shaman_incendiary_bomb"
 		{
+			"AbilityCastRange"				"700 725 750 800"
 			"AbilityCooldown"				"30 25 20 15"
-			"AbilityManaCost"				"100"
+			"AbilityManaCost"				"100 95 90 80"
 			"AbilityValues"
 			{
 					"duration"				"8"
@@ -1423,21 +1459,21 @@
             "AbilityCastPoint"                                                     "0.5"
             "AbilityCooldown"                                                      "20.0 16.0 12.0 8.0"
             "AbilityManaCost"                                                      "50"
-            "AbilitySpecial"
-            {
-                "01"
-                {
-                    "var_type"                                             "FIELD_FLOAT"
-                    "duration"                                             "35.0"
-                }
-            }
+            "AbilityValues"
+			{
+				"duration"				"35.0"
+				"skeletons_created"		"3"
+				"skeletons_health"		"250 275 300 375"
+				"skeletons_damage"		"12 15 18 21"
+
+			}
             "ReduxFlags"                                                           "summon"
             "ReduxPerks"                                                           "neutral | summon_non_ult"
         }
         "dark_troll_warlord_ensnare"
         {
             "MaxLevel"                     	"4"
-			"AbilityCastRange"				"550 650 750 850"
+			"AbilityCastRange"				"550 625 700 825"
 			"AbilityCooldown"				"15.0 14.0 13.0 12.0"
             "AbilityManaCost"               "75"
             "AbilitySpecial"
@@ -1578,12 +1614,12 @@
                 "03"
                 {
                     "var_type"                                             "FIELD_INTEGER"
-                    "movespeed_slow"                                       "-25"
+                    "movespeed_slow"                                       "-25 -28 -31 -37"
                 }
                 "04"
                 {
                     "var_type"                                             "FIELD_INTEGER"
-                    "attackspeed_slow"                                     "-25 -35 -45 -55"
+                    "attackspeed_slow"                                     "-25 -28 -31 -37"
                 }
                 "05"
                 {
@@ -3313,12 +3349,12 @@
                 "01"
                 {
                     "var_type"              "FIELD_INTEGER"
-                    "movespeed_slow"        "-25 -27 -29 -31"
+                    "movespeed_slow"        "-25 -28 -31 -37"
                 }
                 "02"
                 {
                     "var_type"              "FIELD_INTEGER"
-                    "attackspeed_slow"      "-25 -35 -45 -55"
+                    "attackspeed_slow"      "-25 -28 -31 -37"
                 }           
                 "03"
                 {
@@ -4952,7 +4988,7 @@
         }
         "kunkka_ghostship"
         {	
-			"ReduxFlags"														   "stun"
+			"ReduxFlags"														  "stun"
             "ReduxPerks"                                                           "skillshot | water"
         }
         "pugna_nether_blast"
@@ -4983,7 +5019,7 @@
         }
         "tiny_grow"
         {
-            "ReduxCost"                                                            "80"
+            "ReduxCost"                                                            ""
         }
         "item_orchid"
         {
@@ -5689,18 +5725,10 @@
 			"AbilityCastPoint"				"0"
 			"AbilityCooldown"				"40 35 30 25"
 			"AbilityManaCost"				"125 100 75 50"
-			"AbilitySpecial"
+			"AbilityValues"
 			{
-				"01"
-				{
-					"var_type"				"FIELD_FLOAT"
-					"duration"				"4"
-				}
-				"02"
-				{
-					"var_type"				"FIELD_INTEGER"
-					"hp_restore"				"50 60 70 80"
-				}
+				"duration"				"3"
+				"hp_restore"				"35 45 55 65"
 			}
 
 		}
@@ -5773,7 +5801,7 @@
 				"05"
 				{
 					"var_type"					"FIELD_FLOAT"
-					"on_duration"				"1.3"
+					"on_duration"				"1.0"
 				}
 				"06"
 				{
@@ -6080,7 +6108,7 @@
 			{
 				"radius"				"900 1100 1300 1500"
 				"duration"				"6 7 8 9"
-				"magic_resistance"		"25 40 55 70"
+				"magic_resistance"		"75 80 85 90"
 			}
 		}
 		
@@ -6089,20 +6117,37 @@
 			"MaxLevel"						"4"
 			//"HasScepterUpgrade"			"1"
 			"AbilityCastRange"				"10"
-			"AbilityCastPoint"				"1.0"
+			"AbilityCastPoint"				"2.0"
 			"AbilityCooldown"				"60 50 40 30"
 			"AbilityManaCost"				"0"
-			"AbilitySpecial"
+			"AbilityValues"
 			{
-				"01"
+				"aura_radius"
 				{
-					"var_type"					"FIELD_INTEGER"
-					"aura_radius"					"500 600 700 800"
+					"value"					"500 600 700 800"
+					"special_bonus_scepter"	"+500"
 				}
-				"02"
+				"AbilityCooldown"
 				{
-					"var_type"					"FIELD_INTEGER"
-					"lifetime"					"60 80 100 120"
+					"value"					"60.0 50.0 40.0 30.0"
+
+				}
+				"lifetime"
+				{
+					"value"					"60"
+					"special_bonus_scepter" "+180"
+				}
+				"minefield_duration"		"10"
+				"trigger_radius"			"200"
+				"scepter_move_damage"
+				{
+					"value"					"300"
+					"RequiresScepter"		"1"
+				}
+				"scepter_move_amt"
+				{
+					"value"					"200"
+					"RequiresScepter"		"1"
 				}
 			}
 		}
@@ -6330,7 +6375,7 @@
         {
 			"MaxLevel"                      "4"
 			"AbilityCooldown"               "20 18 16 14"
-			"AbilityManaCost"               "100 80 60 40"
+			"AbilityManaCost"               "75 60 45 30"
 			"AbilitySpecial"
 			{
 				"01"
@@ -6380,7 +6425,7 @@
 			"AbilityCooldown"               "14 13 12 11"
 			"AbilityValues"
 			{
-					"max_stun"					"2.0 2.25 2.5 2.75"
+					"max_stun"					"1.5 1.75 2.0 2.25"
 					"recent_duration"			"3.0"
 					"max_distance"			"900"
 					"knockback_distance"			"350"
@@ -6498,48 +6543,53 @@
 			{
 				"01"
 				{
-					"var_type"          "FIELD_INTEGER"
-					"damage"        "200 240 280 320"
+					"var_type"			"FIELD_INTEGER"
+					"damage"		"275 300 325 350"
 				}
 				"02"
 				{
-					"var_type"          "FIELD_INTEGER"
-					"radius"        "325 350 375 400"
+					"var_type"			"FIELD_INTEGER"
+					"radius"		"325 335 345 355"
 				}
 				"03"
 				{
-					"var_type"          "FIELD_FLOAT"
-					"air_duration"      "0.6"
+					"var_type"			"FIELD_FLOAT"
+					"air_duration"		"0.6"
 				}
 				"04"
 				{
-					"var_type"          "FIELD_INTEGER"
-					"air_height"        "300"
+					"var_type"			"FIELD_INTEGER"
+					"air_height"		"300"
 				}
 				"05"
 				{
-					"var_type"          "FIELD_FLOAT"
-					"slow_duration"     "2.0 2.5 3.0 3.5"
+					"var_type"			"FIELD_FLOAT"
+					"slow_duration"		"2 2.5 3 3.5"
 				}
 				"06"
 				{
-					"var_type"          "FIELD_INTEGER"
-					"pull_offset"       "75"
+					"var_type"			"FIELD_INTEGER"
+					"pull_offset"		"75"
 				}
 				"07"
 				{
-					"var_type"          "FIELD_INTEGER"
-					"destination_offset"        "175"
+					"var_type"			"FIELD_INTEGER"
+					"destination_offset"		"175"
 				}
 				"08"
 				{
-					"var_type"          "FIELD_INTEGER"
-					"pull_angle"                "230 250 270 290"
+					"var_type"			"FIELD_INTEGER"
+					"pull_angle"				"230"
 				}
 				"09"
 				{
-					"var_type"              "FIELD_INTEGER"
-					"horn_toss_slow_pct"        "100 150 200 250"
+					"var_type"				"FIELD_INTEGER"
+					"horn_toss_slow_pct"		"100"
+				}
+				"10"
+				{
+					"var_type"			"FIELD_FLOAT"
+					"stun_duration"		"0.75 1.0 1.25 1.5"
 				}
 			}
 			"ReduxPerks"                                                           "enemyMoving"
@@ -6557,7 +6607,7 @@
 						"duration"              "10"
 						"damage"				
 						{
-							"value"				"60 65 70 75"
+							"value"				"40 45 50 55"
 							"CalculateSpellDamageTooltip"	"1"
 						}
 						"tick_rate"             "1.0"
@@ -6695,10 +6745,14 @@
 			"AbilityManaCost"               "0"
 			"AbilityValues"
 			{
-				"hp_cost_per_second"    "7"
-				"radius"                "450"
-				"movement_slow"         "30 35 40 45"
-				"thirst_bonus_pct"      "50 75 100 125"
+				"hp_cost_per_second"	
+				{
+					"value"				"7"
+					"DamageTypeTooltip"		"DAMAGE_TYPE_MAGICAL"
+				}
+				"radius"				"450"
+				"movement_slow"			"30 35 40 45"
+				"thirst_bonus_pct"		"50 60 70 80"
 			}
 		}
 
@@ -6773,7 +6827,7 @@
 				"min_travel_time"                 "0.45"
 				"max_travel_time"                  "1.7"
 				"bounce_travel_time"                  "0.6"
-				"stun_duration"                  "1.75 2.0 2.25 2.5"
+				"stun_duration"                  "1.4 1.6 1.8 2.0"
 				"fragment_impact_distance"    "600"
 				"fragment_impact_radius"                  "150 160 170 180"
         	}
@@ -6969,7 +7023,7 @@
 		"berserker_troll_break"
 		{
 			"MaxLevel"				"4"
-			"AbilityCooldown"		"10 9 8 7"
+			"AbilityCooldown"		"10 9 8 6"
 			"ReduxPerks"                                                           "neutral"
 			"AbilitySpecial"
 			{
@@ -7961,7 +8015,7 @@
         }
         "special_bonus_unique_earth_spirit_2"
         {
-            "TalentRequiredAbility"                                                   "earth_spirit_geomagnetic_grip"
+            "TalentRequiredAbility"                                                   "earth_spirit_magnetize"
         }
         "special_bonus_unique_earth_spirit_3"
         {
@@ -7977,7 +8031,7 @@
         }
         "special_bonus_unique_earth_spirit_6"
         {
-            "TalentRequiredAbility"                                                   "earth_spirit_magnetize"
+            "TalentRequiredAbility"                                                   "earth_spirit_boulder_smash"
         }
         "special_bonus_unique_earth_spirit_7"
         {
@@ -8094,6 +8148,10 @@
 		"special_bonus_unique_enchantress_6"
         {
             "TalentRequiredAbility"                                                   "enchantress_natures_attendants"
+        }
+		"special_bonus_unique_enchantress_enchant_health_damage"
+		{
+            "TalentRequiredAbility"                                                   "enchantress_enchant"
         }
 
 
@@ -8316,6 +8374,14 @@
         {
             "TalentRequiredAbility"                                                   "invoker_ice_wall_ad"
         }
+		"special_bonus_unique_invoker_ice_wall_dps"
+		{
+			"TalentRequiredAbility"                                                   "invoker_ice_wall_ad"
+		}
+		"special_bonus_unique_invoker_additional_chaos_meteors"
+		{
+			"TalentRequiredAbility"                                                   "invoker_chaos_meteor_ad"
+		}
 
 
 
@@ -8518,6 +8584,10 @@
         {
             "TalentRequiredAbility"                                                   "legion_commander_press_the_attack"
         }
+		"special_bonus_unique_legion_commander_9"
+        {
+            "TalentRequiredAbility"                                                   "legion_commander_overwhelming_odds"
+        }
 
 
         "special_bonus_unique_leshrac_1"
@@ -8543,6 +8613,10 @@
         "special_bonus_unique_leshrac_6"
         {
             "TalentRequiredAbility"                                                   "leshrac_lightning_storm"
+        }
+		"special_bonus_unique_leshrac_7"
+        {
+            "TalentRequiredAbility"                                                   "leshrac_pulse_nova"
         }
 
 
@@ -8892,6 +8966,10 @@
         {
             "TalentRequiredAbility"                                                   "medusa_mystic_snake"
         }
+		"special_bonus_unique_medusa_8"
+        {
+            "TalentRequiredAbility"                                                   "medusa_stone_gaze"
+        }
 
 
         "special_bonus_unique_meepo"
@@ -9229,7 +9307,7 @@
 
         "special_bonus_unique_nyx"
         {
-            "TalentRequiredAbility"                                                   "nyx_assassin_mana_burn"
+            "TalentRequiredAbility"                                                   "nyx_assassin_jolt"
         }
         "special_bonus_unique_nyx_2"
         {
@@ -9245,7 +9323,7 @@
         }
         "special_bonus_unique_nyx_5"
         {
-            "TalentRequiredAbility"                                                   "nyx_assassin_mana_burn"
+            "TalentRequiredAbility"                                                   "nyx_assassin_jolt"
         }
         "special_bonus_unique_nyx_6"
         {
@@ -9674,7 +9752,7 @@
         }
         "special_bonus_unique_riki_2"
         {
-            "TalentRequiredAbility"                                                   "riki_blink_strike"
+            "TalentRequiredAbility"                                                   "riki_tricks_of_the_trade"
         }
         "special_bonus_unique_riki_3"
         {
@@ -9810,6 +9888,10 @@
         "special_bonus_unique_dark_willow_7"
         {
             "TalentRequiredAbility"                                                   "dark_willow_cursed_crown"
+        }
+		"special_bonus_unique_dark_willow_bedlam_targets"
+		{
+            "TalentRequiredAbility"                                                   "dark_willow_bedlam"
         }
 
 
@@ -10156,6 +10238,10 @@
         {
             "TalentRequiredAbility"                                                   "spirit_breaker_charge_of_darkness"
         }
+		"special_bonus_unique_spirit_breaker_shield"
+		{
+            "TalentRequiredAbility"                                                   "spirit_breaker_bulldoze"
+        }
 
 
 
@@ -10373,7 +10459,7 @@
 
         "special_bonus_unique_timbersaw"
         {
-            "TalentRequiredAbility"                                                   "shredder_whirling_death"
+            "TalentRequiredAbility"                                                   "shredder_chakram"
         }
         "special_bonus_unique_timbersaw_2"
         {
@@ -10506,6 +10592,10 @@
         "special_bonus_unique_treant_13"
         {
             "TalentRequiredAbility"                                                   "treant_living_armor"
+        }
+		"special_bonus_unique_treant_14"
+        {
+            "TalentRequiredAbility"                                                   "treant_overgrowth"
         }
 
 
@@ -10643,7 +10733,7 @@
         }
         "special_bonus_unique_undying_4"
         {
-            "TalentRequiredAbility"                                                   "undying_decay"
+            "TalentRequiredAbility"                                                   "undying_flesh_golem"
         }
         "special_bonus_unique_undying_5"
         {
@@ -10751,6 +10841,10 @@
         {
             "TalentRequiredAbility"                                                   "vengefulspirit_magic_missile"
         }
+		"special_bonus_unique_vengeful_spirit_swap_damage_reduction"
+		{
+            "TalentRequiredAbility"                                                   "vengefulspirit_nether_swap"
+        }
 
 
 
@@ -10768,11 +10862,11 @@
         }
         "special_bonus_unique_venomancer_4"
         {
-            "TalentRequiredAbility"                                                   "venomancer_poison_nova"
+            "TalentRequiredAbility"                                                   "venomancer_noxious_plague"
         }
         "special_bonus_unique_venomancer_5"
         {
-            "TalentRequiredAbility"                                                   "venomancer_poison_nova"
+            "TalentRequiredAbility"                                                   "venomancer_noxious_plague"
         }
         "special_bonus_unique_venomancer_6"
         {
@@ -11510,20 +11604,24 @@
         {
             "TalentRequiredAbility"                                                   "rattletrap_power_cogs"
         }
+		"special_bonus_unique_clockwerk_flare_damage"
+		{
+            "TalentRequiredAbility"                                                   "rattletrap_rocket_flare"
+        }
 
 
 
         "special_bonus_unique_clinkz_1"
         {
-            "TalentRequiredAbility"                                                   "clinkz_searing_arrows"
+            "TalentRequiredAbility"                                                   "clinkz_tar_bomb"
         }
-        //"special_bonus_unique_clinkz_2"
-        //{
-        //    "TalentRequiredAbility"                                                   "clinkz_death_pact"
-        //}
+        "special_bonus_unique_clinkz_2"
+        {
+            "TalentRequiredAbility"                                                   "clinkz_wind_walk"
+        }
         "special_bonus_unique_clinkz_3"
         {
-            "TalentRequiredAbility"                                                   "clinkz_searing_arrows"
+            "TalentRequiredAbility"                                                   "clinkz_tar_bomb"
         }
         "special_bonus_unique_clinkz_4"
         {
@@ -11547,7 +11645,7 @@
         }
         "special_bonus_unique_clinkz_9"
         {
-            "TalentRequiredAbility"                                                   "clinkz_death_pact"
+            "TalentRequiredAbility"                                                   "clinkz_wind_walk"
         }
         "special_bonus_unique_clinkz_10"
         {
@@ -11665,7 +11763,7 @@
         }
         "special_bonus_unique_bounty_hunter_5"
         {
-            "TalentRequiredAbility"                                                   "bounty_hunter_wind_walk"
+            "TalentRequiredAbility"                                                   "bounty_hunter_shuriken_toss"
         }
         "special_bonus_unique_bounty_hunter_6"
         {
@@ -11790,7 +11888,7 @@
         }
 		"special_bonus_unique_bane_10"
         {
-            "TalentRequiredAbility"                                                   "bane_nightmare"
+            "TalentRequiredAbility"                                                   "bane_enfeeble"
         }
 		"special_bonus_unique_bane_11"
         {
@@ -11826,6 +11924,14 @@
 		"special_bonus_unique_arc_warden_7"
         {
             "TalentRequiredAbility"                                                   "arc_warden_tempest_double"
+        }
+		"special_bonus_unique_arc_warden_8"
+		{
+            "TalentRequiredAbility"                                                   "arc_warden_tempest_double"
+        }
+		"special_bonus_unique_arc_warden_9"
+		{
+            "TalentRequiredAbility"                                                   "arc_warden_magnetic_field"
         }
 
 
@@ -11986,6 +12092,10 @@
 		"special_bonus_unique_abaddon_6"
         {
             "TalentRequiredAbility"                                                   "abaddon_frostmourne"
+        }
+		"special_bonus_unique_abaddon_immolation"
+		{
+            "TalentRequiredAbility"                                                   "abaddon_borrowed_time"
         }
 
 
@@ -12155,6 +12265,7 @@
         }
 
 
+
         "special_bonus_unique_dawnbreaker_solar_guardian_radius"
         {
             "TalentRequiredAbility" "dawnbreaker_solar_guardian"
@@ -12195,6 +12306,12 @@
 		{
             "TalentRequiredAbility" "dawnbreaker_celestial_hammer"
         }
+		"special_bonus_unique_dawnbreaker_fire_wreath_cooldown"
+		{
+            "TalentRequiredAbility" "dawnbreaker_fire_wreath"
+        }
+		
+		
 
         "special_bonus_unique_marci_grapple_stun_duration"
         {
@@ -12236,6 +12353,11 @@
         {
             "TalentRequiredAbility" 		"marci_companion_run"
         }
+		"special_bonus_unique_marci_dispose_range"
+		{
+            "TalentRequiredAbility" 		"marci_grapple"
+        }
+		
 
         "special_bonus_unique_primal_beast_onslaught_damage"
         {
@@ -12269,6 +12391,11 @@
         {
             "TalentRequiredAbility" 		"primal_beast_pulverize"
         }
+		"special_bonus_unique_primal_beast_trample_unslowable"
+		{
+            "TalentRequiredAbility" 		"primal_beast_trample"
+        }
+		
 
 		"special_bonus_unique_muerta_dead_shot_range"
         {
@@ -12405,7 +12532,8 @@
         "ItemPurchasable"               "1"
         "ItemSellable"                  "1"
     }
-    "item_duelist_gloves"              
+	
+	"item_duelist_gloves"              
     {
         "ItemCost"                      "500"
         "ItemPurchasable"               "1"
@@ -12417,8 +12545,6 @@
         "ItemPurchasable"               "1"
         "ItemSellable"                  "1"
     }
-
-
 
     // Tier 2
 
@@ -12518,13 +12644,12 @@
         "ItemPurchasable"               "1"
         "ItemSellable"                  "1"
     }
-    "item_gossamer_cape"              
+	"item_gossamer_cape"              
     {
         "ItemCost"                      "750"
         "ItemPurchasable"               "1"
         "ItemSellable"                  "1"
     }
-
 
     // Tier 3
 
@@ -12612,7 +12737,7 @@
         "ItemPurchasable"               "1"
         "ItemSellable"                  "1"
     }
-    "item_dandelion_amulet"
+	    "item_dandelion_amulet"
     {
         "ItemCost"                      "1000"
         "ItemPurchasable"               "1"
@@ -12625,6 +12750,12 @@
         "ItemSellable"                  "1"
     }
     "item_vindicators_axe"
+    {
+        "ItemCost"                      "1000"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+	"item_princes_knife"
     {
         "ItemCost"                      "1000"
         "ItemPurchasable"               "1"
@@ -12729,13 +12860,19 @@
         "ItemPurchasable"               "1"
         "ItemSellable"                  "1"
     }
-    "item_martyrs_plate"         
+	"item_martyrs_plate"         
     {
         "ItemCost"                      "2000"
         "ItemPurchasable"               "1"
         "ItemSellable"                  "1"
     }
-
+	"item_horizons_equilibrium"        
+    {
+        "ItemCost"                      "2000"
+        "ItemPurchasable"               "1"
+        "ItemSellable"                  "1"
+    }
+	
     // Tier 5
 
     "item_force_boots"
