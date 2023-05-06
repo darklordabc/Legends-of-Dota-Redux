@@ -36,7 +36,7 @@
 			}
 		}
 	
-		muerta_parting_shot"
+		"muerta_parting_shot"
 		{
 			"MaxLevel"						"4"
 			"AbilityCastRange"				"750 800 850 900"

@@ -1810,7 +1810,7 @@ function Pregame:networkHeroes()
                     flags["passive"] = flags["passive"] or {}
                     flags["passive"][k] = 1
                 end
-                if v["ReduxCost"] then
+                --[[if v["ReduxCost"] then
                     if tonumber(v["ReduxCost"]) >= 120 then
                         flags["SuperOP"] = flags["SuperOP"] or {}
                         flags["SuperOP"][k] = 1
@@ -1818,7 +1818,7 @@ function Pregame:networkHeroes()
                         flags["OPSkillsList"] = flags["OPSkillsList"] or {}
                         flags["OPSkillsList"][k] = 1
                     end
-                end
+                end]]--
             end
         end
     end
