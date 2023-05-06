@@ -1,5 +1,25 @@
     "DOTAAbilities"
     {	
+		"miniboss_reflect"
+		{
+			"AbilityValues"
+			{
+					"passive_reflection_pct"			"70"
+					"passive_reflection_bonus_per_death"		"20"
+			}
+		}
+		
+		"miniboss_unyielding_shield"
+		{
+			"MaxLevel"						"1"
+			"AbilityValues"
+			{
+					"damage_absorb"		"2500"
+					"absorb_bonus_per_death"	"200"
+					"regen_per_second"	"100"
+					"regen_bonus_per_death"	"100"
+			}
+		}
 	
 		"venomancer_poison_nova"
 		{
