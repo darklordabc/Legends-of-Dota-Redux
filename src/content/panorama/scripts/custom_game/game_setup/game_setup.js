@@ -566,7 +566,7 @@ function OnSelectedAttrChanged(table_name, key, data) {
 		$("#pickingPhaseSelectHeroStr").SetHasClass("selectedAttribute", newAttr == "str");
 		$("#pickingPhaseSelectHeroAgi").SetHasClass("selectedAttribute", newAttr == "agi");
 		$("#pickingPhaseSelectHeroInt").SetHasClass("selectedAttribute", newAttr == "int");
-		$("#pickingPhaseSelectHeroAll").SetHasClass("selectedAttribute", newAttr == "all");
+		$("#pickingPhaseSelectHeroInt").SetHasClass("selectedAttribute", newAttr == "all");
 	}
 
 	// Push the attribute
@@ -4624,7 +4624,7 @@ function generateFormattedHeroStatsString(heroName, info) {
 		var strColor = info.AttributePrimary == "DOTA_ATTRIBUTE_STRENGTH" ? "FF3939" : "FFFFFF";
 		var agiColor = info.AttributePrimary == "DOTA_ATTRIBUTE_AGILITY" ? "FF3939" : "FFFFFF";
 		var intColor = info.AttributePrimary == "DOTA_ATTRIBUTE_INTELLECT" ? "FF3939" : "FFFFFF";
-		
+		var allColor = info.AttributePrimary == "DOTA_ATTRIBUTE_ALL" ? "FF3939" : "FFFFFF";
 
 		// Calculate our stat gain
 		var strGain = stringToDecimalPlaces(info.AttributeStrengthGain);
