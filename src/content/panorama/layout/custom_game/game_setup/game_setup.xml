@@ -847,7 +847,7 @@
 													<Image text="Int" src="s2r://panorama/images/primary_attribute_icons/primary_attribute_icon_intelligence_psd.vtex" />
 												</Button>
 												<Button class="pickingPhaseAttr" id="pickingPhaseSelectHeroAll" onactivate="setPrimaryAttr('all');">
-													<Image text="Uni" src="s2r://panorama/images/primary_attribute_icons/primary_attribute_icon_intelligence_psd.vtex" />
+													<Image text="Uni" src="s2r://panorama/images/primary_attribute_icons/primary_attribute_icon_all_psd.vtex" />
 												</Button>
 
 											</Panel>
