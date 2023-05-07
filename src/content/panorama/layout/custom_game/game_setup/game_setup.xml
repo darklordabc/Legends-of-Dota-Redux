@@ -812,6 +812,10 @@
                                             <Label text="#DOTA_Hero_Selection_INT" class="pickingHeroListCategory"/>
                                             <Panel id="intHeroContainer" class="pickingHeroListHeroes"/>
                                         </Panel>
+										<Panel class="pickingHeroList">
+                                            <Label text="#DOTA_Hero_Selection_ALL" class="pickingHeroListCategory"/>
+                                            <Panel id="intHeroContainer" class="pickingHeroListHeroes"/>
+                                        </Panel>
                                     </Panel>
 
                                     <Panel id="pickingPhaseSkillTabContent" class="pickingPhaseTabContent">
@@ -841,6 +845,9 @@
 												</Button>
 												<Button class="pickingPhaseAttr" id="pickingPhaseSelectHeroInt" onactivate="setPrimaryAttr('int');">
 													<Image text="Int" src="s2r://panorama/images/primary_attribute_icons/primary_attribute_icon_intelligence_psd.vtex" />
+												</Button>
+												<Button class="pickingPhaseAttr" id="pickingPhaseSelectHeroAll" onactivate="setPrimaryAttr('all');">
+													<Image text="Uni" src="s2r://panorama/images/primary_attribute_icons/primary_attribute_icon_intelligence_psd.vtex" />
 												</Button>
 
 											</Panel>
