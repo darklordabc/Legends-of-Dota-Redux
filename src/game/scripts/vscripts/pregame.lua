@@ -1167,6 +1167,8 @@ function Pregame:applyPrimaryAttribute(playerID, hero)
             toSet = 1
         elseif self.selectedPlayerAttr[playerID] == 'int' then
             toSet = 2
+		elseif self.selectedPlayerAttr[playerID] == 'all' then
+            toSet = 3
         end
 
         Timers:CreateTimer(function()
@@ -1997,8 +1999,10 @@ function Pregame:networkHeroes()
                 self.heroPrimaryAttr[heroName] = 'int'
             elseif attr == 'DOTA_ATTRIBUTE_AGILITY' then
                 self.heroPrimaryAttr[heroName] = 'agi'
-            else
+            elseif attr == 'DOTA_ATTRIBUTE_STRENGTH'
                 self.heroPrimaryAttr[heroName] = 'str'
+			else
+				self.heroPrimaryAttr[heroName] = 'all'
             end
 
             local role = heroValues.AttackCapabilities
@@ -4021,6 +4025,10 @@ function Pregame:validateBuilds(specificID)
                 filter = function(heroName)
                     return this.heroPrimaryAttr[heroName] == 'int'
                 end
+			elseif self.selectedPlayerAttr[playerID] == 'all' then
+                filter = function(heroName)
+                    return this.heroPrimaryAttr[heroName] == 'all'
+                end
             end
 
             local heroName = self:getRandomHero(filter)
@@ -4856,7 +4864,7 @@ function Pregame:setSelectedAttr(playerID, newAttr)
     end
 
     -- Validate the new attribute
-    if newAttr ~= 'str' and newAttr ~= 'agi' and newAttr ~= 'int' then
+    if newAttr ~= 'str' and newAttr ~= 'agi' and newAttr ~= 'int' and newAttr ~= 'all' then
         -- Add an error
         network:sendNotification(player, {
             sort = 'lodDanger',
@@ -5166,7 +5174,7 @@ function Pregame:onPlayerReady(eventSourceIndex, args)
                 end
             end
             local attr = hero:GetPrimaryAttribute()
-            attr = attr == 0 and 'str' or attr == 1 and 'agi' or attr == 2 and 'int'
+            attr = attr == 0 and 'str' or attr == 1 and 'agi' or attr == 2 and 'int' or attr == 3 and 'all'
             local heroName = PlayerResource:GetSelectedHeroName(playerID)
             if newBuild.setAttr ~= attr or newBuild.hero ~= heroName then
                 isSameBuild = false
