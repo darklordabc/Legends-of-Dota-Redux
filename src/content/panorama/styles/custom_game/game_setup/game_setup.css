@@ -1950,7 +1950,7 @@ Button:enabled:hover {
 	text-align: center;
 	letter-spacing: 2px;
 
-	transform: rotateZ(-90deg) translateY(200px);
+	/*transform: rotateZ(-90deg) translateY(200px);*/
 	transform-origin: 0% 0%;
 
 	border-bottom: 2px solid #6f829cee;
