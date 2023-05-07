@@ -2207,8 +2207,9 @@
 		}
 		"shadow_demon_disseminate"
         {
-            "ReduxFlags"                                                           ""
-            "ReduxPerks"                                                           "demon"
+			"AbilityTextureName"            "shadow_demon_disseminate"
+            "ReduxFlags"                    ""
+            "ReduxPerks"                    "demon"
         }
         "nevermore_necromastery"
         {
@@ -4564,6 +4565,11 @@
 						"CalculateSpellDamageTooltip"	"0"
 					}
 			}
+        }
+		"nyx_assassin_jolt"
+        {
+			"AbilityTextureName"		"nyx_assassin_jolt"
+            "ReduxPerks"                "lightning"
         }
         "morphling_morph_agi"
         {
