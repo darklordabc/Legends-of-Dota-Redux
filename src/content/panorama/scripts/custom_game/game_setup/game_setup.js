@@ -566,6 +566,7 @@ function OnSelectedAttrChanged(table_name, key, data) {
 		$("#pickingPhaseSelectHeroStr").SetHasClass("selectedAttribute", newAttr == "str");
 		$("#pickingPhaseSelectHeroAgi").SetHasClass("selectedAttribute", newAttr == "agi");
 		$("#pickingPhaseSelectHeroInt").SetHasClass("selectedAttribute", newAttr == "int");
+		$("#pickingPhaseSelectHeroAll").SetHasClass("selectedAttribute", newAttr == "all");
 	}
 
 	// Push the attribute
@@ -1354,6 +1355,7 @@ function buildHeroList() {
 	var strHeroes = [];
 	var agiHeroes = [];
 	var intHeroes = [];
+	var allHeroes = [];
 
 	for (var heroName in heroData) {
 		var info = heroData[heroName];
@@ -1370,6 +1372,9 @@ function buildHeroList() {
 
 				case "DOTA_ATTRIBUTE_INTELLECT":
 					intHeroes.push(heroName);
+					break;
+				case "DOTA_ATTRIBUTE_ALL":
+					allHeroes.push(heroName);
 					break;
 			}
 		}
@@ -1425,6 +1430,7 @@ function buildHeroList() {
 	doInsertHeroes($("#strHeroContainer"), strHeroes);
 	doInsertHeroes($("#agiHeroContainer"), agiHeroes);
 	doInsertHeroes($("#intHeroContainer"), intHeroes);
+	doInsertHeroes($("#allHeroContainer"), allHeroes);
 
 	// Update which heroes are taken
 	showTakenHeroes();
@@ -4618,6 +4624,7 @@ function generateFormattedHeroStatsString(heroName, info) {
 		var strColor = info.AttributePrimary == "DOTA_ATTRIBUTE_STRENGTH" ? "FF3939" : "FFFFFF";
 		var agiColor = info.AttributePrimary == "DOTA_ATTRIBUTE_AGILITY" ? "FF3939" : "FFFFFF";
 		var intColor = info.AttributePrimary == "DOTA_ATTRIBUTE_INTELLECT" ? "FF3939" : "FFFFFF";
+		
 
 		// Calculate our stat gain
 		var strGain = stringToDecimalPlaces(info.AttributeStrengthGain);
