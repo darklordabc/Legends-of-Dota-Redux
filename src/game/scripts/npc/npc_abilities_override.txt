@@ -64,8 +64,8 @@
 					"end_height"				"128"
 					"hilltop_offset"			"150"
 					"ramp_radius"				"150 175 200 225"
-					"attack_range_bonus"		"200 220 240 260"
-					"multishot_arrow_bonus"		"1 2 3 4"
+					"attack_range_bonus"		"200 225 250 275"
+					"multishot_arrow_bonus"		"1"
 					"knockback_duration"		"0.1"
 					"knockback_distance"		"175"
 					"knockback_height"			"50"
@@ -78,7 +78,7 @@
 			"AbilityValues"
 			{
 					"passive_reflection_pct"			"70"
-					"passive_reflection_bonus_per_death"		"20"
+					"passive_reflection_bonus_per_death"		"0"
 			}
 		}
 		
