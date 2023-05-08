@@ -6853,7 +6853,7 @@ function Pregame:darkMoonDrops()
                             local dropTarget = ent:GetAbsOrigin() + RandomVector( RandomFloat( 50, 350 ) )
 
 
-                            newItem:LaunchLoot( false, 300, 0.75, dropTarget )
+                            newItem:LaunchLoot( false, 300, 0.75, dropTarget, nil )
                         end
                     end
 
@@ -6872,7 +6872,7 @@ function Pregame:darkMoonDrops()
                             dropTarget = attacker:GetAbsOrigin()
                         end
 
-                        newItem:LaunchLoot( true, 300, 0.75, dropTarget )
+                        newItem:LaunchLoot( true, 300, 0.75, dropTarget, nil )
                     end
 
 
@@ -6891,7 +6891,7 @@ function Pregame:darkMoonDrops()
                             dropTarget = attacker:GetAbsOrigin()
                         end
 
-                        newItem:LaunchLoot( true, 300, 0.75, dropTarget )
+                        newItem:LaunchLoot( true, 300, 0.75, dropTarget, nil )
                     end
 
 
@@ -6918,7 +6918,7 @@ function Pregame:darkMoonDrops()
                             dropTarget = attacker:GetAbsOrigin()
                         end
 
-                        newItem:LaunchLoot( true, 300, 0.75, dropTarget )
+                        newItem:LaunchLoot( true, 300, 0.75, dropTarget, nil )
                     end
 
                 end
@@ -6954,7 +6954,7 @@ function Pregame:DropGoldOnDeath()
                         dropTarget = attacker:GetAbsOrigin()
                     end
 
-                    newItem:LaunchLoot(true, 600, 0.5, dropTarget)
+                    newItem:LaunchLoot(true, 600, 0.5, dropTarget, nil)
                 end
             end
 

@@ -1050,7 +1050,7 @@ function IsStolenSpell(caster)
 	return false
 end
 
-function InitRunes()
+--[[function InitRunes()
 	bounty_rune_spawners = {}
 	bounty_rune_locations = {}
 	powerup_rune_spawners = {}
@@ -1073,10 +1073,10 @@ function InitRunes()
 		bounty_rune_locations[i] = bounty_rune_spawners[i]:GetAbsOrigin()
 		bounty_rune_spawners[i]:RemoveSelf()
 	end
-end
+end]]--
 
 -- Spawns runes on the map
-function SpawnImbaRunes()
+--[[function SpawnImbaRunes()
 bounty_rune_is_initial_bounty_rune = false
 
 	-- Remove any existing runes, if any
@@ -1110,9 +1110,9 @@ bounty_rune_is_initial_bounty_rune = false
 			bounty_rune_is_initial_bounty_rune = true
 		end
 	end
-end
+end]]--
 
-function RegisterRune(rune)
+--[[function RegisterRune(rune)
 
 	-- Initialize table
 	if not rune_spawn_table then
@@ -1121,9 +1121,9 @@ function RegisterRune(rune)
 
 	-- Register rune into table
 	table.insert(rune_spawn_table, rune)
-end
+end]]--
 
-function RemoveRunes()
+--[[function RemoveRunes()
 	if rune_spawn_table then
 
 		-- Remove existing runes
@@ -1138,9 +1138,9 @@ function RemoveRunes()
 		-- Clear the table
 		rune_spawn_table = {}
 	end
-end
+end]]--
 
-function PickupRune(rune_name, unit, bActiveByBottle)
+--[[function PickupRune(rune_name, unit, bActiveByBottle)
 	if string.find(rune_name, "item_imba_rune_") then
 		rune_name = string.gsub(rune_name, "item_imba_rune_", "")
 	end
@@ -1264,9 +1264,9 @@ function PickupRune(rune_name, unit, bActiveByBottle)
 			runeType = rune_name
 		})
 	end
-end
+end]]--
 
-function CBaseEntity:IsRune()
+--[[function CBaseEntity:IsRune()
 	local runes = {
 		"models/props_gameplay/rune_goldxp.vmdl",
 		"models/props_gameplay/rune_haste01.vmdl",
@@ -1285,7 +1285,7 @@ function CBaseEntity:IsRune()
 		end
 	end
 	return false
-end
+end]]--
 
 -- Overthrow
 function PickRandomShuffle( reference_list, bucket )

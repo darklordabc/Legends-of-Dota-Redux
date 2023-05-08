@@ -36,7 +36,7 @@ function Ingame:init()
     self:addStrongTowers()
     self:loadTrollCombos()
     self:AddTowerBotController()
-    self:fixRuneBug()
+    --self:fixRuneBug()
 
     -- -- Init global mutator
     self:initGlobalMutator()
@@ -743,7 +743,7 @@ function Ingame:CommandNotification(command, message, cooldown)
 end
 
 
-function Ingame:fixRuneBug()
+--[[function Ingame:fixRuneBug()
     ListenToGameEvent('game_rules_state_change', function(keys)
         local newState = GameRules:State_Get()
 
@@ -763,7 +763,7 @@ function Ingame:fixRuneBug()
             end, "botRune", 6)
         end
     end, nil)
-end
+end]]--
 --[[
 -- Upgrades bot neutral items over time
 function Ingame:botNeutralUpgrader()
