@@ -1902,7 +1902,7 @@ Button:enabled:hover {
 
 #pickingPhaseHeroTabContent {
 	padding: 8px;
-	flow-children: down;
+	flow-children: right-wrap;
 }
 
 .pickingPhaseTabContent {
@@ -1912,7 +1912,7 @@ Button:enabled:hover {
 
 .pickingHeroList {
 	padding-left: 16px;
-	width: 100%;
+	width: 45%;
 	/*height: fit-children;*/
 	/*background-color: #111111;*/
 	padding-top: 5px;
@@ -1950,7 +1950,7 @@ Button:enabled:hover {
 	text-align: center;
 	letter-spacing: 2px;
 
-	/*transform: rotateZ(-90deg) translateY(200px);*/
+	transform: rotateZ(-90deg) translateY(200px);
 	transform-origin: 0% 0%;
 
 	border-bottom: 2px solid #6f829cee;

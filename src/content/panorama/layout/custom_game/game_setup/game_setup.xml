@@ -812,9 +812,10 @@
                                             <Label text="#DOTA_Hero_Selection_INT" class="pickingHeroListCategory"/>
                                             <Panel id="intHeroContainer" class="pickingHeroListHeroes"/>
                                         </Panel>
-										<Panel class="pickingHeroList">
-                                            <Label text="#DOTA_Hero_Selection_ALL" class="pickingHeroListCategory"/>
-                                            <Panel id="intHeroContainer" class="pickingHeroListHeroes"/>
+
+                                        <Panel class="pickingHeroList">
+                                            <Label text="UNIVERSAL" class="pickingHeroListCategory"/>
+                                            <Panel id="allHeroContainer" class="pickingHeroListHeroes"/>
                                         </Panel>
                                     </Panel>
 
@@ -846,9 +847,9 @@
 												<Button class="pickingPhaseAttr" id="pickingPhaseSelectHeroInt" onactivate="setPrimaryAttr('int');">
 													<Image text="Int" src="s2r://panorama/images/primary_attribute_icons/primary_attribute_icon_intelligence_psd.vtex" />
 												</Button>
-												<Button class="pickingPhaseAttr" id="pickingPhaseSelectHeroAll" onactivate="setPrimaryAttr('all');">
-													<Image text="Uni" src="s2r://panorama/images/primary_attribute_icons/primary_attribute_icon_all_psd.vtex" />
-												</Button>
+                                                <Button class="pickingPhaseAttr" id="pickingPhaseSelectHeroALL" onactivate="setPrimaryAttr('all');">
+                                                    <Image text="Uni" src="s2r://panorama/images/primary_attribute_icons/primary_attribute_icon_all_psd.vtex" />
+                                                </Button>
 
 											</Panel>
 											<Panel id="pickingPhaseSelectedHeroImageCon" class="no_hero_selected">

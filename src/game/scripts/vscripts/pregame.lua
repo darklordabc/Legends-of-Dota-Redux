@@ -1999,9 +1999,9 @@ function Pregame:networkHeroes()
                 self.heroPrimaryAttr[heroName] = 'int'
             elseif attr == 'DOTA_ATTRIBUTE_AGILITY' then
                 self.heroPrimaryAttr[heroName] = 'agi'
-            elseif attr == 'DOTA_ATTRIBUTE_STRENGTH'
+            elseif attr == 'DOTA_ATTRIBUTE_STRENGTH' then
                 self.heroPrimaryAttr[heroName] = 'str'
-			else
+			elseif attr == 'DOTA_ATTRIBUTE_ALL' then
 				self.heroPrimaryAttr[heroName] = 'all'
             end
 
