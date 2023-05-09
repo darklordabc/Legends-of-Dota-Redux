@@ -1,5 +1,21 @@
     "DOTAAbilities"
     {	
+		"clinkz_burning_barrage"
+		{
+			"ReduxPerks"					"fire"
+			"MaxLevel"						"4"
+			"AbilityCastPoint"				"0.2"
+			"AbilityChannelTime"			"2.0"
+			"AbilityCooldown"				"22 20 18 16"
+			"AbilityManaCost"				"45"
+			"AbilityValues"
+			{
+				"wave_count"		"6"
+				"range"	"850"				
+				"damage_pct"			"65 70 75 80"
+			}
+			"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
+		}
 		"zuus_lightning_hands"
 		{
 			"ReduxPerks"					"lightning"
@@ -6849,7 +6865,7 @@
 			{
 				"range"			"1300"
 				"count"			"5"
-				"spawn_interval"	"0.5"
+				"spawn_interval"	"0.5 0.4 0.3 0.2"
 			}
 		}	
 
