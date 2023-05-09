@@ -11404,6 +11404,11 @@
 "warning_zuus_cloud" "<font color='#FF4949'>Warning:</font> Requires <font color='#70EA72'>Lighting Bolt</font>, for Nimbus to strike enemies."
 "white_flower" "White Flower"
 "yellow_flower" "Yellow Daisy"
+
+"DOTA_Tooltip_ability_special_bonus_unique_monkey_king_6_Description"    "Creates an additional ring of 7 soldiers at 1100 range from the center."
+"DOTA_Tooltip_ability_special_bonus_unique_magnus_reverse_polarity_stats_Description"        "Bonus Stats last for 15s"
+"DOTA_Tooltip_ability_special_bonus_unique_abaddon_immolation_Description"    "Affects Abaddon and all enemies in a 400 AoE."
+"DOTA_Tooltip_ability_special_bonus_unique_razor_plasmafield_second_ring_Description"    "The second plasma field does 30% less damage"
 		
 }
 }
