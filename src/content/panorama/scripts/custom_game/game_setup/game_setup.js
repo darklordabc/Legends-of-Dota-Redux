@@ -5838,7 +5838,7 @@ function getAbilityGlobalPickPopularity(ability) {
 	}
 
 	// Bots
-	$.GetContextPanel().SetHasClass("disallow_bots", mapName !== "custom_bot");
+	$.GetContextPanel().SetHasClass("disallow_bots", mapName !== "dota");
 
 	// Are we on a map that allocates slots for us?
 	if (mapName == "3_vs_3" || mapName == "5_vs_5") {
