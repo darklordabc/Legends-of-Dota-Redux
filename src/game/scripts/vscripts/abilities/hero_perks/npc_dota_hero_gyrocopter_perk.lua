@@ -25,7 +25,7 @@ function modifier_npc_dota_hero_gyrocopter_perk:RemoveOnDeath()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_gyrocopter_perk:GetTexture()
-	return "custom/side_gunner_redux"
+	return "gyrocopter_flak_cannon"
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_gyrocopter_perk:IsPurgable()
@@ -38,12 +38,12 @@ end
 function modifier_npc_dota_hero_gyrocopter_perk:OnCreated(keys)
     if IsServer() then
         local caster = self:GetCaster()
-        local gunner = caster:FindAbilityByName("side_gunner_redux")
+        local gunner = caster:FindAbilityByName("gyrocopter_flak_cannon")
 
         if gunner then
             gunner:UpgradeAbility(false)
         else 
-            gunner = caster:AddAbility("side_gunner_redux")
+            gunner = caster:AddAbility("gyrocopter_flak_cannon")
             gunner:SetStolen(true)
             gunner:SetActivated(true)
             gunner:SetLevel(1)

@@ -1,5 +1,21 @@
     "DOTAAbilities"
     {	
+		"clinkz_burning_barrage"
+		{
+			"ReduxPerks"					"fire"
+			"MaxLevel"						"4"
+			"AbilityCastPoint"				"0.2"
+			"AbilityChannelTime"			"2.0"
+			"AbilityCooldown"				"22 20 18 16"
+			"AbilityManaCost"				"45"
+			"AbilityValues"
+			{
+				"wave_count"		"6"
+				"range"	"850"				
+				"damage_pct"			"65 70 75 80"
+			}
+			"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
+		}
 		"zuus_lightning_hands"
 		{
 			"ReduxPerks"					"lightning"
@@ -74,11 +90,11 @@
 		}
 		"miniboss_reflect"
 		{
-			"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+			"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 			"AbilityValues"
 			{
 					"passive_reflection_pct"			"70"
-					"passive_reflection_bonus_per_death"		"0"
+					"passive_reflection_bonus_per_death"		"20"
 			}
 		}
 		
@@ -119,7 +135,7 @@
 			"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_5"
 			"AbilityCooldown"				"45 40 35 30"
 			"AbilityDamage"					"300 325 350 375"
-			"AbilityManaCost"				"250"
+			"AbilityManaCost"				"250 225 200 175"
 			"AbilityValues"
 			{
 				"projectile_speed"			"2500"
@@ -1889,7 +1905,14 @@
             "ReduxFlags"                                                           "stun"
             "ReduxPerks"                                                           "enemyMoving | rage"
         }
-		
+		"muerta_dead_shot"
+        {
+            "ReduxPerks"                                                           "enemyMoving"
+        }
+		"muerta_parting_shot"
+        {
+            "ReduxPerks"                                                           "enemyMoving"
+        }
 		"beastmaster_mark_of_the_beast"
 		{
 			"MaxLevel"						"4"
@@ -4547,7 +4570,7 @@
         }
 		"nyx_assassin_jolt"
         {
-			"AbilityTextureName"		"nyx_assassin_jolt"
+			"AbilityTextureName"		"panorama/images/spellicons/nyx_assassin_jolt_png.vtex"
             "ReduxPerks"                "lightning"
         }
         "morphling_morph_agi"
@@ -6842,7 +6865,7 @@
 			{
 				"range"			"1300"
 				"count"			"5"
-				"spawn_interval"	"0.5"
+				"spawn_interval"	"0.5 0.4 0.3 0.2"
 			}
 		}	
 
@@ -11693,7 +11716,7 @@
         }
         "special_bonus_unique_clinkz_9"
         {
-            "TalentRequiredAbility"                                                   "clinkz_wind_walk"
+            "TalentRequiredAbility"                                                   "clinkz_death_pact"
         }
         "special_bonus_unique_clinkz_10"
         {
