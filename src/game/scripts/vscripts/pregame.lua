@@ -85,7 +85,7 @@ function Pregame:init()
 
     -- If single player redirect players to the more fully-featured map
     if util:isSinglePlayerMode() and not IsInToolsMode() then
-        OptionManager:SetOption('mapname', 'custom_bot')
+        OptionManager:SetOption('mapname', 'dota')
         CustomNetTables:SetTableValue('phase_pregame', 'forceBots', {value=true})
     end
 
@@ -628,7 +628,7 @@ function Pregame:init()
 
     -- Custom -- set preset
     -- if mapName == 'custom' or mapName == 'custom_bot' or mapName == 'dota_180' or mapName == 'custom_702' or mapName == '10_vs_10' then
-    if mapName == 'dota_180' or mapName == 'custom_702' or mapName == 'custom' or mapName == 'custom_bot' or mapName == 'all_allowed_advanced' then
+    if mapName == 'dota_180' or mapName == 'custom_702' or mapName == 'custom' or mapName == 'dota' or mapName == 'all_allowed_advanced' then
         self:setOption('lodOptionGamemode', 1)
 		self:setOption('lodOptionGameSpeedGoldModifier', 100, true)
     end
@@ -645,7 +645,7 @@ function Pregame:init()
 
     -- Bot match
     -- if mapName == 'custom_bot' or mapName == 'custom_702' or mapName == 'dota_180' or mapName == '10_vs_10' then
-    if mapName == 'custom_bot' then
+    if mapName == 'dota' then
         self.enabledBots = true
         self:setOption('lodOptionBotsRadiant', 5, true)
         self:setOption('lodOptionBotsDire', 5, true)
@@ -1510,7 +1510,7 @@ function Pregame:onThink()
         -- Spawn all humans
         Timers:CreateTimer(function()
             -- Spawn all players
-            if OptionManager:GetOption('mapname') == 'custom_bot' then
+            if OptionManager:GetOption('mapname') == 'dota' then
                 this:spawnAllHeroes()
             end
         end, DoUniqueString('spawnbots'), 0.1)
@@ -1596,11 +1596,11 @@ function Pregame:onThink()
 end
 
 function Pregame:isBackgroundSpawning()
-    return OptionManager:GetOption('mapname') == "custom_bot" or (self.optionStore['lodOptionGamemode'] ~= 1 and (self.optionStore['lodOptionGamemode'] ~= -1 or self.optionStore['lodOptionCommonGamemode'] ~= 1))
+    return OptionManager:GetOption('mapname') == "dota" or (self.optionStore['lodOptionGamemode'] ~= 1 and (self.optionStore['lodOptionGamemode'] ~= -1 or self.optionStore['lodOptionCommonGamemode'] ~= 1))
 end
 
 function Pregame:setWispMethod()
-    if OptionManager:GetOption('mapname') == "custom_bot" then
+    if OptionManager:GetOption('mapname') == "dota" then
         GameRules:GetGameModeEntity():SetCustomGameForceHero("")
     else
         GameRules:GetGameModeEntity():SetCustomGameForceHero("npc_dota_hero_wisp")
@@ -3063,7 +3063,7 @@ function Pregame:initOptionSelector()
 
         -- Bots -- Desired number of radiant players
         lodOptionBotsRadiant = function(value)
-            if OptionManager:GetOption('mapname') ~= "custom_bot" and value ~= self.optionStore['lodOptionBotsRadiant'] and self.optionStore['lodOptionBotsRadiant'] ~= 0 then
+            if OptionManager:GetOption('mapname') ~= "dota" and value ~= self.optionStore['lodOptionBotsRadiant'] and self.optionStore['lodOptionBotsRadiant'] ~= 0 then
                 network:sendNotification(getPlayerHost(), {
                     sort = 'lodDanger',
                     text = 'lodUseCustomBotMap'
@@ -3088,7 +3088,7 @@ function Pregame:initOptionSelector()
 
         -- Bots -- Desired number of dire players
         lodOptionBotsDire = function(value)
-            if OptionManager:GetOption('mapname') ~= "custom_bot" and value ~= self.optionStore['lodOptionBotsDire'] and self.optionStore['lodOptionBotsDire'] ~= 0 then
+            if OptionManager:GetOption('mapname') ~= "dota" and value ~= self.optionStore['lodOptionBotsDire'] and self.optionStore['lodOptionBotsDire'] ~= 0 then
                 network:sendNotification(getPlayerHost(), {
                     sort = 'lodDanger',
                     text = 'lodUseCustomBotMap'
@@ -7016,7 +7016,7 @@ end
 function Pregame:addBotPlayers()
     -- self.enabledBots = false
     -- Ensure bots should actually be added
-    if OptionManager:GetOption('mapname') ~= "custom_bot" then return end
+    if OptionManager:GetOption('mapname') ~= "dota" then return end
     if self.addedBotPlayers then return end
     self.addedBotPlayers = true
     if not self.enabledBots then return end
@@ -7239,7 +7239,7 @@ function Pregame:generateBotBuilds(singleID)
         return true
     end
 
-    if OptionManager:GetOption('mapname') ~= "custom_bot" then return end
+    if OptionManager:GetOption('mapname') ~= "dota" then return end
 
     -- Ensure bots are actually enabled
     if not self.enabledBots then return end
