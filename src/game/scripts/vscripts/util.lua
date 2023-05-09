@@ -165,7 +165,7 @@ function util:isTargetSpell(skillName)
 end
 
 -- Picks a random rune
-function util:pickRandomRune()
+--[[function util:pickRandomRune()
     local validRunes = {
         0,
         1,
@@ -181,7 +181,7 @@ function util:pickRandomRune()
     }
 
     return validRunes[math.random(#validRunes)]
-end
+end]]--
 
 
 function util:sortTable(input)
