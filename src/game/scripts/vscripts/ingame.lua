@@ -87,7 +87,7 @@ function Ingame:init()
     self.botsInLateGameMode = false
 
     -- Setup standard rules
-    GameRules:GetGameModeEntity():SetTowerBackdoorProtectionEnabled(true)
+    -- GameRules:GetGameModeEntity():SetTowerBackdoorProtectionEnabled(true)
 
     PrecacheUnitByNameAsync('npc_precache_npc_dota_hero_ogre_magi', function()
         CreateUnitByName('npc_precache_npc_dota_hero_ogre_magi', Vector(-10000, -10000, 0), false, nil, nil, 0)

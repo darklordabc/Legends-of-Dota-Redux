@@ -165,7 +165,7 @@ function duskDota:_CaptureduskDota()
     -- mode:SetCustomXPRequiredToReachNextLevel( XP_PER_LEVEL_TABLE )
 
     -- --mode:SetBotThinkingEnabled( USE_STANDARD_DOTA_BOT_THINKING )
-    mode:SetTowerBackdoorProtectionEnabled( true )
+    -- mode:SetTowerBackdoorProtectionEnabled( true )
 
     -- mode:SetFogOfWarDisabled(DISABLE_FOG_OF_WAR_ENTIRELY)
     -- mode:SetGoldSoundDisabled( DISABLE_GOLD_SOUNDS )
