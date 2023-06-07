@@ -9,7 +9,7 @@ StatsClient.AuthKey = LoadKeyValues('scripts/kv/stats_client.kv').AuthKey
 StatsClient.Debug = IsInToolsMode() and false
 StatsClient.ServerAddress = StatsClient.Debug and
     "http://localhost:5218/" or
-    "https://31c1-84-193-151-123.eu.ngrok.io/"
+    "https://fda7-84-193-151-123.ngrok-free.app/"
 
 StatsClient.GameVersion = LoadKeyValues('addoninfo.txt').version
 StatsClient.SortedAbilityDataEntries = StatsClient.SortedAbilityDataEntries or {}
