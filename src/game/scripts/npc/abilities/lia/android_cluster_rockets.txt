@@ -13,14 +13,14 @@
         "RequiredLevel"                                                        "1"
         "LevelsBetweenUpgrades"                                                "2"
         "AbilityCastRange"                                                     "1500"
-        "AbilityCastPoint"                                                     "0.3"
-        "AbilityCooldown"                                                      "40.0"
-        "AbilityManaCost"                                                      "50 75 100 125"
+        "AbilityCastPoint"                                                     "0.0"
+        "AbilityCooldown"                                                      "16.0"
+        "AbilityManaCost"                                                      "95 105 115 125"
         "AOERadius"                                                            "%radius"
         "AbilityChannelTime"                                                   "1.01"
         "precache"
         {
-            "particle"                                                      "particles/units/heroes/hero_tinker/tinker_missile.vpcf"
+            "particle"                                                      "particles/units/heroes/hero_gyrocopter/gyro_rocket_barrage.vpcf"
             "particle"                                                      "particles/units/heroes/hero_tinker/tinker_rearm.vpcf"
             "soundfile"                                                     "soundevents/game_sounds_heroes/game_sounds_gyrocopter.vsndevts"
         }
@@ -29,12 +29,12 @@
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "damage"                                               "75"
+                "damage"                                               "30 50 70 90"
             }
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "projectile_count"                                     "3 6 12 24"
+                "projectile_count"                                     "24"
             }
             "03"
             {
@@ -44,22 +44,22 @@
             "04"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "radius"                                               "250 300 350 400"
+                "radius"                                               "400"
             }
             "05"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "projectile_speed"                                     "550"
+                "projectile_speed"                                     "700"
             }
             "06"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "projectile_radius"                                    "100"
+                "projectile_radius"                                    "135"
             }
             "07"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "projectile_interval"                                  "0.16 0.084 0.056 0.036"
+                "projectile_interval"                                  "0.036"
             }
         }
         "OnSpellStart"

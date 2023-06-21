@@ -85,7 +85,7 @@ function Pregame:init()
 
     -- If single player redirect players to the more fully-featured map
     if util:isSinglePlayerMode() and not IsInToolsMode() then
-        OptionManager:SetOption('mapname', 'custom_bot')
+        OptionManager:SetOption('mapname', 'dota')
         CustomNetTables:SetTableValue('phase_pregame', 'forceBots', {value=true})
     end
 
@@ -266,32 +266,32 @@ function Pregame:init()
     GameRules:GetGameModeEntity():SetCustomGameForceHero("npc_dota_hero_wisp")
 
     -- Rune fix
-    local totalRunes = 0
-    local needBounty = false
-    GameRules:GetGameModeEntity():SetRuneSpawnFilter(function(context, runeStuff)
-        totalRunes = totalRunes + 1
-        if totalRunes % 2 == 1 then
-            if math.random() < 0.5 then
-                needBounty = false
-                runeStuff.rune_type = DOTA_RUNE_BOUNTY
-            else
-                needBounty = true
-                runeStuff.rune_type = util:pickRandomRune()
-            end
-        else
-            if needBounty then
-                runeStuff.rune_type = DOTA_RUNE_BOUNTY
-            else
-                runeStuff.rune_type = util:pickRandomRune()
+    -- local totalRunes = 0
+    -- local needBounty = false
+    -- GameRules:GetGameModeEntity():SetRuneSpawnFilter(function(context, runeStuff)
+    --    totalRunes = totalRunes + 1
+    --    if totalRunes % 2 == 1 then
+    --        if math.random() < 0.5 then
+    --            needBounty = false
+    --           runeStuff.rune_type = DOTA_RUNE_BOUNTY
+    --        else
+    --            needBounty = true
+    --            runeStuff.rune_type = util:pickRandomRune()
+    --        end
+    --    else
+    --        if needBounty then
+    --            runeStuff.rune_type = DOTA_RUNE_BOUNTY
+    --        else
+    --            runeStuff.rune_type = util:pickRandomRune()
 
-            end
+    --        end
 
             -- No longer need a bounty rune
-            needBounty = false
-        end
+    --        needBounty = false
+    --    end
 
-        return true
-    end, self)
+    --    return true
+    -- end, self)
 
     -- Init options
     self:initOptionSelector()
@@ -576,9 +576,9 @@ function Pregame:init()
         self:setOption('lodOptionGameSpeedTowersPerLane', 3, true)
         OptionManager:SetOption('banningTime', 50)
         self:setOption('lodOptionBalanceMode', 0, true)
-        self:setOption('lodOptionGameSpeedGoldModifier', 200, true)
+        self:setOption('lodOptionGameSpeedGoldModifier', 100, true)
         --self:setOption('lodOptionGameSpeedGoldTickRate', 2, true)
-        self:setOption('lodOptionGameSpeedEXPModifier', 200, true)
+        self:setOption('lodOptionGameSpeedEXPModifier', 100, true)
         self:setOption('lodOptionAdvancedHidePicks', 0, true)
         self:setOption('lodOptionCommonMaxUlts', 2, true)
         --self:setOption("lodOptionCrazyFatOMeter", 2)
@@ -628,8 +628,9 @@ function Pregame:init()
 
     -- Custom -- set preset
     -- if mapName == 'custom' or mapName == 'custom_bot' or mapName == 'dota_180' or mapName == 'custom_702' or mapName == '10_vs_10' then
-    if mapName == 'dota_180' or mapName == 'custom_702' or mapName == 'custom' or mapName == 'custom_bot' or mapName == 'all_allowed_advanced' then
+    if mapName == 'dota_180' or mapName == 'custom_702' or mapName == 'custom' or mapName == 'dota' or mapName == 'all_allowed_advanced' then
         self:setOption('lodOptionGamemode', 1)
+		self:setOption('lodOptionGameSpeedGoldModifier', 100, true)
     end
 
     -- Challenge Mode
@@ -644,7 +645,7 @@ function Pregame:init()
 
     -- Bot match
     -- if mapName == 'custom_bot' or mapName == 'custom_702' or mapName == 'dota_180' or mapName == '10_vs_10' then
-    if mapName == 'custom_bot' then
+    if mapName == 'dota' then
         self.enabledBots = true
         self:setOption('lodOptionBotsRadiant', 5, true)
         self:setOption('lodOptionBotsDire', 5, true)
@@ -687,9 +688,9 @@ function Pregame:init()
         --self:setOption('lodOptionBanningBalanceMode', 1, true)
         --self:setOption('lodOptionGameSpeedRespawnTimePercentage', 70, true)
         --self:setOption('lodOptionBuybackCooldownTimeConstant', 210, true)
-        self:setOption('lodOptionGameSpeedGoldModifier', 150, true)
+        self:setOption('lodOptionGameSpeedGoldModifier', 100, true)
         self:setOption('lodOptionLimitPassives', 1, true)
-        self:setOption('lodOptionGameSpeedEXPModifier', 150, true)
+        self:setOption('lodOptionGameSpeedEXPModifier', 100, true)
         self:setOption('lodOptionGameSpeedMaxLevel', 100, true)
         self:setOption('lodOptionGameSpeedRespawnTimePercentage', 35, true)
         self:setOption('lodOptionCrazyUniversalShop', 0, true)
@@ -1166,6 +1167,8 @@ function Pregame:applyPrimaryAttribute(playerID, hero)
             toSet = 1
         elseif self.selectedPlayerAttr[playerID] == 'int' then
             toSet = 2
+		elseif self.selectedPlayerAttr[playerID] == 'all' then
+            toSet = 3
         end
 
         Timers:CreateTimer(function()
@@ -1507,7 +1510,7 @@ function Pregame:onThink()
         -- Spawn all humans
         Timers:CreateTimer(function()
             -- Spawn all players
-            if OptionManager:GetOption('mapname') == 'custom_bot' then
+            if OptionManager:GetOption('mapname') == 'dota' then
                 this:spawnAllHeroes()
             end
         end, DoUniqueString('spawnbots'), 0.1)
@@ -1593,11 +1596,11 @@ function Pregame:onThink()
 end
 
 function Pregame:isBackgroundSpawning()
-    return OptionManager:GetOption('mapname') == "custom_bot" or (self.optionStore['lodOptionGamemode'] ~= 1 and (self.optionStore['lodOptionGamemode'] ~= -1 or self.optionStore['lodOptionCommonGamemode'] ~= 1))
+    return OptionManager:GetOption('mapname') == "dota" or (self.optionStore['lodOptionGamemode'] ~= 1 and (self.optionStore['lodOptionGamemode'] ~= -1 or self.optionStore['lodOptionCommonGamemode'] ~= 1))
 end
 
 function Pregame:setWispMethod()
-    if OptionManager:GetOption('mapname') == "custom_bot" then
+    if OptionManager:GetOption('mapname') == "dota" then
         GameRules:GetGameModeEntity():SetCustomGameForceHero("")
     else
         GameRules:GetGameModeEntity():SetCustomGameForceHero("npc_dota_hero_wisp")
@@ -1809,7 +1812,7 @@ function Pregame:networkHeroes()
                     flags["passive"] = flags["passive"] or {}
                     flags["passive"][k] = 1
                 end
-                if v["ReduxCost"] then
+                --[[if v["ReduxCost"] then
                     if tonumber(v["ReduxCost"]) >= 120 then
                         flags["SuperOP"] = flags["SuperOP"] or {}
                         flags["SuperOP"][k] = 1
@@ -1817,7 +1820,7 @@ function Pregame:networkHeroes()
                         flags["OPSkillsList"] = flags["OPSkillsList"] or {}
                         flags["OPSkillsList"][k] = 1
                     end
-                end
+                end]]--
             end
         end
     end
@@ -1996,8 +1999,10 @@ function Pregame:networkHeroes()
                 self.heroPrimaryAttr[heroName] = 'int'
             elseif attr == 'DOTA_ATTRIBUTE_AGILITY' then
                 self.heroPrimaryAttr[heroName] = 'agi'
-            else
+            elseif attr == 'DOTA_ATTRIBUTE_STRENGTH' then
                 self.heroPrimaryAttr[heroName] = 'str'
+			elseif attr == 'DOTA_ATTRIBUTE_ALL' then
+				self.heroPrimaryAttr[heroName] = 'all'
             end
 
             local role = heroValues.AttackCapabilities
@@ -3058,7 +3063,7 @@ function Pregame:initOptionSelector()
 
         -- Bots -- Desired number of radiant players
         lodOptionBotsRadiant = function(value)
-            if OptionManager:GetOption('mapname') ~= "custom_bot" and value ~= self.optionStore['lodOptionBotsRadiant'] and self.optionStore['lodOptionBotsRadiant'] ~= 0 then
+            if OptionManager:GetOption('mapname') ~= "dota" and value ~= self.optionStore['lodOptionBotsRadiant'] and self.optionStore['lodOptionBotsRadiant'] ~= 0 then
                 network:sendNotification(getPlayerHost(), {
                     sort = 'lodDanger',
                     text = 'lodUseCustomBotMap'
@@ -3083,7 +3088,7 @@ function Pregame:initOptionSelector()
 
         -- Bots -- Desired number of dire players
         lodOptionBotsDire = function(value)
-            if OptionManager:GetOption('mapname') ~= "custom_bot" and value ~= self.optionStore['lodOptionBotsDire'] and self.optionStore['lodOptionBotsDire'] ~= 0 then
+            if OptionManager:GetOption('mapname') ~= "dota" and value ~= self.optionStore['lodOptionBotsDire'] and self.optionStore['lodOptionBotsDire'] ~= 0 then
                 network:sendNotification(getPlayerHost(), {
                     sort = 'lodDanger',
                     text = 'lodUseCustomBotMap'
@@ -4020,6 +4025,10 @@ function Pregame:validateBuilds(specificID)
                 filter = function(heroName)
                     return this.heroPrimaryAttr[heroName] == 'int'
                 end
+			elseif self.selectedPlayerAttr[playerID] == 'all' then
+                filter = function(heroName)
+                    return this.heroPrimaryAttr[heroName] == 'all'
+                end
             end
 
             local heroName = self:getRandomHero(filter)
@@ -4855,7 +4864,7 @@ function Pregame:setSelectedAttr(playerID, newAttr)
     end
 
     -- Validate the new attribute
-    if newAttr ~= 'str' and newAttr ~= 'agi' and newAttr ~= 'int' then
+    if newAttr ~= 'str' and newAttr ~= 'agi' and newAttr ~= 'int' and newAttr ~= 'all' then
         -- Add an error
         network:sendNotification(player, {
             sort = 'lodDanger',
@@ -5165,7 +5174,7 @@ function Pregame:onPlayerReady(eventSourceIndex, args)
                 end
             end
             local attr = hero:GetPrimaryAttribute()
-            attr = attr == 0 and 'str' or attr == 1 and 'agi' or attr == 2 and 'int'
+            attr = attr == 0 and 'str' or attr == 1 and 'agi' or attr == 2 and 'int' or attr == 3 and 'all'
             local heroName = PlayerResource:GetSelectedHeroName(playerID)
             if newBuild.setAttr ~= attr or newBuild.hero ~= heroName then
                 isSameBuild = false
@@ -6844,7 +6853,7 @@ function Pregame:darkMoonDrops()
                             local dropTarget = ent:GetAbsOrigin() + RandomVector( RandomFloat( 50, 350 ) )
 
 
-                            newItem:LaunchLoot( false, 300, 0.75, dropTarget )
+                            newItem:LaunchLoot( false, 300, 0.75, dropTarget, nil )
                         end
                     end
 
@@ -6863,7 +6872,7 @@ function Pregame:darkMoonDrops()
                             dropTarget = attacker:GetAbsOrigin()
                         end
 
-                        newItem:LaunchLoot( true, 300, 0.75, dropTarget )
+                        newItem:LaunchLoot( true, 300, 0.75, dropTarget, nil )
                     end
 
 
@@ -6882,7 +6891,7 @@ function Pregame:darkMoonDrops()
                             dropTarget = attacker:GetAbsOrigin()
                         end
 
-                        newItem:LaunchLoot( true, 300, 0.75, dropTarget )
+                        newItem:LaunchLoot( true, 300, 0.75, dropTarget, nil )
                     end
 
 
@@ -6909,7 +6918,7 @@ function Pregame:darkMoonDrops()
                             dropTarget = attacker:GetAbsOrigin()
                         end
 
-                        newItem:LaunchLoot( true, 300, 0.75, dropTarget )
+                        newItem:LaunchLoot( true, 300, 0.75, dropTarget, nil )
                     end
 
                 end
@@ -6945,7 +6954,7 @@ function Pregame:DropGoldOnDeath()
                         dropTarget = attacker:GetAbsOrigin()
                     end
 
-                    newItem:LaunchLoot(true, 600, 0.5, dropTarget)
+                    newItem:LaunchLoot(true, 600, 0.5, dropTarget, nil)
                 end
             end
 
@@ -7007,7 +7016,7 @@ end
 function Pregame:addBotPlayers()
     -- self.enabledBots = false
     -- Ensure bots should actually be added
-    if OptionManager:GetOption('mapname') ~= "custom_bot" then return end
+    if OptionManager:GetOption('mapname') ~= "dota" then return end
     if self.addedBotPlayers then return end
     self.addedBotPlayers = true
     if not self.enabledBots then return end
@@ -7230,7 +7239,7 @@ function Pregame:generateBotBuilds(singleID)
         return true
     end
 
-    if OptionManager:GetOption('mapname') ~= "custom_bot" then return end
+    if OptionManager:GetOption('mapname') ~= "dota" then return end
 
     -- Ensure bots are actually enabled
     if not self.enabledBots then return end
@@ -7810,8 +7819,8 @@ function Pregame:applyExtraAbility( spawnedUnit )
             elseif random == 9 and not spawnedUnit:HasAbility('pudge_flesh_heap_magic_resistance') then fleshHeapToGive = "pudge_flesh_heap_evasion" ; givenAbility = true
             elseif random == 10 and not spawnedUnit:HasAbility('pudge_flesh_heap_evasion') then fleshHeapToGive = "pudge_flesh_heap_evasion" ; givenAbility = true
             elseif random == 11 and not spawnedUnit:HasAbility('pudge_flesh_heap_cast_range') then fleshHeapToGive = "pudge_flesh_heap_cast_range" ; givenAbility = true
-            elseif random == 12 and not spawnedUnit:HasAbility('pudge_flesh_heap_spell_lifesteal') then fleshHeapToGive = "pudge_flesh_heap_spell_lifesteal" ; givenAbility = true
-            elseif random == 13 and not spawnedUnit:HasAbility('pudge_flesh_heap_lifesteal') then fleshHeapToGive = "pudge_flesh_heap_lifesteal" ; givenAbility = true
+            elseif random == 12 and not spawnedUnit:HasAbility('pudge_flesh_heap_tenacity') then fleshHeapToGive = "pudge_flesh_heap_tenacity" ; givenAbility = true
+            elseif random == 13 and not spawnedUnit:HasAbility('pudge_flesh_heap_willpower') then fleshHeapToGive = "pudge_flesh_heap_willpower" ; givenAbility = true
             elseif random == 14 and not spawnedUnit:HasAbility('pudge_flesh_heap_armor') then fleshHeapToGive = "pudge_flesh_heap_armor" ; givenAbility = true
             elseif random == 15 and not spawnedUnit:HasAbility('pudge_flesh_heap_health_regeneration') then fleshHeapToGive = "pudge_flesh_heap_health_regeneration" ; givenAbility = true
             elseif random == 16 and not spawnedUnit:HasAbility('pudge_flesh_heap_mana_regeneration') then fleshHeapToGive = "pudge_flesh_heap_mana_regeneration" ; givenAbility = true
@@ -8093,11 +8102,11 @@ function Pregame:fixSpawnedHero( spawnedUnit )
             end
 
             -- Change sniper assassinate to our custom version to work with aghs
-            if spawnedUnit:HasAbility("sniper_assassinate") and not util:isPlayerBot(playerID) and not spawnedUnit:FindAbilityByName("sniper_assassinate"):IsHidden() then
-                    spawnedUnit:AddAbility("sniper_assassinate_redux")
-                    spawnedUnit:SwapAbilities("sniper_assassinate","sniper_assassinate_redux",false,true)
-                    spawnedUnit:RemoveAbility("sniper_assassinate")
-            end
+            --if spawnedUnit:HasAbility("sniper_assassinate") and not util:isPlayerBot(playerID) and not spawnedUnit:FindAbilityByName("sniper_assassinate"):IsHidden() then
+                    --spawnedUnit:AddAbility("sniper_assassinate_redux")
+                    --spawnedUnit:SwapAbilities("sniper_assassinate","sniper_assassinate_redux",false,true)
+                    --spawnedUnit:RemoveAbility("sniper_assassinate")
+            --end
             -- Change juxtapose to juxtapose ranged, for ranged heros
             if spawnedUnit:HasAbility("phantom_lancer_juxtapose_melee") and spawnedUnit:IsRangedAttacker() then
                     spawnedUnit:AddAbility("phantom_lancer_juxtapose_ranged")
@@ -8209,8 +8218,8 @@ function Pregame:fixSpawnedHero( spawnedUnit )
             end
 
             -- Give bots a free neutral item
-            local item = CreateItem("item_vambrace", spawnedUnit, nil)
-            spawnedUnit:AddItem(item)
+            -- local item = CreateItem("item_vambrace", spawnedUnit, nil)
+            -- spawnedUnit:AddItem(item)
 
         end
     end, DoUniqueString('addBotAI'), 1.0)
@@ -8473,11 +8482,11 @@ function Pregame:fixSpawningIssues()
                     local realHero
                     if spawnedUnit.IsIllusion and spawnedUnit:IsIllusion() and spawnedUnit:IsHero() then
                       -- Search nearby radius to find the real hero
-                        local nearbyUnits = Entities:FindAllInSphere(spawnedUnit:GetAbsOrigin(), 2000)
+                        local nearbyUnits = Entities:FindAllInSphere(spawnedUnit:GetAbsOrigin(), 20000)
                         local filteredNearbyUnits = {}
                         for i, unit in pairs(nearbyUnits) do
                             if not unit.IsRealHero or not unit:IsRealHero()  then
-                                --nearbyUnits[i] = nil
+                                nearbyUnits[i] = nil
                             else
                                 -- We have found the real hero if: Hero is Real and Not Illusion and unit has same name as the spawned illusion
                                 if unit and unit:GetName() == spawnedUnit:GetName() then
@@ -8542,7 +8551,7 @@ function Pregame:fixSpawningIssues()
         if IsValidEntity(spawnedUnit) then
             -- Filter gold modifier here instead of in filtergold in ingame because this makes the popup correct
             local goldModifier = OptionManager:GetOption('goldModifier')
-            if goldModifier ~= 1 and not spawnedUnit.bountyAdjusted then
+            if goldModifier ~= 100 and not spawnedUnit.bountyAdjusted then
                 -- Non hero units that respawn should only be adjusted once, this are things like bears or familiars
                 if not spawnedUnit:IsHero() then
                  spawnedUnit.bountyAdjusted = true

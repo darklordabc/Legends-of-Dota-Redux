@@ -16,8 +16,6 @@
         "AbilityCastRange"                      "900"
         "AbilityCooldown"                       "6"
         "ScriptFile"                            "abilities/healing_aura.lua"
-        "ReduxPerks"                                                           "support"
-        "ReduxFlags"                                                           "support"
         "ReduxCost"                                                            "120"
 
         // Precache
@@ -77,8 +75,6 @@
         "AbilityCastRange"                      "900"
         "AbilityCooldown"                       "30 20 10"
         "ScriptFile"                            "abilities/healing_aura.lua"
-        "ReduxPerks"                                                           "support"
-        "ReduxFlags"                                                           "support"
         "ReduxCost"                                                            "40"
 
         // Precache

@@ -6,7 +6,7 @@
         "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_POINT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELED | DOTA_ABILITY_BEHAVIOR_AOE"
         "AbilityCastRange"                                                     "300"
         "AbilityCooldown"                                                      "5.0"
-        "AbilityChannelTime"                                                   "2.0"
+        "AbilityChannelTime"                                                   "1.0"
         "AbilityTextureName"                                                   "custom/garden_red_flower_base_OP"
         "MaxLevel"                                                             "4"
         "AnimationPlaybackRate"                                                "0.2"
@@ -17,17 +17,17 @@
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "range"                                                "3000"
+                "range"                                                "1200"
             }
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "red_flower_damage"                                    "40 60 80 100"
+                "red_flower_damage"                                    "60 80 100 120"
             }
             "03"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "flower_health"                                        "250 400 550 700"
+                "flower_health"                                        "600 800 1000 1200"
             }
         }
         "precache"
@@ -69,7 +69,7 @@
         {
             "modifier_garden_channel"
             {
-                "Duration"                                             "2.0"
+                "Duration"                                             "1.0"
                 "ThinkInterval"                                        "0.1"
                 "OnIntervalThink"
                 {

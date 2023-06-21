@@ -24,7 +24,7 @@ class crater extends CDOTA_Ability_Lua {
 
 	GetManaCost(i) {
 		let caster = this.GetCaster();
-		let cost = [70,80,90,100]
+		let cost = [100,110,120,130]
 		if (caster.GetModifierStackCount(this.GetIntrinsicModifierName(),caster) == 0) {
 			return cost[i];
 		} else {
@@ -38,13 +38,13 @@ class crater extends CDOTA_Ability_Lua {
 		if (caster.GetModifierStackCount(this.GetIntrinsicModifierName(),caster) == 0) {
 			return 0.5;
 		} else {
-			return 30
+			return 9
 		}
 	}
 	GetCastPoint() {
 		let caster = this.GetCaster();
 		if (caster.GetModifierStackCount(this.GetIntrinsicModifierName(),caster) == 0) {
-			return 0.3;
+			return 0.1;
 		} else {
 			return 0;
 		}
@@ -64,7 +64,7 @@ class crater extends CDOTA_Ability_Lua {
 				EffectName:"",
 				//EffectName:"particles/units/heroes/hero_mirana/mirana_spell_arrow.vpcf",
 				vSpawnOrigin:origin,
-				fDistance:10000,
+				fDistance:25000,
 				fStartRadius:this.GetSpecialValueFor("crater_radius"),
 				fEndRadius:this.GetSpecialValueFor("crater_radius"),
 				Source:caster,

@@ -34,7 +34,7 @@ end
 function modifier_npc_dota_hero_spectre_perk:DeclareFunctions()
 	local funcs = {
 		MODIFIER_EVENT_ON_ABILITY_EXECUTED,
-		MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
+		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
 	}
 	return funcs
 end
@@ -46,7 +46,7 @@ function modifier_npc_dota_hero_spectre_perk:OnAbilityExecuted(params)
 	end
 end
 
-function modifier_npc_dota_hero_spectre_perk:GetModifierMoveSpeedBonus_Constant(params)
+function modifier_npc_dota_hero_spectre_perk:GetModifierMoveSpeedBonus_Percentage(params)
 	if IsClient() then return end
 	if not self.target then return end
 	local target = self.target
@@ -55,8 +55,8 @@ function modifier_npc_dota_hero_spectre_perk:GetModifierMoveSpeedBonus_Constant(
 	end
 	local direction = self:GetParent():GetForwardVector()
 	local normal = (target-self:GetParent():GetAbsOrigin()):Normalized()
-	if normal:Dot(direction) > 0.7 then
-		return 100
+	if normal:Dot(direction) > 0.5 then
+		return 35
 	end
 
 

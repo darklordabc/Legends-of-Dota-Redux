@@ -11,22 +11,27 @@
         "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_NO"
         "FightRecapLevel"                                                      "1"
         "AbilityCastPoint"                                                     "0.05 0.05 0.05 0.05"
-        "AbilityCooldown"                                                      "60.0 46.0 32.0 18.0"
-        "AbilityManaCost"                                                      "100"
-        "AbilityCastRange"                                                     "1200 2000 2800 3600"
-        "AbilitySpecial"
-        {
-            "01"
-            {
-                "var_type"                                             "FIELD_FLOAT"
-                "backtrack_time"                                       "4.0 4.0 4.0 4.0"
-            }
-            "02"
-            {
-                "var_type"                                             "FIELD_INTEGER"
-                "cast_range"                                           "1200 2000 2800 3600"
-            }
-        }
+        "AbilityCooldown"                                                      "21 18 15 12"
+        "AbilityManaCost"                                                      "50"
+        "AbilityCastRange"                                                     "1000 2000 3000 4000"
+        "AbilityValues"
+		{
+			"backtrack_time"			"4.0 4.0 4.0 4.0"
+			"cast_range"				"1000 2000 3000 4000"
+			"silence_duration"			"5"
+			"AbilityCooldown"
+			{
+				"value"									"21 18 15 12"
+				"special_bonus_unique_disruptor_4"		"-12"
+			}
+			"min_damage"				"100"
+			"max_damage"				
+			{
+				"value"											"200 400 600 800"
+				"special_bonus_unique_disruptor_9"				"400"
+			}
+			"max_distance"					"1400"
+		}
         "ReduxFlags"                                                           "mobility"
         "ReduxPerks"                                                           "mobility | enemymoving"
         "ReduxCost"                                                            "120"

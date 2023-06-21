@@ -26,7 +26,8 @@
             "04"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "stack_duration"                                       "30 40 50 60"
+                "stack_duration"                                       "15 30 45 60"
+				"LinkedSpecialBonus"								   "special_bonus_unique_timbersaw_2"
             }
         }
         "ReduxCost"                                                            "120"

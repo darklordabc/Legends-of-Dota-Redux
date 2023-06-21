@@ -20,6 +20,7 @@ function StoreTalents()
     -- Get and order default talents
     local allHeroes = LoadKeyValues('scripts/npc/npc_heroes.txt')
     local abilitiesOverride = LoadKeyValues('scripts/npc/npc_abilities_override.txt')
+    -- local oldabilities = LoadKeyValues('scripts/npc/npc_abilities_oldversion.txt')
     for hero,params in pairs(allHeroes) do
         -- Find first talent
         if type(params) == "table" then
@@ -36,6 +37,20 @@ function StoreTalents()
                     local t = math.ceil(i/2)
                     if params["Ability"..n] then
                         local talentName = abilitiesOverride[params["Ability"..n]]
+                        if talentName and talentName.TalentRequiredAbility and not TalentList[t][params["Ability"..n]] then
+                            TalentList[t][params["Ability"..n]] = talentName.TalentRequiredAbility
+                            TalentList["count"..t] = TalentList["count"..t] + 1
+                        elseif string.find(params["Ability"..n],"special_bonus_") and not string.find(params["Ability"..n],"special_bonus_unique") and not TalentList["basic"..t][params["Ability"..n]] then
+                            TalentList["basic"..t][params["Ability"..n]] = hero
+                            TalentList["basicCount"..t] = TalentList["basicCount"..t] + 1
+                        end
+                    end
+                end
+                for i =1,8 do
+                    local n = talentIndex + i -1
+                    local t = math.ceil(i/2)
+                    if params["Ability"..n] then
+                        --local talentName = oldabilities[params["Ability"..n]]
                         if talentName and talentName.TalentRequiredAbility and not TalentList[t][params["Ability"..n]] then
                             TalentList[t][params["Ability"..n]] = talentName.TalentRequiredAbility
                             TalentList["count"..t] = TalentList["count"..t] + 1
@@ -251,10 +266,26 @@ function GetViableTalents(build)
             else
                 for K,V in pairs(build) do
                     if K ~= "hero" and v == V then
-                        ViableTalents[i][k] = {}
-						ViableTalents[i][k]["AbilityName"] = v
-						ViableTalents[i][k]["TalentValue"] = GameRules.KVs["npc_abilities"][k]["AbilitySpecial"]["01"]["value"]
-                        ViableTalents["count"..i] = ViableTalents["count"..i] + 1
+						if GameRules.KVs["npc_abilities"][k]["AbilitySpecial"] ~= nil then
+							-- Old Format
+							ViableTalents[i][k] = {}
+							ViableTalents[i][k]["AbilityName"] = v
+							ViableTalents[i][k]["TalentValue"] = GameRules.KVs["npc_abilities"][k]["AbilitySpecial"]["01"]["value"]
+							ViableTalents["count"..i] = ViableTalents["count"..i] + 1
+						else
+							-- New Format
+							local abilityValues = GameRules.KVs["npc_abilities"][v]["AbilityValues"]
+							for _k, _v in pairs(abilityValues) do
+								if type(_v) == "table" and _v[k] ~= nil then -- Seems talent values are always in a table
+									local val = _v[k]
+									print(v .. " " .. k .. " " .. val)
+									ViableTalents[i][k] = {}
+									ViableTalents[i][k]["AbilityName"] = v
+									ViableTalents[i][k]["TalentValue"] = _v[k]
+									ViableTalents["count"..i] = ViableTalents["count"..i] + 1
+								end
+							end
+						end
                         break
                     end
                 end

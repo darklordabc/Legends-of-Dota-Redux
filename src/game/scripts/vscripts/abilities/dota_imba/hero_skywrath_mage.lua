@@ -1095,7 +1095,7 @@ function modifier_imba_mystic_flare:OnIntervalThink()
 										  nil,
 										  self.damage_radius,
 										  DOTA_UNIT_TARGET_TEAM_ENEMY,
-										  DOTA_UNIT_TARGET_HERO,
+										  DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
 										  DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS,
 										  FIND_ANY_ORDER,
 										  false)

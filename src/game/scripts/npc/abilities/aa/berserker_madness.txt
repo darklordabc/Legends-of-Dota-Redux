@@ -10,10 +10,9 @@
         "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
         "MaxLevel"                                                             "3"
         "RequiredLevel"                                                        "5"
-        "LevelsBetweenUpgrades"                                                "4"
         "precache"
         {
-            "particle"                                                     "particles/units/heroes/hero_ursa/ursa_enrage_buff.vpcf"
+            "particle"          "particles/units/heroes/hero_ursa/ursa_enrage_buff.vpcf"
             "particle"          "particles/status_fx/status_effect_gods_strength.vpcf"
             "soundfile" "soundevents/game_sounds_heroes/game_sounds_ursa.vsndevts"
         }
@@ -23,12 +22,12 @@
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "bonus_all_stats"                                      "30 60 90"
+                "bonus_all_stats"                                      "25 45 65"
             }
             "02"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "duration"                                             "8.0 9.0 10.0"
+                "duration"                                             "20"
             }
         }
         "OnSpellStart"

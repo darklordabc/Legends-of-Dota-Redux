@@ -29,34 +29,19 @@ function modifier_npc_dota_hero_skeleton_king_perk:RemoveOnDeath()
     return false
 end
 --------------------------------------------------------------------------------------------------------
-function modifier_npc_dota_hero_skeleton_king_perk:DeclareFunctions()
-    return { MODIFIER_EVENT_ON_RESPAWN }
-end
+
 --------------------------------------------------------------------------------------------------------
--- Add additional functions
-function modifier_npc_dota_hero_skeleton_king_perk:OnRespawn(keys)
+function modifier_npc_dota_hero_skeleton_king_perk:OnCreated(keys)
+	
     if IsServer() then
         local caster = self:GetCaster()
-        local cooldownReductionPct = 50
-        local goldReductionPct = 50
+        local mars = caster:FindAbilityByName("skeleton_king_vampiric_aura")
 
-        local cooldownReduction = 1 - (cooldownReductionPct / 100)
-        local goldReduction = goldReductionPct / 100
-
-        if caster == keys.unit then
-            local buybackCD = OptionManager:GetOption('buybackCooldownConstant') * cooldownReduction
-            local buybackCost = caster:GetBuybackCost(true)
-            Timers:CreateTimer(function( )
-                if caster:HasModifier('modifier_buyback_gold_penalty') then
-                    print("buyback") 
-                    print(buybackCD)
-                    print(buybackCost)
-                    caster:SetBuybackGoldLimitTime(0)
-                    caster:RemoveModifierByName('modifier_buyback_gold_penalty')
-                    caster:SetBuybackCooldownTime(buybackCD)
-                    caster:ModifyGold(buybackCost * goldReduction,false,0)
-                end
-            end, DoUniqueString('wraithking_buyback'), 0.1)
+        if mars then
+            mars:UpgradeAbility(false)
+        else 
+            mars = caster:AddAbility("skeleton_king_vampiric_aura")
+            --nullField:SetLevel(1)	
         end
     end
 end

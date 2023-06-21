@@ -8,7 +8,7 @@
         "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
         "AbilityTextureName"                                                   "custom/cherub_sleep_cloud"
         "AbilityCastPoint"                                                     "0.0"
-        "AbilityCooldown"                                                      "45"
+        "AbilityCooldown"                                                      "40 35 30 25"
         "AbilityManaCost"                                                      "160 120 80 40"
         "AbilityProcsMagicStick"                                               "1"
         "AbilitySpecial"
@@ -113,7 +113,7 @@
                 "Aura"                                                 "modifier_sleep_cloud_aura"
                 "Aura_Radius"                                          "%radius"
                 "Aura_Teams"                                           "DOTA_UNIT_TARGET_TEAM_ENEMY"
-                "Aura_Types"                                           "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+                "Aura_Types"                                           "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
                 "Aura_Flags"                                           "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
                 "Duration"                                             "%duration"
             }

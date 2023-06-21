@@ -8,21 +8,21 @@
 		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel" "1"
 		"AbilityTextureName" "custom/angel_arena_magic_fire"
-		"AbilityCastRange" "600 600 600 600"
-		"AbilityCastPoint" "0.4 0.4 0.4 0.4"
-		"AbilityCooldown" "30.0 25.0 20.0 15.0"
-		"AbilityManaCost" "150 170 190 210"
+		"AbilityCastRange" "700 700 700 700"
+		"AbilityCastPoint" "0.3 0.3 0.3 0.3"
+		"AbilityCooldown" "15 14 13 12"
+		"AbilityManaCost" "100 120 140 160"
 		"MaxLevel" "4"
 
 		"AbilitySpecial" {
 			"01" {
 				"var_type" "FIELD_INTEGER"
-				"damage" "180 320 420 540"
+				"damage" "120 200 280 360"
 			}
 
 			"02" {
 				"var_type" "FIELD_FLOAT"
-				"damage_pct" "1.0 2.0 3.0 4.0"
+				"damage_pct" "10.0"
 			}
 		}
 

@@ -85,6 +85,7 @@ function CreateScryerIllusions( keys )
 		local illusion = CreateUnitByName(unit_name, origin, true, caster, nil, caster:GetTeamNumber())
 		illusion:SetPlayerID(caster:GetPlayerID())
 		illusion:SetControllableByPlayer(player, false)
+		illusion:MakeIllusion()
 
 		illusion:SetForwardVector(illusionForwardVec)
 		

@@ -27,9 +27,6 @@
             </Button>
         </Panel>
 
-        <Button id="patreonButton" onactivate="openPatreon()" >
-            <Image src="file://{images}/custom_game/patreon.png" />
-            <Panel id="patreonButtonClose" onactivate="hidePatreonButton()" />
-        </Button>
+
     </Panel>
 </root>

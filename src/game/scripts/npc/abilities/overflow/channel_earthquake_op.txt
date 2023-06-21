@@ -12,7 +12,7 @@
         "ScriptFile"                                                           "abilities/overflow/channel_earthquake/ability_op.lua"
         "AbilityCastRange"                                                     "0"
         "AbilityCastPoint"                                                     "0.2"
-        "AbilityCooldown"                                                      "40"
+        "AbilityCooldown"                                                      "40 30 20 10"
         "AbilityUnitDamageType"                                                "DAMAGE_TYPE_MAGICAL"
         "AbilityManaCost"                                                      "150"
         "AbilityChannelTime"                                                   "10 14 18 22"
@@ -27,22 +27,22 @@
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "spot_radius"                                          "100"
+                "spot_radius"                                          "200"
             }
             "03"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "damage"                                               "40 80 120 160"
+                "damage"                                               "65 80 95 110"
             }
             "04"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "stun_duration"                                        "0.75"
+                "stun_duration"                                        "1.0"
             }
             "05"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "think_interval"                                       "0.25"
+                "think_interval"                                       "0.1"
             }
             "06"
             {

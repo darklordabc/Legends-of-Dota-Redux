@@ -25,7 +25,7 @@ function lightning_lightning_dagger:FireDagger(t,extradata,spawn_origin)
 	  Target = t,
 	  Source = spawn_origin,
 	  Ability = self,  
-	  EffectName = "particles/units/heroes/hero_lightning/lightning_dagger_arcana.vpcf",
+	  EffectName = "particles/units/heroes/hero_lightning/lightning_dagger_mark_main.vpcf",
 	  vSpawnOrigin = spawn_origin,
 	  fDistance = 10000,
 	  fStartRadius = 64,
@@ -55,23 +55,35 @@ function lightning_lightning_dagger:OnProjectileHit_ExtraData(target,location,ex
 	target:TriggerSpellReflect(self)
 
 	local damage = self:GetAbilityDamage()
-	local jump_radius = 600
+	local jump_radius = 700
 
 	local duration = self:GetSpecialValueFor("duration")
 
 	target:EmitSound("Hero_PhantomAssassin.Dagger.Target")
 
-	InflictDamage(target,self:GetCaster(),self,damage,DAMAGE_TYPE_MAGICAL)
+	InflictDamage(target,self:GetCaster(),self,damage,DAMAGE_TYPE_PURE)
 
 	target:AddNewModifier(self:GetCaster(), self, "modifier_lightning_dagger_slow", {Duration=duration}) --[[Returns:void
 	No Description Set
 	]]
 
 	local en = FindEnemiesRandom(self:GetCaster(),target:GetAbsOrigin(),jump_radius)
+	
+	local enemies = FindUnitsInRadius(
+		self:GetCaster():GetTeamNumber(),	-- int, your team number
+		pos,	-- point, center point
+		nil,	-- handle, cacheUnit. (not known)
+		jump_radius,	-- float, radius. or use FIND_UNITS_EVERYWHERE
+		DOTA_UNIT_TARGET_TEAM_ENEMY,	-- int, team filter
+		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,	-- int, type filter
+		0,	-- int, flag filter
+		FIND_CLOSEST,	-- int, order filter
+		false	-- bool, can grow cache
+	)
+	
+	local chosen = target
 
-	local chosen
-
-	for k,v in pairs(en) do
+	for k,v in pairs(enemies) do
 		if v ~= target then
         	chosen = v
         	break

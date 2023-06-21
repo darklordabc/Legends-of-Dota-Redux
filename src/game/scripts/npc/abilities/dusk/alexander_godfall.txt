@@ -11,23 +11,23 @@
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
-		"AbilityChannelTime"			"1"
+		"AbilityChannelTime"			"0.5"
 		"AbilityTextureName"			"custom/alexander_godfall"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"0"
-		"AbilityCastPoint"				"0"
+		"AbilityCastPoint"				"0.1"
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"70"
+		"AbilityCooldown"				"30"
 
 		//"HasScepterUpgrade"				"1"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"125"
+		"AbilityManaCost"				"75"
 		
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
@@ -40,12 +40,12 @@
 			"01"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"duration"						"7"
+				"duration"						"30"
 			}
 			"02"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"damage"						"135 170 205"
+				"damage"						"150 225 300"
 			}
 		//	"03"
 		//	{
@@ -69,7 +69,6 @@
 		{
 		}
 
-		"ReduxPerks"	"channeled | light"
-		"ReduxFlags"	""
+
 	}
 }

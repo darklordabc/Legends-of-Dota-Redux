@@ -8,7 +8,7 @@
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
         "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
         "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-        "AbilityUnitTargetFlags"        "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS"
+        "AbilityUnitTargetFlags"        "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
         "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
         "AbilityUnitDamageType"         "DAMAGE_TYPE_PHYSICAL"  
         "FightRecapLevel"               "2"
@@ -20,16 +20,16 @@
         
         // Casting
         //-------------------------------------------------------------------------------------------------------------
-        "AbilityCastRange"              "500"
+        "AbilityCastRange"              "700"
         "AbilityCastPoint"              "0.3 0.3 0.3"
         
         // Time     
         //-------------------------------------------------------------------------------------------------------------
-        "AbilityCooldown"               "360"
+        "AbilityCooldown"               "130"
     
         // Cost
         //-------------------------------------------------------------------------------------------------------------
-        "AbilityManaCost"               "600"
+        "AbilityManaCost"               "350"
 
         // Stats
         //-------------------------------------------------------------------------------------------------------------
@@ -38,37 +38,35 @@
         // Special
         //-------------------------------------------------------------------------------------------------------------
         "AbilitySpecial"
-        {
-            "01"
-            {
-                "var_type"                  "FIELD_INTEGER"
-                "omni_slash_damage"         "20"
-            }
-            "02"
-            {
-                "var_type"                  "FIELD_INTEGER"
-                "omni_slash_jumps"          "1000"
-            }
-            "03"
-            {
-                "var_type"                  "FIELD_INTEGER"
-                "omni_slash_radius"         "600"
-            }
-            "04"
-            {
-                "var_type"                  "FIELD_FLOAT"
-                "omni_slash_bounce_tick"    "0.1"
-            }
-            "05"
-            {
-                "var_type"                      "FIELD_INTEGER"
-                "omni_slash_jumps_scepter"      "1000"
-            }
-            "06"
-            {
-                "var_type"                      "FIELD_FLOAT"
-                "omni_slash_cooldown_scepter"   "210"
-            }
-        }
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"attack_rate_multiplier"	"4.0"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_damage"				"-100"
+				"CalculateSpellDamageTooltip"	"0"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_attack_speed"				"100"
+				"CalculateSpellDamageTooltip"	"0"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"25"
+				"LinkedSpecialBonus"		"special_bonus_unique_juggernaut_2"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"omni_slash_radius"			"20000"
+			}
+		}
     }
 }

@@ -58,7 +58,7 @@ function spectral_form_mod:IsHidden()
 end
 
 function spectral_form_mod:IsPurgable() 
-	return true
+	return false
 end
 
 function spectral_form_mod:GetAttributes()

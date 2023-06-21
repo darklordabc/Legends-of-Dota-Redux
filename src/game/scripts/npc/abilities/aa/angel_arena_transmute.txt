@@ -8,10 +8,10 @@
 		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityTextureName" "custom/angel_arena_transmute"
 		"MaxLevel" "3"
-		"AbilityCastRange" "200"
+		"AbilityCastRange" "800"
 		"AbilityCastPoint" "1.0 1.0 1.0"
-		"AbilityCooldown" "120.0"
-		"AbilityManaCost" "500"
+		"AbilityCooldown" "100.0 90.0 80.0"
+		"AbilityManaCost" "100"
 
 		"AbilitySpecial" {
 			"01" {

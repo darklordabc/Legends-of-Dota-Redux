@@ -10,7 +10,7 @@
         "AbilityTextureName"                                                   "custom/lone_druid_savage_roar_op"
         "AbilityCastPoint"                                                     "0.1"
         "AbilityCooldown"                                                      "70 60 50"
-        "AbilityManaCost"                                                      "250 200 150"
+        "AbilityManaCost"                                                      "150"
         "AbilitySpecial"
         {
             "01"
@@ -21,7 +21,7 @@
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "bonus_speed"                                          "60"
+                "bonus_speed"                                          "20"
             }
             "03"
             {

@@ -88,10 +88,10 @@ function modifier_dark_blade:OnDestroy()
 				EmitSoundOn( "Hero_Nightstalker.Void.Nihility", hTarget )
 			--end
 	
-			local nFXIndex = ParticleManager:CreateParticle( "particles/lina_spell_laguna_chain.vpcf", PATTACH_CUSTOMORIGIN, nil );
+			local nFXIndex = ParticleManager:CreateParticle( "particles/econ/items/terrorblade/terrorblade_back_ti8/terrorblade_sunder_ti8.vpcf", PATTACH_CUSTOMORIGIN, nil );
 			ParticleManager:SetParticleControlEnt( nFXIndex, 0, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetParent():GetOrigin() + Vector( 0, 0, 96 ), true );
 			ParticleManager:SetParticleControlEnt( nFXIndex, 1, hTarget, PATTACH_POINT_FOLLOW, "attach_hitloc", hTarget:GetOrigin(), true );
-			local Colour = {200,100,255}
+			local Colour = {150,50,150}
 			if hTarget:HasModifier("modifier_dark_blade_curse") then
 				local hMod = hTarget:FindModifierByName("modifier_dark_blade_curse")
 				local nStack = hMod:GetStackCount()

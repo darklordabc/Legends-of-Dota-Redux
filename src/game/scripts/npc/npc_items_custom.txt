@@ -81,7 +81,7 @@
     // Stats        
     //-------------------------------------------------------------------------------------------------------------
     "AbilityCastPoint"              "0"
-    "AbilityCooldown"               "60"
+    "AbilityCooldown"               "20"
     "AbilityManaCost"               "0"
     
     // Item Info
@@ -107,17 +107,17 @@
         "02"
         {
             "var_type"                  "FIELD_INTEGER"
-            "phase_movement_speed"      "15"
+            "phase_movement_speed"      "30"
         }
         "03"
         {
             "var_type"                  "FIELD_INTEGER"
-            "bonus_movement_speed"      "0"
+            "bonus_movement_speed"      "100"
         }
         "04"
         {
             "var_type"                  "FIELD_INTEGER"
-            "bonus_damage"              "0"
+            "bonus_damage"              "20"
         }
     }
     
@@ -193,14 +193,15 @@
         "AbilityCastPoint"              "0.0"
         "AbilityCooldown"               "0.0"
         "AbilityManaCost"               "0"
-        
+        "AbilitySharedCooldown"         "blink"
+
         // Item Info
         //-------------------------------------------------------------------------------------------------------------
         "ItemCost"                      "1"
         "ItemShopTags"                  "teleport"
         "ItemQuality"                   "component"
         "ItemAliases"                   "blink dagger"
-        "ItemPurchasable"              "0"
+        "ItemPurchasable"               "0"
         "SideShop"                      "0"
         "ItemDeclarations"              "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
         
@@ -221,7 +222,7 @@
             "03"
             {
                 "var_type"              "FIELD_INTEGER"
-                "blink_range_clamp"     "960"
+                "blink_range_clamp"     "20000"
             }
         }
     }
@@ -1121,8 +1122,8 @@
 
         // Item Info
         //-------------------------------------------------------------------------------------------------------------
-        "ItemCost"                      "5250"
-        "AbilityGoldCost"               "5250"
+        "ItemCost"                      "5125"
+        "AbilityGoldCost"               "5125"
         "ItemShopTags"                  "attack_speed;armor;hard_to_tag"
         "ItemPurchasable"               "0"
         "ItemQuality"                   "epic"
@@ -1163,7 +1164,7 @@
             "06"
             {
                 "var_type"              "FIELD_INTEGER"
-                "assault_aura_negative_armor"   "-5"
+                "assault_aura_negative_armor"   "5"
           }
         }
     }
@@ -1180,8 +1181,8 @@
 
         // Item Info
         //-------------------------------------------------------------------------------------------------------------
-        "ItemCost"                      "5075"
-        "AbilityGoldCost"               "5075"
+        "ItemCost"                      "5300"
+        "AbilityGoldCost"               "5300"
         "ItemPurchasable"              "0"
         "ItemShopTags"                  "agi;str;int;hard_to_tag;mana_pool;health_pool;unique"
         "ItemPurchasable"              "0"
@@ -1198,22 +1199,22 @@
             "01"
             {
                 "var_type"              "FIELD_INTEGER"
-                "skadi_bonus_all_stats"       "25"
+                "skadi_bonus_all_stats"       "22"
             }
             "02"
             {
                 "var_type"              "FIELD_INTEGER"
-                "skadi_bonus_health"          "225"
+                "skadi_bonus_health"          "220"
             }
             "03"
             {
                 "var_type"              "FIELD_INTEGER"
-                "skadi_bonus_mana"            "250"
+                "skadi_bonus_mana"            "220"
             }
             "04"
             {
                 "var_type"              "FIELD_INTEGER"
-                "skadi_cold_slow_melee"   "-25"
+                "skadi_cold_slow_melee"   "-20"
             }
             "05"
             {
@@ -1228,7 +1229,7 @@
             "07"
             {
                 "var_type"              "FIELD_INTEGER"
-                "skadi_heal_reduction"    "40"
+                "skadi_heal_reduction"    "-40"
             }
         }
     }
@@ -1330,7 +1331,7 @@
         // Stats
         //-------------------------------------------------------------------------------------------------------------
         "AbilityCastPoint"              "0.0"
-        "AbilityCooldown"               "90.0"
+        "AbilityCooldown"               "70.0"
         "AbilitySharedCooldown"         "necronomicon"
         "FightRecapLevel"               "1"
         "ItemPurchasable"              "0"
@@ -1361,7 +1362,7 @@
             "02"
             {
                 "var_type"              "FIELD_INTEGER"
-                "bonus_strength"        "8"
+                "bonus_strength"        "10"
             }
             "03"
             {
@@ -1381,12 +1382,12 @@
             "06"
             {
                 "var_type"              "FIELD_INTEGER"
-                "warrior_mana_feedback" "20"
+                "warrior_mana_feedback" "35"
             }
             "07"
             {
                 "var_type"              "FIELD_INTEGER"
-                "warrior_mana_break_tooltip"    "20"
+                "warrior_mana_break_tooltip"    "35"
             }
             "08"
             {
@@ -1411,7 +1412,7 @@
             "12"
             {
                 "var_type"              "FIELD_INTEGER"
-                "archer_mana_burn"      "125"
+                "archer_mana_burn"      "200"
             }
             "13"
             {
@@ -1426,7 +1427,7 @@
             "15"
             {
                 "var_type"              "FIELD_INTEGER"
-                "archer_attack_speed"   "5"
+                "archer_attack_speed"   "15"
             }   
         }
     }
@@ -1437,7 +1438,7 @@
         //-------------------------------------------------------------------------------------------------------------
         "ID"                            "2114"                                                       
         "ItemCost"                      "4800"
-        "AbilityGoldCost"               "4800"
+        "AbilityGoldCost"               "5000"
         "ItemPurchasable"              "0"
         "AbilityCooldown"               "7.0"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
@@ -1529,8 +1530,8 @@
 
         // Item Info
         //-------------------------------------------------------------------------------------------------------------
-        "ItemCost"                      "5475"
-        "AbilityGoldCost"               "5475"
+        "ItemCost"                      "5275"
+        "AbilityGoldCost"               "5275"
         "ItemPurchasable"              "0"
 
         "precache"
@@ -1558,7 +1559,7 @@
             "03"
             {
                 "var_type"              "FIELD_INTEGER"
-                "octarine_core_cast_range_bonus"   "250"
+                "octarine_core_cast_range_bonus"   "225"
             }
             "04"
             {
@@ -1639,17 +1640,17 @@
             "01"
             {
                 "var_type"              "FIELD_INTEGER"
-                "aether_lens_bonus_mana"            "450"
+                "aether_lens_bonus_mana"            "300"
             }
             "02"
             {
                 "var_type"              "FIELD_FLOAT"
-                "aether_lens_bonus_mana_regen"      "3.0"
+                "aether_lens_bonus_mana_regen"      "2.5"
             }
             "03"
             {
                 "var_type"              "FIELD_INTEGER"
-                "aether_lens_cast_range_bonus"          "250"
+                "aether_lens_cast_range_bonus"          "225"
             }
             
         }
@@ -1668,8 +1669,8 @@
 
         // Item Info
         //-------------------------------------------------------------------------------------------------------------
-        "ItemCost"                      "5075"
-        "AbilityGoldCost"               "5075"
+        "ItemCost"                      "4975"
+        "AbilityGoldCost"               "4975"
         "ItemPurchasable"              "0"
         
         
@@ -1683,7 +1684,7 @@
             "01"
             {
                 "var_type"              "FIELD_INTEGER"
-                "butterfly_bonus_agility"         "30"
+                "butterfly_bonus_agility"         "35"
             }
             "02"
             {
@@ -1814,8 +1815,8 @@
         //-------------------------------------------------------------------------------------------------------------
         "AbilityCastRange"              "800"
         "AbilityCastPoint"              "0.0"
-        "AbilityCooldown"               "24.0"
-        "AbilityManaCost"               "75"
+        "AbilityCooldown"               "13.0"
+        "AbilityManaCost"               "50"
         
         "AbilitySharedCooldown"         ""
         "MaxUpgradeLevel"               "1"
@@ -1839,17 +1840,17 @@
             "01"
             {
                 "var_type"              "FIELD_INTEGER"
-                "bonus_all_stats"       "15"
+                "bonus_all_stats"       "20"
             }
             "02"
             {
                 "var_type"              "FIELD_INTEGER"
-                "break_duration"        "5"
+                "break_duration"        "6"
             }
             "03"
             {
                 "var_type"              "FIELD_INTEGER"
-                "damage_reduction"      "40"
+                "damage_reduction"      "50"
             }
         }
         
@@ -1946,8 +1947,8 @@
         //-------------------------------------------------------------------------------------------------------------
         "AbilityCastRange"              "800"
         "AbilityCastPoint"              "0.0"
-        "AbilityCooldown"               "24.0"
-        "AbilityManaCost"               "75"
+        "AbilityCooldown"               "13.0"
+        "AbilityManaCost"               "50"
         
         "AbilitySharedCooldown"         ""
         "MaxUpgradeLevel"               "1"
@@ -1980,12 +1981,12 @@
             "02"
             {
                 "var_type"              "FIELD_INTEGER"
-                "break_duration"        "5"
+                "break_duration"        "6"
             }
             "03"
             {
                 "var_type"              "FIELD_INTEGER"
-                "damage_reduction"      "40"
+                "damage_reduction"      "50"
             }
         }
         
@@ -2262,12 +2263,12 @@
         "AbilityTextureName"            "item_aeon_disk"
         "SpellDispellableType"          "SPELL_DISPELLABLE_NO"
         "AbilityCooldown"               "105"
-        "ItemCost"                      "3100"
+        "ItemCost"                      "3000"
 
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
         "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
         "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
-        "AbilityGoldCost"               "3100"
+        "AbilityGoldCost"               "3000"
         "ItemPurchasable"              "0"
 
         "AbilitySpecial"
@@ -2275,7 +2276,7 @@
             "01"
             {
                 "var_type"              "FIELD_INTEGER"
-                "aeon_disk_bonus_health"          "300"
+                "aeon_disk_bonus_health"          "250"
             }           
             "02"
             {
@@ -2476,4 +2477,7 @@
             }
         }
     }
+
+
+
 }

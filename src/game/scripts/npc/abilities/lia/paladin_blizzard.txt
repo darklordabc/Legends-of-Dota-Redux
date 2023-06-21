@@ -13,9 +13,9 @@
         "RequiredLevel"                                                        "1"
         "LevelsBetweenUpgrades"                                                "2"
         "AbilityCastRange"                                                     "800"
-        "AbilityCastPoint"                                                     "0.5"
-        "AbilityCooldown"                                                      "20"
-        "AbilityManaCost"                                                      "150"
+        "AbilityCastPoint"                                                     "0.3"
+        "AbilityCooldown"                                                      "18 17 16 15"
+        "AbilityManaCost"                                                      "120 130 140 150"
         "AOERadius"                                                            "%radius"
         "AbilitySpecial"
         {
@@ -27,7 +27,7 @@
             "02"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "stun"                                                 "0.10"
+                "stun"                                                 "0.45"
             }
             "03"
             {
@@ -42,12 +42,12 @@
             "05"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "radius"                                               "150 175 200 225"
+                "radius"                                               "350"
             }
             "06"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "max_targets"                                          "16 16 12 10"
+                "max_targets"                                          "16"
             }
         }
         "precache"
@@ -78,7 +78,7 @@
                 {
                     "DelayedAction"
                     {
-                        "Delay"                                "0.65"
+                        "Delay"                                "0.01"
                         "Action"
                         {
                             "Damage"

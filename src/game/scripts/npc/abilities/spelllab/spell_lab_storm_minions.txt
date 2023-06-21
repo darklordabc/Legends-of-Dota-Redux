@@ -5,8 +5,8 @@
         "BaseClass"                                                            "ability_lua"
         "ScriptFile"                                                           "abilities/spell_lab/storm/storm_minions.lua"
         "AbilityTextureName"                                                   "custom/spell_lab_storm_minions"
-        "AbilityCooldown"                                                      "20 18 16 14"
-        "AbilityManaCost"                                                      "120"
+        "AbilityCooldown"                                                      "25"
+        "AbilityManaCost"                                                      "75"
         "AbilityCastRange"                                                     "750"
         "AbilityCastPoint"                                                     "0.21"
         "AbilityType"                                                          "DOTA_ABILITY_TYPE_BASIC"
@@ -17,22 +17,22 @@
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "health"						"50"
+                "health"						"100"
             }
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-        				"mana"						"150 225 300 375"
+        				"mana"						"300 400 500 600"
             }
             "03"
             {
       				"var_type"				"FIELD_INTEGER"
-      				"damage"            "35 50 65 80"
+      				"damage"            "45 60 75 90"
             }
             "04"
             {
       				"var_type"				"FIELD_INTEGER"
-      				"duration"            "90"
+      				"duration"            "45"
             }
         }
         "precache"

@@ -9,11 +9,12 @@
         "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
         "MaxLevel"                                                             "3"
         "AbilityCastPoint"                                                     "0"
-        "AbilityCooldown"                                                      "60"
-        "AbilityManaCost"                                                      "150 200 250"
+        "AbilityCooldown"                                                      "55 40 25"
+        "AbilityManaCost"                                                      "100 125 150"
         "precache"
         {
-            "particle"                                                     "particles/lotus_orb_shell_custom.vpcf"
+            "particle"                                                     "particles/units/heroes/hero_oracle/oracle_fatesedict_disarm.vpcf"
+			"particle"													   "particles/units/heroes/hero_dazzle/dazzle_lucky_charm.vpcf"
             "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_mirana.vsndevts"
         }
         "AbilitySpecial"
@@ -21,17 +22,17 @@
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "damage_absorb"                                        "200 300 400"
+                "damage_absorb"                                        "300 600 900"
             }
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "radius"                                               "600"
+                "radius"                                               "1200"
             }
             "03"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "duration"                                             "10"
+                "duration"                                             "15"
             }
         }
         "ReduxFlags"                                                           "support"

@@ -21,17 +21,17 @@
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "duration"                                             "20"
+                "duration"                                             "20 25 30"
             }
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "spellDamageIncrease"                                  "20 30 40"
+                "spellDamageIncrease"                                  "20 25 30"
             }
             "03"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "manaRegen"                                            "1 2 3"
+                "manaRegen"                                            "3 5 7"
             }
             "04"
             {
@@ -41,7 +41,7 @@
             "05"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "bonusMoveSpeed"                                       "40"
+                "bonusMoveSpeed"                                       "40 50 60"
             }
         }
         "OnAbilityPhaseStart"

@@ -1,5 +1,7 @@
 hawkeye_hit_n_run = class({})
 
+require('lib/physics')
+
 LinkLuaModifier("modifier_hit_n_run_thinker","abilities/dusk/hawkeye_hit_n_run",LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_hit_n_run_slow","abilities/dusk/hawkeye_hit_n_run",LUA_MODIFIER_MOTION_NONE)
 
@@ -24,7 +26,7 @@ function hawkeye_hit_n_run:OnSpellStart()
 	    ParticleManager:SetParticleControl(particle, 0, c:GetAbsOrigin())
 	    ParticleManager:SetParticleControl(particle, 1, Vector(225,225,225))
 
-	    local thinker = CreateModifierThinker( c, self, "modifier_hit_n_run_thinker", {Duration=duration+0.95}, c:GetAbsOrigin(), c:GetTeamNumber(), false)
+	    local thinker = CreateModifierThinker( c, self, "modifier_hit_n_run_thinker", {Duration=duration+0.5}, c:GetAbsOrigin(), c:GetTeamNumber(), false)
 
 	    Physics:Unit(c)
 		  c:SetPhysicsFriction(0)
@@ -39,13 +41,13 @@ function hawkeye_hit_n_run:OnSpellStart()
 		  
 		  c:SetPhysicsAcceleration(Vector(0,0,-(distance*10)))
 		  
-		  Timers:CreateTimer(0.5,function()
+		  Timers:CreateTimer(0.3,function()
 		    c:SetPhysicsVelocity(Vector(0,0,0))
 		--    FindClearSpaceForUnit(c,c:GetAbsOrigin(),true)
 		    c:PreventDI(false)
 		  end
 		  )
-		  Timers:CreateTimer(0.6,function()
+		  Timers:CreateTimer(0.3,function()
 		    FindClearSpaceForUnit(c,c:GetAbsOrigin(),true)
 		  end
 		  )

@@ -7,7 +7,7 @@ function SpellStart( keys )
 		RemoveLinkens(target)
 		return
 	else
-		ability:ApplyDataDrivenModifier(caster,target,"modifier_hylonome_eldritch_pull", {Duration = 0.1})
+		ability:ApplyDataDrivenModifier(caster,target,"modifier_hylonome_eldritch_pull", {Duration = 0.6})
 	end
 end
 

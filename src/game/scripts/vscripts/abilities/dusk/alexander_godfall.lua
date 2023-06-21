@@ -84,7 +84,7 @@ function modifier_godfall:OnAttackLanded(params)
 		No Description Set
 		]]
 
-		target:AddNewModifier(caster, nil, "modifier_stunned", {Duration=0.5}) --[[Returns:void
+		target:AddNewModifier(caster, nil, "modifier_stunned", {Duration=1.5}) --[[Returns:void
 		No Description Set
 		]]
 

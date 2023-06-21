@@ -15,16 +15,16 @@
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"400 425 450"
+		"AbilityCastRange"				"400"
 		"AbilityCastPoint"				"0.0"
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"100 90 80"
+		"AbilityCooldown"				"100 80 60"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"200 300 400"
+		"AbilityManaCost"				"150 200 250"
 		
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
@@ -37,12 +37,12 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"duration"					"4"
+				"duration"					"3"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"radius"					"400 425 450"
+				"radius"					"300"
 			}
 			"03"
 			{
@@ -52,12 +52,12 @@
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"225 350 475"
+				"damage"					"400 550 700"
 			}
 			"05"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"predamage"					"200 300 400"
+				"predamage"					"400 550 700"
 			}
 		}
 		
@@ -67,6 +67,4 @@
 			"particle" "particles/units/heroes/hero_aether/aether_reality_shift.vpcf"
 		}
 	}
-	"ReduxPerks"	""
-	"ReduxFlags"	""
 }

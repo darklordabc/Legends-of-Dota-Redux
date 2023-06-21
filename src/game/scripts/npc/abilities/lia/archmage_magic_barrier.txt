@@ -20,12 +20,12 @@
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "lol"                                                  "25 45 65 85"
+                "lol"                                                  "45 60 75 90"
             }
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "lol1"                                                 "3"
+                "lol1"                                                 "2"
             }
         }
         "ReduxFlags"                                                           "support"

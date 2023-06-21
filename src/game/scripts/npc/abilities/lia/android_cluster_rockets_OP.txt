@@ -14,8 +14,8 @@
         "LevelsBetweenUpgrades"                                                "2"
         "AbilityCastRange"                                                     "4000"
         "AbilityCastPoint"                                                     "0.3"
-        "AbilityCooldown"                                                      "20.0"
-        "AbilityManaCost"                                                      "50 75 100 125"
+        "AbilityCooldown"                                                      "10.0"
+        "AbilityManaCost"                                                      "95 105 115 125"
         "AOERadius"                                                            "%radius"
         "AbilityChannelTime"                                                   "1.01"
         "precache"
@@ -28,12 +28,12 @@
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "damage"                                               "80 160 260 360"
+                "damage"                                               "75 100 125 150"
             }
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "projectile_count"                                     "12 22 36 56"
+                "projectile_count"                                     "45"
             }
             "03"
             {
@@ -43,22 +43,22 @@
             "04"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "radius"                                               "250 300 350 400"
+                "radius"                                               "600"
             }
             "05"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "projectile_speed"                                     "550 650 750 950"
+                "projectile_speed"                                     "1000"
             }
             "06"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "projectile_radius"                                    "100"
+                "projectile_radius"                                    "125"
             }
             "07"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "projectile_interval"                                  "0.08 0.044 0.028 0.018"
+                "projectile_interval"                                  "0.02"
             }
         }
         "OnSpellStart"

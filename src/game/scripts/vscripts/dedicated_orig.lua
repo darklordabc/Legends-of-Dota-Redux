@@ -235,6 +235,7 @@ function addBots()
             if not addedBots and state >= DOTA_GAMERULES_STATE_PRE_GAME then
                 addedBots = true
                 if not noBots then
+					SendToServerConsole('sv_cheats 1')
                     SendToServerConsole('sm_gmode 1')
                     SendToServerConsole('dota_bot_populate')
 

@@ -30,7 +30,7 @@ end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_skywrath_mage_perk:OnCreated(keys)
 	self.cooldownThreshold = 7
-    self.manaPercentReduction = 15
+    self.manaPercentReduction = 30
     self.manaReduction = self.manaPercentReduction / 100
 	return true
 end

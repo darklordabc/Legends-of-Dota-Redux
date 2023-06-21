@@ -1830,7 +1830,7 @@ Button:enabled:hover {
 }
 
 .pickingPhaseAttr.selectedAttribute {
-	box-shadow: fill #ffffffff 0px 0px 4px 0px;
+
 }
 
 .pickingPhaseAttr Label {
@@ -1902,7 +1902,7 @@ Button:enabled:hover {
 
 #pickingPhaseHeroTabContent {
 	padding: 8px;
-	flow-children: down;
+	flow-children: right-wrap;
 }
 
 .pickingPhaseTabContent {
@@ -1912,7 +1912,7 @@ Button:enabled:hover {
 
 .pickingHeroList {
 	padding-left: 16px;
-	width: 100%;
+	width: 45%;
 	/*height: fit-children;*/
 	/*background-color: #111111;*/
 	padding-top: 5px;

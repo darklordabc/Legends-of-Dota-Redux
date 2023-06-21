@@ -434,7 +434,7 @@ function modifier_imba_decrepify:OnDestroy()
 		end
 
 		-- Calculate damage and heal
-		local damage = self.damage_stored * self.total_dmg_conversion_pct * 0.01
+		local damage = self.damage_stored * self.total_dmg_conversion_pct * 0.02
 
 		-- #4 Talent: Heal/damage increase at the end of Decrepify
 

@@ -8,7 +8,7 @@
     <script>
         function setupTooltip()
         {
-            $("#TooltipText").text = $.Localize( $.GetContextPanel().GetAttributeString( "text", "not-found" ) );
+            $("#TooltipText").text = $.Localize($.GetContextPanel().GetAttributeString( "text", "not-found" ) );
         }
     </script>
     <Panel class="tooltipContents" ontooltiploaded="setupTooltip()">

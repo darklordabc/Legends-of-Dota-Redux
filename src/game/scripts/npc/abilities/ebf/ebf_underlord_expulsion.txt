@@ -26,7 +26,7 @@
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "damage_radius"                                        "450 600 750"
+                "damage_radius"                                        "750"
             }
             "03"
             {
@@ -41,27 +41,27 @@
             "05"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "heal_per_sec"                                         "40 60 80"
+                "heal_per_sec"                                         "80 120 160"
             }
             "06"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "base_duration"                                        "6.66"
+                "base_duration"                                        "6"
             }
             "07"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "bonus_duration_per_aura_affected_scepter"             "0.25"
+                "bonus_duration_per_aura_affected_scepter"             "0.5"
             }
             "08"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "bonus_damage_per_aura_affected_scepter"               "6 10 14"
+                "bonus_damage_per_aura_affected_scepter"               "10 15 20"
             }
             "09"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "bonus_heal_per_aura_affected_scepter"                 "3 5 7"
+                "bonus_heal_per_aura_affected_scepter"                 "10 15 20"
             }
         }
         "OnSpellStart"

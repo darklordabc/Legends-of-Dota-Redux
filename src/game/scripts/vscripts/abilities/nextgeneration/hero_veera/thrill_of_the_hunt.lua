@@ -24,21 +24,21 @@ function ThrillCameraCheck( keys )
 	if not caster:IsIllusion() then
 		local altitude = GetGroundHeight(caster:GetAbsOrigin(), caster)
 		
-		if altitude > caster.caster_altitude then
-			caster.camera_distance = caster.camera_distance + 5
-			caster.caster_altitude = caster.caster_altitude + 5
-			CustomGameEventManager:Send_ServerToPlayer(player, "camera_zoom", {distance = caster.camera_distance } )
-		end
-		if altitude < caster.caster_altitude then
-			caster.camera_distance = caster.camera_distance - 5
-			caster.caster_altitude = caster.caster_altitude - 5
-			CustomGameEventManager:Send_ServerToPlayer(player, "camera_zoom", {distance = caster.camera_distance } )
-		end
-		if caster.start_bonus < view_distance then
-			caster.camera_distance = caster.camera_distance + 10
-			caster.start_bonus = caster.start_bonus + 10
-			CustomGameEventManager:Send_ServerToPlayer(player, "camera_zoom", {distance = caster.camera_distance } )
-		end
+	--	if altitude > caster.caster_altitude then
+	--		caster.camera_distance = caster.camera_distance + 5
+	--		caster.caster_altitude = caster.caster_altitude + 5
+	--		CustomGameEventManager:Send_ServerToPlayer(player, "camera_zoom", {distance = caster.camera_distance } )
+	--	end
+	--	if altitude < caster.caster_altitude then
+	--		caster.camera_distance = caster.camera_distance - 5
+	--		caster.caster_altitude = caster.caster_altitude - 5
+	--		CustomGameEventManager:Send_ServerToPlayer(player, "camera_zoom", {distance = caster.camera_distance } )
+	--	end
+	--	if caster.start_bonus < view_distance then
+	--		caster.camera_distance = caster.camera_distance + 10
+	--		caster.start_bonus = caster.start_bonus + 10
+	--		CustomGameEventManager:Send_ServerToPlayer(player, "camera_zoom", {distance = caster.camera_distance } )
+	--	end
 	end
 end
 

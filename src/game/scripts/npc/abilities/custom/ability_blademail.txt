@@ -6,7 +6,7 @@
         "ScriptFile"                                                           "abilities/ability_blademail.lua"
         "AbilityTextureName"                                                   "custom/ability_blademail"
         "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-        "AbilityCooldown"                "20"
+        "AbilityCooldown"                "20 19 18 17"
         "AbilityManaCost"                "25"
         
         "AbilitySpecial"
@@ -26,7 +26,7 @@
         "ScriptFile"                                                           "abilities/ability_blademail.lua"
         "AbilityTextureName"                                                   "custom/ability_blademail_op"
         "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-        "AbilityCooldown"                "20"
+        "AbilityCooldown"                "20 18 16 14"
         "AbilityManaCost"                "25"
         
         "AbilitySpecial"
@@ -34,7 +34,7 @@
             "01"
             {
                 "var_type"              "FIELD_FLOAT"
-                "duration"          "6 9 12 15"
+                "duration"          "6 8 10 12"
             }
         }
         "ReduxFlags"                                                           "dota_custom"

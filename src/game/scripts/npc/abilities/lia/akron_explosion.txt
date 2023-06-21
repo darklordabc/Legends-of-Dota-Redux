@@ -6,10 +6,10 @@
         "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
         "AbilityUnitDamageType"                                                "DAMAGE_TYPE_MAGICAL"
         "AbilityTextureName"                                                   "custom/golem_explosion"
-        "AbilityCooldown"                                                      "25 22 20 18"
+        "AbilityCooldown"                                                      "14"
         "AbilityCastRange"                                                     "0"
         "AbilityManaCost"                                                      "70 80 90 100"
-        "AoERadius"                                                            "225"
+        "AoERadius"                                                            "400"
         "MaxLevel"                                                             "4"
         "AbilityCastPoint"                                                     "0.2"
         "precache"
@@ -22,12 +22,12 @@
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "radius"                                               "225"
+                "radius"                                               "400"
             }
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "hp_prc_dmg"                                           "5 10 15 20"
+                "hp_prc_dmg"                                           "14 16 18 20"
             }
             "03"
             {
@@ -37,7 +37,7 @@
             "04"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "duration"                                             "6"
+                "duration"                                             "5"
             }
         }
         "OnSpellStart"
@@ -69,14 +69,14 @@
                 "EffectName"                                           "particles/units/heroes/hero_jakiro/jakiro_liquid_fire_debuff.vpcf"
                 "EffectAttachType"                                     "follow_origin"
                 "Duration"                                             "%duration"
-                "ThinkInterval"                                        "0.25"
+                "ThinkInterval"                                        "1"
                 "OnIntervalThink"
                 {
                     "Damage"
                     {
                         "Target"                               "TARGET"
                         "Type"                                 "DAMAGE_TYPE_MAGICAL"
-                        "Damage"                               "%burn_damage / 4"
+                        "Damage"                               "%burn_damage"
                     }
                 }
             }

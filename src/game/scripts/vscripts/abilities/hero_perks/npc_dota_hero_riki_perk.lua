@@ -33,12 +33,21 @@ end
 --------------------------------------------------------------------------------------------------------
 
 function modifier_npc_dota_hero_riki_perk:DeclareFunctions()
-	return { MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT }
+	return { MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE,
+			MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE }
 end
 --------------------------------------------------------------------------------------------------------
-function modifier_npc_dota_hero_riki_perk:GetModifierConstantHealthRegen()
+function modifier_npc_dota_hero_riki_perk:GetModifierHealthRegenPercentage()
 	if self:GetCaster():IsInvisible() then
- 		return 4
+ 		return 2
+	else 
+		return 0
+	end
+end
+
+function modifier_npc_dota_hero_riki_perk:GetModifierPercentageManaRegen()
+	if self:GetCaster():IsInvisible() then
+ 		return 2
 	else 
 		return 0
 	end

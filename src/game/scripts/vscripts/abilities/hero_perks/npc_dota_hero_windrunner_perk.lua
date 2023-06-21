@@ -32,19 +32,19 @@ end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_windrunner_perk:OnCreated(keys)
 	if IsServer() then
-		self.noPassives = true
+		self.noPassives = false
 		local caster = self:GetCaster()
 		
 		for i = 0, 15 do 
 			local ability = caster:GetAbilityByIndex(i)
 			if ability and ability:IsPassive() and ability:GetName() ~= "npc_dota_hero_windrunner_perk" and not string.find(ability:GetName(),"special_bonus") then
-				self.noPassives = false
-				break
+				self.noPassives = true
+				
 			end
 		end
 		if self.noPassives then 
-			local cooldownReductionPercent = 20
-			local manaReductionPercent = 20
+			local cooldownReductionPercent = 25
+			local manaReductionPercent = 25
 
 			self.cooldownReduction = 1 - (cooldownReductionPercent / 100)
 			self.manaReduction = manaReductionPercent / 100

@@ -20,17 +20,17 @@
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "damage"                                          "100 150 200 250"
+                "damage"                                          "130 190 270 340"
             }
             "03"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "radius"                                                   "500"
+                "radius"                                                   "450"
             }
             "04"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "ms_slow"                                                   "30"
+                "ms_slow"                                                   "40 50 60 70"
             }
            
         }
@@ -40,7 +40,7 @@
 
     "special_bonus_unique_pushing_blast_0" 
     {
-        "BaseClass"               "special_bonus_unique_antimage_3"
+        "BaseClass"               "special_bonus_unique_brewmaster_7"
         "TalentRank"              "3"
         "TalentRequiredAbility" "pushing_blast"
         "AbilityType"                   "DOTA_ABILITY_TYPE_ATTRIBUTES"
@@ -50,7 +50,7 @@
             "01"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "value"                                                "50"
+                "value"                                                "250"
             }
         }
     }

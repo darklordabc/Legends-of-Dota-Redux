@@ -14,17 +14,17 @@
 			"particle" "particles/econ/items/faceless_void/faceless_void_mace_of_aeons/fv_chronosphere_aeons.vpcf"
 			"soundfile" "soundevents/game_sounds_heroes/game_sounds_warlock.vsndevts"
 		}
-		"AbilityCastRange" "900"
-		"AOERadius" "450"
-		"AbilityCastPoint" "0.3"
-		"AbilityCooldown" "60"
-		"AbilityManaCost" "250"
+		"AbilityCastRange" "1200"
+		"AOERadius" "550"
+		"AbilityCastPoint" "0.1"
+		"AbilityCooldown" "60 50 40"
+		"AbilityManaCost" "150"
 		"ReduxBans"              "furion_wrath_of_nature"
 
 		"AbilitySpecial" {
 			"01" {
 				"var_type" "FIELD_INTEGER"
-				"radius" "450"
+				"radius" "550"
 			}
 
 			"02" {

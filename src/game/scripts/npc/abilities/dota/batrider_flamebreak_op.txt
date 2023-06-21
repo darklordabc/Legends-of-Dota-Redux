@@ -11,66 +11,35 @@
         "AbilityTextureName"                                                   "custom/batrider_flamebreak_op"
         "AbilityCastRange"                                                     "3000"
         "AbilityCastPoint"                                                     "0.2 0.2 0.2 0.2"
-        "AbilityCooldown"                                                      "17.0"
-        "AbilityManaCost"                                                      "110 120 130 140"
+        "AbilityCooldown"                                                      "15 14 13 12"
+        "AbilityManaCost"                                                      "100"
         "AbilityModifierSupportValue"                                          "1.0"
-        "AbilitySpecial"
-        {
-            "10"
-            {
-                "var_type"                                             "FIELD_FLOAT"
-                "knockback_duration"                                   "1.5"
-            }
-            "01"
-            {
-                "var_type"                                             "FIELD_INTEGER"
-                "damage_per_second"                                    "25 30 35 40"
-            }
-            "02"
-            {
-                "var_type"                                             "FIELD_FLOAT"
-                "damage_duration"                                      "4 5 6 7"
-                "CalculateSpellDamageTooltip"                          "0"
-            }
-            "03"
-            {
-                "var_type"                                             "FIELD_FLOAT"
-                "damage_total_tooltip"                                 "200 300 400 500"
-            }
-            "04"
-            {
-                "var_type"                                             "FIELD_INTEGER"
-                "explosion_radius"                                     "375"
-                "LinkedSpecialBonus"                                   "special_bonus_unique_batrider_2"
-            }
-            "05"
-            {
-                "var_type"                                             "FIELD_INTEGER"
-                "collision_radius"                                     "100 100 100 100"
-            }
-            "06"
-            {
-                "var_type"                                             "FIELD_FLOAT"
-                "stun_duration"                                        "1.0"
-            }
-            "07"
-            {
-                "var_type"                                             "FIELD_INTEGER"
-                "speed"                                                "900 900 900 900"
-            }
-            "08"
-            {
-                "var_type"                                             "FIELD_FLOAT"
-                "knockback_max_distance"                               "1200"
-                "LinkedSpecialBonus"                                   "special_bonus_unique_batrider_2"
-            }
-            "09"
-            {
-                "var_type"                                             "FIELD_INTEGER"
-                "knockback_height"                                     "300 300 300 300"
-            }
-        }
+        "AbilityValues"
+		{
+
+			"damage_impact"		"70 140 210 280"
+			"damage_per_second"		"25"
+			"damage_duration"		"3 6 9 12"
+			"explosion_radius"		"700"
+			"collision_radius"		"100 100 100 100"
+			"stun_duration"			"1.0 1.25 1.5 1.75"
+			"speed"					"3000"
+			"knockback_distance"	
+			{
+				"value"				"300"
+				"special_bonus_unique_batrider_3"	"+75"
+			}
+			"knockback_height"		"100"
+			"knockback_duration"	"0.35"
+			"napalm_stacks"
+			{
+				"value"				"5"
+				"special_bonus_unique_batrider_2"	"+5"
+			}
+						
+		}
         "ReduxCost"                                                            "120"
         "ReduxFlags"                                                           ""
+		"ReduxPerks"														   "fire | enemyMoving"
     }
 }

@@ -8,16 +8,16 @@
         "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
         "AbilityUnitDamageType"                                                "DAMAGE_TYPE_MAGICAL"
         "MaxLevel"                                                             "4"
-        "AbilityCastRange"                                                     "600"
-        "AbilityCastPoint"                                                     "0.5 0.5 0.5 0.5"
-        "AbilityCooldown"                                                      "20.0 20.0 20.0 20.0"
-        "AbilityManaCost"                                                      "0 0 0"
+        "AbilityCastRange"                                                     "800"
+        "AbilityCastPoint"                                                     "0.3 0.3 0.3 0.3"
+        "AbilityCooldown"                                                      "13.0 12.0 11.0 10.0"
+        "AbilityManaCost"                                                      "80 90 100 110"
         "AbilitySpecial"
         {
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "burn_amount"                                          "125 175 225 275"
+                "burn_amount"                                          "100 175 250 325"
             }
         }
         "ReduxPerks"                                                           "neutral"

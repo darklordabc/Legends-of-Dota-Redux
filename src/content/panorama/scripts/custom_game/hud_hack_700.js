@@ -21,20 +21,30 @@ var styles = {
 
     // Top bar
     '#topbar': {
-        'width': 'fit-children'
+        'width': '100%'
     },
 
     '#TopBarRadiantTeam': {
         'width': 'fit-children',
         'horizontal-align': 'right',
-        'margin-right': '52%'
+        'margin-right': '60.5%'
     },
 
     '#TopBarDireTeam': {
         'width': 'fit-children',
         'horizontal-align': 'left',
-        'margin-left': '52%'
+        'margin-left': '60.5%'
     },    
+
+    '#TopBarRadiantTeamContainer': {
+        'width': 'fit-children',
+        'horizontal-align': 'right',
+    },
+
+    '#TopBarDireTeamContainer': {
+        'width': 'fit-children',
+        'horizontal-align': 'left',
+    },
 
     '#TopBarRadiantPlayers': {
         'width': 'fit-children'
@@ -53,7 +63,8 @@ var styles = {
     },
 
     '#HUDSkinTopBarBG': {
-    	'width': '20%'
+        'width': '100%',
+        'height': '50px'
     }
 };
 

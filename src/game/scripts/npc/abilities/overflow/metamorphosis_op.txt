@@ -11,7 +11,7 @@
         "FightRecapLevel"                                                      "1"
         "AbilityTextureName"                                                   "custom/metamorphosis_op"
         "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
-        "AbilityCooldown"                                                      "120.0"
+        "AbilityCooldown"                                                      "100.0"
         "AbilityDuration"                                                      "30.0 45.0 60.0"
         "AbilityManaCost"                                                      "0"
         "precache"
@@ -25,12 +25,12 @@
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "base_damage"                                          "200 300 400"
+                "base_damage"                                          "100 200 300"
             }
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "stun_chance"                                          "15 25 35"
+                "stun_chance"                                          "20 35 50"
             }
             "03"
             {
@@ -40,7 +40,7 @@
             "04"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "attack_range"                                         "125"
+                "attack_range"                                         "175"
             }
             "05"
             {
@@ -55,7 +55,7 @@
             "07"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "base_damage_scepter"                                  "400 600 800"
+                "base_damage_scepter"                                  "200 300 400"
             }
         }
         "ReduxCost"                                                            "120"

@@ -1,7 +1,7 @@
 function GardenCheck( keys )
     local caster = keys.caster
     local ability = keys.ability
-    local healthCost = caster:GetMaxHealth()/80.0
+    local healthCost = caster:GetMaxHealth()*0.001
     
     if not caster:HasModifier("modifier_npc_dota_hero_enchantress_perk") then
         if caster:GetHealth() > healthCost then
@@ -64,7 +64,7 @@ function PlantWhite( keys )
     owner.whiteFlowerCount = owner.whiteFlowerCount or 0
     owner.whiteFlowerTable = owner.whiteFlowerTable or {}
     
-    local maxFlowers = 6
+    local maxFlowers = 10
     local casterLocation = caster:GetAbsOrigin()
     if ownerAbility then
         local whiteFlower = CreateUnitByName( "white_flower", casterLocation, false, owner, owner, owner:GetTeamNumber() )
@@ -93,7 +93,7 @@ function PlantWhiteBase( keys )
     owner.whiteFlowerCount = owner.whiteFlowerCount or 0
     owner.whiteFlowerTable = owner.whiteFlowerTable or {}
     
-    local maxFlowers = 6
+    local maxFlowers = 10
     local casterLocation = caster:GetAbsOrigin()
     if ownerAbility then
         local whiteFlower = CreateUnitByName( "white_flower", point, false, owner, owner, owner:GetTeamNumber() )
@@ -131,7 +131,7 @@ function PlantRed( keys )
     owner.redFlowerCount = owner.redFlowerCount or 0
     owner.redFlowerTable = owner.redFlowerTable or {}
     
-    local maxFlowers = 6
+    local maxFlowers = 10
     local casterLocation = caster:GetAbsOrigin()
     if ownerAbility then
         local redFlower = CreateUnitByName( "red_flower", casterLocation, false, owner, owner, owner:GetTeamNumber() )
@@ -162,7 +162,7 @@ function PlantRedBase( keys )
     owner.redFlowerCount = owner.redFlowerCount or 0
     owner.redFlowerTable = owner.redFlowerTable or {}
     
-    local maxFlowers = 6
+    local maxFlowers = 10
     local casterLocation = caster:GetAbsOrigin()
     if ownerAbility then
         local redFlower = CreateUnitByName( "red_flower", point, false, owner, owner, owner:GetTeamNumber() )
@@ -189,7 +189,7 @@ function PlantRedBaseOP( keys )
     owner.redFlowerCount = owner.redFlowerCount or 0
     owner.redFlowerTable = owner.redFlowerTable or {}
     
-    local maxFlowers = 6
+    local maxFlowers = 10
     local casterLocation = caster:GetAbsOrigin()
     if ownerAbility then
         local redFlower = CreateUnitByName( "red_flower_OP", point, false, owner, owner, owner:GetTeamNumber() )
@@ -417,7 +417,7 @@ function PlantYellow( keys )
     owner.yellowFlowerCount = owner.yellowFlowerCount or 0
     owner.yellowFlowerTable = owner.yellowFlowerTable or {}
     
-    local maxFlowers = 2
+    local maxFlowers = 3
     local casterLocation = caster:GetAbsOrigin()
     if ownerAbility then
         local yellowFlower = CreateUnitByName( "yellow_flower", casterLocation, false, owner, owner, owner:GetTeamNumber() )
@@ -445,7 +445,7 @@ function PlantYellowBase( keys )
     owner.yellowFlowerCount = owner.yellowFlowerCount or 0
     owner.yellowFlowerTable = owner.yellowFlowerTable or {}
     
-    local maxFlowers = 2
+    local maxFlowers = 3
     local casterLocation = caster:GetAbsOrigin()
     if ownerAbility then
         local yellowFlower = CreateUnitByName( "yellow_flower", point, false, owner, owner, owner:GetTeamNumber() )
@@ -482,7 +482,7 @@ function PlantPurple( keys )
     owner.purpleFlowerCount = owner.purpleFlowerCount or 0
     owner.purpleFlowerTable = owner.purpleFlowerTable or {}
     
-    local maxFlowers = 2
+    local maxFlowers = 3
     local casterLocation = caster:GetAbsOrigin()
     if ownerAbility then
         local purpleFlower = CreateUnitByName( "purple_flower", casterLocation, false, owner, owner, owner:GetTeamNumber() )
@@ -510,7 +510,7 @@ function PlantPurpleBase( keys )
     owner.purpleFlowerCount = owner.purpleFlowerCount or 0
     owner.purpleFlowerTable = owner.purpleFlowerTable or {}
     
-    local maxFlowers = 2
+    local maxFlowers = 3
     local casterLocation = caster:GetAbsOrigin()
     if ownerAbility then
         local purpleFlower = CreateUnitByName( "purple_flower", point, false, owner, owner, owner:GetTeamNumber() )

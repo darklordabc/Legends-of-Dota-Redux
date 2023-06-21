@@ -30,9 +30,9 @@
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
-		"AbilityCastRange"				"200"
-		"AbilityCooldown"				"5.0 5.0 5.0 5.0"
-		"AbilityManaCost"				"30 45 50 65"
+		"AbilityCastRange"				"400"
+		"AbilityCooldown"				"2.5"
+		"AbilityManaCost"				"18 21 24 27"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -41,12 +41,12 @@
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"armor_multiplier"				"3 4 5 6"
+				"armor_multiplier"				"2 3 4 5"
 			}
 			"02"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"radius"						"200"
+				"radius"						"275"
 			}
 			"03"
 			{
@@ -56,7 +56,7 @@
 			"04"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"ablaze_duration"				"6"
+				"ablaze_duration"				"8"
 			}
 		}
 
@@ -151,9 +151,9 @@
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"				"0.3 0.3 0.3 0.3"
-		"AbilityCooldown"				"20.0 18.0 16.0 14.0"
-		"AbilityManaCost"				"80.0 90.0 100.0 110.0"
-		"AbilityCastRange"				"700"
+		"AbilityCooldown"				"10 9 8 7"
+		"AbilityManaCost"				"70 80 90 100"
+		"AbilityCastRange"				"800"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -172,22 +172,22 @@
 			"03"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"base_damage"				"50 100 150 200"
+				"base_damage"				"90 160 230 300"
 			}
 			"04"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"mini_stun"					"0.2"
+				"mini_stun"					"1.8"
 			}
 			"05"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"ablaze_multiplier"				"0.5"
+				"ablaze_multiplier"				"2.0"
 			}
 			"06"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"ablaze_duration"			"6"
+				"ablaze_duration"			"12"
 			}
 		}
 
@@ -198,7 +198,8 @@
 				"ScriptFile"	"abilities/deathtal/molten_lord"
 				"Function"		"SkippingFlames"
 				"Target"		"TARGET"
-				"particle"		"particles/molten_lord/skipping_flames.vpcf"
+				// "particle"		"particles/molten_lord/skipping_flames.vpcf"
+				"particle"		"particles\econ\items\doom\doom_ti8_immortal_arms\doom_ti8_immortal_devour_burst.vpcf"
 				"sound"			"Hero_AbyssalUnderlord.Firestorm.Start"
 			}
 		}
@@ -252,7 +253,8 @@
 					}
 					"FireEffect"
 					{
-						"EffectName"		"particles/molten_lord/skipping_flames_impact.vpcf"
+						// "EffectName"		"particles/molten_lord/skipping_flames_impact.vpcf"
+						"EffectName"		"particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_shadowraze.vpcf"
 						"EffectAttachType"	"attach_origin"
 						"Target"			"TARGET"
 					}
@@ -291,7 +293,7 @@
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
-		"AbilityCooldown"				"30.0 28.0 26.0 24.0"
+		"AbilityCooldown"				"28.0 24.0 20.0 16.0"
 		"AbilityManaCost"				"0.0"
 
 		// Special
@@ -306,7 +308,7 @@
 			"02"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"ablaze_duration"	"6"
+				"ablaze_duration"	"12"
 			}
 		}
 
@@ -362,7 +364,7 @@
 			{
 				"Passive"		"0"
 				"IsHidden"		"1"
-				"ThinkInterval"	"0.1"
+				"ThinkInterval"	"0.05"
 				"OnIntervalThink"
 				{
 					"RunScript"
@@ -444,8 +446,8 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"				"0.2"
 		"AbilityCastRange"				"1500 2000 2500"
-		"AbilityCooldown"				"160.0 130.0 100.0"
-		"AbilityManaCost"				"200.0 250.0 300.0"
+		"AbilityCooldown"				"80.0 70.0 60.0"
+		"AbilityManaCost"				"100.0 125.0 150.0"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -459,12 +461,12 @@
 			"02"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"speed"					"2000"
+				"speed"					"1600"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"armor_multiplier"		"8 12 16"
+				"armor_multiplier"		"6 8 10"
 			}
 			"04"
 			{
@@ -474,7 +476,7 @@
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"width"					"100"
+				"width"					"250"
 			}
 			"06"
 			{
@@ -484,12 +486,12 @@
 			"07"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"slow_duration"			"2 2.5 3"
+				"slow_duration"			"3 4 5"
 			}
 			"08"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"root_duration"			"1.5 2 2.5"
+				"root_duration"			"2 2.5 3"
 			}
 			"09"
 			{
@@ -514,17 +516,17 @@
 			"13"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"6"
+				"duration"				"10"
 			}
 			"14"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"stack_duration"		"20"
+				"stack_duration"		"45"
 			}
 			"15"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"ablaze_duration"		"6"
+				"ablaze_duration"		"8"
 			}
 		}
 

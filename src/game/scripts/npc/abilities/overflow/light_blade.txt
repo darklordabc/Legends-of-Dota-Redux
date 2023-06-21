@@ -15,13 +15,13 @@
         "ScriptFile"                                                           "abilities/overflow/light_blade/light_blade.lua"
         "HasScepterUpgrade"                                                    "1"
         "AbilityCastRange"                                                     "1200"
-        "AbilityCastPoint"                                                     "0.45"
-        "AbilityCooldown"                                                      "100.0 80.0 60.0"
-        "AbilityManaCost"                                                      "200 250 300"
+        "AbilityCastPoint"                                                     "0.3"
+        "AbilityCooldown"                                                      "80.0 70.0 60.0"
+        "AbilityManaCost"                                                      "150 200 250"
         "AbilityModifierSupportValue"                                          "0.0"
         "precache"
         {
-            "particle"                                                     "particles/lina_spell_laguna_chain.vpcf"
+            "particle"                                                     "particles/econ/items/lina/lina_ti6/lina_ti6_laguna_blade.vpcf"
             "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_phoenix.vsndevts"
         }
         "AbilitySpecial"
@@ -34,12 +34,12 @@
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "aoe_range"                                            "600 740 880"
+                "aoe_range"                                            "750 900 1050"
             }
             "03"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "damage_delay"                                         "0.5"
+                "damage_delay"                                         "0.25"
             }
             "04"
             {
@@ -49,7 +49,7 @@
             "07"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "bonus_scepter"                                        "5"
+                "bonus_scepter"                                        "10"
             }
             "08"
             {

@@ -29,11 +29,11 @@ end
 function modifier_npc_dota_hero_snapfire_perk:OnCreated()
 	if IsServer() then
 		local caster = self:GetCaster()
-		local ab = caster:FindAbilityByName("faceless_void_backtrack")
+		local ab = caster:FindAbilityByName("pangolier_lucky_shot")
 		if ab then
 			ab:SetLevel(1)
 		else
-			ab = caster:AddAbility("faceless_void_backtrack")
+			ab = caster:AddAbility("pangolier_lucky_shot")
             ab:SetStolen(true)
 			ab:SetLevel(1)
 			ab:SetHidden(false)

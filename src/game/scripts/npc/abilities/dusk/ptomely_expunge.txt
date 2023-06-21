@@ -19,17 +19,17 @@
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"1000"
-		"AbilityCastPoint"				"0.40"
+		"AbilityCastRange"				"900"
+		"AbilityCastPoint"				"0.3"
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"110"
+		"AbilityCooldown"				"100 90 80"
 		"HasScepterUpgrade"			 "1"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"200 400 600"
+		"AbilityManaCost"				"200 300 400"
 		
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
@@ -42,32 +42,32 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"duration"					"2.5"
+				"duration"					"2.0"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"mana_drain"				"25 40 55"
+				"mana_drain"				"35 45 55"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"radius"					"575"
+				"radius"					"600"
 			}
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"slow"						"75"
+				"slow"						"90"
 			}
 			"05"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"scepter_mana_drain"		"15"
+				"scepter_mana_drain"		"40"
 			}
 			"06"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"base_drain"				"150 200 250"
+				"base_drain"				"200 300 400"
 			}
 		}
 		
@@ -77,8 +77,5 @@
 			"particle" "particles/units/heroes/hero_ptomely/expunge_drain.vpcf"
 			"soundfile" "soundevents/hero_ptomely.vsndevts"
 		}
-
-		"ReduxPerks"	""
-		"ReduxFlags"	""
 	}
 }

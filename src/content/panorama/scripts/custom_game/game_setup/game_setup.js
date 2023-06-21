@@ -275,9 +275,9 @@ function isPatron(mutator_name) {
 	return false;
 }
 
-function openPatreon() {
+/*function openPatreon() {
 	$.DispatchEvent("ExternalBrowserGoToURL", "https://www.patreon.com/darklordabc");
-}
+}*/
 
 function openDiscord() {
 	$.DispatchEvent("ExternalBrowserGoToURL", "https://discord.gg/ZFSjzWV");
@@ -302,16 +302,16 @@ function addNotification(options) {
 	var list = options.list;
 	var duration = options.duration || 5;
 
-	var realText = $.Localize(text);
+	var realText = $.Localize("#" + text);
 	for (var key in params) {
-		var toAdd = $.Localize(params[key]);
+		var toAdd = $.Localize("#" + params[key]);
 
 		realText = realText.replace(new RegExp("\\{" + key + "\\}", "g"), toAdd);
 	}
 	if (list) {
 		var elements = [];
 		for (var k in list.elements) {
-			elements.push($.Localize(list.elements[k]));
+			elements.push($.Localize("#" + list.elements[k]));
 		}
 		realText = realText.replace(/{%list%}/g, elements.join(list.separator));
 	}
@@ -505,7 +505,7 @@ function OnSelectedHeroesChanged(table_name, key, data) {
 		heroCon.SetAttributeString("heroName", heroName);
 		heroCon.heroname = heroName;
 
-		$("#pickingPhaseSelectedHeroText").text = $.Localize(heroName);
+		$("#pickingPhaseSelectedHeroText").text = $.Localize("#" + heroName);
 
 		// Set it so no hero is selected
 		$("#pickingPhaseSelectedHeroImageCon").SetHasClass("no_hero_selected", false);
@@ -566,6 +566,7 @@ function OnSelectedAttrChanged(table_name, key, data) {
 		$("#pickingPhaseSelectHeroStr").SetHasClass("selectedAttribute", newAttr == "str");
 		$("#pickingPhaseSelectHeroAgi").SetHasClass("selectedAttribute", newAttr == "agi");
 		$("#pickingPhaseSelectHeroInt").SetHasClass("selectedAttribute", newAttr == "int");
+		$("#pickingPhaseSelectHeroInt").SetHasClass("selectedAttribute", newAttr == "all");
 	}
 
 	// Push the attribute
@@ -1148,7 +1149,7 @@ function fixBacktrackUI() {
 			(selectedPhase == PHASE_SELECTION || selectedPhase == PHASE_INGAME) && !util.reviewOptions,
 		);
 
-		$("#backtrackBtnTxt").text = $.Localize(util.reviewOptions ? "reviewReturn" : "reviewOptions");
+		$("#backtrackBtnTxt").text = $.Localize("#" + util.reviewOptions ? "#reviewReturn" : "#reviewOptions");
 	}
 }
 
@@ -1354,6 +1355,7 @@ function buildHeroList() {
 	var strHeroes = [];
 	var agiHeroes = [];
 	var intHeroes = [];
+	var allHeroes = [];
 
 	for (var heroName in heroData) {
 		var info = heroData[heroName];
@@ -1370,6 +1372,9 @@ function buildHeroList() {
 
 				case "DOTA_ATTRIBUTE_INTELLECT":
 					intHeroes.push(heroName);
+					break;
+				case "DOTA_ATTRIBUTE_ALL":
+					allHeroes.push(heroName);
 					break;
 			}
 		}
@@ -1425,6 +1430,7 @@ function buildHeroList() {
 	doInsertHeroes($("#strHeroContainer"), strHeroes);
 	doInsertHeroes($("#agiHeroContainer"), agiHeroes);
 	doInsertHeroes($("#intHeroContainer"), intHeroes);
+	doInsertHeroes($("#allHeroContainer"), allHeroes);
 
 	// Update which heroes are taken
 	showTakenHeroes();
@@ -1472,7 +1478,7 @@ function setSelectedHelperHero(heroName, dontUnselect) {
 	// Show the preview
 	previewCon.visible = true;
 	$("#buildingHelperHeroPreviewHero").heroname = heroName;
-	$("#buildingHelperHeroPreviewHeroName").text = $.Localize(heroName);
+	$("#buildingHelperHeroPreviewHeroName").text = $.Localize("#" + heroName);
 
 	// Grab the info
 	var info = heroData[heroName];
@@ -1874,7 +1880,7 @@ function makeHeroSelectable(heroCon) {
 
 		GameEvents.SendCustomGameEventToServer("lodGameSetupPing", {
 			originalContent: heroName,
-			content: $.Localize(heroName),
+			content: $.Localize("#" + heroName),
 			type: "hero",
 		});
 	});
@@ -1886,7 +1892,7 @@ function makeHeroSelectable(heroCon) {
 		if (GameUI.IsAltDown()) {
 			GameEvents.SendCustomGameEventToServer("lodGameSetupPing", {
 				originalContent: heroName,
-				content: $.Localize(heroName),
+				content: $.Localize("#" + heroName),
 				type: "hero",
 			});
 			return false;
@@ -1958,7 +1964,7 @@ function hookHeroInfo(heroCon) {
 		var heroName = heroCon.GetAttributeString("heroName", "");
 		var info = heroData[heroName];
 
-		var displayNameTitle = $.Localize(heroName);
+		var displayNameTitle = $.Localize("#" + heroName);
 		var heroStats = generateFormattedHeroStatsString(heroName, info);
 
 		// Show the tip
@@ -1979,7 +1985,7 @@ function makeSkillSelectable(abcon) {
 
 		GameEvents.SendCustomGameEventToServer("lodGameSetupPing", {
 			originalContent: abName,
-			content: $.Localize("DOTA_Tooltip_ability_" + abName),
+			content: $.Localize("#" + "DOTA_Tooltip_ability_" + abName),
 			type: "ability",
 		});
 	});
@@ -1991,7 +1997,7 @@ function makeSkillSelectable(abcon) {
 		if (GameUI.IsAltDown()) {
 			GameEvents.SendCustomGameEventToServer("lodGameSetupPing", {
 				originalContent: abName,
-				content: $.Localize("DOTA_Tooltip_ability_" + abName),
+				content: $.Localize("#" + "DOTA_Tooltip_ability_" + abName),
 				type: "ability",
 			});
 			return false;
@@ -2123,7 +2129,7 @@ function OnHeroTabShown(tabName) {
 					// Check each part
 					for (var i = 0; i < searchParts.length; ++i) {
 						if (
-							$.Localize(heroName).toLowerCase().indexOf(searchParts[i]) == -1 &&
+							$.Localize("#" + heroName).toLowerCase().indexOf(searchParts[i]) == -1 &&
 							heroName.indexOf(searchParts[i]) == -1
 						) {
 							shouldShow = false;
@@ -2409,11 +2415,11 @@ function getSkillFilterInfo(abilityName) {
 		}
 	}
 
-	// Check if hte search text is active
+	// Check if the search text is active
 	if (shouldShow && searchText.length > 0) {
-		var localAbName = $.Localize("DOTA_Tooltip_ability_" + abilityName).toLowerCase();
+		var localAbName = $.Localize("#" + "DOTA_Tooltip_ability_" + abilityName).toLowerCase();
 		var owningHeroName = abilityHeroOwner[abilityName] || "";
-		var localOwningHeroName = $.Localize(owningHeroName).toLowerCase();
+		var localOwningHeroName = $.Localize("#" + owningHeroName).toLowerCase();
 
 		for (var i = 0; i < searchParts.length; ++i) {
 			var prt = searchParts[i];
@@ -2748,7 +2754,7 @@ function OnSkillTabShown(tabName) {
 
 		// Add header
 		var categoryHeader = $.CreatePanel("Label", dropdownCategories, "skillTabCategory" + ++unqiueCounter);
-		categoryHeader.text = $.Localize("lod_cat_none");
+		categoryHeader.text = $.Localize("#" + "lod_cat_none");
 		dropdownCategories.AddOption(categoryHeader);
 		dropdownCategories.SetSelected("skillTabCategory" + unqiueCounter);
 
@@ -2757,7 +2763,7 @@ function OnSkillTabShown(tabName) {
 			if (category == "category" || category == "group") continue;
 
 			var dropdownLabel = $.CreatePanel("Label", dropdownCategories, "skillTabCategory" + ++unqiueCounter);
-			dropdownLabel.text = $.Localize("lod_cat_" + category);
+			dropdownLabel.text = $.Localize("#" + "lod_cat_" + category);
 			dropdownLabel.SetAttributeString("category", category);
 			dropdownCategories.AddOption(dropdownLabel);
 		}
@@ -2831,7 +2837,7 @@ function OnSkillTabShown(tabName) {
 
 				// Add the text
 				var tabLabel = $.CreatePanel("Label", tabButton, "tabButton_text_" + tabName);
-				tabLabel.text = $.Localize("lodCategory_" + tabName);
+				tabLabel.text = $.Localize("#" + "lodCategory_" + tabName);
 
 				tabButton.SetPanelEvent("onactivate", function () {
 					// When it is activated!
@@ -3553,9 +3559,9 @@ function buildBasicOptionsCategories() {
 			infoLabel.AddClass("mutatorLabel");
 
 			if (item.states) {
-				infoLabel.text = $.Localize(Object.keys(item.states)[0]);
+				infoLabel.text = $.Localize("#" + Object.keys(item.states)[0]);
 			} else {
-				infoLabel.text = $.Localize(item.about);
+				infoLabel.text = $.Localize("#" + item.about);
 			}
 
 			if (item.values) {
@@ -3629,19 +3635,19 @@ function buildBasicOptionsCategories() {
 				}
 
 				if (found_ == false) {
-					var extraPanel = $.CreatePanel("Image", optionMutator, "");
-					extraPanel.SetImage("s2r://panorama/images/custom_game/patreon_small_png.vtex");
-					extraPanel.AddClass("patreonExtra");
+					// var extraPanel = $.CreatePanel("Image", optionMutator, "");
+					// extraPanel.SetImage("s2r://panorama/images/custom_game/patreon_small_png.vtex");
+					// extraPanel.AddClass("patreonExtra");
 
-					extraPanel.SetPanelEvent("onmouseover", function () {
-						$.DispatchEvent(
-							"UIShowCustomLayoutParametersTooltip",
-							extraPanel,
-							"MutatorTooltip",
-							"file://{resources}/layout/custom_game/custom_tooltip.xml",
-							"text=" + "lodPatreonFeature",
-						);
-					});
+					// extraPanel.SetPanelEvent("onmouseover", function () {
+					// 	$.DispatchEvent(
+					// 		"UIShowCustomLayoutParametersTooltip",
+					// 		extraPanel,
+					// 		"MutatorTooltip",
+					// 		"file://{resources}/layout/custom_game/custom_tooltip.xml",
+					// 		"text=" + "lodPatreonFeature",
+					// 	);
+					// });
 					extraPanel.SetPanelEvent("onmouseout", function () {
 						$.DispatchEvent("UIHideCustomLayoutTooltip", extraPanel, "MutatorTooltip");
 					});
@@ -3718,7 +3724,7 @@ function buildBasicOptionsCategories() {
 
 							var optionModeLabel = $.CreatePanel("Label", optionMode, "optionModeLabel_" + i);
 							optionModeLabel.AddClass("optionLabel");
-							optionModeLabel.text = $.Localize(item.text);
+							optionModeLabel.text = $.Localize("#" + item.text);
 
 							var optionModeDescription = $.CreatePanel(
 								"Label",
@@ -3726,7 +3732,7 @@ function buildBasicOptionsCategories() {
 								"optionModeDescription_" + i,
 							);
 							optionModeDescription.AddClass("optionDescription");
-							optionModeDescription.text = $.Localize(item.about);
+							optionModeDescription.text = $.Localize("#" + item.about);
 
 							var optionModeImage = $.CreatePanel("Image", optionMode, "optionModeImage_" + i);
 							optionModeImage.AddClass("optionImage");
@@ -3797,7 +3803,7 @@ function buildAdvancedOptionsCategories(mutatorList) {
 	allOptionLinks = {};
 
 	var setMutator = function (field, state) {
-		mutatorList[field].label.text = $.Localize(state);
+		mutatorList[field].label.text = $.Localize("#" + state);
 
 		for (var s in mutatorList[field].images) {
 			mutatorList[field].images[s].visible = s == state;
@@ -3947,7 +3953,7 @@ function buildAdvancedOptionsCategories(mutatorList) {
 
 			// Button text
 			var optionLabel = $.CreatePanel("Label", optionCategory, "option_button_" + optionLabelText + "_label");
-			optionLabel.text = $.Localize(optionLabelText + "_lod");
+			optionLabel.text = $.Localize("#" + optionLabelText + "_lod");
 			optionLabel.AddClass("OptionButtonLabel");
 
 			// The panel
@@ -3994,7 +4000,7 @@ function buildAdvancedOptionsCategories(mutatorList) {
 
 								var optionModeLabel = $.CreatePanel("Label", optionMode, "optionModeLabel_" + i);
 								optionModeLabel.AddClass("optionLabel");
-								optionModeLabel.text = $.Localize(item.text);
+								optionModeLabel.text = $.Localize("#" + item.text);
 
 								var optionModeDescription = $.CreatePanel(
 									"Label",
@@ -4002,7 +4008,7 @@ function buildAdvancedOptionsCategories(mutatorList) {
 									"optionModeDescription_" + i,
 								);
 								optionModeDescription.AddClass("optionDescription");
-								optionModeDescription.text = $.Localize(item.about);
+								optionModeDescription.text = $.Localize("#" + item.about);
 
 								var optionModeImage = $.CreatePanel("Image", optionMode, "optionModeImage_" + i);
 								optionModeImage.AddClass("optionImage");
@@ -4031,7 +4037,7 @@ function buildAdvancedOptionsCategories(mutatorList) {
 								mainSlot,
 								"option_panel_main_" + fieldName,
 							);
-							infoLabel.text = $.Localize(info.des);
+							infoLabel.text = $.Localize("#" + info.des);
 							infoLabel.AddClass("optionSlotPanelLabel");
 
 							if (patreon_options[fieldName]) {
@@ -4068,7 +4074,7 @@ function buildAdvancedOptionsCategories(mutatorList) {
 									mainSlot,
 									"OptionTooltip",
 									"file://{resources}/layout/custom_game/custom_tooltip.xml",
-									"text=" + $.Localize(info.about),
+									"text=" + $.Localize("#" + info.about),
 								);
 							});
 
@@ -4095,7 +4101,7 @@ function buildAdvancedOptionsCategories(mutatorList) {
 							slavePanel.text = "Unknown";
 
 							if (patreon_options[fieldName] && !isPatron(fieldName)) {
-								slavePanel.text = $.Localize("lodPatreonFeature");
+								slavePanel.text = $.Localize("#" + "lodPatreonFeature");
 								slavePanel.RemoveClass("optionsSlotPanelSlave");
 								slavePanel.style.color = "#FF661A;";
 								infoLabel.style.color = "#FF661A;";
@@ -4123,7 +4129,7 @@ function buildAdvancedOptionsCategories(mutatorList) {
 												hostPanel.AccessDropDownMenu(),
 												"option_panel_field_" + fieldName + "_" + fieldText,
 											);
-											subPanel.text = $.Localize(fieldText);
+											subPanel.text = $.Localize("#" + fieldText);
 											//subPanel.SetAttributeString('fieldText', fieldText);
 											subPanel.SetAttributeInt("fieldValue", fieldValue);
 											hostPanel.AddOption(subPanel);
@@ -4151,7 +4157,7 @@ function buildAdvancedOptionsCategories(mutatorList) {
 														hostPanel.SetSelected(thePanel);
 
 														// Update text
-														slavePanel.text = $.Localize(fieldText);
+														slavePanel.text = $.Localize("#" + fieldText);
 														break;
 													}
 												}
@@ -4290,7 +4296,7 @@ function buildAdvancedOptionsCategories(mutatorList) {
 											setOption(fieldName, hostPanel.checked);
 											if (info.requiresServerCheck) hostPanel.checked = false;
 											hostPanel.text = values[hostPanel.checked ? 1 : 0].text;
-											slavePanel.text = $.Localize(values[hostPanel.checked ? 1 : 0].text);
+											slavePanel.text = $.Localize("#" + values[hostPanel.checked ? 1 : 0].text);
 										};
 
 										// When the data changes
@@ -4301,11 +4307,11 @@ function buildAdvancedOptionsCategories(mutatorList) {
 											hostPanel.checked = newValue == 1;
 
 											if (hostPanel.checked) {
-												hostPanel.text = $.Localize(values[1].text);
-												slavePanel.text = $.Localize(values[1].text);
+												hostPanel.text = $.Localize("#" + values[1].text);
+												slavePanel.text = $.Localize("#" + values[1].text);
 											} else {
-												hostPanel.text = $.Localize(values[0].text);
-												slavePanel.text = $.Localize(values[0].text);
+												hostPanel.text = $.Localize("#" + values[0].text);
+												slavePanel.text = $.Localize("#" + values[0].text);
 											}
 
 											checkMutators(fieldName, hostPanel);
@@ -4584,7 +4590,7 @@ function heroStatsLine(lineName, value, color, color2) {
 		"<font color='#" +
 		color +
 		"'>" +
-		$.Localize(lineName) +
+		$.Localize("#" + lineName) +
 		":</font> <font color='#" +
 		color2 +
 		"'>" +
@@ -4618,6 +4624,7 @@ function generateFormattedHeroStatsString(heroName, info) {
 		var strColor = info.AttributePrimary == "DOTA_ATTRIBUTE_STRENGTH" ? "FF3939" : "FFFFFF";
 		var agiColor = info.AttributePrimary == "DOTA_ATTRIBUTE_AGILITY" ? "FF3939" : "FFFFFF";
 		var intColor = info.AttributePrimary == "DOTA_ATTRIBUTE_INTELLECT" ? "FF3939" : "FFFFFF";
+		var allColor = info.AttributePrimary == "DOTA_ATTRIBUTE_ALL" ? "FF3939" : "FFFFFF";
 
 		// Calculate our stat gain
 		var strGain = stringToDecimalPlaces(info.AttributeStrengthGain);
@@ -4681,7 +4688,7 @@ function generateFormattedHeroStatsString(heroName, info) {
 	}
 
 	// Unique Mechanics
-	var heroMechanic = $.Localize("unique_mechanic_" + heroName.substring(14));
+	var heroMechanic = $.Localize("#" + "unique_mechanic_" + heroName.substring(14));
 	if (heroMechanic != "unique_mechanic_" + heroName.substring(14)) {
 		heroStats += "<br>";
 		heroStats += heroStatsLine("heroStats_uniqueMechanic", heroMechanic, "23FF27", "70EA72");
@@ -4689,14 +4696,14 @@ function generateFormattedHeroStatsString(heroName, info) {
 
 	// Talent Trees
 	heroStats += "<br>";
-	heroStats += heroStatsLine($.Localize("heroStats_talentTree"), "", "7FABF1", "FFFFFF");
+	heroStats += heroStatsLine($.Localize("#" + "heroStats_talentTree"), "", "7FABF1", "FFFFFF");
 	for (var i = 1; i <= 4; i++) {
 		var specialGroup = info["SpecialBonus" + i];
 		heroStats += heroStatsLine(
-			$.Localize("heroStats_SpecialBonus" + i),
-			$.Localize(specialGroup["1"]) + // "DOTA_Tooltip_ability_" +
-				$.Localize("heroStats_or") +
-				$.Localize(specialGroup["2"]), // "DOTA_Tooltip_ability_" +
+			$.Localize("#" + "heroStats_SpecialBonus" + i),
+			$.Localize("#" + specialGroup["1"]) + // "DOTA_Tooltip_ability_" +
+				$.Localize("#" + "heroStats_or") +
+				$.Localize("#" + specialGroup["2"]), // "DOTA_Tooltip_ability_" +
 			"7FABF1",
 			"FFFFFF",
 		);
@@ -5005,11 +5012,11 @@ function OnPhaseChanged(table_name, key, data) {
 			GameUI.CustomUIConfig().premiumData = data;
 			break;
 
-		case "patrons":
-			GameUI.CustomUIConfig().patrons = data;
-			$("#thankyouButton").visible = isPatron();
-			$("#patreonButton").visible = isPatron() == false;
-			break;
+		//case "patrons":
+			//GameUI.CustomUIConfig().patrons = data;
+			//$("#thankyouButton").visible = isPatron();
+			//$("#patreonButton").visible = isPatron() == false;
+			//break;
 
 		// case 'patreon_features':
 		//     GameUI.CustomUIConfig().patreon_features = data;
@@ -5121,7 +5128,7 @@ function recalculateBanLimits() {
 
 	// Is host banning enabled, and we are the host?
 	if (hostBanning && isHost()) {
-		$("#lodBanLimits").text = $.Localize("hostBanningPanelText");
+		$("#lodBanLimits").text = $.Localize("#" + "hostBanningPanelText");
 		return;
 	}
 
@@ -5129,23 +5136,23 @@ function recalculateBanLimits() {
 	var abilityBansLeft = maxAbilityBans - currentAbilityBans;
 
 	var txt = "";
-	var txtMainLeft = $.Localize("lodYouCanBan");
+	var txtMainLeft = $.Localize("#" + "lodYouCanBan");
 	var txtHero = "";
 	var txtAb = "";
 
 	if (heroBansLeft > 0) {
 		if (heroBansLeft > 1) {
-			txtHero = $.Localize("lodUptoHeroes");
+			txtHero = $.Localize("#" + "lodUptoHeroes");
 		} else {
-			txtHero = $.Localize("lodUptoOneHero");
+			txtHero = $.Localize("#" + "lodUptoOneHero");
 		}
 	}
 
 	if (abilityBansLeft > 0) {
 		if (abilityBansLeft > 1) {
-			txtAb = $.Localize("lodUptoAbilities");
+			txtAb = $.Localize("#" + "lodUptoAbilities");
 		} else {
-			txtAb = $.Localize("lodUptoAbility");
+			txtAb = $.Localize("#" + "lodUptoAbility");
 		}
 	}
 
@@ -5153,12 +5160,12 @@ function recalculateBanLimits() {
 		txt = txtMainLeft + txtHero;
 
 		if (abilityBansLeft > 0) {
-			txt += $.Localize("lodBanAnd") + txtAb;
+			txt += $.Localize("#" + "lodBanAnd") + txtAb;
 		}
 	} else if (abilityBansLeft) {
 		txt = txtMainLeft + txtAb;
 	} else {
-		txt = $.Localize("lodNoMoreBans");
+		txt = $.Localize("#" + "lodNoMoreBans");
 	}
 
 	// Add full stop
@@ -5323,7 +5330,7 @@ function SetSelectedPhase(newPhase, noSound) {
 	selectedPhase = newPhase;
 	GameUI.CustomUIConfig().selectedPhase = newPhase;
 
-	if (phases[selectedPhase] != undefined) $("#lodStageName").text = $.Localize(phases[selectedPhase].name);
+	if (phases[selectedPhase] != undefined) $("#lodStageName").text = $.Localize("" + phases[selectedPhase].name);
 
 	// Update CSS
 	if (selectedPhase != PHASE_SELECTION) {
@@ -5342,7 +5349,7 @@ function SetSelectedPhase(newPhase, noSound) {
 	masterRoot.SetHasClass("phase_drafting_selected", selectedPhase == PHASE_DRAFTING);
 	masterRoot.SetHasClass("phase_review_selected", selectedPhase == PHASE_REVIEW);
 	$("#backtrackBtn").SetHasClass("hidden", selectedPhase != PHASE_SELECTION);
-	$("#backtrackBtnTxt").text = $.Localize("reviewOptions");
+	$("#backtrackBtnTxt").text = $.Localize("#" + "reviewOptions");
 }
 
 // Return X:XX time (M:SS)
@@ -5432,7 +5439,7 @@ function UpdateTimer() {
 				!restrictedToHeroSelection &&
 				!isAllRandomGamemode()
 			) {
-				theTimerText += "\n" + $.Localize("lodPickAHero");
+				theTimerText += "\n" + $.Localize("#" + "lodPickAHero");
 
 				//     restrictToHeroSelection()
 				// } else if (pickedAHero) {
@@ -5517,7 +5524,7 @@ function UpdateTimer() {
 					.FindChild("reviewPhasePlayerSkillContainer")
 					.AddClass("show");
 
-			$("#reviewReadyButton").GetChild(0).text = $.Localize("continueFast");
+			$("#reviewReadyButton").GetChild(0).text = $.Localize("#" + "continueFast");
 			$("#reviewReadyButton").enabled = true;
 		}
 	}
@@ -5541,7 +5548,7 @@ function onAcceptPopup() {
 
 // Shows a popup message to a player
 function showPopupMessage(msg) {
-	$("#lodPopupMessageLabel").text = $.Localize(msg);
+	$("#lodPopupMessageLabel").text = $.Localize("#" + msg);
 
 	if (LOCAL_WARNING) {
 		$("#lodPopupMessageAcceptContainer").visible = false;
@@ -5693,7 +5700,7 @@ function LoadOptionsHandler(data) {
 function addVotingOption(name) {
 	var panel = $.CreatePanel("Panel", $("#optionVotePhasesList"), "");
 	panel.BLoadLayoutSnippet("optionVotePhase");
-	panel.SetDialogVariable("title", $.Localize("option_vote_entry_title_" + name));
+	panel.SetDialogVariable("title", $.Localize("#" + "option_vote_entry_title_" + name));
 	panel.FindChildTraverse("optionVoteNo").SetPanelEvent("onactivate", function () {
 		castVote(name, false, panel);
 	});
@@ -5707,7 +5714,7 @@ function addVotingOption(name) {
 			VotingOptionInfo,
 			"voteOptionInfoTooltip",
 			"file://{resources}/layout/custom_game/custom_tooltip.xml",
-			"text=" + $.Localize("option_vote_entry_info_" + name),
+			"text=" + $.Localize("#" + "option_vote_entry_info_" + name),
 		);
 	});
 	panel.UpdateVotes = function (info) {
@@ -5831,7 +5838,7 @@ function getAbilityGlobalPickPopularity(ability) {
 	}
 
 	// Bots
-	$.GetContextPanel().SetHasClass("disallow_bots", mapName !== "custom_bot");
+	$.GetContextPanel().SetHasClass("disallow_bots", mapName !== "dota");
 
 	// Are we on a map that allocates slots for us?
 	if (mapName == "3_vs_3" || mapName == "5_vs_5") {
@@ -5942,24 +5949,24 @@ function getAbilityGlobalPickPopularity(ability) {
 	setTabsSearchHandler();
 
 	// Preload heroes
-	GameEvents.Subscribe("lodPreloadHeroPanel", function (data) {
-		if (!preloadedHeroPanels[data.heroName]) {
-			var heroImage = $.CreatePanel("Panel", $.GetContextPanel(), "reviewPhaseHeroImageLoader");
+	//GameEvents.Subscribe("lodPreloadHeroPanel", function (data) {
+	//	if (!preloadedHeroPanels[data.heroName]) {
+	//		var heroImage = $.CreatePanel("Panel", $.GetContextPanel(), "reviewPhaseHeroImageLoader");
 
-			heroImage.BLoadLayoutFromString(
-				'<root><Panel><DOTAScenePanel particleonly="false" style="width: 300px; height: 800px; opacity-mask: url(\'s2r://panorama/images/masks/softedge_box_png.vtex\');" unit="' +
-					data.heroName +
-					'"/></Panel></root>',
-				false,
-				false,
-			);
-			heroImage.AddClass("avatarScene");
+	//		heroImage.BLoadLayoutFromString(
+	//			'<root><Panel><DOTAScenePanel particleonly="false" style="width: 300px; height: 800px; opacity-mask: url(\'s2r://panorama/images/masks/softedge_box_png.vtex\');" unit="' +
+	//				data.heroName +
+	//				'"/></Panel></root>',
+	//			false,
+	//			false,
+	//		);
+	//		heroImage.AddClass("avatarScene");
 
-			heroImage.visible = false;
+	//		heroImage.visible = false;
 
-			preloadedHeroPanels[data.heroName] = heroImage;
-		}
-	});
+	//		preloadedHeroPanels[data.heroName] = heroImage;
+	//	}
+	//});
 
 	// Update filters
 	GameEvents.Subscribe("updateFilters", function (data) {
@@ -5988,6 +5995,31 @@ function getAbilityGlobalPickPopularity(ability) {
 		});
 		LoadBuilds();
 	});
+
+	GameEvents.Subscribe("lodReceiveBuilds", function(data) {
+		var builds = Object.values(data);
+
+		var cont = $pickingPhaseRecommendedBuildContainer();
+		
+		if(builds && builds.length > 0) {
+			for(var i = 0; i < builds.length; i++) {
+				addRecommendedBuild(cont[0], builds[i]);
+			}
+			
+			LoadFavBuilds(cont[0]);
+		}
+
+		$("#buildLoadingIndicator").visible = false;
+ 		cont[0].GetParent().visible = true;
+	});
+
+	GameEvents.Subscribe("lodReceiveFavoriteBuilds", function(data) {
+		var con = $pickingPhaseRecommendedBuildContainer()[0];
+		var favs = Object.values(data);
+		$.Each(con.Children(), function(child) {
+			child.setFavorite(favs.indexOf(child.buildID) !== -1);
+		});
+	})
 
 	GameEvents.Subscribe("lodConnectAbilityUsageData", function (data) {
 		AbilityUsageData = data;

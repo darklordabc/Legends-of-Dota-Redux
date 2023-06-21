@@ -31,7 +31,7 @@ function pudge_flesh_heap_attack_speed:OnHeroDiedNearby( hVictim, hKiller, kv )
       local hBuff = self:GetCaster():FindModifierByName( "modifier_flesh_heap_attack_speed" )
       if hBuff ~= nil then
         hBuff:SetStackCount( self.nKills )
-        self:GetCaster():CalculateStatBonus()
+        self:GetCaster():CalculateStatBonus(true)
       else
         self:GetCaster():AddNewModifier( self:GetCaster(), self,  "modifier_flesh_heap_attack_speed" , {} )
       end
@@ -93,13 +93,13 @@ end
 function modifier_flesh_heap_attack_speed:OnCreated( kv )
   if not self:GetAbility() then
     self:GetParent():RemoveModifierByName("modifier_flesh_heap_attack_speed")
-    self:GetParent():CalculateStatBonus()
+    self:GetParent():CalculateStatBonus(true)
     return
   end
   self.flesh_heap_attack_speed_buff_amount = self:GetAbility():GetSpecialValueFor( "flesh_heap_attack_speed_buff_amount" ) or 0
   if IsServer() then
     self:SetStackCount( self:GetFleshHeapKills() )
-    self:GetParent():CalculateStatBonus()
+    self:GetParent():CalculateStatBonus(true)
   end
 end
 
@@ -108,13 +108,13 @@ end
 function modifier_flesh_heap_attack_speed:OnRefresh( kv )
   if not self:GetAbility() then
     self:GetParent():RemoveModifierByName("modifier_flesh_heap_attack_speed")
-    self:GetParent():CalculateStatBonus()
+    self:GetParent():CalculateStatBonus(true)
     return
   end
   self.flesh_heap_attack_speed_buff_amount = self:GetAbility():GetSpecialValueFor( "flesh_heap_attack_speed_buff_amount" ) or 0
   if IsServer() then
     self:SetStackCount( self:GetFleshHeapKills() )
-    self:GetParent():CalculateStatBonus()
+    self:GetParent():CalculateStatBonus(true)
   end
 end
 
@@ -168,7 +168,7 @@ function modifier_flesh_heap_attack_speed:OnDeath(keys)
       local hBuff = self:GetCaster():FindModifierByName( "modifier_flesh_heap_attack_speed" )
       if hBuff ~= nil then
         hBuff:SetStackCount( self.nKills )
-        self:GetCaster():CalculateStatBonus()
+        self:GetCaster():CalculateStatBonus(true)
       else
         self:GetCaster():AddNewModifier( self:GetCaster(), self,  "modifier_flesh_heap_attack_speed" , {} )
       end

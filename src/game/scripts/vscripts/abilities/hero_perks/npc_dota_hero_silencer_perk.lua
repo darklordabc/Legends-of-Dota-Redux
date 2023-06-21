@@ -30,7 +30,7 @@ end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_silencer_perk:OnCreated()
 	if IsServer() then
-		local silenceDurationBonusPct = 25
+		local silenceDurationBonusPct = 35
 		self:GetCaster().silenceDurationBonus = (silenceDurationBonusPct / 100)
 	end
 	return true

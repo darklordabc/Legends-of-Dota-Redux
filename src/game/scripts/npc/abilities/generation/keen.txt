@@ -11,9 +11,9 @@
         "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
         "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
         "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
-        "AbilityCooldown"               "34 28 22 16"
-        "AbilityManaCost"               "90"
-        "AbilityCastPoint"              "0.4"
+        "AbilityCooldown"               "22 20 18 16"
+        "AbilityManaCost"               "70 80 90 100"
+        "AbilityCastPoint"              "0.3"
         "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_1"
         "AbilityProcsMagicStick"        "1"
         "ReduxPerks"                                                           "explosive"
@@ -49,17 +49,17 @@
             "04"
             {
                 "var_type"          "FIELD_INTEGER"
-                "mortar_damage"     "60"
+                "mortar_damage"     "100"
             }
             "05"
             {
                 "var_type"          "FIELD_FLOAT"
-                "shot_interval"         "0.6 0.5 0.4 0.3"
+                "shot_interval"         "0.5 0.4 0.3 0.2"
             }
             "06"
             {
                 "var_type"          "FIELD_FLOAT"
-                "duration"          "3.6 4.0 4.0 3.6"
+                "duration"          "3.0 3.2 3.0 2.4"
             }
         }
         "OnUpgrade"
@@ -132,7 +132,7 @@
             "03"
             {
                 "var_type"          "FIELD_INTEGER"
-                "mortar_damage"         "60"
+                "mortar_damage"         "120"
             }
         }
     
@@ -235,9 +235,9 @@
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
         "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_TREE"
         "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
-        "AbilityCooldown"               "60 45 30 15"
-        "AbilityManaCost"               "100 110 120 130"
-        "AbilityCastRange"              "160"
+        "AbilityCooldown"               "30 25 20 15"
+        "AbilityManaCost"               "80 100 120 140"
+        "AbilityCastRange"              "350"
         "AbilityCastPoint"              "0.3"
         "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_1"
         "AbilityProcsMagicStick"    "1"
@@ -255,32 +255,32 @@
             "01"
             {
                 "var_type"          "FIELD_INTEGER"
-                "shock_range"   "300"
+                "shock_range"   "350"
             }
             "02"
             {
                 "var_type"          "FIELD_FLOAT"
-                "slow_duration"     "0.5 1.0 1.5 2.0"
+                "slow_duration"     "1.0 1.4 1.8 2.2"
             }
             "03"
             {
                 "var_type"          "FIELD_INTEGER"
-                "shock_damage"  "150 200 250 300"
+                "shock_damage"  "160 200 240 280"
             }
             "04"
             {
                 "var_type"          "FIELD_INTEGER"
-                "shock_null_duration"   "5"
+                "shock_null_duration"   "3"
             }
             "05"
             {
                 "var_type"          "FIELD_INTEGER"
-                "shock_bot_duration"    "180" 
+                "shock_bot_duration"    "180 200 220 240" 
             }
             "06"
             {
                 "var_type"          "FIELD_INTEGER"
-                "movespeed_slow_percentage" "100" 
+                "movespeed_slow_percentage" "300" 
             }   
         }
     }
@@ -294,7 +294,7 @@
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_ATTACK"
         "AbilityCooldown"               "0"
         "AbilityManaCost"               "0"
-        "AbilityCastPoint"              "2 1.5 1"
+        "AbilityCastPoint"              "0"
         "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_1"
         "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
         "ReduxBans"                     "ebf_clinkz_trickshot"
@@ -310,22 +310,22 @@
             "01"
             {
                 "var_type"          "FIELD_INTEGER"
-                "armor_bonus"           "6 10 14"
+                "armor_bonus"           "10 15 20"
             }
             "02"
             {
                 "var_type"          "FIELD_INTEGER"
-                "turn_rate_slow"        "-70"
+                "turn_rate_slow"        "-40 -25 -10"
             }
             "03"
             {
                 "var_type"          "FIELD_INTEGER"
-                "splash_radius"         "300"
+                "splash_radius"         "300 325 350"
             }
             "04"
             {
                 "var_type"          "FIELD_FLOAT"
-                "transform_time"    "3.0 2.5 2.0"
+                "transform_time"    "0.75 0.5 0.25"
             }
             "05"
             {
@@ -340,17 +340,17 @@
             "07"
             {
                 "var_type"          "FIELD_INTEGER"
-                "attack_bonus"          "40 80 120"
+                "attack_bonus"          "50 100 150"
             }
             "08"
             {
                 "var_type"          "FIELD_INTEGER"
-                "attack_bonus_range"    "1000 2000 3000"
+                "attack_bonus_range"    "1500 2250 3000"
             }
             "09"
             {
                 "var_type"          "FIELD_INTEGER"
-                "attack_min_range"      "400"
+                "attack_min_range"      "300"
             }
             "10"
             {
@@ -360,7 +360,7 @@
             "11"
             {
                 "var_type"          "FIELD_FLOAT"
-                "seconds_per_attack"    "5.0 4.0 3.0"
+                "seconds_per_attack"    "2.5 2.2 1.9"
             }
         }
         "OnToggleOn"
@@ -433,12 +433,13 @@
                     "MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"  "%attack_bonus"
                     "MODIFIER_PROPERTY_ATTACK_RANGE_BONUS"      "%attack_bonus_range"
                     "MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT"   "%bat_increase"
-                    "MODIFIER_PROPERTY_PROJECTILE_SPEED_BONUS"      "750"
-                    "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"  "-9999"
+                    "MODIFIER_PROPERTY_PROJECTILE_SPEED_BONUS"      "1800"
+                    "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"  "-700"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"-100"
                 }
                 "States"
                 {
-                    "MODIFIER_STATE_ROOTED" "MODIFIER_STATE_VALUE_ENABLED"
+                    // "MODIFIER_STATE_ROOTED" "MODIFIER_STATE_VALUE_ENABLED"
                     "MODIFIER_STATE_FLYING" "MODIFIER_STATE_VALUE_ENABLED"
                 }
                     
@@ -487,12 +488,12 @@
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_ATTACK"
         "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
         "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-        "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_PHYSICAL"
     
-        "AbilityCastRange"              "600"
+        "AbilityCastRange"              "625"
         "AbilityCastPoint"              "0.0"
-        "AbilityCooldown"               "6 5 4 3"
-        "AbilityManaCost"               "40"
+        "AbilityCooldown"               "2"
+        "AbilityManaCost"               "14 16 18 20"
         "HasScepterUpgrade"             "1"
     
         "AbilityModifierSupportBonus"       "35"
@@ -509,37 +510,37 @@
             "01"
             {
                 "var_type"          "FIELD_INTEGER"
-                "damage_per_second" "7 12 17 22"
+                "damage_per_second" "20 35 50 65"
             }
             "02"
             {
                 "var_type"          "FIELD_FLOAT"
-                "duration"          "9"
+                "duration"          "12"
             }
             "03"
             {
-                "var_type"          "FIELD_INTEGER"
-                "armor_reduction"   "-3"
+                "var_type"          "FIELD_FLOAT"
+                "armor_reduction"   "-1 -2 -3 -4"
             }
             "04"
             {
                 "var_type"          "FIELD_INTEGER"
-                "slow_duration"     "1"
+                "slow_duration"     "3"
             }
             "05"
             {
                 "var_type"          "FIELD_INTEGER"
-                "ms_slow"           "10"
+                "ms_slow"           "20 25 30 35"
             }
             "06"
             {
                 "var_type"          "FIELD_INTEGER"
-                "siege_radius"      "300"
+                "siege_radius"      "450"
             }
             "07"
             {
                 "var_type"          "FIELD_INTEGER"
-                "cooldown"          "6 5 4 3"
+                "cooldown"          "3"
             }
         }
         "Modifiers"

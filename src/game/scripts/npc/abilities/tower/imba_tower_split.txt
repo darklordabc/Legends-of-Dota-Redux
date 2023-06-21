@@ -13,12 +13,12 @@
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "split_chance"                                         "25 33 40"
+                "split_chance"                                         "25 50 75"
             }
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "split_radius"                                         "625"
+                "split_radius"                                         "650"
             }
             "03"
             {

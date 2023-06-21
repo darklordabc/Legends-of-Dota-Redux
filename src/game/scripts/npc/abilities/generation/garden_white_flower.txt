@@ -4,17 +4,17 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"AbilityTextureName" "custom/cherub_flower_white"
 		"MaxLevel" "3"
-		"AOERadius" "700"
+		"AOERadius" "900"
 
 		"AbilitySpecial" {
 			"01" {
 				"var_type" "FIELD_INTEGER"
-				"range" "700"
+				"range" "900"
 			}
 
 			"02" {
 				"var_type" "FIELD_INTEGER"
-				"damage" "44 52 60"
+				"damage" "45 55 65"
 			}
 		}
 

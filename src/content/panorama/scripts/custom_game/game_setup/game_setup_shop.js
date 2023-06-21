@@ -86,7 +86,7 @@ function FillShopPage(panel, PageButtonSetAll, shopName, shopContent) {
         var TabButton = panel.FindChildTraverse(id);
         TabButton.style.width = (100 / Object.keys(shopContent).length) + '%';
         var TabButtonLabel = $.CreatePanel('Label', TabButton, '');
-        TabButtonLabel.text = $.Localize('panorama_shop_' + id);
+        TabButtonLabel.text = $.Localize('#panorama_shop_' + id);
         TabButtonLabel.hittest = false;
         var TabShopItemlistPanel = $.CreatePanel('Panel', panel.FindChildTraverse('ShopItems'), 'shop_panels_tab_' + tabName);
         TabShopItemlistPanel.AddClass('ItemsPageInnerContainer');

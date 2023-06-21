@@ -42,7 +42,7 @@
         "BaseClass"                 "ability_datadriven"
         "AbilityProcsMagicStick"        "1"
 
-        "AbilityDamage"             "60 130 200 270"
+        "AbilityDamage"             "70 140 210 280"
 
         // Special
         //-------------------------------------------------------------------------------------------------------------
@@ -56,12 +56,12 @@
             "02"
             {
                 "var_type"              "FIELD_INTEGER"
-                "distance"              "-250 -350 -450 -550"
+                "distance"              "-350 -450 -550 -650"
             }
             "04"
             {
                 "var_type"              "FIELD_FLOAT"
-                "move_slow"             "-27"
+                "move_slow"             "-40"
             }
             "05"
             {
@@ -71,7 +71,7 @@
             "05"
             {
                 "var_type"              "FIELD_INTEGER"
-                "damage"                "85 95 115 125"
+                "damage"                "70 140 210 280"
             }
         }
         "precache"
@@ -149,9 +149,9 @@
                     {
                         "Target"        "TARGET"
                         "Center"        "CASTER"
-                        "Duration"      "0.15"
+                        "Duration"      "0.5"
                         "Distance"  "%distance"
-                        "Height"        "0"
+                        "Height"        "50"
                         "IsFixedDistance"   "0"
                         "ShouldStun"    "1"
                     }
@@ -201,7 +201,7 @@
         "BaseClass"                 "ability_datadriven"
         "AbilityProcsMagicStick"        "1"
 
-        "AbilityDamage"             "180 400 550 700"
+        "AbilityDamage"             "180 270 360 450"
         "ReduxFlags"                                                           ""
         "ReduxCost"                                                            "120"
 
@@ -232,7 +232,7 @@
             "05"
             {
                 "var_type"              "FIELD_INTEGER"
-                "damage"                "180 400 550 700"
+                "damage"                "200 250 300 350"
             }
         }
         "precache"
@@ -310,7 +310,7 @@
                     {
                         "Target"        "TARGET"
                         "Center"        "CASTER"
-                        "Duration"      "0.15"
+                        "Duration"      "0.7"
                         "Distance"  "%distance"
                         "Height"        "0"
                         "IsFixedDistance"   "0"
@@ -355,17 +355,17 @@
             "02"
             {
                 "var_type"          "FIELD_INTEGER"
-                "bonus_movement_speed"  "3 4 5 6"
+                "bonus_movement_speed"  "5 6 7 8"
             }
             "03"
             {
                 "var_type"          "FIELD_INTEGER"
-                "max_stacks"        "5"
+                "max_stacks"        "7"
             }
             "04"
             {
                 "var_type"          "FIELD_INTEGER"
-                "duration"          "8"
+                "duration"          "12"
             }
         }
 
@@ -594,12 +594,12 @@
             "01"
             {
                 "var_type"          "FIELD_INTEGER"
-                "radius"            "400"
+                "radius"            "500"
             }
             "02"
             {
                 "var_type"          "FIELD_INTEGER"
-                "heal_reduction"    "10 20 30 40"
+                "heal_reduction"    "15 30 45 60"
             }
             "02"
             {
@@ -609,12 +609,12 @@
             "05"
             {
                 "var_type"          "FIELD_INTEGER"
-                "bleed_damage"      "4"
+                "bleed_damage"      "7"
             }
             "04"
             {
                 "var_type"          "FIELD_INTEGER"
-                "duration"          "4"
+                "duration"          "6"
             }
         }
 
@@ -729,15 +729,17 @@
     "hylonome_libation"
     {
         "BaseClass"                     "ability_datadriven"
-        "AbilityTextureName"            "custom/hylonome_libation"
+        // "AbilityTextureName"            "custom/hylonome_libation"
+		"AbilityTextureName"			"custom/hylonome_libation_bloodrage"
+		"AbilityTextureName"			"shadow_demon_disseminate"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
         "AbilityUnitDamageType"         "DAMAGE_TYPE_PURE"
         "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
 
-        "AbilityCooldown"               "50"
-        "AbilityManaCost"               "150 175 200"
+        "AbilityCooldown"               "50 45 40"
+        "AbilityManaCost"               "100 125 150"
 
-        "AbilityCastRange"              "550 650 750"
+        "AbilityCastRange"              "750"
         "AbilityCastPoint"              "0.3"
         "AbilityCastAnimation"          "ACT_DOTA_ATTACK_EVENT"
         "AbilityProcsMagicStick"        "1"
@@ -759,7 +761,7 @@
             "01"
             {
                 "var_type"          "FIELD_INTEGER"
-                "damage_per_second"     "60 95 130"
+                "damage_per_second"     "80 120 160"
             }
             "02"
             {
@@ -779,7 +781,7 @@
             "05"
             {
                 "var_type"          "FIELD_INTEGER"
-                "distance"              "550 650 750"
+                "distance"              "750"
             }
             "06"
             {
@@ -789,7 +791,7 @@
             "07"
             {
                 "var_type"          "FIELD_INTEGER"
-                "radius_scepter"        "400"
+                "radius_scepter"        "750"
             }
         }
         "OnSpellStart"

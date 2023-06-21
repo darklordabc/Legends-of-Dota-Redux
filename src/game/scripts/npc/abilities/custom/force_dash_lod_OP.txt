@@ -8,9 +8,9 @@
         "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
         "AbilityUnitTargetFlags"                                               "DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES"
         "AbilityTextureName"                                                   "custom/force_dash_lod_OP"
-        "AbilityCooldown"                                                      "20 18 16 14"
-        "AbilityManaCost"                                                      "75"
-        "AbilityCastRange"                                                     "650 800 950 1100"
+        "AbilityCooldown"                                                      "10 8 6 4"
+        "AbilityManaCost"                                                      "75 50 25 0"
+        "AbilityCastRange"                                                     "2000"
         "AbilityCastPoint"                                                     "0.01"
         "precache"
         {
@@ -22,12 +22,12 @@
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "distance"                                             "1000 1450 1750 2000"
+                "distance"                                             "600"
             }
             "02"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "duration"                                             "0.4"
+                "duration"                                             "0.3"
             }
         }
         "OnSpellStart"

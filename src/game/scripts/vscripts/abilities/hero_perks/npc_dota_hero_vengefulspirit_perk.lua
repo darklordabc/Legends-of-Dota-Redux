@@ -1,81 +1,129 @@
 --------------------------------------------------------------------------------------------------------
 --
 --		Hero: Vengeful Spirit
---		Perk: Vengeful Spirit spawns a spirit of vengence on death that lasts until Vengeful Spirit has respawned.
---					this spirit can use all of her abilities but cannot use items
+--		Perk: Venge gets a free level of Vengeance Aura
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_vengefulspirit_perk", "abilities/hero_perks/npc_dota_hero_vengefulspirit_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
 --LinkLuaModifier( "modifier_npc_dota_hero_vengefulspirit_perk_debuff", "abilities/hero_perks/npc_dota_hero_vengefulspirit_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
 --------------------------------------------------------------------------------------------------------
 if npc_dota_hero_vengefulspirit_perk ~= "" then npc_dota_hero_vengefulspirit_perk = class({}) end
+--------------------------------------------------------------------------------------------------------
+--		Modifier: modifier_npc_dota_hero_vengefulspirit_perk		
+--------------------------------------------------------------------------------------------------------
+if modifier_npc_dota_hero_vengefulspirit_perk ~= "" then modifier_npc_dota_hero_vengefulspirit_perk = class({}) end
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_vengefulspirit_perk:IsPassive()
+	return true
+end
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_vengefulspirit_perk:IsHidden()
+	return false
+end
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_vengefulspirit_perk:RemoveOnDeath()
+	return false
+end
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_vengefulspirit_perk:GetTexture()
+	return "vengefulspirit_command_aura"
+end
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_vengefulspirit_perk:IsPurgable()
+	return false
+end
+--------------------------------------------------------------------------------------------------------
+-- Add additional functions
+--------------------------------------------------------------------------------------------------------
 
-modifier_npc_dota_hero_vengefulspirit_perk = {
-	IsHidden = function() return false end,
-	IsPurgable = function() return false end,
-	IsPassive = function() return true end,
-	IsPermanent = function() return true end,
-	RemoveOnDeath = function() return false end,
-	DeclareFunctions = function() return {} end,
+function modifier_npc_dota_hero_vengefulspirit_perk:OnCreated(keys)
+    if IsServer() then
+        local caster = self:GetCaster()
+        local cleave = caster:FindAbilityByName("vengefulspirit_command_aura")
 
-	OnCreated = function(self, kv)
-		if not IsServer() then return end
-		self:StartIntervalThink(0.1)
-	end,
+        if cleave then
+            cleave:UpgradeAbility(false)
+        else 
+            cleave = caster:AddAbility("vengefulspirit_command_aura")
+            cleave:SetStolen(true)
+            cleave:SetActivated(true)
+            cleave:SetLevel(1)
+        end
+    end
+end
 
-	OnIntervalThink = function(self)
-		if not IsServer() then return end
-		if not self:GetParent():IsAlive() then
-			if not self.illusion then
-				self.illusion = true
-				CreateUnitByNameAsync(self:GetParent():GetUnitName(), self:GetParent():GetAbsOrigin()+RandomVector(108), true, self:GetParent(), self:GetParent(), self:GetParent():GetTeamNumber(), function(unit)
-					self.illusion = unit
-					unit:AddNewModifier(self:GetParent(), self:GetAbility(), "modifier_vengefulspirit_hybrid_special", {})
-					unit:AddNewModifier(self:GetParent(), self:GetAbility(), "modifier_illusion", {
-						outgoing_damage = 100,
-    					incoming_damage = 150,
-					})	
 
-					for i = 0,23 do
-						if i < self:GetParent():GetLevel()-1 then
-							unit:HeroLevelUp(false)
-						end
-						local ab = self:GetParent():GetItemInSlot(i)
-						if ab then
-							local item = unit:AddItemByName(ab:GetName())
-							if item then
-								if ab:GetCurrentCharges() ~= 0 then
-									item:SetCurrentCharges(ab:GetCurrentCharges())
-								end
-								item:SetDroppable(false)
-							end
-						end
-						ab = self:GetParent():GetAbilityByIndex(i)
-						if ab then
-							local ability = unit:FindAbilityByName(ab:GetName())
-							if ability then
-								ability:SetLevel(ab:GetLevel())
-							end
-						end
-					end
-					unit:SetAbilityPoints(0)
 
-					unit:SetControllableByPlayer(self:GetParent():GetPlayerID(), true)
-					unit:SetOwner(self:GetParent())
-					unit:SetCanSellItems(false)
-					unit:SetHasInventory(false)
-				end)
-			end
-		else
-			if self.illusion then
-				if not self.illusion:IsNull() then
-					self.illusion:RemoveSelf()
-				end
-				self.illusion = nil
-			end
-		end
-	end,
-}
+
+
+--if npc_dota_hero_vengefulspirit_perk ~= "" then npc_dota_hero_vengefulspirit_perk = class({}) end
+
+--modifier_npc_dota_hero_vengefulspirit_perk = {
+--	IsHidden = function() return false end,
+--	IsPurgable = function() return false end,
+--	IsPassive = function() return true end,
+--	IsPermanent = function() return true end,
+--	RemoveOnDeath = function() return false end,
+--	DeclareFunctions = function() return {} end,
+
+--	OnCreated = function(self, kv)
+--		if not IsServer() then return end
+--		self:StartIntervalThink(0.1)
+--	end,
+
+--	OnIntervalThink = function(self)
+--		if not IsServer() then return end
+--		if not self:GetParent():IsAlive() then
+--			if not self.illusion then
+--				self.illusion = true
+--				CreateUnitByNameAsync(self:GetParent():GetUnitName(), self:GetParent():GetAbsOrigin()+RandomVector(108), true, self:GetParent(), self:GetParent(), self:GetParent():GetTeamNumber(), function(unit)
+--					self.illusion = unit
+--					unit:AddNewModifier(self:GetParent(), self:GetAbility(), "modifier_vengefulspirit_hybrid_special", {})
+--					unit:AddNewModifier(self:GetParent(), self:GetAbility(), "modifier_illusion", {
+--						outgoing_damage = 100,
+--    					incoming_damage = 150,
+--					})	
+
+--					for i = 0,23 do
+--						if i < self:GetParent():GetLevel()-1 then
+--							unit:HeroLevelUp(false)
+--						end
+--						local ab = self:GetParent():GetItemInSlot(i)
+--						if ab then
+--							local item = unit:AddItemByName(ab:GetName())
+--							if item then
+--								if ab:GetCurrentCharges() ~= 0 then
+--									item:SetCurrentCharges(ab:GetCurrentCharges())
+--								end
+--								item:SetDroppable(false)
+--							end
+--						end
+--						ab = self:GetParent():GetAbilityByIndex(i)
+--						if ab then
+--							local ability = unit:FindAbilityByName(ab:GetName())
+--							if ability then
+--								ability:SetLevel(ab:GetLevel())
+--							end
+--						end
+--					end
+--					unit:SetAbilityPoints(0)
+--
+--					unit:SetControllableByPlayer(self:GetParent():GetPlayerID(), true)
+--					unit:SetOwner(self:GetParent())
+--					unit:SetCanSellItems(false)
+--					unit:SetHasInventory(false)
+--				end)
+--			end
+--		else
+--			if self.illusion then
+--				if not self.illusion:IsNull() then
+--					self.illusion:RemoveSelf()
+--				end
+--				self.illusion = nil
+--			end
+--		end
+--	end,
+--}
 
 --[[
 --------------------------------------------------------------------------------------------------------

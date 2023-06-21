@@ -20,71 +20,60 @@
 
         // Casting
         //-------------------------------------------------------------------------------------------------------------
-        "AbilityCastPoint"              "0.6"
+        "AbilityCastPoint"              "0.5"
         "AbilityCastRange"              "0"
 
         // Time     
         //-------------------------------------------------------------------------------------------------------------
-        "AbilityCooldown"               "300.0"
+        "AbilityCooldown"               "140.0"
 
         // Cost
         //-------------------------------------------------------------------------------------------------------------
-        "AbilityManaCost"               "550"
+        "AbilityManaCost"               "250"
         
         // Special
         //-------------------------------------------------------------------------------------------------------------
-        "AbilitySpecial"
-        {
-            "01"
-            {
-                "var_type"                  "FIELD_INTEGER"
-                "beams"                     "50"
-            }
-            "02"
-            {
-                "var_type"                  "FIELD_INTEGER"
-                "hit_count"                 "11"
-            }
-            "03"
-            {
-                "var_type"                  "FIELD_FLOAT"
-                "beam_interval"             "0.15"
-            }
-            "04"
-            {
-                "var_type"                  "FIELD_FLOAT"
-                "beam_interval_scepter"     "0.075"
-            }
-            "05"
-            {
-                "var_type"                  "FIELD_FLOAT"
-                "duration_tooltip"          "7.5"
-            }
-            "06"
-            {
-                "var_type"                  "FIELD_INTEGER"
-                "radius"                    "800"
-            }   
-            "07"
-            {
-                "var_type"                  "FIELD_INTEGER"
-                "beams_scepter"             "80"
-            }
-            "08"
-            {
-                "var_type"                  "FIELD_INTEGER"
-                "hit_count_scepter"         "18"
-            }
-            "09"
-            {
-                "var_type"                  "FIELD_FLOAT"
-                "duration_tooltip_scepter"  "6.0"
-            }
-            "10"
-            {
-                "var_type"                  "FIELD_INTEGER"
-                "cast_range_tooltip_scepter"    "2500"
-            }
-        }
+		"AbilityValues"
+		{
+			
+			"beams"
+			{
+				"value"					"100"
+				"special_bonus_scepter"	"+0 +3 +6"
+			}
+			"beam_interval"
+			{
+				"value"					"0.15"
+				"special_bonus_scepter"	"-0.1"
+			}
+			"beam_interval_scepter"		"0.1" // purely for the tooltip Note, since the scepter tooltip doesn't show this.
+			"radius"					"6000"
+			"hit_count"
+			{
+				"value"					"20"
+				"special_bonus_scepter"	"+30"
+			}
+			"AbilityCastRange"
+			{
+				"value"					"0"
+				"special_bonus_scepter"	"+5000"
+			}
+			"AbilityDuration"
+			{
+				"value"					"15"
+				"special_bonus_scepter"	"-5.0"
+			}
+			"night_duration"	"15.0"
+			"stun_duration"
+			{
+				"value"							"0.0"
+				"special_bonus_unique_luna_5"	"+0.4"
+			}
+			"AbilityCooldown"
+			{
+				"value"							"140.0"
+				"special_bonus_unique_luna_6"	"-70.0"
+			}
+		}
     }
 }

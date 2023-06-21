@@ -48,7 +48,7 @@ function PerkBane(filterTable)
 		-- util function to check if victim has a sleep modifier
 		if victim:IsSleeping() then
 			if ability then healer = ability end
-			attacker:Heal(filterTable["damage"], healer)
+			attacker:Heal((filterTable["damage"])*2, healer)
 			SendOverheadEventMessage(attacker,OVERHEAD_ALERT_HEAL,attacker,filterTable["damage"],nil)
 	        local healParticle = ParticleManager:CreateParticle("particles/units/heroes/hero_bloodseeker/bloodseeker_bloodbath_heal.vpcf", PATTACH_ABSORIGIN_FOLLOW, attacker)
 	        ParticleManager:SetParticleControl(healParticle, 1, Vector(322, 322, 322))

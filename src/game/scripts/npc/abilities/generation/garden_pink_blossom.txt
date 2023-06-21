@@ -4,12 +4,12 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"AbilityTextureName" "custom/cherub_flower_pink"
 		"MaxLevel" "3"
-		"AOERadius" "500"
+		"AOERadius" "1000"
 
 		"AbilitySpecial" {
 			"01" {
 				"var_type" "FIELD_INTEGER"
-				"radius" "500"
+				"radius" "1000"
 			}
 
 			"02" {
@@ -19,7 +19,7 @@
 
 			"03" {
 				"var_type" "FIELD_INTEGER"
-				"heal_amount" "14 22 30"
+				"heal_amount" "15 30 45"
 			}
 		}
 

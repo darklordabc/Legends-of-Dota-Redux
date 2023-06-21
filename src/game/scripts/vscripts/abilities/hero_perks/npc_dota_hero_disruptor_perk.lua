@@ -38,7 +38,7 @@ function modifier_npc_dota_hero_disruptor_perk:DeclareFunctions()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_disruptor_perk:GetModifierConstantManaRegen()
-    return 0.5 * self:GetStackCount()
+    return 1.5 * self:GetStackCount()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_disruptor_perk:IsPurgable()

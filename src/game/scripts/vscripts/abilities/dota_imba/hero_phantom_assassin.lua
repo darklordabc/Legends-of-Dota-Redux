@@ -52,7 +52,7 @@ function imba_phantom_assassin_stifling_dagger:OnSpellStart()
 	local scepter 	= caster:HasScepter()
 
 	--ability specials
-	self.scepter_knives_interval 	=	0.3
+	self.scepter_knives_interval 	=	0.1
 	self.cast_range					=	self:GetCastRange() + GetCastRangeIncrease(caster)
 	self.playbackrate				=	1 + self.scepter_knives_interval
 

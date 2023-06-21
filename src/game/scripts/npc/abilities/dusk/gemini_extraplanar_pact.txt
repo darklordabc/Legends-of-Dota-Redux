@@ -20,12 +20,12 @@
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"500"
-		"AbilityCastPoint"				"0.4"
+		"AbilityCastRange"				"800"
+		"AbilityCastPoint"				"0.3"
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"16"
+		"AbilityCooldown"				"15 14 13 12"
 
 		// Damage.
 		//-------------------------------------------------------------------------------------------------------------
@@ -42,17 +42,17 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"health_regen"			"25 50 75 100"
+				"health_regen"			"40 60 80 100"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"mana_regen"			"20 40 60 80"
+				"mana_regen"			"15 30 45 60"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"2.25"
+				"duration"				"6"
 			}
 			"04"
 			{
@@ -68,7 +68,7 @@
 			"soundfile"	"soundevents/hero_gemini.vsndevts"
 		}
 
-		"ReduxPerks"	""
+		"ReduxPerks"	"support"
 		"ReduxFlags"	""
 	}
 }

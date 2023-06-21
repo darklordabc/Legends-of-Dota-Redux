@@ -6,22 +6,22 @@
         "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_POINT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELED | DOTA_ABILITY_BEHAVIOR_AOE"
         "AbilityCastRange"                                                     "300"
         "AbilityCooldown"                                                      "5.0"
-        "AbilityChannelTime"                                                   "2.0"
+        "AbilityChannelTime"                                                   "1.0"
         "AnimationPlaybackRate"                                                "0.2"
         "AbilityTextureName"                                                   "custom/cherub_flower_blue"
         "MaxLevel"                                                             "4"
-        "AOERadius"                                                            "500"
+        "AOERadius"                                                            "1000"
         "AbilitySpecial"
         {
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "radius"                                               "500"
+                "radius"                                               "1000"
             }
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "restore_amount"                                       "14 18 22 26"
+                "restore_amount"                                       "30 45 60 75"
             }
             "03"
             {
@@ -68,7 +68,7 @@
         {
             "modifier_garden_channel"
             {
-                "Duration"                                             "2.0"
+                "Duration"                                             "1.0"
                 "ThinkInterval"                                        "0.1"
                 "OnIntervalThink"
                 {
@@ -108,7 +108,7 @@
                     {
                         "ScriptFile"                           "abilities/cherub_flower_garden.lua"
                         "Function"                             "BlueFlowerRestoreMana"
-                        "ReplenishRadius"                      "700"
+                        "ReplenishRadius"                      "1000"
                         "ReplenishAmount"                      "%restore_amount"
                     }
                 }

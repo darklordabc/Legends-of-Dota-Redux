@@ -38,17 +38,17 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"bonus_damage"				"20 40 60"
+				"bonus_damage"				"75 125 175"
 			}
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"radius"					"900"
+				"radius"					"1200"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"slow"						"-5 -10 -15"
+				"slow"						"-30 -40 -50"
 			}
 			"04"
 			{

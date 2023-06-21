@@ -51,6 +51,7 @@ function ViperPoisonTracker(self, ent)
 
   self.poisonTracker = self.poisonTracker or Timers:CreateTimer(1,function()
     for k,v in pairs(self.perkTargets) do
+		local count = 0
       if v and not v:IsNull() then
         local count = 0
         for l,m in pairs(v:FindAllModifiers()) do
@@ -60,7 +61,7 @@ function ViperPoisonTracker(self, ent)
           end
         end
         if count > 0 then
-          local mod = v:FindModifierByNameAndCaster("modifier_npc_dota_hero_viper_armor_debuff", self) or v:AddNewModifier(self, nil, "modifier_npc_dota_hero_viper_armor_debuff", {})
+          local mod = v:FindModifierByNameAndCaster("modifier_npc_dota_hero_viper_armor_debuff", self) or v:AddNewModifier(self, nil, "modifier_npc_dota_hero_viper_armor_debuff", {duration = 5})
           if mod then
             mod:SetStackCount(count)
           end
@@ -83,7 +84,7 @@ end
 
 modifier_npc_dota_hero_viper_armor_debuff = class({
   IsHidden = function() return false end,
-  IsPurgable = function() return false end,
+  IsPurgable = function() return true end,
   GetTexture = function() return "custom/npc_dota_hero_viper_perk" end,
   GetAttributes = function() return MODIFIER_ATTRIBUTE_MULTIPLE end,
 

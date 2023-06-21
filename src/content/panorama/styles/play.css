@@ -3,6 +3,7 @@
 
 @define sectionbg_inactive: #222629;
 @define sectionbg_active: gradient( linear, 0% 0%, 0% 100%, from( #3e474b ), to( #282e2d ) );
+@define HalloweenHue: -35deg;
 
 DOTAPlay
 {
@@ -36,11 +37,11 @@ DOTAPlay.MatchingRestriction #LowPrioritySection
 {
 	background-position: 50% 50%;
 	background-image: url("s2r://panorama/images/weekend_tourney/battle_cup_return_psd.vtex");
-	background-size: 100% 100%;
+	background-size: 100% 100%;   
     background-repeat: no-repeat;
 	//wash-color: #00000066;
 	border: 0px;
-
+	
 	width: 0px;
 	opacity: 0.0;
 	height: 40px;
@@ -59,6 +60,7 @@ DOTAPlay.MatchingRestriction #LowPrioritySection
 
 .CanReturnToWeekendTourney #SearchReturnToWeekendTourneyButton
 {
+	
 	opacity: 1.0;
 	width: 40px;
 }
@@ -82,7 +84,7 @@ DOTAPlay.MatchingRestriction #LowPrioritySection
 {
 	flow-children: down;
 	width: 330px;
-	margin-bottom: 90px;
+	margin-bottom: 80px;
 	margin-right: 58px;
 	vertical-align: bottom;
 	horizontal-align: right;
@@ -96,22 +98,27 @@ DOTAPlay.Connecting #AbovePlayButtonStack
 	margin-bottom: 110px;
 }
 
+#AbandonButton
+{
+	//width: 330px;
+	width: fill-parent-flow(2);
+	height: 33px;
+	vertical-align:bottom;
+	horizontal-align: right;
+	//margin-bottom: 90px;
+	//margin-right: 58px;
+
+	visibility: collapse;
+}
+
 .StateParticipatingInTourney #AbandonButton
 {
 	margin-bottom: 10px;
 }
 
-#AbandonButton
+#AbandonButton:hover Label
 {
-	text-overflow: shrink;
-	overflow: clip;
-}
-
-#AbandonButton Label
-{
-	max-height: 23px;
-	max-width: 180px;
-	text-overflow: shrink;
+	color: red;
 }
 
 #AbandonGameLabel,
@@ -125,30 +132,50 @@ DOTAPlay.CanAbandonGame #AbandonGameLabel,
 DOTAPlay.CanAbandonTourney #AbandonButton,
 DOTAPlay.CanAbandonTourney #AbandonTourneyLabel
 {
-	opacity: 1;
 	visibility: visible;
+}
+
+#SafeLeaveButton
+{
+	width: 330px;
+	height: 0px;
+	vertical-align:bottom;
+	horizontal-align: right;
+
+	opacity: 0;
+	
+	transition-property: opacity, height;
+	transition-duration: 0.2s;
+	transition-delay: 0.3s;
 }
 
 DOTAPlay.CanSafeLeaveGame #SafeLeaveButton
 {
-	visibility: visible;
 	opacity: 1;
 	height: 33px;
 }
 
 
-.LeaveGameButton
+#DisconnectButton
 {
 	width: 330px;
+	height: 33px;
+
 	min-width: 330px;
+	min-height: 48px;
 
-	margin-bottom: 100px;
+	margin-bottom: 21px;
 	margin-right: 58px;
-
+ 
 	padding: 4px 12px 4px 12px;
-
+		
 	vertical-align:bottom;
 	horizontal-align: right;
+	margin-right: 58px;
+
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #722217 ), to( #DD4A29 ) );
+	background-image: url("s2r://panorama/images/backgrounds/background_play_button_2x_png.vtex");
+	background-size: 328px 50px;   
 
 	border-top: 1px solid #ffffff05;
 	border-right: 1px solid #00000088;
@@ -158,20 +185,33 @@ DOTAPlay.CanSafeLeaveGame #SafeLeaveButton
 	visibility: collapse;
 }
 
-.LeaveGameButton Label
-{
-	margin-top: 2px;
-	horizontal-align: center;
-	font-size: 18px;
-	font-weight: bold;
-	color: white;
-	text-transform: uppercase;
-	letter-spacing: 3px;
-	text-align: center;
 
-	transition-property: color;
-	transition-delay: 0.0s;
-	transition-duration: 0.2s;
+#DisconnectButton Image
+{
+	wash-color: red;
+	width: 26px;
+	height: 26px;
+	margin: 2px;
+	margin-left: 6px;
+}
+
+.DisconnectLabel 
+{
+	margin-top: 4px;
+	vertical-align: middle;
+	horizontal-align: center;	
+}
+
+#DisconnectButton Label
+{
+	text-transform: uppercase;
+	color: white;
+	font-size: 26px;
+}
+
+#DisconnectButton:hover Label
+{
+	color: red;
 }
 
 #DisconnectButton:active
@@ -183,8 +223,9 @@ DOTAPlay.CanSafeLeaveGame #SafeLeaveButton
 {
 	background-position: 50% 50%;
 	background-image: url("s2r://panorama/images/weekend_tourney/battle_cup_return_psd.vtex");
-	background-size: 100% 100%;
+	background-size: 100% 100%;   
     background-repeat: no-repeat;
+	//wash-color: #00000066;
 	border: 0px;
 	vertical-align: bottom;
 	horizontal-align: right;
@@ -193,7 +234,7 @@ DOTAPlay.CanSafeLeaveGame #SafeLeaveButton
 	transition-property: width, brightness;
 	transition-duration: .2s;
 	margin: 0px 340px 21px 0px;
-
+	
 
 	visibility: collapse;
 }
@@ -219,14 +260,12 @@ DOTAPlay.CanSafeLeaveGame #SafeLeaveButton
 	width: 49px;
 }
 
-DOTAPlay.CanDisconnect #DisconnectButton,
-DOTAPlay.CanDisconnect #ReturnToGameButton
+DOTAPlay.CanDisconnect #DisconnectButton
 {
 	visibility: visible;
 }
 
-DOTAPlay.Connecting #DisconnectButton,
-DOTAPlay.Connecting #ReturnToGameButton
+DOTAPlay.Connecting #DisconnectButton
 {
 	visibility: collapse;
 }
@@ -239,39 +278,16 @@ DOTAPlay.Connecting #ReturnToGameButton
 	min-width: 270px;
 }
 
-#ReturnToGameButton
-{
-	vertical-align: bottom;
-	horizontal-align: right;
-	height: 47px;
-	max-height: 47px;
-	opacity: 0;
-
-	margin-bottom: 40px;
-	transition-property: opacity, background-color, box-shadow, border;
-	transition-duration: 0.2s;
-	transition-delay: 0.3s, 0s;
-}
-
-DOTAPlay.CanDisconnect #ReturnToGameButton
-{
-	opacity: 1;
-}
-
 #ReconnectButton
 {
 	vertical-align: bottom;
 	horizontal-align: right;
-
-	height: 47px;
-	max-height: 47px;
+	height: 49px;
 	opacity: 0;
-
-	margin-bottom: 40px;
-
+	
 	transition-property: opacity, background-color, box-shadow, border;
 	transition-duration: 0.2s;
-	transition-delay: 0.3s, 0s;
+	transition-delay: 0.3s, 0s;	
 }
 
 DOTAPlay.CanReconnect #ReconnectButton
@@ -297,7 +313,7 @@ DOTAPlay.ReconnectInProgress .ReconnectLabel
 }
 
 .Spinner
-{
+{	
 	horizontal-align: center;
 	vertical-align: center;
 }
@@ -327,7 +343,7 @@ DOTAPlay.ReconnectInProgress .ReconnectSpinner
 
 #WeekendTourneyPlayStatusContainer
 {
-
+	
 	vertical-align: bottom;
 	horizontal-align: right;
 }
@@ -386,34 +402,29 @@ DOTAPlay.ReconnectInProgress .ReconnectSpinner
 
 	margin-bottom: 21px;
 	margin-right: 58px;
-
+ 
 	padding: 4px 12px 4px 12px;
-
+		
 	background-color: gradient( linear, 0% 0%, 0% 100%, from( #5A615Ecc ), to( #879695cc ) );
-	background-color: gradient( linear, 0% 0%, 0% 100%, from( #5Aa15E ), to( #87d69533 ) );
 	background-image: url("s2r://panorama/images/backgrounds/background_play_button_2x_png.vtex");
-	background-size: 328px 50px;
+	background-size: 328px 50px;   
     //background-repeat: no-repeat;
 
-
+		
 	box-shadow: fill #002a6644 -4px -4px 8px 9px;
-
+	
 	border-top: 1px solid #ffffff44;
 	border-right: 1px solid #00000088;
 	border-left: 1px solid #ffffff44;
 	border-bottom: 1px solid #00000088;
 
 	opacity: 1.0;
-
+	
 	transition-property: box-shadow, background-color, opacity, transform;
 	transition-delay: 0.0s;
 	transition-duration: 0.2s;
 	transition-timing-function: ease-in-out;
-	
 
-	/* TI10 STYLES */
-	//background-color: gradient( linear, 0% 0%, 0% 100%, from( shadeColor ), to( accentColor ) );
-	//box-shadow: fill ultraDarkColor -4px -4px 8px 9px;
 }
 
 .FindMatchSpinner
@@ -433,47 +444,37 @@ DOTAPlay.ReconnectInProgress .ReconnectSpinner
 	opacity: 0.0;
 }
 
-/* Certain pages may want the play button to show up as disabled */
-.DisablePlayButton #PlayButton,
-.DisablePlayButton #DeniedPlayButton
+// de-emphasize the button when on the custom games page
+.CustomGamePageVisible #PlayButton
 {
-	opacity: 0.1;
+	opacity: 0.1;		
 }
 
-/* Certain pages might want to hide the play button entirely */
-.HidePlayButton #PlayButton,
-.HidePlayButton #DeniedPlayButton
+.CustomGamePageVisible #DeniedPlayButton
 {
-	opacity: 0.0;
+	opacity: 0.1;		
 }
 
-/* raise the visibility back up if they have the tab open */
-.SlideOutVisible.DisablePlayButton #PlayButton,
-.SlideOutVisible.DisablePlayButton #DeniedPlayButton,
-.SlideOutVisible.HidePlayButton #PlayButton,
-.SlideOutVisible.HidePlayButton #DeniedPlayButton
+// raise the visibility back up if they have the tab open
+.SlideOutVisible.CustomGamePageVisible #PlayButton
+{
+	opacity: 1.0;
+}
+
+.SlideOutVisible.CustomGamePageVisible #DeniedPlayButton
 {
 	opacity: 1.0;
 }
 
 .PlayButton:hover
 {
-	//background-color: gradient( linear, 0% 0%, 0% 100%, from( #5A615E ), to( #b7c6c5 ) );
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #5A615E ), to( #b7c6c5 ) );
 	box-shadow: fill #414f4daa -4px -4px 8px 8px;
-	brightness: 1.2;
-
-	/* TI10 STYLES */
-	//background-color: gradient( linear, 0% 0%, 0% 100%, from( defaultColor ), to( accentColorBright ) );
-	//box-shadow: fill darkColor -4px -4px 8px 8px;
 }
 
 .PlayButton:active
 {
 	background-color: gradient( linear, 0% 0%, 0% 100%, from( #5A615E ), to( #ffffff ) );
-
-	/* TI10 STYLES */
-	//background-color: gradient( linear, 0% 0%, 0% 100%, from( shadeColor ), to( accentColor ) );
-	//brightness: 0.8;
 }
 
 .PlayButton Label
@@ -488,8 +489,7 @@ DOTAPlay.ReconnectInProgress .ReconnectSpinner
 	text-align: center;
 	height: 40px;
 	text-overflow: shrink;
-	text-shadow: 0px 0px 5px #000000;
-
+	
 	transition-property: color;
 	transition-delay: 0.0s;
 	transition-duration: 0.2s;
@@ -510,28 +510,24 @@ DOTAPlay.ReconnectInProgress .ReconnectSpinner
 
 DOTAPlay.FindMsgInFlight #PlayButton
 {
-	background-color: gradient( linear, 0% 0%, 0% 100%, from( #5Aa15E ), to( #87d69533 ) );
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #5Aa15E ), to( #87d69533 ) );  
 }
 
 DOTAPlay.FindMsgInFlight #PlayButton:enabled:hover
 {
-	background-color: gradient( linear, 0% 0%, 0% 100%, from( #5Aa15E ), to( #87d695 ) );
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #5Aa15E ), to( #87d695 ) );  
 }
 
 DOTAPlay.PlayButtonStartsSearching #PlayButton,
-#ReconnectButton,
-#ReturnToGameButton
+#ReconnectButton
 {
-	background-color: gradient( linear, 0% 0%, 0% 100%, from( #5Aa15E ), to( #87d69533 ) );
-	//box-shadow: fill #5Aa15E30 -4px -4px 8px 8px;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #5Aa15E ), to( #87d69533 ) );  
 }
 
 DOTAPlay.PlayButtonStartsSearching #PlayButton:enabled:hover,
-#ReconnectButton:enabled:hover,
-#ReturnToGameButton:enabled:hover
+#ReconnectButton:enabled:hover
 {
-	background-color: gradient( linear, 0% 0%, 0% 100%, from( #5Aa15E ), to( #87d695 ) );
-	box-shadow: fill #5Aa15E20 -4px -4px 8px 8px;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #5Aa15E ), to( #87d695 ) );  
 }
 
 DOTAPlay.PlayButtonStartsSearching #PlayButton:activationdisabled
@@ -560,8 +556,8 @@ DOTAPlay.LobbyLeaderStart #PlayButton
 	border-left: 1px solid #ffffff03;
 }
 
-DOTAPlay.LobbyLeaderStart.MatchingRestriction #PlayButton:not(:activationdisabled):hover,
-DOTAPlay.LobbyLeaderStart #PlayButton:not(:activationdisabled):hover
+DOTAPlay.LobbyLeaderStart.MatchingRestriction #PlayButton:hover,
+DOTAPlay.LobbyLeaderStart #PlayButton:hover
 {
 	background-color: gradient( linear, 0% 0%, 0% 100%, from( #2d4881cc ), to( #84acff ) );
 	box-shadow: fill #486ca966 -4px -4px 18px 8px;
@@ -572,8 +568,8 @@ DOTAPlay.LobbySelectorVisible #PlayButton Label
 	color: #ffffff11;
 }
 
-DOTAPlay.LobbySelectorVisible.MatchingRestriction #PlayButton:not(:activationdisabled):hover,
-DOTAPlay.LobbySelectorVisible #PlayButton:not(:activationdisabled):hover
+DOTAPlay.LobbySelectorVisible.MatchingRestriction #PlayButton:hover,
+DOTAPlay.LobbySelectorVisible #PlayButton:hover
 {
 	background-color: gradient( linear, 0% 0%, 0% 100%, from( #14161a ), to( #23262b ) );
 	box-shadow: fill #00000000 0px 0px 0px 0px;
@@ -585,7 +581,7 @@ DOTAPlay.LobbySelectorVisible.LobbyBrowserRowSelected #PlayButton
 	box-shadow: fill #486ca922 -4px -4px 8px 8px;
 }
 
-DOTAPlay.LobbySelectorVisible.LobbyBrowserRowSelected #PlayButton:enabled:hover
+DOTAPlay.LobbySelectorVisible.LobbyBrowserRowSelected #PlayButton:hover
 {
 	background-color: gradient( linear, 0% 0%, 0% 100%, from( #2d4881cc ), to( #84acff ) );
 	box-shadow: fill #486ca966 -4px -4px 18px 8px;
@@ -604,7 +600,7 @@ DOTAPlay.LobbySelectorVisible.LobbyBrowserRowSelected #PlayButton Label
 
 DOTAPlay.FindingMatch #PlayButton
 {
-	transform: translateX(-10px);
+	transform: translateX(-10px);	
 }
 
 DOTAPlay.1v1Disallowed.SectionVisible_1v1  #PlayButton
@@ -612,7 +608,7 @@ DOTAPlay.1v1Disallowed.SectionVisible_1v1  #PlayButton
 	background-color: #444444;
 }
 
-DOTAPlay.CanReturnToWeekendTourney #DeniedPlayButton,
+/* DOTAPlay.CanReturnToWeekendTourney #DeniedPlayButton,
 DOTAPlay.InReadyUp #DeniedPlayButton,
 DOTAPlay.ReturningToQueue #DeniedPlayButton,
 DOTAPlay.PlayButtonHidden #DeniedPlayButton,
@@ -625,27 +621,7 @@ DOTAPlay.ReturningToQueue #PlayButton,
 DOTAPlay.PlayButtonHidden #PlayButton,
 {
 	visibility: collapse;
-}
-
-/* Normally this button shouldn't be needed, but if people get
-   stuck in a bad state try to give them an out. This shows up
-   on a delay so that hopefully it doesn't show in normal operation */
-#LeaveQueueButton
-{
-	visibility: visible;
-
-	opacity: 0.0;
-
-	transition-property: opacity;
-	transition-duration: 0.2s;
-	transition-delay: 5s;
-}
-
-DOTAPlay.ReturningToQueue #LeaveQueueButton
-{
-	opacity: 1.0;
-	transition-delay: 0.0s;
-}
+} */
 
 #Searching
 {
@@ -700,10 +676,15 @@ DOTAPlay.MatchingRestriction #FXSearching
 	vertical-align: bottom;
 	opacity-mask: url("s2r://panorama/images/masks/softedge_box_png.vtex");
 	opacity: 0.0;
-
+	
 	transition-property: opacity;
 	transition-duration: 0.3s;
 	transition-timing-function: ease-in;
+}
+
+.HalloweenActive #FXSearching
+{
+	hue-rotation: HalloweenHue;
 }
 
 .StateParticipatingInTourney #FXSearching
@@ -713,24 +694,10 @@ DOTAPlay.MatchingRestriction #FXSearching
 	brightness: .3;
 }
 
-.FXSearchingParticles
+#FXSearchingParticles
 {
 	width: 100%;
 	height: 100%;
-}
-
-.InHighPriorityQueue .FXSearchingParticles
-{
-	visibility: collapse;
-}
-
-.FXSearchingParticles.HighPriority
-{
-	visibility: collapse;
-}
-.InHighPriorityQueue .FXSearchingParticles.HighPriority
-{
-	visibility: visible;
 }
 
 #JoinPlaytestButton
@@ -812,13 +779,10 @@ DOTAPlay.Connecting #SearchSettingsContainer
 	border-top: 1px solid #59B0D212;
 }
 
-/*
-.InHighPriorityQueue .SearchGradient
+.HalloweenActive .SearchGradient
 {
-	background-color: gradient( linear, 0% 0%, 25% 0%, from( transparent ), to( #224654BB ) );
-	opacity-mask: none;
+	hue-rotation: HalloweenHue;
 }
-*/
 
 .StateParticipatingInTourney .SearchGradient
 {
@@ -841,8 +805,14 @@ DOTAPlay.Connecting #SearchSettingsContainer
 
 #SearchSettingsWeekendTourney
 {
+	horizontal-align: right;
+	text-transform: uppercase;
 	margin-right: 112px;
+	//width: 90%;
+	padding-top: 4px;
+	font-size: 16px;
 	color: #c3a771;
+	vertical-align: bottom;
 }
 
 #SearchSettingsWeekendTourney
@@ -870,7 +840,7 @@ DOTAPlay.Connecting #SearchSettingsContainer
 	margin-left: 12px;
 	margin-right: 57px;
 	letter-spacing: 1px;
-
+	
 	transition-property: opacity;
 	transition-duration: 0.3s;
 	transition-timing-function: ease-in;
@@ -897,15 +867,11 @@ DOTAPlay.LANLobby #SearchSettings
 	border-bottom: 1px solid #59B0D277;
 }
 
-/*
-.InHighPriorityQueue #SearchBackground
+.HalloweenActive #SearchBackground
 {
-	background-color: gradient( linear, 0% 0%, 25% 0%, from( transparent ), to( #224654BB ) );
-	opacity-mask: none;
-	border-top: 1px solid #59B0D277;
-	border-bottom: 1px solid #59B0D277;
+	hue-rotation: HalloweenHue;
 }
-*/
+
 
 #SearchControlsContainer
 {
@@ -944,13 +910,13 @@ DOTAPlay.LANLobby #SearchSettings
 	animation-name: Hop;
 	animation-duration: 0.20s;
 	animation-timing-function: linear;
-	animation-iteration-count: infinite;
+	animation-iteration-count: infinite;	
 }
 
 .Season_International2016.SelfEventActive #MinigameButton
 {
 	visibility: visible;
-
+	
 }
 
 #MinigameButton:hover
@@ -971,7 +937,7 @@ DOTAPlay.LANLobby #SearchSettings
 	{
 		transform: translateY(2px);
 	}
-
+	
 	100%
 	{
 		transform: translateY(-2px);
@@ -989,7 +955,7 @@ DOTAPlay.LANLobby #SearchSettings
 	{
 		transform: translateY(6px);
 	}
-
+	
 	100%
 	{
 		transform: translateY(-6px);
@@ -1013,7 +979,7 @@ DOTAPlay.LANLobby #SearchSettings
 	{
 		wash-color: #7aa8b7;
 	}
-
+	
 	100%
 	{
 		wash-color: white;
@@ -1031,7 +997,7 @@ DOTAPlay.LANLobby #SearchSettings
 	{
 		wash-color: #fdd993cc;
 	}
-
+	
 	100%
 	{
 		wash-color: white;
@@ -1049,7 +1015,7 @@ DOTAPlay.LANLobby #SearchSettings
 	letter-spacing: 2px;
 	margin-top: 8px;
 	//margin-right: 57px;
-
+	
 	transition-property: opacity;
 	transition-duration: 0.2s;
 	transition-timing-function: ease-in;
@@ -1093,7 +1059,7 @@ DOTAPlay.SearchingCountVisible #SearchingCount
 	background-repeat: no-repeat;
 
 }
-
+	
 #CancelSearch:hover
 {
 	wash-color: none;
@@ -1120,154 +1086,145 @@ DOTAPlay.ReturningToQueue #CancelSearch
 	transition-timing-function: ease-in-out;
 }
 
-.SectionVisible_Normal .PlayTabBackgroundImage				{ background-image: url("s2r://panorama/images/textures/playtabbg_normal_psd.vtex"); }
-.SectionVisible_Ranked .PlayTabBackgroundImage				{ background-image: url("s2r://panorama/images/textures/playtabbg_ranked_psd.vtex"); }
-.SectionVisible_1v1 .PlayTabBackgroundImage					{ background-image: url("s2r://panorama/images/textures/playtabbg_1v1_psd.vtex"); }
-.SectionVisible_Mutation .PlayTabBackgroundImage			{ background-image: url("s2r://panorama/images/textures/playtabbg_mutations_psd.vtex"); }
-.SectionVisible_PracticeBots .PlayTabBackgroundImage		{ background-image: url("s2r://panorama/images/textures/playtabbg_bots_psd.vtex"); }
-.SectionVisible_CoachesChallenge .PlayTabBackgroundImage	{ background-image: url("s2r://panorama/images/textures/playtabbg_bots_psd.vtex"); }
-.SectionVisible_CustomGames .PlayTabBackgroundImage			{ background-image: url("s2r://panorama/images/textures/playtabbg_bots_psd.vtex"); }
-
-.Season_International2017 .SectionVisible_CustomGames .PlayTabBackgroundImage
+.SectionVisible_Normal .PlayTabBackgroundImage
 {
-	background-image: url("s2r://panorama/images/textures/playtabbg_siltbreaker_psd.vtex");
+	background-image: url("s2r://panorama/images/textures/playtabbg_normal_psd.vtex");
 }
 
-.Frostivus2017 .SectionVisible_CustomGames .PlayTabBackgroundImage
+.SectionVisible_Ranked .PlayTabBackgroundImage
 {
-	background-image: url("s2r://panorama/images/textures/playtabbg_frostivus_psd.vtex");
+	background-image: url("s2r://panorama/images/textures/playtabbg_ranked_psd.vtex");
 }
 
-.Season_International2018 .SectionVisible_CustomGames .PlayTabBackgroundImage
+.SectionVisible_SeasonalRanked .PlayTabBackgroundImage
 {
-	background-image: url("s2r://panorama/images/front_page/ads/ti8/underhollow_psd.vtex");
+	background-image: url("s2r://panorama/images/textures/playtabbg_ranked_psd.vtex");
 }
 
-.Season_International2019 .SectionVisible_CustomGames .PlayTabBackgroundImage
+.SectionVisible_1v1 .PlayTabBackgroundImage
 {
-	background-image: url("s2r://panorama/images/compendium/international2019/morokai_play_bg_png.vtex");
-	background-size: 100% 100%;
+	background-image: url("s2r://panorama/images/textures/playtabbg_1v1_psd.vtex");
+}
+
+.SectionVisible_PracticeBots .PlayTabBackgroundImage
+{
+	background-image: url("s2r://panorama/images/textures/playtabbg_bots_psd.vtex");
+}
+
+.DarkMoonActive .SectionVisible_CustomGames .PlayTabBackgroundImage
+{
+	background-image: url("s2r://panorama/images/textures/playtabbg_darkmoon_psd.vtex");
 	opacity: .6;
 	saturation: .8;
 }
 
-.Season_International2020 .SectionVisible_CustomGames .PlayTabBackgroundImage
-{
-	background-image: url("s2r://panorama/images/textures/playtabbg_aghanim_psd.vtex");
-	background-size: 100% 100%;
-}
 
-
-.Season_Diretide.SectionVisible_CustomGames .PlayTabBackgroundImage
+.DarkMoonActive .SectionVisible_CustomGames #CustomGameDetailsBackground
 {
-	background-image: url("s2r://panorama/images/textures/playtabbg_diretide2020_psd.vtex");
-	background-size: 100%;
+	background-image: url("s2r://panorama/images/textures/playtabbg_custom_game_details_darkmoon_psd.vtex");
+	background-size: contain;
 	background-repeat: no-repeat;
-}
-
-#DiretideDesc
-{
-	margin: 132px 20px 0px 20px;
-	font-size: 16px;
-	line-height: 24px;
-	font-family: titleFont;
-	font-weight: semi-bold;
-	text-align: center;
-	color: #ffffffcc;
-	letter-spacing: 1px;
-	text-shadow: 0px 0px 4px #d5d33144;
-	height: 128px;
-	text-overflow: shrink;
-}
-
-#DiretideRewardTextContainer
-{
-	margin: 136px 28px 0px 28px;
-	height: 60px;
 	width: 100%;
-	text-overflow: shrink;
-	horizontal-align: center;
-	flow-children: down;
-}
-
-.DiretideRewardText
-{
-	font-size: 16px;
-	line-height: 24px;
-	font-family: titleFont;
-	font-weight: semi-bold;
-	text-align: center;
-	color: #e0c3f0;
-	color: gradient( radial, 50% 50%, 0% 0%, 50% 50%, from(#ffffff ), to(#ff9cff ) );
-	text-shadow: 0px 0px 4px 3.0 rgba(155, 0, 155, 0.6);
-	letter-spacing: 1px;
-	text-transform: uppercase;
-	visibility: collapse;
-}
-
-.DiretideRewardResetText
-{
-	font-size: 16px;
-	color: #656666;
-	font-family: monospaceNumbersFont;
-	text-align: center;
-	horizontal-align: center;
-	text-transform: uppercase;
-	text-overflow: shrink;
-}
-
-#DiretideDailyBonusCountdown 
-{
-	width: 100%;
-	visibility: collapse;
-	horizontal-align: center;
-	text-align: center;
-}
-
-.DiretideRewardAvailable #DiretideRewardAvailable,
-.DiretideRewardClaimed #DiretideRewardEarned,
-.DiretideRewardClaimed #DiretideDailyBonusCountdown
-{
-	visibility: visible;
+	height: 792px;
+	opacity: .6;
+	saturation: .8;
+	z-index: -1;
 }
 
 
-#CustomGamesSectionContent Label#DiretideDesc
-{
-	line-height: 22px;
-	letter-spacing: 1px;
-}
 
-#DiretideInfoButton
+#CustomGameDetails
 {
-	width: fit-children;
-	height: fit-children;
-	border: 2px solid #c4e07622;
-	horizontal-align: center;
-	vertical-align: top;
-	margin-top: 80px;
-	padding: 8px 16px 8px 18px;
-	brightness: 0.6;
-	background-color: none;
+	horizontal-align: right;
+	width: 323px;
+	height: 100%;
 
-	transition-property: brightness, background-color;
+	margin-right: 760px;
+	padding-right: 4px;
+
+	background-color: #291210;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #3D2A36 ), to( #000000 ) );	
+
+	flow-children: none;
+
+	transform: translateX( 40px );
+	opacity: 0.0;
+
+	transition-property: transform, opacity;
 	transition-duration: 0.2s;
 }
 
-#DiretideInfoButton:hover
+.SectionVisible_CustomGames.SlideOutVisible #CustomGameDetails
 {
-	background-color: #c4e07607;
-	brightness: 1.0;
+	transform: translateX( 0px );
+	opacity: 1.0;
 }
 
-#DiretideInfoButton Label
+
+.SectionVisible_CustomGames.LobbySelectorVisible #CustomGameDetails,
+.SectionVisible_CustomGames.LobbyVisible #CustomGameDetails,
+.SectionVisible_CustomGames.WeekendTourneySetupVisible #CustomGameDetails
 {
-	font-size: 16px;
-	font-family: titleFont;
-	font-weight: semi-bold;
-	color: #c4e176;
-	letter-spacing: 1px;
-    text-shadow: 0px 0px 4px #99a08688;
+	transform: translateX( 40px );
+	opacity: 0.0;
+}
+
+#CustomGameDetailsTitleGlow,
+#CustomGameDetailsTitle
+{
+	width: 100%;
+	text-overflow: shrink;
+	font-size: 44px;
+	horizontal-align: center;
+	text-transform: uppercase;
+	text-align: center;
+	margin-top: 20px;
+	text-overflow: shrink;
+}
+
+
+
+#TitleContainer
+{
+	width: 100%;
+	flow-children: none;
+}
+
+.DarkMoon #CustomGameDetailsTitleGlow,
+.DarkMoon #CustomGameDetailsTitle
+{
+	letter-spacing: 5px;
+	height: 42px;
+	font-size: 32px;
+
+	color: black;
+	horizontal-align: center;
+	text-align: center;
+	text-shadow: 0px 0px 22px 2.0 #D26364;		
+}
+
+.DarkMoon #CustomGameDetailsTitleGlow
+{
+	text-shadow: 0px 0px 3px 2.0 #F3A998;	
+}
+
+#CustomGameDescription
+{
+	text-align: left;
+	horizontal-align: center;
+
+	padding: 16px;
+	color: #999999;
+	font-weight: thin;
+}
+
+#CustomGameStatsContainer
+{
+	width: 100%;
+	height: fit-children;
+	vertical-align: bottom;
+	horizontal-align: left;
+	flow-children: down;
 }
 
 .LobbySelectorVisible .PlayTabBackgroundImage
@@ -1289,9 +1246,14 @@ DOTAPlay.ReturningToQueue #CancelSearch
 	transition-timing-function: ease-in-out;
 }
 
+.AspectRatio5x4.DBLobbyVisible #PlaySlideOutBackground, .AspectRatio5x4.DBLobbySelectorVisible #PlaySlideOutBackground
+{
+	width: 670px;
+}
+
 #PlaySlideOut
 {
-	background-color: transparent;
+	background-color: transparent;	
 	height: 100%;
 	width: 760px;
 	width: 1484px;
@@ -1364,6 +1326,11 @@ DOTAPlay.SlideOutVisible.LobbyVisible #PlaySlideOut
 	margin-left: 16px;
 	margin-left: 252px;
 }
+.AspectRatio5x4 DOTAPlay.SlideOutVisible.LobbyVisible #PlaySlideOut
+{
+	transform: translatex(0px);
+	margin-left: 0px;
+}
 
 DOTAPlay.SlideOutVisible #CloseButton
 {
@@ -1394,22 +1361,22 @@ DOTAPlay.LobbyVisible #CloseButton
 	background-color: gradient( radial, 100% 25%, 0% 15%, 90% 50%, from( #48575e44 ), to( #00000000 ) );
 }
 
-
+	
 #CloseButtonIcon
 {
 	margin-left: 6px;
 	vertical-align: center;
 	width: 32px;
 	height: 32px;
-
+	
 	background-image: url("s2r://panorama/images/control_icons/arrow_solid_right_png.vtex");
 	background-repeat: no-repeat;
 	background-position: 50% 50%;
 	background-size: 100% 100%;
-
+	
 	transform: translateX(0px);
 	wash-color: #445255;
-
+	
 	transition-property: wash-color, transform;
 	transition-duration: 0.15s;
 	transition-timing-function: ease-in-out;
@@ -1486,7 +1453,7 @@ DOTAPlay.WeekendTourneySetupVisible #WeekendTourneySetup
 	opacity: 1.0;
 
 	margin-top: 20px;
-
+	
 	transition-property: opacity, transform;
 	transition-duration: 0.4s;
 	transition-timing-function: ease-in-out;
@@ -1498,11 +1465,10 @@ DOTAPlay.WeekendTourneySetupVisible #WeekendTourneySetup
 	margin-right: 50px;
 }
 
-.AspectRatio4x3 #DisconnectButton,
-.AspectRatio4x3 #ReturnToGameButton,
-.AspectRatio4x3 #AbovePlayButtonStack
+.AspectRatio5x4 #PlaySlideOutContent
 {
-	margin-right: 40px;
+	margin-left: 0px;
+	margin-right: 140px;
 }
 
 .AspectRatio16x10 #PlaySlideOutContent
@@ -1528,14 +1494,176 @@ Label
 	font-size: 16px;
 }
 
-.RankedContent DOTASettingsCheckbox:disabled:hover Label
+
+#SeasonalRankedSectionHeader
+{
+	width: 100%;
+}
+
+#SeasonalRankedSectionContent
+{
+	opacity: 0.0;
+	width: 100%;
+
+	transition-property: opacity;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in;
+	visibility: collapse;
+}
+
+.SectionVisible_SeasonalRanked.EligibleForSeasonalRanked #SeasonalRankedSectionContent
+{
+	opacity: 1.0;
+	visibility: visible;
+}
+
+#SeasonalRankedSection
+{
+	width: 100%;
+	margin-bottom: 8px;
+
+	visibility: collapse;
+}
+
+// This is the locked state
+DOTAPlay.SectionVisible_SeasonalRanked #SeasonalRankedSection
+{
+	background-color: sectionbg_active;
+	height: fit-children;
+	opacity: 1.0;
+}
+
+DOTAPlay.SectionVisible_SeasonalRanked.EligibleForSeasonalRanked #SeasonalRankedSection
+{
+	background-color: sectionbg_active;
+	opacity: 1.0;
+}
+
+.SeasonalRankedMMRSection
+{
+	padding: 16px;
+	padding-bottom: 8px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-left: 12px;
+	margin-right: 12px;
+	background-color: #15171944;
+	box-shadow: inset #00000066 0px 2px 6px 0px;
+	
+	width: 100%;
+	padding-top: 12px;
+
+	flow-children: down;
+	
+	transition-property: height;
+	transition-duration: 0.2s;
+	transition-delay: 0.2s;
+	transition-timing-function: ease-in;
+}
+
+DOTAPlay.SectionVisible_SeasonalRanked.EligibleForSeasonalRanked .SeasonalRankedMMRSection
+{
+	margin-bottom: 0px;
+}
+
+.SeasonalRankedMMRSection Label
+{
+	horizontal-align: center;
+	horizontal-align: left;
+}
+
+.SeasonalRankedMMRSection .SectionHeaderLabel
+{
+	color: #d6d6d6;
+}
+
+#SeasonalRankedSection .InfoIcon
+{
+	wash-color: #888888FF;
+	width: 12px;
+	height: width-percentage( 100% );
+	margin-left: 1px;
+	margin-top: 1px;
+}
+
+#SeasonalRankedLocked
+{
+	margin-left: 2px;
+	margin-top: -2px;
+	width: 25px;
+	height: 28px;
+	wash-color: #e54e42;
+}
+
+#SeasonalRankedSectionContent_Locked
+{
+	opacity: 0.0;
+	width: 100%;
+
+	transition-property: opacity;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in;
+	visibility: collapse;
+}
+
+#SeasonalRankedSectionContent_Locked Label
+{
+	width: 274px;
+}
+
+#SeasonalRankedSectionContent_Locked Label a
+{
+	color: #B1CBC6;
+}
+
+.SectionVisible_SeasonalRanked #SeasonalRankedSectionContent_Locked
+{
+	opacity: 1.0;
+	visibility: visible;
+}
+
+.EligibleForSeasonalRanked #SeasonalRankedSectionContent_Locked
+{
+	visibility: collapse;
+}
+
+#SeasonalRankedGameModes ToggleButton:selected .TickBox
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #e7f6f5 ), to( #a0d6d7 ) );
+	border: 3px solid #000000;
+	box-shadow: #5b62bf77 -4px -4px 8px 8px;
+}
+
+#SeasonalRankedGameModes ToggleButton Label
+{
+	margin-top: 4px;
+	font-size: 16px;
+	margin-left: 8px;
+	color: baseText;
+
+	transition-property: color;
+	transition-duration: 0.2s;
+	transition-timing-function: linear;
+}
+
+#SeasonalRankedGameModes ToggleButton:disabled:hover Label
 {
 	color: #d2d6d1;
 }
 
-.RankedContent DOTASettingsCheckbox:disabled Label
+#SeasonalRankedGameModes ToggleButton:disabled Label
 {
 	color: white;
+}
+
+.SeasonalRankedTransfer #SeasonalRankedGameModes
+{
+	visibility: collapse;
+}
+
+.SeasonalRankedTransfer #SeasonalRankedSectionContent .InfoBlock
+{
+	visibility: collapse;
 }
 
 ToggleButton:disabled Label
@@ -1550,175 +1678,480 @@ ToggleButton:disabled:selected .TickBox
 	box-shadow: #33333377 -4px -4px 8px 8px;
 }
 
-.RankedMMRSection
+#SeasonalSoloMMRLabel
 {
-	padding-bottom: 8px;
-	background-color: #252B30;
-	box-shadow: inset #00000066 0px 2px 6px 0px;
-
-	width: 100%;
-
-	flow-children: down;
-}
-
-.RankedMMRSectionContents
-{
-	flow-children: down;
-}
-
-.RankedMMRSection Label
-{
-	horizontal-align: left;
-	margin-top: 2px;
-}
-
-.RankedMMRSectionIcon
-{
-	width: 32px;
-	height: 32px;
-	margin-right: 8px;
-	margin-bottom: 4px;
-
-	vertical-align: middle;
-
-	background-image: url("s2r://panorama/images/icon_mmr_medium_png.vtex");
-	background-size: contain;
-	background-repeat: no-repeat;
-	background-position: center;
-
-	wash-color: #777;
-
-	tooltip-position: left;
-	tooltip-body-position: 50% 50%;
-}
-
-.RankedMMRSection .SectionHeaderLabel
-{
-	color: white;
-	font-weight: bold;
-	margin-bottom: 6px;
-	margin-left: 4px;
-	margin-right: 4px;
-}
-
-.RankedMMRSection .UnlockRankedExplain
-{
-	color: #d6d6d6;
-	margin-bottom: 12px;
-	width: 100%;
-	text-align: center;
-	font-size: 14px;
-}
-
-.RankedMMRSection .Detail1
-{
-	color: #d6d6d6;
-	margin-bottom: 6px;
-	margin-left: 4px;
-	margin-right: 4px;
-}
-
-.RankedMMRSection .Detail2
-{
-	color: grey;
-	font-size: 14px;
-	margin-left: 4px;
-	margin-right: 4px;
-}
-
-#RankedLockedProgress
-{
-	margin-left: 8px;
-	margin-right: 8px;
-	margin-top: 4px;
-	margin-bottom: 4px;
-}
-
-.RankedMMRSection .RankedLockedProgressLabel
-{
-	horizontal-align: center;
-	text-transform: uppercase;
-	vertical-align: center;
-	font-size: 14px;
-}
-
-.RankedMMRSection .ProgressBarLeft
-{
-	background-color: gradient( linear, 0% 0%, 100% 0%, from( #002222FF ), to( #008fC2FF ) );
-}
-
-#PartyMMRLabel
-{
-	min-width: 36px;
 	margin-right: 8px;
 	color: #959596;
 }
 
-#RankedSection
+#SeasonalPartyMMRLabel
 {
-    /* Unfortunately we can't use fit-children as it doesn't transition height properly, so we hardcode possible heights below */
-    //height: fit-children;
-    overflow: squish clip;
+	margin-right: 8px;
+	color: #959596;
 }
 
+#SeasonalSoloMMRValue
+{
+	visibility: collapse;
+}
+
+#SeasonalSoloMMRCalibrating
+{
+	visibility: collapse;
+	color: white;
+}
+
+#SeasonalSoloMMRNoData
+{
+	visibility: collapse;
+	color: white;
+}
+
+DOTAPlay.SeasonalSoloMMRCalibrated #SeasonalSoloMMRValue
+{
+	visibility: visible;
+}
+
+DOTAPlay.SeasonalSoloMMRCalibrating #SeasonalSoloMMRCalibrating
+{
+	visibility: visible;
+}
+
+DOTAPlay.SeasonalSoloMMRNoData #SeasonalSoloMMRNoData
+{
+	visibility: visible;
+}
+
+#SeasonalPartyMMRValue
+{
+	visibility: collapse;
+	color: white;
+}
+
+#SeasonalPartyMMRCalibrating
+{
+	visibility: collapse;
+	color: white;
+}
+
+#SeasonalPartyMMRNoData
+{
+	visibility: collapse;
+	color: white;
+}
+
+DOTAPlay.SeasonalPartyMMRCalibrated #SeasonalPartyMMRValue
+{
+	visibility: visible;
+}
+
+DOTAPlay.SeasonalPartyMMRCalibrating #SeasonalPartyMMRCalibrating
+{
+	visibility: visible;
+}
+
+DOTAPlay.SeasonalPartyMMRNoData #SeasonalPartyMMRNoData
+{
+	visibility: visible;
+}
+
+#SeasonalPartyMMRValue i, #SeasonalSoloMMRValue i
+{
+	text-decoration: none;
+	font-style: normal;
+	color: #757576;
+	font-weight: lighter;
+}
+
+#SeasonalRankedSection TextButton Label
+{
+	color: #B1CBC6;
+}
+
+#SeasonalRankedSection TextButton:disabled Label
+{
+	color: #717B76;
+}
+
+#SeasonalRankedSection TextButton:enabled:hover Label
+{
+	text-decoration: underline;
+	color: #FFFFFF;
+}
+
+#SeasonalRankedLeaderboardsButton
+{
+	horizontal-align: center;
+	margin-top: 15px;
+	margin-bottom: 10px;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+#SeasonalSoloMMRTransfer
+{
+	margin-top: 4px;
+	margin-bottom: 12px;
+}
+
+#SeasonalPartyMMRTransfer
+{
+	margin-top: 4px;
+	margin-bottom: 4px;
+}
+
+#RankedSectionHeader
+{
+	width: 100%;
+}
+
+#RankedSectionContent
+{
+	opacity: 0.0;
+	width: 100%;
+
+	transition-property: opacity;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in;
+	visibility: collapse;
+}
+
+.SectionVisible_Ranked.EligibleForRanked #RankedSectionContent
+{
+	opacity: 1.0;
+	visibility: visible;
+}
+
+.RankedMMRSection
+{
+	padding: 16px;
+	padding-bottom: 8px;
+	margin-top: 10px;
+	margin-bottom: 0px;
+	margin-left: 12px;
+	margin-right: 12px;
+	background-color: #15171944;
+	box-shadow: inset #00000066 0px 2px 6px 0px;
+	
+	width: 100%;
+	padding-top: 12px;
+
+	flow-children: down;
+	
+	transition-property: height;
+	transition-duration: 0.2s;
+	transition-delay: 0.2s;
+	transition-timing-function: ease-in;
+}
+
+.RankedMMRSection Label
+{
+	horizontal-align: center;
+	horizontal-align: left;
+}
+
+.RankedMMRSection .SectionHeaderLabel
+{
+	color: #d6d6d6;
+}
+
+#RankedPhoneStatusContainer
+{
+    width: 100%;
+    height: 100px;
+}
+
+.PhoneStatusPerfectWorld #RankedPhoneStatusContainer
+{
+    visibility: collapse;
+}
+
+.PhoneStatusAnchored #RankedPhoneStatusContainer
+{
+    height: 75px;
+}
+
+.PhoneStatusAnchored #RankedGameModes
+{
+    padding-bottom: 25px;
+}
+
+#RankedPhoneStatusContainer Panel
+{
+    width: 100%;
+    visibility: collapse;
+}
+
+.PhoneStatusNone #RankedPhoneStatusNone
+{
+    visibility: visible;
+}
+
+.PhoneStatusSteam #RankedPhoneStatusSteam
+{
+    visibility: visible;
+}
+
+.PhoneStatusAnchored #RankedPhoneStatusAnchored
+{
+    visibility: visible;
+}
+
+#RankedPhoneStatusAnchored Label
+{
+    color: baseText;
+}
+
+#RankedPhoneStatusAnchored Label a
+{
+    color: #555D52;
+}
+
+#RankedPhoneStatusContainer Button
+{
+    margin-left: 0px;
+    margin-right: 0px;
+    width: 100%;
+}
+
+#RankedPhoneStatusContainer Button Label
+{
+    horizontal-align: center;
+}
+
+#RankedPhoneStatusNone
+{
+    margin-top: 8px;
+    margin-left: 12px;
+    margin-right: 12px;
+    width: 100%;
+}
+
+#RankedPhoneStatusNone > Label
+{
+    width: 306px;
+}
+
+#RankedPhoneStatusNone > Label
+{
+    color: #d75a52;
+}
+
+#RankedPhoneStatusSteam
+{
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+#RankedPhoneStatusSteam > Label
+{
+    color: #d75a52;
+}
+
+#RankedPhoneStatusSteam Button
+{
+    border: 1px solid #33cc6655;
+    background-color: #33cc6611;
+}
+
+#RankedPhoneStatusSteam Button Label
+{
+    color: #66ffaa;
+}
+
+#RankedPhoneStatusSteam Button:enabled:hover Label
+{
+	color: white;
+}
+
+#RankedPhoneStatusSteam Button:enabled:hover
+{
+	border: 1px solid #22ffaaaa;
+	background-color: #33aa6644;
+}
+
+#RankedPhoneStatusSteam Button:active
+{
+	background-color: #238a4644;
+	sound: "ui_select_blue";
+}
+
+#RankedPhoneStatusSteam Button:active Label
+{
+	color: #76edba;
+}
+
+#RankedPhoneStatusAnchored
+{
+    padding-top: 12px;
+    padding-left: 14px;
+    padding-right: 14px;
+}
+
+#SoloMMRLabel
+{
+	margin-right: 8px;
+	color: #959596;
+}
+
+#PartyMMRLabel
+{
+	margin-right: 8px;
+	color: #959596;
+}
+
+#TeamMMRLabel
+{
+	margin-right: 8px;
+	color: #959596;
+}
+
+#SoloMMRValue
+{
+	visibility: collapse;
+}
+
+#SoloMMRCalibrating
+{
+	visibility: collapse;
+	color: white;
+}
+
+#SoloMMRNoData
+{
+	visibility: collapse;
+	color: white;
+}
+
+DOTAPlay.SoloMMRCalibrated #SoloMMRValue
+{
+	visibility: visible;
+}
+
+DOTAPlay.SoloMMRCalibrating #SoloMMRCalibrating
+{
+	visibility: visible;
+}
+
+DOTAPlay.SoloMMRNoData #SoloMMRNoData
+{
+	visibility: visible;
+}
+
+#PartyMMRValue
+{
+	visibility: collapse;
+	color: white;
+}
+
+#PartyMMRCalibrating
+{
+	visibility: collapse;
+	color: white;
+}
+
+#PartyMMRNoData
+{
+	visibility: collapse;
+	color: white;
+}
+
+DOTAPlay.PartyMMRCalibrated #PartyMMRValue
+{
+	visibility: visible;
+}
+
+DOTAPlay.PartyMMRCalibrating #PartyMMRCalibrating
+{
+	visibility: visible;
+}
+
+DOTAPlay.PartyMMRNoData #PartyMMRNoData
+{
+	visibility: visible;
+}
+
+#TeamMMRValue
+{
+	visibility: collapse;
+	color: white;
+}
+
+#TeamMMRCalibrating
+{
+	visibility: collapse;
+	color: white;
+}
+
+#TeamMMRNoData
+{
+	visibility: collapse;
+	color: white;
+}
+
+DOTAPlay.TeamMMRCalibrated #TeamMMRValue
+{
+	visibility: visible;
+}
+
+DOTAPlay.TeamMMRCalibrating #TeamMMRCalibrating
+{
+	visibility: visible;
+}
+
+DOTAPlay.TeamMMRNoData #TeamMMRNoData
+{
+	visibility: visible;
+}
+
+#RankedSection
+{
+	width: 100%;
+	margin-bottom: 8px;
+}
+
+// This is the locked state
 DOTAPlay.SectionVisible_Ranked #RankedSection
 {
 	background-color: sectionbg_active;
-    opacity: 1.0;
-}
-
-DOTAPlay.SectionVisible_Ranked:not(.EligibleForRanked) #RankedSection
-{
-    height: 346px;
+	height: 320px;
+	opacity: 1.0;
 }
 
 DOTAPlay.SectionVisible_Ranked.EligibleForRanked #RankedSection
 {
-    /* Unfortunately we can't use fit-children as it doesn't transition height properly, so we hardcode possible heights below */
-    /* However, it can be useful to temporarily turn this on to find what the heights actually are when changing things */
-    //height: fit-children;
-
-  	height: 514px;
-}
-
-DOTAPlay.SectionVisible_Ranked.EligibleForRanked.PlayDisabled_NoModesSelected #RankedSection
-{
-    height: 528px;
+	background-color: sectionbg_active;
+	height: 400px;
+	opacity: 1.0;
 }
 
 DOTAPlay.SectionVisible_Ranked.EligibleForRanked.ValidTeamIdentity #RankedSection
 {
-    height: 594px;
+	background-color: sectionbg_active;
+	height: 440px;
+	opacity: 1.0;
 }
 
-DOTAPlay.SectionVisible_Ranked.EligibleForRanked.ValidTeamIdentity.PlayDisabled_NoModesSelected #RankedSection
+DOTAPlay.SectionVisible_Ranked.EligibleForRanked.PhoneStatusPerfectWorld #RankedSection
 {
-    height: 608px;
+    height: 300px;
 }
 
-DOTAPlay.SectionVisible_Ranked.EligibleForRanked.ClassicRanked #RankedSection
+DOTAPlay.SectionVisible_Ranked.EligibleForRanked.ValidTeamIdentity.PhoneStatusPerfectWorld #RankedSection
 {
-  	height: 293px;
-}
-
-DOTAPlay.SectionVisible_Ranked.EligibleForRanked.PlayDisabled_NoModesSelected.ClassicRanked #RankedSection
-{
-    height: 307px;
-}
-
-DOTAPlay.SectionVisible_Ranked.EligibleForRanked.ValidTeamIdentity.ClassicRanked #RankedSection
-{
-    height: 373px;
-}
-
-DOTAPlay.SectionVisible_Ranked.EligibleForRanked.ValidTeamIdentity.PlayDisabled_NoModesSelected.ClassicRanked #RankedSection
-{
-    height: 387px;
+    height: 340px;
 }
 
 DOTAPlay.SectionVisible_Normal #GameModeSection
 {
 	background-color: sectionbg_active;
+	opacity: 1.0;
+}
+
+DOTAPlay.SectionVisible_1v1 #1v1Section
+{
+	background-color: sectionbg_active;
+	height: 245px;
 	opacity: 1.0;
 }
 
@@ -1748,217 +2181,16 @@ DOTAPlay.1v1Disallowed #1v1PartyWarning
 	visibility: visible;
 }
 
-DOTAPlay.SectionVisible_Mutation #MutationSection
-{
-	height: 270px;
-	opacity: 1.0;
-}
-
-DOTAPlay.SectionVisible_Mutation.MutationCount7 #MutationSection
-{
-	height: 340px;
-	opacity: 1.0;
-}
-
-
-DOTAPlay.SectionVisible_Mutation #MutationSection #CurrentMutation
-{
-	margin-top: 4px;
-	color: #999;
-	horizontal-align: center;
-}
-
-
-DOTAPlay.SectionVisible_Mutation .Mutation
-{
-	width: 250px;
-	height: 27px;
-	border: 1px solid #6da787;
-	background-color: #6da78711;
-	horizontal-align: center;
-	margin-bottom: 4px;
-}
-
-
-DOTAPlay.SectionVisible_Mutation.MutationCount7 .Mutation
-{
-	height: 20px;
-	margin-bottom: 2px;
-}
-
-DOTAPlay.SectionVisible_Mutation .Mutation Label
-{
-	margin-top: 4px;
-	width: 100%;
-	text-align: center;
-	text-overflow: shrink;
-}
-
-DOTAPlay.SectionVisible_Mutation.MutationCount7 .Mutation Label
-{
-	margin-top: 2px;
-}
-
-DOTAPlay.SectionVisible_Mutation .Mutation .InfoIcon
-{
-	wash-color: #999;
-	width: 14px;
-	height: 14px;
-	margin-top: 2px;
-}
-
-DOTAPlay.SectionVisible_Mutation .TimeRemaining
-{
-	margin-top: 8px;
-	flow-children: right;
-}
-DOTAPlay.SectionVisible_Mutation .TimeRemaining Label
-{
-	color: #999;
-}
-DOTAPlay.SectionVisible_Mutation .TimeRemaining Label.Numbers
-{
-	color: #CCA86E;
-}
-
 DOTAPlay.SectionVisible_PracticeBots #PracticeBotsSection
 {
 	background-color: sectionbg_active;
-	height: 370px;
+	height: 324px;
 }
 
-.Language_thai DOTAPlay.SectionVisible_PracticeBots #PracticeBotsSection
-{
-	height: 390px;
-}
-
-DOTAPlay.SectionVisible_Lobbies #LobbiesSection
-{
-	background-color: sectionbg_active;
-	height: 103px;
-}
-
-#LobbiesSectionContent
-{
-	width: 100%;
-}
-
-#LobbyOptions
-{
-	flow-children: right;
-	width: 100%;
-	padding: 8px 12px;
-}
-
-#LobbyOptions > Button
-{
-	width: fill-parent-flow( 1.0 );
-	background-color: #1b2020;
-	border: 2px solid #444c4c;
-
-	transition-property: brightness;
-	transition-duration: 0.2s;
-}
-
-#LobbyOptions > Button:hover
-{
-	brightness: 2.0;
-}
-
-#LobbyOptions > Button:active
-{
-	brightness: 1.5;
-}
-
-
-.LobbyOptionCenter
-{
-	horizontal-align: center;
-	flow-children: right;
-}
-
-#LobbyOptions > Button Label
-{
-	text-transform: uppercase;
-	letter-spacing: 2px;
-	font-size: 16px;
-	color: #7f8b8d;
-	padding-top: 4px;
-	padding-bottom: 2px;
-	padding-right: 0px;
-}
-
-.LobbyOptionIcon
-{
-	width: 13px;
-	height: 13px;
-	margin-right: 5px;
-	background-size: contain;
-	background-repeat: no-repeat;
-	background-position: center;
-	vertical-align: middle;
-	wash-color: #7f8b8d;
-}
-
-#CreateNewLobbyButton
-{
-	margin-right: 6px;
-}
-
-#CreateNewLobbyButton .LobbyOptionIcon
-{
-	background-image: url("s2r://panorama/images/control_icons/plus_thin_png.vtex");
-}
-
-#BrowseLobbiesButton
-{
-	margin-left: 6px;
-}
-#BrowseLobbiesButton .LobbyOptionIcon
-{
-	width: 15px;
-	height: 15px;
-	transform: translateY( -1px );
-	background-image: url("s2r://panorama/images/control_icons/icon_search_png.vtex");
-}
-
-
-
-DOTAPlay.SectionVisible_CustomGames.DarkMoon #CustomGamesSection
+.DarkMoonActive DOTAPlay.SectionVisible_CustomGames #CustomGamesSection
 {
 	background-color: sectionbg_active;
 	height: 142px;
-}
-
-DOTAPlay.SectionVisible_CustomGames.Season_International2017 #CustomGamesSection
-{
-	background-color: sectionbg_active;
-	height: 185px;
-	opacity: 1.0;
-}
-
-DOTAPlay.SectionVisible_CustomGames.Frostivus2017 #CustomGamesSection
-{
-	background-color: sectionbg_active;
-	height: 185px;
-	opacity: 1.0;
-}
-
-DOTAPlay.SectionVisible_CustomGames.Season_International2018 #CustomGamesSection
-{
-	background-color: sectionbg_active;
-	height: 290px;
-	opacity: 1.0;
-}
-
-DOTAPlay.SectionVisible_CustomGames.Season_International2020 #CustomGamesSection
-{
-	background-color: sectionbg_active;
-}
-
-DOTAPlay.Season_Frostivus2018 #CustomGamesSection
-{
-	height: 74px;
 }
 
 .PlayDividerLine
@@ -1971,13 +2203,6 @@ DOTAPlay.Season_Frostivus2018 #CustomGamesSection
 	height: 2px;
 	width: 100%;
 }
-
-#PracticeBotsSectionContent .PlayDividerLine
-{
-	margin-top: 8px;
-	margin-bottom: 8px;
-}
-
 
 .PlayTabRadio
 {
@@ -2005,7 +2230,7 @@ DOTAPlay.Season_Frostivus2018 #CustomGamesSection
 }
 
 #RankedOff
-{
+{    
 	visibility: visible;
 	margin-left: 8px;
 	margin-top: 14px;
@@ -2030,253 +2255,43 @@ DOTAPlay.RankedMode #RankedOn
 	visibility: visible;
 }
 
-.Ranked_Lock
-{
-	margin-right: 16px;
+#RankedLocked
+{    
+	margin-left: 8px;
 	margin-top: 5px;
 	visibility: visible;
-	width: 16px;
-	height: 16px;
+	width: 14px;
+	height: 14px;
 	wash-color: #91ABA6;
-	horizontal-align: right;
 }
 
 // enable when we unlock ranked
-.EligibleForRanked .Ranked_Lock
-{
+.EligibleForRanked #RankedLocked
+{    
 	visibility: collapse;
 }
 
-#RankedSectionContent
+#RankedSectionContent_Locked
 {
-    width: 100%;
-    height: fit-children;
+	opacity: 0.0;
+	width: 100%;
 
 	transition-property: opacity;
 	transition-duration: 0.2s;
 	transition-timing-function: ease-in;
-    opacity: 0.0;
-    visibility: collapse;
-}
-
-.SectionVisible_Ranked #RankedSectionContent
-{
-    opacity: 1.0;
-    visibility: visible;
-}
-
-#RankedRolesContainer
-{
-	visibility: visible;
-    height: 221px;
-
-	transition-property: height;
-	transition-duration: 0.3s;
-	transition-timing-function: ease-in;
-}
-
-.ClassicRanked #RankedRolesContainer
-{
-	//visibility: collapse;
-    height: 0px;
-}
-
-.RankedSectionContent_Locked
-{
-	width: 100%;
-    flow-children: down;
-}
-
-.EligibleForRanked .RankedSectionContent_Locked
-{
 	visibility: collapse;
 }
 
-.RankedContent
+.SectionVisible_Ranked #RankedSectionContent_Locked
 {
-    width: 100%;
-    flow-children: down;
-    visibility: collapse;
-}
-
-
-.EligibleForRanked .RankedContent
-{
-    visibility: visible;
-}
-
-.RankedContent__ModeSelection
-{
-	flow-children: right;
-	padding-left: 10px;
-	background-color: #252B30;
-}
-
-.RankedContent__ModeSelection RadioButton
-{
-	padding: 8px 8px 8px 0px;
-}
-
-#RankDisplayContainer
-{
-	flow-children: none;
-	height: 56px;
-	padding-left: 10px;
-	overflow: noclip;
-	z-index: 3;
-}
-
-#RankDisplayContainer.RankTier0
-{
-	background-color: gradient( linear, 0% 0%, 100% 0%, from( #636769 ), to( #22272c ) );
-}
-
-#RankDisplayContainer.RankTier1
-{
-	background-color: gradient( linear, 0% 0%, 100% 0%, from( #506f41 ), to( #21262a ) );
-}
-
-#RankDisplayContainer.RankTier2
-{
-	background-color: gradient( linear, 0% 0%, 100% 0%, from( #6c4426 ), to( #21262b ) );
-}
-
-#RankDisplayContainer.RankTier3
-{
-	background-color: gradient( linear, 0% 0%, 100% 0%, from( #2c6366 ), to( #21262b ) );
-}
-
-#RankDisplayContainer.RankTier4
-{
-	background-color: gradient( linear, 0% 0%, 100% 0%, from( #245751 ), to( #21262a ) );
-}
-
-#RankDisplayContainer.RankTier5
-{
-	background-color: gradient( linear, 0% 0%, 100% 0%, from( #742124 ), to( #21262b ) );
-}
-
-#RankDisplayContainer.RankTier6
-{
-	background-color: gradient( linear, 0% 0%, 100% 0%, from( #652e7f ), to( #22272d ) );
-}
-
-#RankDisplayContainer.RankTier7
-{
-	background-color: gradient( linear, 0% 0%, 100% 0%, from( #796d46 ), to( #21262b ) );
-}
-
-#RankDisplayContainer.RankTier8
-{
-	background-color: gradient( linear, 0% 0%, 100% 0%, from( #736634 ), to( #21262b ) );
-}
-
-#RankDisplayContainer.RankTier8.LeaderboardRank1000
-{
-	background-color: gradient( linear, 0% 0%, 100% 0%, from( #736634 ), to( #21262b ) );
-}
-
-#RankDisplayContainer.RankTier8.LeaderboardRank100
-{
-	background-color: gradient( linear, 0% 0%, 100% 0%, from( #726434 ), to( #24282d ) );
-}
-
-#RankDisplayContainer.RankTier8.LeaderboardRank10
-{
-	background-color: gradient( linear, 0% 0%, 100% 0%, from( #726535 ), to( #21262b ) );
-}
-
-.RankedContent__RankDisplay .RankTierContainer
-{
-	height: 56px;
-	width: 56px;
-	horizontal-align: right;
-	margin-right: 16px;
-	overflow: noclip;
-}
-
-.RankedContent__RankDisplay .RankTierImage,
-.RankPipImage
-{
-	background-size: 150%;
-	background-position: top;
-	background-repeat: no-repeat;
-	overflow: noclip;
-}
-
-.RankedContent__RankDisplay #RankNameContainer
-{
-	width: 200px;
-	vertical-align: center;
-	flow-children: down;
-	horizontal-align: left;
-	padding: 8px 10px 6px 10px;
-}
-
-.RankedContent__RankDisplay #RankNameContainer #RankNameLarge
-{
-	color: gradient( linear, 0% 0%, 0% 100%, from( #ffffff ), to( #bbb ) );
-	text-transform: uppercase;
-	letter-spacing: 2px;
-	font-weight: bold;
-	text-shadow: 1px 2px 2px #00000080;
-}
-
-
-.RankedContent__RankDisplay #RankNameContainer #RankPipsContainer
-{
-	flow-children: right;
-	/* height: 18px; */
-	width: 100%;
-	/* margin-top: 4px; */
-}
-
-
-.RankedContent__RankDisplay #RankNameContainer #RankPipsContainer .RankPipStar
-{
-	background-size: contain;
-	width: 18px;
-	height: 18px;
-	background-repeat: no-repeat;
-	margin-top: 2px;
-}
-
-.RankPipStar
-{
-	background-image: url("s2r://panorama/images/rank_tier_icons/star_shadow_png.vtex");
-}
-
-.RankPips1 #RankPipImage1,
-.RankPips2 #RankPipImage1, .RankPips2 #RankPipImage2,
-.RankPips3 #RankPipImage1, .RankPips3 #RankPipImage2, .RankPips3 #RankPipImage3,
-.RankPips4 #RankPipImage1, .RankPips4 #RankPipImage2, .RankPips4 #RankPipImage3, .RankPips4 #RankPipImage4,
-.RankPips5 #RankPipImage1, .RankPips5 #RankPipImage2, .RankPips5 #RankPipImage3, .RankPips5 #RankPipImage4,.RankPips5 #RankPipImage5,
-{
-	background-image: url("s2r://panorama/images/rank_tier_icons/star_yellow_png.vtex");
-	img-shadow: 0px 1px 0px #00000020;
-}
-
-#RankDisplayContainer.RankTier8 .RankPipStar
-{
-	visibility: collapse;	
-}
-
-#LeaderboardRankLabelLarge
-{
-	visibility: collapse;
-	color: gradient( linear, 0% 0%, 0% 100%, from( #ffe6b9 ), to( #dfaf57 ) );
-	text-transform: uppercase;
-	letter-spacing: 1px;
-	font-weight: bold;
-	text-shadow: 1px 1px black;
-	font-size: 18px;
-}
-
-.LeaderboardRank1000 #LeaderboardRankLabelLarge, .LeaderboardRank100 #LeaderboardRankLabelLarge, .LeaderboardRank10 #LeaderboardRankLabelLarge
-{
+	opacity: 1.0;
 	visibility: visible;
 }
 
+.EligibleForRanked #RankedSectionContent_Locked
+{
+	visibility: collapse;
+}
 
 ToggleButton Label
 {
@@ -2289,8 +2304,7 @@ RadioButton Label
 }
 
 #CustomGamesSectionContent RadioButton Label,
-#1v1SectionContent RadioButton Label,
-#MutationSectionContent RadioButton Label
+#1v1SectionContent RadioButton Label
 {
 	text-transform: none;
 }
@@ -2312,35 +2326,12 @@ DOTAPlay.SectionVisible_1v1 #1v1SectionContent
 	visibility: visible;
 }
 
-#MutationSectionContent
-{
-	padding: 14px;
-	width: 100%;
-	visibility: collapse;
-}
-
-#GameStyle_Mutation Label
-{
-	text-transform: none;
-}
-
-DOTAPlay.SectionVisible_Mutation #MutationSectionContent
-{
-	visibility: visible;
-}
-
-#GameStyle_Mutation Label
-{
-	text-transform: none;
-}
-
-
 #PracticeBotsSectionContent
 {
 	width: 100%;
+	height: 397px;
 	padding: 8px;
 	opacity: 0.0;
-	overflow: squish clip;
 	transition-property: opacity;
 	transition-duration: 0.2s;
 	transition-timing-function: ease-in;
@@ -2348,7 +2339,6 @@ DOTAPlay.SectionVisible_Mutation #MutationSectionContent
 
 #PlayBotsSolo, #PlayBotsCoop
 {
-	width: 150px;
 }
 
 #BotSectionContainer
@@ -2364,13 +2354,6 @@ DOTAPlay.SectionVisible_Mutation #MutationSectionContent
 #CustomGamesSection
 {
 	visibility: collapse;
-	height: fit-children;
-}
-
-.CustomGamesSectionMain
-{
-	width: 100%;
-	flow-children: down;
 }
 
 DOTAPlay.MatchmadeCustomGameAvailable #CustomGamesSection
@@ -2378,407 +2361,296 @@ DOTAPlay.MatchmadeCustomGameAvailable #CustomGamesSection
 	visibility: visible;
 }
 
-.Season_International2020 #CustomGamesSectionContent
-{
-	width: 100%;
-	height: 0px;
-	flow-children: down;
-	background-color: gradient( linear, 0% 0%, 0% 100%, from( #151d2e ), to( #000000 ) );
-	background-size: 100% 100%;
-	background-repeat: no-repeat;
-	transition-property: height;
-	transition-duration: 0.2s;
-	transition-timing-function: ease-in;
-	/* border-left: 2px solid #4F3612;
-	border-right: 2px solid #4F3612;
-	border-bottom: 2px solid #4F3612; */
-	background-image: url("s2r://panorama/images/events/aghanim/aghs_ink_png.vtex");
-	background-size: 150%;
-	background-position: center;
-	background-repeat: no-repeat;
-}
-
-
-.Season_Diretide #CustomGamesSectionContent
-{
-	width: 100%;
-	height: 0px;
-	background-color: gradient( linear, 0% 0%, 0% 100%, from( #151d2e ), to( #000000 ) );
-	background-size: 100% 100%;
-	background-repeat: no-repeat;
-	transition-property: height;
-	transition-duration: 0.2s;
-	transition-timing-function: ease-in;
-
-	background-image: url("s2r://panorama/images/events/diretide/2020/diretide_play_bg_psd.vtex");
-	background-size: 100%;
-	background-position: center;
-	background-repeat: no-repeat;
-}
-
-.DiretideLogo
-{
-	height: 140px;
-	width: 100%;
-	background-image: url("s2r://panorama/images/events/diretide/2020/diretide_logo_en_psd.vtex");
-	background-size: contain;
-	background-position: center;
-	background-repeat: no-repeat;
-	margin-top: 8px;
-	vertical-align: top;
-}
-
-.Language_schinese .DiretideLogo, .Language_tchinese .DiretideLogo {
-	background-image: url("s2r://panorama/images/events/diretide/2020/diretide_logo_cn_psd.vtex");
-}
-
-.Language_russian .DiretideLogo {
-	background-image: url("s2r://panorama/images/events/diretide/2020/diretide_logo_ru_psd.vtex");
-}
-
-#Diretide2020HowToPlay
-{
-    width: 200px;
-    height: 50px;
-}
-
-.CandySection
+#CustomGamesSectionContent
 {
 	width: 100%;
 	height: 100%;
-	flow-children: right;
+	padding: 8px;
+	flow-children: down;
+	visibility: collapse;
 }
 
-.CandyCountSection
+.CurrentCustomGamePointContainer
+{
+	flow-children: right;
+	horizontal-align: center;
+}
+
+#CurrentPoints
 {
 	flow-children: down;
-	horizontal-align: center;
-	vertical-align: center;
 }
 
-.CandyHeader
-{
-	text-align: center;
-	horizontal-align: center;
-	vertical-align: top;
-}
-
-.CandyBucket
-{
-	height: 104px;
-	width: 134px;
-	background-image: url("s2r://panorama/images/events/diretide/candycount_png.vtex");
-	background-size: 100%;
-	background-position: center;
-	background-repeat: no-repeat;
-}
-.CandyBucket.Precache
-{
-	background-image: url("s2r://panorama/images/events/diretide/chat_line_png.vtex");
-	background-image: url("s2r://panorama/images/events/diretide/emoticon_png.vtex");
-	background-image: url("s2r://panorama/images/events/diretide/spray_png.vtex");
-}
-
-#DifficultySelector
-{
-	padding: 8px;
-	padding-left: 12px;
-}
-
-DOTAPlay.SectionVisible_CustomGames #CustomGamesSectionContent
-{
-	height: 470px;
-}
-
-DOTAPlay.Season_Diretide.SectionVisible_CustomGames #CustomGamesSectionContent
-{
-	height: 420px;
-	flow-children: none;
-}
-
-#CustomGamesSectionContent Panel
-{
-}
-
-#CustomGamesSectionContent Label
-{
-//	color: #fff;
-//	font-size: 14px;
-	letter-spacing: 2px;
-	line-height: 20px;
-}
-
-#CustomGamesSectionContent .DifficultySelectorTitle
-{
-	font-size: 16px;
-	line-height: 17px;
-	letter-spacing: 2px;
-	text-transform: uppercase;
-	color: #acb9d3;
-
-	margin-bottom: 8px;
-	margin-left: 8px;
-}
-
-.CustomGameDifficultyButton
-{
-	margin: 5px;
-	height: 40px;
-	brightness: 0.8;
-	padding-left: 8px;
-}
-
-.CustomGameDifficultyButton.Challenge
-{
-	height: 48px;
-}
-
-.EventGameCompetitionOver .CustomGameDifficultyButton.Challenge
+.CurrentCustomGamePointContainer.Multiplier
 {
 	visibility: collapse;
 }
 
-.CustomGameDifficultyButton:selected
-{
-	brightness: 1.2;
-}
-
-.CustomGameDifficultyButton Label
-{
-	font-size: 16px;
-	letter-spacing: 2px;
-	vertical-align: middle;
-	margin: 0;
-	margin-left: -24px;
-	width: 260px;
-	color: #ffffff;
-
-	background-color: gradient( linear, 0% 0%, 100% 0%, from( #6D553100 ), color-stop(0.2, #6D5531cc ), color-stop(0.4, #c9a16480 ), to( #C9A06400 ) );
-	padding: 4px 24px 6px 32px;
-	text-shadow: 1px 2px 2px #000000;
-	z-index: 1;
-}
-
-.CustomGameDifficultyButton Label.Challenge
-{
-	padding-bottom: 0;
-	padding-top: 0;
-}
-
-#ChallengeText .Challenge 
-{
-	background-color: gradient( linear, 0% 0%, 100% 0%, from( #6d313100 ), color-stop(0.2, #6d3131cc ), color-stop(0.4, #c9646480 ), to( #c9646400 ) );
-}
-
-#ChallengeText
-{
-	flow-children: down;
-	vertical-align: middle;
-	margin-top: 2px;
-}
-
-.CustomGameDifficultyButton Label.Title
-{
-	font-size: 16px;
-	margin-top: 0px;
-	color: white;
-	padding-top: 2px;
-}
-
-.CustomGameDifficultyButton Label.Countdown
-{
-	font-size: 14px;
-	padding-top: -2px;
-	color: white;
-	padding-bottom: 3px;
-}
-
-/* .CustomGameDifficultyButton:disabled Label,
-.CustomGameDifficultyButton:disabled .CustomGameLevelIcon
-{
-	opacity: 0.4;
-	color: white;
-} */
-
-ToggleButton:disabled
-{
-	color: #fff;
-	opacity: 0.3;
-}
-
-ToggleButton:disabled .TickBox
-{
-	opacity: 0;
-}
-
-#AghanimTitle
-{
-	width: 100%;
-	text-align: left;
-	padding-left: 22px;
-	padding-right: 22px;
-	color: #E2EBFF;
-	text-shadow: 0 0 2px #3375FF80;
-
-	letter-spacing: 0;
-}
-
-#AghanimText
-{
-	width: 100%;
-	margin-top: 5px;
-	flow-children: down;
-}
-
-#AghanimText #AghanimTitle
-{
-	letter-spacing: 0px;
-}
-
-#AghanimLearnMore
-{
-	horizontal-align: left;
-	padding-left: 20px;
-	margin-top: 2px;
-	color: #ffffff60;
-	text-decoration: underline;
-	margin-bottom: 12px;
-	text-transform: uppercase;
-	letter-spacing: 2px;
-
-	font-size: 14px;
-	color: #D9F1FF;
-	text-shadow: 0px 0px 4px #3375FF;
-}
-
-#AghanimLearnMore:hover
-{
-	color: #fff;
-}
 
 
-#AghanimLearnMoreActivated
+.DarkMoon .CustomGamePointContainer.Multiplier
 {
 	horizontal-align: center;
-	color: #ffffff60;
-	text-decoration: underline;
-	margin-top: 5px;
-}
-
-.CustomGameLevelIcon
-{
-	width: 42px;
-	height: 48px;
-	margin-left: 12px;
-
-	background-position: center;
-	background-size: contain;
-	background-repeat: no-repeat;
-	z-index: 2;
-}
-
-#CustomGameDifficulty1 .CustomGameLevelIcon
-{
-	background-image: url("s2r://panorama/images/events/aghanim/difficulty_1_png.vtex");
-}
-
-#CustomGameDifficulty2 .CustomGameLevelIcon
-{
-	background-image: url("s2r://panorama/images/events/aghanim/difficulty_2_png.vtex");
-}
-
-#CustomGameDifficulty3 .CustomGameLevelIcon
-{
-	background-image: url("s2r://panorama/images/events/aghanim/difficulty_3_png.vtex");
-}
-
-#CustomGameDifficulty4 .CustomGameLevelIcon
-{
-	background-image: url("s2r://panorama/images/events/aghanim/difficulty_4_png.vtex");
-}
-
-#CustomGameDifficulty5 .CustomGameLevelIcon
-{
-	background-image: url("s2r://panorama/images/events/aghanim/difficulty_5_png.vtex");
-}
-
-#CustomGameChallengeToggle .CustomGameLevelIcon
-{
-	background-image: url("s2r://panorama/images/events/aghanim/challenge_png.vtex");
-}
-
-
-#BlessingSkillTreeButton
-{
-	width: 100%;
-	height: 64px;
-
-	background-color: gradient( linear, 0% 100%, 0% 0%, from( #3374ff20 ), color-stop(0.6, #3374ff10 ), to( #3375FF00 ) );
 	vertical-align: bottom;
+	margin-bottom: 32px;
 	flow-children: right;
-
-	transition-property: brightness;
-	transition-duration: 0.2s;
-	transition-timing-function: ease-in;
 }
 
-#BlessingSkillTreeButton:hover
+.DarkMoon .CustomGamePointContainer.Multiplier Label
 {
-	brightness: 1.8;
-	background-color: gradient( linear, 0% 100%, 0% 0%, from( #3374ff26 ), color-stop(0.5, #3374ff14 ), to( #3375FF00 ) );
-}
-
-#BlessingSkillTreeButton:active
-{
-	brightness: 0.8;
-}
-
-.BlessingsIcon
-{
-	width: 32px;
+	font-size: 26px;
+	color: #57A6D8;
+	text-shadow: 0px 0px 8px 1 #57A6D8;
+	text-overflow: shrink;
 	height: 32px;
-	margin-top: 12px;
-
-	vertical-align: top;
-	background-repeat: no-repeat;
-	background-size: contain;
-}
-
-.BlessingsIcon.Left
-{
-	background-image: url("s2r://panorama/images/events/aghanim/aghanims_blessings_png.vtex");
-	transform: scaleX(-1);
-	horizontal-align: left;
-	margin-left: 12px;
-}
-
-.BlessingsIcon.Right
-{
-	background-image: url("s2r://panorama/images/events/aghanim/aghanims_blessings_png.vtex");
-	horizontal-align: Right;
-	margin-right: 12px;
-}
-
-.BlessingsButtonText
-{
-	horizontal-align: center;
 	text-align: center;
-	width: fill-parent-flow( 1.0 );
-	vertical-align: middle;
-	font-size: 14px;
-	font-weight: normal;
-	text-transform: uppercase;
+}
 
-	text-shadow: 0 0 4px #3375FF80;
-	color: #EEF8FD;
+.CustomGamePointContainer.Multiplier
+{
+	animation-name: BonusActive;
+	animation-duration: 0.81s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	tooltip-position: left;
+	tooltip-body-position: 50%;
+	opacity: 0;
+	
+	transition-property: opacity;
+	transition-duration: .2s;
+	transition-timing-function: ease-in-out;
+}
+
+
+.CustomGamePointsMultiplierActive .CustomGamePointContainer.Multiplier
+{
+	opacity: 1;
+}
+
+@keyframes 'BonusActive'
+{
+	0%
+	{
+		pre-transform-scale2d: 1;
+		brightness: 2;
+	}
+	50%
+	{
+		pre-transform-scale2d: 0.98;
+		brightness: 1;
+	}
+	100%
+	{
+		pre-transform-scale2d: 1;
+		brightness: 2;
+	}
+}
+
+
+
+.CustomGamePointContainer .InfoIcon
+{
+	margin-bottom: 4px;
+	width: 16px;
+	height: 16px;
+	wash-color: #57A6D8;
+}
+
+
+DOTAPlay.CustomGamePointsMultiplierActive .CurrentCustomGamePointContainer.Multiplier
+{
+	visibility: visible;
+}
+
+.DimPlayText
+{
+	color: #DDAA9C44;
+	font-size: 14px;
+	font-weight: thin;
+	text-transform: uppercase;
+	text-align: center;
+	horizontal-align: center;
+	letter-spacing: 1px;
+}
+
+.DimPlayText.Multiplier
+{
+	color: #BB7D73;
+	font-size: 26px;
+	margin-bottom: 16px;
+	padding-right: 16px;
+	padding-left: 16px;
+	text-shadow: 0px 0px 8px 1.0 #D2636488;		
+}
+
+.DimPlayText.CustomGamePoints
+{
+	color: white;
+	font-size: 32px;
+}
+
+
+#ClaimReward
+{
+	width: 330px;
+	min-height: 36px;
+	box-shadow: fill transparent 0px 0px 0px 0px;
+	background-color: black;
+	//border: 1px solid #484c4944;
+	horizontal-align: right;
+	vertical-align: bottom;
+	margin-bottom: 20px;
+	margin-top: 8px;
+	margin-left: 32px;
+	margin-right: 32px;
+	padding: 0px;
+	flow-children: down;
+	
+	background-image: url("s2r://panorama/images/textures/glassbutton_darkmoon_psd.vtex");
+	background-size: 100%;
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	
+	transition-property: box-shadow, background-image, background-color;
+	transition-duration: .16s;
+	transition-timing-function: ease-in-out;
+	
+	border-radius: 6px;
+	visibility: collapse;
+}
+
+#ClaimReward:enabled
+{
+	box-shadow: #F78F9005 -9px -9px 18px 18px;
+	visibility: visible;
+}
+
+#ClaimReward:enabled:hover
+{
+	background-image: url("s2r://panorama/images/textures/glassbutton_darkmoon_hover_psd.vtex");
+	box-shadow: #F78F9015 -4px -4px 8px 8px;
+}
+
+.ClaimLabel
+{
+	width: 100%;
+	text-align: center;
+	margin-top: 3px;
+	font-size: 20px;   
+	font-weight: thin;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	font-size: 22px;
+	color: grey;
+}
+
+.ClaimLabel.PointAmount
+{
+	font-size: 16px;   
+}
+
+#ClaimReward:enabled .ClaimLabel
+{
+	color: white;
+}
+
+DOTAPlay.DarkMoon #ClaimReward:enabled
+{
+	border: 1px solid #62451144;
+}
+
+DOTAPlay.DarkMoon .ClaimLabel
+{
+	margin: 0px;
+	padding-top: 8px;	
+}
+
+DOTAPlay.DarkMoon .ClaimLabel.PointAmount
+{
+	margin-top: -4px;
+	padding-top: 0px;	
+	padding-bottom: 8px;	
+}
+
+
+/* Dark Moon color overrides */
+DOTAPlay.DarkMoon #GameStyle_CustomGames
+{
+	background-color: #7F3432;
+}
+
+DOTAPlay.DarkMoon #GameStyle_CustomGames:hover
+{
+	background-color: #BE474C;
+}
+
+DOTAPlay.DarkMoon #GameStyle_CustomGames:hover Label
+{
+	color: white;
+}
+
+
+DOTAPlay.DarkMoon #GameStyle_CustomGames Label
+{
+	color: #FFBEA0;
+}
+
+DOTAPlay.DarkMoon #CustomGamesSectionContent .RadioBox
+{
+	background-color: gradient( radial, 50% 50%, 0% 0%, 50% 50%, from( #FFB1AB ), to( #B26469 ) );
+	box-shadow: #D87271aa -3px -3px 6px 6px;
+}
+
+
+DOTAPlay.DarkMoon #GameStyle_CustomGames:selected
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #FFd9c6 ), color-stop( 0.015, #FFC9B6 ), color-stop( 0.02, #7F3432 ), to( #7F3432 ) );
+}
+
+DOTAPlay.DarkMoon #CustomGamesSectionContent
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #55262F ), to( #2A131B ) );
+}
+
+#BabyRoshan
+{
+	width: 512px;
+	height: 512px;
+	transform: translateY(-42px) translateX(-82px);
+	z-index: 3;
+	transition-property: opacity, pre-transform-scale2d;
+	transition-duration: .32s;
+	transition-timing-function: ease-in-out;	
+	opacity: 0;
+	pre-transform-scale2d: .9;
+}
+
+DOTAPlay.DarkMoon.SectionVisible_CustomGames #BabyRoshan
+{
+	opacity: 1;
+	pre-transform-scale2d: 1;
+}
+
+
+DOTAPlay.SectionVisible_CustomGames #CustomGamesSectionContent
+{
+	visibility: visible;
 }
 
 DOTAPlay.SectionVisible_PracticeBots #PracticeBotsSectionContent
 {
 	opacity: 1.0;
 }
+
+DOTAPlay.SectionVisible_CustomGames #CustomGamesSectionContent
+{
+	opacity: 1.0;
+}
+
+
 .GameStyle
 {
+	background-color: #222629;
 	background-color: #222629f4;
 	width: 100%;
 	height: 50px;
@@ -2798,6 +2670,7 @@ DOTAPlay.SectionVisible_PracticeBots #PracticeBotsSectionContent
 	padding-left: 12px;
 	border: 1px solid #222629;
 	box-shadow: fill #00000066 -4px -2px 16px 8px;
+	flow-children: none;
 	width: 100%;
 	height: fit-children;
 	padding-top: 12px;
@@ -2806,315 +2679,6 @@ DOTAPlay.SectionVisible_PracticeBots #PracticeBotsSectionContent
 	transition-duration: 0.3s;
 	transition-timing-function: ease-in;
 	sound: "ui_find_match_change_options";
-}
-
-.GameStyleIcons
-{
-	flow-children: right;
-	margin-right: 8px;
-	vertical-align: middle;
-}
-
-.BattlePassSection .GameStyle
-{
-	//background-color: gradient( linear, 0% 0%, 100% 0%, from( darkColor ), to( ultraDarkColor ) );
-}
-
-.BattlePassSection .GameStyle:hover
-{
-	//background-color: gradient( linear, 0% 0%, 100% 0%, from( hsv-transform( darkColor, 0, 1, 2.0 ) ), to( hsv-transform( ultraDarkColor, 0, 1, 2.0 ) ) );
-}
-
-.BattlePassSection .GameStyle Label
-{
-	color: #ccc;
-}
-
-.BattlePassSection .GameStyle:selected Label
-{
-	color: white;
-}
-
-.BattlePassSection .GameStyle:selected
-{
-	background-color: gradient( linear, 0% 0%, 100% 0%, from( #503712 ), to( #E8CF8D ) );
-}
-
-.BattlePassSection .GameStyle .BattlePassSectionIcon
-{
-	margin-left: 4px;
-	vertical-align: middle;
-	//background-image: bp_point_log_pass_activated;
-	background-size: contain;
-	background-repeat: no-repeat;
-	background-position: center;
-
-	width: 28px;
-	height: 28px;
-
-	brightness: 0.2;
-}
-
-.BattlePassSection .GameStyle:selected .BattlePassSectionIcon
-{
-	brightness: 1.0;
-}
-
-.Aghanim .GameStyle
-{
-	background-color: gradient( linear, 0% 0%, 100% 0%, from( #275AF2 ), to( #41A0F2 ) );
-}
-
-.Aghanim .GameStyle:hover
-{
-	background-color: gradient( linear, 0% 0%, 100% 0%, from( hsv-transform( #275AF2, 0, 1, 2.0 ) ), to( hsv-transform( #41A0F2, 0, 1, 2.0 ) ) );
-}
-
-.Diretide2020 .GameStyle
-{
-	background-color: gradient( linear, 0% 0%, 100% 0%, from( #23382c), to( #47755e) );
-}
-
-#CustomGamesSection.Aghanim .GameStyle:selected
-{
-	background-color: gradient( linear, 0% 0%, 100% 0%, from( #DFE9F2 ), color-stop( 0.015, #41A0F2 ), color-stop( 0.02, #41A0F2 ), to( #275AF2 ) );
-}
-
-.GameStyle .DotaPlusSectionIcon
-{
-	margin-left: 4px;
-	vertical-align: top;
-	background-size: contain;
-	background-repeat: no-repeat;
-	background-position: center;
-
-	width: 24px;
-	height: 24px;
-
-	brightness: 0.4;
-}
-
-.GameStyle:selected .DotaPlusSectionIcon
-{
-	brightness: 1.0;
-}
-
-.DotaPlusSection .GameStyle
-{
-	background-color: dotaPlusBrown;
-	border-bottom: 1px solid #433620;
-}
-
-.DotaPlusSection .GameStyle:hover:not(:selected)
-{
-	brightness: 2.0;
-}
-
-.DotaPlusSection .GameStyle Label
-{
-	color: dotaPlusGold;
-}
-
-.DotaPlusSection .GameStyle:selected Label
-{
-	color: #fee3a5;
-}
-
-.DotaPlusSection .GameStyle:selected
-{
-	background-color: gradient( linear, 0% 0%, 100% 0%, from( #433620 ), to( #b78946 ) );
-	border-bottom: 1px solid #b78946;
-}
-
-#MutationSection
-{
-	visibility: collapse;
-}
-
-.GlobalEventActive.CurrentSeason.Season_International2018 #MutationSection
-{
-	visibility: visible;
-}
-
-DOTAPlay.SectionVisible_Mutation #MutationSection
-{
-	//background-color: gradient( linear, 0% 0%, 100% 100%, from( ultraDarkColor ), to( darkColor ) );
-}
-
-#CustomGamesSection .CustomGameBackgroundImage
-{
-	horizontal-align: right;
-	vertical-align: bottom;
-	width: 100px;
-	height: 70px;
-	//background-image: url("s2r://panorama/images/events/frostivus/frostivus_snowflake_psd.vtex");
-	background-size: 140px 140px;
-	background-repeat: no-repeat;
-	background-position: 0% 0%;
-	opacity: 0.6;
-}
-
-#CustomGamesSection .GameStyle
-{
-	flow-children: none;
-	background-size: 100% 100%;
-	background-position: 50% 50%;
-	background-repeat: no-repeat;
-	height: 50px;
-	padding-top: 12px;
-	padding-bottom: 5px;
-	overflow: noclip;
-	border: 1px solid transparent;
-}
-
-#CustomGamesSection .GameStyle:hover
-{
-	brightness: 2;
-}
-
-#CustomGamesSection .GameStyle:selected
-{
-	//background-color: gradient( linear, 0% 0%, 100% 0%, from( accentColorBright ), color-stop( 0.015, ultraDarkColor ), color-stop( 0.02,ultraDarkColor ), to( darkColor ) );
-}
-
-.Season_Diretide #CustomGamesSection .GameStyle:selected
-{
-	//background-color: gradient( linear, 0% 0%, 100% 0%, from( #e9f86f ), color-stop( 0.015, ultraDarkColor ), color-stop( 0.02,ultraDarkColor ), to( #47755e) );
-}
-
-.Season_Diretide #CustomGamesSection .GameStyle:hover
-{
-	brightness: 1;
-	background-color: gradient( linear, 0% 0%, 100% 0%, from( #416e55), to( #40b87c) );
-}
-
-#DiretideRewardContainer
-{
-	width: 88px;
-	height: 88px;
-	z-index: 2000;
-	horizontal-align: right;
-	margin-right: 0px;
-	margin-top: -18px;
-	margin-bottom: -20px;
-	overflow: noclip;
-}
-
-#DiretideRewardIndicator
-{
-	width: 100%;
-	height: 100%;
-	background-size: contain;
-	background-repeat: no-repeat;
-	img-shadow: 2px 2px 12px 4.0 #00000088;
-}
-
-.DiretideRewardClaimed #DiretideRewardIndicator
-{
-	background-image: url("s2r://panorama/images/events/diretide/2020/rosh_cookie_bite_psd.vtex");
-	saturation: 0.9;
-	brightness: 0.4;
-}
-
-.DiretideRewardAvailable #DiretideRewardIndicator
-{
-	background-image: url("s2r://panorama/images/events/diretide/2020/rosh_cookie_whole_psd.vtex");
-	
-	//animation-name: RewardGlow;
-	animation-duration: 2.55s;
-	animation-timing-function: ease-in;
-	animation-iteration-count: infinite;
-}
-
-@keyframes 'RewardGlow'
-{
-    0%
-    {
-
-	    img-shadow: 0px 0px 4px 3.0 #c474c488;
-    }
-    50%
-    {
-	    img-shadow: 0px 0px 16px 2.0 #c474c422;
-    }
-    100%
-    {
-	    img-shadow: 0px 0px 4px 3.0 #c474c488;
-    }
-}
-
-#RewardAvaialbleGleam
-{
-	width: 100%;
-	height: 100%;
-	background-color: gradient( linear, 0% 0%, 100% 100%, from( #ffffff ), to( #ffffff00 ) );
-	opacity-mask: url("s2r://panorama/images/events/diretide/2020/rosh_cookie_mask_psd.vtex");
-
-	animation-name: RewardGleam;
-	animation-duration: 4s;
-	animation-iteration-count: infinite;
-	animation-direction: normal;
-
-    visibility: collapse;
-}
-
-.DiretideRewardAvailable #RewardAvaialbleGleam
-{
-    visibility: visible;
-}
-
-@keyframes 'RewardGleam'
-{
-	0% { background-color: gradient( linear, 0% 0%, 100% 100%, from( #ffffff00 ), color-stop(.01, #ffffff00), color-stop(.2, #ffffff22), color-stop(.4, #ffffff00), to( #ffffff00 ) ); }
-	2% { background-color: gradient( linear, 0% 0%, 100% 100%, from( #ffffff00 ), color-stop(0, #ffffff00), color-stop(.3, #ffffff22), color-stop(.6, #ffffff00), to( #ffffff00 ) ); }
-	5% { background-color: gradient( linear, 0% 0%, 100% 100%, from( #ffffff00 ), color-stop(.3, #ffffff00), color-stop(.5, #ffffff44), color-stop(.7, #ffffff00), to( #ffffff00 ) ); }
-	8% { background-color: gradient( linear, 0% 0%, 100% 100%, from( #ffffff00 ), color-stop(.4, #ffffff00), color-stop(.7, #ffffff22), color-stop(1, #ffffff00), to( #ffffff00 ) ); }
-	9% { background-color: gradient( linear, 0% 0%, 100% 100%, from( #ffffff00 ), color-stop(.6, #ffffff00), color-stop(.8, #ffffff22), color-stop(.99, #ffffff00), to( #ffffff00 ) ); }
-	11% { background-color: gradient( linear, 0% 0%, 100% 100%, from( #ffffff00 ), color-stop(.6, #ffffff00), color-stop(.8, #ffffff00), color-stop(.99, #ffffff00), to( #ffffff00 ) ); }
-	100% { background-color: gradient( linear, 0% 0%, 100% 100%, from( #ffffff00 ), color-stop(.2, #ffffff00), color-stop(.5, #ffffff00), color-stop(.6, #ffffff00), to( #ffffff00 ) ); }
-}
-
-#RewardAvailableFX
-{
-	width: 80%;
-	height: 80%;
-	margin-right: -24px;
-	margin-top: -10px;
-	//opacity-mask: url("s2r://panorama/images/masks/softedge_circle_sharper_png.vtex");
-	transition-property: opacity;
-	transition-duration: 1s;
-	//saturation: 0;
-	wash-color: #ffc1ff;
-
-    visibility: collapse;
-}
-
-.DiretideRewardAvailable #RewardAvailableFX
-{
-    visibility: visible;
-}
-
-#CustomGamesSection #GameStyle_CustomGames .CustomGameName,
-#CustomGamesSection #GameStyle_CustomGames:selected .CustomGameName
-{
-	/*font-family: titleFont;*/
-	font-size: 22px;
-	
-	/*padding-right: 8px;*/
-	letter-spacing: 2px;
-	text-overflow: shrink;
-	height: 32px;
-	color: white;
-	width: 100%;
-	text-shadow: 2px 2px 4px black;
-}
-
-#CustomGamesSection #GameStyle_CustomGames .CustomGameSubtitle
-{
-	margin-top: 38px;
-	margin-left: 21px;
-	font-size: 18px;
-	color: rgb( 161, 183, 211 );
 }
 
 .GameStyle Label
@@ -3130,10 +2694,9 @@ DOTAPlay.SectionVisible_Mutation #MutationSection
 .GameStyle:selected Label
 {
 	font-size: 20px;
-	font-weight: semi-bold;
+	font-weight: bold;
 	margin-left: 8px;
-	text-shadow: 0px 0px 5px 2.0 #000000;
-
+	
 }
 
 .GameStyle .RadioBox
@@ -3141,13 +2704,13 @@ DOTAPlay.SectionVisible_Mutation #MutationSection
 	visibility: collapse;
 }
 
-.PlayTabSection
+.PlayTabSection 
 {
 	height: 50px;
-	width: 100%;
+	width: 100%;   
 	background-color: sectionbg_inactive;
 	background-color: none;
-
+	
 	margin-bottom: 8px;
 	transition-property: height, opacity;
 	transition-duration: 0.3s;
@@ -3157,12 +2720,12 @@ DOTAPlay.SectionVisible_Mutation #MutationSection
 #GameModeSection
 {
 	flow-children: down;
-	margin-bottom: 8px;
+	margin-bottom: 12px;
 }
 
 DOTAPlay.SectionVisible_Normal #GameModeSection
 {
-	height: 264px;
+	height: 340px;
 }
 
 #NormalSectionContent
@@ -3182,67 +2745,15 @@ DOTAPlay.SectionVisible_Normal #NormalSectionContent
 
 .GameModeCheckBox
 {
-	width: 100%;
 	tooltip-position: left;
 	tooltip-body-position: 0% 50%;
 }
 
-.RankGameModeHeader {
-	flow-children: down;
-	margin-bottom: 4px;
-}
 
-.RankGameModeTitle
+#RankedGameModes, #SeasonalRankedGameModes
 {
-	margin-left: 4px;
-	margin-top: 4px;
-
-	text-transform: uppercase;
-	letter-spacing: 1px;
-	opacity: 0.6;
-}
-
-.RankGameModeNotSelected {
-	margin-left: 4px;
-
-	font-size: 12px;
-	text-transform: uppercase;
-	letter-spacing: 1px;
-	opacity: 0.6;
-	color: hsv-transform( loserRed, 0, 1, 0.8 );
-	text-shadow: 0 1px 1px black;
-
-	//visibility: collapse;
-    height: 0px;
-
-	transition-property: height;
-	transition-duration: 0.3s;
-	transition-timing-function: ease-in;
-}
-
-.PlayDisabled_NoModesSelected .RankGameModeNotSelected {
-	visibility: visible;
-    height: 14px;
-}
-
-#RankedGameModes
-{
-	width: 100%;
-	padding-top: 4px;
+	padding-top: 8px;
 	padding-left: 8px;
-    flow-children: down;
-}
-
-.GameModeCheckboxesWithBadgeContainer
-{
-    width: 100%;
-    flow-children: right;
-}
-
-.GameModeCheckboxesWithBadge
-{
-    width: 245px;
-    flow-children: down;
 }
 
 #UnrankedGameModes
@@ -3251,12 +2762,16 @@ DOTAPlay.SectionVisible_Normal #NormalSectionContent
 	width: 100%;
 	padding-top: 8px;
 	padding-left: 8px;
-	padding-right: 8px;
 }
 
 DOTAPlay.RankedMode #UnrankedGameModes
 {
 	visibility: collapse;
+}
+
+.SectionHeader
+{
+	width: 100%;
 }
 
 .LowPriWarningText
@@ -3320,7 +2835,7 @@ DOTAPlay.RankedMode #UnrankedGameModes
 	border: 2px solid #aaaaaa00;
 	wash-color: #657373;
 	margin-right: 16px;
-
+	
 	transition-property: border, wash-color, background-color;
 	transition-delay: 0.0s;
 	transition-duration: 0.15s;
@@ -3334,13 +2849,13 @@ DOTAPlay.RankedMode #UnrankedGameModes
 	background-color: #65737301;
 }
 
-#RegionButton
+#RegionButton 
 {
 	horizontal-align: right;
 	padding: 2px 4px 0px 4px;
 	border: 2px solid #aaaaaa00;
 	wash-color: #657373;
-
+	
 	transition-property: border, wash-color, background-color;
 	transition-delay: 0.0s;
 	transition-duration: 0.15s;
@@ -3359,6 +2874,47 @@ DOTAPlay.RankedMode #UnrankedGameModes
 	background-color: #65737301;
 }
 
+#CustomGamesButton
+{
+	horizontal-align: center;
+	margin-bottom: 4px;
+	width: 70%;
+	margin-top: 10px;
+	background-color: #3e464b;
+	
+	transition-property: wash-color;
+	transition-delay: 0.0s;
+	transition-duration: 0.25s;
+	transition-timing-function: ease-in-out;
+	flow-children: right;
+}
+
+#CustomGamesButtonIcon
+{
+	width: 14px;
+	height: 14px;
+	margin-bottom: 13px;
+	margin-left: 6px;
+	vertical-align: middle;
+	background-image: url("s2r://panorama/images/control_icons/arrow_top_right_png.vtex");
+	background-size: contain;
+	background-repeat: no-repeat;
+	transform: scaleX(-1) translateX( 5px ) translateY( 5px );
+	wash-color: #91aba6;
+	
+	
+	transition-property: wash-color, transform;
+	transition-delay: 0.0s;
+	transition-duration: 0.25s;
+	transition-timing-function: ease-in-out;
+}
+
+.CustomGamesButton:hover #CustomGamesButtonIcon
+{
+	wash-color: white;
+	transform: scaleX(-1) translateX( 0px )  translateY( 0px );
+}
+
 .LobbyButton
 {
 	margin-bottom: 4px;
@@ -3368,10 +2924,9 @@ DOTAPlay.RankedMode #UnrankedGameModes
 	padding-top: 10px;
 	padding-bottom: 10px;
 	background-color: sectionbg_inactive;
-	border: 1px solid black;
-
+	
 	margin-bottom: 8px;
-
+	
 	transition-property: wash-color;
 	transition-delay: 0.0s;
 	transition-duration: 0.25s;
@@ -3415,17 +2970,13 @@ DOTAPlay.RankedMode #UnrankedGameModes
 	width: 100%;
 	flow-children: right;
 }
-
-#WeekendTourneyButton DOTABattleCupVictoryIcon
+.BattleCupVictoryIcon
 {
 	margin-top: 4px;
 	margin-left: 2px;
 	width: 22px;
 	height: 22px;
 	margin-left: 6px;
-	margin-right: 12px;
-	background-repeat: no-repeat;
-	background-size: contain;
 }
 
 #WeekendTourneyStatus
@@ -3433,15 +2984,15 @@ DOTAPlay.RankedMode #UnrankedGameModes
 	width: 100%;
 
 	background-color: none;
-
+	
 	//margin-bottom: 8px;
-
+	
 	transition-property: wash-color;
 	transition-delay: 0.0s;
 	transition-duration: 0.25s;
 	transition-timing-function: ease-in-out;
 	visibility: collapse;
-
+	
 	padding-bottom: 12px;
 	padding-top: 5px;
 }
@@ -3451,6 +3002,13 @@ DOTAPlay.RankedMode #UnrankedGameModes
 	visibility: visible;
 }
 
+#PrivateLobbyButton
+{
+}
+
+#CreateLobbyShortcutButton
+{
+}
 
 .PrivateLobbyButtonIcon
 {
@@ -3462,15 +3020,13 @@ DOTAPlay.RankedMode #UnrankedGameModes
 	background-size: 16px 16px;
 	background-repeat: no-repeat;
 	wash-color: #91aba6;
-
+	
 	transform: translateX( 6px );
-
+	
 	transition-property: transform, wash-color;
 	transition-delay: 0.0s;
 	transition-duration: 0.25s;
 	transition-timing-function: ease-in-out;
-
-	visibility: collapse;
 }
 
 .ExpandWeekendTourney #WeekendTourneyButton .PrivateLobbyButtonIcon
@@ -3493,13 +3049,13 @@ DOTAPlay.RankedMode #UnrankedGameModes
 {
 	font-size: 20px;
 	font-weight: thin;
-	color: #666;
+	color: #999999;
 	text-transform: uppercase;
 	letter-spacing: 2px;
 	margin-top: 4px;
-	margin-left: 20px;
+	margin-left: 32px;
 	vertical-align: center;
-
+	
 	transition-property: color;
 	transition-delay: 0.0s;
 	transition-duration: 0.25s;
@@ -3513,9 +3069,18 @@ DOTAPlay.RankedMode #UnrankedGameModes
 	font-weight: bold;
 }
 
+
 .LobbyButton:hover Label
 {
 	color: white;
+}
+
+.Lobbydivider
+{
+	height: 1px;
+	background-color: #404b4aaa;
+	width: 100%;
+	margin-bottom: 10px;
 }
 
 #CreateLobby
@@ -3532,7 +3097,7 @@ DOTAPlay.RankedMode #UnrankedGameModes
 	flow-children: right;
 	horizontal-align: right;
 	vertical-align: bottom;
-	margin-top: 12px;
+	margin-top: 16px;
 	margin-right: 8px;
 }
 
@@ -3575,8 +3140,8 @@ DOTAPlay.RankedMode #UnrankedGameModes
 {
 	width: 100%;
 	text-align: center;
-	margin-top: 12px;
-	font-size: 20px;
+	margin-top: 3px;
+	font-size: 20px;   
 	font-weight: thin;
 	text-transform: uppercase;
 	letter-spacing: 2px;
@@ -3588,7 +3153,9 @@ DOTAPlay.RankedMode #UnrankedGameModes
 {
 	width: 100%;
 	height: fit-children;
-	padding: 0px 12px;
+	margin-bottom: 8px;
+	padding: 12px;    
+	padding-left: 12px;
 	background-color: none;
 
 	visibility: collapse;
@@ -3600,7 +3167,7 @@ DOTAPlay.RankedMode #UnrankedGameModes
 	vertical-align: bottom;
 	height: 50%;
 	width: 100%;
-	background-color: gradient( radial, 50% 90%, 0% 0%, 50% 50%, from( #88000055 ), to( #00000000 ) );
+	background-color: gradient( radial, 50% 90%, 0% 0%, 50% 50%, from( #88000055 ), to( #00000000 ) );    
 	opacity: 0;
 
 	transition-property: opacity;
@@ -3673,7 +3240,6 @@ DOTAPlay.MatchingRestriction #LowPriGlow
 #LowPrioritySection Label
 {
 	color: #d04c23;
-	text-overflow: shrink;
 	visibility: collapse;
 }
 
@@ -3692,22 +3258,12 @@ DOTAPlay.MatchingRestriction #LowPriGlow
 	visibility: visible;
 }
 
-.MatchDenied_MatchDisabledLocalLong #MatchDeniedReason_MatchDisabledLocalLong
-{
-	visibility: visible;
-}
-
 .MatchDenied_LowPriorityParty #MatchDeniedReason_LowPriorityParty
 {
 	visibility: visible;
 }
 
 .MatchDenied_LowPriorityLocal #MatchDeniedReason_LowPriorityLocal
-{
-	visibility: visible;
-}
-
-.MatchDenied_MatchDisabledPermament #MatchDeniedReason_MatchDisabledPermanent
 {
 	visibility: visible;
 }
@@ -3741,7 +3297,7 @@ DOTAPlay.SlideOutVisible.MatchDenied_AccountDisabled #DeniedPlayButton, DOTAPlay
 	vertical-align: bottom;
 	horizontal-align: right;
 	background-color: #530202;
-
+ 
 	border-top: 1px solid #330000;
 	border-left: 1px solid #330000;
 	box-shadow: #53020266 -4px -4px 8px 8px;
@@ -3758,20 +3314,20 @@ DOTAPlay.SlideOutVisible.MatchDenied_AccountDisabled #DeniedPlayButton, DOTAPlay
 
 DOTAPlay.MatchDenied_LowPriorityParty #PlayButton
 {
-	background-color: gradient( linear, 0% 0%, 0% 100%, from( #576f3f ), to( #554422 ) );
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #576f3f ), to( #554422 ) );  
 }
 
 DOTAPlay.MatchDenied_LowPriorityParty #PlayButton:hover
 {
-	background-color: gradient( linear, 0% 0%, 0% 100%, from( #779950 ), to( #735E2C ) );
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #779950 ), to( #735E2C ) );  
 }
 
 // Leaver Consequences
 
 .LeaverConsequences
 {
-	margin-right: 58px;
-	margin-bottom: 8px;
+	margin-right: 420px;
+	margin-bottom: 72px;
 	width: 630px;
 	height: fit-children;
 	vertical-align: bottom;
@@ -3792,6 +3348,12 @@ DOTAPlay.MatchDenied_LowPriorityParty #PlayButton:hover
 
 	opacity: 0;
 }
+
+.Warning
+{
+	height: 32px;
+}
+
 
 .LeaverConsequences Label
 {
@@ -3866,61 +3428,79 @@ DOTAPlay.Connecting #LeaverConsequences_Warning
 	//visibility: collapse;
 }
 
-.TeamIdentity
+#TeamIdentity
 {
 	visibility: collapse;
 	flow-children: right;
 
 	padding: 16px;
 	padding-bottom: 8px;
-
+	margin-top: 10px;
+	margin-bottom: 0px;
+	margin-left: 12px;
+	margin-right: 12px;
 	background-color: #15171944;
 	box-shadow: inset #00000066 0px 2px 6px 0px;
-
+	
 	width: 100%;
 	padding-top: 12px;
 }
 
-DOTAPlay.ValidTeamIdentity .TeamIdentity
+DOTAPlay.ValidTeamIdentity.EligibleForRanked #TeamIdentity
 {
 	visibility: visible;
 }
 
-.UseTeamIdentityCheckbox
+#UseTeamIdentityCheckbox
 {
 	width: fill-parent-flow( 1.0 );
 }
 
-.TeamPrevious,
-.TeamNext
+#TeamPrevious
 {
 	vertical-align: center;
 }
 
-.NoValidTeamIdentitiesLabel
+#TeamNext
+{
+	vertical-align: center;
+}
+
+#TeamMMRRow
+{
+	visibility: collapse;
+}
+
+DOTAPlay.ValidTeamIdentity.EligibleForRanked #TeamMMRRow
+{
+	visibility: visible;
+}
+
+#NoValidTeamIdentitiesLabel
 {
 	visibility: visible;
 	width: 100%;
 	text-align: center;
-	margin-top: 6px;
+	margin-top: 10px;
 	color: baseText;
 	font-size: 16px;
 }
 
-DOTAPlay.ValidTeamIdentity .NoValidTeamIdentitiesLabel
+DOTAPlay.ValidTeamIdentity.EligibleForRanked #NoValidTeamIdentitiesLabel
 {
 	visibility: collapse;
 }
 
 .ViolatorTag
 {
-	margin-top: -70px;
-	margin-bottom: 48px;
+	margin-top: -64px;
+	margin-bottom: 42px;
 	horizontal-align: right;
-	margin-right: 12px;
-	background-color: #ccfaf1;
-	background-color: gradient( linear, 0% 0%, 0% 100%, from( #ccfaf1 ), to( #52b5A1 ) );
-	border: 1px solid #517360;
+	margin-right: 6px;
+	background-color: #FADB5E;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #FADB5E ), to( #FF937D ) );
+	border-radius: 4px;
+	border: 1px solid black;
 	padding-left: 6px;
 	padding-top: 2px;
 	padding-right: 4px;
@@ -3928,7 +3508,7 @@ DOTAPlay.ValidTeamIdentity .NoValidTeamIdentitiesLabel
 	letter-spacing: 1px;
 	text-align: center;
 	font-size: 14px;
-	color: #384254;
+	color: #800;
 	font-weight: bold;
 	transform: translateY(0px);
 	opacity: 0;
@@ -3953,7 +3533,7 @@ DOTAPlay.ValidTeamIdentity .NoValidTeamIdentitiesLabel
 	transform: translateY(26px);
 }
 
-.TeamLogo
+#TeamLogo
 {
 	height: 50px;
     width: 50px;
@@ -3962,1200 +3542,113 @@ DOTAPlay.ValidTeamIdentity .NoValidTeamIdentitiesLabel
     background-color: #000000;
 }
 
-#BotScriptWorkshopURL
-{
-	horizontal-align: right;
-}
-
-#BotScriptWorkshopURL Label
-{
-	color: #888;
-	font-size: 16px;
-	text-decoration: underline;
-
-	transition-property: color;
-	transition-duration: 0.1s;
-	transition-timing-function: ease-in-out;
-}
-
-#BotScriptWorkshopURL:hover Label
-{
-	color: #CCC;
-}
-
-
-#BotScriptWorkshopURL:disabled Label
-{
-	color: #666;
-}
-
-#BotScriptWorkshopURL:disabled:hover Label
-{
-	color: #666;
-}
-
-.SmallGameModeViolator,
-.GameModeViolator
-{
-	vertical-align: middle;
-	margin-left: 4px;
-}
-
-.SmallGameModeViolator.Acknowledged,
-.GameModeViolator.Acknowledged
-{
-	visibility: collapse;
-}
-
-.GameModeViolator > Label
-{
-	color: #94cee1;
-	text-shadow: 0px 0px 6px #94cee1;
-	font-size: 18px;
-	letter-spacing: 1px;
-}
-
-.SmallGameModeViolator > Label
-{
-	color: #94cee1;
-	text-shadow: 0px 0px 6px #94cee1;
-	font-size: 14px;
-	letter-spacing: 1px;
-}
-
-
-.RankTierContainer
-{
-	horizontal-align: left;
-	vertical-align: center;
-
-	width: 65px;
-	height: 65px;
-
-	tooltip-position: bottom;
-	tooltip-body-position: 50% 10%;
-
-	background-size: 100%;
-	overflow: noclip;
-	margin-left: 5px;
-	margin-top: -8px;
-}
-
-
-.RankTierImage, .RankPipImage
+#IntroInformationPanel
 {
 	width: 100%;
-	height: 100%;
-	/* background-size: 100%; */
-}
+	height: 364px;
 
-.RankLeaderboardLabel
-{
-	vertical-align: bottom;
-	margin-bottom: 11px;
-	color: #F7E5c3;
-	letter-spacing: 1px;
-	font-size: 14px;
-	text-align: center;
-	text-shadow: 2px 2px #00000080;
 	horizontal-align: center;
 	vertical-align: bottom;
-	width: 100%;
-	visibility: collapse;
-}
-
-.HasLeaderboardRank .RankLeaderboardLabel
-{
-	visibility: visible;
-}
-
-
-.RankTierInfo
-{
-	width: 24px;
-	height: 24px;
-	horizontal-align: right;
-	vertical-align: bottom;
-	background-image: url("s2r://panorama/images/icon_info_png.vtex");
-	background-size: 100%;
-	opacity: 0.5;
-}
-
-.BackgroundFX
-{
-	width: 100%;
-	height: 100%;
-	opacity-mask: url("s2r://panorama/images/masks/softedge_box_irregular_png.vtex");
+	background-color: #00000066;
+	margin-bottom: 16px;
+	border: 1px solid #8B414A33;
+	padding: 4px;
+	margin: 8px;
 }
 
 
-.RankedGameModesContainer
+.DetailsQuad
 {
-	width: 100%;
-    flow-children: right;
+	width: 285px;
+	height: 31%;
+	margin: 4px;
+	vertical-align: middle;
+	border: 1px solid #8B414A12;
+	background-color: #4D211A22;
+	padding-right: 12px;
+	padding-left: 12px;
 }
 
-.RankedLaneToggleButton
+.DetailsQuad:hover .DetailsTextContainer
 {
-    margin-top: 1px;
-    margin-bottom: 1px;
+//	opacity: 1;
 }
 
-.RankedLaneToggleButtonWithText .WaitLabel
+.DetailsQuad:hover .DetailsTitle
 {
-	horizontal-align: right;
-	vertical-align: center;
-	margin-right: 16px;
-	font-size: 12px;
-	text-overflow: shrink;
-	text-align: center;
-	vertical-align: center;
+	//color: #ffffff00;
+}
+
+.DetailsText
+{
+	opacity: 1;
+	background-color: none;
+	vertical-align: middle;
+	horizontal-align: center;
 	padding: 0px;
-	padding-left: 23px;
-	wash-color: #44FF44;
-	width: 128px;
-	background-color: #00000000;
-	border: 0px;
-	margin-top: -5px;
-}
-
-.RankedLaneToggleButtonWithText Label {	color: #8c9aa6; }
-.RankedLaneToggleButtonWithText.selected Label { color: white; }
-
-.RankedLaneIcon
-{
-	width: 16px;
-	height: 16px;
-	margin: 4px 6px 4px 8px;
-	background-size: cover;
-	wash-color: #8c9aa6;
-}
-
-.selected .RankedLaneIcon 	{	wash-color: #ffffff; img-shadow: 0px 0px 4px rgb(124, 139, 151); }
-.RankedLaneIcon.HardSupport { 	background-image: url("s2r://panorama/images/rank_tier_icons/handicap/hardsupporticon_psd.vtex"); }
-.RankedLaneIcon.SoftSupport { 	background-image: url("s2r://panorama/images/rank_tier_icons/handicap/softsupporticon_psd.vtex"); }
-.RankedLaneIcon.Offlane 	{ 	background-image: url("s2r://panorama/images/rank_tier_icons/handicap/offlaneicon_psd.vtex"); }
-.RankedLaneIcon.Midlane 	{	background-image: url("s2r://panorama/images/rank_tier_icons/handicap/midlaneicon_psd.vtex"); }
-.RankedLaneIcon.Safelane 	{ 	background-image: url("s2r://panorama/images/rank_tier_icons/handicap/safelaneicon_psd.vtex"); }
-
-
-#PointsEarnedSection
-{
-	margin-top: 10px;
-	width: 100%;
-}
-
-#BattlePointsEarnedValue,
-#BattlePointsEarnedDesc,
-{
-		width: 100%;
-	text-align: center;
-	color: white;
-	letter-spacing: 2px;
-	font-size: 16px;
-	text-transform: uppercase;
-	//horizontal-align: center;
-	margin-right: 4px;
-}
-
-#BattlePointsEarnedValue
-{
-	font-size: 30px;
-	//color: accentColor;
-}
-
-#ResetTimer
-{
-	
-	letter-spacing: 2px;
-	font-size: 14px;
-	text-transform: uppercase;
-	margin-right: 4px;
-	margin-top: 10px;
-
-	visibility: collapse;
-}
-
-.ResetTimerValid #ResetTimer
-{
-	visibility: visible;
-}
-
-
-#PointMultiplierSection
-{
+	padding-left: 16px;
+	padding-right: 16px;
 	width: fit-children;
-	horizontal-align: center;
 }
 
-
-#PointMultiplierSection Label,#PointMultiplierSection Label
-{
-
-	text-align: center;
-	
-	letter-spacing: 2px;
-	font-size: 16px;
-	text-transform: uppercase;
-	horizontal-align: center;
-	margin-top: 5px;
-}
-
-#BattlePointsMultiplierValue
-{
-	//color: accentColor;
-}
-
-
-
-DOTAPlay.SectionVisible_CoachesChallenge #CoachesChallengeSection
-{
-	height: 226px;
-	opacity: 1.0;
-
-	//background-color: gradient( linear, 0% 0%, 100% 100%, from( ultraDarkColor ), to( darkColor&66 ) );
-}
-
-#CoachesChallengeSection
-{
-    visibility: collapse;
-}
-
-.GlobalEventActive.Season_International2019 #CoachesChallengeSection
-{
-	visibility: visible;
-}
-
-#CoachesChallengeSectionContent
-{
-	padding: 14px;
-	width: 100%;
-	visibility: collapse;
-}
-
-DOTAPlay.SectionVisible_CoachesChallenge #CoachesChallengeSectionContent
-{
-	visibility: visible;
-}
-
-#CoachRatingContainer
-{
-	flow-children: down;
-}
-
-#CoachRating
-{
-	ui-scale: 58%;
-	horizontal-align: center;
-}
-
-#CoachRatingLabel
-{
-	margin-top: 6px;
-	horizontal-align: center;
-	text-align: center;
-	text-transform: uppercase;
-	font-size: 14px;
-	letter-spacing: 1px;
-	//color: textAccentColor;
-}
-
-#CoachRatingHeader
-{
-	flow-children: right;
-}
-
-#CoachesChallengeDetails
-{
-	flow-children: down;
-}
-
-.CoachesChallengeInstructions
-{
-	width: 186px;
-}
-
-#CoachLearn
-{
-	margin-top: 4px;
-}
-
-.RankedLaneToggleButtonWithText
-{
-    //width: 210px;
-    flow-children: right;
-}
-
-.RankedRoleCall
-{
-    margin-left: 5px;
-    margin-top: 2px;
-    flow-children: right;
-    //horizontal-align: right;
-}
-.RankedLaneShardReward
-{
-	vertical-align: center;
-	font-size: 14px;
-	//font-family: monospaceNumbersFont;
-	letter-spacing: 2px;
-	color: dotaPlusLightGold;
-}
-
-.RankedLaneShardIcon
-{
-    background-image: dotaPlusCurrencyIcon;
-    background-size: 14px 14px;
-    width: 14px;
-    height: 14px;
-    vertical-align: center;
-    margin-bottom: 2px;
-}
-
-.RoleSelectionGroup
-{
-	flow-children: right;
-	width: 100%;
-	padding-left: 10px;
-	padding-right: 10px;
-	padding-top: 4px;
-}
-
-.RoleSelectionGroup__Support
-{
-    padding-bottom: 2px;
-	border-bottom: 3px solid #00000066;
-}
-
-#RankTier
-{
-	tooltip-position: bottom;
-	tooltip-body-position: 50% 10%;
-}
-
-.RankTierCalibrating #RankTier
-{
-	tooltip-position: left;
-	tooltip-body-position: 50% 50%;
-}
-
-.RankedMatchmakingRoleContainer
-{
-	flow-children: down;
-	vertical-align: center;
-    /* margin-left: 10px; */
-}
-
-.RankedInDemandRoleIcon
-{
-	vertical-align: middle;
-	width: 14px;
-	height: 14px;
-	transform: translateY( -1px );
-	margin-left: 2px;
-
-	background-image: url("s2r://panorama/images/control_icons/star_favorite_psd.vtex");
-	background-size: contain;
-	background-repeat: no-repeat;
-	background-position: center;
-}
-
-/* Ranked matchmaking High Priority Queue info area */
-
-#RankedHighPriorityInfo
-{
-	width: 100%;
-	flow-children: down;
-	/* background-color: #292F31, gradient( linear, 0% 0%, 100% 0%, from( loserRed&06 ), to( #00000000 ) ); */
-	/* box-shadow: inset 0px 0px 16px rgba(0,0,0,0.6); */
-	tooltip-position: left;
-	max-height: 80px;
-	padding-top: 12px;
-}
-
-.HighPriorityMMEnabled #RankedHighPriorityInfo
-{
-	/* background-color: #292F31, gradient( linear, 0% 0%, 100% 0%, from( winnerGreen&06 ), to( #00000000 ) ); */
-}
-
-#RankedHighPriorityTitleSection
-{
-	width: 100%;
-	flow-children: right;
-}
-
-.RankedHighPriorityTitle
-{
-	margin-top: 12px;
-	margin-left: 12px;
-	text-transform: uppercase;
-	font-size: 16px;
-	letter-spacing: 1px;
-	text-shadow: 2px 2px 4px black;
-}
-
-#RankedHighPriorityTitleEnabled
-{
-	color: hsv-transform( winnerGreen, 0, 1, 0.8 );
-	visibility: collapse;
-}
-.HighPriorityMMEnabled #RankedHighPriorityTitleEnabled
-{
-	visibility: visible;
-}
-
-#RankedHighPriorityTitleDisabled
-{
-	color: hsv-transform( loserRed, 0, 1, 0.8 );
-}
-
-.HighPriorityMMEnabled #RankedHighPriorityTitleDisabled
-{
-	visibility: collapse;
-}
-
-#RankedHighPriorityPointChange
-{
-	width: 100%;
-	padding: 0px 12px 8px 12px;
-	color: #999;
-	text-shadow: 2px 2px 4px black;
-	font-size: 15px;
-	margin-top: 2px;
-    text-overflow: shrink;
-    height: 48px;
-}
-
-#RankedHighPriorityInfoIcon
-{
-	vertical-align: bottom;
-	wash-color: #999;
-	width: 13px;
-	height: 13px;
-}
-
-#RankedHighPriorityInfo:hover #RankedHighPriorityInfoIcon
-{
-	wash-color: #ccc;
-}
-
-
-
-
-.RankedHighPriorityEnabledContainer
-{
-	width: 20px;
-	height: 13px;
-	vertical-align: center;
-	margin-left: 4px;
-	margin-bottom: 2px;
-}
-.RankedHighPriorityEnabledCheckmark
-{
-    width: 13px;
-    height: 13px;
-
-    horizontal-align: left;
-    vertical-align: bottom;
-
-	background-size: contain;
-	background-repeat: no-repeat;
-	background-position: center;
-
-	background-image: url("s2r://panorama/images/control_icons/x_close_gradient_png.vtex");
-	wash-color: hsv-transform( red, 0, 1, 0.6 );
-}
-.RankedHighPriorityEnabledCheckmarkPlus
-{
-    width: 8px;
-    height: 8px;
-
-    margin-left: 10px;
-    
-    horizontal-align: left;
-    vertical-align: bottom;
-
-	background-size: contain;
-	background-repeat: no-repeat;
-	background-position: center;
-
-	background-image: url("s2r://panorama/images/control_icons/plus_gradient_png.vtex");
-	wash-color: hsv-transform( winnerGreen, 0, 1, 0.6 );
-
-    opacity: 0.0;
-}
-
-#RankedHighPriorityInfoButton
-{
-	background-image: url("s2r://panorama/images/control_icons/icon_info_png.vtex");
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-
-    width: 16px;
-    height: 16px;
-    margin-bottom: 4px;
-}
-#RankedHighPriorityInfoButton:hover
-{
-    brightness: 1.3;
-}
-#RankedHighPriorityInfoButton:active
-{
-    brightness: 0.8;
-}
-
-
-.HighPriorityMMEnabled .RankedHighPriorityEnabledCheckmark
-{
-	background-image: url("s2r://panorama/images/control_icons/check_gradient_png.vtex");
-	wash-color: hsv-transform( winnerGreen, 0, 1, 0.6 );
-}
-.HighPriorityMMEarningQP .RankedHighPriorityEnabledCheckmarkPlus
-{
-    opacity: 1.0;
-}
-
-/* Ranked roles party table */
-
-#RankedRolesTableSlideOut
-{
-    horizontal-align: right;
-    vertical-align: bottom;
-
-    margin-right: 400px;
-    margin-bottom: 161px;
-    width: 470px;
-    height: 400px;
-
-    background-color: gradient( linear, 0% 0%, 0% 100%, from( #282F31 ), to( #1B201F ) );
-    box-shadow: inset 0px 0px 10px rgba( 0, 0, 0, 0.75 );
-
-
-    flow-children: down;
-
-    transform: translateX( 1000px );
-
-    transition-property: transform, width;
-    transition-duration: 0.4s;
-    transition-timing-function: ease-in-out;
-}
-
-.SlideOutVisible #RankedRolesTableSlideOut.RankedRolesTableEnabled
-{
-    transform: translateX( 0px );
-}
-
-#RankedRolesTableSlideOut.Players5
-{
-    width: 470px;
-}
-#RankedRolesTableSlideOut.Players4
-{
-    width: 418px;
-}
-#RankedRolesTableSlideOut.Players3
-{
-    width: 366px;
-}
-#RankedRolesTableSlideOut.Players2
-{
-    width: 314px;
-}
-#RankedRolesTableSlideOut.Players1
-{
-    width: 262px;
-}
-
-#RankedRolesTableTitle
-{
-    width: 100%;
-    height: fit-children;
-
-    background-color: #313A3E;
-    padding: 12px;
-    padding-bottom: 8px;
-    box-shadow: fill #00000066 -4px -2px 16px 8px;
-}
-
-#RankedRolesTableTitleText
-{
-    font-size: 20px;
-    font-weight: bold;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-}
-
-#RankedRolesTable
-{
-    width: 100%;
-    flow-children: right;
-    padding-top: 12px;
-}
-
-#RankedRolesNameColumn
-{
-    flow-children: down;
-    width: 150px;
-}
-
-.RoleTableColumn
-{
-    flow-children: down;
-    width: 52px;
-}
-.RoleTableFillColumn
-{
-    flow-children: down;
-    width: fill-parent-flow(1.0);
-}
-
-.RoleTableColumn.Hidden
-{
-    visibility: collapse;
-}
-
-.RankedRolesCheckboxHeader
-{
-    height: 39px;
-    width: 100%;
-    padding: 3px;
-}
-.RankedRolesCheckboxHeaderLabel
-{
-    vertical-align: center;
-    horizontal-align: right;
-
-  	text-transform: uppercase;
-	text-overflow: shrink;
-    text-align: right;
-	font-size: 14px;
-	color: #CCCCCC;
-	letter-spacing: 1px;
-}
-
-.RankedRolesTableCheckbox
-{
-    height: 39px;
-    width: 100%;
-}
-.RoleTableFillCheckbox
-{
-    height: 39px;
-    width: 100%;
-}
-
-.RankedRolesTableCheck
-{
-    width: 13px;
-    height: 13px;
-
-    background-color: #060A13;
-    border-radius: 50%;
-
-    vertical-align: center;
-    horizontal-align: center;
-
-    box-shadow: inset 0px -1px 0px rgba( 239, 243, 251, 0.25 );
-}
-
-.RankedRolesTableCheckbox.Checked .RankedRolesTableCheck
-{
-    background-color: gradient( linear, 0% 0%, 0% 100%, from( #BFCBE7 ), to( #75829F ) );
-    box-shadow: fill 0px 2px 2px #000000, inset 0px 2px 0px #EFF3FB;
-}
-
-.RankedRolesTableCheck_HP
-{
-    width: 100%;
-    height: 100%;
-
-	background-size: 22px 22px;
-	background-repeat: no-repeat;
-	background-position: center;
-
-	background-image: url("s2r://panorama/images/control_icons/x_close_gradient_png.vtex");
-	wash-color: hsv-transform( red, 0, 1, 0.6 );
-}
-.RankedRolesTableCheckbox.Checked .RankedRolesTableCheck_HP,
-.RankedRolesTableCheckbox.CheckPlus .RankedRolesTableCheck_HP
-{
-	background-image: url("s2r://panorama/images/control_icons/check_gradient_png.vtex");
-	wash-color: hsv-transform( winnerGreen, 0, 1, 0.6 );
-}
-
-.RankedRolesTableCheck_HP_Plus
-{
-    width: 14px;
-    height: 14px;
-    margin-left: 32px;
-    margin-top: 16px;
-
-	background-size: contain;
-	background-repeat: no-repeat;
-	background-position: center;
-
-	background-image: url("s2r://panorama/images/control_icons/plus_gradient_png.vtex");
-	wash-color: hsv-transform( winnerGreen, 0, 1, 0.6 );
-    opacity: 0.0;
-}
-.RankedRolesTableCheckbox.CheckPlus .RankedRolesTableCheck_HP_Plus
-{
-    opacity: 1.0;
-}
-
-
-.RowE
-{
-    background-color: #191E1F;
-}
-.RowO
-{
-    background-color: none;
-}
-.RowH
-{
-    background-color: #313A3E;
-}
-
-
-.RankedRolesAvatarHeader
-{
-    height: 52px;
-}
-.RankedRolesTableAvatarContainer
-{
-    height: 52px;
-    width: 52px;
-}
-.RankedRolesTableAvatar
-{
-    width: 42px;
-    height: 42px;
-    horizontal-align: center;
-    vertical-align: center;
-}
-.RoleTableFillAvatar
-{
-    height: 52px;
-    width: 100%;
-}
-
-.RankedRolesHPInfo
-{
-    margin-top: 4px;
-    margin-right: 16px;
-    margin-left: 4px;
-    visibility: visible;
-    text-align: right;
-    horizontal-align: right;
-    font-size: 14px;
-
-    visibility: collapse;
-}
-
-.RankedRolesHPInfoNonEligible
-{
-    visibility: visible;
-    color: #E7BA01;
-}
-.HighPriorityMMEnabled .RankedRolesHPInfoNonEligible
-{
-    visibility: collapse;
-}
-
-.RankedRolesHPInfoEarning,
-.RankedRolesHPInfoFiveStack,
-.RankedRolesHPInfoHighDemand
-{
-	color: #6BCB6B;
-}
-.HighPriorityMMEarningQP .RankedRolesHPInfoEarning
-{
-    visibility: visible;
-}
-
-.HighPriorityMMHighDemand .RankedRolesHPInfoHighDemand
-{
-	visibility: visible;
-}
-
-.HighPriorityMMEnabled .RankedRolesHPInfoFiveStack
-{
-    visibility: visible;
-}
-.HighPriorityMMEnabled.HighPriorityMMEarningQP .RankedRolesHPInfoFiveStack,
-.HighPriorityMMEnabled.HighPriorityMMUsingResource .RankedRolesHPInfoFiveStack,
-.HighPriorityMMEnabled.HighPriorityMMHighDemand .RankedRolesHPInfoFiveStack
-{
-	visibility: collapse;
-}
-
-/* Gauntlet is not currently enabled. Just hide it */
-#GauntletSection
-{
-	visibility: collapse;
-}
-
-#GauntletSectionContent {
-	visibility: collapse;
-}
-
-DOTAPlay.SectionVisible_Gauntlet #GauntletSection
-{
-	height: 350px;
-	background-color: gradient( linear, 0% 0%, 0% 100%, from( #696249 ), to( #2D2E2B ) );
-
-}
-
-DOTAPlay.SectionVisible_Gauntlet #GauntletSectionContent
+.DetailsTextContainer
 {
-	visibility: visible;
 	width: 100%;
 	height: 100%;
-	margin-top: 50px;	
-	//flow-children: down;
+	/* TI6 */
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #321F25aa ), color-stop( 0.5, #321F25ee), to( #321F25ee) );
+	
+	/* Fall 2016 */
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #4e6425aa ), color-stop( 0.5, #4e6425ee), to( #4e6425ee) );
+	opacity: 0;	
+	transition-property: opacity;
+	transition-timing-function: ease-in;
+	transition-duration: 0.2s;	
 }
 
-DOTAPlay #GauntletSectionContent .GauntletDescription
+
+.DetailsTitle
 {
-	font-size: 18px;
-	font-weight: lighter;
-	//color: #ffffff;
-	line-height: 24px;
-	text-shadow: none;
-	padding: 5px;
-	text-shadow: 0px 0px 5px 1.0 #000000;
-}
-
-.GauntletHasActiveTicket #GauntletSection .BattlePassSectionIcon {
-	visibility: collapse;
-}
-
-#GauntletTitle
-{
-	width: 100%;
+	margin: 0;
+	vertical-align: middle;
+	horizontal-align: center;
 	text-align: center;
-	padding-top: 8px;
-	padding-bottom: 8px;
+	font-size: 16px;
 }
 
-#GauntletText {
-	width: 100%;
-	margin-top: 5px;
-	flow-children: down;
-}
-
-#GauntletLearnMore
+.DetailsNext
 {
+	transform: rotateZ(90deg);
+	width: 42px;
 	horizontal-align: center;
-	color: #ffffff60;
-	text-decoration: underline;
-}
-
-#GauntletLearnMore:hover
-{
-	color: #fff;
-}
-
-
-#GauntletLearnMoreActivated
-{
-	horizontal-align: center;
-	color: #ffffff60;
-	text-decoration: underline;
-	margin-top: 5px;
-}
-
-#GauntletRecordContainer {
-	width: 330px;
-	height: 160px;
-	padding: 10px 20px 5px 20px;
-	background-color: #333333;
-	background-color: gradient( linear, 0% 0%, 0% 100%, from( #111111 ), to( #202528 ) );
-	vertical-align: bottom;
-	visibility: collapse;
-	border-top: 2px solid dotaPlusGold;
-	flow-children: down;
-}
-
-.RecordLabel {
-	text-transform: uppercase;
-	font-weight: semi-bold;
-	color: #ffffff;
-	horizontal-align: center;
-	letter-spacing: 1px;
-	margin-bottom: 5px;
-}
-
-.RecordDesc {
-	font-size: 18px;
-	color: #ffffffaa;
-	text-align: center;
-	margin-top: 10px;
-	text-overflow: shrink;
-}
-
-#GauntletRecord
-{
-	width: fit-children;
-	height: 33px;
-	horizontal-align: center;
-}
-
-#GauntletImage {
-	background-image: url("s2r://panorama/images/compendium/international2020/compendium/gauntlet_playmenu_psd.vtex");
-	background-size: 100%;
+	height: 48px;
+	hue-rotation: -6deg;
+	saturation: .8;
+	background-image: url("s2r://panorama/images/compendium/spring2016/wagerdesc_next_psd.vtex");
 	background-repeat: no-repeat;
-	width: 100%;
-	height: 190px;
-	vertical-align: bottom;
-	margin-bottom: 0px;
-    overflow: clip;
+	background-size: cover;		
 }
 
-.GauntletHasActiveTicket #GauntletImage {
-	margin-bottom: 100px;
-}
-
-#GauntletRankTimer {
-	width: 100%;
-	height: 70px;
-	//border: 1px solid blue;
-	margin-top: 90px;
-	flow-children: right;
-}
-
-.GauntletHasActiveTicket #GauntletRankTimer {
-	margin-top: 10px;
-}
-
-#GauntletTier {
-	width: 50%;
-	//border: 1px solid red;
-	flow-children: down;
-}
-
-#GauntletTimer {
-	width: 50%;
-	//border: 1px solid red;
-	flow-children: down;
-
-}
-
-.GauntletLabel {
-	horizontal-align: center;
-	text-transform: uppercase;
-	letter-spacing: 1px;
-	opacity: 0.6;
-}
-
-.GauntletDivider {
-	height: 40px;
-	width: 1px;
-	background-color: #ffffff20;
-	vertical-align: middle;
-}
-
-.GauntletBigLabel {
-	horizontal-align: center;
-	font-size: 30px;
-	font-weight: semi-bold;
-	text-transform: uppercase;
-	letter-spacing: 1px;
-	text-shadow: 0px 0px 5px 3.0 #000000;
-}
-
-.GauntletCountdown {
-	visibility: visible;
-	color: gradient( linear, 0% 0%, 100% 0%, from( #F8E8B9 ), to( #C79123 ) );
-
-}
-
-.GauntletOpen .GauntletCountdown {
-	visibility: visible;
-	color: gradient( linear, 0% 0%, 100% 0%, from( #F8E8B9 ), to( #C79123 ) );
-	color: gradient( linear, 0% 0%, 100% 0%, from( #BAF8B9 ), to( #23C76E ) );
-}
-
-.GauntletOpenTimer {
-	visibility: collapse;
-}
-
-#GauntletOpenCountdown {
-	font-size: 14px;
-	vertical-align: middle;
-	color: #ffffffee;
-	margin-top: 0px;
-}
-
-#GauntletCloseCountdown {
-	font-size: 14px;
-	vertical-align: middle;
-	color: #ffffffee;
-	margin-top: 0px;
-	padding: 3px;
-	padding-left: 8px;
-	box-shadow: 0px 0px 5px 3.0 #000000;
-	background-color: gradient( linear, 0% 0%, 100% 0%, from( rgb(37, 224, 121) ), to( #1B8E6B ) );
-}
-
-
-
-.GauntletWinPip, .GauntletLossPip
+#DetailNext1
 {
-	width: 35px;
-	height: 35px;
-	background-color: #666666;
-	margin-left: 4px;
-	margin-right: 4px;
-	vertical-align: center;
-	border-radius: 50px;
-	box-shadow: 0px 0px 10px 10.0 #000000;
-	border: 1px solid #5B5B5B;
+	margin-top: 94px;
 }
 
-.GauntletWinPip
+#DetailNext2
 {
-	background-color: gradient( linear, 0% 0%, 0% 100%, from( #245128 ), to( #2B322B ) );
+	margin-top: 212px;
 }
 
-.GauntletLossPip
+.DetailsQuad .InfoIcon
 {
-	background-color: gradient( linear, 0% 0%, 0% 100%, from( #512424 ), to( #2B322B ) );
-}
-
-#GauntletButtonContainer {
-	width: 100%;
-	height: 100%;
-}
-
-.GauntletComplete #GauntletButtonContainer,
-.SelfEventNotActive #GauntletButtonContainer,
-.GauntletHasActiveTicket #GauntletButtonContainer
-{
-    visibility: collapse;
-}
-
-#GauntletTicketButton {
-	background-image: url("s2r://panorama/images/compendium/international2020/compendium/gauntlet_btn_bg_png.vtex");
-	background-size: contain;
-	horizontal-align: center;
-	box-shadow: 0px 0px 5px #00000030;
-	vertical-align: bottom;
-	margin-bottom: 20px;
-	width: 300px;
-	height: 45px;
-	transition-property: brightness, transform;
-	transition-duration: 0.3s;
-}
-
-#GauntletTicketButton Label {
-	color: #ffffff;
-	width: 100%;
-	text-align: center;
-	height: 20px;
-	font-weight: semi-bold;
-	letter-spacing: 1px;
-	text-transform: uppercase;
-	vertical-align: middle;
-	//padding: 10px 15px;
-	font-size: 18px;
-	horizontal-align: center;
-
-}
-
-#GauntletTicketButton:hover {
-	brightness: 1.4;
-	transform: translateY(-3px);
-}
-
-#GauntletCompleteContainer
-{
-    width: 100%;
-    vertical-align: bottom;
-    visibility: collapse;
-    padding: 10px;
-}
-
-.GauntletComplete #GauntletCompleteContainer
-{
-    visibility: visible;
-}
-
-#GauntletComplete
-{
-    text-align: center;
-}
-
-
-.GauntletHasActiveTicket #GauntletCompleteContainer,
-.GauntletHasActiveTicket #GauntletTitle,
-.GauntletHasActiveTicket #GauntletLearnMore
-{
-	visibility: collapse;
-}
-
-#GauntletRecord
-{
-	visibility: collapse;
-}
-
-.GauntletHasActiveTicket #GauntletRecord,
-.GauntletHasActiveTicket #GauntletRecordContainer
-{
-	visibility: visible;
-}
-
-.GauntletWins1 #GauntletWin1, .GauntletWins2 #GauntletWin1, .GauntletWins3 #GauntletWin1,
-.GauntletWins2 #GauntletWin2, .GauntletWins3 #GauntletWin2,
-.GauntletWins3 #GauntletWin3
-{
-	background-image: url("s2r://panorama/images/compendium/international2020/compendium/gauntlet_check_png.vtex");
-	background-size: contain;
+	horizontal-align: right;
+	margin: 8px;
+	opacity: .1;
 }
 
 
 
-.GauntletLosses1 #GauntletLoss1, .GauntletLosses2 #GauntletLoss1,
-.GauntletLosses2 #GauntletLoss2
-{
-	background-image: url("s2r://panorama/images/compendium/international2020/compendium/gauntlet_x_png.vtex");
-	background-size: contain;
-}
-
-#GauntletRecordDivider
-{
-	width: 1px;
-	height: 64px;
-	background-color: #666666;
-	margin-left: 8px;
-	margin-right: 8px;
-}
-
-#GauntletOpenCountdown, #GauntletCloseCountdown
-{
-	visibility: collapse;
-}
-
-.GauntletHasActiveTicket #GauntletOpenCountdown
-{
-	visibility: visible;
-}
-
-.GauntletHasActiveTicket.GauntletOpen #GauntletOpenCountdown
-{
-	visibility: collapse;
-}
-
-.GauntletHasActiveTicket.GauntletOpen #GauntletCloseCountdown
-{
-	visibility: visible;
-}
-
-.GauntletOpen .HiddenWhenGauntletOpen
-{
-	visibility: collapse;
-}
-
-
+	//static CPanoramaSymbol symLeaveConsequencesVisible( "LeaverConsequence" );
+	//static CPanoramaSymbol symLeaveConsequence_Warning( "LeaverConsequence_Warning" );
+	//static CPanoramaSymbol symLeaveConsequence_Safe( "LeaverConsequence_Safe" );
+	//static CPanoramaSymbol symLeaveConsequence_Neutral( "LeaverConsequence_Neutral" );

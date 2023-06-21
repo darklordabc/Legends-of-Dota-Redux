@@ -16,21 +16,21 @@
         "MaxLevel"                                                             "4"
         "RequiredLevel"                                                        "1"
         "LevelsBetweenUpgrades"                                                "2"
-        "AbilityCastRange"                                                     "80"
+        "AbilityCastRange"                                                     "175"
         "AbilityCastPoint"                                                     "0.0"
-        "AbilityCooldown"                                                      "40.0"
+        "AbilityCooldown"                                                      "40.0 32.0 24.0 16.0"
         "AbilityManaCost"                                                      "20 30 40 50"
         "AbilitySpecial"
         {
             "01"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "instant_heal"                                         "50 100 150 200"
+                "instant_heal"                                         "80 120 160 200"
             }
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "heal_per_second"                                      "10 20 30 40"
+                "heal_per_second"                                      "24 30 36 42"
             }
             "03"
             {
@@ -40,17 +40,17 @@
             "04"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "movement_slow"                                        "-5 -10 -20 -30"
+                "movement_slow"                                        "-30 -40 -50 -60"
             }
             "05"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "attack_slow"                                          "-5 -10 -20 -30"
+                "attack_slow"                                          "-30 -40 -50 -60"
             }
             "06"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "slow_duration"                                        "4.0"
+                "slow_duration"                                        "7.0"
             }
         }
         "OnSpellStart"

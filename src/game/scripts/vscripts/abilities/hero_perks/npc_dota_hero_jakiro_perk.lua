@@ -34,9 +34,9 @@ function modifier_npc_dota_hero_jakiro_perk:RemoveOnDeath()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_jakiro_perk:OnCreated(keys)
-	self.timeToCast = 13
-	self.cooldownPercentReduction = 20
-	self.manaPercentReduction = 40
+	self.timeToCast = 60
+	self.cooldownPercentReduction = 30
+	self.manaPercentReduction = 50
 
 	self.firePerk = "modifier_npc_dota_hero_jakiro_perk_fire"
 	self.icePerk = "modifier_npc_dota_hero_jakiro_perk_ice"

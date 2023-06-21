@@ -86,7 +86,7 @@ function modifier_light_blade:OnDestroy()
 				EmitSoundOnLocationWithCaster(hTarget:GetOrigin(),  "Hero_Phoenix.FireSpirits.Launch", self:GetCaster()) 
 			--end
 	
-			local nFXIndex = ParticleManager:CreateParticle( "particles/lina_spell_laguna_chain.vpcf", PATTACH_CUSTOMORIGIN, nil );
+			local nFXIndex = ParticleManager:CreateParticle( "particles/econ/items/lina/lina_ti6/lina_ti6_laguna_blade.vpcf", PATTACH_CUSTOMORIGIN, nil );
 			ParticleManager:SetParticleControlEnt( nFXIndex, 0, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetParent():GetOrigin() + Vector( 0, 0, 96 ), true );
 			ParticleManager:SetParticleControlEnt( nFXIndex, 1, hTarget, PATTACH_POINT_FOLLOW, "attach_hitloc", hTarget:GetOrigin(), true );
 			local Colour = {255,150,50}

@@ -61,12 +61,12 @@
 			"05"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"slow"							"-20"
+				"slow"							"-40 -45 -50 -55"
 			}
 			"06"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"slow_duration"					"2"
+				"slow_duration"					"2.0 2.5 3.0 3.5"
 			}
 
 		}
@@ -79,7 +79,5 @@
 			"soundfile" "soundevents/game_sounds_heroes/game_sounds_magnataur.vsndevts"
 		}
 
-		"ReduxPerks"	""
-		"ReduxFlags"	""
 	}
 }

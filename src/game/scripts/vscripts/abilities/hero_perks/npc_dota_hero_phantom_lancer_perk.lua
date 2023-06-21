@@ -37,7 +37,7 @@ end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_phantom_lancer_perk:GetModifierMoveSpeedBonus_Percentage(keys)
   if self:GetParent():IsIllusion() then
-    return 25
+    return 40
   end
 end
 --------------------------------------------------------------------------------------------------------

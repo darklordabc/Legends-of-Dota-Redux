@@ -49,7 +49,7 @@ local activeSkills = {}
 
 local meleeMap = {
     -- Remap troll ulty
-    troll_warlord_berserkers_rage = 'troll_warlord_berserkers_rage_melee'
+    -- troll_warlord_berserkers_rage = 'troll_warlord_berserkers_rage_melee'
 }
 
 local meleeList = {}

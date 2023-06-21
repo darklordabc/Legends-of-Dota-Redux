@@ -200,7 +200,7 @@ function IsDaytime()
     return true   
 end
 
-function C_DOTA_Modifier_Lua:CheckUniqueValue(value, tSuperiorModifierNames)
+function CDOTA_Modifier_Lua:CheckUniqueValue(value, tSuperiorModifierNames)
 	local hParent = self:GetParent()
 	if tSuperiorModifierNames then
 		for _,sSuperiorMod in pairs(tSuperiorModifierNames) do
@@ -217,5 +217,5 @@ function C_DOTA_Modifier_Lua:CheckUniqueValue(value, tSuperiorModifierNames)
 	return value
 end
 
-function C_DOTA_Modifier_Lua:CheckUnique(bCreated)
+function CDOTA_Modifier_Lua:CheckUnique(bCreated)
 return nil end

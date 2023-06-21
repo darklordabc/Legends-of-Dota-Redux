@@ -123,7 +123,7 @@ function modifier_reality_shift_show:OnDestroy()
 		local dmg = self:GetAbility():GetSpecialValueFor("damage")
 		local stun = self:GetAbility():GetSpecialValueFor("stun")
 
-		local radius = self:GetAbility():GetSpecialValueFor("radius")
+		local radius = self:GetAbility():GetSpecialValueFor("radius") * 2
 
 		local delay = 0.4
 
@@ -213,7 +213,7 @@ end
 
 function FastDummy(target, team, duration, vision)
   duration = duration or 0.03
-  vision = vision or  250
+  vision = vision or  700
   local dummy = CreateUnitByName("npc_dummy_unit", target, false, nil, nil, team)
   if dummy ~= nil then
     dummy:SetAbsOrigin(target)

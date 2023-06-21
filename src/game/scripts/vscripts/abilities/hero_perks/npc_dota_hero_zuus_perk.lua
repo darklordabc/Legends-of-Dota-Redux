@@ -28,28 +28,31 @@ function modifier_npc_dota_hero_zuus_perk:IsPurgable()
 	return false
 end
 --------------------------------------------------------------------------------------------------------
-function modifier_npc_dota_hero_zuus_perk:OnCreated(keys)
-	self.manaPercentReduction = 20
-	self.manaReduction = self.manaPercentReduction / 100
-	return true
+function modifier_npc_dota_hero_zuus_perk:OnCreated()
+  local manaRefund = 25
+  local cooldownReduction = 25
+
+  self.manaRefund = manaRefund * 0.01
+  self.cooldownReduction = 1 - (cooldownReduction * 0.01)
+  return true
 end
 --------------------------------------------------------------------------------------------------------
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_zuus_perk:DeclareFunctions()
   local funcs = {
-	MODIFIER_EVENT_ON_ABILITY_FULLY_CAST
+    MODIFIER_EVENT_ON_ABILITY_FULLY_CAST,
   }
   return funcs
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_zuus_perk:OnAbilityFullyCast(keys)
   if IsServer() then
-	local hero = self:GetCaster()
-	local target = keys.target
-	local ability = keys.ability
-	if hero == keys.unit and ability and ability:HasAbilityFlag("lightning") then
-	  hero:GiveMana(ability:GetManaCost(-1) * self.manaReduction)
-	end
+    if keys.ability:HasAbilityFlag("lightning") and keys.unit == self:GetParent() then
+      local cooldown = keys.ability:GetCooldownTimeRemaining()
+      keys.ability:EndCooldown()
+      keys.ability:StartCooldown(cooldown*self.cooldownReduction)
+      self:GetParent():GiveMana(keys.ability:GetManaCost(keys.ability:GetLevel()-1)*self.manaRefund)
+    end
   end
 end

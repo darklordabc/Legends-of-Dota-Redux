@@ -11,8 +11,8 @@
         "FightRecapLevel"                                                      "1"
         "MaxLevel"                                                             "4"
         "AbilityProcsMagicStick"                                               "1"
-        "AbilityCooldown"                                                      "60"
-        "AbilityManaCost"                                                      "175"
+        "AbilityCooldown"                                                      "40 36 32 28"
+        "AbilityManaCost"                                                      "100"
         "precache"
         {
             "particle"                                                     "particles/units/heroes/hero_bloodseeker/bloodseeker_thirst_owner.vpcf"
@@ -29,7 +29,7 @@
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "owl_vision"                                           "500"
+                "owl_vision"                                           "600"
             }
             "03"
             {

@@ -12,27 +12,27 @@
             "01"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "bonus_hp_regen"                                       "15.0 18.0 20.0"
+                "bonus_hp_regen"                                       "15.0 18.0 21.0"
             }
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "bonus_armor"                                          "4 8 10"
+                "bonus_armor"                                          "4 8 12"
             }
             "03"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "bonus_damage"                                         "5 6 8"
+                "bonus_damage"                                         "5 7 9"
             }
             "04"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "bonus_movespeed"                                      "2 4 6"
+                "bonus_movespeed"                                      "3 6 9"
             }
             "05"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "base_attack_time"                                     "1.6 1.54 1.52"
+                "base_attack_time"                                     "1.6 1.55 1.5"
             }
         }
         "Modifiers"

@@ -11,7 +11,7 @@
         "FightRecapLevel"                                                      "1"
         "AbilityTextureName"                                                   "custom/metamorphosis"
         "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
-        "AbilityCooldown"                                                      "120.0"
+        "AbilityCooldown"                                                      "120.0 110.0 100.0"
         "AbilityDuration"                                                      "30.0 45.0 60.0"
         "AbilityManaCost"                                                      "0"
         "precache"
@@ -25,12 +25,12 @@
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "base_damage"                                          "100 150 200"
+                "base_damage"                                          "80 120 160"
             }
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "stun_chance"                                          "5 10 15"
+                "stun_chance"                                          "15 20 25"
             }
             "03"
             {
@@ -40,12 +40,12 @@
             "04"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "attack_range"                                         "125"
+                "attack_range"                                         "175"
             }
             "05"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "move_speed"                                           "-75"
+                "move_speed"                                           "-25"
             }
             "06"
             {
@@ -55,7 +55,7 @@
             "07"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "base_damage_scepter"                                  "200 250 300"
+                "base_damage_scepter"                                  "120 160 240"
             }
         }
         "ReduxCost"                                                            "40"

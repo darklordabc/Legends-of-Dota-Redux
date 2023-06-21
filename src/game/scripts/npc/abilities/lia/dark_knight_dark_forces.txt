@@ -7,8 +7,8 @@
 		"AbilityTextureName" "custom/dark_knight_dark_forces"
 		"MaxLevel" "4"
 		"AbilityCastPoint" "0.0"
-		"AbilityCooldown" "14"
-		"AbilityManaCost" "80 140 200 260"
+		"AbilityCooldown" "17 16 15 14"
+		"AbilityManaCost" "120"
 		"AbilityCastRange" "300"
 
 		"AbilitySpecial" {
@@ -19,7 +19,7 @@
 
 			"02" {
 				"var_type" "FIELD_INTEGER"
-				"mana_percentage" "10 15 20 25"
+				"mana_percentage" "25"
 			}
 
 			"03" {
@@ -48,6 +48,13 @@
 				}
 				"Duration" "%duration"
 			}
+			"AttachEffect"
+            {
+                "EffectName"           "particles/nevermore_shadowraze_editfirst.vpcf"
+                "EffectAttachType"     "attach_origin"
+                "Target"               "CASTER"
+            }
+			
 		}
 
 		"Modifiers" {
@@ -55,7 +62,7 @@
 				"Passive" "0"
 				"IsHidden" "0"
 				"Attributes" "MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
-				"ThinkInterval" "0.5"
+				"ThinkInterval" "0.3"
 
 				"OnIntervalThink" {
 					"FireSound" {

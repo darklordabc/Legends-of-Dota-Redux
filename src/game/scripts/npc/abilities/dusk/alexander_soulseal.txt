@@ -11,19 +11,19 @@
 		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
 		"AbilityTextureName"			"custom/alexander_soulseal"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"450"
+		"AbilityCastRange"				"700"
 		"AbilityCastPoint"				"0.3"
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"22"
+		"AbilityCooldown"				"12"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -40,12 +40,12 @@
 			"01"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"duration"						"3 4 5 6"
+				"duration"						"4 5 6 7"
 			}
 			"02"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"slow"							"-20 -25 -30 -35"
+				"slow"							"-35 -45 -55 -65"
 			}
 		}
 		
@@ -61,8 +61,5 @@
 		"Modifiers"
 		{
 		}
-
-		"ReduxPerks"	"silence"
-		"ReduxFlags"	""
 	}
 }

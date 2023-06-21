@@ -26,22 +26,22 @@
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "move_speed"                                           "50 100 150"
+                "move_speed"                                           "75 100 125"
             }
             "03"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "attack_speed"                                         "25 50 75"
+                "attack_speed"                                         "60 100 140"
             }
             "04"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "max"                                                  "550"
+                "max"                                                  "550 650 750"
             }
             "05"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "bonus_vision_scepter"                                 "500 700 900"
+                "bonus_vision_scepter"                                 "600 800 1000"
             }
         }
         "ReduxCost"                                                            "20"

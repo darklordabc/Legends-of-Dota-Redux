@@ -37,12 +37,12 @@ end
  
 function anti_magic_mod:DeclareFunctions()
 	local funcs = {
-		MODIFIER_EVENT_ON_ABILITY_START
+		MODIFIER_EVENT_ON_ABILITY_EXECUTED
 	}
 	return funcs
 end
 
-function anti_magic_mod:OnAbilityStart(kv)
+function anti_magic_mod:OnAbilityExecuted(kv)
 	if IsServer() then
 		if kv.ability.IsItem and kv.ability:IsItem() then return end
 		if kv.unit and kv.unit:GetTeam() ~= self:GetCaster():GetTeam() then

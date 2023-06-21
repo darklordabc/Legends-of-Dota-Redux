@@ -8,7 +8,7 @@
         "AbilityTextureName"                                                   "custom/cherub_flower_garden"
         "AbilityCastRange"                                                     "300"
         "AbilityCooldown"                                                      "5.0"
-        "AbilityChannelTime"                                                   "2.0"
+        "AbilityChannelTime"                                                   "1.0"
         "AOERadius"                                                            "%radius"
         "AbilityProcsMagicStick"                                               "1"
         "AnimationPlaybackRate"                                                "0.2"
@@ -18,7 +18,7 @@
             "10"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "red_flower_damage"                                    "68 84 100"
+                "red_flower_damage"                                    "70 85 100"
             }
             "01"
             {
@@ -43,12 +43,12 @@
             "05"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "pink_flower_heal"                                     "14 22 30"
+                "pink_flower_heal"                                     "15 30 45"
             }
             "06"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "blue_flower_restore"                                  "18 22 26"
+                "blue_flower_restore"                                  "20 35 50"
             }
             "07"
             {
@@ -63,7 +63,7 @@
             "09"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "white_flower_damage"                                  "44 52 60"
+                "white_flower_damage"                                  "45 60 75"
             }
         }
         "precache"
@@ -120,7 +120,7 @@
                 "UnitName"                                             "garden_plot"
                 "UnitCount"                                            "1"
                 "SpawnRadius"                                          "16"
-                "Duration"                                             "30"
+                "Duration"                                             "40"
                 "Target"                                               "POINT"
                 "OnSpawn"
                 {
@@ -156,7 +156,7 @@
         {
             "modifier_garden_channel"
             {
-                "Duration"                                             "2.0"
+                "Duration"                                             "1.0"
                 "ThinkInterval"                                        "0.1"
                 "OnIntervalThink"
                 {

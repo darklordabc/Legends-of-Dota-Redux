@@ -31,7 +31,7 @@ end
       local hBuff = self:GetCaster():FindModifierByName( "modifier_flesh_heap_int" )
       if hBuff ~= nil then
         hBuff:SetStackCount( self.nKills )
-        self:GetCaster():CalculateStatBonus()
+        self:GetCaster():CalculateStatBonus(true)
       else
         self:GetCaster():AddNewModifier( self:GetCaster(), self,  "modifier_flesh_heap_int" , {} )
       end
@@ -89,13 +89,13 @@ end
 function modifier_flesh_heap_int:OnCreated( kv )
   if not self:GetAbility() then
     self:GetParent():RemoveModifierByName("modifier_flesh_heap_int")
-    self:GetParent():CalculateStatBonus()
+    self:GetParent():CalculateStatBonus(true)
     return
   end
   self.flesh_heap_int_buff_amount = self:GetAbility():GetSpecialValueFor( "flesh_heap_intelligence_buff_amount" ) or 0
   if IsServer() then
     self:SetStackCount( self:GetFleshHeapKills() )
-    --self:GetParent():CalculateStatBonus()
+    --self:GetParent():CalculateStatBonus(true)
   end
 end
 
@@ -104,13 +104,13 @@ end
 function modifier_flesh_heap_int:OnRefresh( kv )
   if not self:GetAbility() then
     self:GetParent():RemoveModifierByName("modifier_flesh_heap_int")
-    self:GetParent():CalculateStatBonus()
+    self:GetParent():CalculateStatBonus(true)
     return
   end
   self.flesh_heap_int_buff_amount = self:GetAbility():GetSpecialValueFor( "flesh_heap_intelligence_buff_amount" ) or 0
   if IsServer() then
     self:SetStackCount( self:GetFleshHeapKills() )
-    self:GetParent():CalculateStatBonus()
+    self:GetParent():CalculateStatBonus(true)
   end
 end
 
@@ -164,7 +164,7 @@ function modifier_flesh_heap_int:OnDeath(keys)
       local hBuff = self:GetCaster():FindModifierByName( "modifier_flesh_heap_int" )
       if hBuff ~= nil then
         hBuff:SetStackCount( self.nKills )
-        self:GetCaster():CalculateStatBonus()
+        self:GetCaster():CalculateStatBonus(true)
       else
         self:GetCaster():AddNewModifier( self:GetCaster(), self,  "modifier_flesh_heap_int" , {} )
       end

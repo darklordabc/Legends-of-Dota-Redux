@@ -36,7 +36,7 @@ function Ingame:init()
     self:addStrongTowers()
     self:loadTrollCombos()
     self:AddTowerBotController()
-    self:fixRuneBug()
+    --self:fixRuneBug()
 
     -- -- Init global mutator
     self:initGlobalMutator()
@@ -87,7 +87,7 @@ function Ingame:init()
     self.botsInLateGameMode = false
 
     -- Setup standard rules
-    GameRules:GetGameModeEntity():SetTowerBackdoorProtectionEnabled(true)
+    -- GameRules:GetGameModeEntity():SetTowerBackdoorProtectionEnabled(true)
 
     PrecacheUnitByNameAsync('npc_precache_npc_dota_hero_ogre_magi', function()
         CreateUnitByName('npc_precache_npc_dota_hero_ogre_magi', Vector(-10000, -10000, 0), false, nil, nil, 0)
@@ -184,39 +184,39 @@ function Ingame:OnPlayerPurchasedItem(keys)
     if util:isPlayerBot(keys.PlayerID) then
         local hero = PlayerResource:GetPlayer(keys.PlayerID):GetAssignedHero()
         -- If bots buy boots remove first instances of cheap items they have, this is a fix for them having boots in backpack
-        if string.find(keys.itemname, "boots") or keys.itemname == "item_power_treads" then
-            local tangos = hero:FindItemByName("item_tango")
-            local mangos = hero:FindItemByName("item_enchanted_mango")
-            local clarity = hero:FindItemByName("item_clarity")
-            local faerie = hero:FindItemByName("item_faerie_fire")
-            local flask = hero:FindItemByName("item_flask")
+        -- if string.find(keys.itemname, "boots") or keys.itemname == "item_power_treads" then
+        --    local tangos = hero:FindItemByName("item_tango")
+        --    local mangos = hero:FindItemByName("item_enchanted_mango")
+        --    local clarity = hero:FindItemByName("item_clarity")
+        --    local faerie = hero:FindItemByName("item_faerie_fire")
+        --    local flask = hero:FindItemByName("item_flask")
 
-            if tangos then
-            local refund = tangos:GetCost()
-            hero:ModifyGold(refund, false, 0)
-            tangos:RemoveSelf()
-            end
-            if mangos then
-                local refund = mangos:GetCost()
-                hero:ModifyGold(refund, false, 0)
-                mangos:RemoveSelf()
-            end
-            if clarity then
-                local refund = clarity:GetCost() * clarity:GetCurrentCharges()
-                hero:ModifyGold(refund, false, 0)
-                clarity:RemoveSelf()
-            end
-            if faerie then
-                local refund = faerie:GetCost()
-                hero:ModifyGold(refund, false, 0)
-                faerie:RemoveSelf()
-            end
-            if flask then
-                local refund = flask:GetCost() * flask:GetCurrentCharges()
-                hero:ModifyGold(refund, false, 0)
-                flask:RemoveSelf()
-            end
-        end
+        --    if tangos then
+        --    local refund = tangos:GetCost()
+        --    --hero:ModifyGold(refund, false, 0)
+        --    tangos:RemoveSelf()
+        --    end
+        --    if mangos then
+        --        local refund = mangos:GetCost()
+                --hero:ModifyGold(refund, false, 0)
+        --        mangos:RemoveSelf()
+        --    end
+        --    if clarity then
+        --        local refund = clarity:GetCost() * clarity:GetCurrentCharges()
+                --hero:ModifyGold(refund, false, 0)
+        --        clarity:RemoveSelf()
+        --    end
+        --    if faerie then
+        --        local refund = faerie:GetCost()
+                --hero:ModifyGold(refund, false, 0)
+        --        faerie:RemoveSelf()
+        --    end
+        --    if flask then
+        --        local refund = flask:GetCost() * flask:GetCurrentCharges()
+                --hero:ModifyGold(refund, false, 0)
+        --        flask:RemoveSelf()
+        --    end
+        --end
 
 
             for slot =  DOTA_STASH_SLOT_1, DOTA_STASH_SLOT_6 do
@@ -377,11 +377,11 @@ function Ingame:FilterExecuteOrder(filterTable)
     -- end		
 
     -- Block Alchemists Innate, heroes should not have innate abilities
-    if ability and target then
-        if string.match(target:GetName(), "npc_dota_hero_") and ability:GetName() == "item_ultimate_scepter" and unit:GetUnitName() == "npc_dota_hero_alchemist" then
-            return false
-        end
-    end
+  --  if ability and target then
+  --      if string.match(target:GetName(), "npc_dota_hero_") and ability:GetName() == "item_ultimate_scepter" and unit:GetUnitName() == "npc_dota_hero_alchemist" then
+  --          return false
+  --      end
+  --  end
     if unit then
         if unit:IsRealHero() then
             local unitPlayerID = unit:GetPlayerID()
@@ -391,10 +391,10 @@ function Ingame:FilterExecuteOrder(filterTable)
             -- increase counter. If counter gets too high, it means they have been stuck in same position for a long time, do action to help them.
             if util:isPlayerBot(unitPlayerID) then
                 -- Bot Armlet Fix: Bots do not know how to use armlets so return false if they attempt to and put on cooldown
-                if ability and ability:GetName() == "item_armlet" then
-                    ability:StartCooldown(200)
-                    return false
-                end
+             --   if ability and ability:GetName() == "item_armlet" then
+             --       ability:StartCooldown(200)
+             --       return false
+             --   end
                 if OptionManager:GetOption('stupidBots') == 1 then
                     if unit.blocked == true then
                         return false
@@ -533,10 +533,10 @@ function Ingame:onStart()
         end
 
     -- Force bots to take a defensive pose until the first tower has been destroyed. This is top stop bots from straight away pushing lanes when they hit level 6
-    Timers:CreateTimer(function ()
-               GameRules:GetGameModeEntity():SetBotsInLateGame(self.botsInLateGameMode)
-               --print("bots will only defend")
-            end, 'forceBotsToDefend', 0.5)
+    --Timers:CreateTimer(function ()
+    --           GameRules:GetGameModeEntity():SetBotsInLateGame(self.botsInLateGameMode)
+    --           --print("bots will only defend")
+    --        end, 'forceBotsToDefend', 0.5)
 
     ---Enable and then quickly disable all vision. This fixes two problems. First it fixes the scoreboard missing enemy abilities, and second it fixes the issues of bots not moving until they see an enemy player.
     if Convars:GetBool("dota_all_vision") == false then
@@ -552,22 +552,22 @@ function Ingame:onStart()
     end
 
     -- Remove powerup runes, spawned before 2 minutes
-    Timers:CreateTimer(function ()
-        if math.floor(GameRules:GetDOTATime(false, false)/60) < 0.2 then
-            local spawners = Entities:FindAllByClassname("dota_item_rune_spawner_powerup")
-            for k,v in ipairs(spawners) do
-                if v ~= nil then
-                    local nearbyRunes = Entities:FindAllByClassnameWithin("dota_item_rune", v:GetOrigin(), 400)
-                    for _,rune in ipairs(nearbyRunes) do
-                        if rune ~= nil then
-                            UTIL_Remove(rune)
-                        end
-                    end
-                end
-            end
-            return 0.1
-        end
-    end, 'removeRunes', 0.1)
+--    Timers:CreateTimer(function ()
+--        if math.floor(GameRules:GetDOTATime(false, false)/60) < 0.2 then
+--            local spawners = Entities:FindAllByClassname("dota_item_rune_spawner_powerup")
+--            for k,v in ipairs(spawners) do
+--                if v ~= nil then
+--                    local nearbyRunes = Entities:FindAllByClassnameWithin("dota_item_rune", v:GetOrigin(), 400)
+--                    for _,rune in ipairs(nearbyRunes) do
+--                        if rune ~= nil then
+--                            UTIL_Remove(rune)
+--                        end
+--                    end
+--                end
+--            end
+--            return 0.1
+--        end
+--    end, 'removeRunes', 0.1)
 
     --secondary fix for randomly not getting skill points for levels 18-24
     --  the other method is inconsistant
@@ -743,7 +743,7 @@ function Ingame:CommandNotification(command, message, cooldown)
 end
 
 
-function Ingame:fixRuneBug()
+--[[function Ingame:fixRuneBug()
     ListenToGameEvent('game_rules_state_change', function(keys)
         local newState = GameRules:State_Get()
 
@@ -763,7 +763,7 @@ function Ingame:fixRuneBug()
             end, "botRune", 6)
         end
     end, nil)
-end
+end]]--
 --[[
 -- Upgrades bot neutral items over time
 function Ingame:botNeutralUpgrader()
@@ -1210,12 +1210,12 @@ function Ingame:balanceGold()
 	          local state = PlayerResource:GetConnectionState(playerID)
 	          if state == 1 or state == 2 then
 	          	if losingTeam == "goodGuys" and hero:GetTeam() == DOTA_TEAM_GOODGUYS and self.radiantBalanceMoney >= 1 then
-	          		hero:ModifyGold(moneySize, false, 0)
+	          		--hero:ModifyGold(moneySize, false, 0)
 	          		SendOverheadEventMessage(hero:GetPlayerOwner(), OVERHEAD_ALERT_GOLD, hero, moneySize, nil)
 	          		self.radiantBalanceMoney = self.radiantBalanceMoney - moneySize
                     self.radiantTotalBalanceMoney = self.radiantTotalBalanceMoney + moneySize
 	          	elseif losingTeam == "badGuys" and hero:GetTeam() == DOTA_TEAM_BADGUYS and self.direBalanceMoney >= 1 then
-	          		hero:ModifyGold(moneySize, false, 0)
+	          		--hero:ModifyGold(moneySize, false, 0)
 	          		SendOverheadEventMessage(hero:GetPlayerOwner(), OVERHEAD_ALERT_GOLD, hero, moneySize, nil)
 	          		self.direBalanceMoney = self.direBalanceMoney - moneySize
                     self.direTotalBalanceMoney = self.direTotalBalanceMoney + moneySize
@@ -1313,15 +1313,15 @@ function Ingame:handleRespawnModifier()
                             local timeLeft = hero:GetRespawnTime()
 
                             --hotfix start: stop heros from having crazy respawn times
-                            if hero:GetLevel() > 25 then
+                            if hero:GetLevel() > 30 then
                                 timeLeft = 4 * hero:GetLevel()
                             end
-                            if timeLeft > 160 then
-                                timeLeft = 160
+                            if timeLeft > 100 then
+                                timeLeft = 100
                             end
                             --hotfix end
 
-                            timeLeft = timeLeft * respawnModifierPercentage / 100 + respawnModifierConstant
+                            timeLeft = timeLeft * (respawnModifierPercentage / 100) + respawnModifierConstant
 
                             if timeLeft <= 0 then
                                 timeLeft = 1
@@ -1524,7 +1524,7 @@ function Ingame:initGoldBalancer()
     -- Filter event
     GameRules:GetGameModeEntity():SetModifyGoldFilter(Dynamic_Wrap(Ingame, "FilterModifyGold" ), self)
     GameRules:GetGameModeEntity():SetModifyExperienceFilter(Dynamic_Wrap(Ingame, "FilterModifyExperience" ), self)
-    GameRules:GetGameModeEntity():SetBountyRunePickupFilter(Dynamic_Wrap( Ingame, "BountyRunePickupFilter" ), self )
+    GameRules:GetGameModeEntity():SetBountyRunePickupFilter(Dynamic_Wrap(Ingame, "BountyRunePickupFilter" ), self )
 
     local this = self
 
@@ -1607,7 +1607,7 @@ function Ingame:FilterModifyGold(filterTable)
     local goldModifier = OptionManager:GetOption('goldModifier')
 
     --print(filterTable.gold)
-    if goldModifier ~= 1 then
+    if goldModifier ~= 100 then
         -- If the gold is from killing heroes, creeps, or roshan, do nothing, its handled in pregame.lua
         if filterTable.reason_const ~= 12 and filterTable.reason_const ~= 13 and filterTable.reason_const ~= 14 then
             filterTable.gold = math.ceil(filterTable.gold * goldModifier / 100)
@@ -1652,7 +1652,7 @@ function Ingame:FilterModifyExperience(filterTable)
     --hotfix end
 
 
-    if expModifier ~= 1 then
+    if expModifier ~= 100 then
         filterTable.experience = math.ceil(filterTable.experience * expModifier / 100)
     end
 
@@ -1756,7 +1756,7 @@ function Ingame:checkBuybackStatus()
                             
                             GameRules.pregame.selectedSkills[pID] = {}
                             GameRules.pregame.selectedHeroes[pID] = GameRules.pregame:getRandomHero()
-                            GameRules.pregame.selectedPlayerAttr[pID] = ({'str', 'agi', 'int'})[math.random(1,3)]
+                            GameRules.pregame.selectedPlayerAttr[pID] = ({'str', 'agi', 'int', 'all'})[math.random(1,3)]
                             if util:isPlayerBot(pID) and GameRules.pregame.botPlayers then
                                 GameRules.pregame.botPlayers.all[pID] = {}
                                 GameRules.pregame:generateBotBuilds(pID)
@@ -1993,7 +1993,7 @@ function Ingame:addStrongTowers()
             Timers:CreateTimer(function()
                 self.botsInLateGameMode = true
                 GameRules:GetGameModeEntity():SetBotsInLateGame(self.botsInLateGameMode)
-            end, DoUniqueString('makesBotsLateGameAgain'), 180)
+            end, DoUniqueString('makesBotsLateGameAgain'), 120)
         else
             --print("bots are in late game behaviour")
             self.botsInLateGameMode = true

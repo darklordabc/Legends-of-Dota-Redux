@@ -40,11 +40,11 @@
 
         // Time     
         //-------------------------------------------------------------------------------------------------------------
-        "AbilityCooldown"               "8 7.5 7 6.5"
+        "AbilityCooldown"               "8 7 6 5"
 
         // Cost
         //-------------------------------------------------------------------------------------------------------------
-        "AbilityManaCost"               "90 100 110 120"
+        "AbilityManaCost"               "70 80 90 100"
 
         // Special
         //-------------------------------------------------------------------------------------------------------------
@@ -53,17 +53,17 @@
             "01"
             {
                 "var_type"              "FIELD_INTEGER"
-                "damage_heal"           "50 100 150 200"
+                "damage_heal"           "100 150 200 250"
             }
             "02"
             {
                 "var_type"              "FIELD_FLOAT"
-                "max_push_distance" "700 750 800 850"
+                "max_push_distance" "850"
             }
             "03"
             {
                 "var_type"          "FIELD_INTEGER"
-                "push_speed"            "750"
+                "push_speed"            "900"
             }
         }
         "precache"
@@ -157,17 +157,17 @@
             "01"
             {
                 "var_type"              "FIELD_INTEGER"
-                "base_polyp_health"     "50 75 100 125"
+                "base_polyp_health"     "100 125 150 175"
             }
             "02"
             {
                 "var_type"              "FIELD_FLOAT"
-                "polyp_regen"           "10 15 20 25"
+                "polyp_regen"           "15 25 35 45"
             }
             "03"
             {
                 "var_type"              "FIELD_FLOAT"
-                "max_polyp_health"      "150 225 300 375"
+                "max_polyp_health"      "175 250 325 400"
             }
             "03"
             {
@@ -182,7 +182,7 @@
             "05"
             {
                 "var_type"          "FIELD_INTEGER"
-                "duration"          "30"
+                "duration"          "45"
             }
         }
         "OnSpellStart"
@@ -274,16 +274,16 @@
         
         // Casting
         //-------------------------------------------------------------------------------------------------------------
-        "AbilityCastRange"              "300 400 500 600"
+        "AbilityCastRange"              "500"
         "AbilityCastPoint"              "0"
 
         // Time     
         //-------------------------------------------------------------------------------------------------------------
-        "AbilityCooldown"               "5"
+        "AbilityCooldown"               "6.5 6.0 5.5 5.0"
 
         // Cost
         //-------------------------------------------------------------------------------------------------------------
-        "AbilityManaCost"               "30 40 45 50"
+        "AbilityManaCost"               "30 25 20 15"
 
         "precache"
         {
@@ -298,7 +298,7 @@
             "01"
             {
                 "var_type"              "FIELD_INTEGER"
-                "jet_distance"          "300 400 500 600"
+                "jet_distance"          "500"
             }
             "02"
             {
@@ -402,12 +402,12 @@
         
         // Casting
         //-------------------------------------------------------------------------------------------------------------
-        "AbilityCastRange"              "900 1200 1500"
+        "AbilityCastRange"              "1200 1500 1800"
         "AbilityCastPoint"              "0"
 
         // Time     
         //-------------------------------------------------------------------------------------------------------------
-        "AbilityCooldown"               "30 20 15"
+        "AbilityCooldown"               "25 20 15"
 
         "precache"
         {
@@ -422,22 +422,22 @@
             "01"
             {
                 "var_type"              "FIELD_FLOAT"
-                "cooldown_reduction"        "5"
+                "cooldown_reduction"        "6 9 12"
             }
             "02"
             {
                 "var_type"              "FIELD_INTEGER"
-                "self_bonus_damage"         "17 25 33"
+                "self_bonus_damage"         "15"
             }
             "03"
             {
                 "var_type"              "FIELD_INTEGER"
-                "radius"                "900 1200 1500"
+                "radius"                "1200 1500 1800"
             }
             "04"
             {
                 "var_type"              "FIELD_INTEGER"
-                "duration"              "30 20 15"
+                "duration"              "10"
             }
         }
         "OnUpgrade"

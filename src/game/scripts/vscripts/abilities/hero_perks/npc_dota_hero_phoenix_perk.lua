@@ -51,9 +51,9 @@ if IsServer() then
         local checkLevel = self:GetParent():GetLevel()
         local eggLevel = 1
 
-        if checkLevel >= 16 then 
+        if checkLevel >= 18 then 
             eggLevel = 3
-        elseif checkLevel >= 11 then
+        elseif checkLevel >= 12 then
             eggLevel = 2
         elseif checkLevel >= 6 then
             eggLevel = 1

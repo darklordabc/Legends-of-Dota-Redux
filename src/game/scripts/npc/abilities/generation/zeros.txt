@@ -17,11 +17,11 @@
         "AbilityProcsMagicStick"        "1"
         "HasScepterUpgrade"             "1"
     
-        "AbilityGoldCost"               "100 125 150"
+        "AbilityGoldCost"               "75 100 125"
         "AbilityManaCost"               "50"
         "AbilityCooldown"               "5.0"
     
-        "AbilityCastRange"              "800"
+        "AbilityCastRange"              "1200"
         "AbilityCastPoint"              "0.3"
         "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_1"
     
@@ -30,7 +30,7 @@
             "01"
             {
                 "var_type"          "FIELD_FLOAT"
-                "gold_cost"     "100 125 150"
+                "gold_cost"     "75 100 125"
             }
             "02"
             {
@@ -50,12 +50,12 @@
             "05"
             {
                 "var_type"          "FIELD_INTEGER"
-                "movespeed_bonus"       "10 18 26"
+                "movespeed_bonus"       "12 20 28"
             }
             "06"
             {
                 "var_type"          "FIELD_INTEGER"
-                "movespeed_slow"        "-10 -18 -26"
+                "movespeed_slow"        "-12 -20 -28"
             }
         }
     
@@ -174,11 +174,11 @@
         "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
         "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
     
-        "AbilityCastRange"              "650"
+        "AbilityCastRange"              "750"
         "AbilityCastPoint"              "0.3"
     
-        "AbilityCooldown"               "20"
-        "AbilityManaCost"               "80 90 100 110"
+        "AbilityCooldown"               "7"
+        "AbilityManaCost"               "50"
         "AbilityProcsMagicStick"        "1"
     
         "AbilitySpecial"
@@ -186,12 +186,12 @@
             "01"
             {
                 "var_type"          "FIELD_INTEGER"
-                "gold_loss_pct"     "10"
+                "gold_loss_pct"     "20"
             }
             "02"
             {
                 "var_type"          "FIELD_INTEGER"
-                "damage_per_gold"   "8 12 16 20"
+                "damage_per_gold"   "4 6 8 10"
             }
             "03"
             {
@@ -356,10 +356,10 @@
         "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
         "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
     
-        "AbilityCooldown"               "65 60 55 50"
-        "AbilityManaCost"               "150"
+        "AbilityCooldown"               "20"
+        "AbilityManaCost"               "75"
     
-        "AbilityCastRange"              "500"
+        "AbilityCastRange"              "600"
         "AbilityCastPoint"              "0.3"
         "AnimationPlaybackRate"         "1.2"
         "AbilityProcsMagicStick"        "1"
@@ -369,7 +369,7 @@
             "01"
             {
                 "var_type"          "FIELD_INTEGER"
-                "duration"          "30"
+                "duration"          "20"
             }
             "02"
             {
@@ -379,22 +379,22 @@
             "03"
             {
                 "var_type"          "FIELD_INTEGER"
-                "bounty"            "300 400 500 600"
+                "bounty"            "300"
             }
             "04"
             {
                 "var_type"          "FIELD_INTEGER"
-                "bonus_gold"        "10 15 20 25"
+                "bonus_gold"        "18 24 30 36"
             }
             "05"
             {
                 "var_type"          "FIELD_INTEGER"
-                "radius"            "900"
+                "radius"            "1200"
             }
             "06"
             {
                 "var_type"          "FIELD_INTEGER"
-                "damage_reduction"      "-6 -9 -12 -15"
+                "damage_reduction"      "-10 -20 -30 -40"
             }
             "06"
             {
@@ -595,17 +595,17 @@
             "01"
             {
                 "var_type"          "FIELD_INTEGER"
-                "proc_chance"       "15"
+                "proc_chance"       "35"
             }
             "02"
             {
                 "var_type"          "FIELD_INTEGER"
-                "crit_damage"       "150 200 250 300"
+                "crit_damage"       "150 180 210 240"
             }
             "03"
             {
                 "var_type"          "FIELD_FLOAT"
-                "stun_duration"     "1.75 2.0 2.25 2.5"
+                "stun_duration"     "1.5"
             }
             "04"
             {
@@ -615,7 +615,7 @@
             "05"
             {
                 "var_type"          "FIELD_INTEGER"
-                "bonus_movement_speed"      "10"
+                "bonus_movement_speed"      "8 9 10 11"
             }
         }
         "precache"
@@ -806,8 +806,8 @@
     
         "AbilityCastPoint"              "0.3"
     
-        "AbilityCooldown"               "70"
-        "AbilityManaCost"               "150 200 250"
+        "AbilityCooldown"               "70 60 50"
+        "AbilityManaCost"               "120 140 160"
         "AbilityProcsMagicStick"        "1"
     
         "AbilitySpecial"
@@ -820,37 +820,37 @@
             "02"
             {
                 "var_type"          "FIELD_INTEGER"
-                "damage_reduction_pct"      "-10 -20 -30"
+                "damage_reduction_pct"      "-30"
             }
             "03"
             {
                 "var_type"          "FIELD_FLOAT"
-                "duration"                  "15.0 20.0 25.0"
+                "duration"                  "25.0"
             }
             "04"
             {
                 "var_type"          "FIELD_INTEGER"
-                "day_vision"            "350"
+                "day_vision"            "700"
             }
             "05"
             {
                 "var_type"          "FIELD_INTEGER"
-                "night_vision"      "175"
+                "night_vision"      "700"
             }
             "06"
             {
                 "var_type"          "FIELD_INTEGER"
-                "break_radius"              "1800"
+                "break_radius"              "700"
             }
             "07"
             {
                 "var_type"          "FIELD_INTEGER"
-                "day_vision_penalty"        "-1450"
+                "day_vision_penalty"        "-1100"
             }
             "08"
             {
                 "var_type"          "FIELD_INTEGER"
-                "night_vision_penalty"      "-625"
+                "night_vision_penalty"      "-100"
             }
         }
         "precache"

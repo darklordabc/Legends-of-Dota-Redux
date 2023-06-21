@@ -11,7 +11,7 @@
             "01"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "reduce"                                               "10 20 30 50"
+                "reduce"                                               "15 30 45 60"
             }
         }
         "ReduxCost"                                                            "120"

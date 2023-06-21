@@ -25,7 +25,7 @@
         
         // Cost
         //-------------------------------------------------------------------------------------------------------------
-        "AbilityManaCost"               "500"
+        "AbilityManaCost"               "200"
         
         // Special
         //-------------------------------------------------------------------------------------------------------------
@@ -34,7 +34,7 @@
             "01"
             {
                 "var_type"                  "FIELD_INTEGER"
-                "slow_duration_first"       "2"
+                "slow_duration_first"       "4"
             }
             "02"
             {
@@ -49,17 +49,17 @@
             "04"
             {
                 "var_type"                  "FIELD_INTEGER"
-                "damage_second"             "300"
+                "damage_second"             "600"
             }
             "05"
             {
                 "var_type"                  "FIELD_FLOAT"
-                "slow_first"                "30"
+                "slow_first"                "60"
             }
             "06"
             {
                 "var_type"                  "FIELD_FLOAT"
-                "slow_second"               "60"
+                "slow_second"               "120"
             }
             "07"
             {
@@ -74,8 +74,13 @@
             "09"
             {
                 "var_type"                  "FIELD_INTEGER"
-                "damage_second_scepter"     "300"
+                "damage_second_scepter"     "600"
             }
+			"10"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"missile_delay_tooltip"		"2"
+			}
         }
     }
 }

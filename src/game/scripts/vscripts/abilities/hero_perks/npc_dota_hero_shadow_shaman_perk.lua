@@ -30,7 +30,7 @@ end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_shadow_shaman_perk:OnCreated()
   if IsServer() then
-    self.cooldownTime = 60
+    self.cooldownTime = 40
     self.hexDuration = 3
 
     self.cooldownReady = true

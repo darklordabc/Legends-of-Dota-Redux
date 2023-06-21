@@ -8,7 +8,7 @@
         "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
         "AbilityUnitDamageType"                                                "DAMAGE_TYPE_MAGICAL"
         "AbilityTextureName"                                                   "ancient_apparition_chilling_touch"
-        "MaxLevel"                                                             "3"
+        "MaxLevel"                                                             "4"
         "RequiredLevel"                                                        "1"
         "LevelsBetweenUpgrades"                                                "2"
         "precache"
@@ -18,19 +18,19 @@
         }
         "AbilityCastRange"                                                     "%range"
         "AbilityCastPoint"                                                     "0.0 0.0 0.0 0.0"
-        "AbilityCooldown"                                                      "14"
-        "AbilityManaCost"                                                      "90 110 130"
+        "AbilityCooldown"                                                      "14 13 12 11"
+        "AbilityManaCost"                                                      "90 100 110 120"
         "AbilitySpecial"
         {
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "damage"                                               "70 140 210"
+                "damage"                                               "70 140 210 280"
             }
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "damage_per_second"                                    "9 18 36"
+                "damage_per_second"                                    "18 27 36 45"
             }
             "03"
             {
@@ -40,12 +40,12 @@
             "04"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "end_radius"                                           "150"
+                "end_radius"                                           "350"
             }
             "05"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "range"                                                "650 700 750"
+                "range"                                                "650 700 750 800"
             }
             "06"
             {
@@ -55,7 +55,7 @@
             "07"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "duration"                                             "4 5 6"
+                "duration"                                             "4 5 6 7"
             }
         }
         "OnSpellStart"

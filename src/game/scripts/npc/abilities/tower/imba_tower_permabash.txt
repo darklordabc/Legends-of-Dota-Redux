@@ -14,12 +14,12 @@
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "bash_damage"                                          "50 75 100"
+                "bash_damage"                                          "50 100 150"
             }
             "02"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "bash_duration"                                        "1.0"
+                "bash_duration"                                        "1.25"
             }
         }
         "Modifiers"

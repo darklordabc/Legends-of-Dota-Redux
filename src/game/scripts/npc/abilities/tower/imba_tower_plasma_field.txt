@@ -7,8 +7,8 @@
         "AbilityTextureName"                                                   "custom/imba_tower_plasma_field"
         "MaxLevel"                                                             "3"
         "AbilitySharedWithTeammates"                                           "1"
-        "AbilityCastRange"                                                     "800 1000 1200"
-        "AbilityCooldown"                                                      "15"
+        "AbilityCastRange"                                                     "700"
+        "AbilityCooldown"                                                      "15 14 13"
         "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
         "precache"
         {
@@ -19,7 +19,7 @@
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "plasma_radius"                                        "700 800 900"
+                "plasma_radius"                                        "700"
             }
             "02"
             {

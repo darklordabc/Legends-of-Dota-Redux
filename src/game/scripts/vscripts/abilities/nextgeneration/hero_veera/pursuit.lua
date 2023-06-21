@@ -105,7 +105,7 @@ end
 function RollInitiate( keys )
 	local caster = keys.caster
 	local ability = keys.ability
-	local leap_speed = caster:GetMoveSpeedModifier(caster:GetBaseMoveSpeed(), false) + 150
+	local leap_speed = caster:GetMoveSpeedModifier(caster:GetBaseMoveSpeed(), false) + 50
 	local casterAngles = caster:GetAngles()
 
 	-- Clears any current command
@@ -140,7 +140,7 @@ function RollInitiate( keys )
 		local yaw = casterAngles.x - ((time_elapsed * 3) * flip)
 		GridNav:DestroyTreesAroundPoint(caster:GetAbsOrigin(), 150, false)
 		caster:SetAngles(yaw, casterAngles.y, casterAngles.z ) 
-		if flip > 0 then flip = flip - 9 else flip = 0 end
+		if flip > 0 then flip = flip - 12 else flip = 0 end
 
 		if time_elapsed < 0.3 then
 			caster:SetAbsOrigin(caster:GetAbsOrigin() + Vector(0,0,jump))

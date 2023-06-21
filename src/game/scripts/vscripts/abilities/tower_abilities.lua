@@ -422,7 +422,7 @@ function GrievousWounds( keys )
 	
 	if caster:PassivesDisabled() then return end
 
-	if not caster:IsRealHero() and not caster:IsBuilding() then return nil end
+	if not caster:IsRealHero() and not caster:IsBuilding() and target:IsBuilding() then return nil end
 
 
 	-- Parameters

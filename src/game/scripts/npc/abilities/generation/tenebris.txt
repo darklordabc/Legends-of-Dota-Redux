@@ -26,9 +26,9 @@
         "AbilityTextureName"        "custom/tenebris_blood_ward"
  
         //Casting
-        "AbilityCastPoint"      "0.5"
-        "AbilityCastRange"      "250"
-        "AbilityCooldown"       "35.0"
+        "AbilityCastPoint"      "0.3"
+        "AbilityCastRange"      "400"
+        "AbilityCooldown"       "36.0 34.0 32.0 30.0"
         "AbilityManaCost"       "100"
         "AOERadius"         "%radius"
  
@@ -38,32 +38,32 @@
             "01"
             {
                 "var_type"      "FIELD_FLOAT"
-                "dps"           "10 20 30 40"
+                "dps"           "30 45 60 75"
             }
             "02"
             {
                 "var_type"      "FIELD_FLOAT"
-                "reflect"       "80 90 100 110"
+                "reflect"       "80"
             }
             "03"
             {
                 "var_type"      "FIELD_INTEGER"
-                "radius"        "1000 1200 1400 1600"
+                "radius"        "1600"
             }
             "04"
             {
                 "var_type"      "FIELD_INTEGER"
-                "duration"      "30"
+                "duration"      "40"
             }
             "05" //Must be double attacks to destroy
             {
                 "var_type"      "FIELD_INTEGER"
-                "maximum_reflections"   "6 8 10 12"
+                "maximum_reflections"   "6 10 14 18"
             }
             "06" //Must be one half number of maximum reflections
             {
                 "var_type"      "FIELD_INTEGER"
-                "attacks_to_destroy"    "3 4 5 6"
+                "attacks_to_destroy"    "3 5 7 9"
             }
             "07"
             {
@@ -123,7 +123,7 @@
                 "Aura_Radius"       "%radius"
                 "Aura_Teams"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
                 "Aura_Types"     "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-                "Aura_Flags"     "DOTA_UNIT_TARGET_FLAG_PLAYER_CONTROLLED"
+             // "Aura_Flags"     "DOTA_UNIT_TARGET_FLAG_PLAYER_CONTROLLED"
                 "Aura_ApplyToCaster" "1"
  
                 "States"
@@ -372,9 +372,9 @@
         "AbilityTextureName"        "custom/tenebris_fade_strike"
  
         //Casting
-        "AbilityCastRange"      "128"
-        "AbilityCooldown"       "3"
-        "AbilityManaCost"       "25 30 35 40"
+        "AbilityCastRange"      "150"
+        "AbilityCooldown"       "0.2"
+        "AbilityManaCost"       "30"
  
         // Special
         "AbilitySpecial"
@@ -382,7 +382,7 @@
             "01"
             {
                 "var_type"      "FIELD_INTEGER"
-                "bonus_damage"      "25 40 55 70"
+                "bonus_damage"      "45 55 65 75"
             }
             "02"
             {
@@ -392,7 +392,7 @@
             "03"
             {
                 "var_type"      "FIELD_FLOAT"
-                "duration_debuff"   "3.0"
+                "duration_debuff"   "1.0"
             }
         }
  
@@ -474,13 +474,14 @@
             "tenebris_fade_strike_modifier_debuff"
             {
                 "IsDebuff"      "1"
+				"IsPurgable"        "1"
                 "Duration"      "%duration_debuff"
                 "EffectName"        "particles/units/heroes/hero_invoker/invoker_deafening_blast_disarm_debuff.vpcf"
                 "EffectAttachType"  "follow_overhead"
 
                 "States"
                 {
-                    "MODIFIER_STATE_DISARMED"       "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"  "-10000"
                 }
             }
         }
@@ -504,17 +505,17 @@
             "01"
             {
                 "var_type"      "FIELD_FLOAT"
-                "ias"           "0.75 1.0 1.25 1.5"
+                "ias"           "1.1 1.3 1.5 1.7"
             }
             "02"
             {
                 "var_type"      "FIELD_INTEGER"
-                "radius"        "800"
+                "radius"        "600 700 800 900"
             }
             "03"
             {
                 "var_type"      "FIELD_FLOAT"
-                "duration_max"      "1.0 1.4 1.8 2.2"
+                "duration_max"      "1.0 1.2 1.4 1.6"
             }
         }
  

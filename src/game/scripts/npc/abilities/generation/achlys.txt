@@ -25,7 +25,7 @@
 
         // Cost
         //-------------------------------------------------------------------------------------------------------------
-        "AbilityManaCost"               "15"
+        "AbilityManaCost"               "12"
 
         // Special
         //-------------------------------------------------------------------------------------------------------------
@@ -39,7 +39,7 @@
             "02"
             {
                 "var_type"          "FIELD_INTEGER"
-                "slow_per_stack"    "-3 -4 -5 -6"
+                "slow_per_stack"    "-6 -8 -10 -12"
             }
             "03"
             {
@@ -49,7 +49,7 @@
             "04"
             {
                 "var_type"          "FIELD_INTEGER"
-                "root_duration"     "3"
+                "root_duration"     "1"
             }
         }
 
@@ -245,7 +245,7 @@
 
         // Time     
         //-------------------------------------------------------------------------------------------------------------
-        "AbilityCooldown"               "25"
+        "AbilityCooldown"               "21 19 17 15"
         "AbilityCastPoint"              "0.0 0.0 0.0 0.0"
         "AbilityDuration"               "15"
         
@@ -504,7 +504,7 @@
         "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
         "AbilityUnitTargetFlags"        "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
         "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
-        "AbilityUnitDamageType"         "DAMAGE_TYPE_PURE"  
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"  
         "FightRecapLevel"               "2"
         "AbilityTextureName"            "custom/achlys_death_mist"
         "AbilityProcsMagicStick"        "1"
@@ -523,7 +523,7 @@
 
         // Casting
         //-------------------------------------------------------------------------------------------------------------
-        "AbilityCastPoint"              "0.5"
+        "AbilityCastPoint"              "0.3"
 
         // Time     
         //-------------------------------------------------------------------------------------------------------------
@@ -547,22 +547,22 @@
             "01"
             {
                 "var_type"                  "FIELD_INTEGER"
-                "self_damage"               "50 40 30"
+                "self_damage"               "40"
             }
             "02"
             {
                 "var_type"                  "FIELD_INTEGER"
-                "damage_per_health"         "30 45 60"
+                "damage_per_health"         "30 40 50"
             }
             "03"
             {
                 "var_type"                  "FIELD_INTEGER"
-                "self_burn"                 "50"
+                "self_burn"                 "40"
             }
             "04"
             {
                 "var_type"                  "FIELD_INTEGER"
-                "burn_per_mana"             "40 60 80"
+                "burn_per_mana"             "30 40 50"
             }
             "05"
             {

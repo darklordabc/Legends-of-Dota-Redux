@@ -81,6 +81,7 @@ function JetStreamEffect( keys )
 		ability:ApplyDataDrivenModifier(caster, target, "modifier_jet_stream_debuff", {})
 	else
 		target:RemoveModifierByName("modifier_jet_stream_debuff")
+		target:RemoveModifierByName("modifier_jet_stream_buff")
 	end
 end
 

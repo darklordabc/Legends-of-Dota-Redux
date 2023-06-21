@@ -24,12 +24,12 @@
             "02"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "damage"                                               "1.0 1.5 2.0"
+                "damage"                                               "2.0 3.5 5.0"
             }
             "03"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "armor_bonus"                                          "0"
+                "armor_bonus"                                          "5 10 15"
             }
             "04"
             {

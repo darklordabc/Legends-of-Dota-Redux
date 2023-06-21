@@ -914,7 +914,7 @@ function modifier_imba_bash_of_the_deep_attack:GetModifierProcAttack_BonusDamage
 			-- A normal bash is rolled
 			if not smack_target then
 				-- Roll for chance
-				if RollPseudoRandom(bash_chance_pct, self) then
+				if RollPseudoRandom(self:GetAbility():GetSpecialValueFor("bash_chance_pct"), self) then
 					-- Play bash sound
 					EmitSoundOn(sound_bash, target)
 

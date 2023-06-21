@@ -1,5 +1,7 @@
 hero_freedom_strike = class({})
 
+require('lib/physics')
+
 LinkLuaModifier("modifier_freedom_strike","abilities/dusk/hero_freedom_strike",LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_freedom_strike_slow","abilities/dusk/hero_freedom_strike",LUA_MODIFIER_MOTION_NONE)
 
@@ -43,7 +45,7 @@ function modifier_freedom_strike:OnCreated(kv)
 		p:SetPhysicsVelocity(facing * distance * (1/0.4))
 		p:AddPhysicsVelocity(Vector(0,0,distance*1.4))
 
-		p:SetPhysicsAcceleration(Vector(0,0,-(distance*10)))
+		p:SetPhysicsAcceleration(Vector(0,0,-(distance*15)))
 
 		Timers:CreateTimer(0.4,function()
 			p:SetPhysicsVelocity(Vector(0,0,0))
@@ -51,7 +53,7 @@ function modifier_freedom_strike:OnCreated(kv)
 			p:PreventDI(false)
 		end
 		)
-		Timers:CreateTimer(0.43,function()
+		Timers:CreateTimer(0.3,function()
 			local enemy = FindUnitsInRadius( p:GetTeamNumber(),
 	                              p:GetCenter(),
 	                              nil,

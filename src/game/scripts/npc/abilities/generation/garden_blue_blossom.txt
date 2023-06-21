@@ -4,17 +4,17 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"AbilityTextureName" "custom/cherub_flower_blue"
 		"MaxLevel" "3"
-		"AOERadius" "500"
+		"AOERadius" "1000"
 
 		"AbilitySpecial" {
 			"01" {
 				"var_type" "FIELD_INTEGER"
-				"radius" "500"
+				"radius" "1000"
 			}
 
 			"02" {
 				"var_type" "FIELD_INTEGER"
-				"restore_amount" "18 22 26"
+				"restore_amount" "30 45 60"
 			}
 		}
 
